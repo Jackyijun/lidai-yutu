@@ -296,9 +296,15 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False):
     if blank:
         return assemble(mid, land, grat, rivers), "", ""
     snaps = geo["snaps"]
-    sn = next((s for s in snaps if s["y"] == year), None) if year is not None else snaps[0]
+    if year is None:
+        year = geo.get("first", snaps[0]["y"])  # 缺省取该图打开时的节点
+    sn = next((s for s in snaps if s["y"] == year), None)
     if sn is None:
         sys.exit(f"没有 {year} 年的节点；可选：{[s['y'] for s in snaps]}")
+    pool = geo.get("pool")
+    if pool:  # 汉末三国式：疆域几何存于共享池，节点里只记编号
+        for key in ("z", "p"):
+            sn[key] = {u: pool[v] if isinstance(v, int) else v for u, v in sn.get(key, {}).items()}
     if "s" in sn:
         terr, extra, labels, light, dark = simple_model(mid, geo, data, sn, view)
     else:
@@ -310,7 +316,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="为历代舆图总览页生成某张形势图的缩略图")
     ap.add_argument("html")
     ap.add_argument("--id", required=True, help="短代号，用作颜色 token 前缀与 clipPath id，如 zg / ts / st")
-    ap.add_argument("--year", type=int)
+    ap.add_argument("--year", type=int, help="取哪个节点；缺省取该图打开时的节点（GEO.first），没有则取第一个")
     ap.add_argument("--box", type=float, nargs=4, metavar=("W", "E", "S", "N"))
     ap.add_argument("--mode", default="zhen", choices=["zhen", "pol"])
     ap.add_argument("--blank", action="store_true")
