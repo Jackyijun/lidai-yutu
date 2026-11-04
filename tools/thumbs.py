@@ -280,7 +280,9 @@ def layered_model(mid, src, data, sn, view, mode):
         if anc:
             name = re.sub(r"[（(].*?[）)]", "", sn.get("lab", {}).get(key) or units[p]["n"])
             x, y = view.ll(anc[0], anc[1])
-            fs = max(7.5, min(18, anc[3] * view.ppd * .5))
+            rpx = anc[3] * view.ppd  # 注记点处的内切半径（像素）
+            fs = max(7.5, min(18, rpx * .5))
+            if len(name) <= 2: fs = max(fs, min(10, rpx * .8))  # 一两字的短名能放进更小的疆域
             if p in multi: fs = max(fs, 15)
             if fs >= 8.5: cands.append((x, y, name, fs, f"--{mid}-{p}")); used.add(p)
     light = [f"--{mid}-{u}:{lc[str(u)]}" for u in sorted(used)]
@@ -288,7 +290,7 @@ def layered_model(mid, src, data, sn, view, mode):
     return terr, f'<g clip-path="url(#lc-{mid})">{outl}</g>', place_labels(cands), light, dark
 
 
-def build(path, mid, year=None, box=None, mode="zhen", blank=False):
+def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None):
     src, geo, data = extract(path)
     box = box or source_box(src)
     view = View(Albers(*source_center(src)), box)
@@ -296,9 +298,17 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False):
     if blank:
         return assemble(mid, land, grat, rivers), "", ""
     snaps = geo["snaps"]
-    if year is None:
-        year = geo.get("first", snaps[0]["y"])  # 缺省取该图打开时的节点
-    sn = next((s for s in snaps if s["y"] == year), None)
+    if node is not None:  # 同一年有几个节点时（如隋唐图按月分节点），用序号指定
+        if not 0 <= node < len(snaps):
+            sys.exit(f"节点序号应在 0 — {len(snaps) - 1} 之间")
+        sn = snaps[node]
+    else:
+        if year is None:  # 缺省取该图打开时的节点：GEO.first 记年份，DATA.first 记序号
+            if "first" in geo:
+                year = geo["first"]
+            else:
+                year = snaps[data.get("first", 0)]["y"] if isinstance(data, dict) else snaps[0]["y"]
+        sn = next((s for s in snaps if s["y"] == year), None)
     if sn is None:
         sys.exit(f"没有 {year} 年的节点；可选：{[s['y'] for s in snaps]}")
     pool = geo.get("pool")
@@ -317,12 +327,13 @@ if __name__ == "__main__":
     ap.add_argument("html")
     ap.add_argument("--id", required=True, help="短代号，用作颜色 token 前缀与 clipPath id，如 zg / ts / st")
     ap.add_argument("--year", type=int, help="取哪个节点；缺省取该图打开时的节点（GEO.first），没有则取第一个")
+    ap.add_argument("--node", type=int, help="按序号取节点（从 0 起），同一年有多个节点时用")
     ap.add_argument("--box", type=float, nargs=4, metavar=("W", "E", "S", "N"))
     ap.add_argument("--mode", default="zhen", choices=["zhen", "pol"])
     ap.add_argument("--blank", action="store_true")
     ap.add_argument("--out", default=".")
     a = ap.parse_args()
-    svg, light, dark = build(a.html, a.id, a.year, a.box, a.mode, a.blank)
+    svg, light, dark = build(a.html, a.id, a.year, a.box, a.mode, a.blank, a.node)
     os.makedirs(a.out, exist_ok=True)
     open(os.path.join(a.out, f"thumb-{a.id}.svg"), "w", encoding="utf8").write(svg)
     open(os.path.join(a.out, f"thumb-{a.id}.css.txt"), "w", encoding="utf8").write(f"/* light */ {light}\n/* dark */ {dark}\n")
