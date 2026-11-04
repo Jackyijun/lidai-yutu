@@ -7,7 +7,7 @@
 | 卷一 | 战国列国形势图（前475 — 前212） | https://jackyijun.github.io/zhanguo-map/ |
 | 卷二 | 汉末三国形势图（184 — 280） | https://jackyijun.github.io/hanmosanguo-map/ |
 | 卷三 | 隋及唐初形势图（581 — 669） | https://jackyijun.github.io/suitang-map/ |
-| 卷四 | 唐宋之际形势图（755 — 979） | https://jackyijun.github.io/tangsong-map/ |
+| 卷四 | 唐末五代形势图（755 — 979；地图本身题「唐宋之际形势图」） | https://jackyijun.github.io/tangsong-map/ |
 | 卷五 | 宋辽夏金元形势图（979 — 1279） | https://jackyijun.github.io/songyuan-map/ |
 
 `index.html` 是自包含的：样式、脚本、五幅缩略图都写在文件里，不加载任何外部资源。色板、字体、细线与各图的《历史形势图统一规范》一致，深浅色跟随系统。
