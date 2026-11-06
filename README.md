@@ -14,12 +14,6 @@
 
 线上地址：https://jackyijun.github.io/lidai-yutu/
 
-## 更新部署
-
-把本文件夹里的 `index.html`、`README.md`、`tools/` 覆盖到仓库根目录的同名位置，然后提交并推送。Pages 一两分钟内会自动更新。
-
-首次部署时的设置：仓库 Settings → Pages，Source 选 Deploy from a branch，分支 `main`，目录 `/ (root)`。
-
 ## 增加新卷
 
 1. 复制一个 `<li class="juan">` 块，按时代先后放进目录，然后重排卷次（卷一、卷二……）。
