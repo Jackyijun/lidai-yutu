@@ -1,5 +1,7 @@
 # 历代舆图
 
+[![中文](https://img.shields.io/badge/lang-%E4%B8%AD%E6%96%87-red.svg)](README.md) [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.en.md)
+
 历代形势图的总览页，依次是题签页眉、时间长卷、图卷目录、凡例。目录里每一卷链到它自己的 GitHub Pages：
 
 | 卷次 | 图 | 地址 |
@@ -14,16 +16,27 @@
 
 线上地址：https://jackyijun.github.io/lidai-yutu/
 
+## 中英双语
+
+页面右上角「中 | EN」切换，默认中文。中文名「历代舆图」，英文名 Historical Atlas of China。
+
+- 选择记在本机（localStorage 键 `lidai-yutu:lang`）；网址加 `#en` 直接打开英文，加 `#zh` 打开中文；`<html lang>` 随之切换。
+- 从目录点进各卷时，链接带上当前语言（`#zh` / `#en`），各图按同样的语言打开。
+- 页面文字成对写在同一处：`<span class="zh">…</span><span class="en" lang="en">…</span>`，按 `<html lang>` 只显示一种。时间长卷由页尾脚本生成，朝代分段 `BANDS` 里每项也写了中英两个名字。
+- 英文模式下标题与卷名换西文衬线体（Iowan Old Style、Palatino 一类），正文换系统无衬线体，取消中文的大字距，组头改为大写。竖排题签「历代舆图」和两方印保留不变，英文标题排在题签右侧。
+- 卷名、主线、着色方式与统计用语都照各图自己的英文版：节点叫 snapshots，州府、州郡叫 prefectures，郡国叫 commanderies，藩镇写 fanzhen。卷四英文题名用 Late Tang and the Five Dynasties，与中文首页的「唐末五代」一致；地图本身的英文题名是 Between Tang and Song。
+- 缩略图里画了中、英两组注记（`<g class="t-lab zh">`、`<g class="t-lab en">`），也按当前语言只显示一组。英文国名取自各图数据，见下文「生成缩略图」。
+
 ## 增加新卷
 
-1. 复制一个 `<li class="juan">` 块，按时代先后放进目录，然后重排卷次（卷一、卷二……）。
+1. 复制一个 `<li class="juan">` 块，按时代先后放进目录，然后重排卷次（卷一、卷二……；Volume I、Volume II……）。
 2. 改这几项：
    - `id`
-   - `data-short`：时间长卷上显示的短名
+   - `data-short`、`data-short-en`：时间长卷上显示的中、英短名
    - `data-start`、`data-end`：起止年
-3. 改链接、缩略图（见下节）、卷名、年代、主线、导语、`stats` 和缩略图说明 `thumb-cap`。
+3. 改链接、缩略图（见下节），以及卷名、年代、主线、导语、`stats`、缩略图说明 `thumb-cap` 的中英两份。英文照该图自己的英文题名、副题和用语。
 4. 在 `:root` 和两个深色块里各加一个 `--m-xx`，作为这一卷的主色，浅色、深色各一个值；`<li>` 上写 `style="--c:var(--m-xx)"`。主色要和时间长卷上相邻的色段分得开。
-5. 改封面上的「凡五卷 · 前475 — 1279」和目录组头「已成五卷」。
+5. 改封面「凡五卷 · 前475 — 1279」与「Five volumes · 475 BC – 1279」、目录组头「已成五卷」与「Five volumes completed」，以及 `<meta name="description">` 和页尾脚本 `DESC` 里的卷名。
 6. 如果新卷超出前500 — 1350 的范围，改页尾脚本里的 `R0`、`R1`、`TICKS`。朝代分段 `BANDS` 也在同一处。
 
 时间长卷不用另外改，它直接读目录里每卷的 `data-start` / `data-end` 画色段。
@@ -33,20 +46,20 @@
 还没做完的图可以先放一张灰卡：
 
 - `<li>` 加上 class `todo` 和属性 `data-todo="1"`，不写 `--c`。
-- `<a class="juan-body" href="…">` 换成 `<article class="juan-body" aria-label="…，编修中">`。
-- 缩略图用 `--blank` 生成，后面加一个「编修中」印：
+- `<a class="juan-body" href="…">` 换成 `<article class="juan-body" aria-labelledby="…">`，指向卷名所在的 `<h2>`。
+- 缩略图用 `--blank` 生成，后面加一个「编修中」印。印文作为图案保留中文，英文模式下也不换：
 
 ```html
 <svg class="stamp" viewBox="0 0 96 40" aria-hidden="true">
   <g filter="url(#worn)">
     <rect x="2" y="2" width="92" height="36" rx="2" fill="none" stroke="var(--seal)" stroke-width="2.4"/>
     <rect x="6" y="6" width="84" height="28" rx="1" fill="none" stroke="var(--seal)" stroke-width=".9"/>
-    <text x="48" y="20.5" font-size="17" letter-spacing="5" text-anchor="middle" dominant-baseline="central" style="fill:var(--seal);font-family:var(--f-display);font-weight:700">编修中</text>
+    <text x="48" y="20.5" font-size="17" letter-spacing="5" text-anchor="middle" dominant-baseline="central" style="fill:var(--seal);font-family:var(--f-cjk);font-weight:700">编修中</text>
   </g>
 </svg>
 ```
 
-- `stats` 写「编修中」，`<span class="act">` 写「即将刊行」。
+- `stats` 写「编修中」/「In preparation」，`<span class="act">` 写「即将刊行」/「Coming soon」。
 - 时间长卷上的这一卷自动画成虚框。
 
 ## 生成缩略图
@@ -59,14 +72,21 @@
 - 唐宋式：节点里有 `z` / `p` / `pol`。
 - 汉末三国、隋唐、宋元式：疆域几何放在共享池 `GEO.pool` 里。
 
+注记画中、英两组：
+
+- 中文用当年的国名，与以前一样。
+- 英文取自该图数据：战国取政权条目的 `eold`；其余各图依次取节点的当年别名 `labe`、单位的地图短名 `se`、全称 `ne`，去掉括注。
+- 英文按估算字宽避让，长名在空格处折成两行，放不下就不标。
+
 ```bash
 python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1141 --mode pol --out thumbs
 ```
 
-运行后输出两份文件：
+运行后输出三份文件：
 
 - `thumbs/thumb-sy.svg`：贴进对应卷的 `.thumb-in`。
 - `thumbs/thumb-sy.css.txt`：两行颜色 token。浅色那行贴进 `:root`，深色那行贴进两个深色块，和已有的 `/* 缩略图 zg */` 等放在一起。
+- `thumbs/thumb-sy.cap.txt`：该节点的年份和中英标题，用来写缩略图说明 `thumb-cap`。
 
 参数：
 

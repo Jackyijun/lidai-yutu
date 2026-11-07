@@ -3,7 +3,12 @@
 
 从某张形势图自己的 index.html 里读出内嵌的 GEO / DATA，按该图自己的投影和色板，
 把某一个时间节点的疆域重绘成一幅 360×270 的小图（SVG），供总览页的目录卡片使用。
-简单模型（战国式，节点里有 s/l）与分层模型（唐宋式，节点里有 z/p/pol）都能处理。
+简单模型（战国式，节点里有 s/l）与分层模型（唐宋式，节点里有 z/p/pol）都能处理，
+疆域几何放在共享池 GEO.pool 里的也能处理。
+
+注记中英两套都画：<g class="t-lab zh"> 用中文名，<g class="t-lab en"> 用该图数据里的英文名
+（简单模型取政权条目的 eold；分层模型依次取当年别名 labe、地图短名 se、全称 ne，去掉括注），
+由总览页按当前语言显示其一。英文按估算字宽避让，长名在空格处折两行，放不下就不标。
 
 用法
   python3 tools/thumbs.py 图的index.html --id zg --year -300
@@ -13,9 +18,11 @@
 输出（写到 --out 目录，默认当前目录）
   thumb-<id>.svg        直接粘进总览页对应卷的 .thumb-in 里
   thumb-<id>.css.txt    两行颜色 token（浅色一行、深色一行），粘进总览页 :root 与两个深色块
+  thumb-<id>.cap.txt    该节点的年份与中英标题，用来写缩略图说明 thumb-cap
 参数
+  --year / --node       取哪一年 / 第几个节点；都不填取该图打开时的节点
   --box 西 东 南 北     缩略图取景的经纬框；缺省取该图源码里 FITS 的 cn 或 all
-  --mode zhen|pol       分层模型的着色：藩镇（缺省）或政权
+  --mode zhen|pol       分层模型的着色：二级单位（缺省）或政权
 """
 import argparse, json, math, os, re, sys
 
@@ -193,8 +200,9 @@ def graticule(view, box):
 
 # ---------------------------------------------------------------- 注记与组装
 def place_labels(cands):
+    """中文注记。cands: (x, y, 中文名, 字号, 颜色变量, 英文名, 内切半径)；只用前五项。"""
     placed, out = [], []
-    for x, y, t, fs, var in sorted(cands, key=lambda c: -c[3]):
+    for x, y, t, fs, var, *_ in sorted(cands, key=lambda c: -c[3]):
         n = len(t)
         ls = fs * (.32 if n <= 3 else .08)
         w = n * fs + (n - 1) * ls
@@ -205,6 +213,62 @@ def place_labels(cands):
         out.append(f'<text x="{x:.1f}" y="{y:.1f}" font-size="{fs:.1f}" letter-spacing="{ls:.2f}" '
                    f'style="fill:color-mix(in srgb,var({var}) 45%,var(--ink))">{t}</text>')
     return "".join(out)
+
+
+# 西文衬线体（Iowan Old Style、Palatino 一类）的近似字宽，单位 em
+_NARROW, _WIDE = set("iljtfrI.,'’·:;!()-"), set("mwMW")
+
+
+def text_width(t, fs):
+    w = 0
+    for ch in t:
+        if ch == " ": w += .25
+        elif ch in _NARROW: w += .3
+        elif ch in _WIDE: w += .82
+        elif ch.isupper(): w += .68
+        else: w += .5
+    return w * fs
+
+
+def en_lines(name, fs, room):
+    """名字比疆域宽、又有空格时，在最靠中间的空格处折成两行。"""
+    if text_width(name, fs) <= room or " " not in name:
+        return [name]
+    sp = [i for i, ch in enumerate(name) if ch == " "]
+    i = min(sp, key=lambda k: abs(text_width(name[:k], 1) - text_width(name[k + 1:], 1)))
+    return [name[:i], name[i + 1:]]
+
+
+def place_labels_en(cands):
+    """英文注记：按估算字宽避让，长名折两行，放不下就不标。"""
+    placed, out = [], []
+    for x, y, zh, fs_zh, var, en, rpx in sorted(cands, key=lambda c: -c[3]):
+        if not en: continue
+        fs = max(7.5, min(14, fs_zh * .82))
+        lines = en_lines(en, fs, max(2.4 * rpx, 54))
+        w = max(text_width(l, fs) for l in lines)
+        h = fs * 1.08 * len(lines)
+        bx = (x - w / 2 - 2, y - h / 2 - 1.5, x + w / 2 + 2, y + h / 2 + 1.5)
+        if bx[0] < 2 or bx[2] > W - 2 or bx[1] < 2 or bx[3] > H - 2: continue
+        if any(not (bx[2] < b[0] or bx[0] > b[2] or bx[3] < b[1] or bx[1] > b[3]) for b in placed): continue
+        placed.append(bx)
+        style = f'style="fill:color-mix(in srgb,var({var}) 45%,var(--ink))"'
+        if len(lines) == 1:
+            out.append(f'<text x="{x:.1f}" y="{y:.1f}" font-size="{fs:.1f}" {style}>{_esc(en)}</text>')
+        else:
+            y0 = y - fs * .54
+            spans = "".join(f'<tspan x="{x:.1f}" y="{y0 + i * fs * 1.08:.1f}">{_esc(l)}</tspan>' for i, l in enumerate(lines))
+            out.append(f'<text font-size="{fs:.1f}" {style}>{spans}</text>')
+    return "".join(out)
+
+
+def _esc(t):
+    return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def short_en(name):
+    """英文名去掉括注，作地图短名。"""
+    return re.sub(r"\s*\(.*?\)", "", name or "").strip() or None
 
 
 def terr_path(d, var, tribe=False, sub=False):
@@ -222,7 +286,14 @@ def assemble(mid, land, grat, rivers, terr="", extra="", labels=""):
             f'<g class="t-terr" clip-path="url(#lc-{mid})">{terr}</g>{extra}'
             f'<path class="t-coast" d="{land}"/>'
             f'<path class="t-river" d="{rivers}"/>'
-            f'<g class="t-lab">{labels}</g></svg>')
+            f'{labels}</svg>')
+
+
+def label_groups(cands):
+    """中、英两组注记，由页面按当前语言显示其一（.t-lab.zh / .t-lab.en）。"""
+    if not cands: return ""
+    return (f'<g class="t-lab zh" lang="zh-CN">{place_labels(cands)}</g>'
+            f'<g class="t-lab en" lang="en">{place_labels_en(cands)}</g>')
 
 
 def base(view, geo, box):
@@ -246,8 +317,9 @@ def simple_model(mid, geo, data, sn, view):
         if anc:
             x, y = view.ll(anc[0], anc[1])
             fs = max(7.5, min(17, anc[3] * view.ppd * .62))
-            if fs >= 8: cands.append((x, y, st, fs, var))
-    return terr, "", place_labels(cands), light, dark
+            en = next((short_en(i.get("eold")) for i in data["items"] if i.get("c") == "state" and i.get("k") == st), None)
+            if fs >= 8: cands.append((x, y, st, fs, var, en, anc[3] * view.ppd))
+    return terr, "", label_groups(cands), light, dark
 
 
 def layered_model(mid, src, data, sn, view, mode):
@@ -284,10 +356,12 @@ def layered_model(mid, src, data, sn, view, mode):
             fs = max(7.5, min(18, rpx * .5))
             if len(name) <= 2: fs = max(fs, min(10, rpx * .8))  # 一两字的短名能放进更小的疆域
             if p in multi: fs = max(fs, 15)
-            if fs >= 8.5: cands.append((x, y, name, fs, f"--{mid}-{p}")); used.add(p)
+            # 英文名：当年别名 labe → 地图短名 se → 全称 ne，去掉括注
+            en = short_en(sn.get("labe", {}).get(key) or units[p].get("se") or units[p].get("ne"))
+            if fs >= 8.5: cands.append((x, y, name, fs, f"--{mid}-{p}", en, rpx)); used.add(p)
     light = [f"--{mid}-{u}:{lc[str(u)]}" for u in sorted(used)]
     dark = [f"--{mid}-{u}:{dc[str(u)]}" for u in sorted(used)]
-    return terr, f'<g clip-path="url(#lc-{mid})">{outl}</g>', place_labels(cands), light, dark
+    return terr, f'<g clip-path="url(#lc-{mid})">{outl}</g>', label_groups(cands), light, dark
 
 
 def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None):
@@ -296,7 +370,7 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None):
     view = View(Albers(*source_center(src)), box)
     land, grat, rivers = base(view, geo, box)
     if blank:
-        return assemble(mid, land, grat, rivers), "", ""
+        return assemble(mid, land, grat, rivers), "", "", ""
     snaps = geo["snaps"]
     if node is not None:  # 同一年有几个节点时（如隋唐图按月分节点），用序号指定
         if not 0 <= node < len(snaps):
@@ -319,7 +393,10 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None):
         terr, extra, labels, light, dark = simple_model(mid, geo, data, sn, view)
     else:
         terr, extra, labels, light, dark = layered_model(mid, src, data, sn, view, mode)
-    return assemble(mid, land, grat, rivers, terr, extra, labels), ";".join(light), ";".join(dark)
+    y = sn["y"]
+    yz, ye = (f"前{-y}", f"{-y} BC") if y < 0 else (str(y), str(y))
+    cap = f"zh: {yz}  {sn['t']}\nen: {ye}  {sn.get('te') or ''}\n"  # 缩略图说明的中英原文，取自该节点
+    return assemble(mid, land, grat, rivers, terr, extra, labels), ";".join(light), ";".join(dark), cap
 
 
 if __name__ == "__main__":
@@ -333,8 +410,11 @@ if __name__ == "__main__":
     ap.add_argument("--blank", action="store_true")
     ap.add_argument("--out", default=".")
     a = ap.parse_args()
-    svg, light, dark = build(a.html, a.id, a.year, a.box, a.mode, a.blank, a.node)
+    svg, light, dark, cap = build(a.html, a.id, a.year, a.box, a.mode, a.blank, a.node)
     os.makedirs(a.out, exist_ok=True)
     open(os.path.join(a.out, f"thumb-{a.id}.svg"), "w", encoding="utf8").write(svg)
     open(os.path.join(a.out, f"thumb-{a.id}.css.txt"), "w", encoding="utf8").write(f"/* light */ {light}\n/* dark */ {dark}\n")
+    if cap:
+        open(os.path.join(a.out, f"thumb-{a.id}.cap.txt"), "w", encoding="utf8").write(cap)
     print(f"thumb-{a.id}.svg  {len(svg):,} bytes")
+    if cap: print(cap, end="")
