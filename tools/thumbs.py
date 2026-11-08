@@ -7,7 +7,8 @@
 疆域几何放在共享池 GEO.pool 里的也能处理。
 
 注记中英两套都画：<g class="t-lab zh"> 用中文名，<g class="t-lab en"> 用该图数据里的英文名
-（简单模型取政权条目的 eold；分层模型依次取当年别名 labe、地图短名 se、全称 ne，去掉括注），
+（简单模型依次取当年别名 labe、政权条目的 eold；分层模型依次取当年别名 labe、地图短名 se、全称 ne，去掉括注），
+简单模型的中文注记依次取当年别名 lab、政权条目的古名（去括注）；DATA.kinds 标为 tribe 的部族画淡色虚线。
 由总览页按当前语言显示其一。英文按估算字宽避让，长名在空格处折两行，放不下就不标。
 
 用法
@@ -309,7 +310,8 @@ def simple_model(mid, geo, data, sn, view):
         var = f"--{mid}-{states.index(st)}"
         d = rings_d(view, rings)
         if not d: continue
-        tribe = any(i.get("c") == "state" and i.get("k") == st and i.get("tribe") for i in data["items"]) or st == "义渠"
+        tribe = (any(i.get("c") == "state" and i.get("k") == st and i.get("tribe") for i in data["items"])
+                 or data.get("kinds", {}).get(st) == "tribe" or st == "义渠")
         terr += terr_path(d, var, tribe=tribe)
         lc, dc = data["colors"][st]
         light.append(f"{var}:{lc}"); dark.append(f"{var}:{dc}")
@@ -317,8 +319,11 @@ def simple_model(mid, geo, data, sn, view):
         if anc:
             x, y = view.ll(anc[0], anc[1])
             fs = max(7.5, min(17, anc[3] * view.ppd * .62))
-            en = next((short_en(i.get("eold")) for i in data["items"] if i.get("c") == "state" and i.get("k") == st), None)
-            if fs >= 8: cands.append((x, y, st, fs, var, en, anc[3] * view.ppd))
+            it = next((i for i in data["items"] if i.get("c") == "state" and i.get("k") == st), {})
+            # 中文用当年别名或国名（去括注），英文用当年别名或 eold
+            zh = sn.get("lab", {}).get(st) or re.sub(r"（.*?）", "", it.get("old") or st) or st
+            en = short_en(sn.get("labe", {}).get(st) or it.get("eold"))
+            if fs >= 8: cands.append((x, y, zh, fs, var, en, anc[3] * view.ppd))
     return terr, "", label_groups(cands), light, dark
 
 
