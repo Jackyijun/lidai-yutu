@@ -12,6 +12,7 @@
 <meta name="description" content="历代形势图总览：春秋、战国、汉末三国、两晋十六国南北朝、隋及唐初、唐末五代、宋辽夏金元、民国至新中国初期，按时代分卷，古今地名对照。">
 <style>
   /* 版式：一页纸本图集。题签页眉（竖排书名 + 导言 + 钤印）→ 时间长卷 → 图卷目录（缩略图 + 卷目）→ 凡例
+     纸最宽 1600，时间长卷随纸铺开；页眉压矮（题签小一号、导言两行、印章钤在页眉右下角不占行高），笔记本首屏能看全第一卷
      双语：中文为源文本，英文写在同一处（.zh / .en 成对），按 <html lang> 显示其一；右上角「中 | EN」切换 */
   :root {
     --ground-deep:#D6D5C9; --ground:#E3E2D9; --paper:#F2F1EA; --paper-2:#EAE9E0;
@@ -90,16 +91,16 @@
     font-family: var(--f-body); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 40px 56px;
+    padding-block: 28px 48px;
   }
   a { color: inherit; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   .book {
     position: relative;
-    max-width: 1040px; margin: 0 auto; background: var(--paper);
+    max-width: 1600px; margin: 0 auto; background: var(--paper);
     border: 1px solid var(--rule); border-radius: 3px; box-shadow: var(--shadow);
-    padding: 44px clamp(20px, 5vw, 56px) 36px;
+    padding: 34px clamp(20px, 5vw, 56px) 36px;
   }
 
   /* ---------- 语言切换（右上角，与各图同式） ---------- */
@@ -113,20 +114,20 @@
   .langsw button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 
   /* ---------- 题签页眉 ---------- */
-  .cover { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(22px, 4vw, 52px); padding-bottom: 36px; }
+  .cover { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(22px, 4vw, 52px); padding-bottom: 26px; }
   .tiqian { background: var(--land); border: 1px solid var(--ink-3); padding: 4px; align-self: start; }
-  .tiqian-in { border: 1px solid var(--rule); padding: 26px 16px 22px; display: flex; justify-content: center; }
+  .tiqian-in { border: 1px solid var(--rule); padding: 18px 12px 15px; display: flex; justify-content: center; }
   .tiqian h1 {
     margin: 0; writing-mode: vertical-rl; text-orientation: upright;
-    font-family: var(--f-cjk); font-weight: 600; font-size: clamp(28px, 3.6vw, 38px);
-    letter-spacing: .42em; line-height: 1; color: var(--ink);
+    font-family: var(--f-cjk); font-weight: 600; font-size: clamp(24px, 2.2vw, 28px);
+    letter-spacing: .42em; line-height: 1; color: var(--ink); white-space: nowrap;
   }
-  .cover-text { display: flex; flex-direction: column; gap: 18px; min-width: 0; padding-top: 6px; }
-  .en-title { margin: 0; padding-right: 88px; font-family: var(--f-display); font-weight: 600; font-size: clamp(30px, 4.2vw, 44px);
+  .cover-text { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 2px; }
+  .en-title { margin: 0; padding-right: 88px; font-family: var(--f-display); font-weight: 600; font-size: clamp(28px, 3vw, 38px);
     line-height: 1.08; color: var(--ink); text-wrap: balance; }
   .eyebrow { margin: 0; font-size: 12px; letter-spacing: .26em; color: var(--ink-3); }
   .lede {
-    margin: 0; max-width: 33em; font-family: var(--f-display); font-size: clamp(15.5px, 1.6vw, 17.5px);
+    margin: 0; max-width: 44em; font-family: var(--f-display); font-size: clamp(15.5px, 1.6vw, 17.5px);
     line-height: 1.95; color: var(--ink-2); text-wrap: pretty;
   }
   .cover-foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
@@ -214,7 +215,7 @@
   .years { font-family: var(--f-mono); font-size: 13px; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
   .years small { font-family: var(--f-body); font-size: 11px; color: var(--ink-3); margin-left: 2px; }
   .juan-line { margin: 0; font-family: var(--f-display); font-size: 15px; letter-spacing: .1em; color: var(--ink-2); }
-  .juan-lede { margin: 2px 0 0; max-width: 40em; font-size: 14px; line-height: 1.8; color: var(--ink-2); text-wrap: pretty; }
+  .juan-lede { margin: 2px 0 0; max-width: 50em; font-size: 14px; line-height: 1.8; color: var(--ink-2); text-wrap: pretty; }
   .juan-foot { margin-top: auto; padding-top: 10px; display: flex; align-items: baseline; gap: 6px 18px; flex-wrap: wrap; }
   .stats { font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); letter-spacing: .04em; font-variant-numeric: tabular-nums; }
   .go { margin-left: auto; display: inline-flex; align-items: baseline; gap: 10px; }
@@ -247,7 +248,7 @@
   html[lang="en"] .juan-no { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; }
   html[lang="en"] .juan-title h2 { letter-spacing: 0; font-size: clamp(21px, 2.4vw, 25px); }
   html[lang="en"] .juan-line { letter-spacing: 0; font-style: italic; font-size: 15.5px; }
-  html[lang="en"] .juan-lede { line-height: 1.65; }
+  html[lang="en"] .juan-lede { line-height: 1.65; max-width: 46em; }
   html[lang="en"] .stats { letter-spacing: 0; }
   html[lang="en"] .go .act { letter-spacing: .02em; }
   html[lang="en"] .thumb-cap { font-size: 10.5px; }
@@ -257,6 +258,12 @@
   html[lang="en"] .notes li::before { content: counter(fl) "."; }
   html[lang="en"] .credit { letter-spacing: 0; }
 
+  @media (min-width: 561px) {
+    .cover { position: relative; }
+    .cover-text { padding-right: 84px; }
+    .en-title { padding-right: 0; }
+    .seals { position: absolute; right: 0; bottom: 26px; }
+  }
   @media (max-width: 760px) {
     body { padding-block: 16px 28px; }
     .book { padding-top: 54px; }
