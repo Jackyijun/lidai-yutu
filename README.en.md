@@ -13,10 +13,11 @@ The index page of the historical map series, in order: the title-slip header, th
 | V | Sui and Early Tang (581–669) | https://jackyijun.github.io/suitang-map/ |
 | VI | Late Tang and the Five Dynasties (755–979; the map itself is titled Between Tang and Song) | https://jackyijun.github.io/tangsong-map/ |
 | VII | Song · Liao · Xia · Jin · Yuan (979–1279) | https://jackyijun.github.io/songyuan-map/ |
+| VIII | Republican China to the Early PRC (1911–1954) | https://jackyijun.github.io/minguo-xinzhongguo-map/ |
 
 Volumes I and II join without a seam: the last snapshot of the Spring and Autumn map (476 BC) and the first of the Warring States map (475 BC) have identical territory and colors. Volumes III, IV and V join the same way: the Jin map copies the junction snapshots at both ends, so its first snapshot matches the last of the Late Han map (280) and its last snapshot matches the first of the Sui–Tang map (581) in territory and colors.
 
-`index.html` is self-contained: its styles, script and all seven thumbnails are written into the file, and it loads no outside resources. Its palette, fonts and hairlines match the maps' shared style guide (历史形势图统一规范), and it follows the system's light or dark setting.
+`index.html` is self-contained: its styles, script and all eight thumbnails are written into the file, and it loads no outside resources. Its palette, fonts and hairlines match the maps' shared style guide (历史形势图统一规范), and it follows the system's light or dark setting.
 
 Live page: https://jackyijun.github.io/lidai-yutu/
 
@@ -26,9 +27,9 @@ The 中 | EN switch at the top right changes the language; Chinese is the defaul
 
 - The choice is saved on the device (localStorage key `lidai-yutu:lang`). Adding `#en` to the address opens the English page, and `#zh` the Chinese one; `<html lang>` changes with it.
 - Links from the contents into each volume carry the current language (`#zh` / `#en`), so each map opens in the same language.
-- Page text is written in pairs in the same place: `<span class="zh">…</span><span class="en" lang="en">…</span>`, and only the one matching `<html lang>` is shown. The timeline is built by the script at the end of the page; each entry in its dynasty bands `BANDS` also carries a Chinese and an English name.
+- Page text is written in pairs in the same place: `<span class="zh">…</span><span class="en" lang="en">…</span>`, and only the one matching `<html lang>` is shown. The timeline is built by the script at the end of the page; each entry in its dynasty and period bands `BANDS` also carries a Chinese and an English name.
 - In English the headings and volume titles switch to a Latin serif (Iowan Old Style, Palatino and the like) and the body text to the system sans-serif; the wide CJK letter-spacing is dropped and group headings are set in capitals. The vertical title slip 历代舆图 and the two seals stay as they are, with the English title set to the right of the slip.
-- Volume titles, subtitles, coloring modes and the terms in the stats lines follow each map's own English version: time nodes are snapshots, 州府 and 州郡 are prefectures, 郡国 and 郡县 are commanderies, 藩镇 is written fanzhen, and 方镇 are regional commands. Volume VI is titled Late Tang and the Five Dynasties in English, matching 唐末五代 on the Chinese page; the map's own English title is Between Tang and Song.
+- Volume titles, subtitles, coloring modes and the terms in the stats lines follow each map's own English version: time nodes are snapshots, 州府 and 州郡 are prefectures, 郡国 and 郡县 are commanderies, 藩镇 is written fanzhen, and 方镇 are regional commands; in the Republican volume, 城市 are cities and 派系与属地 are factions and dependencies. Volume VI is titled Late Tang and the Five Dynasties in English, matching 唐末五代 on the Chinese page; the map's own English title is Between Tang and Song.
 - Each thumbnail holds two sets of labels, Chinese and English (`<g class="t-lab zh">`, `<g class="t-lab en">`), and also shows only the one for the current language. The English names come from each map's data; see "Generating thumbnails" below.
 
 ## Adding a volume
@@ -40,10 +41,10 @@ The 中 | EN switch at the top right changes the language; Chinese is the defaul
    - `data-start`, `data-end`: first and last year
 3. Change the link and the thumbnail (see the next section), and both language versions of the title, years, subtitle, description, `stats` and the thumbnail caption `thumb-cap`. Take the English from that map's own English title, subtitle and terms.
 4. Add an `--m-xx` to `:root` and to both dark blocks as the volume's main color, one light and one dark value, and write `style="--c:var(--m-xx)"` on the `<li>`. The color should stand apart from its neighbors on the timeline.
-5. Update the cover's 「凡七卷 · 前770 — 1279」 and "Seven volumes · 770 BC – 1279", the contents heading 「已成七卷」 and "Seven volumes completed", and the volume names in `<meta name="description">` and in `DESC` in the script at the end of the page.
-6. If the new volume falls outside 800 BC – 1350, change `R0`, `R1` and `TICKS` in the script at the end of the page. The dynasty bands `BANDS` are in the same place.
+5. Update the cover's 「凡八卷 · 前770 — 1954」 and "Eight volumes · 770 BC – 1954", the contents heading 「已成八卷」 and "Eight volumes completed", and the volume names in `<meta name="description">`, in `og:description` and in `DESC` in the script at the end of the page.
+6. If the new volume falls outside 800 BC – 1960, change `R0`, `R1` and `TICKS` in the script at the end of the page, and the year range in the Timeline heading. The dynasty and period bands `BANDS` are in the same place (the Ming, Qing, Republic of China and People's Republic of China bands were added with the Republican volume).
 
-The timeline needs no other change: it draws each volume's bar straight from that volume's `data-start` / `data-end`. Where volume names crowd together, each name goes on the lowest row that has room for it, and the timeline grows taller to match.
+The timeline needs no other change: it draws each volume's bar straight from that volume's `data-start` / `data-end`. Where volume names crowd together, each name goes on the lowest row that has room for it, and the timeline grows taller to match; a name at either end of the timeline (such as the Republican volume's) is moved inward so that it stays inside.
 
 ### Announcing a volume in preparation
 
@@ -70,17 +71,19 @@ A map that is not finished yet can be shown as a gray card first:
 
 `tools/thumbs.py` reads the GEO / DATA embedded in a map's own `index.html` and, using that map's projection and palette, redraws one time node as a 360×270 image. It uses only the Python 3 standard library.
 
-It handles three data layouts:
+It handles four data layouts:
 
 - Warring States (also the Spring and Autumn map): nodes hold `s` / `l`. Rong and Di peoples marked `tribe` in `DATA.kinds` are drawn pale and dashed, as on the map.
 - Tang–Song: nodes hold `z` / `p` / `pol`.
 - Late Han, Jin, Sui–Tang and Song–Yuan: territory geometry sits in the shared pool `GEO.pool`. Nodes in the Jin map may also carry `kd` (a change of unit kind at that node, as when Goguryeo is drawn as a state rather than a tribe from 313) and `col` (light and dark colors overriding the unit's own at that node); the thumbnail follows what the node records.
+- Republican: nodes are monthly, `t` holds a month index (year × 12 + month − 1) and the title is in `ti`; the projection center comes from `GEO.proj`, and the opening node `GEO.first` is also a month index. The caption gives the date as year.month, e.g. 1937.12.
 
 Labels are drawn in two sets:
 
 - Chinese labels use the state names of that year: for the Spring and Autumn and Warring States maps, the node's period alias `lab` first (such as 鲜虞 before 506 BC), then the old name in the state's entry.
 - English is taken from the map's data. For the Spring and Autumn and Warring States maps it is the node's period alias `labe`, or else the `eold` of the state's entry. For the other maps it is, in order of preference, the node's period alias `labe`, the unit's short map name `se`, or its full name `ne`, with anything in parentheses removed.
 - English labels are spaced by estimated text width, long names break onto two lines at a space, and a name that will not fit is left out.
+- Chinese label size follows the size of the territory, and a label is not allowed to run much wider than its territory: a state made up of several units used to get at least 15px, and now shrinks to fit when that is too wide (in the Republican volume many small states are made up of several units, which is why Puppet Mengjiang and the CPC border regions were drawn too large). `--zh` can switch to a short name and `--fs` can set the size; see below.
 - For a map that has no English yet, `--en "id=English name;…"` supplies the English thumbnail labels (keyed by unit id); these also take precedence over the map's own English names.
 
 ```bash
@@ -98,13 +101,16 @@ Options:
 - `--id`: a two- or three-letter code, used as the color-token prefix and clipPath id. Each volume needs its own.
 - `--year`: which year's node to draw.
 - `--node`: pick the node by index, counting from 0. Use it when one year has several nodes, as in the Sui–Tang map, which has month-level nodes.
-- With neither `--year` nor `--node`, the tool takes the node the map opens on (`GEO.first` holds a year, `DATA.first` an index), or else the first node.
+- `--month YEAR.MONTH`: pick the node by year and month, for maps with monthly nodes such as the Republican map, e.g. `--month 1937.12`.
+- With none of `--year`, `--month` or `--node`, the tool takes the node the map opens on (`GEO.first` holds a year or a month index, `DATA.first` an index), or else the first node.
 - `--box W E S N`: the longitude/latitude frame. Without it the tool uses FITS cn or all from the map's source.
-- `--mode zhen|pol`: coloring for the layered model. `zhen` (fanzhen, warlords or circuits) is the default; `pol` colors by state.
+- `--mode zhen|pol`: coloring for the layered model. `zhen` (fanzhen, warlords, circuits or factions) is the default; `pol` colors by state.
 - `--blank`: draw only land, sea, rivers and the graticule, for a volume in preparation.
 - `--en "id=English name;…"`: add or override English labels, as above.
+- `--zh "id=Chinese name;…"`: override a Chinese label, for a short name (伪蒙疆 for 伪蒙疆联合委员会) or a different name: the map gives the CPC-held areas a collective name such as 中共（边区·根据地） or 中华苏维埃共和国, and the thumbnail names the area the label sits on instead, 陕甘苏区 (Shaanxi-Gansu Soviet Area) at 1937.07 and 陕甘宁边区 (Shaanxi-Gansu-Ningxia Border Region) at 1937.12.
+- `--fs "id=size;…"`: set the size of a Chinese label (the English follows at 0.82 times); 0 leaves the label out, for a label hidden under the caption.
 
-The settings for the current seven:
+The settings for the current eight:
 
 ```bash
 python3 tools/thumbs.py <Spring and Autumn index.html> --id cq --year -632 --box 105.5 122.5 28.6 41.0
@@ -114,4 +120,6 @@ python3 tools/thumbs.py <Jin index.html>            --id lj --mode pol          
 python3 tools/thumbs.py <Sui–Tang index.html>       --id st --mode pol                 # opening node: 619
 python3 tools/thumbs.py <Tang–Song index.html>      --id ts --year 820 --mode zhen --box 95 127.5 19 46.5
 python3 tools/thumbs.py <Song–Yuan index.html>      --id sy --year 1120 --mode pol
+python3 tools/thumbs.py <Republican index.html>     --id mg --month 1937.07 --box 78 146 17 55 --zh "80=陕甘苏区" --fs "80=9.5;98=0" \
+    --en "80=Shaanxi-Gansu Soviet Area"         # 1937.07, Lugou Bridge Incident, colored by faction (the map opens on 1937.12)
 ```

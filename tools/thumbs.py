@@ -4,7 +4,7 @@
 从某张形势图自己的 index.html 里读出内嵌的 GEO / DATA，按该图自己的投影和色板，
 把某一个时间节点的疆域重绘成一幅 360×270 的小图（SVG），供总览页的目录卡片使用。
 简单模型（战国式，节点里有 s/l）与分层模型（唐宋式，节点里有 z/p/pol）都能处理，
-疆域几何放在共享池 GEO.pool 里的也能处理。
+疆域几何放在共享池 GEO.pool 里的也能处理；民国式（按月分节点，t 为月序号、标题存 ti，投影在 GEO.proj）也能处理。
 
 注记中英两套都画：<g class="t-lab zh"> 用中文名，<g class="t-lab en"> 用该图数据里的英文名
 （简单模型依次取当年别名 labe、政权条目的 eold；分层模型依次取当年别名 labe、地图短名 se、全称 ne，去掉括注），
@@ -25,6 +25,7 @@ col（本节点覆盖单位的浅、深两色），按节点所记的画。
   thumb-<id>.cap.txt    该节点的年份与中英标题，用来写缩略图说明 thumb-cap
 参数
   --year / --node       取哪一年 / 第几个节点；都不填取该图打开时的节点
+  --month 年.月         按月分节点的图（民国）按年月取节点，如 1937.12
   --box 西 东 南 北     缩略图取景的经纬框；缺省取该图源码里 FITS 的 cn 或 all
   --mode zhen|pol       分层模型的着色：二级单位（缺省）或政权
   --en "编号=英文名;…"   补或改英文注记，优先于图里的英文名；编号即单位编号（简单模型为政权键名）
@@ -34,6 +35,8 @@ import argparse, json, math, os, re, sys
 W, H = 360, 270
 RAD = math.pi / 180
 EN = {}  # --en 补的英文注记：编号 → 英文名
+ZH = {}  # --zh 改的中文注记（如短名）：编号 → 中文名
+FS = {}  # --fs 指定的中文注记字号：编号 → 字号（英文随之按 0.82 倍）
 
 
 # ---------------------------------------------------------------- 读源码
@@ -49,12 +52,15 @@ def extract(path):
     return s, out["GEO"], out["DATA"]
 
 
-def source_center(src):
+def source_center(src, geo=None):
     m0 = re.search(r"p0\s*=\s*([\d.]+)\s*\*\s*RAD", src)
     m1 = re.search(r"l0\s*=\s*([\d.]+)\s*\*\s*RAD", src)
-    if not (m0 and m1):
-        sys.exit("源码里找不到投影中心（p0 / l0）")
-    return float(m1.group(1)), float(m0.group(1))
+    if m0 and m1:
+        return float(m1.group(1)), float(m0.group(1))
+    proj = (geo or {}).get("proj")  # 民国式：GEO.proj = [标准纬线1, 标准纬线2, 原点纬度, 中央经线]
+    if proj and len(proj) == 4:
+        return float(proj[3]), float(proj[2])
+    sys.exit("源码里找不到投影中心（p0 / l0 或 GEO.proj）")
 
 
 def source_box(src):
@@ -365,12 +371,17 @@ def layered_model(mid, src, data, sn, view, mode):
             if d: outl += f'<path class="t-polb{" strong" if p in multi else ""}" d="{d}"/>'
         anc = sn["lp"].get(key) if p in multi else sn["lz"].get(key)
         if anc:
-            name = re.sub(r"[（(].*?[）)]", "", sn.get("lab", {}).get(key) or units[p]["n"])
+            name = ZH.get(key) or re.sub(r"[（(].*?[）)]", "", sn.get("lab", {}).get(key) or units[p]["n"])
             x, y = view.ll(anc[0], anc[1])
             rpx = anc[3] * view.ppd  # 注记点处的内切半径（像素）
             fs = max(7.5, min(18, rpx * .5))
             if len(name) <= 2: fs = max(fs, min(10, rpx * .8))  # 一两字的短名能放进更小的疆域
             if p in multi: fs = max(fs, 15)
+            # 字号不让注记宽过疆域太多：多单位政权的 15px 下限只在放得下时才用（民国卷的小政权多由几个单位合成）
+            room = max(2.4 * rpx, 40)
+            n = len(name)
+            fs = min(fs, max(rpx * .5, room / (n + (n - 1) * (.32 if n <= 3 else .08))))
+            if key in FS: fs = FS[key]
             # 英文名：当年别名 labe → 地图短名 se → 全称 ne，去掉括注
             en = EN.get(key) or short_en(sn.get("labe", {}).get(key) or units[p].get("se") or units[p].get("ne"))
             if fs >= 8.5: cands.append((x, y, name, fs, f"--{mid}-{p}", en, rpx)); used.add(p)
@@ -379,25 +390,34 @@ def layered_model(mid, src, data, sn, view, mode):
     return terr, f'<g clip-path="url(#lc-{mid})">{outl}</g>', label_groups(cands), light, dark
 
 
-def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None):
+def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None, month=None):
     src, geo, data = extract(path)
     box = box or source_box(src)
-    view = View(Albers(*source_center(src)), box)
+    view = View(Albers(*source_center(src, geo)), box)
     land, grat, rivers = base(view, geo, box)
     if blank:
         return assemble(mid, land, grat, rivers), "", "", ""
     snaps = geo["snaps"]
+    monthly = bool(snaps) and "ti" in snaps[0]  # 民国式：节点按月，t 记月序号（年 × 12 + 月 − 1），标题存 ti
+    if month:  # 按月分节点的图用 --month 1937.12 指定
+        yy, mm = (int(v) for v in month.split("."))
+        node = next((i for i, s in enumerate(snaps) if s["y"] == yy and s.get("m") == mm), None)
+        if node is None:
+            sys.exit(f"没有 {month} 的节点")
     if node is not None:  # 同一年有几个节点时（如隋唐图按月分节点），用序号指定
         if not 0 <= node < len(snaps):
             sys.exit(f"节点序号应在 0 — {len(snaps) - 1} 之间")
         sn = snaps[node]
     else:
         if year is None:  # 缺省取该图打开时的节点：GEO.first 记年份，DATA.first 记序号
-            if "first" in geo:
+            if "first" in geo and monthly:  # GEO.first 记月序号
+                year = next(s["y"] for s in snaps if s["t"] == geo["first"])
+                node = next(i for i, s in enumerate(snaps) if s["t"] == geo["first"])
+            elif "first" in geo:
                 year = geo["first"]
             else:
                 year = snaps[data.get("first", 0)]["y"] if isinstance(data, dict) else snaps[0]["y"]
-        sn = next((s for s in snaps if s["y"] == year), None)
+        sn = snaps[node] if node is not None else next((s for s in snaps if s["y"] == year), None)
     if sn is None:
         sys.exit(f"没有 {year} 年的节点；可选：{[s['y'] for s in snaps]}")
     pool = geo.get("pool")
@@ -410,7 +430,9 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None):
         terr, extra, labels, light, dark = layered_model(mid, src, data, sn, view, mode)
     y = sn["y"]
     yz, ye = (f"前{-y}", f"{-y} BC") if y < 0 else (str(y), str(y))
-    cap = f"zh: {yz}  {sn['t']}\nen: {ye}  {sn.get('te') or ''}\n"  # 缩略图说明的中英原文，取自该节点
+    if monthly:
+        yz = ye = f"{y}.{sn['m']:02d}"
+    cap = f"zh: {yz}  {sn['ti'] if monthly else sn['t']}\nen: {ye}  {sn.get('te') or ''}\n"  # 缩略图说明的中英原文，取自该节点
     return assemble(mid, land, grat, rivers, terr, extra, labels), "".join(f"{t};" for t in light), "".join(f"{t};" for t in dark), cap  # 每个 token 以分号结尾，整行粘进去不会吞掉下一行
 
 
@@ -420,14 +442,19 @@ if __name__ == "__main__":
     ap.add_argument("--id", required=True, help="短代号，用作颜色 token 前缀与 clipPath id，如 zg / ts / st")
     ap.add_argument("--year", type=int, help="取哪个节点；缺省取该图打开时的节点（GEO.first），没有则取第一个")
     ap.add_argument("--node", type=int, help="按序号取节点（从 0 起），同一年有多个节点时用")
+    ap.add_argument("--month", help="按月分节点的图（民国）按年月取节点，如 1937.12")
     ap.add_argument("--box", type=float, nargs=4, metavar=("W", "E", "S", "N"))
     ap.add_argument("--mode", default="zhen", choices=["zhen", "pol"])
     ap.add_argument("--blank", action="store_true")
     ap.add_argument("--en", default="", help='补或改英文注记，如 "0=Eastern Jin;73=Northern Wei"')
+    ap.add_argument("--zh", default="", help='改中文注记（如用短名），如 "88=伪蒙疆;80=陕甘宁边区"')
+    ap.add_argument("--fs", default="", help='指定中文注记字号，如 "88=10;80=9"')
     ap.add_argument("--out", default=".")
     a = ap.parse_args()
     EN.update((k.strip(), v.strip()) for k, v in (kv.split("=", 1) for kv in a.en.split(";") if "=" in kv))
-    svg, light, dark, cap = build(a.html, a.id, a.year, a.box, a.mode, a.blank, a.node)
+    ZH.update((k.strip(), v.strip()) for k, v in (kv.split("=", 1) for kv in a.zh.split(";") if "=" in kv))
+    FS.update((k.strip(), float(v)) for k, v in (kv.split("=", 1) for kv in a.fs.split(";") if "=" in kv))
+    svg, light, dark, cap = build(a.html, a.id, a.year, a.box, a.mode, a.blank, a.node, a.month)
     os.makedirs(a.out, exist_ok=True)
     open(os.path.join(a.out, f"thumb-{a.id}.svg"), "w", encoding="utf8").write(svg)
     open(os.path.join(a.out, f"thumb-{a.id}.css.txt"), "w", encoding="utf8").write(f"/* light */ {light}\n/* dark */ {dark}\n")
