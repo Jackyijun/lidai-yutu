@@ -9,7 +9,10 @@
 注记中英两套都画：<g class="t-lab zh"> 用中文名，<g class="t-lab en"> 用该图数据里的英文名
 （简单模型依次取当年别名 labe、政权条目的 eold；分层模型依次取当年别名 labe、地图短名 se、全称 ne，去掉括注），
 简单模型的中文注记依次取当年别名 lab、政权条目的古名（去括注）；DATA.kinds 标为 tribe 的部族画淡色虚线。
+分层模型的节点若带 kd（本节点改单位种类，如两晋图的高句丽 313 年起由部族改按政权画）、
+col（本节点覆盖单位的浅、深两色），按节点所记的画。
 由总览页按当前语言显示其一。英文按估算字宽避让，长名在空格处折两行，放不下就不标。
+图还没有英文时，用 --en 临时补英文注记；图出英文后去掉 --en 重生成。
 
 用法
   python3 tools/thumbs.py 图的index.html --id zg --year -300
@@ -18,17 +21,19 @@
 
 输出（写到 --out 目录，默认当前目录）
   thumb-<id>.svg        直接粘进总览页对应卷的 .thumb-in 里
-  thumb-<id>.css.txt    两行颜色 token（浅色一行、深色一行），粘进总览页 :root 与两个深色块
+  thumb-<id>.css.txt    两行颜色 token（浅色一行、深色一行，每个都以分号结尾），粘进总览页 :root 与两个深色块
   thumb-<id>.cap.txt    该节点的年份与中英标题，用来写缩略图说明 thumb-cap
 参数
   --year / --node       取哪一年 / 第几个节点；都不填取该图打开时的节点
   --box 西 东 南 北     缩略图取景的经纬框；缺省取该图源码里 FITS 的 cn 或 all
   --mode zhen|pol       分层模型的着色：二级单位（缺省）或政权
+  --en "编号=英文名;…"   补或改英文注记，优先于图里的英文名；编号即单位编号（简单模型为政权键名）
 """
 import argparse, json, math, os, re, sys
 
 W, H = 360, 270
 RAD = math.pi / 180
+EN = {}  # --en 补的英文注记：编号 → 英文名
 
 
 # ---------------------------------------------------------------- 读源码
@@ -322,7 +327,7 @@ def simple_model(mid, geo, data, sn, view):
             it = next((i for i in data["items"] if i.get("c") == "state" and i.get("k") == st), {})
             # 中文用当年别名或国名（去括注），英文用当年别名或 eold
             zh = sn.get("lab", {}).get(st) or re.sub(r"（.*?）", "", it.get("old") or st) or st
-            en = short_en(sn.get("labe", {}).get(st) or it.get("eold"))
+            en = EN.get(str(st)) or short_en(sn.get("labe", {}).get(st) or it.get("eold"))
             if fs >= 8: cands.append((x, y, zh, fs, var, en, anc[3] * view.ppd))
     return terr, "", label_groups(cands), light, dark
 
@@ -330,6 +335,11 @@ def simple_model(mid, geo, data, sn, view):
 def layered_model(mid, src, data, sn, view, mode):
     units = data["units"]
     lc, dc = css_colors(src, "u")
+    # 两晋式：节点可改单位种类（kd，部族升为政权）与颜色（col，[浅, 深]，两卷颜色不同的政权逐节点渐变）
+    kd = {int(k): v for k, v in sn.get("kd", {}).items()}
+    kind = lambda u: kd.get(u) or units[u]["kind"]
+    for k, (l, d) in sn.get("col", {}).items():
+        lc[str(k)], dc[str(k)] = l, d
     pol = {int(k): v for k, v in sn["pol"].items()}
     multi = {int(k) for k in sn["p"]}
     terr, used = "", set()
@@ -338,7 +348,7 @@ def layered_model(mid, src, data, sn, view, mode):
         if mode != "zhen" and p in multi: continue
         d = rings_d(view, rings)
         if d:
-            terr += terr_path(d, f"--{mid}-{u}", tribe=units[u]["kind"] == "tribe", sub=p != u)
+            terr += terr_path(d, f"--{mid}-{u}", tribe=kind(u) == "tribe", sub=p != u)
             used.add(u)
     if mode != "zhen":
         for k, rings in sn["p"].items():
@@ -350,7 +360,7 @@ def layered_model(mid, src, data, sn, view, mode):
         if pol.get(p, p) != p and p not in multi: continue
         key = str(p)
         rings = sn["p"].get(key) if p in multi else sn["z"].get(key)
-        if rings and units[p]["kind"] != "tribe":
+        if rings and kind(p) != "tribe":
             d = rings_d(view, rings, .5)
             if d: outl += f'<path class="t-polb{" strong" if p in multi else ""}" d="{d}"/>'
         anc = sn["lp"].get(key) if p in multi else sn["lz"].get(key)
@@ -362,7 +372,7 @@ def layered_model(mid, src, data, sn, view, mode):
             if len(name) <= 2: fs = max(fs, min(10, rpx * .8))  # 一两字的短名能放进更小的疆域
             if p in multi: fs = max(fs, 15)
             # 英文名：当年别名 labe → 地图短名 se → 全称 ne，去掉括注
-            en = short_en(sn.get("labe", {}).get(key) or units[p].get("se") or units[p].get("ne"))
+            en = EN.get(key) or short_en(sn.get("labe", {}).get(key) or units[p].get("se") or units[p].get("ne"))
             if fs >= 8.5: cands.append((x, y, name, fs, f"--{mid}-{p}", en, rpx)); used.add(p)
     light = [f"--{mid}-{u}:{lc[str(u)]}" for u in sorted(used)]
     dark = [f"--{mid}-{u}:{dc[str(u)]}" for u in sorted(used)]
@@ -401,7 +411,7 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None):
     y = sn["y"]
     yz, ye = (f"前{-y}", f"{-y} BC") if y < 0 else (str(y), str(y))
     cap = f"zh: {yz}  {sn['t']}\nen: {ye}  {sn.get('te') or ''}\n"  # 缩略图说明的中英原文，取自该节点
-    return assemble(mid, land, grat, rivers, terr, extra, labels), ";".join(light), ";".join(dark), cap
+    return assemble(mid, land, grat, rivers, terr, extra, labels), "".join(f"{t};" for t in light), "".join(f"{t};" for t in dark), cap  # 每个 token 以分号结尾，整行粘进去不会吞掉下一行
 
 
 if __name__ == "__main__":
@@ -413,8 +423,10 @@ if __name__ == "__main__":
     ap.add_argument("--box", type=float, nargs=4, metavar=("W", "E", "S", "N"))
     ap.add_argument("--mode", default="zhen", choices=["zhen", "pol"])
     ap.add_argument("--blank", action="store_true")
+    ap.add_argument("--en", default="", help='补或改英文注记，如 "0=Eastern Jin;73=Northern Wei"')
     ap.add_argument("--out", default=".")
     a = ap.parse_args()
+    EN.update((k.strip(), v.strip()) for k, v in (kv.split("=", 1) for kv in a.en.split(";") if "=" in kv))
     svg, light, dark, cap = build(a.html, a.id, a.year, a.box, a.mode, a.blank, a.node)
     os.makedirs(a.out, exist_ok=True)
     open(os.path.join(a.out, f"thumb-{a.id}.svg"), "w", encoding="utf8").write(svg)

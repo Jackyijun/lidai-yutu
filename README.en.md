@@ -9,13 +9,14 @@ The index page of the historical map series, in order: the title-slip header, th
 | I | The Spring and Autumn Period (770–476 BC) | https://jackyijun.github.io/chunqiu-map/ |
 | II | The Warring States (475–212 BC) | https://jackyijun.github.io/zhanguo-map/ |
 | III | Late Han and the Three Kingdoms (184–280) | https://jackyijun.github.io/hanmosanguo-map/ |
-| IV | Sui and Early Tang (581–669) | https://jackyijun.github.io/suitang-map/ |
-| V | Late Tang and the Five Dynasties (755–979; the map itself is titled Between Tang and Song) | https://jackyijun.github.io/tangsong-map/ |
-| VI | Song · Liao · Xia · Jin · Yuan (979–1279) | https://jackyijun.github.io/songyuan-map/ |
+| IV | Jin, Sixteen Kingdoms and Northern and Southern Dynasties (280–581) | https://jackyijun.github.io/liangjin-nanbeichao-map/ |
+| V | Sui and Early Tang (581–669) | https://jackyijun.github.io/suitang-map/ |
+| VI | Late Tang and the Five Dynasties (755–979; the map itself is titled Between Tang and Song) | https://jackyijun.github.io/tangsong-map/ |
+| VII | Song · Liao · Xia · Jin · Yuan (979–1279) | https://jackyijun.github.io/songyuan-map/ |
 
-Volumes I and II join without a seam: the last snapshot of the Spring and Autumn map (476 BC) and the first of the Warring States map (475 BC) have identical territory and colors.
+Volumes I and II join without a seam: the last snapshot of the Spring and Autumn map (476 BC) and the first of the Warring States map (475 BC) have identical territory and colors. Volumes III, IV and V join the same way: the Jin map copies the junction snapshots at both ends, so its first snapshot matches the last of the Late Han map (280) and its last snapshot matches the first of the Sui–Tang map (581) in territory and colors.
 
-`index.html` is self-contained: its styles, script and all six thumbnails are written into the file, and it loads no outside resources. Its palette, fonts and hairlines match the maps' shared style guide (历史形势图统一规范), and it follows the system's light or dark setting.
+`index.html` is self-contained: its styles, script and all seven thumbnails are written into the file, and it loads no outside resources. Its palette, fonts and hairlines match the maps' shared style guide (历史形势图统一规范), and it follows the system's light or dark setting.
 
 Live page: https://jackyijun.github.io/lidai-yutu/
 
@@ -27,7 +28,7 @@ The 中 | EN switch at the top right changes the language; Chinese is the defaul
 - Links from the contents into each volume carry the current language (`#zh` / `#en`), so each map opens in the same language.
 - Page text is written in pairs in the same place: `<span class="zh">…</span><span class="en" lang="en">…</span>`, and only the one matching `<html lang>` is shown. The timeline is built by the script at the end of the page; each entry in its dynasty bands `BANDS` also carries a Chinese and an English name.
 - In English the headings and volume titles switch to a Latin serif (Iowan Old Style, Palatino and the like) and the body text to the system sans-serif; the wide CJK letter-spacing is dropped and group headings are set in capitals. The vertical title slip 历代舆图 and the two seals stay as they are, with the English title set to the right of the slip.
-- Volume titles, subtitles, coloring modes and the terms in the stats lines follow each map's own English version: time nodes are snapshots, 州府 and 州郡 are prefectures, 郡国 are commanderies, and 藩镇 is written fanzhen. Volume V is titled Late Tang and the Five Dynasties in English, matching 唐末五代 on the Chinese page; the map's own English title is Between Tang and Song.
+- Volume titles, subtitles, coloring modes and the terms in the stats lines follow each map's own English version: time nodes are snapshots, 州府 and 州郡 are prefectures, 郡国 and 郡县 are commanderies, 藩镇 is written fanzhen, and 方镇 are regional commands. Volume VI is titled Late Tang and the Five Dynasties in English, matching 唐末五代 on the Chinese page; the map's own English title is Between Tang and Song.
 - Each thumbnail holds two sets of labels, Chinese and English (`<g class="t-lab zh">`, `<g class="t-lab en">`), and also shows only the one for the current language. The English names come from each map's data; see "Generating thumbnails" below.
 
 ## Adding a volume
@@ -39,10 +40,10 @@ The 中 | EN switch at the top right changes the language; Chinese is the defaul
    - `data-start`, `data-end`: first and last year
 3. Change the link and the thumbnail (see the next section), and both language versions of the title, years, subtitle, description, `stats` and the thumbnail caption `thumb-cap`. Take the English from that map's own English title, subtitle and terms.
 4. Add an `--m-xx` to `:root` and to both dark blocks as the volume's main color, one light and one dark value, and write `style="--c:var(--m-xx)"` on the `<li>`. The color should stand apart from its neighbors on the timeline.
-5. Update the cover's 「凡六卷 · 前770 — 1279」 and "Six volumes · 770 BC – 1279", the contents heading 「已成六卷」 and "Six volumes completed", and the volume names in `<meta name="description">` and in `DESC` in the script at the end of the page.
+5. Update the cover's 「凡七卷 · 前770 — 1279」 and "Seven volumes · 770 BC – 1279", the contents heading 「已成七卷」 and "Seven volumes completed", and the volume names in `<meta name="description">` and in `DESC` in the script at the end of the page.
 6. If the new volume falls outside 800 BC – 1350, change `R0`, `R1` and `TICKS` in the script at the end of the page. The dynasty bands `BANDS` are in the same place.
 
-The timeline needs no other change: it draws each volume's bar straight from that volume's `data-start` / `data-end`.
+The timeline needs no other change: it draws each volume's bar straight from that volume's `data-start` / `data-end`. Where volume names crowd together, each name goes on the lowest row that has room for it, and the timeline grows taller to match.
 
 ### Announcing a volume in preparation
 
@@ -73,13 +74,14 @@ It handles three data layouts:
 
 - Warring States (also the Spring and Autumn map): nodes hold `s` / `l`. Rong and Di peoples marked `tribe` in `DATA.kinds` are drawn pale and dashed, as on the map.
 - Tang–Song: nodes hold `z` / `p` / `pol`.
-- Late Han, Sui–Tang and Song–Yuan: territory geometry sits in the shared pool `GEO.pool`.
+- Late Han, Jin, Sui–Tang and Song–Yuan: territory geometry sits in the shared pool `GEO.pool`. Nodes in the Jin map may also carry `kd` (a change of unit kind at that node, as when Goguryeo is drawn as a state rather than a tribe from 313) and `col` (light and dark colors overriding the unit's own at that node); the thumbnail follows what the node records.
 
 Labels are drawn in two sets:
 
 - Chinese labels use the state names of that year: for the Spring and Autumn and Warring States maps, the node's period alias `lab` first (such as 鲜虞 before 506 BC), then the old name in the state's entry.
 - English is taken from the map's data. For the Spring and Autumn and Warring States maps it is the node's period alias `labe`, or else the `eold` of the state's entry. For the other maps it is, in order of preference, the node's period alias `labe`, the unit's short map name `se`, or its full name `ne`, with anything in parentheses removed.
 - English labels are spaced by estimated text width, long names break onto two lines at a space, and a name that will not fit is left out.
+- For a map that has no English yet, `--en "id=English name;…"` supplies the English thumbnail labels (keyed by unit id); these also take precedence over the map's own English names.
 
 ```bash
 python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1120 --mode pol --out thumbs
@@ -100,13 +102,15 @@ Options:
 - `--box W E S N`: the longitude/latitude frame. Without it the tool uses FITS cn or all from the map's source.
 - `--mode zhen|pol`: coloring for the layered model. `zhen` (fanzhen, warlords or circuits) is the default; `pol` colors by state.
 - `--blank`: draw only land, sea, rivers and the graticule, for a volume in preparation.
+- `--en "id=English name;…"`: add or override English labels, as above.
 
-The settings for the current six:
+The settings for the current seven:
 
 ```bash
 python3 tools/thumbs.py <Spring and Autumn index.html> --id cq --year -632 --box 105.5 122.5 28.6 41.0
 python3 tools/thumbs.py <Warring States index.html> --id zg --year -300 --box 102.6 124.2 25.6 42.4
 python3 tools/thumbs.py <Late Han index.html>       --id hs --year 229 --mode zhen --box 97.5 125.5 19 43
+python3 tools/thumbs.py <Jin index.html>            --id lj --mode pol                 # opening node: 401
 python3 tools/thumbs.py <Sui–Tang index.html>       --id st --mode pol                 # opening node: 619
 python3 tools/thumbs.py <Tang–Song index.html>      --id ts --year 820 --mode zhen --box 95 127.5 19 46.5
 python3 tools/thumbs.py <Song–Yuan index.html>      --id sy --year 1120 --mode pol

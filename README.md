@@ -9,13 +9,14 @@
 | 卷一 | 春秋列国形势图（前770 — 前476） | https://jackyijun.github.io/chunqiu-map/ |
 | 卷二 | 战国列国形势图（前475 — 前212） | https://jackyijun.github.io/zhanguo-map/ |
 | 卷三 | 汉末三国形势图（184 — 280） | https://jackyijun.github.io/hanmosanguo-map/ |
-| 卷四 | 隋及唐初形势图（581 — 669） | https://jackyijun.github.io/suitang-map/ |
-| 卷五 | 唐末五代形势图（755 — 979；地图本身题「唐宋之际形势图」） | https://jackyijun.github.io/tangsong-map/ |
-| 卷六 | 宋辽夏金元形势图（979 — 1279） | https://jackyijun.github.io/songyuan-map/ |
+| 卷四 | 两晋十六国南北朝形势图（280 — 581） | https://jackyijun.github.io/liangjin-nanbeichao-map/ |
+| 卷五 | 隋及唐初形势图（581 — 669） | https://jackyijun.github.io/suitang-map/ |
+| 卷六 | 唐末五代形势图（755 — 979；地图本身题「唐宋之际形势图」） | https://jackyijun.github.io/tangsong-map/ |
+| 卷七 | 宋辽夏金元形势图（979 — 1279） | https://jackyijun.github.io/songyuan-map/ |
 
-卷一、卷二首尾相接：春秋图末节点（前476）与战国图首节点（前475）的疆域、配色完全一致。
+卷一、卷二首尾相接：春秋图末节点（前476）与战国图首节点（前475）的疆域、配色完全一致。卷三、卷四、卷五也首尾相接：两晋图照搬了两头的衔接节点，首节点与汉末三国图末节点（280），末节点与隋唐图首节点（581）的疆域、配色完全一致。
 
-`index.html` 是自包含的：样式、脚本、六幅缩略图都写在文件里，不加载任何外部资源。色板、字体、细线与各图的《历史形势图统一规范》一致，深浅色跟随系统。
+`index.html` 是自包含的：样式、脚本、七幅缩略图都写在文件里，不加载任何外部资源。色板、字体、细线与各图的《历史形势图统一规范》一致，深浅色跟随系统。
 
 线上地址：https://jackyijun.github.io/lidai-yutu/
 
@@ -27,7 +28,7 @@
 - 从目录点进各卷时，链接带上当前语言（`#zh` / `#en`），各图按同样的语言打开。
 - 页面文字成对写在同一处：`<span class="zh">…</span><span class="en" lang="en">…</span>`，按 `<html lang>` 只显示一种。时间长卷由页尾脚本生成，朝代分段 `BANDS` 里每项也写了中英两个名字。
 - 英文模式下标题与卷名换西文衬线体（Iowan Old Style、Palatino 一类），正文换系统无衬线体，取消中文的大字距，组头改为大写。竖排题签「历代舆图」和两方印保留不变，英文标题排在题签右侧。
-- 卷名、主线、着色方式与统计用语都照各图自己的英文版：节点叫 snapshots，州府、州郡叫 prefectures，郡国叫 commanderies，藩镇写 fanzhen。卷五英文题名用 Late Tang and the Five Dynasties，与中文首页的「唐末五代」一致；地图本身的英文题名是 Between Tang and Song。
+- 卷名、主线、着色方式与统计用语都照各图自己的英文版：节点叫 snapshots，州府、州郡叫 prefectures，郡国、郡县叫 commanderies，藩镇写 fanzhen，方镇叫 regional commands。卷六英文题名用 Late Tang and the Five Dynasties，与中文首页的「唐末五代」一致；地图本身的英文题名是 Between Tang and Song。
 - 缩略图里画了中、英两组注记（`<g class="t-lab zh">`、`<g class="t-lab en">`），也按当前语言只显示一组。英文国名取自各图数据，见下文「生成缩略图」。
 
 ## 增加新卷
@@ -39,10 +40,10 @@
    - `data-start`、`data-end`：起止年
 3. 改链接、缩略图（见下节），以及卷名、年代、主线、导语、`stats`、缩略图说明 `thumb-cap` 的中英两份。英文照该图自己的英文题名、副题和用语。
 4. 在 `:root` 和两个深色块里各加一个 `--m-xx`，作为这一卷的主色，浅色、深色各一个值；`<li>` 上写 `style="--c:var(--m-xx)"`。主色要和时间长卷上相邻的色段分得开。
-5. 改封面「凡六卷 · 前770 — 1279」与「Six volumes · 770 BC – 1279」、目录组头「已成六卷」与「Six volumes completed」，以及 `<meta name="description">` 和页尾脚本 `DESC` 里的卷名。
+5. 改封面「凡七卷 · 前770 — 1279」与「Seven volumes · 770 BC – 1279」、目录组头「已成七卷」与「Seven volumes completed」，以及 `<meta name="description">` 和页尾脚本 `DESC` 里的卷名。
 6. 如果新卷超出前800 — 1350 的范围，改页尾脚本里的 `R0`、`R1`、`TICKS`。朝代分段 `BANDS` 也在同一处。
 
-时间长卷不用另外改，它直接读目录里每卷的 `data-start` / `data-end` 画色段。
+时间长卷不用另外改，它直接读目录里每卷的 `data-start` / `data-end` 画色段。卷名挤在一起时，每个卷名放进最低一行中放得下的那行，长卷随之加高。
 
 ### 预告编修中的卷
 
@@ -73,13 +74,14 @@
 
 - 战国式（春秋、战国）：节点里有 `s` / `l`。`DATA.kinds` 标为 `tribe` 的戎狄部族画淡色虚线，与图里一致。
 - 唐宋式：节点里有 `z` / `p` / `pol`。
-- 汉末三国、隋唐、宋元式：疆域几何放在共享池 `GEO.pool` 里。
+- 汉末三国、两晋、隋唐、宋元式：疆域几何放在共享池 `GEO.pool` 里。两晋图的节点还可能带 `kd`（本节点改单位种类，如高句丽 313 年起由部族改按政权画）和 `col`（本节点覆盖单位的浅、深两色），缩略图照节点所记的画。
 
 注记画中、英两组：
 
 - 中文用当年的国名：春秋、战国先取节点的当年别名 `lab`（如前506年以前的「鲜虞」），再取政权条目的古名。
 - 英文取自该图数据：春秋、战国先取节点的当年别名 `labe`，再取政权条目的 `eold`；其余各图依次取节点的当年别名 `labe`、单位的地图短名 `se`、全称 `ne`，去掉括注。
 - 英文按估算字宽避让，长名在空格处折成两行，放不下就不标。
+- 图还没有英文时，用 `--en "编号=英文名;…"` 补缩略图的英文注记（编号即单位编号），它也优先于图里的英文名。
 
 ```bash
 python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1120 --mode pol --out thumbs
@@ -100,13 +102,15 @@ python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1120 --mo
 - `--box 西 东 南 北`：取景的经纬框。不填时用该图源码里 FITS 的 cn 或 all。
 - `--mode zhen|pol`：分层模型的着色方式。`zhen` 是藩镇、诸侯或路，为缺省值；`pol` 是政权。
 - `--blank`：只画海陆、河流、经纬网，用于编修中的卷。
+- `--en "编号=英文名;…"`：补或改英文注记，见上。
 
-现有六幅的参数：
+现有七幅的参数：
 
 ```bash
 python3 tools/thumbs.py <春秋 index.html>       --id cq --year -632 --box 105.5 122.5 28.6 41.0
 python3 tools/thumbs.py <战国 index.html>       --id zg --year -300 --box 102.6 124.2 25.6 42.4
 python3 tools/thumbs.py <汉末三国 index.html>   --id hs --year 229 --mode zhen --box 97.5 125.5 19 43
+python3 tools/thumbs.py <两晋 index.html>       --id lj --mode pol                 # 打开时的节点：401
 python3 tools/thumbs.py <隋及唐初 index.html>   --id st --mode pol                 # 打开时的节点：619
 python3 tools/thumbs.py <唐宋 index.html>       --id ts --year 820 --mode zhen --box 95 127.5 19 46.5
 python3 tools/thumbs.py <宋辽夏金元 index.html> --id sy --year 1120 --mode pol
