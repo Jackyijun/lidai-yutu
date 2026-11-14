@@ -82,7 +82,7 @@
 - 英文按估算字宽避让，长名在空格处折成两行，放不下就不标。
 
 ```bash
-python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1141 --mode pol --out thumbs
+python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1120 --mode pol --out thumbs
 ```
 
 运行后输出三份文件：
@@ -109,5 +109,5 @@ python3 tools/thumbs.py <战国 index.html>       --id zg --year -300 --box 102.
 python3 tools/thumbs.py <汉末三国 index.html>   --id hs --year 229 --mode zhen --box 97.5 125.5 19 43
 python3 tools/thumbs.py <隋及唐初 index.html>   --id st --mode pol                 # 打开时的节点：619
 python3 tools/thumbs.py <唐宋 index.html>       --id ts --year 820 --mode zhen --box 95 127.5 19 46.5
-python3 tools/thumbs.py <宋辽夏金元 index.html> --id sy --year 1141 --mode pol
+python3 tools/thumbs.py <宋辽夏金元 index.html> --id sy --year 1120 --mode pol
 ```

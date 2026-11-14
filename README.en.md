@@ -82,7 +82,7 @@ Labels are drawn in two sets:
 - English labels are spaced by estimated text width, long names break onto two lines at a space, and a name that will not fit is left out.
 
 ```bash
-python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1141 --mode pol --out thumbs
+python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1120 --mode pol --out thumbs
 ```
 
 It writes three files:
@@ -109,5 +109,5 @@ python3 tools/thumbs.py <Warring States index.html> --id zg --year -300 --box 10
 python3 tools/thumbs.py <Late Han index.html>       --id hs --year 229 --mode zhen --box 97.5 125.5 19 43
 python3 tools/thumbs.py <Sui–Tang index.html>       --id st --mode pol                 # opening node: 619
 python3 tools/thumbs.py <Tang–Song index.html>      --id ts --year 820 --mode zhen --box 95 127.5 19 46.5
-python3 tools/thumbs.py <Song–Yuan index.html>      --id sy --year 1141 --mode pol
+python3 tools/thumbs.py <Song–Yuan index.html>      --id sy --year 1120 --mode pol
 ```
