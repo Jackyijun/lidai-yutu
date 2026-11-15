@@ -1,0 +1,125 @@
+# 时间轴短标题（规范第十九节第 3 步）：每个节点一行，节点 = 年份（按月的卷为 年.月）。中文不超过 5 字，英文尽量不超过 18 个字母。
+# 由 core/v1/overlay.py 并入 v1 数据；改完重新运行 python run.py --v1 --web。
+节点	标题	短标题	英文
+280	西晋灭吴	西晋灭吴	Wu falls
+289	诸王出镇·慕容附晋	诸王出镇	Princes posted
+296	八王乱起·齐万年起事	八王乱起	Eight Princes
+300	赵王伦专政	赵王专政	Sima Lun rules
+301	三王讨伦·李特起事	三王讨伦	Lun overthrown
+302	长沙王乂杀齐王冏	齐王冏死	Sima Jiong killed
+303	张昌起事·李雄入成都	李雄入蜀	Li Xiong in Chengdu
+304	荡阴之战·汉与成并立	汉成并立	Han and Cheng
+305	东海王越起兵·陈敏据江东	司马越起兵	Sima Yue rises
+306	惠帝东归·八王之乱终	八王乱终	Eight Princes end
+307	司马睿镇建邺·汲桑石勒破邺	睿镇建邺	Rui at Jianye
+308	刘渊称帝·王弥寇洛	刘渊称帝	Liu Yuan enthroned
+309	汉都平阳·两攻洛阳	汉都平阳	Han at Pingyang
+310	刘聪即位·拓跋得陉北	刘聪即位	Liu Cong
+311	永嘉之乱	永嘉之乱	Yongjia
+312	石勒据襄国·晋复长安	石勒据襄国	Shi Le at Xiangguo
+313	愍帝即位·祖逖渡江	祖逖渡江	Zu Ti crosses
+314	石勒擒王浚	擒王浚	Wang Jun captured
+315	杜弢平定·拓跋称代王	拓跋称王	Tuoba King of Dai
+316	长安陷落·西晋亡	西晋灭亡	Western Jin falls
+318	东晋建立·靳准之乱	东晋建立	Eastern Jin
+319	前赵后赵分立	二赵分立	Two Zhaos
+320	祖逖收复河南	祖逖复河南	Zu Ti in Henan
+322	王敦之乱	王敦之乱	Wang Dun
+324	王敦之乱平定	王敦乱平	Wang Dun crushed
+328	苏峻之乱·洛阳之战	苏峻之乱	Su Jun
+329	前赵灭亡	前赵灭亡	Former Zhao falls
+335	石虎迁邺·成汉取宁州	石虎迁邺	Shi Hu to Ye
+338	前燕称王·代国复振	前燕称王	Former Yan
+346	前燕灭宇文·破夫余	燕破夫余	Buyeo crushed
+347	桓温灭成汉	灭成汉	Cheng Han falls
+349	石虎死·后赵大乱	后赵大乱	Later Zhao in chaos
+350	冉闵称帝·燕军南下	冉闵称帝	Ran Min
+351	前秦建国·后赵灭亡	前秦建国	Former Qin
+352	冉魏灭亡·前燕称帝	冉魏灭亡	Ran Wei falls
+354	桓温北伐前秦	桓温北伐	Huan Wen north
+356	桓温收复洛阳	收复洛阳	Luoyang retaken
+357	苻坚即位·前燕迁邺	苻坚即位	Fu Jian
+360	慕容儁死·燕取河南	燕取河南	Yan takes Henan
+365	前燕攻占洛阳	燕取洛阳	Yan takes Luoyang
+369	枋头之战	枋头之战	Fangtou
+370	前秦灭前燕	秦灭前燕	Former Yan falls
+371	前秦灭仇池·桓温废帝	桓温废帝	Emperor deposed
+373	前秦取梁益	秦取梁益	Liang · Yi taken
+376	前秦统一北方	前秦统一	Qin unites north
+379	前秦攻克襄阳	秦取襄阳	Xiangyang taken
+383	淝水之战	淝水之战	Fei River
+384	前秦瓦解·群雄并起	前秦瓦解	Qin collapses
+385	苻坚之死	苻坚之死	Fu Jian dies
+386	北魏建国·后燕后秦称帝	北魏建国	Northern Wei
+389	翟魏据滑台·后凉称三河王	翟魏建立	Zhai Wei
+392	后燕灭翟魏·北魏取河套	燕灭翟魏	Zhai Wei falls
+394	后燕灭西燕·前秦亡	燕灭西燕	Western Yan falls
+395	参合陂之战	参合陂	Canhe Slope
+396	北魏伐燕·取并州	魏取并州	Bing taken
+397	北魏取中山·二凉分立	魏取中山	Zhongshan taken
+398	北魏迁都平城·南燕建立	魏都平城	Pingcheng
+399	孙恩起事·南燕东徙·后秦取洛阳	孙恩起事	Sun En
+400	西凉建立·后秦并西秦	西凉建立	Western Liang
+401	沮渠蒙逊夺北凉·后凉称藩	蒙逊夺凉	Mengxun seizes Liang
+402	桓玄入建康·柴壁之战	柴壁之战	Chaibi
+403	桓玄篡晋·后凉亡	桓玄篡晋	Huan Xuan usurps
+404	刘裕起兵·桓玄败亡	刘裕起兵	Liu Yu rises
+405	谯纵据蜀	谯纵据蜀	Qiao Zong
+407	夏国建立·北燕代后燕	夏国建立	Xia founded
+409	刘裕北伐南燕	北伐南燕	Southern Yan war
+410	南燕灭亡·卢循北犯	南燕灭亡	Southern Yan falls
+413	刘裕灭西蜀	刘裕灭蜀	Western Shu falls
+414	西秦灭南凉	南凉灭亡	Southern Liang falls
+416	刘裕北伐·收复洛阳	义熙北伐	Yixi campaign
+417	东晋灭后秦	东晋灭秦	Later Qin falls
+418	赫连勃勃取长安	夏取长安	Xia takes Chang'an
+420	刘宋代晋·北凉灭西凉	刘宋代晋	Song replaces Jin
+423	北魏夺取宋河南	魏夺河南	Wei takes Henan
+427	北魏攻克统万	魏克统万	Tongwan falls
+430	元嘉北伐·魏取平凉	元嘉北伐	Yuanjia campaign
+431	夏灭西秦·吐谷浑灭夏	夏国灭亡	Xia falls
+436	北魏灭北燕	北燕灭亡	Northern Yan falls
+439	北魏灭北凉·统一北方	北魏统一	Wei unites north
+442	沮渠氏据高昌·宋破仇池	北凉高昌	Liang at Gaochang
+451	元嘉北伐·魏军饮马长江	饮马长江	Wei at the Yangtze
+460	柔然灭高昌北凉	高昌易主	Gaochang falls
+466	义嘉之难·北魏得淮北	义嘉之难	Yijia rebellion
+469	宋失淮北四州	宋失淮北	Huaibei lost
+475	高句丽陷汉城	汉城陷落	Hanseong falls
+479	萧道成代宋建齐	萧齐代宋	Qi replaces Song
+494	孝文帝迁都洛阳	迁都洛阳	Wei to Luoyang
+498	北魏夺取南阳	魏取南阳	Nanyang taken
+500	寿阳降魏·萧衍起兵	萧衍起兵	Xiao Yan rises
+502	萧衍建梁	萧衍建梁	Liang founded
+505	北魏取义阳·汉中	魏取汉中	Hanzhong taken
+507	钟离之战	钟离之战	Zhongli
+524	六镇起义·关陇起事	六镇起义	Six Garrisons
+526	六镇降户起事·梁取寿阳	降户起事	Garrison exiles rise
+528	河阴之变·滏口之战	河阴之变	Heyin massacre
+529	陈庆之入洛	陈庆之	Chen Qingzhi
+530	尔朱荣被杀·关陇平定	尔朱荣死	Erzhu Rong killed
+531	高欢起兵信都	高欢起兵	Gao Huan rises
+532	韩陵之战	韩陵之战	Hanling
+534	北魏分裂东西	魏分东西	Wei splits
+537	沙苑之战	沙苑之战	Shayuan
+538	河桥之战	河桥之战	Heqiao
+543	邙山之战	邙山之战	Mount Mang
+546	玉璧之战	玉璧之战	Yubi
+547	侯景叛东魏·寒山之战	侯景叛魏	Hou Jing defects
+548	侯景之乱起	侯景之乱	Hou Jing revolts
+549	台城陷落	台城陷落	Taicheng falls
+550	北齐代东魏·西魏取汉东	北齐建立	Northern Qi
+551	侯景称帝	侯景称帝	Hou Jing enthroned
+552	侯景败亡·突厥灭柔然	侯景败亡	Hou Jing falls
+553	西魏取蜀	西魏取蜀	Shu taken
+554	江陵陷落	江陵陷落	Jiangling falls
+555	后梁建立·陈霸先杀王僧辩	后梁建立	Later Liang
+557	北周代西魏·陈霸先建陈	周陈代立	Zhou and Chen
+560	王琳败亡·北周入湘州	王琳败亡	Wang Lin falls
+564	晋阳·邙山之战	晋阳邙山	Jinyang · Mang
+573	太建北伐·陈复淮南	太建北伐	Taijian campaign
+577	北周灭北齐	周灭北齐	Northern Qi falls
+578	吕梁之战·周武帝卒	吕梁之战	Lüliang
+579	北周夺取淮南	周取淮南	Huainan taken
+580	尉迟迥起兵·杨坚辅政	尉迟迥	Yuchi Jiong
+581	杨坚代周·隋朝建立	隋朝建立	Sui founded

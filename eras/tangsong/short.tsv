@@ -1,0 +1,42 @@
+# 时间轴短标题（规范第十九节第 3 步）：每个节点一行，节点 = 年份（按月的卷为 年.月）。中文不超过 5 字，英文尽量不超过 18 个字母。
+# 由 core/v1/overlay.py 并入 v1 数据；改完重新运行 python run.py --v1 --web。
+节点	标题	短标题	英文
+755	安史之乱前夕	安史前夕	Eve of rebellion
+756	两京陷落·灵武即位	两京陷落	Capitals fall
+757	收复两京·思明降唐	收复两京	Capitals retaken
+759	邺城之溃·思明再陷洛阳	邺城之溃	Rout at Ye
+763	安史平定·吐蕃入长安	安史平定	Rebellion ends
+765	河朔割据·河陇陷没	河朔割据	Hebei autonomy
+777	淄青十五州·魏博并相卫	淄青魏博	Ziqing · Weibo
+782	四镇称王	四镇称王	Four kings
+784	建中之乱·泾原兵变	泾原兵变	Jingyuan mutiny
+787	平凉劫盟·河西尽失	平凉劫盟	Pingliang
+794	点苍山会盟·北庭陷没	点苍会盟	Diancang
+805	吐蕃极盛·藩镇林立	吐蕃极盛	Tibet at its height
+817	雪夜入蔡州	雪夜入蔡	Caizhou taken
+820	元和中兴	元和中兴	Yuanhe Restoration
+822	河朔复叛·长庆会盟	河朔复叛	Hebei revolts
+844	回鹘败亡·泽潞平定	回鹘败亡	Uyghurs fall
+851	张议潮归义·河湟收复	河湟收复	Hehuang retaken
+863	南诏陷安南	安南失陷	Annan lost
+869	庞勋之乱	庞勋之乱	Pang Xun
+881	黄巢入长安	黄巢入京	Huang Chao
+886	秦宗权称帝·僖宗再奔	僖宗再奔	Xizong flees
+895	藩镇混战	藩镇混战	Fanzhen at war
+903	凤翔之围·朱全忠挟天子	凤翔之围	Fengxiang
+907	唐亡·五代开端	唐亡	Tang falls
+915	晋灭燕·魏博归晋	晋灭燕	Yan falls
+923	后唐灭梁	后唐灭梁	Liang falls
+926	前蜀亡·契丹灭渤海	渤海灭亡	Balhae falls
+934	孟知祥建后蜀	后蜀建立	Later Shu
+938	燕云十六州入契丹	燕云入辽	Yan-Yun ceded
+947	契丹灭晋	契丹灭晋	Jin falls
+951	后周建立·南唐灭楚	后周建立	Later Zhou
+955	高平之战·周取秦凤	高平之战	Gaoping
+959	周世宗南征北伐	世宗征伐	Shizong's wars
+963	宋取荆湖	宋取荆湖	Jinghu taken
+965	宋灭后蜀	宋灭后蜀	Later Shu falls
+971	宋灭南汉	宋灭南汉	Southern Han falls
+975	宋灭南唐	宋灭南唐	Southern Tang falls
+978	吴越纳土	吴越纳土	Wuyue submits
+979	宋灭北汉·高梁河之战	宋灭北汉	Northern Han falls

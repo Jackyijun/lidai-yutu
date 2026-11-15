@@ -31,7 +31,7 @@ def diff(a, b, path="", out=None, limit=8):
 
 
 def check(slug):
-    html = (ROOT / "docs" / slug / "index.html").read_text(encoding="utf8")
+    html = (ROOT / "eras" / slug / "legacy.html").read_text(encoding="utf8")
     G, D, colors = legacy.extract(html)
     b = legacy.to_v1(slug, G, D, colors)
     b = json.loads(json.dumps(b, ensure_ascii=False))       # 经过一次 JSON，确保可序列化

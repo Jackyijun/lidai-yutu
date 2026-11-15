@@ -36,7 +36,7 @@ ERA_ZH = {"chunqiu": "春秋", "zhanguo": "战国", "hanmosanguo": "汉末", "li
 def load_bundles():
     out = {}
     for slug in ERAS:
-        html = (ROOT / "docs" / slug / "index.html").read_text(encoding="utf8")
+        html = (ROOT / "eras" / slug / "legacy.html").read_text(encoding="utf8")
         out[slug] = legacy.to_v1(slug, *legacy.extract(html))
     return out
 
@@ -792,24 +792,39 @@ def main():
     (REVIEW / "junctions.md").write_text("".join(parts), encoding="utf8")
 
     # 改正清单：各卷页面里要改的地方（坐标由 [[place]]、[[seat]] 推出，其余手写在 corrections.toml）
+    # 不牵动疆域的（条目点位、英文、标了 step = 3 的内容）第 3 步已在新页面上改（core/v1/overlay.py），其余留到第 5—7 步
+    import overlay
     yy = lambda y: f"前{-y}" if y < 0 else str(y)
-    rows = []
+    S3, S5 = "新页面已改", "第 5—7 步"
+    rows, coords = [], []
     for pid, c, y0, y1, st in sorted(p_fix, key=lambda x: (ERAS.index(x[1]["era"]), x[0], x[1]["ref"])):
+        ok = overlay.page_coord_ok(c["era"], c["ref"])
         rows.append((ERA_ZH[c["era"]], f"{c['main']} `{c['ref']}`", pid, f"{yy(y0)}—{yy(y1)}",
-                     f"{c['ll'][0]:.2f},{c['ll'][1]:.2f}", f"{st['lon']:.2f},{st['lat']:.2f}", st.get("note", "")))
+                     f"{c['ll'][0]:.2f},{c['ll'][1]:.2f}", f"{st['lon']:.2f},{st['lat']:.2f}", st.get("note", ""), S3 if ok else S5))
+        coords.append({"era": c["era"], "ref": c["ref"], "id": pid, "lon": st["lon"], "lat": st["lat"]})
     fixes = load_toml(GLOBAL / "corrections.toml").get("fix", []) if (GLOBAL / "corrections.toml").exists() else []
-    rows2 = [(ERA_ZH.get(f["era"], f["era"]), f.get("at", ""), f["what"], f.get("why", "")) for f in fixes]
-    rows3 = [(ERA_ZH[era], kind, rid, zh, e, best) for era, kind, rid, zh, e, best in
+    rows2 = [("、".join(ERA_ZH.get(e, e) for e in f["era"].split("、")), f.get("at", ""), f["what"], f.get("why", ""),
+              S3 if f.get("step") == 3 else S5) for f in fixes]
+    rows3 = [(ERA_ZH[era], kind, rid, zh, e, best, S3) for era, kind, rid, zh, e, best in
              sorted(en_fix, key=lambda x: (ERAS.index(x[0]), x[1], x[2]))]
+    KIND = {"地点": "place", "政权": "polity", "山川": "physical"}
+    (ROOT / "build" / "v1").mkdir(parents=True, exist_ok=True)
+    (ROOT / "build" / "v1" / "fixes.json").write_text(json.dumps({
+        "coords": coords,
+        "en": [{"era": era, "kind": KIND[kind], "id": rid, "zh": zh, "cur": e, "best": best} for era, kind, rid, zh, e, best in en_fix],
+    }, ensure_ascii=False, indent=0), encoding="utf8")
+    n3 = sum(r[-1] == S3 for r in rows)
     (GLOBAL / "corrections.md").write_text(
-        "# 各卷改正清单\n\n第 2 步审定出来、各卷页面里要改的地方。全局表已经按改正后的写；各卷页面暂不动，"
-        "点位在第 3 步统一前端时改，归属点（州府）在第 5—7 步重算疆域时改，改完的从这里删去。"
+        "# 各卷改正清单\n\n第 2 步审定出来、各卷页面里要改的地方。全局表已经按改正后的写。"
+        "不牵动疆域的（都城、关隘等条目的点位，英文译名，部分内容）第 3 步已在新页面上改，见末栏「新页面已改」"
+        "（`core/v1/overlay.py` 在生成 v1 数据时套用，各卷原始数据暂不动）；"
+        "牵动疆域的（州府与春秋、战国城邑这些归属点的坐标、疆域本身）留到第 5—7 步重算疆域时改。"
         "本文件由 `python core/v1/registry.py` 生成，内容改正手写在 `global/corrections.toml`。\n\n"
-        f"## 坐标（{len(rows)} 处）\n\n与全局地点表里那个年代的城址相距 2 km 以上的（坐标精度约 1 km）。\n\n"
-        + md_table(["卷", "条目", "全局地点", "年代", "现坐标", "应为", "城址"], rows)
-        + f"\n\n## 内容（{len(rows2)} 处）\n\n" + md_table(["卷", "年代", "改什么", "依据"], rows2)
+        f"## 坐标（{len(rows)} 处，新页面已改 {n3} 处）\n\n与全局地点表里那个年代的城址相距 2 km 以上的（坐标精度约 1 km）。\n\n"
+        + md_table(["卷", "条目", "全局地点", "年代", "现坐标", "应为", "城址", "状态"], rows)
+        + f"\n\n## 内容（{len(rows2)} 处）\n\n" + md_table(["卷", "年代", "改什么", "依据", "状态"], rows2)
         + f"\n\n## 英文（{len(rows3)} 处）\n\n同一对象、同一中文名，统一成一种英文写法后，各卷要改的。\n\n"
-        + md_table(["卷", "类别", "全局 ID", "中文", "现在", "改为"], rows3) + "\n",
+        + md_table(["卷", "类别", "全局 ID", "中文", "现在", "改为", "状态"], rows3) + "\n",
         encoding="utf8")
 
     # 汇总

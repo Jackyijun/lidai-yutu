@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 """历代舆图 · 单仓构建入口。
 
-  python run.py                    八卷全部照旧构建，再更新首页；产物收进 docs/
+  python run.py                    八卷全部构建：各卷算疆域 → v1 数据 → 新页面，再更新首页；产物收进 docs/
   python run.py zhanguo songyuan   只构建这几卷（短名见 python run.py --list）
-  python run.py --html             各卷跳过疆域计算，只重新拼装 HTML（须先完整构建过一次）
+  python run.py --html             各卷跳过疆域计算，只重新拼装（须先完整构建过一次）
   python run.py --draft            英文有缺译或过期时也照常生成（缺译处显示中文），只供预览
+  python run.py --web              不重算各卷，只由 eras/<短名>/legacy.html 重建全局表、v1 数据和新页面
+  python run.py --v1               只重建全局表（global/）与各卷 v1 数据包（build/v1/），不出页面
   python run.py --hub              只更新首页：hub/index.html → docs/index.html
-  python run.py --check            不构建，只核对 docs/ 与各卷产物、首页源文件是否一致
-  python run.py --v1               不构建，由 docs/ 里的成品重建全局表（global/）并生成各卷 v1 数据包（build/v1/）
+  python run.py --check            不构建，只核对 docs/ 与各卷成品、首页源文件是否一致
   python run.py --list             列出各卷短名
 
-迁移第 1 步（2026-11）：各卷仍用自己原来的构建脚本 eras/<短名>/run.py；本脚本只负责依次调用，
-再把 eras/<短名>/docs/index.html 复制到 docs/<短名>/index.html。见规范第十九节。
-第 2 步：统一数据格式 v1 与全局表，见 core/v1/FORMAT.md。
+构建分三段（规范第十九节）：
+  1. 各卷仍用自己原来的构建脚本 eras/<短名>/run.py 推算疆域、拼成旧版页面，存为 eras/<短名>/legacy.html（入库，是数据来源）；
+  2. core/v1/registry.py 由八卷 legacy.html 重建全局表，core/v1/build.py 转成 v1 数据包并套用第 3 步的改正（build/v1/，不入库）；
+  3. core/web/assemble.py 由 v1 数据生成新页面 docs/<短名>/index.html（共用时间轴、深链接等，见 core/web/）。
+第 5—7 步改为由 v1 数据直接推算、出图后，第 1 段退役。
 """
 import argparse, hashlib, shutil, subprocess, sys, time
 from pathlib import Path
@@ -39,6 +42,7 @@ def sha(p):
 
 
 def build_era(slug, html=False, draft=False):
+    """第 1 段：各卷原来的构建脚本 → eras/<短名>/legacy.html"""
     d = ROOT / "eras" / slug
     (d / "build").mkdir(exist_ok=True)   # 有的卷（如唐宋）默认 build/ 已存在，全新克隆时没有
     args = [sys.executable, "run.py"] + (["--html"] if html else []) + (["--draft"] if draft else [])
@@ -47,11 +51,17 @@ def build_era(slug, html=False, draft=False):
     r = subprocess.run(args, cwd=d)
     if r.returncode != 0:
         sys.exit(f"失败：{slug}")
-    out = d / "docs" / "index.html"
-    dst = DOCS / slug / "index.html"
-    dst.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(out, dst)
-    print(f"==== {slug} 完成（{time.time() - t0:.0f}s）→ docs/{slug}/index.html", flush=True)
+    shutil.copyfile(d / "docs" / "index.html", d / "legacy.html")
+    print(f"==== {slug} 完成（{time.time() - t0:.0f}s）→ eras/{slug}/legacy.html", flush=True)
+
+
+def run_core(eras, web=True):
+    """第 2、3 段：全局表 → v1 数据 → 新页面"""
+    steps = [("v1/registry.py", []), ("v1/build.py", eras)] + ([("web/assemble.py", eras)] if web else [])
+    for script, extra in steps:
+        r = subprocess.run([sys.executable, str(ROOT / "core" / script)] + extra, cwd=ROOT)
+        if r.returncode != 0:
+            sys.exit(f"失败：core/{script}")
 
 
 def build_hub():
@@ -60,18 +70,26 @@ def build_hub():
 
 
 def check():
+    sys.path.insert(0, str(ROOT / "core" / "web"))
+    sys.path.insert(0, str(ROOT / "core" / "v1"))
+    import json
+    import assemble
     bad = 0
     for slug, title, years in ERAS:
-        pub, built = DOCS / slug / "index.html", ROOT / "eras" / slug / "docs" / "index.html"
+        leg, built, pub = ROOT / "eras" / slug / "legacy.html", ROOT / "eras" / slug / "docs" / "index.html", DOCS / slug / "index.html"
+        v1 = ROOT / "build" / "v1" / f"{slug}.json"
+        notes = []
+        if not leg.exists():
+            notes.append("缺 legacy.html"); bad += 1
+        elif built.exists() and sha(leg) != sha(built):
+            notes.append("legacy.html 不是本地最新构建的结果"); bad += 1
         if not pub.exists():
-            state = "docs/ 里缺这一卷"; bad += 1
-        elif not built.exists():
-            state = "本地还没构建过（无从比对）"
-        elif sha(pub) == sha(built):
-            state = "一致"
-        else:
-            state = "不一致：docs/ 不是本地最新构建的结果"; bad += 1
-        print(f"  {slug:20s} {title}（{years}）  {state}")
+            notes.append("docs/ 里缺这一卷"); bad += 1
+        elif not v1.exists():
+            notes.append("还没生成 v1 数据（无从比对新页面）")
+        elif assemble.render(slug, json.loads(v1.read_text(encoding="utf8"))) != pub.read_text(encoding="utf8"):
+            notes.append("docs/ 不是由当前 v1 数据生成的"); bad += 1
+        print(f"  {slug:20s} {title}（{years}）  {'；'.join(notes) or '一致'}")
     hub = "一致" if sha(DOCS / "index.html") == sha(ROOT / "hub" / "index.html") else "不一致"
     if hub != "一致":
         bad += 1
@@ -84,9 +102,10 @@ def main():
     ap.add_argument("eras", nargs="*", metavar="短名", help="只构建这几卷；不写则全部")
     ap.add_argument("--html", action="store_true", help="各卷只重新拼装 HTML")
     ap.add_argument("--draft", action="store_true", help="英文缺译时也照常生成")
+    ap.add_argument("--web", action="store_true", help="不重算各卷，只重建全局表、v1 数据和新页面")
+    ap.add_argument("--v1", action="store_true", help="只重建全局表与 v1 数据包")
     ap.add_argument("--hub", action="store_true", help="只更新首页")
     ap.add_argument("--check", action="store_true", help="只核对 docs/ 是否最新")
-    ap.add_argument("--v1", action="store_true", help="重建全局表并生成各卷 v1 数据包")
     ap.add_argument("--list", action="store_true", help="列出各卷短名")
     a = ap.parse_args()
     if a.list:
@@ -95,21 +114,18 @@ def main():
         return
     if a.check:
         sys.exit(1 if check() else 0)
-    if a.v1:
-        v1 = ROOT / "core" / "v1"
-        for script, extra in (("registry.py", []), ("build.py", a.eras)):
-            r = subprocess.run([sys.executable, str(v1 / script)] + extra, cwd=ROOT)
-            if r.returncode != 0:
-                sys.exit(f"失败：core/v1/{script}")
+    unknown = [e for e in a.eras if e not in SLUGS]
+    if unknown:
+        sys.exit(f"没有这一卷：{'、'.join(unknown)}（python run.py --list 查看）")
+    if a.v1 or a.web:
+        run_core(a.eras, web=a.web)
         return
     DOCS.mkdir(exist_ok=True)
     (DOCS / ".nojekyll").touch()
     if not a.hub:
-        unknown = [e for e in a.eras if e not in SLUGS]
-        if unknown:
-            sys.exit(f"没有这一卷：{'、'.join(unknown)}（python run.py --list 查看）")
         for slug in (a.eras or SLUGS):
             build_era(slug, a.html, a.draft)
+        run_core(a.eras)
     build_hub()
 
 

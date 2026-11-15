@@ -7,14 +7,16 @@
 每一卷：
   1. 往返校验：v1 转回旧格式，必须与成品里的 GEO、DATA、疆域色完全相同；
   2. 核对 eras/<短名>/era.toml（时间精度、数据模型、节点数、首屏节点）与数据一致；
-  3. 按 global/ 各表给政权、地点、山川条目附上全局 ID（字段 gid）。
-global/ 各表须先由 core/v1/registry.py 生成；本脚本只读不写。build/ 不入库。
+  3. 按 global/ 各表给政权、地点、山川条目附上全局 ID（字段 gid）；
+  4. 套用第 3 步先行的改正（core/v1/overlay.py：条目点位、英文译名、标了 step = 3 的内容、时间轴短标题），记在 meta.overlay。
+global/ 各表与 build/v1/fixes.json 须先由 core/v1/registry.py 生成；本脚本只读不写。build/ 不入库。
 """
 import json
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import overlay
 import roundtrip
 from registry import ERAS, GLOBAL, ROOT, load_toml
 
@@ -92,6 +94,11 @@ def main():
     po = index(read_jsonl(GLOBAL / "polities.jsonl"))
     ph = index(read_jsonl(GLOBAL / "physical.jsonl"))
     seats = seat_index(read_jsonl(GLOBAL / "places.jsonl"))
+    fx = OUT / "fixes.json"
+    if not fx.exists():
+        sys.exit("build/v1/fixes.json 不存在，先运行 python core/v1/registry.py")
+    fixes = json.loads(fx.read_text(encoding="utf8"))
+    content = load_toml(GLOBAL / "corrections.toml").get("fix", [])
     OUT.mkdir(parents=True, exist_ok=True)
     failed = 0
     for slug in slugs:
@@ -102,10 +109,13 @@ def main():
         if missing:
             probs.append(f"{len(missing)} 条在全局表里查不到（全局表过期？先运行 registry.py）：{'、'.join(missing[:5])}")
         b["meta"] = {k: meta[k] for k in ("volume", "title", "title_en", "short", "short_en", "years")}
+        b["meta"]["overlay"] = overlay.apply(slug, b, fixes, content)
         path = OUT / f"{slug}.json"
         path.write_text(json.dumps(b, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
         size = path.stat().st_size / 1e6
         print(f"{slug:20s} {'通过' if not probs else '有问题'}  {size:5.1f} MB → build/v1/{slug}.json")
+        for d in b["meta"]["overlay"]:
+            print("      改正：", d)
         for p in probs:
             print("    ", p)
         failed += bool(probs)

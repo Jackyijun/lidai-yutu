@@ -1,0 +1,39 @@
+# 时间轴短标题（规范第十九节第 3 步）：每个节点一行，节点 = 年份（按月的卷为 年.月）。中文不超过 5 字，英文尽量不超过 18 个字母。
+# 由 core/v1/overlay.py 并入 v1 数据；改完重新运行 python run.py --v1 --web。
+节点	标题	短标题	英文
+94	东汉鼎盛·西域内属	东汉鼎盛	Han at its height
+184	黄巾起事	黄巾起事	Yellow Turbans
+189	董卓入京	董卓入京	Dong Zhuo
+190	关东联军讨董	关东讨董	Eastern coalition
+191	孙坚入洛·袁绍夺冀州	孙坚入洛	Sun Jian in Luoyang
+192	董卓伏诛·曹操领兖州	董卓伏诛	Dong Zhuo killed
+193	曹操征徐州	曹操征徐	Cao attacks Xu
+194	吕布袭兖州	吕布袭兖	Lü Bu takes Yan
+195	献帝东归·孙策渡江	献帝东归	Emperor goes east
+196	迁都许县	迁都许县	Capital to Xu
+197	袁术称帝	袁术称帝	Yuan Shu enthroned
+198	下邳擒吕布	下邳擒布	Lü Bu captured
+199	易京之战	易京之战	Yijing
+200	官渡之战	官渡之战	Guandu
+204	曹操取邺	曹操取邺	Ye taken
+207	北征乌桓	北征乌桓	Wuhuan campaign
+208	赤壁之战	赤壁之战	Red Cliffs
+210	周瑜取江陵·借荆州	借荆州	Jing Province lent
+211	潼关之战	潼关之战	Tong Pass
+214	刘备取益州	刘备入蜀	Liu Bei takes Yi
+215	曹操取汉中·逍遥津	曹取汉中	Hanzhong taken
+219	汉中之战·襄樊之战	汉中襄樊	Hanzhong · Fancheng
+220	曹丕代汉	曹丕代汉	Wei replaces Han
+222	夷陵之战	夷陵之战	Yiling
+225	诸葛亮南征	诸葛南征	Southern campaign
+228	街亭·石亭	街亭石亭	Jieting · Shiting
+229	孙权称帝·三国鼎立	三国鼎立	Three Kingdoms
+234	五丈原	五丈原	Wuzhang Plains
+238	司马懿平辽东	平辽东	Liaodong taken
+249	高平陵之变	高平陵	Gaoping Tombs
+253	东兴·合肥新城	东兴新城	Dongxing · Hefei
+258	淮南三叛平定	淮南三叛	Huainan revolts
+263	魏灭蜀	魏灭蜀	Shu falls
+265	晋代魏	晋代魏	Jin replaces Wei
+272	西陵之战	西陵之战	Xiling
+280	西晋灭吴	西晋灭吴	Wu falls

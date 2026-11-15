@@ -1,0 +1,118 @@
+# 时间轴短标题（规范第十九节第 3 步）：每个节点一行，节点 = 年份（按月的卷为 年.月）。中文不超过 5 字，英文尽量不超过 18 个字母。
+# 由 core/v1/overlay.py 并入 v1 数据；改完重新运行 python run.py --v1 --web。
+节点	标题	短标题	英文
+1910.8	清末新政·日本吞并朝鲜	清末新政	Late-Qing reforms
+1911.10	武昌起义	武昌起义	Wuchang Uprising
+1911.12	各省独立·外蒙古“独立”	各省独立	Provinces secede
+1912.2	中华民国成立·清帝退位	民国成立	Republic founded
+1913.8	二次革命	二次革命	Second Revolution
+1914.11	一战爆发·日本侵占青岛	日占青岛	Japan in Qingdao
+1915.6	二十一条·外蒙古“自治”	二十一条	Twenty-One Demands
+1915.12	复辟帝制·护国起义	复辟帝制	Monarchy restored
+1916.5	护国战争·军务院	护国战争	Protection War
+1917.7	张勋复辟	张勋复辟	Zhang Xun
+1917.11	护法运动·十月革命	护法运动	Constitution Protection
+1918.11	南北对峙·一战结束	南北对峙	North–South split
+1919.5	五四运动·巴黎和会	五四运动	May Fourth
+1919.11	外蒙古取消自治	外蒙撤治	Mongolian autonomy ends
+1920.7	直皖战争	直皖战争	Zhili–Anhui War
+1921.8	中共成立·粤桂战争	中共成立	CPC founded
+1922.6	直奉战争·陈炯明叛变	直奉战争	Zhili–Fengtian War
+1923.10	二七惨案·曹锟贿选	曹锟贿选	Cao Kun bribery
+1924.6	国共合作·黄埔建校	国共合作	KMT–CPC alliance
+1924.11	北京政变·孙中山北上	北京政变	Beijing Coup
+1925.7	五卅运动·广州国民政府	五卅运动	May Thirtieth
+1925.12	第二次东征·郭松龄反奉	二次东征	Eastern Expedition
+1926.4	两广统一·三一八惨案	两广统一	Guangdong–Guangxi
+1926.7	北伐出师	北伐出师	Northern Expedition
+1926.10	攻克武昌·五原誓师	攻克武昌	Wuchang taken
+1926.12	底定东南·迁都武汉	迁都武汉	Capital to Wuhan
+1927.4	四一二反革命政变	四一二	April 12 Coup
+1927.8	七一五“分共”·南昌起义	南昌起义	Nanchang Uprising
+1927.10	秋收起义·上井冈山	秋收起义	Autumn Harvest
+1927.12	广州起义	广州起义	Guangzhou Uprising
+1928.5	二次北伐·济南惨案	济南惨案	Jinan Massacre
+1928.6	皇姑屯·北伐军入北京	皇姑屯	Huanggutun
+1928.12	东北易帜	东北易帜	Northeast flag
+1929.4	蒋桂战争·红军下赣南	蒋桂战争	Chiang–Guangxi War
+1929.11	中东路事件·蒋冯战争	中东路事件	CER Incident
+1930.7	中原大战·红军攻长沙	中原大战	Central Plains War
+1930.12	东北军入关·反“围剿”	反“围剿”	Counter-encirclement
+1931.7	宁粤对立·三次反“围剿”	宁粤对立	Nanjing–Canton split
+1931.11	九一八事变·中华苏维埃	九一八事变	September 18
+1932.3	一·二八·伪满洲国	伪满洲国	Manchukuo
+1932.12	红四方面军入川	红四入川	Red Fourth in Sichuan
+1933.5	热河沦陷·塘沽协定	塘沽协定	Tanggu Truce
+1933.11	福建事变·五次反“围剿”	福建事变	Fujian Incident
+1934.4	广昌之战·伪满帝制	广昌之战	Guangchang
+1934.10	中央红军长征	长征出发	Long March begins
+1934.12	湘江战役·通道转兵	湘江战役	Xiang River
+1935.1	遵义会议	遵义会议	Zunyi Meeting
+1935.3	四渡赤水	四渡赤水	Chishui crossings
+1935.5	巧渡金沙·飞夺泸定	飞夺泸定	Luding Bridge
+1935.6	翻越夹金山·懋功会师	懋功会师	Maogong
+1935.9	过草地·腊子口	过草地	Grasslands
+1935.10	吴起镇·陕北会师	陕北会师	Northern Shaanxi
+1935.12	华北事变·一二·九运动	一二·九	December 9
+1936.5	红军东征·二六军团北上	红军东征	Red Army east
+1936.7	甘孜会师·两广事变	甘孜会师	Garze
+1936.10	会宁会师·长征胜利	长征胜利	Long March ends
+1936.12	西安事变和平解决	西安事变	Xi'an Incident
+1937.7	七七事变·全民族抗战	七七事变	Lugou Bridge
+1937.9	淞沪会战·平型关大捷	淞沪会战	Songhu
+1937.11	太原、上海沦陷	上海沦陷	Shanghai falls
+1937.12	南京沦陷·南京大屠杀	南京沦陷	Nanjing falls
+1938.4	台儿庄大捷	台儿庄	Tai'erzhuang
+1938.6	徐州沦陷·花园口决堤	花园口	Huayuankou
+1938.10	广州、武汉沦陷	武汉沦陷	Wuhan falls
+1939.3	南昌会战·海南沦陷	南昌会战	Nanchang
+1939.9	诺门罕·长沙会战	长沙会战	Changsha
+1939.12	桂南会战·冬季攻势	冬季攻势	Winter Offensive
+1940.3	汪伪国民政府	汪伪政府	Wang regime
+1940.6	枣宜会战·宜昌沦陷	枣宜会战	Zaoyang–Yichang
+1940.9	百团大战·日军侵越	百团大战	Hundred Regiments
+1941.1	皖南事变	皖南事变	Southern Anhui
+1941.7	中条山·日军南进	中条山	Zhongtiao
+1941.12	太平洋战争爆发	太平洋战争	Pacific War
+1942.2	新加坡陷落	新加坡陷落	Singapore falls
+1942.5	远征军入缅·南洋沦陷	远征入缅	Burma expedition
+1942.8	中途岛·瓜岛	中途岛	Midway
+1943.2	瓜岛撤退·河南大饥荒	河南饥荒	Henan famine
+1943.11	常德会战·开罗会议	开罗会议	Cairo Conference
+1944.5	豫湘桂战役·英帕尔	豫湘桂	Ichi-Go
+1944.8	衡阳保卫战·塞班	衡阳保卫	Hengyang
+1944.12	桂柳沦陷·莱特湾	桂柳沦陷	Guilin falls
+1945.3	中印公路·硫磺岛	中印公路	China–India Road
+1945.6	冲绳·湘西会战	湘西会战	Western Hunan
+1945.8	日本无条件投降	日本投降	Japan surrenders
+1945.10	重庆谈判·台湾光复	重庆谈判	Chongqing talks
+1946.5	苏军撤离·四平保卫战	四平保卫	Siping
+1946.12	全面内战爆发	全面内战	Civil war
+1947.3	二·二八起义·转战陕北	转战陕北	Northern Shaanxi
+1947.8	挺进大别山·印巴分治	挺进大别山	Dabie Mountains
+1947.12	解放石家庄·克什米尔	石家庄	Shijiazhuang
+1948.6	开封战役·以色列建国	开封战役	Kaifeng
+1948.9	济南战役·朝鲜分立	济南战役	Jinan
+1948.11	辽沈战役·淮海战役	辽沈淮海	Liaoshen · Huaihai
+1949.1	平津战役·北平和平解放	平津战役	Pingjin
+1949.4	渡江战役·南京解放	渡江战役	Yangtze crossing
+1949.5	解放上海·西安	解放上海	Shanghai liberated
+1949.8	湖南起义·兰州战役	兰州战役	Lanzhou
+1949.10	中华人民共和国成立	新中国成立	PRC founded
+1949.12	解放西南·国民党退台	解放西南	Southwest liberated
+1950.5	解放海南岛·舟山	解放海南	Hainan liberated
+1950.8	朝鲜内战·第七舰队	朝鲜战争	Korean War
+1950.10	昌都战役·志愿军入朝	志愿军入朝	Volunteers enter Korea
+1950.12	第二次战役·长津湖	长津湖	Changjin Lake
+1951.1	第三次战役	三次战役	Third Campaign
+1951.3	第四次战役	四次战役	Fourth Campaign
+1951.6	第五次战役·十七条协议	五次战役	Fifth Campaign
+1951.10	进驻拉萨·开城谈判	进驻拉萨	Lhasa
+1952.4	三反五反·班禅返藏	三反五反	Three-Anti
+1952.11	上甘岭战役·西北战役	上甘岭	Shangganling
+1953.4	一五计划·越军入上寮	一五计划	Five-Year Plan
+1953.7	抗美援朝胜利	朝鲜停战	Korean Armistice
+1953.12	总路线·柬老独立	柬老独立	Cambodia · Laos
+1954.5	奠边府大捷·五项原则	奠边府	Điện Biên Phủ
+1954.7	日内瓦会议	日内瓦会议	Geneva Conference
+1954.12	一届人大·九三炮战	一届人大	First NPC

@@ -2,18 +2,18 @@
 
 [![中文](https://img.shields.io/badge/lang-%E4%B8%AD%E6%96%87-red.svg)](README.md) [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.en.md)
 
-历代形势图的总览页，依次是题签页眉、时间长卷、图卷目录、凡例。目录里每一卷链到它自己的 GitHub Pages：
+历代形势图的总览页，依次是题签页眉、时间长卷、图卷目录、凡例。目录里每一卷链到本仓库发布的新页面；各卷原来的网址保留为旧版（卷目右上角「旧版 ↗」），不再更新：
 
-| 卷次 | 图 | 地址 |
-| --- | --- | --- |
-| 卷一 | 春秋列国形势图（前770 — 前476） | https://jackyijun.github.io/chunqiu-map/ |
-| 卷二 | 战国列国形势图（前475 — 前212） | https://jackyijun.github.io/zhanguo-map/ |
-| 卷三 | 汉末三国形势图（184 — 280） | https://jackyijun.github.io/hanmosanguo-map/ |
-| 卷四 | 两晋十六国南北朝形势图（280 — 581） | https://jackyijun.github.io/liangjin-nanbeichao-map/ |
-| 卷五 | 隋及唐初形势图（581 — 669） | https://jackyijun.github.io/suitang-map/ |
-| 卷六 | 唐末五代形势图（755 — 979；地图本身题「唐宋之际形势图」） | https://jackyijun.github.io/tangsong-map/ |
-| 卷七 | 宋辽夏金元形势图（979 — 1279） | https://jackyijun.github.io/songyuan-map/ |
-| 卷八 | 民国至新中国初期形势图（1911 — 1954） | https://jackyijun.github.io/minguo-xinzhongguo-map/ |
+| 卷次 | 图 | 地址 | 旧版 |
+| --- | --- | --- | --- |
+| 卷一 | 春秋列国形势图（前770 — 前476） | https://jackyijun.github.io/lidai-yutu/chunqiu/ | https://jackyijun.github.io/chunqiu-map/ |
+| 卷二 | 战国列国形势图（前475 — 前212） | https://jackyijun.github.io/lidai-yutu/zhanguo/ | https://jackyijun.github.io/zhanguo-map/ |
+| 卷三 | 汉末三国形势图（184 — 280） | https://jackyijun.github.io/lidai-yutu/hanmosanguo/ | https://jackyijun.github.io/hanmosanguo-map/ |
+| 卷四 | 两晋十六国南北朝形势图（280 — 581） | https://jackyijun.github.io/lidai-yutu/liangjin-nanbeichao/ | https://jackyijun.github.io/liangjin-nanbeichao-map/ |
+| 卷五 | 隋及唐初形势图（581 — 669） | https://jackyijun.github.io/lidai-yutu/suitang/ | https://jackyijun.github.io/suitang-map/ |
+| 卷六 | 唐末五代形势图（755 — 979；地图本身题「唐宋之际形势图」） | https://jackyijun.github.io/lidai-yutu/tangsong/ | https://jackyijun.github.io/tangsong-map/ |
+| 卷七 | 宋辽夏金元形势图（979 — 1279） | https://jackyijun.github.io/lidai-yutu/songyuan/ | https://jackyijun.github.io/songyuan-map/ |
+| 卷八 | 民国至新中国初期形势图（1911 — 1954） | https://jackyijun.github.io/lidai-yutu/minguo-xinzhongguo/ | https://jackyijun.github.io/minguo-xinzhongguo-map/ |
 
 卷一、卷二首尾相接：春秋图末节点（前476）与战国图首节点（前475）的疆域、配色完全一致。卷三、卷四、卷五也首尾相接：两晋图照搬了两头的衔接节点，首节点与汉末三国图末节点（280），末节点与隋唐图首节点（581）的疆域、配色完全一致。
 
@@ -31,28 +31,33 @@ lidai-yutu/
 ├── requirements.txt       八卷共用的依赖
 ├── requirements-lock.txt  能逐字节重现线上版本的依赖版本
 ├── hub/index.html         首页源文件
-├── eras/<短名>/           各卷：content/ 史料、src/ 构建代码、tools/、run.py，照旧可以单独构建；era.toml 卷的基本信息
-├── core/v1/               统一数据格式 v1：格式说明 FORMAT.md、旧格式转换、全局表生成
+├── eras/<短名>/           各卷：content/ 史料、src/ 构建代码、tools/、run.py，照旧可以单独构建；
+│                          era.toml 卷的基本信息；legacy.html 旧构建的成品（数据来源）；short.tsv 时间轴短标题
+├── core/v1/               统一数据格式 v1：格式说明 FORMAT.md、旧格式转换、全局表生成、第 3 步的改正
+├── core/web/              统一前端：由 v1 生成各卷新页面（时间轴、深链接），说明见 core/web/README.md
 ├── global/                全局表：地点、政权、山川、译名；decisions.toml 人工决定；review/ 审定清单
 ├── geodata/               底图只存一份（ne/、etopo20/、prov/、derived/）；各卷 geodata/ 里是指向这里的符号链接
 ├── tools/thumbs.py        首页缩略图
 └── docs/                  GitHub Pages 发布目录：index.html 是首页，<短名>/index.html 是各卷
 ```
 
-各卷短名是旧仓库名去掉 `-map`：chunqiu、zhanguo、hanmosanguo、liangjin-nanbeichao、suitang、tangsong、songyuan、minguo-xinzhongguo。目前（迁移第 1 步）各卷仍用自己原来的构建脚本，`docs/<短名>/index.html` 与旧仓库的已发布版本逐字节相同；单仓正式上线前，首页卷目仍链到旧网址。
+各卷短名是旧仓库名去掉 `-map`：chunqiu、zhanguo、hanmosanguo、liangjin-nanbeichao、suitang、tangsong、songyuan、minguo-xinzhongguo。构建分三段：各卷仍用自己原来的构建脚本推算疆域，成品存为 `eras/<短名>/legacy.html`；由它重建全局表、转成 v1 数据并套用第 3 步的改正；再由 v1 生成新页面 `docs/<短名>/index.html`。
 
 ```bash
 pip install -r requirements.txt
-python run.py                    # 八卷全部构建，再更新首页
+python run.py                    # 八卷全部构建：疆域 → v1 数据 → 新页面，再更新首页
 python run.py zhanguo songyuan   # 只构建这几卷
-python run.py --html             # 各卷只重新拼装 HTML（须先完整构建过一次）
+python run.py --html             # 各卷跳过疆域计算，只重新拼装（须先完整构建过一次）
+python run.py --web              # 不重算疆域，只由 legacy.html 重建全局表、v1 数据和新页面（改短标题、改正后用这个）
+python run.py --v1               # 只重建全局表与各卷 v1 数据包（build/v1/，不入库）
 python run.py --hub              # 只更新首页
-python run.py --check            # 核对 docs/ 是否是本地最新构建的结果
-python run.py --v1               # 重建全局表，生成各卷 v1 数据包（build/v1/，不入库）
+python run.py --check            # 核对 legacy.html、docs/ 是否是本地最新构建的结果
 python run.py --list             # 列出各卷短名
 ```
 
 GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
+
+迁移第 3 步上线了统一前端：八卷新页面共用一套时间轴（上为按真实年代比例的细条，下为等宽刻度：年份 / 短标题 / 年号）和深链接（地址栏 `#y=1127&sel=polity:金&lang=en` 这样记下当前节点、选中对象、视野、着色、缩放与语言，可直接分享），播放都可切 1× / 2×，界面语言各卷与首页共用；地图本身与旧版逐项相同，只先改了不牵动疆域的点位、英文译名和几处名称（见 `global/corrections.md`）。说明见 [`core/web/README.md`](core/web/README.md)。
 
 迁移第 2 步定下了八卷共用的数据格式 v1，并把八卷的地点、政权、山川、译名归并成全局表，每个对象有一个跨卷的全局 ID。现在 v1 由各卷成品转出（转回旧格式逐字节相同），页面不受影响；自动归并判断不了的列在 `global/review/` 里，审定后写进 `global/decisions.toml`。格式、ID 规则和审定流程见 [`core/v1/FORMAT.md`](core/v1/FORMAT.md)。
 
@@ -63,7 +68,7 @@ GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
 页面右上角「中 | EN」切换，默认中文。中文名「历代舆图」，英文名 Historical Atlas of China。
 
 - 选择记在本机（localStorage 键 `lidai-yutu:lang`）；网址加 `#en` 直接打开英文，加 `#zh` 打开中文；`<html lang>` 随之切换。
-- 从目录点进各卷时，链接带上当前语言（`#zh` / `#en`），各图按同样的语言打开。
+- 从目录点进各卷时，链接带上当前语言（`#zh` / `#en`），各图按同样的语言打开；各卷新页面也读写同一个 `lidai-yutu:lang`。
 - 页面文字成对写在同一处：`<span class="zh">…</span><span class="en" lang="en">…</span>`，按 `<html lang>` 只显示一种。时间长卷由页尾脚本生成，朝代与时代分段 `BANDS` 里每项也写了中英两个名字。
 - 英文模式下标题与卷名换西文衬线体（Iowan Old Style、Palatino 一类），正文换系统无衬线体，取消中文的大字距，组头改为大写。竖排题签「历代舆图」和两方印保留不变，英文标题排在题签右侧。
 - 卷名、主线、着色方式与统计用语都照各图自己的英文版：节点叫 snapshots，州府、州郡叫 prefectures，郡国、郡县叫 commanderies，藩镇写 fanzhen，方镇叫 regional commands，民国卷的城市叫 cities、派系与属地叫 factions and dependencies。卷六英文题名用 Late Tang and the Five Dynasties，与中文首页的「唐末五代」一致；地图本身的英文题名是 Between Tang and Song。

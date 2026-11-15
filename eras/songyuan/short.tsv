@@ -1,0 +1,65 @@
+# 时间轴短标题（规范第十九节第 3 步）：每个节点一行，节点 = 年份（按月的卷为 年.月）。中文不超过 5 字，英文尽量不超过 18 个字母。
+# 由 core/v1/overlay.py 并入 v1 数据；改完重新运行 python run.py --v1 --web。
+节点	标题	短标题	英文
+979	宋灭北汉·高梁河之战	宋灭北汉	Northern Han falls
+986	雍熙北伐	雍熙北伐	Yongxi campaign
+999	萨曼覆亡·伽色尼兴起	萨曼覆亡	Samanids fall
+1004	澶渊之盟	澶渊之盟	Chanyuan
+1019	拜占庭灭保加利亚·龟州大捷	龟州大捷	Gwiju
+1028	李元昊取甘州	夏取甘州	Ganzhou taken
+1036	夏取河西·唃厮啰立国	夏取河西	Xia takes Hexi
+1040	元昊称帝·丹丹坎之战	元昊称帝	Yuanhao enthroned
+1044	庆历和议·河曲之战	庆历和议	Qingli treaty
+1055	塞尔柱入巴格达·侬智高之乱	侬智高	Nong Zhigao
+1071	曼齐刻尔特之战	曼齐刻尔特	Manzikert
+1077	熙河开边·宋越之战	熙河开边	Xihe expansion
+1082	五路伐夏·永乐城之败	永乐城	Yongle
+1092	塞尔柱分裂	塞尔柱分裂	Seljuks split
+1099	十字军东征·平夏城	十字军	First Crusade
+1101	宋弃湟鄯·梅尔西万之战	宋弃湟鄯	Hehuang abandoned
+1104	宋复河湟	宋复河湟	Hehuang retaken
+1115	金朝建立·护步达冈	金朝建立	Jin founded
+1117	金取辽东	金取辽东	Liaodong taken
+1120	海上之盟·金破上京	海上之盟	Alliance at Sea
+1122	北辽·金取燕京	金取燕京	Yanjing taken
+1125	辽亡	辽亡	Liao falls
+1127	靖康之变	靖康之变	Jingkang
+1130	黄天荡·富平·伪齐	伪齐建立	Puppet Qi
+1134	西辽立国·岳飞复襄汉	西辽立国	Western Liao
+1139	金归河南陕西	金归河南	Henan returned
+1141	卡特万之战·绍兴和议	绍兴和议	Shaoxing treaty
+1154	海陵迁燕·努尔丁统一叙利亚	海陵迁燕	Jin moves to Yan
+1161	采石之战	采石之战	Caishi
+1165	隆兴北伐·隆兴和议	隆兴和议	Longxing treaty
+1171	萨拉丁代法蒂玛	法蒂玛亡	Fatimids end
+1176	萨拉丁一统叙埃·密列奥赛法隆	叙埃一统	Syria–Egypt united
+1187	哈丁之战·萨拉丁复耶路撒冷	哈丁之战	Hattin
+1194	花剌子模灭塞尔柱·黄河夺淮	黄河夺淮	Yellow River shifts
+1204	铁木真统一草原·第四次十字军	草原一统	Steppe united
+1206	蒙古建国·开禧北伐	蒙古建国	Mongol Empire
+1210	蒙古攻夏·畏兀儿归附	蒙古攻夏	Mongols attack Xia
+1212	野狐岭之战·屈出律篡辽	野狐岭	Yehuling
+1215	中都陷落·金迁汴京	中都陷落	Zhongdu falls
+1218	哲别灭西辽·讹答剌事件	讹答剌	Otrar
+1220	成吉思汗西征	蒙古西征	Western campaign
+1221	申河之战	申河之战	Indus
+1223	迦勒迦河之战	迦勒迦河	Kalka
+1227	西夏亡·成吉思汗崩	西夏亡	Xia falls
+1232	三峰山之战·札兰丁败亡	三峰山	Sanfengshan
+1234	蔡州之战·金亡	金亡	Jin falls
+1236	长子西征·蒙古破蜀	长子西征	Batu's campaign
+1238	拔都破罗斯	拔都破罗斯	Rus' ravaged
+1241	列格尼卡·蒂萨河之战	列格尼卡	Legnica
+1243	克塞山之战·拔都建撒莱	克塞山	Köse Dağ
+1250	马穆鲁克代阿尤布·凉州会盟	凉州会盟	Liangzhou meeting
+1253	蒙哥即位·忽必烈灭大理	灭大理	Dali falls
+1256	旭烈兀灭木剌夷	灭木剌夷	Nizaris fall
+1258	巴格达陷落·蒙哥攻蜀	巴格达陷落	Baghdad falls
+1259	钓鱼城·鄂州之战	钓鱼城	Diaoyu Fortress
+1260	艾因贾鲁特·汗位之争	汗位之争	Succession war
+1264	阿里不哥降·拜占庭光复	阿里不哥降	Ariq Böke yields
+1269	塔剌思会盟·襄阳之围	襄阳之围	Xiangyang siege
+1273	襄阳陷落·大元建号	襄阳陷落	Xiangyang falls
+1274	伯颜渡江·文永之役	伯颜渡江	Bayan crosses
+1276	临安陷落	临安陷落	Lin'an falls
+1279	崖山海战·元一统	崖山海战	Yamen

@@ -1,0 +1,40 @@
+
+  /* ===== 历代舆图共用外壳（core/web/shell.css）===== */
+  /* 刘海屏：上下左右留出安全区 */
+  .app { box-sizing:border-box; padding-top:env(safe-area-inset-top, 0px); padding-bottom:env(safe-area-inset-bottom, 0px); }
+  .timebar { padding-left:env(safe-area-inset-left, 0px); padding-right:env(safe-area-inset-right, 0px); }
+  /* 播放与倍速 */
+  .pcol { width:44px; display:grid; grid-template-rows:minmax(0,1fr) auto; border-right:1px solid var(--rule-soft); }
+  .pcol .play { width:auto; border:0; background:none; cursor:pointer; color:var(--ink-2); display:grid; place-items:center; min-height:34px; }
+  .pcol .play:hover, .pcol .speed:hover { background:var(--paper-2); color:var(--ink); }
+  .pcol .speed { border:0; border-top:1px solid var(--rule-soft); background:none; cursor:pointer; color:var(--ink-3); font-family:var(--f-mono); font-size:10.5px; letter-spacing:.02em; padding:3px 0 4px; }
+  .pcol .speed[aria-pressed="true"] { color:var(--ink); font-weight:600; }
+  /* 时间轴：上为按真实年代比例的细条，下为等宽刻度 */
+  .tl { min-width:0; display:grid; grid-template-rows:auto auto; }
+  .tl-strip { position:relative; height:19px; margin:0 22px 0 20px; cursor:pointer; }
+  .tl-ln { position:absolute; left:0; right:0; top:13px; height:1px; background:var(--rule); }
+  .tl-win { position:absolute; top:9px; height:9px; border:1px solid color-mix(in srgb, var(--ink-3) 70%, transparent); border-radius:2px; background:color-mix(in srgb, var(--ink) 5%, transparent); pointer-events:none; transition:left .2s, width .2s; }
+  .tl-win[hidden] { display:none; }
+  .tl-m { position:absolute; top:10px; width:1px; height:7px; margin-left:-.5px; background:var(--ink-3); opacity:.75; pointer-events:none; }
+  .tl-m.on { top:7px; width:3px; height:13px; margin-left:-1.5px; background:var(--ink); opacity:1; border-radius:1px; }
+  .tl-lb { position:absolute; top:-1px; transform:translateX(-50%); font-family:var(--f-mono); font-size:9.5px; line-height:11px; color:var(--ink-3); white-space:nowrap; pointer-events:none; }
+  .tl-ticks { display:flex; overflow-x:auto; scrollbar-width:thin; padding:2px 10px 0; position:relative; }
+  .tl-ticks::before { content:""; position:absolute; left:10px; right:10px; top:22px; height:1px; background:var(--rule); }
+  .tl-tk { flex:1 0 70px; min-width:70px; background:none; border:0; cursor:pointer; padding:0 3px 5px; display:flex; flex-direction:column; align-items:center; gap:2px; position:relative; color:var(--ink-3); font:inherit; text-align:center; }
+  .tl-tk .yr { font-family:var(--f-mono); font-size:10.5px; line-height:14px; letter-spacing:.02em; white-space:nowrap; }
+  .tl-tk .dot { width:9px; height:9px; border-radius:50%; background:var(--paper); border:1.5px solid var(--ink-3); z-index:1; box-sizing:border-box; flex:none; }
+  .tl-tk .sh { font-family:var(--f-display); font-size:12px; line-height:15px; color:var(--ink-2); letter-spacing:.04em; white-space:nowrap; }
+  .tl-tk .era { font-size:10px; line-height:13px; letter-spacing:.02em; white-space:nowrap; }
+  .tl-tk .era:empty, .tl-tk .sh:empty { display:none; }
+  .tl-tk:hover, .tl-tk:hover .sh { color:var(--ink); }
+  .tl-tk[aria-pressed="true"] { color:var(--ink); }
+  .tl-tk[aria-pressed="true"] .sh { color:var(--ink); font-weight:700; }
+  .tl-tk[aria-pressed="true"] .dot { background:var(--ink); border-color:var(--ink); transform:scale(1.25); }
+  .tl-tk.era5 .dot, .tl-tk.era-s .dot { border-style:dashed; }
+  .tl-tk.era-y .dot { border-style:dotted; border-width:2px; }
+  .tl-tk.eraS .dot { border-radius:1.5px; }
+  html[lang="en"] .tl-tk { flex-basis:88px; min-width:88px; }
+  html[lang="en"] .tl-tk .sh { font-size:11px; line-height:13px; letter-spacing:0 !important; white-space:normal; max-width:84px; }
+  html[lang="en"] .tl-tk .era { white-space:normal; max-width:84px; line-height:12px; }
+  @media (max-width: 700px) { .tl-strip { margin:0 14px; } }
+  @media print { .tl-strip { display:none; } }

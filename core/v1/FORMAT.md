@@ -2,7 +2,7 @@
 
 规范第十九节迁移第 2 步的产物：八卷共用的一套数据格式，以及跨卷的全局表。
 
-**现状（2026-11）**：各卷的史料仍写在各卷自己的源文件里，照旧用各卷的 `run.py` 构建。v1 数据包由成品页面转出，转回旧格式与原来逐字节相同（往返无损），所以现在什么都不会变。第 3 步的统一前端直接读 v1；之后各卷逐步改成直接写 v1，旧格式随之退役。
+**现状（2026-11）**：各卷的史料仍写在各卷自己的源文件里，照旧用各卷的 `run.py` 构建，成品存为 `eras/<短名>/legacy.html`（入库，是数据来源）。v1 数据包由 legacy.html 转出，转回旧格式与原来逐字节相同（往返无损）。第 3 步起，`build.py` 在往返校验之后套用不牵动疆域的改正（`core/v1/overlay.py`），新页面 `docs/<短名>/` 由改正后的 v1 生成（`core/web/`）。之后各卷逐步改成直接写 v1，旧格式随之退役。
 
 ## 文件
 
@@ -11,7 +11,10 @@
 | `core/v1/legacy.py` | 旧格式 ⇄ v1 转换（两套旧模型都支持） | 是 |
 | `core/v1/roundtrip.py` | 往返校验：成品 → v1 → 旧格式，必须与原来完全相同 | 是 |
 | `core/v1/registry.py` | 由八卷归并出全局表，生成审定清单 | 是 |
-| `core/v1/build.py` | 生成各卷 v1 数据包，附全局 ID | 是 |
+| `core/v1/build.py` | 生成各卷 v1 数据包，附全局 ID，套用第 3 步的改正 | 是 |
+| `core/v1/overlay.py` | 第 3 步先行的改正：条目点位、英文译名、标了 step = 3 的内容、时间轴短标题 | 是 |
+| `eras/<短名>/legacy.html` | 各卷旧构建脚本的成品，v1 的数据来源 | 是（构建生成） |
+| `eras/<短名>/short.tsv` | 时间轴短标题（唐宋系；战国式写在各卷源文件里） | 是（手写） |
 | `global/places.jsonl` | 全局地点表 | 是 |
 | `global/polities.jsonl` | 全局政权表（含二级单位：藩镇、路、派系等） | 是 |
 | `global/physical.jsonl` | 全局山川表（山脉、河流、运河、沙漠、长城、道路） | 是 |
@@ -24,6 +27,7 @@
 | `global/stats.json` | 各表条数 | 是 |
 | `eras/<短名>/era.toml` | 卷的基本信息 | 是（手写） |
 | `build/v1/<短名>.json` | 各卷 v1 数据包 | 否 |
+| `build/v1/fixes.json` | registry.py 推出的坐标、英文改正，供 build.py 套用 | 否 |
 
 全局表和审定清单都由 `registry.py` 生成，不要手改；要改结果，写进 `decisions.toml` 再重建。
 
@@ -34,6 +38,7 @@ python core/v1/roundtrip.py         往返校验八卷（也可只写几卷的�
 python core/v1/registry.py          重建 global/ 下的全局表与审定清单
 python core/v1/build.py             生成 build/v1/<短名>.json（先往返校验，再附全局 ID）
 python run.py --v1                  以上后两步一起做
+python run.py --web                 再加上生成新页面（core/web/assemble.py → docs/<短名>/）
 ```
 
 `registry.py` 和 `build.py` 读 TOML，需要 Python 3.11 以上；3.10 及以下先 `pip install tomli`。全局表的输出与 Python 的哈希种子无关，同样的输入每次生成的文件逐字节相同，便于看 diff。
@@ -107,7 +112,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 | 字段 | 含义 |
 | --- | --- |
 | `t` `tp` | 时间、精度 |
-| `title` `desc` `short` | 标题、说明、短标题（战国式） |
+| `title` `desc` `short` | 标题、说明、时间轴短标题（战国式写在源文件里，唐宋系由 `eras/<短名>/short.tsv` 并入） |
 | `era` `era2` | 年号、并行年号（唐宋系） |
 | `en` | 英文：`title` `desc` `short` `era` `era2` `lab` |
 | `u` | 单位疆域：`{单位: 几何序号}`。战国式的单位是政权键，唐宋系是 `polities` 的序号（字符串） |
@@ -254,3 +259,14 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 `[[junction]]`：`from` `to` `year` `kind`（`shared` 共用节点 / `adjacent` 相邻两年）`owner`（共用节点时以哪一卷为准）`note`。
 
 `[[gap]]`：`after` `before` `years` `plan`（准备由哪一卷补上）。
+
+## 第 3 步的改正（overlay）
+
+`build.py` 往返校验通过、附上全局 ID 之后，由 `core/v1/overlay.py` 在 v1 数据包上套用以下改正，记在 `meta.overlay`；`legacy.html` 与各卷源文件不动：
+
+- **条目点位**：`registry.py` 按 `decisions.toml` 的城址推出的坐标改正（`global/corrections.md`「坐标」一节），只改唐宋系的都城、关隘等条目；州府与春秋、战国的城邑条目是疆域归属点，留到第 5—7 步重算疆域时改。
+- **英文译名**：`corrections.md`「英文」一节全部。
+- **内容**：`global/corrections.toml` 里标了 `step = 3` 的，`id` 对应 `overlay.py` 里的改正函数；牵动疆域的不标，留到第 5—7 步。
+- **时间轴短标题**：`eras/<短名>/short.tsv`，每个节点一行（按月的卷写 `年.月`），中文不超过 5 字。
+
+`corrections.md` 末栏「状态」标明哪些新页面已改、哪些留到第 5—7 步。

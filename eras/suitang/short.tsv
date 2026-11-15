@@ -1,0 +1,29 @@
+# 时间轴短标题（规范第十九节第 3 步）：每个节点一行，节点 = 年份（按月的卷为 年.月）。中文不超过 5 字，英文尽量不超过 18 个字母。
+# 由 core/v1/overlay.py 并入 v1 数据；改完重新运行 python run.py --v1 --web。
+节点	标题	短标题	英文
+581.12	杨坚代周·隋朝建立	隋朝建立	Sui founded
+589.12	平陈·南北一统	平陈一统	Chen conquered
+605.12	炀帝即位·营建东都	营建东都	Eastern Capital
+609.12	西巡张掖·隋疆极盛	隋疆极盛	Sui at its height
+612.12	一征高句丽·萨水之败	萨水之败	Salsu River
+616.12	炀帝南幸·群雄并起	群雄并起	Rebels rise
+617.6	晋阳起兵	晋阳起兵	Jinyang rising
+617.11	入关克长安·立恭帝	克长安	Chang'an taken
+618.5	江都之变·李渊受禅	唐朝建立	Tang founded
+618.12	浅水原之战·平定陇右	浅水原	Qianshuiyuan
+619.12	刘武周南下·秦王屯柏壁	柏壁对峙	Baibi
+620.12	收复河东·兵围洛阳	兵围洛阳	Luoyang besieged
+621.6	虎牢之战·一战擒两王	虎牢之战	Hulao
+621.12	萧铣出降·刘黑闼起兵	黑闼起兵	Liu Heita rises
+622.4	洺水之战·河北复定	洺水之战	Ming River
+624.3	平辅公祏·天下略定	天下略定	Realm settled
+626.8	玄武门之变·渭水之盟	玄武门	Xuanwu Gate
+628.4	灭梁师都·天下一统	天下一统	Realm reunited
+630.4	阴山之战·天可汗	天可汗	Heavenly Qaghan
+640.9	平高昌·置安西都护	平高昌	Gaochang taken
+647.12	灭薛延陀·置燕然都护	灭薛延陀	Xueyantuo falls
+649.5	平龟兹·设四镇·太宗崩	设四镇	Four Garrisons
+658.12	苏定方灭西突厥	灭西突厥	Western Turks fall
+661.12	平百济·置西域十六府	平百济	Baekje falls
+663.12	白江口·吐蕃并吐谷浑	白江口	Baekgang
+669.12	平高句丽·疆域极盛	疆域极盛	Greatest extent
