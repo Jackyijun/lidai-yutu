@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+build/
+# 单仓：geodata/ne/ 下是指向仓库根目录 geodata/ 的符号链接，需要入库

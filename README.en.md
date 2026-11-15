@@ -17,9 +17,41 @@ The index page of the historical map series, in order: the title-slip header, th
 
 Volumes I and II join without a seam: the last snapshot of the Spring and Autumn map (476 BC) and the first of the Warring States map (475 BC) have identical territory and colors. Volumes III, IV and V join the same way: the Jin map copies the junction snapshots at both ends, so its first snapshot matches the last of the Late Han map (280) and its last snapshot matches the first of the Sui–Tang map (581) in territory and colors.
 
-`index.html` is self-contained: its styles, script and all eight thumbnails are written into the file, and it loads no outside resources. Its palette, fonts and hairlines match the maps' shared style guide (历史形势图统一规范), and it follows the system's light or dark setting.
+The hub's source file `hub/index.html` is self-contained (the build copies it unchanged to `docs/index.html` for publishing): its styles, script and all eight thumbnails are written into the file, and it loads no outside resources. Its palette, fonts and hairlines match the maps' shared style guide (历史形势图统一规范), and it follows the system's light or dark setting.
 
 Live page: https://jackyijun.github.io/lidai-yutu/
+
+## Single repository (migration in progress since November 2026)
+
+This repository is being turned into a single repository for the whole atlas: the code, source material and base data of all eight volumes have moved in, and the unified data format, global gazetteer, shared projection and terrain, unified territory engine and the hub's timeline mode will all be built here. Steps and progress are in section 19 of the style guide (历史形势图统一规范). Each volume's old repository and address are kept as the old edition and no longer change.
+
+```
+lidai-yutu/
+├── run.py                 build entry point
+├── requirements.txt       dependencies shared by all volumes
+├── requirements-lock.txt  versions that reproduce the published pages byte for byte
+├── hub/index.html         source of the hub page
+├── eras/<slug>/           each volume: content/ sources, src/ build code, tools/, run.py; each still builds on its own
+├── geodata/               one copy of the base data (ne/, etopo20/, prov/, derived/); each volume's geodata/ holds symlinks to it
+├── tools/thumbs.py        hub thumbnails
+└── docs/                  published by GitHub Pages: index.html is the hub, <slug>/index.html each volume
+```
+
+A volume's slug is its old repository name without `-map`: chunqiu, zhanguo, hanmosanguo, liangjin-nanbeichao, suitang, tangsong, songyuan, minguo-xinzhongguo. For now (migration step 1) each volume still uses its own original build script, and `docs/<slug>/index.html` is byte-identical to the published page of the old repository; until the single repository goes live, the hub's contents still link to the old addresses.
+
+```bash
+pip install -r requirements.txt
+python run.py                    # build all eight volumes, then update the hub
+python run.py zhanguo songyuan   # build only these volumes
+python run.py --html             # only reassemble each volume's HTML (needs one full build first)
+python run.py --hub              # only update the hub
+python run.py --check            # check whether docs/ holds the latest local builds
+python run.py --list             # list the volume slugs
+```
+
+GitHub Pages publishes from the `/docs` folder of the `main` branch.
+
+The territory computation is sensitive to the versions of numpy, scipy, scikit-image and shapely: other versions move borders by about 0.01° in the last digit, and the Spring and Autumn and Warring States volumes stop because their cost-grid fingerprint no longer matches. To reproduce the published pages byte for byte, use the versions in `requirements-lock.txt` (Python 3.13).
 
 ## Bilingual
 
@@ -33,6 +65,8 @@ The 中 | EN switch at the top right changes the language; Chinese is the defaul
 - Each thumbnail holds two sets of labels, Chinese and English (`<g class="t-lab zh">`, `<g class="t-lab en">`), and also shows only the one for the current language. The English names come from each map's data; see "Generating thumbnails" below.
 
 ## Adding a volume
+
+The steps below edit `hub/index.html`; afterwards run `python run.py --hub` to update `docs/index.html`, the published copy.
 
 1. Copy an `<li class="juan">` block, put it into the contents in date order, and renumber the volumes (卷一, 卷二 …; Volume I, Volume II …).
 2. Change these:
@@ -87,7 +121,7 @@ Labels are drawn in two sets:
 - For a map that has no English yet, `--en "id=English name;…"` supplies the English thumbnail labels (keyed by unit id); these also take precedence over the map's own English names.
 
 ```bash
-python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1120 --mode pol --out thumbs
+python3 tools/thumbs.py docs/songyuan/index.html --id sy --year 1120 --mode pol --out thumbs
 ```
 
 It writes three files:

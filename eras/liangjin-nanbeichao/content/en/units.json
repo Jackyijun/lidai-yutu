@@ -1,0 +1,842 @@
+{
+ "晋": {
+  "n": "Jin (Western and Eastern Jin)",
+  "s": "Jin",
+  "note": "Western Jin (265–316): Sima Yan accepted the abdication of Wei in 265 and made Luoyang his capital; in 280 he conquered Wu, reunified the realm and divided it into nineteen provinces. After Emperor Wu's death Empress Jia monopolized power; the War of the Eight Princes raged from 291 to 306, Luoyang fell in 311 (the Disaster of Yongjia), and in 316 Chang'an fell and Emperor Min surrendered.\nEastern Jin (317–420): Sima Rui, Prince of Langya, took the title King of Jin at Jiankang in 317 and became emperor the following year. The state rested on émigré northern clans led by Wang Dao and on the great families of Jiangdong, and was repeatedly overshadowed by powerful ministers and regional commanders: Wang Dun, Su Jun, Huan Wen and Huan Xuan. Zu Ti, Yu Liang, Huan Wen, Xie Xuan and Liu Yu led successive northern expeditions; Jin destroyed Cheng Han in 347, crushed the Former Qin at the Fei River in 383, and briefly recovered Chang'an in 417. In 420 Liu Yu replaced Jin."
+ },
+ "宋": {
+  "n": "Song (Liu Song)",
+  "s": "Song",
+  "note": "Founded by Liu Yu when he replaced Jin in 420, with its capital at Jiankang; the first of the Southern Dynasties, at its greatest extent reaching the Yellow River in the north.\nThe Yuanjia era of Emperor Wen (424–453) was remembered as a time of modest prosperity, but the northern expeditions of 430 and 450 both failed, and in 450 Emperor Taiwu of Northern Wei watered his horses at the Yangtze. Thereafter the imperial clan repeatedly turned on itself: in 453 the crown prince Liu Shao murdered his father, and in 466 came the Yijia rebellion; in 469 the four provinces north of the Huai — Qing, Ji, Xu and Yan — were all lost to Northern Wei. In 479 Xiao Daocheng replaced Song."
+ },
+ "齐": {
+  "n": "Qi (Southern Qi)",
+  "s": "Qi",
+  "note": "Founded by Xiao Daocheng when he replaced Song in 479, with its capital at Jiankang; the shortest-lived of the Southern Dynasties (479–502). The Yongming era of Emperor Wu was relatively stable, and literature flourished at the Western Residence of Xiao Ziliang, Prince of Jingling (the \"Yongming style\").\nAfter usurping the throne Emperor Ming (Xiao Luan) slaughtered the imperial clan, and Xiao Baojuan, the Marquis of Donghun, was dissolute and murderous; in 498 the five commanderies north of the Mian were lost, and in 500 Shouyang went over to Wei. In 500 Xiao Yan, Inspector of Yong Province, rose in arms, and in 502 he replaced Qi and founded Liang."
+ },
+ "梁": {
+  "n": "Liang",
+  "note": "Founded by Xiao Yan when he replaced Qi in 502, with its capital at Jiankang. Emperor Wu of Liang reigned for forty-eight years: diligent in his early years, he won the great victory at Zhongli in 507 and recovered Shouyang in 526; in old age he became devoted to Buddhism, gave himself to Tongtai Temple four times, and indulged the imperial clan.\nIn 547 he took in Hou Jing, a renegade general of Eastern Wei; in 548 Hou Jing rebelled, and in 549 Taicheng fell and Emperor Wu starved to death. The princes of the clan fought one another, Northern Qi took Huainan, Western Wei took Handong and Ba-Shu, and in 554 Jiangling fell and Emperor Yuan of Liang was killed. In 557 Chen Baxian replaced Liang."
+ },
+ "陈": {
+  "n": "Chen",
+  "note": "Founded in 557 by Chen Baxian, who supplanted Liang, with its capital at Jiankang. In 579 it lost Huainan to Northern Zhou, and thereafter it faced the Northern Dynasties across the Yangtze; the Last Ruler, Chen Shubao (r. 582–589), indulged in wine and women.\nIn the 1st month of 589 the Sui forces of Heruo Bi and Han Qinhu crossed the Yangtze and stormed Jiankang; the Last Ruler was captured and Chen fell. Lady Xian of Lingnan then led her people in submitting to Sui."
+ },
+ "桓楚": {
+  "n": "Chu (Huan Chu)",
+  "s": "Chu",
+  "note": "In 399 Huan Xuan, son of Huan Wen, swallowed the three provinces of Jing, Jiang and Yong; in 402 he fought his way into Jiankang and took control of the government, and in the 12th month of 403 he forced Emperor An of Jin to abdicate and proclaimed himself emperor at Jiankang, naming his state Chu. In the 2nd month of 404 Liu Yu and others rose at Jingkou; Huan Xuan fled west and was killed in the 5th month, while his nephew Huan Zhen and others held out at Jiangling until the 3rd month of 405."
+ },
+ "齐王冏": {
+  "n": "Sima Jiong, Prince of Qi",
+  "s": "Sima Jiong",
+  "note": "One of the Eight Princes. In 301 he was the first, at Xuchang, to call for war on Sima Lun, Prince of Zhao, who had usurped the throne; rewarded as Grand Marshal and regent, he ruled high-handedly and extravagantly, and in the 12th month of 302 he was attacked and killed by Sima Ai, Prince of Changsha."
+ },
+ "长沙王乂": {
+  "n": "Sima Ai, Prince of Changsha",
+  "s": "Sima Ai",
+  "note": "One of the Eight Princes. In 302 he attacked and killed Sima Jiong, Prince of Qi, and took charge of the court; in 303 he held Luoyang against the combined armies of Sima Ying and Sima Yong, and in the 1st month of 304 he was seized by Sima Yue, Prince of Donghai, and handed over to Zhang Fang, who burned him to death."
+ },
+ "成都王颖": {
+  "n": "Sima Ying, Prince of Chengdu",
+  "s": "Sima Ying",
+  "note": "One of the Eight Princes, stationed at Ye with command over Hebei. He rose against Sima Lun in 301; in 304, as Imperial Younger Brother and heir, he directed the court from afar and defeated Sima Yue at Dangyin. The same year Wang Jun and Sima Teng drove him from Ye, and in 306 he was strangled."
+ },
+ "河间王颙": {
+  "n": "Sima Yong, Prince of Hejian",
+  "s": "Sima Yong",
+  "note": "One of the Eight Princes, stationed in Guanzhong from 297. In 304 his general Zhang Fang carried Emperor Hui off west to Chang'an, and for a time Sima Yong held sole control of the court. In 306 Guanzhong was overrun by the side of Sima Yue, Prince of Donghai, and in the 12th month Sima Yong was killed by Sima Mo, Prince of Nanyang."
+ },
+ "东海王越": {
+  "n": "Sima Yue, Prince of Donghai",
+  "s": "Sima Yue",
+  "note": "The last victor among the Eight Princes. In 304 he took Emperor Hui north on campaign and was defeated at Dangyin; in 305 he rose from Donghai, in 306 he brought Emperor Hui back to Luoyang and took charge of the government, in 310 he moved out to garrison Xiangcheng, and in the 3rd month of 311 he died of illness, after which his army was wiped out by Shi Le at Ningping City."
+ },
+ "范阳王虓": {
+  "n": "Sima Xiao, Prince of Fanyang",
+  "s": "Sima Xiao",
+  "note": "Stationed at Xuchang in 305, he answered the call of Sima Yue, Prince of Donghai; driven out by Liu Qiao, he held Ji Province. In 306 he defeated Liu Qiao and brought Emperor Hui back, and died suddenly the same year."
+ },
+ "司马腾": {
+  "n": "Sima Teng, Prince of Dongyan",
+  "s": "Sima Teng",
+  "note": "Younger brother of Sima Yue, Prince of Donghai. Inspector of Bing Province in 304, he joined Wang Jun in attacking Ye; in 306 he moved his post to Ye, and in 307 he was attacked and killed by Ji Sang and Shi Le."
+ },
+ "南阳王模": {
+  "n": "Sima Mo, Prince of Nanyang",
+  "s": "Sima Mo",
+  "note": "Younger brother of Sima Yue, Prince of Donghai; stationed in Guanzhong from 306, he killed Sima Yong, Prince of Hejian. In 311 Liu Yao took Chang'an and Sima Mo was killed."
+ },
+ "王浚": {
+  "n": "Wang Jun (You Province)",
+  "s": "Wang Jun",
+  "note": "Western Jin Area Commander of You Province. He was allied by marriage with the Duan Xianbei and lent Xianbei and Wuhuan shock cavalry to Sima Yue, Prince of Donghai. After Emperor Huai was captured he set up a crown prince of his own in You Province — \"serving Jin in name, acting for himself in fact\". In 314 Shi Le feigned surrender and killed him in a surprise attack."
+ },
+ "刘琨": {
+  "n": "Liu Kun (Bing Province)",
+  "s": "Liu Kun",
+  "note": "Appointed Inspector of Bing Province in 306, he reached Jinyang the next year, allied himself with Tuoba Yilu in the north, and held out against Liu Yuan and Shi Le for nearly ten years; in 316 he lost Bing Province and took refuge with Duan Pidi, and in 318 he was killed."
+ },
+ "苟晞": {
+  "n": "Gou Xi (Yan and Qing)",
+  "s": "Gou Xi",
+  "note": "A famous Western Jin general. In 307 he crushed Ji Sang and was given command over Qing and Yan provinces, but he was at odds with Sima Yue, Prince of Donghai. In 311 he was captured and killed by Shi Le at Mengcheng."
+ },
+ "司马睿": {
+  "n": "Sima Rui, Prince of Langya (Jiangdong)",
+  "s": "Sima Rui",
+  "note": "In 307 he took up his post at Jianye as General Who Pacifies the East; relying on Wang Dao to win over the great families of Jiangdong, he absorbed the commands of Jiang and Yang provinces after 311. After the fall of the Western Jin in 316 he took the title King of Jin at Jiankang, and in 318 he ascended the throne as Emperor Yuan of Eastern Jin."
+ },
+ "凉州张氏": {
+  "n": "Zhang clan of Liang Province",
+  "s": "Zhang of Liang",
+  "note": "Zhang Gui became Inspector of Liang Province in 301; he kept the province secure and its people at peace, and many gentry from the Central Plain took refuge with him. When Zhang Gui died in 314 his son Zhang Shi succeeded him and kept to Emperor Min's era name Jianxing. From 318 the province became a state of its own — the Former Liang."
+ },
+ "司马保": {
+  "n": "Sima Bao, Prince of Nanyang (Qin Province)",
+  "s": "Sima Bao",
+  "note": "Son of Sima Mo, Prince of Nanyang, he held Shanggui in Qin Province. In 313 he was made Jin Chancellor of the Right but did not come to the rescue of Chang'an; in 319 he proclaimed himself King of Jin, and in 320 he was killed by his general Zhang Chun."
+ },
+ "王敦": {
+  "n": "Wang Dun (Jing and Jiang)",
+  "s": "Wang Dun",
+  "note": "Of the Wang clan of Langya, an elder cousin of Wang Dao. From 315 he commanded six provinces — Jiang, Yang, Jing, Xiang, Jiao and Guang — from his seat at Wuchang, ruling the middle Yangtze as he pleased. In 322 he rose in arms, broke into Jiankang and made himself Chancellor; in 324 he rebelled again and died of illness with his army."
+ },
+ "祖逖": {
+  "n": "Zu Ti & Zu Yue (Yu Province)",
+  "s": "Zu Ti",
+  "note": "In 313 Zu Ti crossed the Yangtze on a northern expedition, striking his oar in midstream, and recovered much of the land south of the Yellow River; he died of illness in 321. His younger brother Zu Yue took over his army and fell back to hold Shouchun; in 328 he joined Su Jun's rebellion, and after its defeat he surrendered to the Later Zhao."
+ },
+ "苏峻": {
+  "n": "Su Jun (Liyang)",
+  "s": "Su Jun",
+  "note": "Rewarded for his part in putting down Wang Dun with the post of Administrator of Liyang, he commanded more than ten thousand troops. When Yu Liang summoned him to court in 327 he rose in arms with Zu Yue; in the 2nd month of 328 he broke into Jiankang, and in the 9th month he was killed in battle. His remaining forces held Shitou City until the 2nd month of the following year."
+ },
+ "陶侃": {
+  "n": "Tao Kan (Jing Province)",
+  "s": "Tao Kan",
+  "note": "Of humble birth, he put down Du Tao and Su Jun. From 328 he was Inspector of Jing Province, commanding eight provinces including Jing and Jiang from his seat at Wuchang; he died in 334."
+ },
+ "郗鉴": {
+  "n": "Xi Jian (Jingkou)",
+  "s": "Xi Jian",
+  "note": "A leading minister of the Eastern Jin. From 329, as Inspector of Xu Province, he was stationed at Jingkou, where he gathered refugees from the north — the forerunners of the Northern Headquarters Army."
+ },
+ "庾氏": {
+  "n": "Yu Liang & Yu Yi (Wuchang)",
+  "s": "Yu Liang",
+  "note": "The Yu clan of Yingchuan, relatives of the empress. In 334 Yu Liang succeeded Tao Kan at Wuchang, commanding six provinces including Jiang, Jing and Yu; he died in 340 and was succeeded by his younger brother Yu Yi, who planned a northern expedition without success and died in 345."
+ },
+ "桓温": {
+  "n": "Huan Wen (Jing Province)",
+  "s": "Huan Wen",
+  "note": "The Huan clan of Qiao. Huan Wen became Inspector of Jing Province in 345, destroyed Cheng Han in 347, and led three northern expeditions, in 354, 356 and 369, recovering Luoyang in 356; he later moved his seat to Gushu, deposed one emperor and set up another, and died in 373. His younger brothers Huan Huo and Huan Chong held Jing Province after him until 384."
+ },
+ "北府": {
+  "n": "Northern Headquarters (Jingkou & Guangling)",
+  "s": "Northern Headquarters",
+  "note": "An elite force recruited by Xie Xuan at Guangling in 377 from northern refugees who had fled south, named after Jingkou and Guangling, which were called the \"Northern Headquarters\". It was the main force at the Battle of the Fei River in 383, and was later led by Wang Gong and Liu Laozhi; in 404 Liu Yu, a Northern Headquarters general, rose with it to destroy Huan Xuan, and so gained control of the Eastern Jin government."
+ },
+ "殷仲堪": {
+  "n": "Yin Zhongkan (Jing Province)",
+  "s": "Yin Zhongkan",
+  "note": "Inspector of Jing Province from 391, he joined Wang Gong's risings in 397 and 398, and in the 12th month of 399 he was killed in a surprise attack by Huan Xuan."
+ },
+ "杨佺期": {
+  "n": "Yang Quanqi (Yong Province)",
+  "s": "Yang Quanqi",
+  "note": "Of the Yang clan of Hongnong, he became Inspector of Yong Province in 398, stationed at Xiangyang, and allied himself with Yin Zhongkan and Huan Xuan; in 399 he was attacked and killed by Huan Xuan."
+ },
+ "桓玄": {
+  "n": "Huan Xuan (Jing and Jiang)",
+  "s": "Huan Xuan",
+  "note": "Son of Huan Wen. He became Inspector of Jiang Province in 398; in 399 he killed Yin Zhongkan and Yang Quanqi in surprise attacks and took all three provinces of Jing, Jiang and Yong; in 402 he fought his way into Jiankang and took control of the government, and in 403 he proclaimed himself emperor and founded Chu."
+ },
+ "卢循": {
+  "n": "Lu Xun (Guang Province)",
+  "s": "Lu Xun",
+  "note": "Brother-in-law of Sun En and a leader of the Way of the Five Pecks of Rice. After Sun En died in 402 he took over his followers; in 404 he seized Panyu and the Eastern Jin made him Inspector of Guang Province. In 410 he marched north and pressed on Jiankang but was defeated by Liu Yu, and in 411 he was defeated and died in Jiao Province."
+ },
+ "齐万年": {
+  "n": "Qi Wannian (Di–Qiang uprising)",
+  "s": "Qi Wannian",
+  "note": "In 296 the Di and Qiang of Qin and Yong provinces made the Di chieftain Qi Wannian their emperor; with seventy thousand men he camped at Liangshan, and in 297 he killed the Jin general Zhou Chu at Liumo. In the 1st month of 299 he was captured by Meng Guan."
+ },
+ "赵廞": {
+  "n": "Zhao Xin (Chengdu)",
+  "s": "Zhao Xin",
+  "note": "Western Jin Inspector of Yi Province. In 300 he rebelled at Chengdu with the help of refugees from six commanderies; in the 1st month of 301 he was attacked and killed by Li Te and his brothers."
+ },
+ "石冰": {
+  "n": "Shi Bing (remnants of Zhang Chang's rising)",
+  "s": "Shi Bing",
+  "note": "A general of Zhang Chang. After Zhang Chang rose at Jiangxia in 303, Shi Bing went down the Yangtze and took Yang and Jiang provinces, holding the area from Linhuai to Jianye; in 304 he was destroyed by Chen Min."
+ },
+ "陈敏": {
+  "n": "Chen Min (Jiangdong)",
+  "s": "Chen Min",
+  "note": "Western Jin Chancellor of Guangling. In the 12th month of 305 he rose in arms at Liyang, styled himself Duke of Chu and Commander of all Armies of Jiangdong, and held the whole of Jiangdong; in the 2nd month of 307 his officers Gan Zhuo and Gu Rong turned against him, and he was defeated and killed."
+ },
+ "王如": {
+  "n": "Wang Ru (refugees)",
+  "s": "Wang Ru",
+  "note": "A leader of refugees from Guanzhong. He rose at Wan in 310, his following grew to forty or fifty thousand, and he advanced to besiege Xiangyang; in 312 he surrendered to Wang Dun."
+ },
+ "杜弢": {
+  "n": "Du Tao (Xiang Province refugees)",
+  "s": "Du Tao",
+  "note": "A leader of refugees from Shu. In 311 the refugees of Xiang Province chose him as their leader; he held Changsha and fought Tao Kan, Zhou Fang and others for four years before he was defeated and died in 315."
+ },
+ "汉赵": {
+  "n": "Han Zhao (Han and Former Zhao)",
+  "s": "Han Zhao",
+  "note": "In 304 Liu Yuan of the Xiongnu Chuge proclaimed himself King of Han at Zuoguo City near Lishi; he took the title of emperor in 308 and moved his capital to Pingyang in 309. His son Liu Cong took Luoyang in 311, capturing Emperor Huai of Jin, and took Chang'an in 316, ending the Western Jin. After Jin Zhun's coup of 318 Liu Yao took the throne; in 319 he moved the capital to Chang'an and renamed the state Zhao, known to history as the Former Zhao. In 328 Liu Yao was captured by Shi Le at Luoyang, and in 329 the Former Zhao fell."
+ },
+ "成汉": {
+  "n": "Cheng Han",
+  "note": "Li Te, a Di from Lüeyang, led the refugees of six commanderies into Shu and rose in arms in 301; his son Li Xiong took Chengdu in 303, proclaimed himself King of Chengdu in 304 and emperor in 306, naming his state Cheng. In 333 Li Shou took Ning Province. In 338 Li Shou usurped the throne and renamed the state Han, known to history as Cheng Han. In 347 Huan Wen of the Eastern Jin took Chengdu, and Li Shi surrendered."
+ },
+ "后赵": {
+  "n": "Later Zhao",
+  "note": "Shi Le, a Jie, was originally a general of Han Zhao. In 312 he occupied Xiangguo and built up Hebei; in 319 he made himself King of Zhao, in 328 he captured Liu Yao, in 329 he destroyed the Former Zhao, and in 330 he proclaimed himself emperor, holding most of the north. Shi Hu usurped the throne in 334 and moved the capital to Ye in 335, exacting labor without limit. After Shi Hu died in 349 his sons killed one another, Ran Min seized power, and in 351 the Later Zhao fell."
+ },
+ "石勒": {
+  "n": "Shi Le (Xiangguo)",
+  "s": "Shi Le",
+  "note": "Shi Le joined Liu Yuan in 307 and ranged across Ji and Yu provinces as a Han Zhao general. In 311 he wiped out the Jin army at Ningping City and killed Wang Mi; in 312 he occupied Xiangguo, in 314 he captured Wang Jun, and in 316 he seized Bing Province. A Han subject in name, he was already a power in his own right, and in 319 he made himself King of Zhao."
+ },
+ "曹嶷": {
+  "n": "Cao Ni (Qing Province)",
+  "s": "Cao Ni",
+  "note": "A general of Wang Mi. From 311 he held Qing Province and built Guanggu City, nominally serving Han Zhao, the Eastern Jin and the Later Zhao in turn; in 323 he was attacked and killed by Shi Hu."
+ },
+ "前凉": {
+  "n": "Former Liang",
+  "note": "Founded by the Zhang clan of Anding, with its capital at Guzang. Zhang Gui became Inspector of Liang Province in 301, and his descendants long acknowledged the Jin calendar, keeping Emperor Min's era name Jianxing. Under Zhang Jun the state set up Gaochang Commandery and extended its rule into the Western Regions; at its height it held Hexi, Longxi and the eastern Western Regions. In 354 Zhang Zuo proclaimed himself emperor and was soon killed. In 376 the Former Qin attacked Guzang, Zhang Tianxi surrendered, and the Former Liang came to an end."
+ },
+ "冉魏": {
+  "n": "Ran Wei",
+  "note": "In 350 Ran Min, adopted grandson of Shi Hu of the Later Zhao, killed Shi Jian and proclaimed himself emperor, naming his state Wei, and issued the order to kill the Hu; in the 4th month of 352 he was captured by Murong Ke of the Former Yan at Liantai, and in the 8th month Ye fell."
+ },
+ "段龛": {
+  "n": "Duan Kan (Qi)",
+  "s": "Duan Kan",
+  "note": "Leader of the remnants of the Duan Xianbei. In 350 he occupied Guanggu in Qing Province and styled himself King of Qi, later acknowledging the Eastern Jin as his overlord; in 356 Murong Ke of the Former Yan broke into Guanggu and Duan Kan surrendered."
+ },
+ "张平": {
+  "n": "Zhang Ping (Bing Province)",
+  "s": "Zhang Ping",
+  "note": "Later Zhao Inspector of Bing Province. After the fall of the Later Zhao he held more than three hundred fortified strongholds in Bing Province, submitting first to Yan and then to Qin; from 358 Bing Province belonged to the Former Yan."
+ },
+ "前燕": {
+  "n": "Former Yan",
+  "note": "Founded by the Murong Xianbei. Murong Hui submitted to Jin in 289 and built up Liaoxi around Daji City, and by 319 he held all of Liaodong; his son Murong Huang took the title King of Yan in 337, moved the capital to Longcheng in 342, defeated Goguryeo and destroyed the Yuwen. Murong Jun marched south and took Ji in 350, destroyed Ran Wei and proclaimed himself emperor in 352, and moved the capital to Ye in 357. After the death of Murong Ke the government decayed, and in 370 the state was destroyed by the Former Qin."
+ },
+ "前秦": {
+  "n": "Former Qin",
+  "note": "Founded by Fu Hong and Fu Jian (苻健) of the Di. Fu Jian entered Guanzhong in 350, took the title Heavenly King in 351 and that of emperor in 352, with his capital at Chang'an. Fu Jian (苻坚) took the throne in 357 and relied on Wang Meng; he destroyed the Former Yan in 370, Chouchi in 371, took Liang and Yi provinces in 373, and destroyed the Former Liang and Dai in 376, unifying the north. Routed at the Battle of the Fei River in 383, the state disintegrated; in 385 Fu Jian was killed by Yao Chang, and the state ended in 394."
+ },
+ "代": {
+  "n": "Dai (Tuoba)",
+  "s": "Dai",
+  "note": "Founded by the Tuoba Xianbei. In 310 Yilu helped Jin and was given five counties north of the passes and the title Duke of Dai; in 315 he was raised to King of Dai, with Shengle as his northern capital and Pingcheng as his southern capital. Shiyijian became King of Dai in 338, proclaimed the era name Jianguo and set up a bureaucracy. Dai was destroyed by the Former Qin in 376; in 386 Shiyijian's grandson Tuoba Gui restored the state — the Northern Wei."
+ },
+ "拓跋": {
+  "n": "Tuoba Xianbei",
+  "note": "The Tuoba Xianbei originally lived in the northern Greater Khingan; at the end of the Eastern Han they moved south into the former Xiongnu lands. In 258 Liwei moved to Shengle in Dingxiang, and in 295 the tribe split into three. In 310 Yilu was made Duke of Dai by Jin, and in 315 he took the title King of Dai."
+ },
+ "慕容": {
+  "n": "Murong Xianbei",
+  "note": "The Murong Xianbei, living in Liaoxi. Murong Hui crushed Buyeo in 285, submitted to Jin in 289, moved to Daji City in 294, taught his people farming and sericulture, and drew in refugees from the Central Plain; in 337 his son Murong Huang took the title King of Yan — the Former Yan."
+ },
+ "宇文": {
+  "n": "Yuwen tribe",
+  "s": "Yuwen",
+  "note": "The Yuwen Xianbei, living around the Zimeng River beyond the frontier of Liaoxi, hereditary enemies of the Murong. In 344 they were destroyed by Murong Huang and their people deported; the Yuwen of the Northern Zhou claimed descent from them."
+ },
+ "段部": {
+  "n": "Duan Xianbei",
+  "note": "The Duan Xianbei, living around Lingzhi in Liaoxi. Allied by marriage with Wang Jun, they helped Jin against Sima Ying, Prince of Chengdu, and against Shi Le; Duan Pidi held You Province from 314 to 321 before he was destroyed by Shi Hu. In 338 Duan Liao was crushed between the Later Zhao and the Former Yan, and the Duan came to an end."
+ },
+ "铁弗": {
+  "n": "Tiefu Xiongnu",
+  "note": "Descendants of Xiongnu fathers and Xianbei mothers were called Tiefu. Led in turn by Liu Hu and Liu Weichen, they lived in the Hetao and Shuofang; in 391 they were destroyed by the Northern Wei, and Helian Bobo, son of Liu Weichen, founded Xia in 407."
+ },
+ "刘库仁": {
+  "n": "Dugu (Liu Kuren)",
+  "s": "Liu Kuren",
+  "note": "Chief of the Dugu tribe of the Xiongnu. When the Former Qin destroyed Dai in 376, it put Liu Kuren in charge of the old Dai tribes east of the Yellow River and Liu Weichen of those to the west; in 384 Liu Kuren was killed, and his younger brother Liu Toujuan and then his son Liu Xian led his people."
+ },
+ "独孤": {
+  "n": "Dugu (Liu Xian)",
+  "s": "Dugu",
+  "note": "Liu Xian, son of Liu Kuren, held Mayi and opposed Tuoba Gui's restoration of the state; in 387 he was crushed by the combined armies of the Northern Wei and the Later Yan."
+ },
+ "翟魏": {
+  "n": "Zhai Wei (Dingling)",
+  "s": "Zhai Wei",
+  "note": "In 388 Zhai Liao of the Dingling styled himself Heavenly King of Wei at Huatai, holding Dong, Chenliu and Puyang commanderies on both banks of the Yellow River; in 392 the state was destroyed by Murong Chui of the Later Yan."
+ },
+ "后燕": {
+  "n": "Later Yan",
+  "note": "Founded by Murong Chui. In 369 Murong Chui, whose merit had made him enemies, fled to the Former Qin; after the Fei River he proclaimed himself King of Yan at Xingyang in 384 and emperor at Zhongshan in 386, destroyed Zhai Wei in 392 and the Western Yan in 394, and regained the lands east of the passes. In 395 the Later Yan was routed by the Northern Wei at Canhe Slope; in 397 the state lost Zhongshan and fell back to Longcheng in Liaoxi; in 407 Murong Xi was killed by Feng Ba and the Later Yan came to an end."
+ },
+ "西燕": {
+  "n": "Western Yan",
+  "note": "After the Fei River, Murong Hong and Murong Chong rose in Guanzhong in 384 and broke into Chang'an in 385; in 386 more than four hundred thousand Xianbei headed back east, and Murong Yong proclaimed himself emperor at Zhangzi, holding Bing Province and Hedong. The state was destroyed by the Later Yan in 394."
+ },
+ "南燕": {
+  "n": "Southern Yan",
+  "note": "In 398 Murong De of the Later Yan moved south from Ye to Huatai and proclaimed himself King of Yan; in 399 he lost Huatai, took Qing Province to the east, made Guanggu his capital, and in 400 proclaimed himself emperor. In 410 Liu Yu broke into Guanggu, Murong Chao was captured, and the Southern Yan came to an end."
+ },
+ "北燕": {
+  "n": "Northern Yan",
+  "note": "In 407 Feng Ba killed Murong Xi of the Later Yan and enthroned Gao Yun (Murong Yun), adopted son of Murong Bao; in 409 Gao Yun was killed and Feng Ba made himself ruler, with his capital at Longcheng. The state was destroyed by the Northern Wei in 436, and Feng Hong fled to Goguryeo."
+ },
+ "后秦": {
+  "n": "Later Qin",
+  "note": "Founded by Yao Chang of the Qiang. Originally a Former Qin general, Yao Chang styled himself King of Qin north of the Wei River in 384, strangled Fu Jian in 385, and proclaimed himself emperor at Chang'an in 386. Yao Xing destroyed the Former Qin in 394, took Luoyang in 399, received the submission of the Western Qin in 400 and made the Later Liang a vassal in 401, bringing the state to its height; a devout Buddhist, he brought Kumarajiva to Chang'an to translate scriptures. In 402 he was routed by the Northern Wei at Chaibi, and in 407 Helian Bobo broke away. The state was destroyed by Liu Yu of the Eastern Jin in 417."
+ },
+ "西秦": {
+  "n": "Western Qin",
+  "note": "In 385 Qifu Guoren of the Longxi Xianbei styled himself Grand Chanyu at Yuanchuan; Qifu Gangui succeeded him in 388 and took the title King of Henan. The state submitted to the Later Qin in 400, was restored in 409, moved its capital to Fuhan in 412, and destroyed the Southern Liang in 414. It was destroyed by Xia in 431."
+ },
+ "后凉": {
+  "n": "Later Liang",
+  "note": "In 383 Lü Guang, a Di, marched west on Fu Jian's orders and took Kucha; in 385 he returned east and occupied Guzang, in 386 he styled himself Governor of Liang Province, in 389 King of Sanhe, and in 396 Heavenly King, naming his state Great Liang. In 397 the Southern Liang and the Northern Liang broke away one after the other; in 401 the state became a vassal of the Later Qin, and in 403 Lü Long led his people east to Chang'an and the Later Liang came to an end."
+ },
+ "南凉": {
+  "n": "Southern Liang",
+  "note": "In 397 Tufa Wugu of the Hexi Xianbei styled himself King of Xiping, with his capital at Ledu; Tufa Rutan gained Guzang in 406, but after his defeat by the Northern Liang in 410 he fell back to Ledu. The state was destroyed in a surprise attack by the Western Qin in 414."
+ },
+ "北凉": {
+  "n": "Northern Liang",
+  "note": "In 397 Juqu Mengxun of the Lushui Hu made Duan Ye, the Later Liang Administrator of Jiankang, Governor of Liang Province; in 401 Mengxun killed Duan Ye and took power himself. He moved the capital to Guzang in 412 and took the title King of Hexi, and in 420 he destroyed the Western Liang and held the whole of Hexi. The state was destroyed by the Northern Wei in 439. Juqu Wuhui and Juqu Anzhou led the remnants west and seized Gaochang in 442 (the Gaochang Northern Liang), which was destroyed by the Rouran in 460."
+ },
+ "西凉": {
+  "n": "Western Liang",
+  "note": "In 400 Li Gao of Longxi was acclaimed Duke of Liang and held Dunhuang; in 405 he moved his capital to Jiuquan, acknowledging the Eastern Jin calendar. In 420 Li Xin was defeated and died, and in 421 Dunhuang fell and the state was destroyed by the Northern Liang. The Li of the Tang claimed descent from Li Gao."
+ },
+ "夏": {
+  "n": "Xia (Helian)",
+  "s": "Xia",
+  "note": "In 407 Helian Bobo of the Tiefu Xiongnu broke with the Later Qin and styled himself Heavenly King of Great Xia; in 413 he built Tongwan City as his capital, and after taking Chang'an in 418 he proclaimed himself emperor. In 427 the Northern Wei took Tongwan, and in 428 Helian Chang was captured; his younger brother Helian Ding destroyed the Western Qin in 431 but was then captured by the Tuyuhun, and Xia came to an end."
+ },
+ "谯蜀": {
+  "n": "Western Shu (Qiao Zong)",
+  "s": "Western Shu",
+  "note": "In 405 Qiao Zong, an Adjutant of Yi Province, mutinied at Fucheng and styled himself King of Chengdu, acknowledging the Later Qin as his overlord; in 413 Zhu Lingshi of the Eastern Jin broke into Chengdu and Qiao Zong killed himself."
+ },
+ "仇池": {
+  "n": "Chouchi (Yang clan)",
+  "s": "Chouchi",
+  "note": "In 296 Yang Maosou, a Di from Lüeyang, returned to Mount Chouchi and held the area of Wudu and Yinping; thereafter the Yang submitted now to Jin, now to the non-Chinese states. Chouchi was destroyed by the Former Qin in 371 and restored by Yang Ding in 385 (the Later Chouchi); in 442 Song crushed Chouchi, and in 443 Chouchi passed to the Northern Wei. Branches of the Yang went on to hold Wudu, Wuxing (477–506) and Yinping, and the Yang of Yinping lasted into the Northern Zhou."
+ },
+ "宕昌": {
+  "n": "Dangchang Qiang",
+  "note": "Founded by the Liang clan of the Qiang, around today's Dangchang and Tewo in Gansu, it submitted to both the Northern and Southern Dynasties; in 564 it was destroyed by the Northern Zhou, which set up Dangzhou there."
+ },
+ "邓至": {
+  "n": "Dengzhi Qiang",
+  "note": "Founded by Xiang Shuzhi of the Baishui Qiang, on the upper Baishui on today's Sichuan–Gansu border; it submitted to both the Northern and Southern Dynasties and was absorbed by the Western Wei in the mid-6th century."
+ },
+ "北魏": {
+  "n": "Northern Wei",
+  "note": "Tuoba Gui restored the state in 386 as King of Dai, soon changing the title to King of Wei; in 398 he moved the capital to Pingcheng and proclaimed himself emperor (Emperor Daowu). Emperor Taiwu, Tuoba Tao, took the Xia capital Tongwan in 427, destroyed the Northern Yan in 436 and the Northern Liang in 439, unifying the north; in 450 he marched south and watered his horses at the Yangtze. Emperor Xiaowen moved the capital to Luoyang in 494 and pressed sinicization. After the Six Garrisons uprising of 524 and the Heyin massacre of 528, Erzhu Rong and then Gao Huan monopolized power, and in 534 the state split into the Eastern and Western Wei."
+ },
+ "东魏": {
+  "n": "Eastern Wei",
+  "note": "In 534 Gao Huan enthroned Emperor Xiaojing, Yuan Shanjian, and moved the capital to Ye, while real power lay with Gao Huan's headquarters at Jinyang. The state fought the Western Wei year after year: routed at Shayuan in 537, it won at Heqiao in 538 and at Mount Mang in 543. Gao Huan died in 547 and Hou Jing defected to Liang. In 550 Gao Yang replaced the Eastern Wei and founded the Northern Qi."
+ },
+ "西魏": {
+  "n": "Western Wei",
+  "note": "In 534 Emperor Xiaowu fled west to Yuwen Tai, who the following year enthroned Emperor Wen, Yuan Baoju, with the capital at Chang'an. Yuwen Tai created the garrison militia system and won a great victory over the Eastern Wei at Shayuan in 537; the state took Ba-Shu in 553 and sacked Jiangling in 554, and in 557 Yuwen Jue replaced the Western Wei and founded the Northern Zhou."
+ },
+ "北齐": {
+  "n": "Northern Qi",
+  "note": "Founded in 550 by Gao Yang, son of Gao Huan, when he replaced the Eastern Wei; its capital was Ye, with Jinyang as a secondary capital. Strong in the early years of Emperor Wenxuan, it struck north against the Rouran and the Khitan and took Huainan and the land north of the Yangtze in the south; the later emperors were dissolute, and in 573 Huainan was lost to Chen. The state was destroyed by the Northern Zhou in 577."
+ },
+ "北周": {
+  "n": "Northern Zhou",
+  "note": "Founded in 557 by Yuwen Jue when he replaced the Western Wei, with its capital at Chang'an; Yuwen Hu held power for fifteen years. Emperor Wu, Yuwen Yong, took personal control in 572, banned Buddhism and Daoism in 574, destroyed the Northern Qi in 577 and unified the north, and in 579 the state took Huainan from Chen. When Emperor Xuan died in 580, Yang Jian, the empress's father, became regent, and in 581 he replaced Zhou and founded Sui."
+ },
+ "隋": {
+  "n": "Sui",
+  "note": "In the 2nd month of 581 Yang Jian accepted the abdication of Emperor Jing of Northern Zhou, naming his dynasty Sui with the era name Kaihuang; the capital was Daxing City (built new southeast of Han Chang'an in 582 and occupied in 583), and from 605 Emperor Yang built Luoyang as the Eastern Capital.\nEmperor Wen: the Kaihuang code and statutes, the Three Departments and Six Ministries, the equal-field system with its grain and cloth taxes, the great census by physical inspection and the household registration reform; he abolished the Later Liang in 587 and conquered Chen in 589, ending nearly three hundred years of division between north and south."
+ },
+ "高欢": {
+  "n": "Gao Huan (Jinyang headquarters)",
+  "s": "Gao Huan",
+  "note": "Gao Huan of Bohai came from Huaishuo, one of the Six Garrisons. In 531 he rose at Xindu against the Erzhu; after his great victory at Hanling in 532 he enthroned Emperor Xiaowu and controlled the court from afar through his headquarters at Jinyang. In 534 he set up Emperor Xiaojing instead and moved the capital to Ye (the Eastern Wei); he died in 547, and his sons Gao Cheng and Gao Yang held power after him."
+ },
+ "贺拔岳": {
+  "n": "Heba Yue & Yuwen Tai (Guanlong)",
+  "s": "Heba Yue",
+  "note": "Heba Yue helped Erzhu Tianguang pacify Guanlong, and after the fall of the Erzhu he commanded the west of the passes; in 534 he was killed by Houmochen Yue, and his general Yuwen Tai took over his army, welcomed Emperor Xiaowu into Guanzhong, and founded the Western Wei."
+ },
+ "尔朱荣": {
+  "n": "Erzhu Rong (Jinyang)",
+  "s": "Erzhu Rong",
+  "note": "A chieftain of the Qihu of Xiurong, he rose to power fighting the remnants of the Six Garrisons. In 528, citing the sudden death of Emperor Xiaoming, he entered Luoyang and massacred the princes and court officials at Heyin; he captured Ge Rong, put down Xing Gao and defeated Yuan Hao, dominating the court. In the 9th month of 530 he was killed by Emperor Xiaozhuang with his own hand."
+ },
+ "尔朱兆": {
+  "n": "Erzhu Zhao (Jinyang)",
+  "s": "Erzhu Zhao",
+  "note": "Nephew of Erzhu Rong. In 530 he broke into Luoyang, strangled Emperor Xiaozhuang and held Bing Province; routed at Hanling in 532, he was run down by Gao Huan at Xiurong in 533 and killed himself."
+ },
+ "尔朱天光": {
+  "n": "Erzhu Tianguang (Guanlong)",
+  "s": "Erzhu Tianguang",
+  "note": "Son of a second cousin of Erzhu Rong. In 530, with Heba Yue and Houmochen Yue, he put down Moqi Chounu and held Guanlong; in 532 he marched east and was defeated at Hanling, and was captured and killed by Gao Huan."
+ },
+ "尔朱仲远": {
+  "n": "Erzhu Zhongyuan (Xu and Yan)",
+  "s": "Erzhu Zhongyuan",
+  "note": "A cousin of Erzhu Rong. From 530 he was Grand Branch Department Director of the Southeast Circuit, holding Xu and Yan provinces, boundlessly greedy and cruel; after the defeat at Hanling in 532 he fled south to Liang."
+ },
+ "侯景河南": {
+  "n": "Hou Jing (Henan)",
+  "s": "Hou Jing",
+  "note": "Hou Jing, a Jie, was originally a general of Erzhu Rong; after going over to Gao Huan he became Grand Branch Department Director of the Henan Circuit, commanding a hundred thousand troops and ruling Henan as he pleased for fourteen years. After Gao Huan's death in 547 he rebelled with thirteen provinces of Henan, submitting first to the Western Wei and then to Liang."
+ },
+ "破六韩": {
+  "n": "Poliuhan Baling",
+  "note": "A garrison soldier of Woye, he killed the garrison commander in 524, rose in arms and took the title True King; the Six Garrisons rose in answer and Huaishuo, Wuchuan and the other garrisons fell. In 525 he was crushed by the combined armies of the Northern Wei and Anagui of the Rouran, and more than two hundred thousand of those who surrendered were resettled in Hebei."
+ },
+ "莫折": {
+  "n": "Qin (Mozhe Niansheng)",
+  "s": "Mozhe Niansheng",
+  "note": "In 524 Mozhe Dati, a Qiang of Qin Province, rose in arms; his son Mozhe Niansheng succeeded him, styled himself Son of Heaven and held the provinces of Qin and Long; in 527 he was killed by his general Du Can."
+ },
+ "万俟丑奴": {
+  "n": "Moqi Chounu (Guanlong)",
+  "s": "Moqi Chounu",
+  "note": "Hu Chen, a Chile of Gaoping, rose in arms in 524; his general Moqi Chounu took over his followers, proclaimed himself emperor in 528 and held Guanlong; in 530 he was captured and killed by Erzhu Tianguang and Heba Yue."
+ },
+ "杜洛周": {
+  "n": "Du Luozhou (Shanggu)",
+  "s": "Du Luozhou",
+  "note": "A man of the Rouxuan Garrison, he rose at Shanggu in 525 and held You Province; in 528 his following was absorbed by Ge Rong."
+ },
+ "葛荣": {
+  "n": "Qi (Ge Rong)",
+  "s": "Ge Rong",
+  "note": "A general of Xianyu Xiuli, he took over his followers in 526, proclaimed himself emperor with the dynastic name Qi, absorbed Du Luozhou, and was said to command a million men; in the 9th month of 528 he was routed and captured at Fukou by Erzhu Rong with seven thousand horsemen."
+ },
+ "邢杲": {
+  "n": "Xing Gao (Qing Province)",
+  "s": "Xing Gao",
+  "note": "A man of Hejian, he led refugees from Hebei in a rising at Beihai in Qing Province in 528 and styled himself King of Han; he was put down by Yuan Tianmu in 529."
+ },
+ "高宝宁": {
+  "n": "Gao Baoning (Yingzhou)",
+  "s": "Gao Baoning",
+  "note": "Northern Qi prefect of Yingzhou; when Qi fell he refused to surrender to Northern Zhou, held Yingzhou (modern Chaoyang, Liaoning) and allied with the Turks and the Khitan, and upheld Gao Shaoyi of the Northern Qi imperial house, then in exile among the Turks.\nIn 583, after Sui forces defeated the Turks, Gao Baoning was deserted by his followers and kin and was killed by his own men."
+ },
+ "侯景": {
+  "n": "Hou Jing (Han)",
+  "s": "Hou Jing",
+  "note": "In 547 Hou Jing surrendered to Liang with Henan; the next year he was defeated at Guoyang and fell back to hold Shouyang. In the 8th month of 548 he rose against Liang, crossed the Yangtze in the 10th month, and in the 3rd month of 549 he took Taicheng, where Emperor Wu of Liang starved to death; in the 11th month of 551 he proclaimed himself emperor, naming his state Han. In the 3rd month of 552 he was crushed by Wang Sengbian and Chen Baxian, and in the 4th month he was killed by his own men."
+ },
+ "萧绎": {
+  "n": "Xiao Yi, Prince of Xiangdong (Jiangling)",
+  "s": "Xiao Yi",
+  "note": "Seventh son of Emperor Wu of Liang, stationed at Jiangling. During Hou Jing's rebellion he held back his army and watched, attacking and killing Xiao Yu and Xiao Lun; after putting down Hou Jing in 552 he took the throne at Jiangling (Emperor Yuan of Liang). In 554 Jiangling was sacked by the Western Wei and he was killed."
+ },
+ "萧纪": {
+  "n": "Xiao Ji, Prince of Wuling (Yi Province)",
+  "s": "Xiao Ji",
+  "note": "Eighth son of Emperor Wu of Liang, he governed Yi Province for seventeen years. In 552 he proclaimed himself emperor at Chengdu and led his army down the Yangtze against Xiao Yi; in 553 he was defeated and killed, and the Western Wei took the opportunity to seize Ba-Shu."
+ },
+ "萧誉": {
+  "n": "Xiao Yu, Prince of Hedong (Xiang Province)",
+  "s": "Xiao Yu",
+  "note": "Grandson of Emperor Wu of Liang and Inspector of Xiang Province during Hou Jing's rebellion, he fought his uncle Xiao Yi and was killed in the 4th month of 550."
+ },
+ "萧詧": {
+  "n": "Xiao Cha, Prince of Yueyang (Xiangyang)",
+  "s": "Xiao Cha",
+  "note": "Younger brother of Xiao Yu, stationed at Xiangyang. In 549 he submitted to the Western Wei as a vassal in order to resist Xiao Yi; in 554 he joined the Western Wei army in sacking Jiangling, and in 555 he proclaimed himself emperor — the Later Liang."
+ },
+ "王僧辩": {
+  "n": "Wang Sengbian (Jiankang)",
+  "s": "Wang Sengbian",
+  "note": "A general of Xiao Yi. In 551 he held Baling and thwarted Hou Jing, and in 552 he fought his way into Jiankang; in 555 he accepted Xiao Yuanming, sent back by Northern Qi, as emperor, and in the 9th month he was killed in a surprise attack by Chen Baxian."
+ },
+ "陈霸先": {
+  "n": "Chen Baxian (Jingkou)",
+  "s": "Chen Baxian",
+  "note": "A man of Wuxing who rose to prominence in Lingnan. In 547 he put down Lý Bí in Jiao Province, in 551 he rose against Hou Jing, and in 552 he and Wang Sengbian fought their way into Jiankang, after which he was stationed at Jingkou; in 555 he killed Wang Sengbian in a surprise attack, and in 557 he replaced Liang and founded Chen."
+ },
+ "王琳": {
+  "n": "Wang Lin (Xiang and Ying)",
+  "s": "Wang Lin",
+  "note": "A general of Xiao Yi, stationed in Xiang Province, he refused to serve Chen. In 558 in Ying Province he set up Xiao Zhuang as emperor of Liang, allying himself with Northern Qi; in the 2nd month of 560 he was routed by Hou Tian at Wuhu and fled to Northern Qi, and in 573 he was killed by the Chen army at Shouyang."
+ },
+ "萧衍": {
+  "n": "Xiao Yan (rising in Yong and Jing)",
+  "s": "Xiao Yan",
+  "note": "Younger brother of Xiao Yi (萧懿) and Inspector of Yong Province, stationed at Xiangyang. In the 11th month of 500 he rose against the Marquis of Donghun, joined forces with Xiao Yingzhou in Jing Province and set up Xiao Baorong, Prince of Nankang; in the 12th month of 501 he fought his way into Jiankang, and in 502 he replaced Qi and founded Liang."
+ },
+ "后梁": {
+  "n": "Later Liang (Western Liang)",
+  "s": "Later Liang",
+  "note": "Xiao Cha proclaimed himself emperor at Jiangling in 555 with Western Wei backing; known to history as Later Liang or Western Liang, it was a vassal of Northern Zhou and Sui, its territory confined to the area around Jiangling, \"300 li square\".\nIn 587 Emperor Wen of Sui summoned its Last Ruler, Xiao Cong, to court and abolished the state; Xiao Cong's clan nephew was Xiao Xian, who later rose in arms at Baling."
+ },
+ "交州李氏": {
+  "n": "Jiaozhou (Lý Phật Tử)",
+  "s": "Jiaozhou",
+  "note": "Lý Bí, of a great family of Jiao Province, rose in arms in 541 and proclaimed himself emperor in 544 (the Early Lý dynasty in Vietnamese history); in 547 he was defeated by the Liang general Chen Baxian. His general Triệu Quang Phục held out in the Dạ Trạch marshes, recovered Longbian in 550 and styled himself King of Yue. In 571 Lý Phật Tử killed Triệu Quang Phục in a surprise attack and held the area around Longbian in Jiao Province, nominally acknowledging the Southern Dynasties.\nIn 602 Sui made Liu Fang Expeditionary Commander of the Jiaozhou Route; Lý Phật Tử asked to surrender, was sent to Chang'an, and Jiaozhou passed to Sui."
+ },
+ "鲜卑": {
+  "n": "Xianbei",
+  "note": "Descendants of the Donghu. After the Northern Xiongnu moved west, the Xianbei moved into the lands north of the Gobi, and in the mid-2nd century Tanshihuai united their tribes. In the late Three Kingdoms period the Tuoba, Murong, Yuwen, Duan, Tufa, Qifu and other tribes rose to prominence, and in the Sixteen Kingdoms period most of them moved south and founded states; those who stayed north of the Gobi were gradually absorbed by the Rouran and the Chile."
+ },
+ "弃地": {
+  "n": "Mixed Qiang–Hu lands (abandoned)",
+  "note": "At the end of the Eastern Han the commanderies of Beidi, Shang and Shuofang were withdrawn inland one after another; the Hetao and the Ordos had no commanderies or counties and were home to a mix of Qiang, Hu and Xiongnu, and they were still abandoned lands under the Western Jin. After 310 they were held by the Tiefu Xiongnu."
+ },
+ "柔然": {
+  "n": "Rouran",
+  "note": "Descendants of the Donghu, originally a tribe subject to the Tuoba Xianbei. In 402 Shelun united the lands north of the Gobi and styled himself Qiudoufa Qaghan; the Rouran were the hereditary enemies of the Northern Wei, which called them \"Ruanruan\" (wriggling worms). In the 5th century their power reached the Greater Khingan in the east and Karasahr in the west, and they controlled Gaochang. Anagui restored the state with Northern Wei help in the 520s and destroyed the Gaoche in 541. In 552 the Rouran were destroyed by Tumen Qaghan of the Turks, and Anagui killed himself."
+ },
+ "高车": {
+  "n": "Gaoche (Chile)",
+  "s": "Gaoche",
+  "note": "Also called Chile or Tiele, named for their carts \"with tall wheels and very many spokes\", they were nomads north of the Gobi. The Northern Wei repeatedly carried off their people and settled them south of the Gobi, and the Northern Dynasties folk song \"Song of the Chile\" celebrates that land. In 487 Afuzhiluo of the Fufuluo tribe moved west and founded the Gaoche kingdom northwest of Nearer Jushi, which was destroyed by the Rouran in 541."
+ },
+ "悦般": {
+  "n": "Yueban",
+  "note": "Remnants of the Northern Xiongnu who stayed north of Kucha after the main body moved west. In the mid-5th century they held the former Wusun lands, and from 436 they repeatedly sent envoys to the Northern Wei, agreeing to attack the Rouran together."
+ },
+ "乌孙": {
+  "n": "Wusun",
+  "note": "An ancient state in the Ili valley, which in Han times concluded marriage alliances with the Han. From the 4th century, pressed by the Rouran, the Wusun moved west into the Pamir mountains."
+ },
+ "东突厥": {
+  "n": "Eastern Turkic Qaghanate",
+  "s": "Eastern Turks",
+  "note": "The Turkic state was founded in 552 by Ashina Tumen, who destroyed the Rouran; under Muqan Qaghan it reached the Liao Sea in the east and the Western Sea (the Caspian) in the west. When Sui was founded in 581 the Qaghan was Ishbara.\nIn 583 Sui set the Turks against one another: Ishbara fell out with Apa and Tardu, and the Turks split into eastern and western halves."
+ },
+ "夫余": {
+  "n": "Buyeo",
+  "note": "An ancient state in the Songhua valley. It was crushed by Murong Hui in 285 and restored the following year with Jin help; in 346 it was crushed again by the Former Yan and its king captured. Thereafter it depended on Goguryeo; in 494, pressed by the Wuji, the royal house fled to Goguryeo."
+ },
+ "挹娄": {
+  "n": "Yilou",
+  "note": "Descendants of the Sushen, living in the forests northeast of Buyeo; skilled archers famed for their hu-wood arrows with stone heads, they sent tribute to Wei and Jin. In the 5th century they came to be called Wuji."
+ },
+ "勿吉": {
+  "n": "Wuji",
+  "note": "Descendants of the Yilou, recorded from the 5th century; they sent envoys to the Northern Wei from 475 and drove out the Buyeo in 494, and in the mid-6th century came to be called Mohe."
+ },
+ "靺鞨": {
+  "n": "Mohe",
+  "note": "Descendants of the Wuji, divided into seven tribes including the Sumo, Baishan and Heishui; the Sumo Mohe later founded the state of Balhae."
+ },
+ "室韦": {
+  "n": "Shiwei",
+  "note": "Also written Shiwei (失韦); they first exchanged envoys with the Central Plain at the end of the Northern Wei. They lived north of the Greater Khingan as far as the Nen and the Amur, shared their origins with the Khitan, and spoke a mutually intelligible language."
+ },
+ "契丹": {
+  "n": "Khitan",
+  "note": "Remnants of the Yuwen Xianbei. After the fall of the Yuwen in 344 they scattered across the Songmo region; after being crushed by the Northern Wei in 388 they separated from the Kumo Xi and roamed the valley of the Huang River (the Xar Moron)."
+ },
+ "奚": {
+  "n": "Xi",
+  "note": "They came from the Yuwen, like the Khitan, and separated from them in 388, living southwest of the Khitan; the Northern Wei called them Kumo Xi, and from Sui times they were called simply Xi."
+ },
+ "霫": {
+  "n": "Xi (Bai Xi)",
+  "s": "Xi",
+  "note": "A nomadic tribe north of the Xi, recorded from the mid-6th century; later called the Bai Xi."
+ },
+ "羌": {
+  "n": "Qiang tribes",
+  "note": "Qiang tribes on the eastern edge of the Tibetan Plateau and in Hehuang. Under the Western Jin they lived scattered through Longxi, Wudu and Hehuang, and in the Sixteen Kingdoms period they were the main force of the Yao clan's Later Qin; the Fa Qiang, Tangmao and other tribes of the plateau interior were later absorbed into the Tibetan Empire."
+ },
+ "吐谷浑": {
+  "n": "Tuyuhun",
+  "note": "Tuyuhun, elder brother of Murong Hui, chief of the Murong Xianbei of Liaodong, moved west and reached Fuhan at the beginning of the 4th century, basing himself on Mount Gansong and Bailan; in 329 his grandson Yeyan made his grandfather's name the name of the state. In the 5th century the Tuyuhun held Qinghai, and in 431 they captured the Xia ruler Helian Ding; in the 6th century Kualü took the title Qaghan and made Fuqi City his capital, controlling the Qinghai route of the Silk Road."
+ },
+ "白兰": {
+  "n": "Bailan Qiang",
+  "note": "A Qiang tribe in southwestern Qinghai (around today's Dulan and Madoi), long the rear base of the Tuyuhun; recorded separately from the mid-6th century."
+ },
+ "党项": {
+  "n": "Tanguts",
+  "note": "A branch of the Qiang, among whose tribes eight were the strongest, the Tuoba among them; recorded from the late 6th century, they lived in today's southeastern Qinghai and northwestern Sichuan."
+ },
+ "附国": {
+  "n": "Fuguo, Eastern Women's Kingdom and Qiang tribes",
+  "s": "Fuguo & Qiang",
+  "note": "Qiang tribes of the western Sichuan plateau; the History of the Northern Dynasties and the Book of Sui are the first to give an account of Fuguo, and south of it lay the Eastern Women's Kingdom."
+ },
+ "苏毗": {
+  "n": "Sumpa",
+  "note": "A kingdom ruled by queens in northern Tibet, called the \"Women's Kingdom\" and \"Sunbo\" in Chinese sources; conquered by the Tibetan Empire in the early 7th century."
+ },
+ "羊同": {
+  "n": "Yangtong (Zhangzhung)",
+  "s": "Zhangzhung",
+  "note": "Zhangzhung, the ancient state of western Tibet, with its capital at Khyunglung Ngulkhar; birthplace of the Bon religion, it was destroyed by the Tibetan Empire around 644."
+ },
+ "吐蕃": {
+  "n": "Tibetan Empire",
+  "s": "Tibet",
+  "note": "The Pugyal of the Yarlung valley gradually absorbed neighboring tribes in the 6th century, and in the early 7th century Songtsen Gampo united the plateau and founded the Tibetan Empire."
+ },
+ "西域诸国": {
+  "n": "States of the Western Regions",
+  "note": "In the late Eastern Han the posts of Chief Clerk of the Western Regions and Wuji Colonel were set up and abolished by turns, and the states swallowed one another, the largest being Shanshan, Khotan, Kucha, Kashgar and Karasahr. Under Wei and Jin the Chief Clerk of the Western Regions was stationed at Haitou in Loulan and the Wuji Colonel at Gaochang, and the states nominally submitted to Jin."
+ },
+ "鄯善": {
+  "n": "Shanshan",
+  "note": "The former state of Loulan, with its capital at Yuni, holding the eastern section of the southern Silk Road west of Lop Nur. It submitted to the Central Plain under Wei and Jin, and to the Former Liang and Former Qin in the Eastern Jin and Sixteen Kingdoms period; in 448 it was taken by Wan Dugui of the Northern Wei, and later passed to the Tuyuhun."
+ },
+ "车师": {
+  "n": "Jushi",
+  "note": "An ancient state in the Turpan Basin, divided into Nearer and Further Jushi; the capital of Nearer Jushi was Jiaohe. In 450 it was destroyed by Juqu Anzhou of the Northern Liang remnants, and its land passed to Gaochang."
+ },
+ "焉耆": {
+  "n": "Karasahr",
+  "note": "An ancient state on the middle route of the Western Regions, with its capital at Yuanqu City on Lake Bosten. In 448 it was taken by Wan Dugui of the Northern Wei; thereafter it submitted in turn to the Rouran, the Gaoche, the Hephthalites and the Turks."
+ },
+ "龟兹": {
+  "n": "Kucha",
+  "note": "A great state of the Western Regions, with its capital at Yancheng, where Buddhism and music flourished. In 384 Lü Guang took Kucha and carried Kumarajiva back east; under the Northern Dynasties it submitted to the Rouran and the Hephthalites, and in Sui times to the Turks."
+ },
+ "于阗": {
+  "n": "Khotan",
+  "note": "A great state on the southern Silk Road devoted to Mahayana Buddhism; Faxian passed through on his journey west in 401 and wrote that it had \"tens of thousands of monks\"."
+ },
+ "疏勒": {
+  "n": "Kashgar",
+  "note": "An oasis state at the western end of the Western Regions, commanding the trade routes at the eastern foot of the Pamirs."
+ },
+ "高昌": {
+  "n": "Gaochang",
+  "note": "A Chinese city-state in the Turpan Basin. Under Wei and Jin it was the seat of the Wuji Colonel; the Former Liang set up Gaochang Commandery in 327; in 442 Juqu Wuhui of the Northern Liang remnants seized it and took the title of king; in 460 the Rouran made Kan Bozhou King of Gaochang, after whom the Zhang and Ma clans ruled in turn, and from 498 the Qu clan were kings until 640."
+ },
+ "康居": {
+  "n": "Kangju",
+  "note": "An ancient nomadic state north of the lower Syr Darya; it still exchanged envoys with the Central Plain under Wei and Jin, and the Sogdian cities to its south were for a time its vassals."
+ },
+ "昭武九姓": {
+  "n": "Sogdian states (Zhaowu)",
+  "s": "Sogdiana",
+  "note": "The Sogdian city-states — Kang (Samarkand), An (Bukhara), Shi (Chach), Shi (Kesh), Mi and others — gifted traders whose caravans went back and forth between China and Persia. From the late 5th century to the 560s they were subject to the Hephthalites, and thereafter to the Turks."
+ },
+ "拔汗那": {
+  "n": "Ferghana",
+  "note": "The Ferghana Valley, called Dayuan in Han times and Poluona or Luona under the Northern Dynasties, famous for its \"blood-sweating\" horses."
+ },
+ "花剌子模": {
+  "n": "Khwarazm",
+  "note": "An oasis state on the lower Amu Darya south of the Aral Sea, called Huoxun and Huoliximi in Chinese sources."
+ },
+ "贵霜": {
+  "n": "Kushan Empire",
+  "s": "Kushans",
+  "note": "The empire founded by the Great Yuezhi, at its height under King Kanishka in the 2nd century; from the 3rd century Sasanian Persia took Bactria from it, its remnants held Gandhara and the Punjab, and in the mid-4th century it was replaced by the Kidarites."
+ },
+ "寄多罗": {
+  "n": "Kidarites",
+  "note": "Remnants of the Great Yuezhi (Kushans) led south by Kidara in the mid-4th century; they held Tokharistan and Gandhara, called themselves heirs of the Kushans, and were driven out by the Hephthalites in the late 5th century."
+ },
+ "嚈哒": {
+  "n": "Hephthalites (White Huns)",
+  "s": "Hephthalites",
+  "note": "A nomadic people who rose in Tokharistan in the mid-5th century. In 484 they killed the Sasanian king Peroz, and Persia paid them tribute thereafter; at their height in the early 6th century they held Tokharistan, Sogdiana and Gandhara and made the states of the Western Regions their subjects, and their king Mihirakula invaded India. Around 516 they sent envoys to the Northern Wei and to Liang. Around 560 they were crushed between the Turks and the Sasanians and destroyed."
+ },
+ "吐火罗": {
+  "n": "Tokharistan",
+  "note": "Bactria on the upper Amu Darya. After the fall of the Hephthalites it broke up into more than twenty small states; the Yabghu's royal camp was at Huo (Warwaliz, near Kunduz), and the region was subject to the Western Turks."
+ },
+ "天竺": {
+  "n": "India",
+  "note": "The general name for the states of India. Besides the Gupta Empire there were the Pallavas, the Vakatakas and others in the south; after the Gupta Empire disintegrated in the mid-6th century the Maukharis and the later Guptas ruled in northern India, Valabhi in the west and the Chalukyas in the Deccan — states standing side by side, which Chinese sources called the \"Five Indias\"."
+ },
+ "笈多": {
+  "n": "Gupta Empire",
+  "s": "Gupta",
+  "note": "Founded in Magadha in 320 by Chandragupta I, with its capital at Pataliputra. Samudragupta (c. 335–375) campaigned in every direction and united the Ganges valley; Chandragupta II (Vikramaditya, c. 375–415) conquered the Saka kings of the west, and Faxian studied in his realm from about 402 to 409. From the late 5th century the empire suffered repeated Hephthalite invasions, and it disintegrated in the mid-6th century."
+ },
+ "迦湿弥罗": {
+  "n": "Kashmir",
+  "note": "The Kashmir valley, east of Jibin, a stronghold of the Sarvastivada school of Buddhism; in the early 6th century it was seized by the Hephthalite king Mihirakula."
+ },
+ "泥婆罗": {
+  "n": "Nepal",
+  "note": "The Kathmandu valley south of the Himalaya; the Licchavi dynasty rose in the 5th century, with its capital in the Kathmandu area."
+ },
+ "狮子国": {
+  "n": "Simhala (Sri Lanka)",
+  "s": "Simhala",
+  "note": "Today's Sri Lanka, where Buddhism flourished, with its capital at Anuradhapura. Faxian stayed here for two years in 410–411 and obtained the Mahishasaka Vinaya and other scriptures; it sent envoys to China several times under the Eastern Jin, Song and Liang."
+ },
+ "林邑": {
+  "n": "Linyi (Champa)",
+  "s": "Linyi",
+  "note": "In 192 Ou Lian of Xianglin County in Rinan Commandery killed the county magistrate and made himself king, founding Linyi (later Champa); thereafter it repeatedly raided Rinan and Jiuzhen, and in 347 it took Rinan Commandery and held its northern part. In 605 it was crushed by the Sui general Liu Fang."
+ },
+ "扶南": {
+  "n": "Funan",
+  "note": "An ancient state on the lower Mekong, with its capital at Vyadhapura. In the 3rd century, under Fan Man, it dominated the Indochinese peninsula, made Dunxun and other states its subjects, and grew rich on maritime trade; under the Southern Dynasties it sent envoys many times, presenting a hair of the Buddha and a coral Buddha image to Emperor Wu of Liang. From the mid-6th century it was pressed by its vassal Chenla."
+ },
+ "真腊": {
+  "n": "Chenla",
+  "note": "Originally a vassal of Funan, from the mid-6th century it absorbed Funan, with its capital at Ishanapura."
+ },
+ "堕罗钵底": {
+  "n": "Dvaravati",
+  "note": "A state founded by the Mon on the lower Chao Phraya, centered on Nakhon Pathom, rising in the 6th–7th centuries."
+ },
+ "骠国": {
+  "n": "Pyu",
+  "note": "The Pyu city-states of the Irrawaddy valley in Myanmar, with their capital at Sri Ksetra."
+ },
+ "盘盘": {
+  "n": "Panpan",
+  "note": "An ancient state in the northern Malay Peninsula that sent envoys many times under Song and Liang, presenting a Buddha's tooth and painted stupas."
+ },
+ "狼牙修": {
+  "n": "Langkasuka",
+  "note": "An ancient state in the central Malay Peninsula that sent envoys to Liang from 515; the Book of Liang records that its people \"pile up bricks to make walls, with double gates and towers\"."
+ },
+ "丹丹": {
+  "n": "Dandan",
+  "note": "An ancient state on the east coast of the Malay Peninsula that sent envoys in the Zhongdatong and Datong eras of Liang, presenting ivory images and ivory stupas."
+ },
+ "婆皇": {
+  "n": "Pohuang",
+  "note": "An ancient state in the southern Malay Peninsula (around today's Pahang) that sent envoys in the Yuanjia era of Song."
+ },
+ "干陁利": {
+  "n": "Kantoli",
+  "note": "An ancient state of the Southern Seas whose location is disputed, though it is usually placed in southeastern Sumatra (around today's Palembang); it sent envoys under Song and Liang, presenting gold, silver and precious objects."
+ },
+ "多罗磨": {
+  "n": "Tarumanagara",
+  "note": "An ancient state in West Java, called Tarumanagara in its inscriptions, which flourished from the 5th to the 7th century and followed Hinduism."
+ },
+ "诃罗单": {
+  "n": "Heluodan",
+  "note": "An ancient state on Java that sent envoys several times in the Yuanjia era of Song (430–452)."
+ },
+ "婆利": {
+  "n": "Poli",
+  "note": "An island state of the Southern Seas that sent envoys to Liang in 518; it is placed by some on Bali and by others on Kalimantan."
+ },
+ "高句丽": {
+  "n": "Goguryeo",
+  "note": "Founded on the middle Hun and Yalu rivers, with its capital at Hwando (Gungnae Fortress). In 313 and 314 it destroyed Lelang and Daifang commanderies; in 342 the Former Yan sacked Hwando, and in 371 Baekje killed King Gogugwon. King Gwanggaeto (391–412) expanded greatly, taking Liaodong from the Later Yan; King Jangsu moved the capital to Pyongyang in 427 and in 475 took Hanseong, the Baekje capital, bringing the kingdom to its greatest extent."
+ },
+ "百济": {
+  "n": "Baekje",
+  "note": "Grew out of the state of Baekje (伯济) in Mahan, with its capital at Hanseong (Wiryeseong). Under King Geunchogo (346–375) it absorbed all of Mahan and attacked Pyongyang to the north; in 475 Hanseong fell to Goguryeo and the capital moved to Ungjin, and in 538 to Sabi. Closely linked with Wa, it passed Confucian learning and Buddhism on to Wa."
+ },
+ "新罗": {
+  "n": "Silla",
+  "note": "Grew out of the state of Saro in Jinhan, with its capital at Geumseong (today's Gyeongju). Under King Naemul (356–402) it united Jinhan; King Jijeung fixed the name Silla; King Beopheung annexed Geumgwan Gaya in 532; King Jinheung seized the Han River basin in 551–553 and destroyed Daegaya in 562."
+ },
+ "马韩": {
+  "n": "Mahan",
+  "note": "More than fifty small states in southwestern Korea, united from the mid-4th century by one of them, Baekje (伯济)."
+ },
+ "辰韩": {
+  "n": "Jinhan",
+  "note": "Twelve states in southeastern Korea, one of which, Saro, grew into Silla in the 4th century."
+ },
+ "伽倻": {
+  "n": "Gaya (Gara)",
+  "s": "Gaya",
+  "note": "A league of small states in the former Byeonhan lands — Geumgwan, Daegaya, Ara and others — advanced in ironworking and in close contact with Wa; Geumgwan was annexed by Silla in 532 and Daegaya in 562."
+ },
+ "倭": {
+  "n": "Wa (Japan)",
+  "s": "Wa",
+  "note": "The Japanese archipelago. In the 3rd century there was Himiko, queen of Yamatai, and in 266 Toyo sent envoys to the Western Jin; in the 5th century the \"Five Kings of Wa\" — San, Chin, Sei, Kō and Bu — sent envoys in turn to Liu Song, seeking the titles \"Grand General Who Pacifies the East, King of Wa\"; at the end of the 6th century Empress Suiko made Asuka her capital."
+ },
+ "波斯": {
+  "n": "Persia (Sasanian)",
+  "s": "Persia",
+  "note": "The Sasanian dynasty (224–651), with its capital at Ctesiphon, following Zoroastrianism. Shapur II (309–379) defeated the Roman emperor Julian and recovered Nisibis; Peroz was killed by the Hephthalites in 484, after which Persia paid them tribute for decades; Khosrow I (531–579) reformed taxation, destroyed the Hephthalites together with the Western Turks, and sent an army to Yemen in 570. Persia sent envoys to China many times under the Northern Wei and Liang."
+ },
+ "罗马": {
+  "n": "Rome (Daqin)",
+  "s": "Rome",
+  "note": "The Daqin of Chinese sources. Diocletian (284–305) introduced the Tetrarchy, and Constantine moved the capital to Constantinople in 330; in 395 the empire was divided into East and West, the Western Roman Empire fell in 476, and the Eastern Roman (Byzantine) Empire continued. Under Justinian (527–565) it recovered North Africa and Italy and fought the Sasanians at length over Armenia and Mesopotamia; around 550 monks brought silkworm eggs back to Constantinople. In 284 Daqin sent envoys to the Western Jin, and the \"Pulan\" envoys recorded in the Book of Wei are thought by some to have come from the Eastern Roman Empire."
+ },
+ "亚美尼亚": {
+  "n": "Armenia",
+  "note": "A kingdom between Rome and Persia that made Christianity its state religion around 301. In 387 it was partitioned between the two empires, Rome taking the west and Persia the eastern four-fifths; in 428 the Sasanians deposed its king and installed a governor."
+ },
+ "伊比利亚": {
+  "n": "Iberia",
+  "note": "An ancient state on the southern slopes of the Caucasus (today's eastern Georgia) that converted to Christianity in the 4th century and wavered between Rome and the Sasanians; its monarchy was abolished by the Sasanians around 580."
+ },
+ "阿尔巴尼亚": {
+  "n": "Caucasian Albania",
+  "s": "Albania",
+  "note": "An ancient state on the west shore of the Caspian and the lower Kura (today's Azerbaijan), long dependent on the Sasanians, who built the fortress of Derbent on its northern border against the peoples of the northern steppe."
+ },
+ "拉赫姆": {
+  "n": "Lakhmids",
+  "note": "An Arab kingdom centered on Hira, a Sasanian client that guarded the desert frontier for the Sasanians and faced the Ghassanids, allies of the Eastern Roman Empire."
+ },
+ "加萨尼": {
+  "n": "Ghassanids",
+  "note": "An Arab tribal confederation on the Syrian frontier, allied with the Eastern Roman Empire from 502, following Miaphysite Christianity."
+ },
+ "阿拉伯": {
+  "n": "Arab tribes",
+  "note": "The nomadic and oasis tribes of the Arabian Peninsula, with Mecca as a center of the caravan trade; Muhammad was born in Mecca around 570."
+ },
+ "希木叶尔": {
+  "n": "Himyar",
+  "note": "An ancient state in Yemen that united South Arabia around the end of the 3rd century and controlled the spice trade of the Red Sea and the Indian Ocean; it was destroyed by Aksum in 525."
+ },
+ "阿克苏姆": {
+  "n": "Aksum (Yemen)",
+  "s": "Aksum",
+  "note": "A Christian kingdom in today's Ethiopia that crossed the Red Sea in 525 to destroy Himyar and set up Abraha to rule Yemen; it was driven out by the Sasanians around 570."
+ },
+ "阿兰": {
+  "n": "Alans (Yancai)",
+  "s": "Alans",
+  "note": "Iranian-speaking nomads, called Yancai in Han times — the Book of the Later Han records that \"Yancai has changed its name to Alanliao\" — living on the steppe north of the Caspian and the Black Sea; around 375 they were crushed by the Huns, and some of them moved west."
+ },
+ "哥特": {
+  "n": "Gothic tribes",
+  "s": "Goths",
+  "note": "Germanic tribes who lived on the north shore of the Black Sea in the 3rd–4th centuries, where the Ostrogothic kingdom arose; around 375 they were crushed by the Huns, and in 376 the Visigothic tribes crossed the Danube into Roman territory."
+ },
+ "匈人": {
+  "n": "Huns",
+  "note": "Nomads who moved west from beyond the Volga in the late 4th century, crushing the Alans and the Goths; in the mid-5th century under Attila they built an empire spanning central Europe, which broke up after Attila died in 453. Their relationship to the Xiongnu is still debated by scholars."
+ },
+ "保加尔": {
+  "n": "Bulgar and Sabir tribes",
+  "s": "Bulgars & Sabirs",
+  "note": "Turkic-speaking nomadic tribes on the steppe north of the Black Sea and the Caspian after the Hunnic empire broke up; the Sabirs served as mercenaries of both the Eastern Roman Empire and the Sasanians."
+ },
+ "阿瓦尔": {
+  "n": "Avars",
+  "note": "Nomads who arrived on the steppe north of the Black Sea from the east around 557 — Eastern Roman historians linked them with the Rouran — and moved west to Pannonia in 568."
+ },
+ "爨": {
+  "n": "Cuan clan (Nanning)",
+  "s": "Cuan",
+  "note": "A great clan of Nanzhong, hereditary magnates of Ning Province from the Jin period; from the end of Liang they dominated the area of Nanning Province (today's Qujing), nominally acknowledging the Central Plain."
+ },
+ "洱海": {
+  "n": "Erhai tribes (Six Zhao)",
+  "s": "Erhai tribes",
+  "note": "The Wuman and Baiman tribes around Erhai Lake, which later formed the Six Zhao and were united by Nanzhao in 738."
+ },
+ "牂柯": {
+  "n": "Zangke tribes",
+  "note": "The tribes of the northern Qianzhong, led by the Xie clan."
+ }
+}

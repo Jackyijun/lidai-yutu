@@ -1,0 +1,285 @@
+{
+ "alias:中山:鲜虞": {
+  "n": "Xianyu"
+ },
+ "alias:伊洛戎:陆浑之戎": {
+  "n": "Luhun Rong"
+ },
+ "alleg:中山:-9999": {
+  "n": "The Xianyu of the White Di; not enfeoffed by Zhou"
+ },
+ "alleg:义渠:-9999": {
+  "n": "A Western Rong state; not enfeoffed by Zhou"
+ },
+ "alleg:六:-9999": {
+  "n": "Of the Yan surname, descendants of Gao Yao; no record of enfeoffment by Zhou"
+ },
+ "alleg:吴:-585": {
+  "n": "Shoumeng claims the title of king"
+ },
+ "alleg:吴:-9999": {
+  "n": "Descendants of Taibo, enfeoffed by Zhou"
+ },
+ "alleg:巢:-9999": {
+  "n": "A small Huai Yi state; no record of enfeoffment by Zhou"
+ },
+ "alleg:庸:-9999": {
+  "n": "No record of enfeoffment by Zhou"
+ },
+ "alleg:徐:-9999": {
+  "n": "The rulers of Xu style themselves king (bronze inscriptions name \"King Yichu of Xu\" and \"King Geng of Xu\"); the Chunqiu, following Zhou usage, calls the ruler \"the viscount of Xu\""
+ },
+ "alleg:楚:-606": {
+  "n": "King Zhuang of Chu parades his army on the outskirts of the Zhou capital and asks about the size and weight of the tripods"
+ },
+ "alleg:楚:-671": {
+  "n": "King Cheng of Chu sends tribute to the Son of Heaven, who bestows sacrificial meat on him"
+ },
+ "alleg:楚:-704": {
+  "n": "Xiong Tong proclaims himself King Wu"
+ },
+ "alleg:楚:-9999": {
+  "n": "Xiong Yi was enfeoffed with land befitting a viscount or baron"
+ },
+ "alleg:舒:-9999": {
+  "n": "A small Huai Yi state of the Yan surname, now submitting to Chu, now rebelling against it; no record of enfeoffment by Zhou"
+ },
+ "alleg:莱:-9999": {
+  "n": "A Dongyi state that never joined the Zhou covenants"
+ },
+ "alleg:蜀:-9999": {
+  "n": "Not enfeoffed by Zhou; the rulers of Shu style themselves king"
+ },
+ "alleg:越:-9999": {
+  "n": "Not enfeoffed by Zhou; its rulers later style themselves king"
+ },
+ "fall:-478": {
+  "nm": "Chen",
+  "p": "King Hui of Chu kills Duke Min of Chen and destroys Chen."
+ },
+ "fall:-487": {
+  "nm": "Cao",
+  "p": "Duke Jing of Song destroys Cao and seizes Yang, earl of Cao."
+ },
+ "fall:-495": {
+  "nm": "Hu",
+  "p": "Chu destroys Hu and seizes Bao, viscount of Hu."
+ },
+ "fall:-496": {
+  "nm": "Dun",
+  "p": "Chu destroys Dun."
+ },
+ "fall:-505": {
+  "nm": "Tang",
+  "p": "King Zhao of Chu, after recovering his state, destroys Tang."
+ },
+ "fall:-506": {
+  "nm": "Shen",
+  "p": "Cai destroys Shen and kills Jia, viscount of Shen."
+ },
+ "fall:-512": {
+  "nm": "Xu",
+  "p": "Wu destroys Xu and Zhongwu, and Zhangyu, viscount of Xu, flees to Chu."
+ },
+ "fall:-518": {
+  "nm": "Chao and Zhongli",
+  "p": "Wu destroys Chao and Zhongli."
+ },
+ "fall:-520": {
+  "nm": "Gu",
+  "p": "Xun Wu of Jin destroys Gu of the White Di."
+ },
+ "fall:-525": {
+  "nm": "Luhun Rong",
+  "p": "Xun Wu of Jin destroys Luhun, and the viscount of Luhun flees to Chu."
+ },
+ "fall:-530": {
+  "nm": "Fei",
+  "p": "Jin destroys Fei of the White Di."
+ },
+ "fall:-531": {
+  "nm": "Cai (made a Chu county)",
+  "p": "King Ling of Chu lures Marquis Ling of Cai to his death and destroys Cai, making it a county; Cai is restored in 529 BC."
+ },
+ "fall:-534": {
+  "nm": "Chen (made a Chu county)",
+  "p": "King Ling of Chu destroys Chen and makes it a county; King Ping restores it in 529 BC."
+ },
+ "fall:-548": {
+  "nm": "Qunshu",
+  "p": "Chu destroys Shujiu, and all of the Qunshu pass to Chu (Shuliao in 601 BC and Shuyong in 574 BC had already fallen)."
+ },
+ "fall:-567": {
+  "nm": "Lai and Zeng",
+  "p": "Duke Ling of Qi destroys Lai and moves Lai to Ni; the same year Ju destroys Zeng."
+ },
+ "fall:-594": {
+  "nm": "Red Di",
+  "p": "Xun Linfu of Jin destroys the Lu lineage; the next year Jin destroys the Jia lineage and Liuxu, and in 588 BC Qianggaoru, and the Red Di are wiped out."
+ },
+ "fall:-611": {
+  "nm": "Yong",
+  "p": "King Zhuang of Chu joins with Qin and Ba to destroy Yong."
+ },
+ "fall:-622": {
+  "nm": "Lu and Liao",
+  "p": "Chu destroys Lu and Liao."
+ },
+ "fall:-623": {
+  "nm": "Jiang",
+  "p": "King Mu of Chu destroys Jiang."
+ },
+ "fall:-627": {
+  "nm": "Hua",
+  "p": "The Qin army fails in its surprise attack on Zheng, destroys Hua and turns back; the land of Hua later passes to Jin."
+ },
+ "fall:-635": {
+  "nm": "Xing",
+  "p": "Duke Wen of Wey destroys Xing."
+ },
+ "fall:-640": {
+  "nm": "Rui",
+  "p": "Duke Mu of Qin destroys Rui."
+ },
+ "fall:-641": {
+  "nm": "Liang",
+  "p": "Duke Mu of Qin destroys Liang."
+ },
+ "fall:-648": {
+  "nm": "Huang",
+  "p": "Huang relies on Qi and does not serve Chu, and Chu destroys Huang."
+ },
+ "fall:-655": {
+  "nm": "Guo and Yu",
+  "p": "Duke Xian of Jin borrows a road through Yu, besieges Shangyang and destroys Guo, then on the way back surprises and destroys Yu."
+ },
+ "fall:-661": {
+  "nm": "Huo, Wei and Geng",
+  "p": "Duke Xian of Jin destroys Huo, Wei and Geng, granting Geng to Zhao Su and Wei to Bi Wan."
+ },
+ "fall:-678": {
+  "nm": "Deng",
+  "p": "King Wen of Chu destroys Deng (the same year Duke Wu of Quwo destroys Yi, and Jin is united under the Quwo line)."
+ },
+ "fall:-680": {
+  "nm": "Xi",
+  "p": "King Wen of Chu destroys Xi and takes Xi Gui."
+ },
+ "fall:-681": {
+  "nm": "Sui",
+  "p": "When the people of Sui stay away from the Assembly at Beixing, Qi destroys Sui."
+ },
+ "fall:-684": {
+  "nm": "Tan",
+  "p": "Duke Huan of Qi destroys Tan, and the viscount of Tan flees to Ju."
+ },
+ "fall:-688": {
+  "nm": "Shen",
+  "p": "King Wen of Chu destroys Shen and makes it a county (one view: 687 BC)."
+ },
+ "fall:-690": {
+  "nm": "Ji",
+  "p": "Duke Xiang of Qi attacks Ji, and the marquis of Ji \"leaves his state for good\"."
+ },
+ "fall:-767": {
+  "nm": "East Guo",
+  "p": "Duke Wu of Zheng destroys East Guo and makes the land of Kuai into Xinzheng."
+ },
+ "fall:-769": {
+  "nm": "Kuai",
+  "p": "Duke Wu of Zheng destroys Kuai."
+ },
+ "prov:上海": {
+  "n": "Shanghai"
+ },
+ "prov:云南": {
+  "n": "Yunnan"
+ },
+ "prov:内蒙古": {
+  "n": "Inner Mongolia"
+ },
+ "prov:北京": {
+  "n": "Beijing"
+ },
+ "prov:台湾": {
+  "n": "Taiwan"
+ },
+ "prov:吉林": {
+  "n": "Jilin"
+ },
+ "prov:四川": {
+  "n": "Sichuan"
+ },
+ "prov:天津": {
+  "n": "Tianjin"
+ },
+ "prov:宁夏": {
+  "n": "Ningxia"
+ },
+ "prov:安徽": {
+  "n": "Anhui"
+ },
+ "prov:山东": {
+  "n": "Shandong"
+ },
+ "prov:山西": {
+  "n": "Shanxi"
+ },
+ "prov:广东": {
+  "n": "Guangdong"
+ },
+ "prov:广西": {
+  "n": "Guangxi"
+ },
+ "prov:江苏": {
+  "n": "Jiangsu"
+ },
+ "prov:江西": {
+  "n": "Jiangxi"
+ },
+ "prov:河北": {
+  "n": "Hebei"
+ },
+ "prov:河南": {
+  "n": "Henan"
+ },
+ "prov:浙江": {
+  "n": "Zhejiang"
+ },
+ "prov:海南": {
+  "n": "Hainan"
+ },
+ "prov:湖北": {
+  "n": "Hubei"
+ },
+ "prov:湖南": {
+  "n": "Hunan"
+ },
+ "prov:甘肃": {
+  "n": "Gansu"
+ },
+ "prov:福建": {
+  "n": "Fujian"
+ },
+ "prov:贵州": {
+  "n": "Guizhou"
+ },
+ "prov:辽宁": {
+  "n": "Liaoning"
+ },
+ "prov:重庆": {
+  "n": "Chongqing"
+ },
+ "prov:陕西": {
+  "n": "Shaanxi"
+ },
+ "prov:青海": {
+  "n": "Qinghai"
+ },
+ "prov:香港": {
+  "n": "Hong Kong"
+ },
+ "prov:黑龙江": {
+  "n": "Heilongjiang"
+ }
+}

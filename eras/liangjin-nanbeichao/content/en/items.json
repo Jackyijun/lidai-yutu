@@ -1,0 +1,3090 @@
+{
+ "capital:洛阳@晋": {
+  "old": "Luoyang",
+  "mod": "east of Luoyang, Henan (Han–Wei Luoyang city site)",
+  "note": "Capital of the Western Jin, with the palace city in the north, the Hall of Supreme Ultimate as its main hall, and Jinyong City in the northwest corner. In the 6th month of 311 it was taken by the Han army, the palaces were burned, and Emperor Huai was captured."
+ },
+ "capital:长安@晋": {
+  "old": "Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi (Han Chang'an city site)",
+  "note": "Emperor Min took the throne at Chang'an in 313, when \"there were fewer than a hundred households, thorns and brambles grew like forests, and there were four carriages in all, public and private\"; in the 11th month of 316 Liu Yao took the city and Emperor Min surrendered."
+ },
+ "capital:建康@晋": {
+  "old": "Jiankang",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Jianye of Sun Wu, renamed Jiankang in 313 to avoid the personal name of Emperor Min. Sima Rui took the title King of Jin here in 317, and the Eastern Jin, Song, Qi, Liang and Chen made it their capital in turn — known as the ancient capital of the Six Dynasties; the palace city was called Taicheng, with Shitou City to the west and Xuanwu Lake to the north."
+ },
+ "capital:建康@桓楚": {
+  "old": "Jiankang",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Huan Xuan proclaimed himself emperor here in the 12th month of 403, and abandoned the city and fled west after Liu Yu rose in the 2nd month of the following year."
+ },
+ "capital:建康@宋": {
+  "old": "Jiankang",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Capital of Liu Song."
+ },
+ "capital:建康@齐": {
+  "old": "Jiankang",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Capital of Southern Qi."
+ },
+ "capital:建康@梁": {
+  "old": "Jiankang",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Capital of Liang. Taicheng fell to Hou Jing in the 3rd month of 549; in 552 Emperor Yuan took the throne at Jiangling and did not return to Jiankang; in 555 Emperor Jing took the throne at Jiankang."
+ },
+ "capital:建康@侯景": {
+  "old": "Jiankang",
+  "mod": "Nanjing, Jiangsu",
+  "note": "After taking Taicheng in 549 Hou Jing held Emperor Jianwen captive, and in the 11th month of 551 he proclaimed himself emperor here, naming his state Han."
+ },
+ "capital:江陵@梁": {
+  "old": "Jiangling",
+  "mod": "Jingzhou, Hubei",
+  "note": "Emperor Yuan of Liang, Xiao Yi, took the throne at Jiangling in the 11th month of 552; it was taken by the Western Wei in the 11th month of 554."
+ },
+ "capital:建康@陈": {
+  "old": "Jiankang",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Capital of Chen, taken by the Sui army in the 1st month of 589."
+ },
+ "capital:江陵@后梁": {
+  "old": "Jiangling",
+  "mod": "Jingzhou, Hubei",
+  "note": "Capital of the Later Liang (Western Liang), where three generations of the Xiao ruled as vassals of the Western Wei, Northern Zhou and Sui; abolished in 587."
+ },
+ "capital:左国城": {
+  "old": "Zuoguo City",
+  "mod": "Nancun, Fangshan County, Lüliang, Shanxi",
+  "note": "Seat of the commander of the Left Division of the Southern Xiongnu. Liu Yuan proclaimed himself King of Han here in the 10th month of 304, and the following year moved south to Liting because of famine."
+ },
+ "capital:蒲子": {
+  "old": "Puzi",
+  "mod": "Xi County, Shanxi",
+  "note": "Liu Yuan took the imperial throne here in the 10th month of 308, and moved his capital to Pingyang in the 1st month of the following year."
+ },
+ "capital:平阳": {
+  "old": "Pingyang",
+  "mod": "southwest of Linfen, Shanxi",
+  "note": "Capital of Han. Emperor Huai of Jin, captured in 311, and Emperor Min, captured in 316, were both sent to Pingyang; after Jin Zhun's coup of 318 it was burned by Shi Le."
+ },
+ "capital:长安@汉赵": {
+  "old": "Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi (Han Chang'an city site)",
+  "note": "Liu Yao took the throne in the 10th month of 318 and the following year moved his capital to Chang'an, renaming his state Zhao (Former Zhao)."
+ },
+ "capital:成都@成汉": {
+  "old": "Chengdu",
+  "mod": "Chengdu, Sichuan",
+  "note": "Li Xiong took Chengdu in 303, proclaimed himself King of Chengdu in 304 and emperor in 306; in the 3rd month of 347 Huan Wen took the city and Li Shi surrendered."
+ },
+ "capital:襄国@后赵": {
+  "old": "Xiangguo",
+  "mod": "Xingtai, Hebei",
+  "note": "Shi Le made it his base in 312, proclaimed himself King of Zhao here in 319 and emperor in 330."
+ },
+ "capital:邺@后赵": {
+  "old": "Ye",
+  "mod": "Ye City ruins, Linzhang, Hebei",
+  "note": "Shi Hu moved the capital to Ye in 335 and built palaces on a grand scale, raising the Taiwu Hall and the Eastern and Western Palaces with the labor of hundreds of thousands."
+ },
+ "capital:襄国@后赵#2": {
+  "old": "Xiangguo",
+  "mod": "Xingtai, Hebei",
+  "note": "Shi Zhi proclaimed himself emperor at Xiangguo in 350 and was killed by his general Liu Xian the following year, and the Later Zhao came to an end."
+ },
+ "capital:邺@冉魏": {
+  "old": "Ye",
+  "mod": "Ye City ruins, Linzhang, Hebei",
+  "note": "Capital of Ran Wei, taken by the Former Yan in the 8th month of 352."
+ },
+ "capital:姑臧@前凉": {
+  "old": "Guzang",
+  "mod": "Wuwei, Gansu",
+  "note": "Capital of the Former Liang, built up by Zhang Gui; it consisted of five walled towns, the central one being the palace."
+ },
+ "capital:盛乐@代": {
+  "old": "Shengle",
+  "mod": "Tuchengzi, Horinger, Inner Mongolia",
+  "note": "Northern capital of the Tuoba state of Dai, fixed by Yilu in 313 (he took the title King of Dai in 315); Shiyijian built the new city of Shengle in 341."
+ },
+ "capital:盛乐@拓跋": {
+  "old": "Shengle",
+  "mod": "Tuchengzi, Horinger, Inner Mongolia",
+  "note": "Tuoba Liwei moved to Shengle in Dingxiang in 258, and thereafter it was the center of the Tuoba."
+ },
+ "capital:大棘城@慕容": {
+  "old": "Daji City",
+  "mod": "Beipiao, Liaoning (or Yi County)",
+  "note": "Murong Hui moved to Daji City in 294, taught his people farming and sericulture, and drew in refugees from the Central Plain."
+ },
+ "capital:大棘城@前燕": {
+  "old": "Daji City",
+  "mod": "Beipiao, Liaoning (or Yi County)",
+  "note": "Murong Huang took the title King of Yan here in 337; in 338 Shi Hu of the Later Zhao besieged the city for more than ten days without taking it."
+ },
+ "capital:龙城@前燕": {
+  "old": "Longcheng",
+  "mod": "Chaoyang, Liaoning",
+  "note": "In 341 Murong Huang built a city north of Liucheng, called Longcheng, and moved his capital there the following year; the Later Yan and Northern Yan also had their capitals here."
+ },
+ "capital:蓟": {
+  "old": "Ji",
+  "mod": "southwest Beijing",
+  "note": "The Former Yan took Ji City in 350 and moved its capital there; Murong Jun proclaimed himself emperor here in 352."
+ },
+ "capital:邺@前燕": {
+  "old": "Ye",
+  "mod": "Ye City ruins, Linzhang, Hebei",
+  "note": "The Former Yan moved its capital to Ye in 357; it was taken by Wang Meng of the Former Qin in the 11th month of 370."
+ },
+ "capital:长安@前秦": {
+  "old": "Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi (Han Chang'an city site)",
+  "note": "Capital of the Former Qin. Under Fu Jian (苻坚) \"Guanlong was at peace and the people prosperous and happy\", and the roads from Chang'an to the provinces were lined with pagoda trees and willows."
+ },
+ "capital:晋阳@前秦": {
+  "old": "Jinyang",
+  "mod": "Jinyuan District, Taiyuan, Shanxi",
+  "note": "In 385 Fu Pi abandoned Ye, went west to Jinyang and proclaimed himself emperor."
+ },
+ "capital:中山": {
+  "old": "Zhongshan",
+  "mod": "Dingzhou, Hebei",
+  "note": "Murong Chui proclaimed himself emperor at Zhongshan in 386; Murong Bao abandoned the city and went north in the 3rd month of 397."
+ },
+ "capital:龙城@后燕": {
+  "old": "Longcheng",
+  "mod": "Chaoyang, Liaoning",
+  "note": "The Later Yan fell back north to Longcheng in 397, and Murong Xi was killed here in 407."
+ },
+ "capital:龙城@北燕": {
+  "old": "Longcheng",
+  "mod": "Chaoyang, Liaoning",
+  "note": "Capital of the Northern Yan; Feng Ba \"encouraged farming and sericulture and lightened labor service and taxes\". In 436 Feng Hong burned the palaces and fled east to Goguryeo."
+ },
+ "capital:长子": {
+  "old": "Zhangzi",
+  "mod": "west of Zhangzi, Shanxi",
+  "note": "Murong Yong proclaimed himself emperor here in the 10th month of 386; it was taken by the Later Yan in the 8th month of 394."
+ },
+ "capital:长安@西燕": {
+  "old": "Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi (Han Chang'an city site)",
+  "note": "Murong Chong broke into Chang'an in the 5th month of 385 and let his troops plunder at will; his people went back east the following year."
+ },
+ "capital:长安@后秦": {
+  "old": "Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi (Han Chang'an city site)",
+  "note": "Capital of the Later Qin. In 401 Yao Xing brought Kumarajiva to Chang'an, where he translated more than three hundred scrolls of scripture in the Ximing Pavilion of the Xiaoyao Garden."
+ },
+ "capital:苑川": {
+  "old": "Yuanchuan",
+  "mod": "north of Yuzhong, Gansu",
+  "note": "Qifu Guoren styled himself Grand Chanyu at Yongshi City in Yuanchuan in 385; it was the birthplace of the Western Qin."
+ },
+ "capital:金城@西秦": {
+  "old": "Jincheng",
+  "mod": "Lanzhou, Gansu",
+  "note": "Qifu Gangui moved his capital to Jincheng in 388."
+ },
+ "capital:枹罕": {
+  "old": "Fuhan",
+  "mod": "Linxia, Gansu",
+  "note": "Qifu Chipan moved his capital to Fuhan in 412."
+ },
+ "capital:姑臧@后凉": {
+  "old": "Guzang",
+  "mod": "Wuwei, Gansu",
+  "note": "Lü Guang returned east and entered Guzang in 385; Lü Long moved east to Chang'an in the 8th month of 403."
+ },
+ "capital:乐都": {
+  "old": "Ledu",
+  "mod": "Ledu, Haidong, Qinghai",
+  "note": "Capital of the Southern Liang, taken in a surprise attack by the Western Qin in 414."
+ },
+ "capital:姑臧@南凉": {
+  "old": "Guzang",
+  "mod": "Wuwei, Gansu",
+  "note": "In 406 the Later Qin gave Guzang to Tufa Rutan, who fell back to Ledu after his defeat by the Northern Liang in 410."
+ },
+ "capital:张掖": {
+  "old": "Zhangye",
+  "mod": "Zhangye, Gansu",
+  "note": "Duan Ye took Zhangye and made it his capital in 398; Juqu Mengxun killed Duan Ye here in 401."
+ },
+ "capital:姑臧@北凉": {
+  "old": "Guzang",
+  "mod": "Wuwei, Gansu",
+  "note": "Juqu Mengxun moved his capital to Guzang in 412 and took the title King of Hexi; the city fell in the 9th month of 439, and the Northern Liang came to an end."
+ },
+ "capital:高昌": {
+  "old": "Gaochang",
+  "mod": "Gaochang ruins, Turpan, Xinjiang",
+  "note": "Juqu Wuhui seized Gaochang in 442 and styled himself King of Liang; the city was taken by the Rouran in 460."
+ },
+ "capital:高昌城": {
+  "old": "Gaochang City",
+  "mod": "Gaochang ruins, Turpan, Xinjiang",
+  "note": "In 460 the Rouran made Kan Bozhou King of Gaochang, after whom the Zhang, Ma and Qu clans ruled in turn; the Qu kingdom of Gaochang was predominantly Chinese in culture and set up an Imperial Academy."
+ },
+ "capital:滑台@南燕": {
+  "old": "Huatai",
+  "mod": "east of Hua County, Henan",
+  "note": "In 398 Murong De moved south from Ye to Huatai and styled himself King of Yan; he lost it the following year."
+ },
+ "capital:广固@南燕": {
+  "old": "Guanggu",
+  "mod": "northwest of Qingzhou, Shandong",
+  "note": "A city built by Cao Ni and the capital of the Southern Yan; taken by Liu Yu in the 2nd month of 410 and razed."
+ },
+ "capital:敦煌": {
+  "old": "Dunhuang",
+  "mod": "Dunhuang, Gansu",
+  "note": "In 400 Li Gao was acclaimed Duke of Liang and held Dunhuang."
+ },
+ "capital:酒泉": {
+  "old": "Jiuquan",
+  "mod": "Jiuquan, Gansu",
+  "note": "In 405 Li Gao moved his capital to Jiuquan, planning to advance east."
+ },
+ "capital:统万城": {
+  "old": "Tongwan City",
+  "mod": "Baichengzi, Jingbian, Shaanxi",
+  "note": "In 413 Helian Bobo set Chigan Ali to oversee its building; the walls were made of steamed earth, and if an awl could be driven an inch into them the builders were put to death; the walls were hard enough to whet knives and axes on. It was named Tongwan; its ruins are today called Baichengzi."
+ },
+ "capital:平凉": {
+  "old": "Pingliang",
+  "mod": "Pingliang, Gansu",
+  "note": "After Helian Chang was captured in 428, his younger brother Helian Ding took the throne at Pingliang."
+ },
+ "capital:滑台@翟魏": {
+  "old": "Huatai",
+  "mod": "east of Hua County, Henan",
+  "note": "Zhai Liao of the Dingling occupied Huatai in 388 and styled himself Heavenly King of Wei."
+ },
+ "capital:成都@谯蜀": {
+  "old": "Chengdu",
+  "mod": "Chengdu, Sichuan",
+  "note": "Qiao Zong occupied Chengdu in 405 and styled himself King of Chengdu; the city fell in the 7th month of 413."
+ },
+ "capital:广固@段龛": {
+  "old": "Guanggu",
+  "mod": "northwest of Qingzhou, Shandong",
+  "note": "Duan Kan occupied Guanggu in 350 and styled himself King of Qi; it was taken by the Former Yan in the 11th month of 356."
+ },
+ "capital:仇池": {
+  "old": "Chouchi",
+  "mod": "Mount Chouchi, Xihe, Gansu",
+  "note": "Mount Chouchi is \"a hundred qing in area, sheer on all four sides\", with springs on the summit; the Yang clan made it their base."
+ },
+ "capital:武兴": {
+  "old": "Wuxing",
+  "mod": "Lüeyang, Shaanxi",
+  "note": "Capital of the Yang clan's kingdom of Wuxing, destroyed by the Northern Wei in 506."
+ },
+ "capital:盛乐@北魏": {
+  "old": "Shengle",
+  "mod": "Tuchengzi, Horinger, Inner Mongolia",
+  "note": "After restoring the state in 386, Tuoba Gui made Shengle his capital."
+ },
+ "capital:平城": {
+  "old": "Pingcheng",
+  "mod": "Datong, Shanxi",
+  "note": "Emperor Daowu moved the capital to Pingcheng in 398 and built palaces, an ancestral temple and altars of soil and grain; the Yungang Grottoes were cut in the Wuzhou Mountains west of the city."
+ },
+ "capital:洛阳@北魏": {
+  "old": "Luoyang",
+  "mod": "east of Luoyang, Henan (Han–Wei Luoyang city site)",
+  "note": "Emperor Xiaowen moved the capital to Luoyang in 494 and rebuilt it on the old Western Jin site; the outer walls ran twenty li east to west and fifteen li north to south, and the city had more than 1,300 Buddhist temples (Record of the Buddhist Monasteries of Luoyang)."
+ },
+ "capital:邺@东魏": {
+  "old": "Ye",
+  "mod": "Ye City ruins, Linzhang, Hebei",
+  "note": "In 534 Gao Huan moved Emperor Xiaojing to Ye and built the Southern City of Ye south of the old city."
+ },
+ "capital:邺@北齐": {
+  "old": "Ye",
+  "mod": "Ye City ruins, Linzhang, Hebei",
+  "note": "Capital of Northern Qi, with Jinyang as a secondary capital; taken by the Northern Zhou in the 1st month of 577."
+ },
+ "capital:晋阳@高欢": {
+  "old": "Jinyang",
+  "mod": "Jinyuan District, Taiyuan, Shanxi",
+  "note": "Seat of Gao Huan's Grand Chancellor's office, known as the \"hegemon's headquarters\"; most Eastern Wei orders issued from here."
+ },
+ "capital:长安@西魏": {
+  "old": "Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi (Han Chang'an city site)",
+  "note": "In 534 Emperor Xiaowu fled west to Chang'an; the following year Yuwen Tai enthroned Emperor Wen, and the Western Wei had its capital at Chang'an."
+ },
+ "capital:长安@北周": {
+  "old": "Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi (Han Chang'an city site)",
+  "note": "Capital of the Northern Zhou; in the 2nd month of 581 Emperor Jing abdicated in favor of Yang Jian."
+ },
+ "capital:大兴城（长安）": {
+  "old": "Daxing City (Chang'an)",
+  "mod": "Xi'an, Shaanxi",
+  "note": "The early Sui court stayed for a time in the old Han city of Chang'an; in 582 Yuwen Kai was ordered to build a new capital to its southeast, which the court moved into in the 3rd month of 583 and named Daxing City. It had three walled layers (palace city, imperial city and outer city), with 108 wards in the outer city, and was the largest city in the world at the time."
+ },
+ "capital:雅隆（琼结）": {
+  "old": "Yarlung (Chongye)",
+  "mod": "Shannan, Tibet",
+  "note": "Homeland of the Pugyal; the Chingwa Taktse Palace in the Yarlung Valley was the seat of the early tsenpos."
+ },
+ "capital:穹窿银城": {
+  "old": "Khyunglung Ngulkhar",
+  "mod": "Gar, Ngari, Tibet",
+  "note": "Capital of Yangtong (Zhangzhung), which was destroyed by the Tibetan Empire around 644."
+ },
+ "capital:柔然牙帐": {
+  "old": "Rouran royal camp",
+  "mod": "upper Orkhon River, Mongolia",
+  "note": "The royal court of the Rouran Qaghan, usually on the Orkhon and Tuul in summer, moving south in winter."
+ },
+ "capital:于都斤山（突厥牙帐）": {
+  "old": "Ötüken (Turkic royal camp)",
+  "mod": "eastern Khangai Mountains, Mongolia",
+  "note": "The sacred mountain where the Turkic Qaghan had his royal camp (Yudujin, Yudujun Mountain); Turkic inscriptions call it \"the Ötüken forest\"."
+ },
+ "capital:伏俟城": {
+  "old": "Fuqi City",
+  "mod": "Shinaihai, Gonghe, Qinghai",
+  "note": "Capital of the Tuyuhun, 15 li west of Qinghai Lake: a square town with earthen walls, whose ruins survive today."
+ },
+ "capital:丸都（国内城）": {
+  "old": "Hwando (Gungnae Fortress)",
+  "mod": "Ji'an, Jilin",
+  "note": "Early capital of Goguryeo, with Gungnae Fortress on the plain and the mountain fortress of Hwando above. It was sacked by the Former Yan in 342; in 414 King Jangsu set up the Gwanggaeto Stele east of the city."
+ },
+ "capital:平壤": {
+  "old": "Pyongyang",
+  "mod": "Pyongyang, North Korea",
+  "note": "King Jangsu moved the capital to Pyongyang in 427, the royal city lying around the Daeseongsan mountain fortress and the Anhak Palace; from 552 the Jangan Fortress was built to the south."
+ },
+ "capital:平壤（长安城）": {
+  "old": "Pyongyang (Jangan Fortress)",
+  "mod": "Pyongyang, North Korea",
+  "note": "In 586 Goguryeo moved into the newly built Jangan Fortress (Pyongyang), the ultimate target of the repeated Sui and Tang expeditions. It was stormed in the 9th month of 668 by Li Ji, Xue Rengui and Silla troops."
+ },
+ "capital:汉城（慰礼城）": {
+  "old": "Hanseong (Wiryeseong)",
+  "mod": "Seoul, South Korea (around Pungnap Toseong)",
+  "note": "Early capital of Baekje, taken by Goguryeo in the 9th month of 475, when King Gaero was killed."
+ },
+ "capital:熊津": {
+  "old": "Ungjin",
+  "mod": "Gongju, South Chungcheong, South Korea",
+  "note": "King Munju moved south to Ungjin in 475; the tomb of King Muryeong is here."
+ },
+ "capital:泗沘": {
+  "old": "Sabi",
+  "mod": "Buyeo, South Chungcheong, South Korea",
+  "note": "Baekje moved its capital to Sabi in 538."
+ },
+ "capital:金城@新罗": {
+  "old": "Geumseong",
+  "mod": "Gyeongju, North Gyeongsang, South Korea",
+  "note": "The royal capital of Silla, today's Gyeongju, also called Seorabeol."
+ },
+ "capital:大和": {
+  "old": "Yamato",
+  "mod": "Nara Basin, Japan",
+  "note": "The center of the Wa royal power, where the great mounded tombs of the 3rd century onward are concentrated; at the end of the 6th century Empress Suiko made Asuka her capital."
+ },
+ "capital:飞鸟": {
+  "old": "Asuka",
+  "mod": "Asuka, Nara, Japan",
+  "note": "The political center of Wa from the reign of Empress Suiko on. After the Taika Reform of 645 the court moved for a time to Naniwa, and in 667 to Ōmi-Ōtsu."
+ },
+ "capital:典冲（林邑都）": {
+  "old": "Simhapura (Linyi capital)",
+  "mod": "Trà Kiệu, Đà Nẵng, Vietnam",
+  "note": "Capital of Linyi, called Simhapura (Lion City) in Sanskrit, south of Qusu City."
+ },
+ "capital:特牧城（扶南都）": {
+  "old": "Vyadhapura (Funan capital)",
+  "mod": "around Angkor Borei, Cambodia",
+  "note": "Capital of Funan; the Book of Liang says \"the king lives in a many-storied building, and the city wall is a wooden stockade\"."
+ },
+ "capital:泰西封": {
+  "old": "Ctesiphon",
+  "mod": "southeast of Baghdad, Iraq",
+  "note": "Winter capital of the Sasanians; the great arch of the palace built by Khosrow I (the Taq-i Kisra) still stands."
+ },
+ "capital:尼科米底亚": {
+  "old": "Nicomedia",
+  "mod": "İzmit, Türkiye",
+  "note": "Capital of the Roman East under Diocletian's Tetrarchy."
+ },
+ "capital:君士坦丁堡": {
+  "old": "Constantinople",
+  "mod": "Istanbul, Türkiye",
+  "note": "In 330 Constantine the Great moved the capital to Byzantium and renamed it Constantinople; Justinian completed the Hagia Sophia in 537."
+ },
+ "capital:华氏城": {
+  "old": "Pataliputra",
+  "mod": "Patna, India",
+  "note": "The ancient capital of Magadha and capital of the Gupta dynasty; Faxian wrote that \"the royal palaces in the city were all built by spirits, who piled up stones for walls and gate towers\"."
+ },
+ "capital:阿㝹罗陀补罗": {
+  "old": "Anuradhapura",
+  "mod": "Anuradhapura, Sri Lanka",
+  "note": "Royal capital of Simhala; Faxian lived in the city's Abhayagiri monastery in 410–411."
+ },
+ "battle:西晋灭吴之战": {
+  "old": "Western Jin conquest of Wu",
+  "mod": "Nanjing, Jiangsu",
+  "note": "In the winter of 279 Jin attacked Wu along six routes; in the 2nd month of 280 Wang Jun burned through the iron chains across the Yangtze, in the 3rd month the Wu Chancellor Zhang Ti was killed in battle at Banqiao, and Wang Jun's towered warships reached Shitou City; Sun Hao came out with his hands bound and surrendered.",
+  "yt": "winter 279 – 3rd month, 280",
+  "sides": "Jin defeated Wu",
+  "cmd": "Wang Jun (王濬), Du Yu and Wang Hun vs. Sun Hao and Zhang Ti"
+ },
+ "battle:六陌之战": {
+  "old": "Battle of Liumo",
+  "mod": "around Qian County, Shaanxi",
+  "note": "Zhou Chu was ordered to attack Qi Wannian's seventy thousand with five thousand men; the commander-in-chief Sima Tong held back his troops and sent no help, and Zhou Chu fought all day until his bows and arrows were spent, and died.",
+  "yt": "1st month, 297",
+  "sides": "Qi Wannian defeated Jin",
+  "cmd": "Qi Wannian vs. Zhou Chu"
+ },
+ "battle:中亭之战": {
+  "old": "Battle of Zhongting",
+  "mod": "around Wugong, Shaanxi",
+  "note": "Meng Guan, leading palace guards and Guanzhong troops, fought a dozen battles large and small, crushed the Di and Qiang at Zhongting and captured Qi Wannian alive, and Guanzhong was pacified.",
+  "yt": "1st month, 299",
+  "sides": "Jin defeated Qi Wannian",
+  "cmd": "Meng Guan vs. Qi Wannian"
+ },
+ "battle:湨水之战": {
+  "old": "Battle of the Ju River",
+  "mod": "southeast of Jiyuan, Henan",
+  "note": "After a setback at Huangqiao, Sima Ying, Prince of Chengdu, soon crushed Sima Lun's army at the Ju River and crossed the Yellow River straight for Luoyang; Sima Lun was defeated and died.",
+  "yt": "4th month, 301",
+  "sides": "Sima Ying, Prince of Chengdu, defeated Sima Lun, Prince of Zhao",
+  "cmd": "Sima Ying vs. Sun Hui and Shi Yi"
+ },
+ "battle:七里涧之战": {
+  "old": "Battle of Qilijian",
+  "mod": "east of Luoyang, Henan",
+  "note": "Lu Ji attacked Luoyang with more than two hundred thousand men and was routed at Qilijian outside the Jianchun Gate; the dead lay in heaps and the stream stopped flowing. Lu Ji was afterwards killed by Sima Ying, sighing before his execution, \"Shall I never again hear the cranes cry at Huating?\"",
+  "yt": "10th month, 303",
+  "sides": "Sima Ai, Prince of Changsha, defeated Sima Ying, Prince of Chengdu",
+  "cmd": "Sima Ai vs. Lu Ji"
+ },
+ "battle:少城之战": {
+  "old": "Battle of Shaocheng",
+  "mod": "Chengdu, Sichuan",
+  "note": "After breaking into the Lesser City of Chengdu, Li Te relaxed his guard; Luo Shang attacked by night and beheaded him, and the refugees passed under the command of Li Liu and Li Xiong.",
+  "yt": "3rd month, 303",
+  "sides": "Jin defeated the refugees",
+  "cmd": "Luo Shang vs. Li Te"
+ },
+ "battle:竟陵之战": {
+  "old": "Battle of Jingling",
+  "mod": "around Tianmen, Hubei",
+  "note": "Liu Hong, Inspector of Jing Province, made Tao Kan Grand Protector-General; Tao Kan crushed Zhang Chang at Jingling, taking tens of thousands of heads, and Zhang Chang's remaining forces under Shi Bing fled east to Yang Province.",
+  "yt": "8th month, 303",
+  "sides": "Jin defeated Zhang Chang",
+  "cmd": "Tao Kan vs. Zhang Chang"
+ },
+ "battle:荡阴之战": {
+  "old": "Battle of Dangyin",
+  "mod": "Tangyin, Henan",
+  "note": "Sima Yue took Emperor Hui north on campaign and was routed by Shi Chao at Dangyin; the emperor was struck in the face by three arrows, the Palace Attendant Ji Shao shielded him with his body and died, his blood splashing the emperor's robes, and Emperor Hui was carried captive into Ye.",
+  "yt": "7th month, 304",
+  "sides": "Sima Ying, Prince of Chengdu, defeated Sima Yue, Prince of Donghai",
+  "cmd": "Sima Ying (Shi Chao) vs. Sima Yue"
+ },
+ "battle:宁平城之战": {
+  "old": "Battle of Ningping City",
+  "mod": "northeast of Dancheng, Henan",
+  "note": "After the death of Sima Yue, Prince of Donghai, more than a hundred thousand Jin troops escorted his coffin east; Shi Le overtook them with light cavalry, surrounded them and shot them down — \"they trampled one another into heaps like hills, and not one man escaped\". Wang Yan and others were killed, and the main Jin army was annihilated.",
+  "yt": "4th month, 311",
+  "sides": "Shi Le defeated Jin",
+  "cmd": "Shi Le vs. Wang Yan (王衍) and Sima Fan"
+ },
+ "battle:洛阳之陷（永嘉之乱）": {
+  "old": "Fall of Luoyang (Disaster of Yongjia)",
+  "mod": "east of Luoyang, Henan",
+  "note": "The Han army broke into Luoyang, burned the palaces and ancestral temples, killed more than thirty thousand princes, officials and townspeople and dug up the imperial tombs; Emperor Huai was captured and sent to Pingyang.",
+  "yt": "6th month, 311",
+  "sides": "Han defeated Jin",
+  "cmd": "Liu Yao, Wang Mi and Shi Le vs. Emperor Huai of Jin"
+ },
+ "battle:长安之陷": {
+  "old": "Fall of Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi",
+  "note": "Liu Yao besieged Chang'an for months; inside the city a peck of grain cost two taels of gold and people ate one another. In the 11th month Emperor Min rode out in a goat cart, stripped to the waist with a jade disc in his mouth, and surrendered, and the Western Jin came to an end.",
+  "yt": "11th month, 316",
+  "sides": "Han defeated Jin",
+  "cmd": "Liu Yao vs. Emperor Min of Jin and Qu Yun"
+ },
+ "battle:蓟城之袭": {
+  "old": "Raid on Ji City",
+  "mod": "southwest Beijing",
+  "note": "Pretending that he wished to make Wang Jun emperor, Shi Le entered Ji City with oxen and sheep as tribute, let his troops plunder at will, and captured Wang Jun, sending him to Xiangguo to be beheaded.",
+  "yt": "3rd month, 314",
+  "sides": "Shi Le defeated Wang Jun",
+  "cmd": "Shi Le vs. Wang Jun"
+ },
+ "battle:雍丘之战": {
+  "old": "Battle of Yongqiu",
+  "mod": "Qi County, Henan",
+  "note": "Zu Ti and Tao Bao of the Later Zhao held the eastern and western terraces of Junyi City and faced each other for forty days; Zu Ti filled cloth sacks with earth and passed them off as grain, then captured the Zhao supply carts, and Tao Bao slipped away by night.",
+  "yt": "319–320",
+  "sides": "Jin defeated Later Zhao",
+  "cmd": "Zu Ti vs. Tao Bao"
+ },
+ "battle:石头之战": {
+  "old": "Battle of Shitou",
+  "mod": "west of Nanjing, Jiangsu",
+  "note": "Wang Dun came down the Yangtze from Wuchang; Zhou Zha, holding Shitou City, opened the gates and surrendered, the government armies were beaten on every front, Liu Wei fled north to the Later Zhao, and Diao Xie was killed.",
+  "yt": "3rd month, 322",
+  "sides": "Wang Dun defeated Jin",
+  "cmd": "Wang Dun vs. Liu Wei and Diao Xie"
+ },
+ "battle:越城之战": {
+  "old": "Battle of Yuecheng",
+  "mod": "south of Nanjing, Jiangsu",
+  "note": "When Wang Dun rebelled again he sent his elder brother Wang Han forward by land and water with fifty thousand men; Emperor Ming recruited bold men who crossed the Qinhuai by night and attacked Yuecheng, crushing Wang Han, and Wang Dun, hearing of the defeat, died of illness.",
+  "yt": "7th month, 324",
+  "sides": "Jin defeated Wang Dun",
+  "cmd": "Emperor Ming of Jin vs. Wang Han and Qian Feng"
+ },
+ "battle:高候之战": {
+  "old": "Battle of Gaohou",
+  "mod": "around Wenxi, Shanxi",
+  "note": "Shi Hu attacked the Former Zhao's Hedong with forty thousand men; Liu Yao came to its rescue in person with his best troops, crushed Shi Hu at Gaohou, and followed up by besieging Jinyong City at Luoyang.",
+  "yt": "8th month, 328",
+  "sides": "Former Zhao defeated Later Zhao",
+  "cmd": "Liu Yao vs. Shi Hu"
+ },
+ "battle:洛阳之战@河南洛阳西": {
+  "old": "Battle of Luoyang (328)",
+  "mod": "west of Luoyang, Henan",
+  "note": "Shi Le crossed the Yellow River at Da'e at the head of forty thousand foot and horse; Liu Yao drank several pecks of wine before the battle, fell from his horse and was captured, and the Former Zhao promptly collapsed.",
+  "yt": "12th month, 328",
+  "sides": "Later Zhao defeated Former Zhao",
+  "cmd": "Shi Le vs. Liu Yao"
+ },
+ "battle:白木陂之战": {
+  "old": "Battle of Baimubei",
+  "mod": "west of Nanjing, Jiangsu",
+  "note": "Su Jun, drunk, charged the enemy line with a few horsemen, fell from his horse and was speared to death by Jin soldiers.",
+  "yt": "9th month, 328",
+  "sides": "Jin defeated Su Jun",
+  "cmd": "Tao Kan and Wen Jiao vs. Su Jun"
+ },
+ "battle:上邽之战": {
+  "old": "Battle of Shanggui",
+  "mod": "Tianshui, Gansu",
+  "note": "Liu Yin led a counterattack on Chang'an and was crushed by Shi Hu at Yiqu; Shi Hu pursued him to Shanggui and beheaded Liu Xi, Liu Yin and more than three thousand princes, ministers and officers, and the Former Zhao fell.",
+  "yt": "9th month, 329",
+  "sides": "Later Zhao defeated Former Zhao",
+  "cmd": "Shi Hu vs. Liu Yin and Liu Xi"
+ },
+ "battle:棘城之战": {
+  "old": "Battle of Jicheng",
+  "mod": "Beipiao, Liaoning (or Yi County)",
+  "note": "A Later Zhao army several hundred thousand strong besieged Daji City for more than ten days without taking it; Murong Ke pursued the retreating army with two thousand horsemen and took more than thirty thousand heads.",
+  "yt": "5th month, 338",
+  "sides": "Former Yan defeated Later Zhao",
+  "cmd": "Murong Ke vs. Shi Hu"
+ },
+ "battle:丸都之战": {
+  "old": "Battle of Hwando",
+  "mod": "Ji'an, Jilin",
+  "note": "Murong Huang led his main force of forty thousand along the southern road in a surprise attack, sacked Hwando, dug up the tomb of King Micheon, and returned with the king's mother, his queen and more than fifty thousand men and women as captives; Goguryeo sent envoys to declare itself a subject.",
+  "yt": "11th month, 342",
+  "sides": "Former Yan defeated Goguryeo",
+  "cmd": "Murong Huang vs. King Gogugwon"
+ },
+ "battle:笮桥之战": {
+  "old": "Battle of Zuoqiao",
+  "mod": "southwest of Chengdu, Sichuan",
+  "note": "The Jin vanguard faltered, the Adjutant Gong Hu was killed, and arrows reached the head of Huan Wen's horse; but a drummer mistakenly beat the advance, Yuan Qiao urged the men on to fight hard, and they crushed the Han army; Li Shi surrendered.",
+  "yt": "3rd month, 347",
+  "sides": "Jin defeated Cheng Han",
+  "cmd": "Huan Wen vs. Li Shi"
+ },
+ "battle:枹罕之战": {
+  "old": "Battle of Fuhan",
+  "mod": "Linxia, Gansu",
+  "note": "Xie Ai of the Former Liang, riding in a light carriage and wearing a white cap, advanced to the beat of drums and crushed Ma Qiu of the Later Zhao.",
+  "yt": "346–347",
+  "sides": "Former Liang defeated Later Zhao",
+  "cmd": "Xie Ai vs. Ma Qiu"
+ },
+ "battle:日南之陷": {
+  "old": "Fall of Rinan",
+  "mod": "around Quảng Trị, Vietnam",
+  "note": "Fan Wen, King of Linyi, took Rinan Commandery, killed its Administrator Xiahou Lan and five or six thousand of its people, and made the Hengshan range on Rinan's northern edge the border.",
+  "yt": "347",
+  "sides": "Linyi defeated Jin",
+  "cmd": "Fan Wen vs. Xiahou Lan"
+ },
+ "battle:廉台之战": {
+  "old": "Battle of Liantai",
+  "mod": "northeast of Wuji, Hebei",
+  "note": "Ran Min won ten battles in a row; Murong Ke surrounded him with a square formation of horses linked by iron chains, and Ran Min, breaking out, fell from his horse and was captured, and was sent to Longcheng to be beheaded.",
+  "yt": "4th month, 352",
+  "sides": "Former Yan defeated Ran Wei",
+  "cmd": "Murong Ke vs. Ran Min"
+ },
+ "battle:山桑之战": {
+  "old": "Battle of Shansang",
+  "mod": "north of Mengcheng, Anhui",
+  "note": "On Yin Hao's northern expedition, his vanguard under Yao Xiang turned and ambushed him; the Jin army lost more than ten thousand killed and wounded, and Yin Hao was reduced to a commoner.",
+  "yt": "10th month, 353",
+  "sides": "Yao Xiang defeated Jin",
+  "cmd": "Yao Xiang vs. Yin Hao"
+ },
+ "battle:蓝田之战": {
+  "old": "Battle of Lantian",
+  "mod": "Lantian, Shaanxi",
+  "note": "Huan Wen entered Guanzhong by the Wu Pass, crushed Fu Chang at Lantian and advanced to Bashang, and the elders of Guanzhong met him on the road with oxen and wine.",
+  "yt": "4th month, 354",
+  "sides": "Jin defeated Former Qin",
+  "cmd": "Huan Wen vs. Fu Chang and Fu Sheng"
+ },
+ "battle:白鹿原之战": {
+  "old": "Battle of Bailuyuan",
+  "mod": "southeast of Xi'an, Shaanxi",
+  "note": "Fu Jian (苻健) cleared the countryside and held his walls; Fu Xiong defeated Huan Wen at Bailuyuan, the Jin army lost more than ten thousand dead, and Huan Wen, out of grain, withdrew.",
+  "yt": "6th month, 354",
+  "sides": "Former Qin defeated Jin",
+  "cmd": "Fu Xiong vs. Huan Wen"
+ },
+ "battle:伊水之战": {
+  "old": "Battle of the Yi River",
+  "mod": "south of Luoyang, Henan",
+  "note": "Huan Wen put on his armor and directed the battle himself, crushed Yao Xiang on the north bank of the Yi River, and recovered Luoyang.",
+  "yt": "8th month, 356",
+  "sides": "Jin defeated Yao Xiang",
+  "cmd": "Huan Wen vs. Yao Xiang"
+ },
+ "battle:三原之战": {
+  "old": "Battle of Sanyuan",
+  "mod": "Sanyuan, Shaanxi",
+  "note": "Yao Xiang moved to take Guanzhong; Deng Qiang lured him out to fight and killed him, and his younger brother Yao Chang led their followers in surrender to Qin.",
+  "yt": "5th month, 357",
+  "sides": "Former Qin defeated Yao Xiang",
+  "cmd": "Fu Huangmei and Deng Qiang vs. Yao Xiang"
+ },
+ "battle:广固之战@山东青州西北": {
+  "old": "Battle of Guanggu (356)",
+  "mod": "northwest of Qingzhou, Shandong",
+  "note": "Murong Ke besieged Guanggu for months, building houses and turning to farming; inside the city people ate one another, and Duan Kan surrendered.",
+  "yt": "11th month, 356",
+  "sides": "Former Yan defeated Duan Kan",
+  "cmd": "Murong Ke vs. Duan Kan"
+ },
+ "battle:洛阳之战@河南洛阳": {
+  "old": "Battle of Luoyang (365)",
+  "mod": "Luoyang, Henan",
+  "note": "The Former Yan besieged Luoyang for a year; its commander Shen Jin held out with five hundred men, was captured when the city fell, and died unbowed.",
+  "yt": "3rd month, 365",
+  "sides": "Former Yan defeated Jin",
+  "cmd": "Murong Ke and Murong Chui vs. Shen Jin"
+ },
+ "battle:枋头之战": {
+  "old": "Battle of Fangtou",
+  "mod": "southwest of Xun County, Henan",
+  "note": "Huan Wen's fleet reached Fangtou; the Yan army cut his supply line, and Huan Wen burned his boats and withdrew overland, was ambushed at Xiangyi, and lost more than thirty thousand dead.",
+  "yt": "9th month, 369",
+  "sides": "Former Yan defeated Jin",
+  "cmd": "Murong Chui and Murong De vs. Huan Wen"
+ },
+ "battle:潞川之战": {
+  "old": "Battle of Luchuan",
+  "mod": "around Lucheng, Shanxi",
+  "note": "Murong Ping, commanding three hundred thousand men, sold spring water and firewood for his own profit; Wang Meng made a night attack with sixty thousand men, crushed the Yan army, and killed or captured a hundred and fifty thousand.",
+  "yt": "10th month, 370",
+  "sides": "Former Qin defeated Former Yan",
+  "cmd": "Wang Meng vs. Murong Ping"
+ },
+ "battle:襄阳之战": {
+  "old": "Battle of Xiangyang",
+  "mod": "Xiangyang, Hubei",
+  "note": "Fu Pi besieged the city for nearly a year with 170,000 men; Zhu Xu's mother, Lady Han, led her maids in building up the northwest corner of the walls, which later generations called the \"Lady's Wall\"; the Area Protector Li Bohu opened the gates and surrendered to Qin.",
+  "yt": "378 – 2nd month, 379",
+  "sides": "Former Qin defeated Jin",
+  "cmd": "Fu Pi vs. Zhu Xu"
+ },
+ "battle:君川之战": {
+  "old": "Battle of Junchuan",
+  "mod": "north of Xuyi, Jiangsu",
+  "note": "Xie Xuan with the Northern Headquarters Army defeated the Qin army again and again at San'e, Xuyi and Huaiyin, and finally won a great victory at Junchuan; Ju Nan and Peng Chao fled north.",
+  "yt": "6th month, 379",
+  "sides": "Jin defeated Former Qin",
+  "cmd": "Xie Xuan vs. Ju Nan and Peng Chao"
+ },
+ "battle:洛涧之战": {
+  "old": "Battle of Luojian",
+  "mod": "Luohe, Huainan, Anhui",
+  "note": "Liu Laozhi crossed the Luojian by night with five thousand picked troops and beheaded the Qin general Liang Cheng and nine other commanders; the Qin army lost fifteen thousand dead.",
+  "yt": "11th month, 383",
+  "sides": "Jin defeated Former Qin",
+  "cmd": "Liu Laozhi vs. Liang Cheng"
+ },
+ "battle:淝水之战": {
+  "old": "Battle of the Fei River",
+  "mod": "east of Shou County, Anhui",
+  "note": "The eighty-thousand-strong Jin army asked the Qin army to draw back a little so that it could cross the river and fight a decisive battle; once the Qin army began to retreat it could not be stopped. Zhu Xu shouted from behind its lines, \"The Qin army is beaten!\", Fu Rong fell from his horse and was killed, and the Qin army broke up — \"every gust of wind and cry of a crane, every bush and tree, seemed an enemy soldier\".",
+  "yt": "11th month, 383",
+  "sides": "Jin defeated Former Qin",
+  "cmd": "Xie Shi, Xie Xuan, Xie Yan and Huan Yi vs. Fu Jian and Fu Rong"
+ },
+ "battle:龟兹之战": {
+  "old": "Battle of Kucha",
+  "mod": "Kuqa, Xinjiang",
+  "note": "On his western expedition Lü Guang besieged Kucha; Bai Chun, King of Kucha, called in more than seven hundred thousand horsemen of the Kuaihu and others to his aid, but Lü Guang drew up his army and crushed them, and more than thirty states of the Western Regions submitted; Kumarajiva went back east with him.",
+  "yt": "7th month, 384",
+  "sides": "Lü Guang defeated Kucha",
+  "cmd": "Lü Guang vs. Bai Chun"
+ },
+ "battle:台壁之战": {
+  "old": "Battle of Taibi",
+  "mod": "southwest of Licheng, Shanxi",
+  "note": "Murong Chui divided his army into three columns and entered by the Tianjing Pass from Fukou; Murong Yong massed his troops at Taibi and was routed by the Later Yan, Zhangzi fell, and the Western Yan came to an end.",
+  "yt": "6th month, 394",
+  "sides": "Later Yan defeated Western Yan",
+  "cmd": "Murong Chui vs. Murong Yong"
+ },
+ "battle:废桥之战": {
+  "old": "Battle of Feiqiao",
+  "mod": "around Changwu, Shaanxi",
+  "note": "Cut off from water by Yao Xing, Fu Deng was routed at Feiqiao, captured and killed; the Former Qin was finished in all but name.",
+  "yt": "7th month, 394",
+  "sides": "Later Qin defeated Former Qin",
+  "cmd": "Yao Xing vs. Fu Deng"
+ },
+ "battle:参合陂之战": {
+  "old": "Battle of Canhe Slope",
+  "mod": "northeast of Liangcheng, Inner Mongolia",
+  "note": "On its retreat the Yan army camped at Canhe Slope; the Wei army marched through the night to catch up and, at sunrise, charged down from the heights. Forty or fifty thousand Yan soldiers laid down their arms and begged to surrender, and Tuoba Gui had them all buried alive.",
+  "yt": "11th month, 395",
+  "sides": "Northern Wei defeated Later Yan",
+  "cmd": "Tuoba Gui vs. Murong Bao"
+ },
+ "battle:柏肆之战": {
+  "old": "Battle of Baisi",
+  "mod": "north of Gaocheng, Hebei",
+  "note": "Murong Bao made a night attack on the Wei camp at Baisi; the Wei army was thrown into confusion at first, but Tuoba Gui regrouped and drove the Yan army off, the Yan army broke, and Murong Bao soon abandoned Zhongshan and fled north.",
+  "yt": "2nd month, 397",
+  "sides": "Northern Wei defeated Later Yan",
+  "cmd": "Tuoba Gui vs. Murong Bao"
+ },
+ "battle:柴壁之战": {
+  "old": "Battle of Chaibi",
+  "mod": "southwest of Xiangfen, Shanxi",
+  "note": "Yao Ping was besieged at Chaibi; Yao Xing, with forty thousand relief troops on the other side of the Fen River, could not save him, and Yao Ping threw himself into the water and died. From then on the Later Qin never dared to strike east.",
+  "yt": "10th month, 402",
+  "sides": "Northern Wei defeated Later Qin",
+  "cmd": "Tuoba Gui vs. Yao Ping and Yao Xing"
+ },
+ "battle:蒜山之战": {
+  "old": "Battle of Mount Suan",
+  "mod": "Zhenjiang, Jiangsu",
+  "note": "Sun En sailed up the Yangtze with more than a hundred thousand followers and over a thousand towered ships to attack Jingkou; Liu Yu with a few hundred men fought hard at Mount Suan and defeated him.",
+  "yt": "6th month, 401",
+  "sides": "Jin defeated Sun En",
+  "cmd": "Liu Yu vs. Sun En"
+ },
+ "battle:覆舟山之战": {
+  "old": "Battle of Mount Fuzhou",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Liu Yu advanced from Jingkou and set fires with the wind behind him; Huan Xuan's army broke, and Huan Xuan fled west, taking Emperor An with him.",
+  "yt": "3rd month, 404",
+  "sides": "Liu Yu defeated Huan Xuan",
+  "cmd": "Liu Yu vs. Huan Qian and Bian Fanzhi"
+ },
+ "battle:峥嵘洲之战": {
+  "old": "Battle of Zhengrong Islet",
+  "mod": "in the Yangtze at Ezhou, Hubei",
+  "note": "Huan Xuan's twenty-thousand-strong fleet was broken by Liu Yi with fire; Huan Xuan fled back to Jiangling and was soon killed.",
+  "yt": "5th month, 404",
+  "sides": "Jin defeated Huan Xuan",
+  "cmd": "Liu Yi and He Wuji vs. Huan Xuan"
+ },
+ "battle:临朐之战": {
+  "old": "Battle of Linqu",
+  "mod": "Linqu, Shandong",
+  "note": "The Jin army advanced in a square formation flanked by four thousand carts; Tan Shao seized the city of Linqu while it was left unguarded, the Yan army broke, and Murong Chao fled back to Guanggu.",
+  "yt": "6th month, 409",
+  "sides": "Jin defeated Southern Yan",
+  "cmd": "Liu Yu vs. Murong Chao"
+ },
+ "battle:广固之战@山东青州西北#2": {
+  "old": "Battle of Guanggu (410)",
+  "mod": "northwest of Qingzhou, Shandong",
+  "note": "The Jin army besieged Guanggu for eight months and attacked from all four sides; the city fell, Murong Chao was captured and beheaded at Jiankang, and the city was razed.",
+  "yt": "2nd month, 410",
+  "sides": "Jin defeated Southern Yan",
+  "cmd": "Liu Yu vs. Murong Chao"
+ },
+ "battle:桑落洲之战": {
+  "old": "Battle of Sangluo Islet",
+  "mod": "northeast of Jiujiang, Jiangxi",
+  "note": "Lu Xun came down the Yangtze with his eight-hold warships, crushed Liu Yi's fleet, and pressed on toward Jiankang.",
+  "yt": "5th month, 410",
+  "sides": "Lu Xun defeated Jin",
+  "cmd": "Lu Xun and Xu Daofu vs. Liu Yi"
+ },
+ "battle:左里之战": {
+  "old": "Battle of Zuoli",
+  "mod": "northwest of Duchang, Jiangxi",
+  "note": "At Zuoli Liu Yu burned Lu Xun's ships with fire, and Lu Xun fled south to Guang Province.",
+  "yt": "12th month, 410",
+  "sides": "Jin defeated Lu Xun",
+  "cmd": "Liu Yu vs. Lu Xun"
+ },
+ "battle:却月阵": {
+  "old": "Crescent Formation",
+  "mod": "north of Dong'e, Shandong",
+  "note": "Liu Yu drew up a hundred carts on the north bank of the Yellow River, both ends resting on the river, in the shape of a crescent moon; thirty thousand Wei horsemen charged the line, and the Jin troops struck them with great crossbows and long lances, leaving the field covered with Wei dead and wounded.",
+  "yt": "3rd month, 417",
+  "sides": "Jin defeated Northern Wei",
+  "cmd": "Liu Yu (Ding Wu and Zhu Chaoshi) vs. Zhangsun Song"
+ },
+ "battle:长安之战": {
+  "old": "Battle of Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi",
+  "note": "Wang Zhen'e led his fleet up the Wei River; at the Wei Bridge he ordered his men ashore and let the boats drift away, fought with the river at his back, crushed the Qin army, and Yao Hong surrendered.",
+  "yt": "8th month, 417",
+  "sides": "Jin defeated Later Qin",
+  "cmd": "Wang Zhen'e vs. Yao Hong"
+ },
+ "battle:青泥之战": {
+  "old": "Battle of Qingni",
+  "mod": "Lantian, Shaanxi",
+  "note": "Liu Yizhen abandoned Chang'an and withdrew east, his army so laden with treasure and women that it covered only ten li a day; overtaken by the Xia army at Qingni, it was routed, and he barely escaped with his life.",
+  "yt": "11th month, 418",
+  "sides": "Xia defeated Jin",
+  "cmd": "Helian Gui vs. Liu Yizhen"
+ },
+ "battle:虎牢之战": {
+  "old": "Battle of Hulao",
+  "mod": "Sishui, Xingyang, Henan",
+  "note": "Mao Dezu held out for more than two hundred days; the Wei army dug tunnels to cut off his water, and when the city fell he was captured, and Song lost Henan.",
+  "yt": "intercalary 4th month, 423",
+  "sides": "Northern Wei defeated Song",
+  "cmd": "Xi Jin and Tuoba Si vs. Mao Dezu"
+ },
+ "battle:统万城之战": {
+  "old": "Battle of Tongwan City",
+  "mod": "Baichengzi, Jingbian, Shaanxi",
+  "note": "Emperor Taiwu raced to Tongwan with thirty thousand light horsemen, feigned a retreat to lure the Xia army out of the city, turned on it in a storm of wind and rain, crushed it, and broke into Tongwan City.",
+  "yt": "6th month, 427",
+  "sides": "Northern Wei defeated Xia",
+  "cmd": "Tuoba Tao vs. Helian Chang"
+ },
+ "battle:滑台之战@河南滑县东": {
+  "old": "Battle of Huatai (431)",
+  "mod": "east of Hua County, Henan",
+  "note": "After Dao Yanzhi's northern expedition, Zhu Xiuzhi held Huatai alone for months until his grain ran out and the city fell; Tan Daoji, coming to the rescue, brought his whole army home by \"counting sand as if it were grain\".",
+  "yt": "2nd month, 431",
+  "sides": "Northern Wei defeated Song",
+  "cmd": "An Xie vs. Zhu Xiuzhi"
+ },
+ "battle:赫连定被擒": {
+  "old": "Capture of Helian Ding",
+  "mod": "a Yellow River ford around Linxia, Gansu",
+  "note": "Helian Ding led more than a hundred thousand people west across the Yellow River intending to attack the Northern Liang; the Tuyuhun struck with thirty thousand horsemen while they were halfway across and captured Helian Ding alive, and Xia came to an end.",
+  "yt": "6th month, 431",
+  "sides": "The Tuyuhun defeated Xia",
+  "cmd": "Mugui vs. Helian Ding"
+ },
+ "battle:姑臧之战": {
+  "old": "Battle of Guzang",
+  "mod": "Wuwei, Gansu",
+  "note": "Emperor Taiwu campaigned in person and besieged Guzang for a month; Juqu Mujian surrendered, and the Northern Wei unified the north.",
+  "yt": "9th month, 439",
+  "sides": "Northern Wei defeated Northern Liang",
+  "cmd": "Tuoba Tao vs. Juqu Mujian"
+ },
+ "battle:悬瓠之战": {
+  "old": "Battle of Xuanhu",
+  "mod": "Runan, Henan",
+  "note": "Emperor Taiwu surrounded Xuanhu with a hundred thousand horsemen and built tall towers to shoot down into the city; its commander Chen Xian held out for forty-two days with fewer than a thousand men, and the Wei army, having lost more than ten thousand dead, raised the siege and went back north.",
+  "yt": "2nd–4th month, 450",
+  "sides": "Song defeated Northern Wei",
+  "cmd": "Chen Xian vs. Tuoba Tao"
+ },
+ "battle:滑台之战@河南滑县东#2": {
+  "old": "Battle of Huatai (450)",
+  "mod": "east of Hua County, Henan",
+  "note": "Wang Xuanmo besieged Huatai without taking it; Emperor Taiwu crossed the river to relieve it with an army said to number a million, its drums shaking heaven and earth, and Wang Xuanmo was routed and fled south.",
+  "yt": "10th month, 450",
+  "sides": "Northern Wei defeated Song",
+  "cmd": "Tuoba Tao vs. Wang Xuanmo"
+ },
+ "battle:盱眙之战": {
+  "old": "Battle of Xuyi",
+  "mod": "Xuyi, Jiangsu",
+  "note": "On its way back north from Guabu the Wei army besieged Xuyi for thirty days, pulling at the walls with hook carts while the defenders held them off with iron chains; having lost tens of thousands dead, it burned and plundered as it went home.",
+  "yt": "1st month, 451",
+  "sides": "Song defeated Northern Wei",
+  "cmd": "Zang Zhi and Shen Pu vs. Tuoba Tao"
+ },
+ "battle:吕梁之战@江苏徐州东南": {
+  "old": "Battle of Lüliang (467)",
+  "mod": "southeast of Xuzhou, Jiangsu",
+  "note": "The Song army set out to retake Pengcheng; in bitter cold and heavy snow more than half its men froze to death, and when Yu Yuan cut its supply line it was routed; from then on the land north of the Huai could not be held.",
+  "yt": "1st month, 467",
+  "sides": "Northern Wei defeated Song",
+  "cmd": "Yu Yuan vs. Zhang Yong and Shen Youzhi"
+ },
+ "battle:东阳之战": {
+  "old": "Battle of Dongyang",
+  "mod": "Qingzhou, Shandong",
+  "note": "Murong Baiyao besieged Dongyang for three years; in the 1st month of 469 the city fell, Shen Wenxiu was captured, and Qing Province passed to Wei.",
+  "yt": "466 – 1st month, 469",
+  "sides": "Northern Wei defeated Song",
+  "cmd": "Murong Baiyao vs. Shen Wenxiu"
+ },
+ "battle:汉城之战": {
+  "old": "Battle of Hanseong",
+  "mod": "Seoul, South Korea",
+  "note": "King Jangsu besieged Hanseong with thirty thousand men and took the northern city in seven days; King Gaero fled and was captured and killed, and Baekje moved south to Ungjin.",
+  "yt": "9th month, 475",
+  "sides": "Goguryeo defeated Baekje",
+  "cmd": "King Jangsu vs. King Gaero"
+ },
+ "battle:郢城之战": {
+  "old": "Battle of Yingcheng",
+  "mod": "Wuhan, Hubei",
+  "note": "Shen Youzhi came down the Yangtze with an army of a hundred thousand and besieged Yingcheng for more than thirty days without taking it; his followers deserted, and he hanged himself.",
+  "yt": "12th month, 477 – 1st month, 478",
+  "sides": "Song defeated Shen Youzhi",
+  "cmd": "Liu Shilong vs. Shen Youzhi"
+ },
+ "battle:邓城之战": {
+  "old": "Battle of Dengcheng",
+  "mod": "north of Xiangyang, Hubei",
+  "note": "After the Wei army had taken Wancheng and Xinye, Emperor Xiaowen crushed the Qi army at Dengcheng, and Xiao Yan and others fell back to hold Fancheng.",
+  "yt": "3rd month, 498",
+  "sides": "Northern Wei defeated Qi",
+  "cmd": "Yuan Ying and Emperor Xiaowen vs. Cui Huijing and Xiao Yan"
+ },
+ "battle:建康之围": {
+  "old": "Siege of Jiankang",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Xiao Yan came down the Yangtze, defeated the Qi army again and again at Xinting and the Zhuque Pontoon, and besieged Taicheng in Jiankang; in the 12th month the Marquis of Donghun was killed by the Commandant of the Guards Zhang Ji and others.",
+  "yt": "10th–12th month, 501",
+  "sides": "Xiao Yan defeated the Marquis of Donghun",
+  "cmd": "Xiao Yan vs. Xiao Baojuan"
+ },
+ "battle:义阳之战": {
+  "old": "Battle of Yiyang",
+  "mod": "Xinyang, Henan",
+  "note": "Yuan Ying besieged Yiyang for more than a hundred days; its commander Cai Daogong died of illness, the city ran out of grain and surrendered, and the Three Passes of Yiyang passed to Wei.",
+  "yt": "8th month, 504",
+  "sides": "Northern Wei defeated Liang",
+  "cmd": "Yuan Ying vs. Cai Daogong"
+ },
+ "battle:钟离之战": {
+  "old": "Battle of Zhongli",
+  "mod": "northeast of Fengyang, Anhui",
+  "note": "A Wei army several hundred thousand strong besieged Zhongli, building pontoon bridges from both banks to Shaoyang Islet; Wei Rui and Cao Jingzong, taking advantage of a sudden rise of the Huai, burned the bridges with fire ships; more than a hundred thousand Wei soldiers drowned, as many were cut down, and fifty thousand were captured.",
+  "yt": "3rd month, 507",
+  "sides": "Liang defeated Northern Wei",
+  "cmd": "Wei Rui and Cao Jingzong vs. Yuan Ying and Yang Dayan"
+ },
+ "battle:五原之战": {
+  "old": "Battle of Wuyuan",
+  "mod": "around Baotou, Inner Mongolia",
+  "note": "The Northern Wei sent Li Chong north to put down the rising, but he was routed by Poliuhan Baling at Wuyuan, and the situation in the Six Garrisons slipped out of control.",
+  "yt": "524",
+  "sides": "Poliuhan Baling defeated Northern Wei",
+  "cmd": "Poliuhan Baling vs. Li Chong and Yuan Yuan"
+ },
+ "battle:滏口之战": {
+  "old": "Battle of Fukou",
+  "mod": "Fengfeng Mining District, Handan, Hebei",
+  "note": "Ge Rong was said to command a million men; Erzhu Rong hid seven thousand picked horsemen in the mountain valleys, formed them in groups of three armed with clubs rather than swords, charged into the enemy ranks, and captured Ge Rong alive.",
+  "yt": "9th month, 528",
+  "sides": "Erzhu Rong defeated Ge Rong",
+  "cmd": "Erzhu Rong vs. Ge Rong"
+ },
+ "battle:荥阳之战": {
+  "old": "Battle of Xingyang",
+  "mod": "Xingyang, Henan",
+  "note": "Chen Qingzhi attacked Xingyang with his seven thousand white-robed troops; with three hundred thousand Northern Wei relief troops about to arrive, he roused his men to scale the walls, took the city in a single assault, and then defeated Yuan Tianmu's relief army.",
+  "yt": "5th month, 529",
+  "sides": "Liang defeated Northern Wei",
+  "cmd": "Chen Qingzhi vs. Yang Yu and Yuan Tianmu"
+ },
+ "battle:北中之战": {
+  "old": "Battle of Beizhong",
+  "mod": "southwest of Mengzhou, Henan",
+  "note": "Erzhu Rong crossed the Yellow River by night at Xiashi and crushed Yuan Guanshou, son of Yuan Hao; Yuan Hao abandoned Luoyang, fled south and was killed, and Chen Qingzhi's army broke up.",
+  "yt": "intercalary 6th month, 529",
+  "sides": "Northern Wei defeated Yuan Hao",
+  "cmd": "Erzhu Rong vs. Yuan Hao and Chen Qingzhi"
+ },
+ "battle:安定之战": {
+  "old": "Battle of Anding",
+  "mod": "around Jingchuan, Gansu",
+  "note": "Erzhu Tianguang announced that he would pause for the hot weather, then struck suddenly while Moqi Chounu had split his forces to farm, captured him alive, and pacified Guanlong.",
+  "yt": "4th month, 530",
+  "sides": "Erzhu Tianguang defeated Moqi Chounu",
+  "cmd": "Erzhu Tianguang and Heba Yue vs. Moqi Chounu"
+ },
+ "battle:广阿之战": {
+  "old": "Battle of Guang'e",
+  "mod": "east of Longyao, Hebei",
+  "note": "Gao Huan used stratagems to sow mutual suspicion between Erzhu Zhao and Erzhu Zhongyuan and the rest, routed Erzhu Zhao at Guang'e, and took more than five thousand prisoners.",
+  "yt": "10th month, 531",
+  "sides": "Gao Huan defeated Erzhu Zhao",
+  "cmd": "Gao Huan vs. Erzhu Zhao"
+ },
+ "battle:韩陵之战": {
+  "old": "Battle of Hanling",
+  "mod": "northeast of Anyang, Henan",
+  "note": "With fewer than thirty thousand foot and two thousand horse, Gao Huan blocked his own line of retreat with tethered oxen and donkeys, drew up in a circular formation, fought to the death, and crushed the Erzhu host of two hundred thousand.",
+  "yt": "intercalary 3rd month, 532",
+  "sides": "Gao Huan defeated the Erzhu",
+  "cmd": "Gao Huan vs. Erzhu Zhao, Erzhu Tianguang, Erzhu Dulü and Erzhu Zhongyuan"
+ },
+ "battle:小关之战": {
+  "old": "Battle of Xiaoguan",
+  "mod": "east of Tongguan, Shaanxi",
+  "note": "Gao Huan attacked west along three routes; Yuwen Tai pretended to fall back on Chang'an but actually raced to Xiaoguan with six thousand horsemen; Dou Tai's whole army was wiped out and he killed himself.",
+  "yt": "1st month, 537",
+  "sides": "Western Wei defeated Eastern Wei",
+  "cmd": "Yuwen Tai vs. Dou Tai"
+ },
+ "battle:沙苑之战": {
+  "old": "Battle of Shayuan",
+  "mod": "south of Dali, Shaanxi",
+  "note": "With fewer than ten thousand men Yuwen Tai drew up east to west with the river at his back and hid troops in the reeds; the two hundred thousand Eastern Wei troops jostled forward in disorder, the ambush sprang from all sides, and the Eastern Wei lost eighty thousand armored men and abandoned 180,000 suits of armor and weapons.",
+  "yt": "10th month, 537",
+  "sides": "Western Wei defeated Eastern Wei",
+  "cmd": "Yuwen Tai vs. Gao Huan"
+ },
+ "battle:河桥之战": {
+  "old": "Battle of Heqiao",
+  "mod": "Mengjin, Henan",
+  "note": "The two armies fought a great battle around Heqiao and Mount Mang; fog rose so that friend could not be told from foe. Gao Aocao of the Eastern Wei was killed, but Li Hu, Dugu Xin and others of the Western Wei withdrew first, and Yuwen Tai burned his camp and went back west.",
+  "yt": "8th month, 538",
+  "sides": "Eastern Wei defeated Western Wei",
+  "cmd": "Hou Jing and Gao Aocao vs. Yuwen Tai and Dugu Xin"
+ },
+ "battle:邙山之战@河南洛阳北": {
+  "old": "Battle of Mount Mang (543)",
+  "mod": "north of Luoyang, Henan",
+  "note": "On the first day the Western Wei won a great victory and nearly captured Gao Huan; the next day the Eastern Wei counterattacked and routed the Western Wei, Yuwen Tai barely escaping with his life, with more than sixty thousand killed and wounded.",
+  "yt": "3rd month, 543",
+  "sides": "Eastern Wei defeated Western Wei",
+  "cmd": "Gao Huan vs. Yuwen Tai"
+ },
+ "battle:玉璧之战": {
+  "old": "Battle of Yubi",
+  "mod": "southwest of Jishan, Shanxi",
+  "note": "Gao Huan attacked the city day and night for more than fifty days — digging tunnels, building siege engines and cutting off the Fen River — and Wei Xiaokuan met every move; the Eastern Wei lost seventy thousand dead, and Gao Huan fell ill from grief and anger and died the following year.",
+  "yt": "9th–11th month, 546",
+  "sides": "Western Wei defeated Eastern Wei",
+  "cmd": "Wei Xiaokuan vs. Gao Huan"
+ },
+ "battle:寒山之战": {
+  "old": "Battle of Hanshan",
+  "mod": "southeast of Xuzhou, Jiangsu",
+  "note": "The Liang army built the Hanshan Dam on the Si to flood Pengcheng; Murong Shaozong came to its rescue with a hundred thousand men, crushed the Liang army, and captured its commander Xiao Yuanming.",
+  "yt": "11th month, 547",
+  "sides": "Eastern Wei defeated Liang",
+  "cmd": "Murong Shaozong vs. Xiao Yuanming"
+ },
+ "battle:涡阳之战": {
+  "old": "Battle of Guoyang",
+  "mod": "Mengcheng, Anhui",
+  "note": "Hou Jing faced Murong Shaozong for several months until his grain ran out and his followers deserted, and he fled south to Shouyang with eight hundred horsemen.",
+  "yt": "1st month, 548",
+  "sides": "Eastern Wei defeated Hou Jing",
+  "cmd": "Murong Shaozong vs. Hou Jing"
+ },
+ "battle:台城之战": {
+  "old": "Battle of Taicheng",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Hou Jing besieged Taicheng for more than 130 days, building earthen mounds and turning the waters of Xuanwu Lake on the city, and more than half of those inside starved to death; in the 3rd month the city fell, and Emperor Wu of Liang was held under house arrest and starved to death.",
+  "yt": "10th month, 548 – 3rd month, 549",
+  "sides": "Hou Jing defeated Liang",
+  "cmd": "Hou Jing vs. Emperor Wu of Liang and Yang Kan"
+ },
+ "battle:巴陵之战": {
+  "old": "Battle of Baling",
+  "mod": "Yueyang, Hunan",
+  "note": "Hou Jing led his army west to attack Baling; Wang Sengbian furled his banners, silenced his drums and held firm, and Hou Jing, unable to take the city by attacking day and night and with sickness spreading in his army, fell back to Jiankang.",
+  "yt": "5th month, 551",
+  "sides": "Liang defeated Hou Jing",
+  "cmd": "Wang Sengbian vs. Hou Jing"
+ },
+ "battle:石头城之战": {
+  "old": "Battle of Shitou City",
+  "mod": "west of Nanjing, Jiangsu",
+  "note": "The Liang army built a stockade north of Shitou City, and Chen Baxian struck hard with separate columns; Hou Jing was routed and fled east, and in the 4th month he was killed at sea by his own men.",
+  "yt": "3rd month, 552",
+  "sides": "Liang defeated Hou Jing",
+  "cmd": "Wang Sengbian and Chen Baxian vs. Hou Jing"
+ },
+ "battle:硖口之战": {
+  "old": "Battle of Xiakou",
+  "mod": "mouth of the Xiling Gorge, Yichang, Hubei",
+  "note": "Xiao Ji led his army down the Yangtze; Lu Fahe stretched iron chains across the gorge mouth to stop him, and with his rear cut off by the Western Wei, Xiao Ji was defeated and killed.",
+  "yt": "7th month, 553",
+  "sides": "Liang defeated Xiao Ji",
+  "cmd": "Lu Fahe and Fan Meng vs. Xiao Ji"
+ },
+ "battle:成都之战": {
+  "old": "Battle of Chengdu",
+  "mod": "Chengdu, Sichuan",
+  "note": "Yuchi Jiong came south by way of Jiange and besieged Chengdu for fifty days; Xiao Hui surrendered, and Ba-Shu passed to the Western Wei.",
+  "yt": "8th month, 553",
+  "sides": "Western Wei defeated Xiao Ji's remaining forces",
+  "cmd": "Yuchi Jiong vs. Xiao Hui"
+ },
+ "battle:江陵之战": {
+  "old": "Battle of Jiangling",
+  "mod": "Jingzhou, Hubei",
+  "note": "A Western Wei army of fifty thousand took Jiangling; Emperor Yuan of Liang burned 140,000 scrolls of books old and new and surrendered, and was killed, and tens of thousands of the officials and townspeople of Jiangling, men and women, were carried off north.",
+  "yt": "11th month, 554",
+  "sides": "Western Wei defeated Liang",
+  "cmd": "Yu Jin, Yang Zhong and Yuwen Hu vs. Emperor Yuan of Liang"
+ },
+ "battle:管山城之战": {
+  "old": "Battle of Gwansanseong",
+  "mod": "Okcheon, North Chungcheong, South Korea",
+  "note": "To avenge Silla's seizure of the lower Han River, King Seong of Baekje joined Daegaya in attacking Gwansanseong; he was killed by a Silla ambush, and Baekje was routed.",
+  "yt": "7th month, 554",
+  "sides": "Silla defeated Baekje",
+  "cmd": "Kim Mu-ryeok vs. King Seong of Baekje"
+ },
+ "battle:钟山之战": {
+  "old": "Battle of Mount Zhong",
+  "mod": "east of Nanjing, Jiangsu",
+  "note": "A Northern Qi army of a hundred thousand crossed the Yangtze and pressed on Jiankang; Chen Baxian fought a decisive battle in the rain north of Mount Zhong and Mount Fuzhou, crushed the Qi army, and beheaded forty-six Northern Qi commanders.",
+  "yt": "6th month, 556",
+  "sides": "Chen Baxian defeated Northern Qi",
+  "cmd": "Chen Baxian vs. Xiao Gui"
+ },
+ "battle:芜湖之战": {
+  "old": "Battle of Wuhu",
+  "mod": "Wuhu, Anhui",
+  "note": "Wang Lin came down the Yangtze with the Northern Qi army; Hou Tian counterattacked with a southwest wind behind him and sank Wang Lin's warships with striking booms, and Wang Lin fled to Northern Qi.",
+  "yt": "2nd month, 560",
+  "sides": "Chen defeated Wang Lin",
+  "cmd": "Hou Tian vs. Wang Lin"
+ },
+ "battle:晋阳之战": {
+  "old": "Battle of Jinyang",
+  "mod": "Taiyuan, Shanxi",
+  "note": "The combined Northern Zhou and Turkic armies attacked Jinyang through the snow; Northern Qi sent its best troops out of the city to meet them, the Turks withdrew without fighting, and the Zhou army was routed.",
+  "yt": "1st month, 564",
+  "sides": "Northern Qi defeated Northern Zhou and the Turks",
+  "cmd": "Duan Shao and Hulü Guang vs. Yang Zhong and Muqan Qaghan"
+ },
+ "battle:邙山之战@河南洛阳北#2": {
+  "old": "Battle of Mount Mang (564)",
+  "mod": "north of Luoyang, Henan",
+  "note": "A Northern Zhou army of two hundred thousand besieged Luoyang for thirty days; the Prince of Lanling charged through the Zhou encirclement with five hundred horsemen to the foot of Jinyong City, the crossbows on the walls loosed together, and the Zhou army broke and withdrew; the people of Qi composed the song \"The Prince of Lanling Enters the Fray\".",
+  "yt": "12th month, 564",
+  "sides": "Northern Qi defeated Northern Zhou",
+  "cmd": "Gao Changgong (Prince of Lanling), Duan Shao and Hulü Guang vs. Yuwen Hu (Yuchi Jiong)"
+ },
+ "battle:沌口之战": {
+  "old": "Battle of Zhuankou",
+  "mod": "southwest of Hanyang, Wuhan, Hubei",
+  "note": "Hua Jiao, Inspector of Xiang Province, rebelled against Chen with troops from the Northern Zhou and Later Liang; the Chen army, with the wind behind it, smashed the enemy ships with striking booms and crushed them, and Hua Jiao fled to Jiangling.",
+  "yt": "9th month, 567",
+  "sides": "Chen defeated Hua Jiao and Northern Zhou",
+  "cmd": "Wu Mingche and Chunyu Liang vs. Hua Jiao and Yuwen Zhi"
+ },
+ "battle:寿阳之战": {
+  "old": "Battle of Shouyang",
+  "mod": "Shou County, Anhui",
+  "note": "Wu Mingche dammed the Fei River to flood Shouyang, and sickness spread in the city; in the 10th month he took it and beheaded Wang Lin, and the Northern Qi relief army of several hundred thousand withdrew at the first sight of him.",
+  "yt": "10th month, 573",
+  "sides": "Chen defeated Northern Qi",
+  "cmd": "Wu Mingche vs. Wang Lin and Pi Jinghe"
+ },
+ "battle:平阳之战": {
+  "old": "Battle of Pingyang",
+  "mod": "Linfen, Shanxi",
+  "note": "After the Northern Zhou took Pingyang, the Last Ruler of Qi counterattacked with a great army and besieged the city; Emperor Wu of Zhou came to the walls in person to fight a decisive battle, the Last Ruler, watching the battle on horseback beside Consort Feng, fled first, and the Qi army broke.",
+  "yt": "12th month, 576",
+  "sides": "Northern Zhou defeated Northern Qi",
+  "cmd": "Yuwen Yong vs. Gao Wei"
+ },
+ "battle:邺城之战": {
+  "old": "Battle of Ye",
+  "mod": "Ye City ruins, Linzhang, Hebei",
+  "note": "The Zhou army advanced to besiege Ye; the Last Ruler of Qi abdicated in favor of his eight-year-old crown prince and fled east, the city fell, and Northern Qi came to an end.",
+  "yt": "1st month, 577",
+  "sides": "Northern Zhou defeated Northern Qi",
+  "cmd": "Yuwen Yong vs. Gao Heng"
+ },
+ "battle:吕梁之战@江苏徐州东南#2": {
+  "old": "Battle of Lüliang (578)",
+  "mod": "southeast of Xuzhou, Jiangsu",
+  "note": "Wu Mingche dammed the Si to besiege Pengcheng; Wang Gui of the Northern Zhou sank cart wheels joined by iron chains in the water where the Qing River enters the Huai, cutting off the line of retreat, and the Chen army of thirty thousand was wiped out and Wu Mingche captured.",
+  "yt": "2nd month, 578",
+  "sides": "Northern Zhou defeated Chen",
+  "cmd": "Wang Gui vs. Wu Mingche"
+ },
+ "battle:相州之战": {
+  "old": "Battle of Xiangzhou",
+  "mod": "Linzhang, Hebei",
+  "note": "Yuchi Jiong drew up more than a hundred thousand men south of Ye, with tens of thousands of townspeople watching; Wei Xiaokuan first shot at the onlookers, Yuchi Jiong's army fell into confusion, the city fell, and Yuchi Jiong killed himself.",
+  "yt": "8th month, 580",
+  "sides": "Yang Jian defeated Yuchi Jiong",
+  "cmd": "Wei Xiaokuan vs. Yuchi Jiong"
+ },
+ "battle:阿德里安堡之战": {
+  "old": "Battle of Adrianople",
+  "mod": "Edirne, Türkiye",
+  "note": "The Goths, driven into Roman territory by the Huns, rose in revolt and annihilated the main Roman army at Adrianople; the emperor Valens was killed in battle.",
+  "yt": "August 378",
+  "sides": "The Goths defeated Rome",
+  "cmd": "Fritigern vs. the Roman emperor Valens"
+ },
+ "battle:泰西封之战": {
+  "old": "Battle of Ctesiphon",
+  "mod": "southeast of Baghdad, Iraq",
+  "note": "Julian led a great army deep into Mesopotamia and won a battle beneath the walls of Ctesiphon but could not take the city; on the retreat he was struck by a spear and died, and his successor Jovian ceded Nisibis and other places to make peace.",
+  "yt": "363",
+  "sides": "Rome defeated Persia",
+  "cmd": "Shapur II vs. the Roman emperor Julian"
+ },
+ "battle:卑路斯之死": {
+  "old": "Death of Peroz",
+  "mod": "around Herat, Afghanistan",
+  "note": "On his third attack on the Hephthalites the Sasanian king Peroz fell into a trench dug in advance; his whole army was destroyed and he was killed, and thereafter the Sasanians paid tribute to the Hephthalites.",
+  "yt": "484",
+  "sides": "The Hephthalites defeated Persia",
+  "cmd": "Hephthalite king vs. Peroz"
+ },
+ "battle:达拉之战": {
+  "old": "Battle of Dara",
+  "mod": "Dara, Mardin, Türkiye",
+  "note": "The great Eastern Roman general Belisarius dug trenches and drew up his army before the city of Dara, and defeated a Sasanian army twice the size of his own.",
+  "yt": "530",
+  "sides": "Rome defeated Persia",
+  "cmd": "Belisarius vs. Firuz"
+ },
+ "battle:曼达索尔之战": {
+  "old": "Battle of Mandsaur",
+  "mod": "Mandsaur, Madhya Pradesh, India",
+  "note": "Yashodharman, King of Malwa, allied with other kings, defeated the Hephthalite king Mihirakula, and Hephthalite power withdrew from the Ganges valley.",
+  "yt": "c. 528",
+  "sides": "Indian kings defeated the Hephthalites",
+  "cmd": "Yashodharman vs. Mihirakula"
+ },
+ "battle:突厥破柔然": {
+  "old": "The Turks crush the Rouran",
+  "mod": "north of Zhangbei, Hebei",
+  "note": "Tumen Qaghan of the Turks crushed the Rouran north of Huaihuang; Anagui killed himself, and the Rouran Qaghanate collapsed.",
+  "yt": "1st month, 552",
+  "sides": "The Turks defeated the Rouran",
+  "cmd": "Tumen vs. Anagui"
+ },
+ "battle:嚈哒之亡": {
+  "old": "Fall of the Hephthalites",
+  "mod": "around Qarshi, Uzbekistan",
+  "note": "Istämi Qaghan of the western Turks and Khosrow I of the Sasanians attacked from north and south; the Hephthalites were defeated around Nasaf (Qarshi) and their state was destroyed, the land north of the Oxus passing to the Turks and that south of it to the Sasanians.",
+  "yt": "c. 560",
+  "sides": "The Turks and Persia defeated the Hephthalites",
+  "cmd": "Istämi and Khosrow I vs. Hephthalite king"
+ },
+ "event:占田课田令": {
+  "old": "Zhantian–Ketian land statutes",
+  "mod": "Luoyang, Henan",
+  "note": "After the conquest of Wu, Emperor Wu of Jin issued the zhantian and ketian land statutes and the household tax schedule, fixing limits on the land that men and women might hold and on which they would be taxed, and allowing officials, by rank, to shelter dependents and relatives from taxation.",
+  "yt": "280"
+ },
+ "event:诸王出镇": {
+  "old": "Princes sent to regional posts",
+  "mod": "Luoyang, Henan",
+  "note": "Emperor Wu posted his sons to key regions — Guanzhong, Jing Province, and Yang and Jiang Provinces — with command of troops, sowing the seeds of the War of the Eight Princes.",
+  "yt": "11th month, 289"
+ },
+ "event:贾后政变": {
+  "old": "Empress Jia's coup",
+  "mod": "Luoyang, Henan",
+  "note": "Empress Jia used Sima Wei, Prince of Chu, to execute Yang Jun and kill Sima Liang, Prince of Runan, then executed Sima Wei — the beginning of the War of the Eight Princes.",
+  "yt": "291"
+ },
+ "event:赵王伦政变": {
+  "old": "Coup of Sima Lun, Prince of Zhao",
+  "mod": "Luoyang, Henan",
+  "note": "Sima Lun, Prince of Zhao, and Sun Xiu forged an edict, deposed and killed Empress Jia, and usurped the throne the following year, when three princes rose against him.",
+  "yt": "4th month, 300"
+ },
+ "event:刘渊称汉王": {
+  "old": "Liu Yuan proclaims himself King of Han",
+  "mod": "Nancun, Fangshan, Lüliang, Shanxi",
+  "note": "Liu Yuan, Worthy King of the Left of the Xiongnu, proclaimed himself King of Han at Zuoguo City under the banner of \"reviving Han\" — the beginning of the Sixteen Kingdoms.",
+  "yt": "10th month, 304"
+ },
+ "event:李雄称成都王": {
+  "old": "Li Xiong proclaims himself King of Chengdu",
+  "mod": "Chengdu, Sichuan",
+  "note": "Li Xiong, leader of the refugees of six commanderies, proclaimed himself King of Chengdu at Chengdu, and in 306 emperor, naming his state Great Cheng.",
+  "yt": "10th month, 304"
+ },
+ "event:司马睿渡江": {
+  "old": "Sima Rui crosses the Yangtze",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Sima Rui, Prince of Langya, took up his post at Jianye as General Who Pacifies the East, with Wang Dao as his chief adviser; from this the émigré northern clans and the great families of Jiangdong came together.",
+  "yt": "9th month, 307"
+ },
+ "event:衣冠南渡": {
+  "old": "The northern elite flee south",
+  "mod": "Nanjing, Jiangsu",
+  "note": "After the Disaster of Yongjia the gentry and people of the Central Plain moved south of the Yangtze in great numbers — \"the flight of the caps and gowns to the south\"; the Eastern Jin set up émigré northern provinces and commanderies in the south to settle the refugees.",
+  "yt": "c. 311"
+ },
+ "event:中流击楫": {
+  "old": "Striking the oar in midstream",
+  "mod": "on the Yangtze around Zhenjiang, Jiangsu",
+  "note": "Zu Ti crossed the Yangtze on a northern expedition with over a hundred households of his retainers, striking his oar in midstream and swearing: \"If I cannot clear the Central Plain and cross back, may I be like this great river!\"",
+  "yt": "8th month, 313"
+ },
+ "event:高句丽灭乐浪郡": {
+  "old": "Goguryeo destroys Lelang Commandery",
+  "mod": "Pyongyang, North Korea",
+  "note": "King Micheon of Goguryeo destroyed Lelang Commandery and took Daifang Commandery the following year, ending the commandery rule of the Han, Wei and Jin on the Korean peninsula.",
+  "yt": "313–314"
+ },
+ "event:东晋建立": {
+  "old": "Eastern Jin founded",
+  "mod": "Nanjing, Jiangsu",
+  "note": "In the 3rd month of 318 Sima Rui ascended the imperial throne (Emperor Yuan) — \"the Wang and the Ma share the realm\".",
+  "yt": "317–318"
+ },
+ "event:靳准之乱": {
+  "old": "Jin Zhun's coup",
+  "mod": "southwest of Linfen, Shanxi",
+  "note": "Jin Zhun killed the Han ruler Liu Can at Pingyang, put every man and woman of the Liu clan to death, dug up the tombs of Liu Yuan and Liu Cong, and styled himself Heavenly King of Han.",
+  "yt": "8th month, 318"
+ },
+ "event:石勒称帝": {
+  "old": "Shi Le proclaims himself emperor",
+  "mod": "Xingtai, Hebei",
+  "note": "Shi Le took the imperial throne at Xiangguo, set up an Imperial Academy and lesser schools, ordered the provinces and commanderies to recommend men for office, and formed a \"Gentlemen's Camp\" to gather in scholars.",
+  "yt": "9th month, 330"
+ },
+ "event:什翼犍即代王位": {
+  "old": "Shiyijian becomes King of Dai",
+  "mod": "around Hunyuan, Shanxi (north of Fanzhi)",
+  "note": "North of Fanzhi, Tuoba Shiyijian became King of Dai, set up a bureaucracy, drew up laws and proclaimed the era name Jianguo; in 340 he moved his capital to Shengle.",
+  "yt": "11th month, 338"
+ },
+ "event:龙城营建": {
+  "old": "Building of Longcheng",
+  "mod": "Chaoyang, Liaoning",
+  "note": "Murong Huang built Longcheng north of Liucheng, with palaces and an ancestral temple, and moved his capital there in 342.",
+  "yt": "341–342"
+ },
+ "event:前燕灭宇文部": {
+  "old": "Former Yan destroys the Yuwen",
+  "mod": "around Chifeng, Inner Mongolia",
+  "note": "Murong Huang campaigned in person against the Yuwen; Yuwen Yidougui fled far north of the Gobi and died, and more than five thousand Yuwen tents were moved to Changli.",
+  "yt": "344"
+ },
+ "event:杀胡令": {
+  "old": "Order to kill the Hu",
+  "mod": "Linzhang, Hebei",
+  "note": "Ran Min ordered that \"any man of Zhao who brings the head of a Hu to the Fengyang Gate will be promoted three ranks if a civil official, and made a Gate General if a military officer\"; more than two hundred thousand died in and around Ye.",
+  "yt": "350"
+ },
+ "event:兰亭修禊": {
+  "old": "Orchid Pavilion Gathering",
+  "mod": "Lanting, Shaoxing, Zhejiang",
+  "note": "On the third day of the third month Wang Xizhi, Xie An, Sun Chuo and others, forty-one men in all, held the spring purification at the Orchid Pavilion in Shanyin, Kuaiji, floating wine cups down a winding stream, and Wang Xizhi wrote the Preface to the Orchid Pavilion Poems.",
+  "yt": "3rd month, 353"
+ },
+ "event:莫高窟开凿": {
+  "old": "Mogao Caves begun",
+  "mod": "eastern foot of Mingsha Mountain, Dunhuang, Gansu",
+  "note": "The monk Le Zun cut the first cave at the eastern foot of Mingsha Mountain; later generations went on cutting more — the Mogao Caves of Dunhuang.",
+  "yt": "366"
+ },
+ "event:佛教传入高句丽": {
+  "old": "Buddhism reaches Goguryeo",
+  "mod": "Ji'an, Jilin",
+  "note": "Fu Jian (苻坚) of the Former Qin sent the monk Sundo to Goguryeo with Buddhist images and scriptures; King Sosurim set up an Imperial Academy and issued laws.",
+  "yt": "372"
+ },
+ "event:北府兵组建": {
+  "old": "Northern Headquarters Army formed",
+  "mod": "Yangzhou, Jiangsu",
+  "note": "Xie Xuan, taking up his post at Guangling, recruited the boldest of the northern refugees who had fled south and formed the Northern Headquarters Army, with Liu Laozhi, He Qian and others as its commanders.",
+  "yt": "377"
+ },
+ "event:苻坚之死": {
+  "old": "Death of Fu Jian",
+  "mod": "Binzhou, Shaanxi",
+  "note": "Fu Jian was captured by Yao Chang; refusing to hand over the imperial seal or abdicate, he was strangled in a Buddhist temple at Xinping, at the age of forty-eight.",
+  "yt": "8th month, 385"
+ },
+ "event:拓跋珪复国": {
+  "old": "Tuoba Gui restores the state",
+  "mod": "around Ulanqab, Inner Mongolia (Niuchuan)",
+  "note": "Tuoba Gui gathered the old followers of Dai at Niuchuan and became King of Dai, changing the title to King of Wei in the 4th month.",
+  "yt": "1st month, 386"
+ },
+ "event:孙恩之乱": {
+  "old": "Sun En's rebellion",
+  "mod": "Shaoxing, Zhejiang",
+  "note": "Sun En, a leader of the Way of the Five Pecks of Rice, rose from the offshore islands and took Kuaiji; the eight commanderies of the Three Wu rose in answer, and the rebellion lasted four years in all.",
+  "yt": "10th month, 399"
+ },
+ "event:鸠摩罗什至长安": {
+  "old": "Kumarajiva reaches Chang'an",
+  "mod": "northwest of Xi'an, Shaanxi",
+  "note": "Yao Xing of the Later Qin brought the eminent Kuchean monk Kumarajiva to Chang'an, where he led the translation of scriptures in the Ximing Pavilion of the Xiaoyao Garden, producing in a little over ten years more than three hundred scrolls of sutras and treatises, among them the Lotus, the Vimalakirti and the Middle Treatise.",
+  "yt": "12th month, 401"
+ },
+ "event:社仑称可汗": {
+  "old": "Shelun proclaims himself Qaghan",
+  "mod": "around the Orkhon River, Mongolia",
+  "note": "Shelun of the Rouran united the lands north of the Gobi and styled himself Qiudoufa Qaghan; this is the first appearance of the title \"Qaghan\" in the north.",
+  "yt": "402"
+ },
+ "event:刘裕京口起兵": {
+  "old": "Liu Yu rises at Jingkou",
+  "mod": "Zhenjiang, Jiangsu",
+  "note": "Liu Yu, He Wuji, Liu Yi and others, twenty-seven men in all, rose at Jingkou and Guangling at the same time against Huan Xuan.",
+  "yt": "2nd month, 404"
+ },
+ "event:陶渊明归隐": {
+  "old": "Tao Yuanming withdraws to the countryside",
+  "mod": "Jiujiang, Jiangxi",
+  "note": "Tao Yuanming served as magistrate of Pengze for little more than eighty days; refusing to \"bow for five pecks of rice\", he resigned his post and withdrew to the countryside, writing \"Homeward Bound\".",
+  "yt": "11th month, 405"
+ },
+ "event:统万城筑成": {
+  "old": "Tongwan City completed",
+  "mod": "Baichengzi, Jingbian, Shaanxi",
+  "note": "Helian Bobo sent a hundred thousand Hu and Chinese from north of the ridges to build Tongwan City with walls of steamed earth, naming it \"to unify all under heaven and rule over ten thousand states\".",
+  "yt": "413"
+ },
+ "event:好太王碑": {
+  "old": "Gwanggaeto Stele",
+  "mod": "Ji'an, Jilin",
+  "note": "King Jangsu of Goguryeo set up a stele to his father King Gwanggaeto recording his deeds, including his campaigns south against Baekje and Silla and his repulse of the Wa.",
+  "yt": "414"
+ },
+ "event:刘宋建立": {
+  "old": "Liu Song founded",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Liu Yu accepted the abdication of Emperor Gong of Jin and named his dynasty Song; the Eastern Jin came to an end.",
+  "yt": "6th month, 420"
+ },
+ "event:高句丽迁都平壤": {
+  "old": "Goguryeo moves its capital to Pyongyang",
+  "mod": "Pyongyang, North Korea",
+  "note": "King Jangsu moved the capital from Gungnae Fortress to Pyongyang and turned to the south of the peninsula.",
+  "yt": "427"
+ },
+ "event:倭五王遣使": {
+  "old": "The Five Kings of Wa send envoys",
+  "mod": "Nara Basin, Japan",
+  "note": "The Wa kings San, Chin, Sei, Kō and Bu sent envoys to Liu Song more than ten times between 421 and 478, seeking the titles \"Grand General Who Pacifies the East, King of Wa\" and command over the armies of several states.",
+  "yt": "421–478"
+ },
+ "event:太武帝灭佛": {
+  "old": "Emperor Taiwu's persecution of Buddhism",
+  "mod": "Datong, Shanxi",
+  "note": "Under the influence of Cui Hao and Kou Qianzhi, Emperor Taiwu favored Daoism and suppressed Buddhism; in 446 he decreed that monks be killed and scriptures and images destroyed — the first of the persecutions of the \"Three Wus and One Zong\".",
+  "yt": "446"
+ },
+ "event:国史之狱": {
+  "old": "State History affair",
+  "mod": "Datong, Shanxi",
+  "note": "Cui Hao directed the compilation of the state history and had it carved on stone outside the city, recording plainly the affairs of the early Tuoba; he was executed and his clan wiped out, and the Cui of Qinghe and their relatives by marriage — the Lu of Fanyang, the Guo of Taiyuan and the Liu of Hedong — were drawn in.",
+  "yt": "6th month, 450"
+ },
+ "event:云冈石窟开凿": {
+  "old": "Yungang Grottoes begun",
+  "mod": "Wuzhou Mountains, Datong, Shanxi",
+  "note": "Emperor Wencheng revived Buddhism, and Tanyao, Superintendent of Monks, cut five caves in the Wuzhou Mountains with images seventy and sixty feet tall.",
+  "yt": "460"
+ },
+ "event:祖冲之《大明历》": {
+  "old": "Zu Chongzhi's Daming Calendar",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Zu Chongzhi compiled the Daming Calendar, the first calendar to take account of the precession of the equinoxes; he also calculated π to lie between 3.1415926 and 3.1415927.",
+  "yt": "462"
+ },
+ "event:均田令": {
+  "old": "Equal-field decree",
+  "mod": "Datong, Shanxi",
+  "note": "The Northern Wei issued the equal-field decree, allotting open fields and mulberry fields by head count, and the following year set up the system of the Three Elders; the equal-field systems of Sui and Tang both derived from it.",
+  "yt": "485"
+ },
+ "event:孝文帝迁都洛阳": {
+  "old": "Emperor Xiaowen moves the capital to Luoyang",
+  "mod": "Luoyang, Henan",
+  "note": "Ostensibly marching south, Emperor Xiaowen moved the capital to Luoyang; thereafter Xianbei dress and the northern language were given up, Chinese surnames adopted, family ranks fixed, and intermarriage with Chinese encouraged.",
+  "yt": "493–494"
+ },
+ "event:龙门石窟开凿": {
+  "old": "Longmen Grottoes begun",
+  "mod": "Yique, Luoyang, Henan",
+  "note": "After the move of the capital the Northern Wei imperial house cut grottoes at Yique, completing the Guyang and Binyang caves in turn.",
+  "yt": "from 494"
+ },
+ "event:少林寺创建": {
+  "old": "Shaolin Monastery founded",
+  "mod": "Mount Shaoshi, Dengfeng, Henan",
+  "note": "Emperor Xiaowen founded the Shaolin Monastery on the north side of Mount Shaoshi for the Indian monk Batuo.",
+  "yt": "495"
+ },
+ "event:浮山堰": {
+  "old": "Fushan Dam",
+  "mod": "between Wuhe, Anhui and Sihong, Jiangsu",
+  "note": "Following the advice of Wang Zu, a defector from Wei, Emperor Wu of Liang put two hundred thousand soldiers and civilians to work building a dam at Fushan to hold back the Huai and flood Shouyang; the finished dam was nine li long. In the 9th month of 516 the Huai rose suddenly and the dam burst, sweeping more than a hundred thousand people of the towns, forts and villages along the river into the sea.",
+  "yt": "514–516"
+ },
+ "event:六镇起义": {
+  "old": "Six Garrisons uprising",
+  "mod": "around Wuyuan, Inner Mongolia",
+  "note": "Poliuhan Baling, a garrison soldier of Woye, killed the garrison commander and rose in arms, the Six Garrisons rose in answer, and the collapse of the Northern Wei began.",
+  "yt": "3rd month, 524"
+ },
+ "event:梁武帝舍身同泰寺": {
+  "old": "Emperor Wu of Liang gives himself to Tongtai Temple",
+  "mod": "Nanjing, Jiangsu",
+  "note": "Emperor Wu of Liang four times gave himself to Tongtai Temple as a temple slave and was redeemed by his ministers for huge sums; the Buddhist temples of Jiankang numbered more than five hundred — \"the 480 temples of the Southern Dynasties\".",
+  "yt": "527–547"
+ },
+ "event:河阴之变": {
+  "old": "Heyin massacre",
+  "mod": "east of Mengjin, Henan",
+  "note": "At Heyin Erzhu Rong drowned the Empress Dowager Hu and the child emperor in the Yellow River and massacred more than two thousand princes and officials; the Northern Wei ruling elite never recovered.",
+  "yt": "4th month, 528"
+ },
+ "event:金官伽倻降新罗": {
+  "old": "Geumgwan Gaya submits to Silla",
+  "mod": "Gimhae, South Gyeongsang, South Korea",
+  "note": "Kim Gu-hae, the last king of Geumgwan Gaya, surrendered to King Beopheung of Silla with his queen and princes; his son Kim Mu-ryeok was the grandfather of the later Silla general Kim Yu-sin.",
+  "yt": "532"
+ },
+ "event:北魏分裂": {
+  "old": "Northern Wei splits",
+  "mod": "Linzhang, Hebei",
+  "note": "Emperor Xiaowu fled west to Yuwen Tai, Gao Huan set up Emperor Xiaojing and moved the capital to Ye, and the Northern Wei split into the Eastern and Western Wei.",
+  "yt": "534"
+ },
+ "event:百济迁都泗沘": {
+  "old": "Baekje moves its capital to Sabi",
+  "mod": "Buyeo, South Chungcheong, South Korea",
+  "note": "King Seong of Baekje moved the capital to Sabi and renamed the state Southern Buyeo; in the same year (or 552) he sent envoys to bring Buddhist images and scriptures to Wa.",
+  "yt": "538"
+ },
+ "event:李贲称帝": {
+  "old": "Lý Bí proclaims himself emperor",
+  "mod": "Hanoi, Vietnam",
+  "note": "Lý Bí, of a great family of Jiao Province, rose in 541 and drove out the Liang Inspector Xiao Zi; in 544 he proclaimed himself Emperor of Southern Yue, naming his state Vạn Xuân.",
+  "yt": "541–544"
+ },
+ "event:侯景寿阳起兵": {
+  "old": "Hou Jing rises at Shouyang",
+  "mod": "Shou County, Anhui",
+  "note": "Hou Jing rose against Liang at Shouyang, claiming he would execute Zhu Yi, and won over Xiao Zhengde, Prince of Linhe, as his inside man.",
+  "yt": "8th month, 548"
+ },
+ "event:北齐建立": {
+  "old": "Northern Qi founded",
+  "mod": "Linzhang, Hebei",
+  "note": "Gao Yang deposed Emperor Xiaojing of Eastern Wei and took the throne himself, naming his dynasty Qi.",
+  "yt": "5th month, 550"
+ },
+ "event:新罗取汉江流域": {
+  "old": "Silla takes the Han River basin",
+  "mod": "Seoul, South Korea",
+  "note": "In 551 Silla and Baekje joined forces against Goguryeo and recovered the Han River basin; in 553 Silla broke the alliance and seized the lower Han River that Baekje had gained, setting up Sinju.",
+  "yt": "551–553"
+ },
+ "event:突厥建国": {
+  "old": "Turkic Qaghanate founded",
+  "mod": "eastern Khangai Mountains, Mongolia",
+  "note": "After crushing the Rouran, Tumen Qaghan of the Turks styled himself Il Qaghan and set up his royal camp at Ötüken: the Turkic Qaghanate was founded.",
+  "yt": "552"
+ },
+ "event:北周、陈建立": {
+  "old": "Northern Zhou and Chen founded",
+  "mod": "northwest of Xi'an, Shaanxi",
+  "note": "In the 1st month of 557 Yuwen Jue replaced the Western Wei and took the title Heavenly King of Zhou, and in the 10th month Chen Baxian replaced Liang and founded Chen.",
+  "yt": "557"
+ },
+ "event:新罗灭大伽倻": {
+  "old": "Silla destroys Daegaya",
+  "mod": "Goryeong, North Gyeongsang, South Korea",
+  "note": "King Jinheung of Silla sent Isabu to destroy Daegaya, and all the Gaya states passed to Silla.",
+  "yt": "562"
+ },
+ "event:突厥使团至君士坦丁堡": {
+  "old": "Turkic embassy reaches Constantinople",
+  "mod": "Istanbul, Türkiye",
+  "note": "Istämi Qaghan of the Western Turks sent the Sogdian Maniakh as envoy to the Eastern Roman Empire to arrange direct trade in silk bypassing the Sasanians; the following year the Eastern Roman Empire sent Zemarchus to the Turkic royal camp in return.",
+  "yt": "568"
+ },
+ "event:周武帝灭佛": {
+  "old": "Emperor Wu of Zhou's persecution of Buddhism",
+  "mod": "northwest of Xi'an, Shaanxi",
+  "note": "Emperor Wu of the Northern Zhou banned both Buddhism and Daoism, destroyed scriptures and images, and ordered monks and Daoist priests to return to lay life; after conquering Northern Qi in 577 he extended the ban to the former Qi lands.",
+  "yt": "574"
+ },
+ "event:隋朝建立": {
+  "old": "Sui founded",
+  "mod": "northwest of Xi'an, Shaanxi",
+  "note": "Emperor Jing of Northern Zhou abdicated in favor of the Chancellor Yang Jian, and the Sui dynasty was founded with the era name Kaihuang.",
+  "yt": "2nd month, 581"
+ },
+ "event:笈多王朝建立": {
+  "old": "Gupta dynasty founded",
+  "mod": "Patna, India",
+  "note": "Chandragupta I took the throne in Magadha and founded the Gupta dynasty, with its capital at Pataliputra.",
+  "yt": "320"
+ },
+ "event:尼西亚公会议": {
+  "old": "Council of Nicaea",
+  "mod": "İznik, Türkiye",
+  "note": "Constantine the Great convened a council of Christian bishops, which drew up the Nicene Creed.",
+  "yt": "325"
+ },
+ "event:君士坦丁堡落成": {
+  "old": "Constantinople dedicated",
+  "mod": "Istanbul, Türkiye",
+  "note": "Constantine the Great moved the capital to Byzantium and renamed it Constantinople, calling it the \"New Rome\".",
+  "yt": "May 330"
+ },
+ "event:匈人西进": {
+  "old": "The Huns move west",
+  "mod": "around Volgograd, Russia",
+  "note": "The Huns crossed the Volga and the Don moving west and crushed the Alans and the Ostrogoths; the Gothic tribes were forced to ask to be let into Roman territory.",
+  "yt": "c. 370–376"
+ },
+ "event:罗马帝国东西分治": {
+  "old": "Roman Empire divided between East and West",
+  "mod": "Istanbul, Türkiye",
+  "note": "After the death of Theodosius I the empire was divided between his two sons, the Eastern Roman Empire having its capital at Constantinople.",
+  "yt": "395"
+ },
+ "event:那烂陀寺兴建": {
+  "old": "Nalanda founded",
+  "mod": "Nalanda, Bihar, India",
+  "note": "Nalanda was founded under Kumaragupta I of the Gupta dynasty (c. 415–455), and later became the greatest center of Buddhist learning in India.",
+  "yt": "mid-5th century"
+ },
+ "event:蚕种西传": {
+  "old": "Silkworms reach the West",
+  "mod": "Istanbul, Türkiye",
+  "note": "Around 552 two monks, commissioned by Justinian, hid silkworm eggs in hollow canes and brought them from the East to Constantinople, and thereafter the Eastern Roman Empire raised silkworms and wove silk.",
+  "yt": "c. 552"
+ },
+ "pass:潼关": {
+  "old": "Tong Pass",
+  "mod": "Gangkou, Tongguan, Shaanxi",
+  "note": "The eastern gate of Guanzhong, established at the end of the Eastern Han to replace the Hangu Pass. In 417 Wang Zhen'e went from Tong Pass up the Wei River straight to Chang'an; in 537 Yuwen Tai came out east through it and ambushed Dou Tai of the Eastern Wei at Xiaoguan."
+ },
+ "pass:蒲津关": {
+  "old": "Pujin Pass",
+  "mod": "Puzhou, Yongji, Shanxi",
+  "note": "The Yellow River ford at Puban, linking Guanzhong with Hedong; in 537 Gao Huan crossed here to attack the Western Wei and was defeated at Shayuan."
+ },
+ "pass:武关": {
+  "old": "Wu Pass",
+  "mod": "Wuguan, Danfeng, Shaanxi",
+  "note": "The southeastern gateway of Chang'an, leading by way of Shangluo to Nanyang and Xiangyang; in 354 Huan Wen entered Guanzhong this way on his first northern expedition."
+ },
+ "pass:大散关": {
+  "old": "Dasan Pass",
+  "mod": "south of Baoji, Shaanxi",
+  "note": "The northern mouth of the Qinling, commanding the Chencang Road into Hanzhong and Shu; under the Northern and Southern Dynasties it marked the boundary between Guanzhong and Hanzhong."
+ },
+ "pass:陇关": {
+  "old": "Long Pass",
+  "mod": "west of Long County, Shaanxi",
+  "note": "The main road over the Long Mountains, marking the boundary between Guanzhong and Longyou."
+ },
+ "pass:萧关": {
+  "old": "Xiao Pass",
+  "mod": "southeast of Guyuan, Ningxia",
+  "note": "The northwestern gateway of Guanzhong, commanding the upper Jing; the Former Qin, Later Qin, Xia and Northern Wei fought over it again and again."
+ },
+ "pass:剑门关": {
+  "old": "Jianmen Pass",
+  "mod": "Jiange, Sichuan",
+  "note": "A natural fortress on the Jinniu Road; the Western Jin writer Zhang Zai, in his Inscription on Jiange, wrote that \"one man with a halberd can make ten thousand falter\"; in 553 Yuchi Jiong came south this way to take Shu."
+ },
+ "pass:瞿塘关": {
+  "old": "Qutang Pass",
+  "mod": "Baidicheng, Fengjie, Chongqing",
+  "note": "The western entrance to the Three Gorges of the Yangtze, where Baidi City at Yufu stood, commanding the eastern gate of Ba-Shu."
+ },
+ "pass:虎牢关": {
+  "old": "Hulao Pass",
+  "mod": "Sishui, Xingyang, Henan",
+  "note": "The eastern gate of Luoyang, also called Chenggao, with the Yellow River to the north and Mount Song to the south. In 423 it fell to the Northern Wei after Mao Dezu had held it for more than two hundred days; the Battle of Mount Mang in 543 began when Gao Zhongmi surrendered Hulao to the Western Wei."
+ },
+ "pass:天井关": {
+  "old": "Tianjing Pass",
+  "mod": "south of Jincheng, Shanxi",
+  "note": "A pass on the Taihang Defile, linking Shangdang and Henei."
+ },
+ "pass:井陉口": {
+  "old": "Jingxing Pass",
+  "mod": "Jingxing, Hebei",
+  "note": "One of the Eight Defiles of the Taihang, the passage between Hedong and Hebei; in 396 Tuoba Gui sent columns east through Jingxing to besiege Zhongshan."
+ },
+ "pass:飞狐口": {
+  "old": "Feihu Pass",
+  "mod": "north of Laiyuan, Hebei",
+  "note": "One of the Eight Defiles of the Taihang, the passage from northern Dai to Zhongshan."
+ },
+ "pass:雁门关": {
+  "old": "Yanmen Pass",
+  "mod": "Dai County, Shanxi",
+  "note": "A pass on Mount Gouzhu, the northern shield of Hedong; in 310 Tuoba Yilu gained the five counties north of the Gouzhu Defile, and the pass became the boundary between Jin and Dai."
+ },
+ "pass:居庸关": {
+  "old": "Juyong Pass",
+  "mod": "Changping, Beijing",
+  "note": "The Jundu Defile of the Eight Defiles of the Taihang; the northern gate of You Province."
+ },
+ "pass:古北口": {
+  "old": "Gubeikou",
+  "mod": "Miyun, Beijing",
+  "note": "The main road from You Province northeast to the Kumo Xi and the Khitan."
+ },
+ "pass:大庾岭": {
+  "old": "Dayu Pass",
+  "mod": "Dayu, Jiangxi – Nanxiong, Guangdong",
+  "note": "One of the Five Ridges and the most important passage between Lingnan and the Central Plain; in 410 Lu Xun and Xu Daofu marched north by way of the Xiang River and the Dayu Pass respectively."
+ },
+ "pass:玉门关": {
+  "old": "Yumen Pass",
+  "mod": "northwest of Dunhuang, Gansu (Xiaofangpan Fort)",
+  "note": "Set up in Han times, it was still the pass for travelers heading west from Dunhuang under Wei and Jin; Faxian went out through it from Dunhuang in 400 — \"no birds in the sky above, no beasts on the ground below\" — and reached Shanshan after seventeen days."
+ },
+ "pass:阳关": {
+  "old": "Yang Pass",
+  "mod": "southwest of Dunhuang, Gansu",
+  "note": "The pass southwest of Dunhuang leading to the southern route through the Western Regions."
+ },
+ "pass:铁门关": {
+  "old": "Tiemen Pass",
+  "mod": "north of Korla, Xinjiang",
+  "note": "A gorge pass on the road from Karasahr to Kucha; Lü Guang went this way to attack Kucha on his western expedition of 384."
+ },
+ "pass:函谷关": {
+  "old": "Hangu Pass",
+  "mod": "east of Xin'an, Henan",
+  "note": "The new pass to which Emperor Wu of Han moved the old one; the western gate of Western Jin Luoyang, from which direction Liu Yao advanced on Luoyang in 311."
+ },
+ "pass:卢龙塞": {
+  "old": "Lulong Fort",
+  "mod": "around Xifengkou, Qianxi, Hebei",
+  "note": "The old road going out northeast from You Province beyond the frontier to Liaoxi; most traffic between the Murong, the Duan and the Central Plain went this way."
+ },
+ "pass:白道": {
+  "old": "Baidao",
+  "mod": "north of Hohhot, Inner Mongolia",
+  "note": "The north–south passage through the Yin Mountains, the main road between the Six Garrisons of the Northern Wei and Shengle and Pingcheng."
+ },
+ "pass:阳平关": {
+  "old": "Yangping Pass",
+  "mod": "west of Mian County, Shaanxi",
+  "note": "The western gate of Hanzhong, where the Jinniu Road and the Chencang Road met; a point the north and the south had to win in any contest for Hanzhong."
+ },
+ "pass:义阳三关": {
+  "old": "Three Passes of Yiyang",
+  "mod": "south of Xinyang, Henan (Pingjing, Wuyang and Huangxian)",
+  "note": "The three passes of Pingjing, Wuyang and Huangxian in the western Dabie Mountains, commanding the road south from Yiyang to the Jiang–Han region; after the Northern Wei took Yiyang in 504 the three passes fell to Wei, and thereafter north and south fought over them again and again."
+ },
+ "pass:濡须口": {
+  "old": "Ruxukou",
+  "mod": "southeast of Wuwei, Anhui",
+  "note": "The mouth of the Ruxu River, by which Chao Lake drains into the Yangtze; a key point on the waterways between the Yangtze and the Huai since Sun Wu times."
+ },
+ "pass:采石": {
+  "old": "Caishi",
+  "mod": "Caishiji, Ma'anshan, Anhui",
+  "note": "One of the most important crossings of the lower Yangtze; Hou Jing crossed here to attack Jiankang in 548."
+ },
+ "pass:杰尔宾特": {
+  "old": "Derbent",
+  "mod": "Derbent, Dagestan, Russia",
+  "note": "A fortress on the west shore of the Caspian where the Sasanians built a long wall to block the steppe peoples' road south; the Eastern Roman Empire also contributed money to its upkeep."
+ },
+ "range:终南山（秦岭）": {
+  "old": "Zhongnan Mountains (Qinling)",
+  "mod": "Qinling Mountains",
+  "note": "The southern screen of Guanzhong, crossed by the valley roads of Ziwu, Tangluo, Baoye and Chencang into Hanzhong; Huan Wen's northern expedition of 354 and Yuchi Jiong's conquest of Shu in 553 both went by these roads."
+ },
+ "range:巴山": {
+  "old": "Ba Mountains",
+  "mod": "Daba Mountains",
+  "note": "The barrier between Hanzhong and Ba-Shu, crossed by the Micang Road."
+ },
+ "range:太行山": {
+  "old": "Taihang Mountains",
+  "mod": "Taihang Mountains",
+  "note": "The boundary between Hedong and Hebei, crossed by the \"Eight Defiles of the Taihang\"; in the Sixteen Kingdoms period the Western Yan, Later Yan and Northern Wei faced each other across these mountains in contesting Bing Province and Hebei."
+ },
+ "range:吕梁山": {
+  "old": "Lüliang Mountains",
+  "mod": "Lüliang Mountains",
+  "note": "The mountains of western Hedong, bordered by the Yellow River on the west; Zuoguo City, where Liu Yuan rose, lay on their western slopes, and under the Northern Dynasties they were home to the Jihu (Mountain Hu)."
+ },
+ "range:中条山": {
+  "old": "Zhongtiao Mountains",
+  "mod": "Zhongtiao Mountains",
+  "note": "In southern Hedong; the salt lake lies at their northern foot."
+ },
+ "range:恒山": {
+  "old": "Heng Mountains",
+  "mod": "Heng Mountains (Shanxi)",
+  "note": "The Northern Peak, between northern Dai and Hebei."
+ },
+ "range:五台山": {
+  "old": "Mount Wutai",
+  "mod": "Mount Wutai",
+  "note": "There were already Buddhist temples here under the Northern Wei, and under Northern Qi they numbered more than two hundred."
+ },
+ "range:燕山": {
+  "old": "Yan Mountains",
+  "mod": "Yan Mountains",
+  "note": "The northern shield of You Province and the gateway between the Murong and Duan and the Central Plain."
+ },
+ "range:阴山": {
+  "old": "Yin Mountains",
+  "mod": "Yin Mountains",
+  "note": "The barrier between the steppe south of the Gobi and the Hetao; along their northern foot the Northern Wei set up the Six Garrisons — Woye, Huaishuo, Wuchuan and others — against the Rouran."
+ },
+ "range:贺兰山": {
+  "old": "Helan Mountains",
+  "mod": "Helan Mountains",
+  "note": "The western shield of the Hetao, with the Northern Wei Bogulü Garrison to the east."
+ },
+ "range:陇山": {
+  "old": "Long Mountains",
+  "mod": "Liupan Mountains",
+  "note": "The barrier between Guanzhong and Longyou, on either side of which Fu Deng of the Former Qin and Yao Chang of the Later Qin fought back and forth for years."
+ },
+ "range:祁连山": {
+  "old": "Qilian Mountains",
+  "mod": "Qilian Mountains",
+  "note": "On the south side of the Hexi Corridor; the Hexi Xianbei and the Lushui Hu grazed their herds along these mountains."
+ },
+ "range:阿尔金山": {
+  "old": "Altyn-Tagh",
+  "mod": "Altyn-Tagh",
+  "note": "Between the southern route through the Western Regions and Qinghai; from here the Tuyuhun controlled Shanshan and Qiemo."
+ },
+ "range:昆仑山": {
+  "old": "Kunlun Mountains",
+  "mod": "Kunlun Mountains",
+  "note": "Khotan's southern mountains, a source of jade."
+ },
+ "range:积石山": {
+  "old": "Jishi Mountains",
+  "mod": "Amne Machin",
+  "note": "The Yellow River bends around them, and the heartland of the Tuyuhun lay to their north."
+ },
+ "range:唐古拉山": {
+  "old": "Tanggula Mountains",
+  "mod": "Tanggula Mountains",
+  "note": "In the heart of the Qinghai–Tibet Plateau; the main source of the Yangtze rises here. The name is modern."
+ },
+ "range:冈底斯山": {
+  "old": "Gangdise Mountains",
+  "mod": "Gangdise and Nyenchen Tanglha ranges",
+  "note": "The northern edge of the valleys of southern Tibet. The name is modern."
+ },
+ "range:雪山": {
+  "old": "Himalayas",
+  "mod": "Himalayas",
+  "note": "The great snowy mountains north of India; Faxian and Song Yun both saw their peaks from afar on their journeys west."
+ },
+ "range:葱岭": {
+  "old": "Pamirs",
+  "mod": "Pamirs",
+  "note": "The divide between the Western Regions and Central Asia, crossed by Faxian in 401 and by Song Yun in 519."
+ },
+ "range:天山": {
+  "old": "Tian Shan",
+  "mod": "Tian Shan",
+  "note": "Called the White Mountains under the Northern Dynasties; to the north were the grazing lands of the Rouran, Gaoche and Turks, to the south the oasis states of Karasahr, Kucha and others."
+ },
+ "range:金山": {
+  "old": "Altai Mountains",
+  "mod": "Altai Mountains",
+  "note": "The Altai, on whose southern side the Turks arose, working iron for the Rouran."
+ },
+ "range:燕然山": {
+  "old": "Yanran Mountains",
+  "mod": "Khangai Mountains",
+  "note": "The Khangai, in the heart of the land north of the Gobi; the royal camps of the Rouran and the Turks lay at its eastern foot."
+ },
+ "range:大兴安岭": {
+  "old": "Greater Khingan",
+  "mod": "Greater Khingan",
+  "note": "The homeland of the Tuoba Xianbei; in 443 the Northern Wei sent Li Chang to sacrifice to the ancestors in the stone chamber of the Gaxian Cave and carve an inscription there."
+ },
+ "range:太白山": {
+  "old": "Mount Taibai",
+  "mod": "Changbai Mountains",
+  "note": "The Changbai Mountains, called Mount Tutai under the Northern Dynasties; the Wuji lived to their north."
+ },
+ "range:医巫闾山": {
+  "old": "Yiwulü Mountains",
+  "mod": "Yiwulü Mountains",
+  "note": "A famous mountain of Liaoxi, with the Former Yan capital Longcheng to its west."
+ },
+ "range:泰山": {
+  "old": "Mount Tai",
+  "mod": "Mount Tai",
+  "note": "The Eastern Peak, around which the Southern Yan, the Eastern Jin and the Northern Wei fought again and again."
+ },
+ "range:华山": {
+  "old": "Mount Hua",
+  "mod": "Mount Hua",
+  "note": "The Western Peak, west of Tong Pass."
+ },
+ "range:嵩山": {
+  "old": "Mount Song",
+  "mod": "Mount Song",
+  "note": "The Central Peak; in 495 Emperor Xiaowen of the Northern Wei founded the Shaolin Monastery for the Indian monk Batuo on Mount Shaoshi, one of its peaks."
+ },
+ "range:伏牛山": {
+  "old": "Funiu Mountains",
+  "mod": "Funiu Mountains",
+  "note": "Between Luoyang and the Nanyang Basin."
+ },
+ "range:大别山": {
+  "old": "Dabie Mountains",
+  "mod": "Dabie Mountains",
+  "note": "Between Huainan and the Jiang–Han region, with the Three Passes of Yiyang in its western section."
+ },
+ "range:巫山": {
+  "old": "Wu Mountains",
+  "mod": "Wu Mountains",
+  "note": "Where the Three Gorges of the Yangtze lie."
+ },
+ "range:武陵山": {
+  "old": "Wuling Mountains",
+  "mod": "Wuling Mountains",
+  "note": "Home of the Five Streams tribes."
+ },
+ "range:雪峰山": {
+  "old": "Xuefeng Mountains",
+  "mod": "Xuefeng Mountains",
+  "note": "Between the Zi and Yuan rivers. The name is modern."
+ },
+ "range:五岭": {
+  "old": "Five Ridges",
+  "mod": "Nanling Mountains",
+  "note": "The five ridges of Yuecheng, Dupang, Mengzhu, Qitian and Dayu, forming the divide between Lingnan and the Central Plain."
+ },
+ "range:罗霄山": {
+  "old": "Luoxiao Mountains",
+  "mod": "Luoxiao Mountains",
+  "note": "Between Hunan and Jiangxi. The name is modern."
+ },
+ "range:武夷山": {
+  "old": "Wuyi Mountains",
+  "mod": "Wuyi Mountains",
+  "note": "Between Min and Jiang Province."
+ },
+ "range:仙霞岭": {
+  "old": "Xianxia Range",
+  "mod": "Xianxia Range",
+  "note": "Mountains between Zhejiang and Fujian."
+ },
+ "range:庐山": {
+  "old": "Mount Lu",
+  "mod": "Mount Lu",
+  "note": "Also called Kuanglu; here Huiyuan of the Eastern Jin founded the Donglin Temple and the White Lotus Society, and Tao Yuanming lived in retirement at its southern foot."
+ },
+ "range:衡山": {
+  "old": "Mount Heng",
+  "mod": "Mount Heng (Hunan)",
+  "note": "The Southern Peak."
+ },
+ "range:岷山": {
+  "old": "Min Mountains",
+  "mod": "Min Mountains",
+  "note": "Where Wenshan Commandery lay; the Qiang, the Dengzhi and other tribes lived to its northwest."
+ },
+ "range:邛崃山": {
+  "old": "Qionglai Mountains",
+  "mod": "Qionglai Mountains",
+  "note": "The western edge of the Chengdu Plain, bordering the Qiang tribes."
+ },
+ "range:大雪山（川西）": {
+  "old": "Daxue Mountains (western Sichuan)",
+  "mod": "Daxue Mountains",
+  "note": "The eastern edge of the western Sichuan plateau. The name is modern."
+ },
+ "range:点苍山": {
+  "old": "Diancang Mountains",
+  "mod": "Cang Mountains",
+  "note": "On the west shore of Erhai Lake."
+ },
+ "range:哀牢山": {
+  "old": "Ailao Mountains",
+  "mod": "Ailao Mountains",
+  "note": "A range in the southwest of Nanzhong. The name is modern."
+ },
+ "range:大雪山（兴都库什）": {
+  "old": "Great Snow Mountains (Hindu Kush)",
+  "mod": "Hindu Kush",
+  "note": "The barrier between Tokharistan and India; Faxian and Song Yun both crossed its eastern section on their journeys west, and the Hephthalites fought the Sasanians and Indian powers for Jibin and Gandhara south of it."
+ },
+ "range:高加索山": {
+  "old": "Caucasus Mountains",
+  "mod": "Greater Caucasus",
+  "note": "The mountains between the Black Sea and the Caspian; the Sasanians and the Eastern Roman Empire fought for Iberia and Armenia to their south, and the northern nomads came south through the pass of Derbent."
+ },
+ "range:托罗斯山": {
+  "old": "Taurus Mountains",
+  "mod": "Taurus Mountains",
+  "note": "The mountains along the southern edge of Asia Minor, the northwestern shield of the frontier between the Eastern Roman Empire and the Sasanians."
+ },
+ "range:扎格罗斯山": {
+  "old": "Zagros Mountains",
+  "mod": "Zagros Mountains",
+  "note": "The mountains along the western edge of the Iranian Plateau; the Sasanian winter capital Ctesiphon lay on the plain at their western foot, and the royal court often spent the summer in the mountains."
+ },
+ "range:厄尔布尔士山": {
+  "old": "Alborz Mountains",
+  "mod": "Alborz Mountains",
+  "note": "The mountains along the northern edge of the Iranian Plateau, on the south shore of the Caspian."
+ },
+ "range:文荼山": {
+  "old": "Vindhya Range",
+  "mod": "Vindhya Range",
+  "note": "The divide between northern and southern India, with Central India to the north and South India (the Deccan) to the south."
+ },
+ "river:丽水": {
+  "old": "Irrawaddy",
+  "mod": "Irrawaddy"
+ },
+ "river:汾水": {
+  "old": "Fen River",
+  "mod": "Fen River",
+  "note": "The axis of Hedong, on which both Jinyang and Pingyang stood; from here Han Zhao, Later Zhao and Northern Qi each faced Guanzhong."
+ },
+ "river:胪朐河": {
+  "old": "Kherlen",
+  "mod": "Kherlen River"
+ },
+ "river:中江": {
+  "old": "Zhong River",
+  "mod": "Tuo River"
+ },
+ "river:图们江": {
+  "old": "Tumen River",
+  "mod": "Tumen River"
+ },
+ "river:怒江": {
+  "old": "Nu River",
+  "mod": "Nu River (Salween)"
+ },
+ "river:犁牛河": {
+  "old": "Drichu",
+  "mod": "Tongtian River (upper Yangtze)",
+  "note": "The upper reaches of the Yangtze."
+ },
+ "river:剑河": {
+  "old": "Kem",
+  "mod": "upper Yenisei"
+ },
+ "river:红水河": {
+  "old": "Hongshui River",
+  "mod": "Hongshui River"
+ },
+ "river:郁水": {
+  "old": "Yu River",
+  "mod": "Xun River"
+ },
+ "river:泸水": {
+  "old": "Lu River",
+  "mod": "Jinsha River",
+  "note": "The Jinsha River; Zhuge Liang's \"crossing of the Lu in the 5th month\" in 225 was here."
+ },
+ "river:江": {
+  "old": "Yangtze",
+  "mod": "Yangtze",
+  "note": "The Yangtze, the great natural moat of the Northern and Southern Dynasties; the confrontation of north and south mostly ran along the Yangtze and the Huai. Emperor Taiwu of the Northern Wei watered his horses at Guabu in 450, and Hou Jing crossed the river at Caishi in 548."
+ },
+ "river:葱岭河": {
+  "old": "Congling River",
+  "mod": "Yarkand River"
+ },
+ "river:辽水": {
+  "old": "Liao River",
+  "mod": "Liao River",
+  "note": "The boundary between Liaodong and Liaoxi, across which the Former Yan, Later Yan and Northern Yan long contended with Goguryeo."
+ },
+ "river:沅水": {
+  "old": "Yuan River",
+  "mod": "Yuan River"
+ },
+ "river:汉水": {
+  "old": "Han River",
+  "mod": "Han River",
+  "note": "The Mian River; Xiangyang and Fancheng faced each other across it, forming the great stronghold of Yong Province under the Southern Dynasties; Xiao Yan rose in arms from here."
+ },
+ "river:赣水": {
+  "old": "Gan River",
+  "mod": "Gan River",
+  "note": "Yuzhang in Jiang Province lay on its lower course."
+ },
+ "river:娑陵水": {
+  "old": "Selenga",
+  "mod": "Selenga River",
+  "note": "The Selenga, grazing land of the Chile (Gaoche) tribes."
+ },
+ "river:曳咥河": {
+  "old": "Irtysh",
+  "mod": "Irtysh"
+ },
+ "river:富良江": {
+  "old": "Phú Lương River",
+  "mod": "Red River",
+  "note": "Longbian in Jiao Province lay on its right bank."
+ },
+ "river:大渡水": {
+  "old": "Dadu River",
+  "mod": "Dadu River",
+  "note": "A great river in the southwest of Shu, between the Chengdu Plain and Yuexi."
+ },
+ "river:潢水": {
+  "old": "Huang River",
+  "mod": "Xar Moron",
+  "note": "The Xar Moron, in whose valley the Khitan and the Kumo Xi grazed their herds."
+ },
+ "river:孔雀河": {
+  "old": "Kongque River",
+  "mod": "Kongque River"
+ },
+ "river:计戍水": {
+  "old": "Jishu River",
+  "mod": "Tarim River"
+ },
+ "river:粟末水": {
+  "old": "Sumo River",
+  "mod": "Songhua River",
+  "note": "The Songhua, in whose valley the Buyeo and the Wuji lived."
+ },
+ "river:汶江": {
+  "old": "Wen River",
+  "mod": "Min River (Sichuan)",
+  "note": "The water source of the Chengdu Plain, with the Dujiangyan irrigation works on it."
+ },
+ "river:兰沧水": {
+  "old": "Lancang River",
+  "mod": "Lancang (upper Mekong)",
+  "note": "A great river in the west of Nanzhong, with Yongchang to its west."
+ },
+ "river:伊丽水": {
+  "old": "Ili River",
+  "mod": "Ili River"
+ },
+ "river:㶟水@桑干河": {
+  "old": "Lei River",
+  "mod": "Sanggan River",
+  "note": "A great river between northern Dai and You Province; Pingcheng stood on its tributary, the Ruhun River."
+ },
+ "river:臧河": {
+  "old": "Tsangpo",
+  "mod": "Yarlung Tsangpo",
+  "note": "The Yarlung Tsangpo; the Yarlung valley, birthplace of the Pugyal, lies on its south bank."
+ },
+ "river:黔江": {
+  "old": "Qian River",
+  "mod": "Wu River",
+  "note": "Called the Fuling River or the Qian River in Tang times."
+ },
+ "river:湘水": {
+  "old": "Xiang River",
+  "mod": "Xiang River",
+  "note": "Changsha in Xiang Province lay on the Xiang."
+ },
+ "river:淮水": {
+  "old": "Huai River",
+  "mod": "Huai River",
+  "note": "Under the Northern and Southern Dynasties the Huai long marked the border, and the great strongholds along it — Shouyang, Zhongli, Xuyi, Huaiyin — changed hands again and again; in 514–516 Liang built the Fushan Dam across it, and when the dam burst more than a hundred thousand died."
+ },
+ "river:湄公河": {
+  "old": "Mekong",
+  "mod": "Mekong"
+ },
+ "river:闽江": {
+  "old": "Min River",
+  "mod": "Min River (Fujian)",
+  "note": "Formed where the Jian and Futun streams meet, it flows past Fuzhou into the sea."
+ },
+ "river:嘉陵江": {
+  "old": "Jialing River",
+  "mod": "Jialing River",
+  "note": "The Western Han River, flowing south from Wuxing and Jinshou to Baxi."
+ },
+ "river:龙川江": {
+  "old": "Longchuan River",
+  "mod": "Dong River"
+ },
+ "river:若水": {
+  "old": "Ruo River",
+  "mod": "Yalong River"
+ },
+ "river:右江": {
+  "old": "You River",
+  "mod": "You River"
+ },
+ "river:溱水": {
+  "old": "Zhen River",
+  "mod": "Bei River",
+  "note": "Flowing south past Shaozhou to Guangzhou, the river section of the Dayu Pass route."
+ },
+ "river:乌苏里江": {
+  "old": "Ussuri",
+  "mod": "Ussuri",
+  "note": "The Wuji tribes lived in its valley."
+ },
+ "river:㶟水@永定河": {
+  "old": "Lei River",
+  "mod": "Yongding River"
+ },
+ "river:汉江": {
+  "old": "Han River",
+  "mod": "Han River (Korea)",
+  "note": "Baekje's early capital, Hanseong, stood on its lower course; Goguryeo took Hanseong in 475, and Silla seized the Han River basin in 551–553."
+ },
+ "river:河": {
+  "old": "Yellow River",
+  "mod": "Yellow River",
+  "note": "Under the Jin and the Northern and Southern Dynasties the lower Yellow River broadly followed the course regulated by Wang Jing of the Eastern Han, passing north of Huatai and Qiao'ao and entering the sea at Qiansheng. Huatai, Qiao'ao, Hulao and Luoyang were called the \"four garrisons south of the river\" and were the focus of the struggle between north and south. The modern lower Yellow River (dashed) follows the course taken after the change of 1855."
+ },
+ "river:鸭渌水": {
+  "old": "Yalu River",
+  "mod": "Yalu River",
+  "note": "The Yalu; the old Goguryeo capital Hwando (Gungnae Fortress) lay on its middle course."
+ },
+ "river:黑水": {
+  "old": "Heishui",
+  "mod": "Amur",
+  "note": "The Amur."
+ },
+ "river:沱江": {
+  "old": "Đà River",
+  "mod": "Đà River (Black River), Vietnam"
+ },
+ "river:斡难河": {
+  "old": "Onon River",
+  "mod": "Onon River"
+ },
+ "river:黄山江": {
+  "old": "Hwangsan River",
+  "mod": "Nakdong River"
+ },
+ "river:左江": {
+  "old": "Zuo River",
+  "mod": "Zuo River"
+ },
+ "river:望建河": {
+  "old": "Wangjian River",
+  "mod": "Argun",
+  "note": "The Mengwu Shiwei lived to its east."
+ },
+ "river:渭水": {
+  "old": "Wei River",
+  "mod": "Wei River",
+  "note": "The lifeline of Guanzhong; in 417 Wang Zhen'e led his fleet up the Wei River straight to the walls of Chang'an."
+ },
+ "river:白玉河": {
+  "old": "White Jade River",
+  "mod": "Yurungkash River",
+  "note": "The river of Khotan that yields jade."
+ },
+ "river:泾水": {
+  "old": "Jing River",
+  "mod": "Jing River",
+  "note": "Flowing past Anding and Xinping into the Wei, the northwestern gateway of Guanzhong."
+ },
+ "river:沁水": {
+  "old": "Qin River",
+  "mod": "Qin River"
+ },
+ "river:拨换河": {
+  "old": "Bohuan River",
+  "mod": "Toshkan River"
+ },
+ "river:漳水": {
+  "old": "Zhang River",
+  "mod": "Zhang River",
+  "note": "Ye lay on its south bank, capital in turn of the Later Zhao, Ran Wei, Former Yan, Eastern Wei and Northern Qi."
+ },
+ "river:嗢昆水": {
+  "old": "Orkhon",
+  "mod": "Orkhon River",
+  "note": "The Orkhon; the royal camps of both the Rouran and the Turks were around its upper course."
+ },
+ "river:濡水": {
+  "old": "Nuan River",
+  "mod": "Luan River"
+ },
+ "river:潭水": {
+  "old": "Tan River",
+  "mod": "Liu River"
+ },
+ "river:融江": {
+  "old": "Rong River",
+  "mod": "Rong River"
+ },
+ "river:那河": {
+  "old": "Na River",
+  "mod": "Nen River"
+ },
+ "river:丹水": {
+  "old": "Dan River",
+  "mod": "Dan River"
+ },
+ "river:济水（清河）": {
+  "old": "Ji River (Qing River)",
+  "mod": "old Ji River (the lower Yellow River now runs mostly in its bed)",
+  "note": "The Ji flowed northeast from the Juye Marsh to the sea and was also called the Qing; in 417 Liu Yu went up the Qing into the Yellow River and broke the Northern Wei with his \"Crescent Formation\"."
+ },
+ "river:洛水": {
+  "old": "Luo River",
+  "mod": "Luo River",
+  "note": "The great river south of Luoyang."
+ },
+ "river:伊水": {
+  "old": "Yi River",
+  "mod": "Yi River",
+  "note": "It flows through Yique, where the Northern Wei cut the Longmen Grottoes; in 356 Huan Wen crushed Yao Xiang on its north bank."
+ },
+ "river:洛水（北）": {
+  "old": "Northern Luo River",
+  "mod": "Beiluo River",
+  "note": "Flows past Xingcheng and Pingyi into the Wei River."
+ },
+ "river:汝水": {
+  "old": "Ru River",
+  "mod": "Ru River",
+  "note": "Xuanhu stood on its bank, where Chen Xian held out for forty-two days in 450."
+ },
+ "river:颍水": {
+  "old": "Ying River",
+  "mod": "Ying River",
+  "note": "A main route north of the Huai under the Northern and Southern Dynasties, along which the commanderies of Yingchuan, Ruyin and others lay."
+ },
+ "river:泗水": {
+  "old": "Si River",
+  "mod": "Si River (the ancient Si)",
+  "note": "A waterway between north and south; the northern expeditions of Liu Yu and Wu Mingche both went north along the Si. In 578 Wang Gui cut the Qing River at Lüliang, and the Chen army was wiped out."
+ },
+ "river:汶水": {
+  "old": "Wen River",
+  "mod": "Dawen River"
+ },
+ "river:滹沱河": {
+  "old": "Hutuo River",
+  "mod": "Hutuo River",
+  "note": "Flowing past the south of Zhending (Changshan), the great river of central Hebei."
+ },
+ "river:易水": {
+  "old": "Yi River",
+  "mod": "Southern Juma River"
+ },
+ "river:淯水": {
+  "old": "Yu River",
+  "mod": "Bai River",
+  "note": "The main river of the Nanyang Basin, joining the Han at Xiangzhou."
+ },
+ "river:澧水": {
+  "old": "Li River",
+  "mod": "Li River (Hunan)"
+ },
+ "river:资水": {
+  "old": "Zi River",
+  "mod": "Zi River",
+  "note": "Flows past Shaoling into Dongting Lake."
+ },
+ "river:浙江": {
+  "old": "Zhe River",
+  "mod": "Qiantang River"
+ },
+ "river:漓水": {
+  "old": "Li River",
+  "mod": "Li River (Guangxi)",
+  "note": "Linked with the Xiang River by the Lingqu Canal."
+ },
+ "river:湟水": {
+  "old": "Huangshui",
+  "mod": "Huangshui",
+  "note": "Shanzhou stood on the Huangshui."
+ },
+ "river:洮水": {
+  "old": "Tao River",
+  "mod": "Tao River"
+ },
+ "river:弱水": {
+  "old": "Ruoshui",
+  "mod": "Hei River (Ejin)",
+  "note": "Flowing past Ganzhou and north into Juyan Lake."
+ },
+ "river:冥水": {
+  "old": "Ming River",
+  "mod": "Shule River"
+ },
+ "river:夷播海": {
+  "old": "Lake Balkhash",
+  "mod": "Lake Balkhash",
+  "note": "Lake Balkhash, south of which the Yueban and the Gaoche grazed their herds in turn."
+ },
+ "river:北海": {
+  "old": "Lake Baikal",
+  "mod": "Lake Baikal",
+  "note": "Lake Baikal, south of which the Chile tribes lived."
+ },
+ "river:库苏古尔湖": {
+  "old": "Lake Khövsgöl",
+  "mod": "Lake Khövsgöl"
+ },
+ "river:湄沱湖": {
+  "old": "Lake Meituo",
+  "mod": "Lake Khanka",
+  "note": "The Wuji tribes lived around it."
+ },
+ "river:俱轮泊": {
+  "old": "Lake Julun",
+  "mod": "Lake Hulun"
+ },
+ "river:太湖": {
+  "old": "Lake Tai",
+  "mod": "Lake Tai",
+  "note": "The center of the Three Wu."
+ },
+ "river:腾格里海": {
+  "old": "Namtso",
+  "mod": "Namtso"
+ },
+ "river:西海": {
+  "old": "Western Sea",
+  "mod": "Bosten Lake",
+  "note": "Bosten Lake, with the state of Karasahr on its west side."
+ },
+ "river:彭蠡湖": {
+  "old": "Lake Pengli",
+  "mod": "Poyang Lake",
+  "note": "Poyang Lake; in 410 Liu Yu crushed Lu Xun at Zuoli at the mouth of the lake."
+ },
+ "river:色林错": {
+  "old": "Siling Co",
+  "mod": "Siling Co"
+ },
+ "river:哈尔乌苏湖": {
+  "old": "Khar-Us Lake",
+  "mod": "Khar-Us Lake"
+ },
+ "river:柏海@鄂陵湖": {
+  "old": "Baihai",
+  "mod": "Ngoring Lake",
+  "note": "A lake at the source of the Yellow River, on the southern edge of the Tuyuhun lands."
+ },
+ "river:柏海@扎陵湖": {
+  "old": "Baihai",
+  "mod": "Gyaring Lake"
+ },
+ "river:阿耨达池": {
+  "old": "Anavatapta Lake",
+  "mod": "Lake Manasarovar"
+ },
+ "river:捕鱼儿海": {
+  "old": "Lake Buir",
+  "mod": "Lake Buir"
+ },
+ "river:羊卓雍错": {
+  "old": "Yamdrok Tso",
+  "mod": "Yamdrok Tso"
+ },
+ "river:巢湖": {
+  "old": "Chao Lake",
+  "mod": "Chao Lake",
+  "note": "The Ruxu River carries its waters into the Yangtze."
+ },
+ "river:乌梁素海": {
+  "old": "Ulansuhai",
+  "mod": "Ulansuhai Lake"
+ },
+ "river:洞庭湖": {
+  "old": "Dongting Lake",
+  "mod": "Dongting Lake",
+  "note": "Baling lay on its northeast shore, where Wang Sengbian thwarted Hou Jing in 551."
+ },
+ "river:艾比湖": {
+  "old": "Ebinur Lake",
+  "mod": "Ebinur Lake"
+ },
+ "river:热海": {
+  "old": "Issyk-Kul",
+  "mod": "Issyk-Kul",
+  "note": "Lake Issyk-Kul."
+ },
+ "river:乌布苏湖": {
+  "old": "Uvs Lake",
+  "mod": "Uvs Lake"
+ },
+ "river:青海": {
+  "old": "Qinghai Lake",
+  "mod": "Qinghai Lake",
+  "note": "The center of the Tuyuhun; in the 6th century Kualü built Fuqi City west of the lake as his capital."
+ },
+ "river:蒲昌海": {
+  "old": "Puchang Sea",
+  "mod": "Lop Nur",
+  "note": "Lop Nur; the old lands of Loulan (Shanshan) lay to its west, and under Wei and Jin the Chief Clerk of the Western Regions was stationed at Haitou."
+ },
+ "river:大野泽": {
+  "old": "Daye Marsh",
+  "mod": "north of Juye, Shandong (silted up)",
+  "note": "The Juye Marsh; on his northern expedition of 369 Huan Wen cut a channel three hundred li long to lead the Wen through it into the Ji."
+ },
+ "river:居延海": {
+  "old": "Juyan Lake",
+  "mod": "Ejin Banner, Inner Mongolia (today's Juyan Lake)",
+  "note": "The terminal lake of the Ruoshui."
+ },
+ "river:滇池": {
+  "old": "Lake Dian",
+  "mod": "Lake Dian",
+  "note": "The famous lake of Nanzhong, with Wei County, held by the Cuan clan, to its northeast."
+ },
+ "river:洱海": {
+  "old": "Erhai Lake",
+  "mod": "Erhai Lake",
+  "note": "The Erhai tribes lived around it."
+ },
+ "river:忽汗海": {
+  "old": "Huhan Sea",
+  "mod": "Jingpo Lake",
+  "note": "The Wuji tribes lived nearby."
+ },
+ "river:乌浒水": {
+  "old": "Oxus",
+  "mod": "Amu Darya",
+  "note": "The river between Tokharistan and Sogdiana, on whose banks the Hephthalites, the Sasanians and the Turks contended in turn."
+ },
+ "river:药杀水": {
+  "old": "Jaxartes",
+  "mod": "Syr Darya",
+  "note": "The river between the Sogdian cities and the Kangju steppe."
+ },
+ "river:那密水": {
+  "old": "Zarafshan",
+  "mod": "Zarafshan",
+  "note": "Samarkand and Bukhara both depended on this river."
+ },
+ "river:碎叶水": {
+  "old": "Suyab River",
+  "mod": "Chu River",
+  "note": "The old land of the Wusun, later grazing land of the Gaoche and the Turks."
+ },
+ "river:信度河": {
+  "old": "Indus",
+  "mod": "Indus",
+  "note": "The western limit of India, which Faxian crossed on his journey west."
+ },
+ "river:恒河": {
+  "old": "Ganges",
+  "mod": "Ganges",
+  "note": "The heartland of the Gupta dynasty, in whose valley both Pataliputra and Kanyakubja lay; Faxian called it the \"Heng River\"."
+ },
+ "river:底格里斯河": {
+  "old": "Tigris",
+  "mod": "Tigris",
+  "note": "The Sasanian capital Ctesiphon stood on its east bank."
+ },
+ "river:幼发拉底河": {
+  "old": "Euphrates",
+  "mod": "Euphrates",
+  "note": "Rome and the Sasanians long had their frontier along its upper course, and fought each other here again and again."
+ },
+ "river:尼罗河": {
+  "old": "Nile",
+  "mod": "Nile",
+  "note": "Egypt, the granary of the Eastern Roman Empire, depended on this river; Alexandria lay to the west of its mouth."
+ },
+ "river:阿得水": {
+  "old": "Atil",
+  "mod": "Volga",
+  "note": "Called the Ade River in the Book of Sui; the Huns, the Bulgars and the Avars grazed their herds on its lower course in turn."
+ },
+ "river:顿河": {
+  "old": "Don",
+  "mod": "Don",
+  "note": "A great river of the steppe north of the Black Sea; it was here that the Huns, moving west, passed over the lands of the Alans."
+ },
+ "river:第聂伯河": {
+  "old": "Dnieper",
+  "mod": "Dnieper",
+  "note": "Home of the Ostrogoths, broken by the Huns around 375."
+ },
+ "river:多瑙河": {
+  "old": "Danube",
+  "mod": "Danube",
+  "note": "The northern frontier of the Eastern Roman Empire in the Balkans; the Goths crossed it into Roman territory in 376."
+ },
+ "river:库拉河": {
+  "old": "Kura",
+  "mod": "Kura",
+  "note": "Caucasian Albania and Iberia lay along this river."
+ },
+ "river:萨水": {
+  "old": "Salsu River",
+  "mod": "Chongchon River",
+  "note": "The great river north of Pyongyang in Goguryeo."
+ },
+ "river:浿水": {
+  "old": "Paesu River",
+  "mod": "Taedong River",
+  "note": "Pyongyang lay on its right bank, where King Jangsu of Goguryeo moved his capital in 427."
+ },
+ "river:熊津江": {
+  "old": "Ungjin River",
+  "mod": "Geum River",
+  "note": "Both Baekje capitals, Ungjin (475–538) and Sabi (from 538), lay on this river."
+ },
+ "river:雷翥海": {
+  "old": "Aral Sea",
+  "mod": "Aral Sea",
+  "note": "The terminal lake of the Jaxartes and the Oxus, with Khwarazm to its south."
+ },
+ "canal:邗沟": {
+  "old": "Hangou Canal",
+  "mod": "Liyun Canal",
+  "note": "The Hangou Canal, dug by King Fuchai of Wu in the Spring and Autumn period, ran north from Guangling (Jiangdu) to Mokou at Shanyang, where it entered the Huai — the main waterway between the Yangtze and the Huai; under the Eastern Jin it was rerouted because of silting. Under the Northern and Southern Dynasties southern armies marching north and northern armies marching south mostly went this way."
+ },
+ "canal:灵渠": {
+  "old": "Lingqu Canal",
+  "mod": "Lingqu Canal",
+  "note": "Dug under the Qin, it links the Xiang River and the Li River, and was a waterway between Lingnan and the Central Plain."
+ },
+ "desert:大流沙": {
+  "old": "Great Flowing Sands",
+  "mod": "Taklamakan Desert",
+  "note": "The great desert between the northern and southern routes through the Western Regions; Faxian wrote that \"in the river of sand there are many evil demons and hot winds; whoever meets them dies, and not one survives\"."
+ },
+ "desert:大碛": {
+  "old": "Great Gobi",
+  "mod": "Gobi Desert",
+  "note": "The Gobi between the lands south and north of the desert, which the Northern Wei crossed many times to strike at the Rouran."
+ },
+ "desert:普纳沙": {
+  "old": "Puna Sands",
+  "mod": "Mu Us Desert",
+  "note": "Around Tongwan City; there were already sandy lands here in the Sixteen Kingdoms period."
+ },
+ "desert:卡维尔荒漠": {
+  "old": "Dasht-e Kavir",
+  "mod": "Dasht-e Kavir",
+  "note": "The salt desert of the central Iranian Plateau."
+ },
+ "desert:内夫得沙漠": {
+  "old": "Nafud Desert",
+  "mod": "Nafud Desert",
+  "note": "The desert of the northern Arabian Peninsula."
+ },
+ "desert:卢特荒漠": {
+  "old": "Dasht-e Lut",
+  "mod": "Dasht-e Lut",
+  "note": "The desert of the eastern Sasanian lands."
+ },
+ "desert:塔尔沙漠": {
+  "old": "Thar Desert",
+  "mod": "Thar Desert",
+  "note": "The desert in northwestern India, east of the Indus."
+ },
+ "desert:叙利亚沙漠": {
+  "old": "Syrian Desert",
+  "mod": "Syrian Desert",
+  "note": "Between the Eastern Roman Empire and the Sasanians, with the two Arab kingdoms of the Ghassanids and the Lakhmids on its western and eastern sides."
+ },
+ "desert:卡拉库姆沙漠": {
+  "old": "Karakum Desert",
+  "mod": "Karakum Desert",
+  "note": "The desert north of Merv, a barrier between the Sasanians and the steppe peoples."
+ },
+ "desert:克孜勒库姆沙漠": {
+  "old": "Kyzylkum Desert",
+  "mod": "Kyzylkum Desert",
+  "note": "Between the Jaxartes and the Oxus."
+ },
+ "desert:鲁卜哈利沙漠": {
+  "old": "Rub' al Khali",
+  "mod": "Rub' al Khali",
+  "note": "The \"Empty Quarter\" of the southern Arabian Peninsula."
+ },
+ "route:祖逖北伐": {
+  "old": "Zu Ti's northern expedition",
+  "mod": "313–320",
+  "note": "Zu Ti crossed the Yangtze from Jingkou, camped at Huaiyin, advanced to hold Taiqiu in 317, took the city of Qiao in 319 and advanced to Yongqiu, recovering much of the land south of the Yellow River; he died of illness at Yongqiu in 321.",
+  "p": {
+   "京口": "Jingkou",
+   "淮阴": "Huaiyin",
+   "太丘": "Taiqiu",
+   "谯": "Qiao",
+   "雍丘": "Yongqiu",
+   "浚仪": "Junyi",
+   "封丘": "Fengqiu"
+  }
+ },
+ "route:桓温第一次北伐": {
+  "old": "Huan Wen's first northern expedition",
+  "mod": "354",
+  "note": "Huan Wen marched north from Jiangling with forty thousand foot and horse, entered Guanzhong by way of Nanxiang and the Wu Pass, won a great victory at Lantian and advanced to Bashang; after a setback at Bailuyuan in the 6th month he withdrew.",
+  "p": {
+   "江陵": "Jiangling",
+   "襄阳": "Xiangyang",
+   "南乡": "Nanxiang",
+   "武关": "Wu Pass",
+   "蓝田": "Lantian",
+   "灞上": "Bashang",
+   "白鹿原": "Bailuyuan"
+  }
+ },
+ "route:桓温收复洛阳": {
+  "old": "Huan Wen recovers Luoyang",
+  "mod": "356",
+  "note": "Setting out from Jiangling, Huan Wen crushed Yao Xiang at the Yi River in the 8th month, recovered Luoyang, restored the imperial tombs and returned south.",
+  "p": {
+   "江陵": "Jiangling",
+   "襄阳": "Xiangyang",
+   "宛": "Wan",
+   "伊水": "Yi River",
+   "洛阳": "Luoyang"
+  }
+ },
+ "route:桓温北伐前燕": {
+  "old": "Huan Wen's northern expedition against Former Yan",
+  "mod": "369",
+  "note": "Huan Wen set out from Gushu with fifty thousand foot and horse, went north along the Si, cut a channel through the Juye Marsh into the Yellow River and advanced to Fangtou; the Yan army cut his supply line, he burned his boats and withdrew overland, and was ambushed and routed at Xiangyi.",
+  "p": {
+   "姑孰": "Gushu",
+   "广陵": "Guangling",
+   "彭城": "Pengcheng",
+   "金乡": "Jinxiang",
+   "巨野": "Juye",
+   "枋头": "Fangtou",
+   "襄邑": "Xiangyi",
+   "寿春": "Shouchun"
+  }
+ },
+ "route:吕光西征": {
+  "old": "Lü Guang's western expedition",
+  "mod": "383–385",
+  "note": "On Fu Jian's orders Lü Guang marched west with seventy thousand foot and horse, took Kucha in 384 and received the submission of more than thirty states of the Western Regions; in 385 he returned east with more than twenty thousand camels laden with rare treasures, and in the 9th month he occupied Guzang.",
+  "p": {
+   "长安": "Chang'an",
+   "姑臧": "Guzang",
+   "敦煌": "Dunhuang",
+   "高昌": "Gaochang",
+   "焉耆": "Karasahr",
+   "龟兹": "Kucha",
+   "酒泉": "Jiuquan"
+  }
+ },
+ "route:苻坚南征": {
+  "old": "Fu Jian's southern campaign",
+  "mod": "383",
+  "note": "Fu Jian marched south from Chang'an at the head of a great army, and his vanguard under Fu Rong took Shouyang; after the defeat at the Fei River Fu Jian, struck by a stray arrow, fled north alone on horseback and returned to Chang'an by way of Luoyang.",
+  "p": {
+   "长安": "Chang'an",
+   "洛阳": "Luoyang",
+   "项城": "Xiangcheng",
+   "寿阳": "Shouyang",
+   "淝水": "Fei River",
+   "汝南": "Runan"
+  }
+ },
+ "route:法显西行": {
+  "old": "Faxian's journey west",
+  "mod": "399–413",
+  "note": "Already over sixty, Faxian set out from Chang'an, crossed the flowing sands and the Pamirs into India, traveled through the states of northern and central India, studied Sanskrit at Pataliputra for three years and spent two years in Simhala; in 412 he sailed home on a merchant ship by way of Yavadvipa, came ashore at Mount Lao in Changguang Commandery, Qing Province, and wrote the Record of the Buddhist Kingdoms.",
+  "p": {
+   "长安": "Chang'an",
+   "乾归国（苑川）": "Kingdom of Gangui (Yuanchuan)",
+   "张掖": "Zhangye",
+   "敦煌": "Dunhuang",
+   "鄯善": "Shanshan",
+   "焉耆": "Karasahr",
+   "于阗": "Khotan",
+   "子合": "Zihe",
+   "葱岭": "Pamirs",
+   "乌苌": "Udyana",
+   "弗楼沙": "Purushapura",
+   "那竭": "Nagarahara",
+   "摩头罗": "Mathura",
+   "僧伽施": "Sankasya",
+   "舍卫城": "Shravasti",
+   "迦毗罗卫": "Kapilavastu",
+   "华氏城": "Pataliputra",
+   "伽耶": "Gaya",
+   "多摩梨帝": "Tamralipti",
+   "狮子国": "Simhala",
+   "耶婆提": "Yavadvipa",
+   "牢山": "Mount Lao",
+   "建康": "Jiankang"
+  }
+ },
+ "route:刘裕北伐南燕": {
+  "old": "Liu Yu's northern expedition against Southern Yan",
+  "mod": "409–410",
+  "note": "Liu Yu led his fleet from the Huai into the Si, left his boats at Xiapi and advanced on foot, crossed the Daxian Mountains, won a great victory at Linqu in the 6th month, besieged Guanggu for eight months, and took it in the 2nd month of 410.",
+  "p": {
+   "建康": "Jiankang",
+   "广陵": "Guangling",
+   "下邳": "Xiapi",
+   "琅邪": "Langya",
+   "大岘": "Daxian",
+   "临朐": "Linqu",
+   "广固": "Guanggu"
+  }
+ },
+ "route:刘裕北伐后秦": {
+  "old": "Liu Yu's northern expedition against Later Qin",
+  "mod": "416–417",
+  "note": "Liu Yu led his fleet in person from Pengcheng into the Si and the Bian, went up the Qing into the Yellow River, broke the Northern Wei cavalry with his \"Crescent Formation\", and advanced west by way of Luoyang; Wang Zhen'e had already broken into Chang'an along the Wei River, and Liu Yu entered Chang'an in the 9th month and returned east at the end of the year.",
+  "p": {
+   "建康": "Jiankang",
+   "彭城": "Pengcheng",
+   "畔城（却月阵）": "Pancheng (Crescent Formation)",
+   "滑台": "Huatai",
+   "洛阳": "Luoyang",
+   "潼关": "Tong Pass",
+   "长安": "Chang'an"
+  }
+ },
+ "route:太武帝南征": {
+  "old": "Emperor Taiwu's southern campaign",
+  "mod": "450–451",
+  "note": "Emperor Taiwu of the Northern Wei marched south from Pingcheng, crossed the Yellow River to raise the siege of Huatai, and went by way of Mount Zou and Pengcheng straight to Guabu on the north bank of the Yangtze, announcing that he would cross; in the 1st month of the following year he went back north, besieging Xuyi for thirty days on the way without taking it.",
+  "p": {
+   "平城": "Pingcheng",
+   "枋头": "Fangtou",
+   "滑台": "Huatai",
+   "邹山": "Mount Zou",
+   "彭城": "Pengcheng",
+   "盱眙": "Xuyi",
+   "瓜步": "Guabu"
+  }
+ },
+ "route:宋云、惠生西行": {
+  "old": "Song Yun and Huisheng's journey west",
+  "mod": "518–522",
+  "note": "Empress Dowager Hu of the Northern Wei sent Song Yun and the monk Huisheng west in search of the Dharma; they passed through the Tuyuhun, Shanshan and Khotan, crossed the Pamirs, met the Hephthalite king, reached Udyana and Gandhara, and in 522 returned to Luoyang with 170 Mahayana sutras and treatises.",
+  "p": {
+   "洛阳": "Luoyang",
+   "赤岭": "Chiling",
+   "吐谷浑": "Tuyuhun",
+   "鄯善": "Shanshan",
+   "左末城": "Zuomo City",
+   "于阗": "Khotan",
+   "汉盘陀": "Kabandha",
+   "嚈哒王庭": "Hephthalite royal court",
+   "赊弥": "Shemi",
+   "乌苌": "Udyana",
+   "乾陀罗": "Gandhara"
+  }
+ },
+ "route:陈庆之北伐": {
+  "old": "Chen Qingzhi's northern expedition",
+  "mod": "528–529",
+  "note": "Chen Qingzhi escorted Yuan Hao north with his seven thousand white-robed troops; from Zhi County to Luoyang he fought forty-seven battles and took thirty-two cities, entering Luoyang in the 5th month; in the intercalary 6th month Erzhu Rong counterattacked, the whole army was wiped out, and Chen Qingzhi escaped disguised as a monk.",
+  "p": {
+   "铚县": "Zhi County",
+   "睢阳": "Suiyang",
+   "考城": "Kaocheng",
+   "荥阳": "Xingyang",
+   "虎牢": "Hulao",
+   "洛阳": "Luoyang",
+   "嵩高": "Mount Song",
+   "汝南": "Runan",
+   "建康": "Jiankang"
+  }
+ },
+ "route:侯景之乱": {
+  "old": "Hou Jing's rebellion",
+  "mod": "548–552",
+  "note": "Hou Jing rose at Shouyang, went by way of Qiaozhou and Liyang, crossed the Yangtze at Caishi and besieged Taicheng in Jiankang; he took Taicheng in the 3rd month of 549 and then plundered the Three Wu; in 551 he went west to attack Baling and failed, and in 552 he was defeated by Wang Sengbian and Chen Baxian, fled east by sea and was killed.",
+  "p": {
+   "寿阳": "Shouyang",
+   "谯州": "Qiaozhou",
+   "历阳": "Liyang",
+   "采石": "Caishi",
+   "建康": "Jiankang",
+   "台城": "Taicheng",
+   "吴郡": "Wu Commandery",
+   "郢州": "Yingzhou",
+   "巴陵": "Baling",
+   "胡豆洲": "Hudou Islet"
+  }
+ },
+ "route:北周灭齐": {
+  "old": "Northern Zhou conquers Qi",
+  "mod": "576–577",
+  "note": "Emperor Wu of the Northern Zhou marched east from Chang'an, took Pingyang, crushed the relief army of the Last Ruler of Qi beneath its walls in the 12th month, went north to take Jinyang, took Ye in the 1st month of 577, and pursued and captured the Last Ruler of Qi in Qing Province.",
+  "p": {
+   "长安": "Chang'an",
+   "蒲坂": "Puban",
+   "平阳": "Pingyang",
+   "晋阳": "Jinyang",
+   "邺": "Ye",
+   "青州": "Qingzhou"
+  }
+ },
+ "route:蔡马库斯出使突厥": {
+  "old": "Zemarchus's embassy to the Turks",
+  "mod": "569–570",
+  "note": "The Eastern Roman Empire sent Zemarchus on a return embassy to the Western Turks; from Constantinople he crossed the Black Sea and traveled by way of the Caucasus and the lower Volga to the royal camp of Istämi Qaghan at the foot of the White Mountains (Tian Shan), where an alliance was made with the Turks against the Sasanians.",
+  "p": {
+   "君士坦丁堡": "Constantinople",
+   "特拉布宗": "Trapezus",
+   "高加索": "Caucasus",
+   "伏尔加河口": "mouth of the Volga",
+   "咸海": "Aral Sea",
+   "碎叶": "Suyab",
+   "室点密牙帐（白山）": "Istämi's royal camp (White Mountains)"
+  }
+ },
+ "people:南匈奴五部": {
+  "old": "Five Divisions of the Southern Xiongnu",
+  "mod": "Fen River basin, Shanxi",
+  "note": "Cao Cao divided the Southern Xiongnu into five divisions scattered through the commanderies of Bing Province; Liu Yuan was the son of the commander of the Left Division."
+ },
+ "people:羯": {
+  "old": "Jie",
+  "mod": "around Wuxiang, Shanxi",
+  "note": "A branch of the Xiongnu living at Wuxiang in Shangdang, from whom Shi Le came — \"high-nosed and heavily bearded\"."
+ },
+ "people:氐": {
+  "old": "Di",
+  "mod": "around Qin'an, Gansu (Lüeyang)",
+  "note": "The Di of the Lüeyang and Tianshui area, from whom came the Yang of Chouchi, the Fu of the Former Qin, the Lü of the Later Liang and the Li of Cheng Han (the Ba Di)."
+ },
+ "people:卢水胡": {
+  "old": "Lushui Hu",
+  "mod": "southeast of Zhangye, Gansu",
+  "note": "A branch of the Xiongnu living on the Lu River at Linsong in Zhangye, from whom Juqu Mengxun came."
+ },
+ "people:河西鲜卑": {
+  "old": "Hexi Xianbei",
+  "mod": "north of Wuwei, Gansu",
+  "note": "The Tufa and other Hexi Xianbei; in the 270s Tufa Shujineng inflicted great defeats on the Jin army, and their descendants founded the Southern Liang."
+ },
+ "people:陇西鲜卑": {
+  "old": "Longxi Xianbei",
+  "mod": "around Yuzhong, Gansu",
+  "note": "The Qifu and others, living at Yuanchuan, whose descendants founded the Western Qin."
+ },
+ "people:巴賨": {
+  "old": "Ba Cong",
+  "mod": "around Qu County, Sichuan",
+  "note": "The Banshun tribes of Ba (the Cong people), who moved into Lüeyang at the end of the Han; Li Te and his brothers were their descendants."
+ },
+ "people:丁零": {
+  "old": "Dingling",
+  "mod": "around Dingzhou, Hebei",
+  "note": "A branch of the Chile that moved south, living in Zhongshan and Henei; Zhai Bin and Zhai Liao rose in turn and founded Zhai Wei."
+ },
+ "people:乌桓余部": {
+  "old": "Wuhuan remnants",
+  "mod": "northern Hebei (Dai and Shanggu commanderies)",
+  "note": "After Cao Cao's northern campaign the Wuhuan lived scattered inside the frontier; under the Western Jin they were still famous as shock cavalry, used by both Wang Jun and Liu Kun."
+ },
+ "people:山越": {
+  "old": "Shanyue",
+  "mod": "hill country of Zhejiang and Anhui",
+  "note": "The native peoples of the southern hill country, repeatedly campaigned against by Sun Wu; by Western Jin times most had been registered as subjects."
+ },
+ "people:蛮": {
+  "old": "Man tribes",
+  "mod": "northwestern Hubei to southwestern Henan",
+  "note": "The \"Man tribes\" of the mountain valleys of Jing, Yong and Yu provinces, who under the Northern and Southern Dynasties wavered between the two sides and rose from time to time."
+ },
+ "people:獠": {
+  "old": "Lao",
+  "mod": "southern Sichuan to northern Guizhou",
+  "note": "Around 344 they moved north from Nanzhong into Shu in great numbers and settled in the mountain valleys of Liang and Yi provinces, becoming an important people of Ba-Shu under the Northern and Southern Dynasties."
+ },
+ "people:俚": {
+  "old": "Li",
+  "mod": "western Guangdong to southeastern Guangxi",
+  "note": "The native people of Lingnan, led by the Xian clan of Gaoliang; Lady Xian served Liang, Chen and Sui in turn, keeping her territory secure and its people at peace."
+ },
+ "people:五溪蛮": {
+  "old": "Five Streams tribes",
+  "mod": "western Hunan to eastern Guizhou",
+  "note": "Tribes of the Wuling mountain region, scattered among the Five Streams."
+ },
+ "people:乌蛮·白蛮": {
+  "old": "Wuman & Baiman",
+  "mod": "northeast Yunnan to western Guizhou",
+  "note": "Peoples of Nanzhong, living among the great clans of Nanzhong."
+ },
+ "people:稽胡": {
+  "old": "Jihu",
+  "mod": "Lüliang, Shanxi to northern Shaanxi",
+  "note": "Also called Shanhu (Mountain Hu) or Buluoji, formed from descendants of the Xiongnu mixed with other peoples; they lived in the mountain valleys west of Lishi and east of Anding, and rose repeatedly under the Northern Dynasties."
+ },
+ "people:契胡（尔朱氏）": {
+  "old": "Qihu (Erzhu clan)",
+  "mod": "north of Xinzhou, Shanxi (Xiurong)",
+  "note": "A Qihu tribe living in the Northern Xiurong valley, herders by tradition, from whom Erzhu Rong came."
+ },
+ "people:敕勒（漠南）": {
+  "old": "Chile (south of the Gobi)",
+  "mod": "north of the Yin Mountains, Inner Mongolia",
+  "note": "In 429 the Northern Wei crushed the Gaoche and moved several hundred thousand of their tents to the land south of the Gobi, from the source of the Nuan in the east to Wuyuan and the Yin Mountains in the west; the Northern Dynasties folk song \"Song of the Chile\" celebrates that land."
+ },
+ "people:突厥（阿史那部）": {
+  "old": "Turks (Ashina clan)",
+  "mod": "southern foothills of the Altai",
+  "note": "Living on the southern side of the Altai, they worked iron as servants of the Rouran; in 546 Tumen crushed the Tiele, and in 552 he crushed the Rouran and founded his state."
+ },
+ "people:铁勒": {
+  "old": "Tiele",
+  "mod": "northern Mongolia to the Selenga",
+  "note": "After the rise of the Turks the Gaoche (Chile) tribes were generally called Tiele, and were subjects of the Turks."
+ },
+ "people:坚昆": {
+  "old": "Jiankun",
+  "mod": "upper Yenisei, Russia",
+  "note": "Called Jiankun in Han times and Jiegu or Qigu under the Northern Dynasties; \"the people are all tall, with red hair, white faces and green eyes\"."
+ },
+ "people:夷洲": {
+  "old": "Yizhou",
+  "mod": "Taiwan",
+  "note": "In 230 Sun Quan sent Wei Wen and Zhuge Zhi with ten thousand men across the sea to Yizhou; from the Three Kingdoms to the Sui it was called Yizhou or Liuqiu."
+ },
+ "people:毛人": {
+  "old": "Emishi",
+  "mod": "Tōhoku, Japan",
+  "note": "In 478 King Bu of Wa sent a memorial to Emperor Shun of Song saying that his ancestors had \"conquered fifty-five countries of the Emishi in the east\"."
+ },
+ "people:斯拉夫诸部": {
+  "old": "Slavic tribes",
+  "mod": "western Ukraine",
+  "note": "Recorded in Eastern Roman histories from the 6th century, they came south from beyond the Danube to raid the Balkans."
+ }
+}

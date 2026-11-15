@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+/build/
+# 各卷自己的中间产物与成品；发布用的成品在根目录 docs/<短名>/
+eras/*/build/*
+!eras/*/build/.gitkeep
+eras/*/docs/

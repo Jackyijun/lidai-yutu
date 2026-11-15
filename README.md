@@ -17,9 +17,41 @@
 
 卷一、卷二首尾相接：春秋图末节点（前476）与战国图首节点（前475）的疆域、配色完全一致。卷三、卷四、卷五也首尾相接：两晋图照搬了两头的衔接节点，首节点与汉末三国图末节点（280），末节点与隋唐图首节点（581）的疆域、配色完全一致。
 
-`index.html` 是自包含的：样式、脚本、八幅缩略图都写在文件里，不加载任何外部资源。色板、字体、细线与各图的《历史形势图统一规范》一致，深浅色跟随系统。
+首页源文件 `hub/index.html` 是自包含的（构建时原样复制到 `docs/index.html` 发布）：样式、脚本、八幅缩略图都写在文件里，不加载任何外部资源。色板、字体、细线与各图的《历史形势图统一规范》一致，深浅色跟随系统。
 
 线上地址：https://jackyijun.github.io/lidai-yutu/
+
+## 单仓（2026-11 起迁移中）
+
+本仓库正在改造成整部图集的单仓：八卷的代码、史料和底图都已搬进来，以后的统一数据格式、全局地点表、统一投影与地形、统一疆域引擎和首页的时间轴模式，都在这里做。步骤与进度见《历史形势图统一规范》第十九节。各卷原来的仓库和网址保留为旧版，不再修改。
+
+```
+lidai-yutu/
+├── run.py                 构建入口
+├── requirements.txt       八卷共用的依赖
+├── requirements-lock.txt  能逐字节重现线上版本的依赖版本
+├── hub/index.html         首页源文件
+├── eras/<短名>/           各卷：content/ 史料、src/ 构建代码、tools/、run.py，照旧可以单独构建
+├── geodata/               底图只存一份（ne/、etopo20/、prov/、derived/）；各卷 geodata/ 里是指向这里的符号链接
+├── tools/thumbs.py        首页缩略图
+└── docs/                  GitHub Pages 发布目录：index.html 是首页，<短名>/index.html 是各卷
+```
+
+各卷短名是旧仓库名去掉 `-map`：chunqiu、zhanguo、hanmosanguo、liangjin-nanbeichao、suitang、tangsong、songyuan、minguo-xinzhongguo。目前（迁移第 1 步）各卷仍用自己原来的构建脚本，`docs/<短名>/index.html` 与旧仓库的已发布版本逐字节相同；单仓正式上线前，首页卷目仍链到旧网址。
+
+```bash
+pip install -r requirements.txt
+python run.py                    # 八卷全部构建，再更新首页
+python run.py zhanguo songyuan   # 只构建这几卷
+python run.py --html             # 各卷只重新拼装 HTML（须先完整构建过一次）
+python run.py --hub              # 只更新首页
+python run.py --check            # 核对 docs/ 是否是本地最新构建的结果
+python run.py --list             # 列出各卷短名
+```
+
+GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
+
+疆域计算对 numpy、scipy、scikit-image、shapely 的版本敏感：版本不同，算出的界线会有约 0.01° 的末位差，春秋、战国两卷还会因代价栅格指纹不符而停下。要逐字节重现线上版本，用 `requirements-lock.txt` 里的版本（Python 3.13）。
 
 ## 中英双语
 
@@ -33,6 +65,8 @@
 - 缩略图里画了中、英两组注记（`<g class="t-lab zh">`、`<g class="t-lab en">`），也按当前语言只显示一组。英文国名取自各图数据，见下文「生成缩略图」。
 
 ## 增加新卷
+
+以下改的都是 `hub/index.html`；改完运行 `python run.py --hub`，更新发布用的 `docs/index.html`。
 
 1. 复制一个 `<li class="juan">` 块，按时代先后放进目录，然后重排卷次（卷一、卷二……；Volume I、Volume II……）。
 2. 改这几项：
@@ -87,7 +121,7 @@
 - 图还没有英文时，用 `--en "编号=英文名;…"` 补缩略图的英文注记（编号即单位编号），它也优先于图里的英文名。
 
 ```bash
-python3 tools/thumbs.py ../songyuan-map/docs/index.html --id sy --year 1120 --mode pol --out thumbs
+python3 tools/thumbs.py docs/songyuan/index.html --id sy --year 1120 --mode pol --out thumbs
 ```
 
 运行后输出三份文件：
