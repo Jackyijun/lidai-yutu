@@ -31,7 +31,9 @@ lidai-yutu/
 ├── requirements.txt       八卷共用的依赖
 ├── requirements-lock.txt  能逐字节重现线上版本的依赖版本
 ├── hub/index.html         首页源文件
-├── eras/<短名>/           各卷：content/ 史料、src/ 构建代码、tools/、run.py，照旧可以单独构建
+├── eras/<短名>/           各卷：content/ 史料、src/ 构建代码、tools/、run.py，照旧可以单独构建；era.toml 卷的基本信息
+├── core/v1/               统一数据格式 v1：格式说明 FORMAT.md、旧格式转换、全局表生成
+├── global/                全局表：地点、政权、山川、译名；decisions.toml 人工决定；review/ 审定清单
 ├── geodata/               底图只存一份（ne/、etopo20/、prov/、derived/）；各卷 geodata/ 里是指向这里的符号链接
 ├── tools/thumbs.py        首页缩略图
 └── docs/                  GitHub Pages 发布目录：index.html 是首页，<短名>/index.html 是各卷
@@ -46,10 +48,13 @@ python run.py zhanguo songyuan   # 只构建这几卷
 python run.py --html             # 各卷只重新拼装 HTML（须先完整构建过一次）
 python run.py --hub              # 只更新首页
 python run.py --check            # 核对 docs/ 是否是本地最新构建的结果
+python run.py --v1               # 重建全局表，生成各卷 v1 数据包（build/v1/，不入库）
 python run.py --list             # 列出各卷短名
 ```
 
 GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
+
+迁移第 2 步定下了八卷共用的数据格式 v1，并把八卷的地点、政权、山川、译名归并成全局表，每个对象有一个跨卷的全局 ID。现在 v1 由各卷成品转出（转回旧格式逐字节相同），页面不受影响；自动归并判断不了的列在 `global/review/` 里，审定后写进 `global/decisions.toml`。格式、ID 规则和审定流程见 [`core/v1/FORMAT.md`](core/v1/FORMAT.md)。
 
 疆域计算对 numpy、scipy、scikit-image、shapely 的版本敏感：版本不同，算出的界线会有约 0.01° 的末位差，春秋、战国两卷还会因代价栅格指纹不符而停下。要逐字节重现线上版本，用 `requirements-lock.txt` 里的版本（Python 3.13）。
 

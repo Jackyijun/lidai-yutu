@@ -1,0 +1,53 @@
+# 第六卷 唐末五代：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
+# 字段说明见 core/v1/FORMAT.md「era.toml」一节。
+
+slug = "tangsong"
+volume = 6
+title = "唐宋之际形势图"
+title_en = "Late Tang and the Five Dynasties"
+short = "唐末五代"            # 总页与时间轴上的短名
+short_en = "Late Tang"
+
+years = [755, 979]          # 起止年（含），公元前记负数，与总页一致
+time = "year"             # 节点的时间精度：year 按年，month 按月
+model = "layered"          # 数据模型：simple（战国式）或 layered（唐宋系）
+first = 820                 # 打开页面时停在哪一年的节点
+nodes = 39                 # 节点数（构建时核对）
+
+[coloring]                  # 着色切换：按钮文字与内部代号；没有切换的卷为空
+modes = [{ label = "藩镇", key = "zhen" }, { label = "政权", key = "pol" }]
+default = "藩镇"
+
+[layers]                    # 本卷用到的条目类别及条数（核对用）
+river = 116
+capital = 64
+battle = 63
+range = 44
+event = 34
+pass = 26
+people = 18
+canal = 6
+desert = 3
+route = 1
+region = 1
+
+[projection]                # 现行投影。第 4 步统一为 Albers 25°N/47°N、原点 35°N、中央经线 105°E
+kind = "albers"
+parallels = [25, 47]
+origin_lat = 35
+central_lon = 104
+
+[junction.prev]
+era = "suitang"
+at = "空档 669 — 755"
+note = "隋唐卷延长到 755 年时补上"
+
+[junction.next]
+era = "songyuan"
+at = "979"
+note = "共用节点，以哪一卷为准待定"
+
+[legacy]                    # 旧版：原仓库与原网址保持不变，总页上留「旧版 ↗」链接
+repo = "Jackyijun/tangsong-map"
+url = "https://jackyijun.github.io/tangsong-map/"
+new_url = "https://jackyijun.github.io/lidai-yutu/tangsong/"

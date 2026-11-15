@@ -1,0 +1,53 @@
+# 第七卷 宋辽夏金元：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
+# 字段说明见 core/v1/FORMAT.md「era.toml」一节。
+
+slug = "songyuan"
+volume = 7
+title = "宋辽夏金元形势图"
+title_en = "Song · Liao · Xia · Jin · Yuan"
+short = "宋辽夏金元"            # 总页与时间轴上的短名
+short_en = "Song–Yuan"
+
+years = [979, 1279]          # 起止年（含），公元前记负数，与总页一致
+time = "year"             # 节点的时间精度：year 按年，month 按月
+model = "layered"          # 数据模型：simple（战国式）或 layered（唐宋系）
+first = 1120                 # 打开页面时停在哪一年的节点
+nodes = 62                 # 节点数（构建时核对）
+
+[coloring]                  # 着色切换：按钮文字与内部代号；没有切换的卷为空
+modes = [{ label = "路·汗国", key = "zhen" }, { label = "政权", key = "pol" }]
+default = "政权"
+
+[layers]                    # 本卷用到的条目类别及条数（核对用）
+river = 197
+battle = 147
+capital = 99
+range = 70
+event = 58
+pass = 30
+people = 27
+route = 15
+desert = 14
+canal = 8
+region = 1
+
+[projection]                # 现行投影。第 4 步统一为 Albers 25°N/47°N、原点 35°N、中央经线 105°E
+kind = "albers"
+parallels = [25, 47]
+origin_lat = 38
+central_lon = 95
+
+[junction.prev]
+era = "tangsong"
+at = "979"
+note = "共用节点，以哪一卷为准待定"
+
+[junction.next]
+era = "minguo-xinzhongguo"
+at = "空档 1279 — 1911"
+note = "元明卷 yuanming、清卷 qing 待补"
+
+[legacy]                    # 旧版：原仓库与原网址保持不变，总页上留「旧版 ↗」链接
+repo = "Jackyijun/songyuan-map"
+url = "https://jackyijun.github.io/songyuan-map/"
+new_url = "https://jackyijun.github.io/lidai-yutu/songyuan/"

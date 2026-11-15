@@ -1,0 +1,57 @@
+# 相邻两卷的衔接与空档。
+#
+# 衔接年份上两卷各画了一次疆域：
+#   shared   两卷共用同一年的节点。owner 是以哪一卷为准，另一卷在这一年应当与它一致。
+#   adjacent 前一卷最后一年、后一卷第一年，相邻两年各画一次，不共用节点。
+# 两卷实际画得一样不一样，见 global/review/junctions.md（python core/v1/registry.py 生成）。
+#
+# 空档是还没有卷覆盖的年代，plan 写准备由哪一卷补上。
+
+[[junction]]
+from = "chunqiu"
+to = "zhanguo"
+year = [-476, -475]
+kind = "adjacent"
+note = "两卷衔接节点上共有的政权疆域完全一致"
+
+[[junction]]
+from = "hanmosanguo"
+to = "liangjin-nanbeichao"
+year = 280
+kind = "shared"
+owner = "hanmosanguo"
+note = "两晋卷构建时读入 eras/liangjin-nanbeichao/geodata/junction_hanmo280.json"
+
+[[junction]]
+from = "liangjin-nanbeichao"
+to = "suitang"
+year = 581
+kind = "shared"
+owner = "suitang"
+note = "两晋卷构建时读入 eras/liangjin-nanbeichao/geodata/junction_suitang581.json"
+
+[[junction]]
+from = "tangsong"
+to = "songyuan"
+year = 979
+kind = "shared"
+owner = ""            # 待定：两卷在 979 年的画法差别较大（宋元卷把女真、室韦、阻卜画在辽的范围里）
+note = "两卷各自画，未对齐"
+
+[[gap]]
+after = "zhanguo"
+before = "hanmosanguo"
+years = [-212, 184]
+plan = "秦汉卷 qinhan（第 6 步试点）"
+
+[[gap]]
+after = "suitang"
+before = "tangsong"
+years = [669, 755]
+plan = "隋唐卷延长到 755 年（第 8 步）"
+
+[[gap]]
+after = "songyuan"
+before = "minguo-xinzhongguo"
+years = [1279, 1911]
+plan = "元明卷 yuanming、清卷 qing（第 8 步）"

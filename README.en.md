@@ -31,7 +31,9 @@ lidai-yutu/
 ├── requirements.txt       dependencies shared by all volumes
 ├── requirements-lock.txt  versions that reproduce the published pages byte for byte
 ├── hub/index.html         source of the hub page
-├── eras/<slug>/           each volume: content/ sources, src/ build code, tools/, run.py; each still builds on its own
+├── eras/<slug>/           each volume: content/ sources, src/ build code, tools/, run.py; each still builds on its own; era.toml describes the volume
+├── core/v1/               unified data format v1: spec FORMAT.md (in Chinese), legacy conversion, global-table generation
+├── global/                global tables: places, polities, physical features, glossary; decisions.toml manual decisions; review/ lists to review
 ├── geodata/               one copy of the base data (ne/, etopo20/, prov/, derived/); each volume's geodata/ holds symlinks to it
 ├── tools/thumbs.py        hub thumbnails
 └── docs/                  published by GitHub Pages: index.html is the hub, <slug>/index.html each volume
@@ -46,10 +48,13 @@ python run.py zhanguo songyuan   # build only these volumes
 python run.py --html             # only reassemble each volume's HTML (needs one full build first)
 python run.py --hub              # only update the hub
 python run.py --check            # check whether docs/ holds the latest local builds
+python run.py --v1               # rebuild the global tables and write each volume's v1 bundle (build/v1/, not tracked)
 python run.py --list             # list the volume slugs
 ```
 
 GitHub Pages publishes from the `/docs` folder of the `main` branch.
+
+Migration step 2 defined data format v1, shared by all eight volumes, and merged the places, polities, physical features and translations of the eight volumes into global tables in which every object has a cross-volume global ID. For now v1 is converted from each volume's built page (converting back gives byte-identical data), so the pages are unaffected; cases the automatic merge cannot decide are listed in `global/review/`, and decisions go into `global/decisions.toml`. The format, the ID rules and the review process are described in [`core/v1/FORMAT.md`](core/v1/FORMAT.md) (in Chinese).
 
 The territory computation is sensitive to the versions of numpy, scipy, scikit-image and shapely: other versions move borders by about 0.01° in the last digit, and the Spring and Autumn and Warring States volumes stop because their cost-grid fingerprint no longer matches. To reproduce the published pages byte for byte, use the versions in `requirements-lock.txt` (Python 3.13).
 

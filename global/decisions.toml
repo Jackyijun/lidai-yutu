@@ -1,0 +1,29 @@
+# 全局表的人工决定。
+# 自动归并的规则见 core/v1/FORMAT.md「全局表」一节；规则判断不了的，在这里写明，
+# 然后运行 python core/v1/registry.py 重建 global/ 下的各表与 global/review/ 下的审定清单。
+#
+# 引用一律写成「卷短名:键」：
+#   地点   chunqiu:i:303（条目序号）  songyuan:相州（州府的 id）
+#   政权   tangsong:契丹  songyuan:辽（单位的键）
+# 审定清单里每一条都附了引用，直接复制即可。
+
+[places]
+# 从自动归并的组里拆出来，各自成为单独的地点（例：战国的宁新中不算邺）
+#   split = ["zhanguo:i:203"]
+split = []
+
+# 自动规则没合上、其实是同一处的，每组写成一个列表
+#   merge = [["hanmosanguo:i:12", "liangjin-nanbeichao:i:40"]]
+merge = []
+
+# 指定全局 ID（默认取各卷最常用的名字，同名的加今地）。键是组里任意一条的引用
+[places.id]
+# "zhanguo:i:203" = "宁新中"
+
+[polities]
+# 不同卷里名字不同、其实是同一政权的（如唐宋卷的契丹与宋元卷的辽）
+#   merge = [["tangsong:契丹", "songyuan:辽"]]
+merge = []
+
+[polities.id]
+# "tangsong:契丹" = "辽"

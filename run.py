@@ -7,10 +7,12 @@
   python run.py --draft            英文有缺译或过期时也照常生成（缺译处显示中文），只供预览
   python run.py --hub              只更新首页：hub/index.html → docs/index.html
   python run.py --check            不构建，只核对 docs/ 与各卷产物、首页源文件是否一致
+  python run.py --v1               不构建，由 docs/ 里的成品重建全局表（global/）并生成各卷 v1 数据包（build/v1/）
   python run.py --list             列出各卷短名
 
 迁移第 1 步（2026-11）：各卷仍用自己原来的构建脚本 eras/<短名>/run.py；本脚本只负责依次调用，
 再把 eras/<短名>/docs/index.html 复制到 docs/<短名>/index.html。见规范第十九节。
+第 2 步：统一数据格式 v1 与全局表，见 core/v1/FORMAT.md。
 """
 import argparse, hashlib, shutil, subprocess, sys, time
 from pathlib import Path
@@ -84,6 +86,7 @@ def main():
     ap.add_argument("--draft", action="store_true", help="英文缺译时也照常生成")
     ap.add_argument("--hub", action="store_true", help="只更新首页")
     ap.add_argument("--check", action="store_true", help="只核对 docs/ 是否最新")
+    ap.add_argument("--v1", action="store_true", help="重建全局表并生成各卷 v1 数据包")
     ap.add_argument("--list", action="store_true", help="列出各卷短名")
     a = ap.parse_args()
     if a.list:
@@ -92,6 +95,13 @@ def main():
         return
     if a.check:
         sys.exit(1 if check() else 0)
+    if a.v1:
+        v1 = ROOT / "core" / "v1"
+        for script, extra in (("registry.py", []), ("build.py", a.eras)):
+            r = subprocess.run([sys.executable, str(v1 / script)] + extra, cwd=ROOT)
+            if r.returncode != 0:
+                sys.exit(f"失败：core/v1/{script}")
+        return
     DOCS.mkdir(exist_ok=True)
     (DOCS / ".nojekyll").touch()
     if not a.hub:
