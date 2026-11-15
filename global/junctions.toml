@@ -35,8 +35,8 @@ from = "tangsong"
 to = "songyuan"
 year = 979
 kind = "shared"
-owner = ""            # 待定：两卷在 979 年的画法差别较大（宋元卷把女真、室韦、阻卜画在辽的范围里）
-note = "两卷各自画，未对齐"
+owner = "songyuan"
+note = "2026-11-15 定：以宋元卷为准。宋元卷 979 年的女真要改为不属辽；唐宋卷 979 年节点照宋元卷对齐（见 global/corrections.md）"
 
 [[gap]]
 after = "zhanguo"

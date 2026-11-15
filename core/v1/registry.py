@@ -131,7 +131,7 @@ def place_candidates(B):
 def cluster_places(cands, dec):
     n = len(cands)
     uf = UF(n)
-    split = set(dec.get("places", {}).get("split", []))
+    split = set(dec.get("places", {}).get("split", [])) | manual_refs(dec)
     grid = collections.defaultdict(list)
     for i, c in enumerate(cands):
         grid[(int(c["ll"][0] // 0.5), int(c["ll"][1] // 0.5))].append(i)
@@ -178,16 +178,97 @@ def cluster_places(cands, dec):
 PLACE_KEYS = {}
 
 
+def manual_refs(dec):
+    """人工定组（[[place]] 的 refs、add）和治所迁城（[[seat]]）的条目：不参与自动归并"""
+    out = set()
+    for pl in dec.get("place", []):
+        out |= set(pl.get("refs", [])) | set(pl.get("add", []))
+    for st in dec.get("seat", []):
+        out.add(st["ref"])
+    return out
+
+
+def era_years(slug):
+    meta = load_toml(ROOT / "eras" / slug / "era.toml")
+    return tuple(meta["years"])
+
+
+def ref_years(B, ref):
+    """一条引用在本卷里存在的年代（首尾年）。条目看它的年段或时点，州府看全卷"""
+    slug, key = ref.split(":", 1)
+    y0, y1 = era_years(slug)
+    if key.startswith("i:"):
+        it = next((x for x in B[slug]["items"] if x["i"] == int(key[2:])), None)
+        if it:
+            ts = []
+            for a, b in it.get("spans", []):
+                ts += [a, b]
+            if "t" in it and it["t"] is not None and it["t"] > legacy.BEGIN:
+                ts.append(it["t"])
+            if it.get("t1") is not None:
+                ts.append(it["t1"])
+            ts = [t for t in ts if t > legacy.BEGIN]
+            if ts:
+                return max(y0, min(ts) // 12), min(y1, max(ts) // 12)
+    return y0, y1
+
+
+def site_for(sites, y0, y1):
+    """与年代 [y0, y1] 有交集的城址"""
+    out = []
+    for st in sites:
+        a, b = st.get("from", -99999), st.get("to", 99999)
+        if a <= y1 and b >= y0:
+            out.append(st)
+    return out or sites
+
+
 def build_places(B, dec):
     for slug in ERAS:
         PLACE_KEYS[slug] = [p["key"] for p in B[slug]["places"]]
     cands = place_candidates(B)
     groups = cluster_places(cands, dec)
+    by_ref = {c["ref"]: i for i, c in enumerate(cands)}
+    seat_refs = {st["ref"] for st in dec.get("seat", [])}
+    decided = {}                          # 组的序号 → [[place]] 决定
+    gi_of = {i: k for k, g in enumerate(groups) for i in g}
+    groups = [list(g) for g in groups]
+    for pl in dec.get("place", []):
+        if "refs" in pl:
+            members = [by_ref[r] for r in pl["refs"] if r in by_ref]
+            missing = [r for r in pl["refs"] if r not in by_ref]
+            if missing:
+                sys.exit(f"[[place]] {pl['id']}：查不到 {'、'.join(missing)}")
+            for i in members:             # 人工定组的成员各自是单独一组，挪到第一个成员那一组
+                groups[gi_of[i]] = [x for x in groups[gi_of[i]] if x != i]
+            k = gi_of[members[0]] if members else len(groups)
+            if not members:
+                groups.append([])
+            groups[k] = members
+        else:
+            if pl["anchor"] not in by_ref:
+                sys.exit(f"[[place]] {pl['id']}：查不到 anchor {pl['anchor']}")
+            k = gi_of[by_ref[pl["anchor"]]]
+            for r in pl.get("add", []):
+                i = by_ref[r]
+                groups[gi_of[i]] = [x for x in groups[gi_of[i]] if x != i]
+                groups[k].append(i)
+        decided[k] = pl
+    for r in seat_refs:                   # 治所迁城的条目不单独成地点，按年代挂到别的地点上
+        i = by_ref[r]
+        groups[gi_of[i]] = [x for x in groups[gi_of[i]] if x != i]
+    keep = [(k, g) for k, g in enumerate(groups) if g or k in decided]
     places, review = [], []
     names_used = collections.Counter()
     pre = []
-    for g in groups:
+    for k, g in keep:
         cs = [cands[i] for i in g]
+        pl = decided.get(k)
+        if pl and not cs:                 # 只有治所挂靠、没有本身条目的地点
+            st = pl["sites"][-1]
+            pre.append((g, cs, pl["id"], collections.Counter(), (st["lon"], st["lat"]), 0, 0, collections.Counter(), pl))
+            names_used[pl["id"]] += 1
+            continue
         cnt = collections.Counter(c["main"] for c in cs)
         tokc = collections.Counter(t for c in cs for t in c["tok"] if not re.search(r"[（(]", t))
         name = max(tokc, key=lambda t: (tokc[t], cnt.get(t, 0), -len(t), t))
@@ -197,18 +278,26 @@ def build_places(B, dec):
         spread = max(km(ll, c["ll"]) for c in cs)
         diam = max((km(a["ll"], b["ll"]) for a in cs for b in cs), default=0) if len(cs) < 60 else spread * 2
         ens = collections.Counter(c["en"] for c in cs if c["en"])
-        pre.append((g, cs, name, mods, ll, spread, diam, ens))
+        if pl:
+            name = pl["id"]
+            if "sites" in pl:
+                cur = [st for st in pl["sites"] if "to" not in st] or pl["sites"]
+                ll = (cur[0]["lon"], cur[0]["lat"])
+        pre.append((g, cs, name, mods, ll, spread, diam, ens, pl))
         names_used[name] += 1
     seen = collections.Counter()
     ids = set()
     pre.sort(key=lambda x: (-len(x[1]), x[2], x[4]))
-    for g, cs, name, mods, ll, spread, diam, ens in pre:
+    corrections = []
+    for g, cs, name, mods, ll, spread, diam, ens, pl in pre:
         at_ll = collections.Counter(c["mod"] for c in cs if c["mod"] and c["ll"] == ll)
         mod = (at_ll or mods).most_common(1)[0][0] if mods else ""
+        if pl and pl.get("mod"):
+            mod = pl["mod"]
         pid = name
-        if names_used[name] > 1:
+        if names_used[name] > 1 and not pl:
             seen[name] += 1
-            if seen[name] > 1:                # 同名的第一处（引用最多的）用本名，其余加今地
+            if seen[name] > 1 or any(x[8] and x[8]["id"] == name for x in pre):  # 同名的第一处（引用最多的）用本名，其余加今地
                 pid = f"{name}（{mod or f'{ll[0]:.2f},{ll[1]:.2f}'}）"
         k = 2
         base = pid
@@ -219,7 +308,15 @@ def build_places(B, dec):
             if ref in {c["ref"] for c in cs}:
                 pid = newid
         sites = []
-        if spread > 2:
+        if pl and "sites" in pl:
+            sites = [dict(st) for st in pl["sites"]]
+            for c in cs:                      # 各条坐标与它那个年代的城址不符的，记入改正清单
+                y0, y1 = ref_years(B, c["ref"])
+                ok = [st for st in site_for(sites, y0, y1) if km(c["ll"], (st["lon"], st["lat"])) <= 2.0]
+                if not ok:
+                    st = min(site_for(sites, y0, y1), key=lambda st: km(c["ll"], (st["lon"], st["lat"])))
+                    corrections.append((pid, c, y0, y1, st))
+        elif spread > 2:
             by_site = collections.defaultdict(set)
             for c in cs:
                 by_site[c["ll"]].add(c["era"])
@@ -233,12 +330,36 @@ def build_places(B, dec):
             rec["en_variants"] = sorted(ens)
         if sites:
             rec["sites"] = sites
+        if pl and pl.get("note"):
+            rec["note"] = pl["note"]
         places.append(rec)
-        if spread > 5 or diam > 40:
+        if not pl and (spread > 5 or diam > 40):
             review.append((pid, cs, spread, diam, mods))
+    # 治所迁城：同一条在不同年代挂到不同的地点
+    by_id = {r["id"]: r for r in places}
+    for st in dec.get("seat", []):
+        c = cands[by_ref[st["ref"]]]
+        y0, y1 = era_years(c["era"])
+        steps = st["by"]
+        for n, (y, pid) in enumerate(steps):
+            a = y0 if n == 0 else max(y0, y)
+            b = y1 if n == len(steps) - 1 else min(y1, steps[n + 1][0] - 1)
+            if a > b:
+                continue
+            if pid not in by_id:
+                sys.exit(f"[[seat]] {st['ref']}：没有地点 {pid}")
+            rec = by_id[pid]
+            rec.setdefault("seats", []).append({"ref": st["ref"], "from": a, "to": b})
+            if st["ref"].split(":")[0] not in rec["eras"]:
+                rec["eras"] = sorted(set(rec["eras"]) | {c["era"]}, key=ERAS.index)
+            rec["names"] = sorted(set(rec["names"]) | c["names"])
+            sites = rec.get("sites") or [{"lon": rec["lon"], "lat": rec["lat"]}]
+            if not any(km(c["ll"], (x["lon"], x["lat"])) <= 2.0 for x in site_for(sites, a, b)):
+                x = min(site_for(sites, a, b), key=lambda x: km(c["ll"], (x["lon"], x["lat"])))
+                corrections.append((pid, c, a, b, x))
     dup_check(places, "地点", "places")
     places.sort(key=lambda r: (r["lon"], r["lat"], r["id"]))
-    return places, review, cands
+    return places, review, cands, corrections
 
 
 # ---------------------------------------------------------------- 政权
@@ -261,11 +382,14 @@ def build_polities(B, dec):
                 ts = [n["t"] for n in b["nodes"] if idx in n.get("u", {}) or idx in n.get("pu", {})]
                 rng = (min(ts), max(ts)) if ts else None
                 nn = len(ts)
+                parent = next((b["polities"][int(n["pol"][idx])]["n"] for n in b["nodes"]
+                               if str(n.get("pol", {}).get(idx, idx)) != idx), None)
             else:
                 rng = active_range(b, key)
                 nn = sum(1 for n in b["nodes"] if key in n.get("u", {}))
+                parent = None
             cands.append({"ref": f"{slug}:{key}", "era": slug, "key": key, "n": p["n"], "en": p.get("en", {}).get("n"),
-                          "kind": p["kind"], "color": p["color"], "rng": rng, "edge": (t0, t1), "nn": nn})
+                          "kind": p["kind"], "color": p["color"], "rng": rng, "edge": (t0, t1), "nn": nn, "parent": parent})
     uf = UF(len(cands))
     by_name = collections.defaultdict(list)
     for i, c in enumerate(cands):
@@ -314,19 +438,24 @@ def build_polities(B, dec):
         pid = name
         if names[name] > 1:
             seen[name] += 1
-            if seen[name] > 1:
+            par = cs[0].get("parent")
+            if cs[0]["kind"] == "zhen" and par:   # 同名的二级单位（宋、金都有河北东路）一律注所属政权
+                pid = f"{name}（{par}）"
+            elif seen[name] > 1:                  # 其余同名的，第一个用本名，后面的加首见卷
                 pid = f"{name}·{ERA_ZH[cs[0]['era']]}"
         for ref, newid in dec.get("polities", {}).get("id", {}).items():
             if ref in {c["ref"] for c in cs}:
                 pid = newid
         ens = collections.Counter(c["en"] for c in cs if c["en"])
-        rec = {"id": pid, "n": name, "kind": collections.Counter(c["kind"] for c in cs).most_common(1)[0][0],
+        rec = {"id": pid, "n": name, "kind": cs[-1]["kind"],     # 部族升为政权的（契丹→辽），以最后一卷为准
                "eras": [c["era"] for c in cs], "refs": [c["ref"] for c in cs],
                "colors": {c["era"]: c["color"] for c in cs}}
         if ens:
             rec["en"] = ens.most_common(1)[0][0]
         if len({c["n"] for c in cs}) > 1:
             rec["names"] = sorted({c["n"] for c in cs})
+        if len({c["kind"] for c in cs}) > 1:
+            rec["kinds"] = {c["era"]: c["kind"] for c in cs}
         out.append(rec)
         if len({tuple(c["color"]) for c in cs}) > 1:
             colors_review.append((pid, cs))
@@ -334,7 +463,7 @@ def build_polities(B, dec):
             en_review.append((pid, cs))
     dup_check(out, "政权", "polities")
     out.sort(key=lambda r: (ERAS.index(r["eras"][0]), r["id"]))
-    return out, flagged, colors_review, en_review
+    return out, flagged, colors_review, en_review, cands
 
 
 # ---------------------------------------------------------------- 山川
@@ -355,7 +484,9 @@ def head(name):
     return re.split(r"[（(]", name)[0].strip() or name
 
 
-def build_physical(B):
+def build_physical(B, dec):
+    pdec = dec.get("physical", {})
+    split = set(pdec.get("split", []))
     cands = []
     for slug in ERAS:
         for it in B[slug]["items"]:
@@ -378,6 +509,8 @@ def build_physical(B):
         for j in range(i + 1, len(cands)):
             d = cands[j]
             if c["c"] != d["c"] or c["era"] == d["era"]:
+                continue
+            if (c["ref"] in split) != (d["ref"] in split):   # 人工拆出的，只与同样拆出的、几何相同的合并
                 continue
             if not (c["tok"] & d["tok"]) and not (clean_mod(c["mod"]) and c["mod"].strip() == d["mod"].strip()):
                 continue
@@ -424,11 +557,16 @@ def build_physical(B):
             pts = [json.loads(gj) for gj in geos]
             dev = max(max(min(km(p, q) for q in other) for p in one) for one in pts for other in pts if one is not other)
             rec["geo_dev_km"] = round(dev)
-            if dev > 30:
+            pref = next((v for k2, v in pdec.get("prefer", {}).items() if k2 == pid), None)
+            if pref:
+                rec["geo_from"] = pref["era"]
+                if pref.get("note"):
+                    rec["note"] = pref["note"]
+            elif dev > 30:
                 review.append((pid, cs, dev))
         out.append(rec)
     out.sort(key=lambda r: (r["c"], r["id"]))
-    return out, review
+    return out, review, cands
 
 
 # ---------------------------------------------------------------- 衔接
@@ -533,9 +671,9 @@ def md_table(head, rows):
 def main():
     B = load_bundles()
     dec = load_decisions()
-    places, p_review, cands = build_places(B, dec)
-    polities, flagged, colors_review, en_review = build_polities(B, dec)
-    physical, phys_review = build_physical(B)
+    places, p_review, cands, p_fix = build_places(B, dec)
+    polities, flagged, colors_review, en_review, po_cands = build_polities(B, dec)
+    physical, phys_review, ph_cands = build_physical(B, dec)
     write_jsonl(GLOBAL / "places.jsonl", places)
     write_jsonl(GLOBAL / "polities.jsonl", polities)
     write_jsonl(GLOBAL / "physical.jsonl", physical)
@@ -552,7 +690,8 @@ def main():
         "# 地点审定清单\n\n自动归并后仍需人工判断的地点。每行列出各卷的写法、坐标与今地。\n\n"
         "- 城址相距超过 5 km：同一地点在不同卷里坐标不同。可能是城址确有迁移（如汉长安城与隋唐长安城），也可能是某卷坐标取点不同。\n"
         "- 范围过大：归并后最远两点超过 40 km，可能把同名的两处误合在一起，需要拆开。\n\n"
-        "决定写进 `global/decisions.toml`（`[places]` 下的 `split`、`merge`、`id`），再运行 `python core/v1/registry.py` 重建。\n\n"
+        "决定写进 `global/decisions.toml`（`[[place]]` 定组、城址与 ID，`[[seat]]` 治所迁城），再运行 `python core/v1/registry.py` 重建。"
+        "已经写进 `[[place]]` 的地点不再列在这里。\n\n"
         + md_table(["全局 ID", "问题", "最远距离 km", "各卷写法"], rows) + "\n", encoding="utf8")
 
     rows = []
@@ -574,41 +713,58 @@ def main():
         "# 山川审定清单\n\n同一山脉、长城或道路在各卷里画法不同、最大偏差超过 30 km 的。第 4、5 步换成全局山川数据时，要定以哪一卷的画法为准，或重新勾画。\n\n"
         + md_table(["全局 ID", "最大偏差 km", "各卷名称"], rows) + "\n", encoding="utf8")
 
-    # 译名：同一对象、同一中文名，各卷英文写法不同
+    # 译名：每个全局对象、每个中文写法一条。同一中文名各卷英文不同的：
+    #   山川默认统一成用得最多的写法（次数相同取较晚一卷）；地点、政权要人工定（统一，或按时代各用各的）
+    gdec = dec.get("glossary", {})
+    by_era, unify = set(gdec.get("by_era", [])), gdec.get("unify", {})
     ref2c = {c["ref"]: c for c in cands}
-    gl_rows, glossary = [], []
-    for p in places:
-        by = collections.defaultdict(set)
-        for r in p["refs"]:
-            c = ref2c[r]
-            if c["en"]:
-                by[c["main"]].add((c["en"], c["era"]))
+    po2c = {c["ref"]: c for c in po_cands}
+    ph2c = {c["ref"]: c for c in ph_cands}
+    gl_rows, glossary, en_fix = [], [], []
+
+    def gloss(kind, rid, members, auto):
+        by = collections.defaultdict(list)
+        for zh, en, era in members:
+            if en:
+                by[zh].append((en, era))
         for zh, st in by.items():
-            st = sorted(st, key=lambda x: (ERAS.index(x[1]), x[0]))      # 次数相同时取较晚一卷的写法
+            st = sorted(set(st), key=lambda x: (ERAS.index(x[1]), x[0]))
             ens = collections.Counter(e for e, _ in st)
-            best = max(ens, key=lambda e: (ens[e], max(ERAS.index(a) for x, a in st if x == e)))
             eras_of = lambda e: [ERA_ZH[a] for a in ERAS if (e, a) in set(st)]
-            glossary.append({"id": p["id"], "kind": "place", "zh": zh, "en": best,
-                             **({"variants": {e: eras_of(e) for e in sorted(ens)}} if len(ens) > 1 else {})})
-            if len(ens) > 1:
-                gl_rows.append(("地点", p["id"], zh, "；".join(f"{e}（{'、'.join(eras_of(e))}）" for e in sorted(ens))))
-    for pid, cs in en_review:
-        gl_rows.append(("政权", pid, cs[0]["n"], "；".join(f"{c['en']}（{ERA_ZH[c['era']]}）" for c in cs)))
-    for rec in physical:
-        if "en_variants" in rec:
-            gl_rows.append(("山川", rec["id"], "、".join(rec["names"]), "；".join(rec["en_variants"])))
+            row = {"id": rid, "kind": kind, "zh": zh}
+            key = f"{rid}|{zh}"
+            if len(ens) == 1:
+                row["en"] = st[0][0]
+            elif key in by_era:
+                row["en"] = st[-1][0]
+                row["by_era"] = {e: eras_of(e) for e in sorted(ens)}
+            elif key in unify or auto:
+                best = unify.get(key) or max(ens, key=lambda e: (ens[e], max(ERAS.index(a) for x, a in st if x == e)))
+                row["en"] = best
+                row["variants"] = {e: eras_of(e) for e in sorted(ens)}
+                for e, era in st:
+                    if e != best:
+                        en_fix.append((era, {"place": "地点", "polity": "政权", "physical": "山川"}[kind], rid, zh, e, best))
+            else:
+                row["en"] = max(ens, key=lambda e: (ens[e], max(ERAS.index(a) for x, a in st if x == e)))
+                row["variants"] = {e: eras_of(e) for e in sorted(ens)}
+                gl_rows.append(({"place": "地点", "polity": "政权"}[kind], rid, zh,
+                                "；".join(f"{e}（{'、'.join(eras_of(e))}）" for e in sorted(ens))))
+            glossary.append(row)
+
+    for p in places:
+        refs = p["refs"] + [x["ref"] for x in p.get("seats", [])]
+        gloss("place", p["id"], [(ref2c[r]["main"], ref2c[r]["en"], ref2c[r]["era"]) for r in refs], False)
     for rec in polities:
-        if "en" in rec:
-            glossary.append({"id": rec["id"], "kind": "polity", "zh": rec["n"], "en": rec["en"]})
+        gloss("polity", rec["id"], [(po2c[r]["n"], po2c[r]["en"], po2c[r]["era"]) for r in rec["refs"]], False)
     for rec in physical:
-        if "en" in rec:
-            glossary.append({"id": rec["id"], "kind": "physical", "zh": rec["n"], "en": rec["en"],
-                             **({"variants": rec["en_variants"]} if "en_variants" in rec else {})})
+        gloss("physical", rec["id"], [(ph2c[r]["old"], ph2c[r]["en"], ph2c[r]["era"]) for r in rec["refs"]], True)
     write_jsonl(GLOBAL / "glossary.jsonl", glossary)
     (REVIEW / "glossary.md").write_text(
-        "# 译名审定清单\n\n同一个对象、同一个中文名，各卷英文写法不同的。有的是有意按时代取名（如唐宋卷越南州名用越南语写法、民国卷用今名），"
-        "有的是写法不统一。定下来的写法以后写进全局译名表；按时代取名的保留，在这里注明即可。\n\n"
-        + md_table(["类别", "全局 ID", "中文", "各卷英文"], gl_rows) + "\n", encoding="utf8")
+        "# 译名审定清单\n\n地点、政权里，同一个对象、同一个中文名，各卷英文写法不同、还没定的。"
+        "定下来的写进 `global/decisions.toml` 的 `[glossary]`：`unify` 统一成一种写法（其余卷列进改正清单），"
+        "`by_era` 按时代各用各的（如麴氏高昌作 Gaochang、回鹘高昌作 Qocho）。山川默认统一成用得最多的写法。\n\n"
+        + (md_table(["类别", "全局 ID", "中文", "各卷英文"], gl_rows) if gl_rows else "（已全部审定）") + "\n", encoding="utf8")
 
     # 衔接年份：前一卷最后一个节点与后一卷第一个节点
     jrows = build_junctions(B, polities)
@@ -635,14 +791,35 @@ def main():
             parts.append(f"\n只在{ERA_ZH[r['to']]}卷衔接节点上有：{'、'.join(r['only_to'])}\n")
     (REVIEW / "junctions.md").write_text("".join(parts), encoding="utf8")
 
+    # 改正清单：各卷页面里要改的地方（坐标由 [[place]]、[[seat]] 推出，其余手写在 corrections.toml）
+    yy = lambda y: f"前{-y}" if y < 0 else str(y)
+    rows = []
+    for pid, c, y0, y1, st in sorted(p_fix, key=lambda x: (ERAS.index(x[1]["era"]), x[0], x[1]["ref"])):
+        rows.append((ERA_ZH[c["era"]], f"{c['main']} `{c['ref']}`", pid, f"{yy(y0)}—{yy(y1)}",
+                     f"{c['ll'][0]:.2f},{c['ll'][1]:.2f}", f"{st['lon']:.2f},{st['lat']:.2f}", st.get("note", "")))
+    fixes = load_toml(GLOBAL / "corrections.toml").get("fix", []) if (GLOBAL / "corrections.toml").exists() else []
+    rows2 = [(ERA_ZH.get(f["era"], f["era"]), f.get("at", ""), f["what"], f.get("why", "")) for f in fixes]
+    rows3 = [(ERA_ZH[era], kind, rid, zh, e, best) for era, kind, rid, zh, e, best in
+             sorted(en_fix, key=lambda x: (ERAS.index(x[0]), x[1], x[2]))]
+    (GLOBAL / "corrections.md").write_text(
+        "# 各卷改正清单\n\n第 2 步审定出来、各卷页面里要改的地方。全局表已经按改正后的写；各卷页面暂不动，"
+        "点位在第 3 步统一前端时改，归属点（州府）在第 5—7 步重算疆域时改，改完的从这里删去。"
+        "本文件由 `python core/v1/registry.py` 生成，内容改正手写在 `global/corrections.toml`。\n\n"
+        f"## 坐标（{len(rows)} 处）\n\n与全局地点表里那个年代的城址相距 2 km 以上的（坐标精度约 1 km）。\n\n"
+        + md_table(["卷", "条目", "全局地点", "年代", "现坐标", "应为", "城址"], rows)
+        + f"\n\n## 内容（{len(rows2)} 处）\n\n" + md_table(["卷", "年代", "改什么", "依据"], rows2)
+        + f"\n\n## 英文（{len(rows3)} 处）\n\n同一对象、同一中文名，统一成一种英文写法后，各卷要改的。\n\n"
+        + md_table(["卷", "类别", "全局 ID", "中文", "现在", "改为"], rows3) + "\n",
+        encoding="utf8")
+
     # 汇总
     multi = [p for p in places if len(p["eras"]) > 1]
     stats = {
-        "地点": len(places), "跨卷地点": len(multi), "地点待审": len(p_review),
+        "地点": len(places), "跨卷地点": len(multi), "地点待审": len(p_review), "坐标改正": len(p_fix),
         "政权与二级单位": len(polities), "跨卷政权": sum(1 for p in polities if len(p["eras"]) > 1),
         "配色不同": len(colors_review), "同名未合并": len(flagged), "英文名不同的政权": len(en_review),
         "山川": len(physical), "跨卷山川": sum(1 for p in physical if len(p["eras"]) > 1), "山川待审": len(phys_review),
-        "译名待审": len(gl_rows),
+        "译名待审": len(gl_rows), "英文改正": len(en_fix),
         "衔接不一致": {f"{r['from']}→{r['to']}": sum(1 for x in r["ious"] if x[1] < 0.98) for r in jrows},
     }
     (GLOBAL / "stats.json").write_text(json.dumps(stats, ensure_ascii=False, indent=1) + "\n", encoding="utf8")

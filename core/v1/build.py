@@ -30,6 +30,15 @@ def index(rows):
     return {r: row["id"] for row in rows for r in row["refs"]}
 
 
+def seat_index(rows):
+    """治所迁城的州府：ref → [[起始月序号, 全局 ID], …]，按时间排"""
+    out = {}
+    for row in rows:
+        for st in row.get("seats", []):
+            out.setdefault(st["ref"], []).append([st["from"] * 12, row["id"]])
+    return {k: sorted(v) for k, v in out.items()}
+
+
 def check_era_toml(slug, b):
     meta = load_toml(ROOT / "eras" / slug / "era.toml")
     probs = []
@@ -52,14 +61,15 @@ def check_era_toml(slug, b):
     return meta, probs
 
 
-def attach(slug, b, pl, po, ph):
+def attach(slug, b, pl, po, ph, seats):
     missing = []
     for p in b["polities"]:
         ref = f"{slug}:{p['key']}"
         p["gid"] = po.get(ref) or missing.append(ref)
     for p in b["places"]:
         ref = f"{slug}:{p['key']}"
-        p["gid"] = pl.get(ref) or missing.append(ref)
+        # 治所迁城的：gid 是按年代分段的列表 [[起始月序号, 全局 ID], …]
+        p["gid"] = pl.get(ref) or seats.get(ref) or missing.append(ref)
     for it in b["items"]:
         ref = f"{slug}:i:{it['i']}"
         if it["c"] in ("capital", "pass") and "lon" in it:
@@ -81,13 +91,14 @@ def main():
     pl = index(read_jsonl(GLOBAL / "places.jsonl"))
     po = index(read_jsonl(GLOBAL / "polities.jsonl"))
     ph = index(read_jsonl(GLOBAL / "physical.jsonl"))
+    seats = seat_index(read_jsonl(GLOBAL / "places.jsonl"))
     OUT.mkdir(parents=True, exist_ok=True)
     failed = 0
     for slug in slugs:
         b, probs = roundtrip.check(slug)
         meta, p2 = check_era_toml(slug, b)
         probs += p2
-        missing = attach(slug, b, pl, po, ph)
+        missing = attach(slug, b, pl, po, ph, seats)
         if missing:
             probs.append(f"{len(missing)} 条在全局表里查不到（全局表过期？先运行 registry.py）：{'、'.join(missing[:5])}")
         b["meta"] = {k: meta[k] for k in ("volume", "title", "title_en", "short", "short_en", "years")}

@@ -7,12 +7,14 @@
 | 全局 ID | 各卷名称与浅色 |
 | --- | --- |
 | 日本 | 唐宋 日本 #C98D83；宋元 日本 #C98D83；民国 日本 #6D5886；民国 日本 #6D5886 |
+| 占城 | 汉末 林邑 #CA9877；两晋 林邑 #CA9877；隋唐 林邑 #9DB8A8；唐宋 环王（占城） #8CC5B3；宋元 占城 #8CC5B3 |
 | 泥婆罗 | 两晋 泥婆罗 #AFA99A；隋唐 泥婆罗 #AFA99A；唐宋 泥婆罗 #689A77；宋元 泥婆罗 #689A77 |
 | 高句丽 | 汉末 高句丽 #7D89BA；两晋 高句丽 #7D89BA；隋唐 高句丽 #A8C0A4 |
-| 林邑 | 汉末 林邑 #CA9877；两晋 林邑 #CA9877；隋唐 林邑 #9DB8A8 |
+| 于阗 | 两晋 于阗 #BDA9B9；隋唐 于阗 #BDA9B9；唐宋 于阗 #A87BA0；宋元 于阗 #A87BA0 |
 | 骠国 | 两晋 骠国 #A6B48F；隋唐 骠国 #A6B48F；唐宋 骠国 #C98B8F |
+| 辽 | 两晋 契丹 #A99E87；隋唐 契丹 #A99E87；唐宋 契丹 #6EA1B2；宋元 辽 #6EA1B2 |
 | 新罗 | 两晋 新罗 #D1A3A4；隋唐 新罗 #D1A3A4；唐宋 新罗 #D39B91 |
-| 契丹 | 两晋 契丹 #A99E87；隋唐 契丹 #A99E87；唐宋 契丹 #6EA1B2 |
+| 真腊 | 两晋 真腊 #B9A68A；隋唐 真腊 #B9A68A；唐宋 文单（陆真腊） #539B90；宋元 真腊（吴哥） #539B90 |
 | 室韦 | 两晋 室韦 #A39C88；隋唐 室韦 #A39C88；唐宋 室韦 #DDA7B0；宋元 室韦 #DDA7B0 |
 | 奚 | 两晋 奚 #B3A799；隋唐 奚 #B3A799；唐宋 奚 #B37988 |
 | 吐蕃诸部 | 唐宋 吐蕃诸部 #C2ADD8；宋元 吐蕃诸部 #AC98C3 |
@@ -46,5 +48,12 @@
 
 | 全局 ID | 各卷英文名 |
 | --- | --- |
+| 占城 | 汉末 Linyi (Champa)；两晋 Linyi (Champa)；隋唐 Linyi (Champa)；唐宋 Huanwang (Champa)；宋元 Champa |
+| 于阗 | 两晋 Khotan；隋唐 Khotan；唐宋 Kingdom of Khotan；宋元 Kingdom of Khotan |
+| 辽 | 两晋 Khitan；隋唐 Khitan；唐宋 Khitan；宋元 Liao |
+| 真腊 | 两晋 Chenla；隋唐 Chenla；唐宋 Wendan (Land Chenla)；宋元 Khmer Empire (Angkor) |
+| 大越 | 唐宋 Annan；宋元 Đại Việt (Jiaozhi) |
 | 晋（西晋·东晋） | 汉末 Western Jin；两晋 Jin (Western and Eastern Jin) |
+| 西夏 | 唐宋 Dingnan Jun；宋元 Western Xia |
+| 凉州六谷部 | 唐宋 Liangzhou Tibetan tribes；宋元 Six Valleys tribes of Liangzhou |
 | 安西 | 隋唐 Anxi Protectorate；唐宋 Anxi |
