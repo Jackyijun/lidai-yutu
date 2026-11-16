@@ -36,6 +36,7 @@ lidai-yutu/
 ├── core/v1/               统一数据格式 v1：格式说明 FORMAT.md、旧格式转换、全局表生成、第 3 步的改正
 ├── core/web/              统一前端：由 v1 生成各卷新页面（时间轴、深链接），说明见 core/web/README.md
 ├── core/geo/              统一投影、全球底图、地形晕渲：参数集中在 config.toml，说明见 core/geo/README.md
+├── core/engine/           统一疆域引擎（目前只陪跑比对）：参数集中在 config.toml，说明见 core/engine/README.md
 ├── global/                全局表：地点、政权、山川、译名；decisions.toml 人工决定；review/ 审定清单
 ├── geodata/               底图只存一份（ne/、etopo20/、prov/、derived/）；各卷 geodata/ 里是指向这里的符号链接；
 │                          relief/<短名>/ 各卷的地形晕渲图、world/<短名>.json 各卷范围以外的全球陆地（由 core/geo 生成，入库）
@@ -53,12 +54,15 @@ python run.py --html             # 各卷跳过疆域计算，只重新拼装（
 python run.py --web              # 不重算疆域，只由 legacy.html 重建全局表、v1 数据和新页面（改短标题、改正后用这个）
 python run.py --v1               # 只重建全局表与各卷 v1 数据包（build/v1/，不入库）
 python run.py --geo              # 重新生成地形晕渲与全球底图，再出新页面（改了 core/geo/config.toml 里投影、分档、底图参数后用；第一次会下载晕渲原图约 42 MB）
+python run.py --engine           # 统一疆域引擎陪跑：由 v1 数据重算两晋、隋唐、宋元、民国的疆域，逐节点与现有页面比对（build/engine/，不改页面）
 python run.py --hub              # 只更新首页
 python run.py --check            # 核对 legacy.html、docs/ 是否是本地最新构建的结果
 python run.py --list             # 列出各卷短名
 ```
 
 GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
+
+迁移第 5 步写成了统一疆域引擎 [`core/engine/`](core/engine/README.md)：一张铺在统一投影上的全球格网（约 7 km 一格），格子的位置、地形、山脉、随机扰动只由经纬度决定，同一个地方在哪一卷代价都一样，相邻两卷将来可以共用归属点；外缘可以手绘（隋唐、两晋），也可以按可达代价定（宋元、民国），民国卷的国界墙也并了进来。目前只陪跑：拿两晋、隋唐、宋元、民国四卷的归属数据重算，与现有页面逐节点比对，页面不变；第 7 步各卷逐个换过去。
 
 迁移第 4 步统一了投影、加上了全球底图和地形晕渲：八卷改用同一个 Albers 投影（中央经线 105°E、原点纬线 35°N），接缝挪到大西洋 30°W；缩到最小能看到全世界（南极洲除外），各卷范围以外补上 Natural Earth 1:50m 的陆地与大湖；地形晕渲取自 Natural Earth 1:10m Shaded Relief，分辨率按地区分三档（中国本部及周边 2 km、亚欧大陆 5 km、全球 10 km），同一个地方在哪一卷都一样清楚，图例里可以关掉。每页因此增加 0.6—1.2 MB。浓淡、分档等参数都在 [`core/geo/config.toml`](core/geo/config.toml)，说明见 [`core/geo/README.md`](core/geo/README.md)。
 

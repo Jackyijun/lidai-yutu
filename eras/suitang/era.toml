@@ -38,6 +38,9 @@ central_lon = 105
 seam = -30                  # 接缝经度，小于它的经度加 360°
 legacy = [36, 102]           # 旧版页面（legacy.html）用的原点纬线、中央经线
 
+[engine]                    # 第 5 步统一疆域引擎（core/engine/）的外缘设置；归属点与节点取 v1 数据包
+outer = "frontier"          # 手绘外缘：content/frontier.py（北疆按主流唐极盛图）
+
 [junction.prev]
 era = "liangjin-nanbeichao"
 at = "581"

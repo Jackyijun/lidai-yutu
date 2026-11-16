@@ -41,6 +41,14 @@ central_lon = 105
 seam = -30                  # 接缝经度，小于它的经度加 360°
 legacy = [32, 103]           # 旧版页面（legacy.html）用的原点纬线、中央经线
 
+[engine]                    # 第 5 步统一疆域引擎（core/engine/）的外缘设置；归属点与节点取 v1 数据包
+outer = "reach"             # 按可达代价定外缘（参数见 core/engine/config.toml 的 [outer]）
+box = [26.0, 180.0, -11.0, 72.0]  # 推算范围 [西, 东, 南, 北]
+config = "src/config.py"    # 从这里读 EXCLUDE（推算范围里剔除的欧洲、非洲）与国界墙（WALL_SKIP、VAR_NE_WALLS、MANUAL_WALLS）
+seeds = "content/seeds"     # 各点可达倍数（R=）写在这里
+walls = true                # 今国界与手画的历史界线烧成墙
+prov_walls = true           # 今中国省界烧成弱墙
+
 [junction.prev]
 era = "songyuan"
 at = "空档 1279 — 1911"

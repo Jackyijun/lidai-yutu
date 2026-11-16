@@ -9,6 +9,8 @@
   python run.py --v1               只重建全局表（global/）与各卷 v1 数据包（build/v1/），不出页面
   python run.py --geo              重新生成地形晕渲与全球底图（geodata/relief/、geodata/world/），再出新页面；
                                    改了 core/geo/config.toml 里投影、分档、底图的参数后用。第一次运行会下载晕渲原图（约 42 MB）
+  python run.py --engine           第 5 步统一疆域引擎：由 v1 数据重算疆域（build/engine/），逐节点与现有页面比对，不改页面；
+                                   只做 era.toml 里有 [engine] 的卷（两晋、隋唐、宋元、民国），也可指定短名
   python run.py --hub              只更新首页：hub/index.html → docs/index.html
   python run.py --check            不构建，只核对 docs/ 与各卷成品、首页源文件是否一致
   python run.py --list             列出各卷短名
@@ -18,7 +20,8 @@
   2. core/v1/registry.py 由八卷 legacy.html 重建全局表，core/v1/build.py 转成 v1 数据包并套用第 3 步的改正（build/v1/，不入库）；
   3. core/web/assemble.py 由 v1 数据生成新页面 docs/<短名>/index.html（共用时间轴、深链接等，见 core/web/）；
      统一投影、全球底图、地形晕渲（第 4 步）由 core/geo/ 预先生成到 geodata/relief/、geodata/world/（入库），出页面时并入。
-第 5—7 步改为由 v1 数据直接推算、出图后，第 1 段退役。
+统一疆域引擎（第 5 步）在 core/engine/，目前只陪跑、比对（--engine），页面仍由第 1 段的疆域生成；
+第 7 步各卷换到新引擎、由 v1 数据直接推算出图后，第 1 段退役。
 """
 import argparse, hashlib, shutil, subprocess, sys, time
 from pathlib import Path
@@ -69,6 +72,27 @@ def run_core(eras, web=True, geo=False):
             sys.exit(f"失败：core/{script}")
 
 
+def engine_eras():
+    """era.toml 里有 [engine] 的卷"""
+    try:
+        import tomllib
+    except ImportError:
+        import tomli as tomllib
+    return [s for s in SLUGS if "engine" in tomllib.loads((ROOT / "eras" / s / "era.toml").read_text(encoding="utf8"))]
+
+
+def run_engine(eras):
+    """第 5 步：统一疆域引擎陪跑。先重建八卷的 v1 数据（全局山脉取自八卷），再逐卷推算疆域、与现有页面比对"""
+    run_core([], web=False)
+    todo = eras or engine_eras()
+    for slug in todo:
+        for script in ("engine/build.py", "engine/regress.py"):
+            r = subprocess.run([sys.executable, str(ROOT / "core" / script), slug], cwd=ROOT)
+            if r.returncode != 0:
+                sys.exit(f"失败：core/{script} {slug}")
+    print("\n比对结果在 build/engine/<短名>.regress.json；页面没有改动")
+
+
 def build_hub():
     shutil.copyfile(ROOT / "hub" / "index.html", DOCS / "index.html")
     print("首页 → docs/index.html")
@@ -110,6 +134,7 @@ def main():
     ap.add_argument("--web", action="store_true", help="不重算各卷，只重建全局表、v1 数据和新页面")
     ap.add_argument("--v1", action="store_true", help="只重建全局表与 v1 数据包")
     ap.add_argument("--geo", action="store_true", help="重新生成地形晕渲与全球底图，再出新页面")
+    ap.add_argument("--engine", action="store_true", help="统一疆域引擎陪跑：重算疆域并与现有页面比对，不改页面")
     ap.add_argument("--hub", action="store_true", help="只更新首页")
     ap.add_argument("--check", action="store_true", help="只核对 docs/ 是否最新")
     ap.add_argument("--list", action="store_true", help="列出各卷短名")
@@ -123,6 +148,9 @@ def main():
     unknown = [e for e in a.eras if e not in SLUGS]
     if unknown:
         sys.exit(f"没有这一卷：{'、'.join(unknown)}（python run.py --list 查看）")
+    if a.engine:
+        run_engine(a.eras)
+        return
     if a.v1 or a.web or a.geo:
         run_core(a.eras, web=a.web or a.geo, geo=a.geo)
         return
