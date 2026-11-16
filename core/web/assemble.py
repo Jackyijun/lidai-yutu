@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""新版页面：v1 数据包 → docs/<短名>/index.html（规范第十九节第 3 步）。
+"""新版页面：v1 数据包 → docs/<短名>/index.html（规范第十九节第 3、4 步）。
 
   python core/web/assemble.py              八卷全部
   python core/web/assemble.py songyuan     只做这几卷
@@ -13,9 +13,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "core" / "v1"))
+sys.path.insert(0, str(ROOT / "core" / "geo"))
 import legacy
 from registry import ERAS
 import patch
+import geo
 
 HEAD = """<!doctype html>
 <html lang="zh-CN">
@@ -105,7 +107,10 @@ def render(slug, b, template=None, new=True):
     if new:
         shorts(b, G)
         gids, alias = tokens(b)
-        t = patch.patch_layered(t, slug) if "__UCSS_LIGHT__" in t else patch.patch_simple(t, slug)
+        simple = "__UCSS_LIGHT__" not in t
+        t = patch.patch_simple(t, slug) if simple else patch.patch_layered(t, slug)
+        t = patch.patch_geo(t, geo.load(), simple)          # 第 4 步：统一投影、全球底图、地形晕渲
+        geo.apply(slug, G)
         t = t.replace("__GIDS__", dumps(gids)).replace("__ALIAS__", dumps(alias))
     if "__UCSS_LIGHT__" in t:                       # 唐宋系：疆域色写成 --u-<序号>
         light = " ".join(f"--u-{i}:{c[0]};" for i, c in enumerate(colors))

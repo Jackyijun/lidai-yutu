@@ -344,3 +344,92 @@ def patch_simple(t, slug):
         link = link.replace("__C0__", "").replace("__CDEF__", "").replace("__CGET__", "").replace("__CAPPLY__", "")
     t = sub1(t, "  resize();\n})();\n", "  resize();\n" + link + "})();\n", "启动")
     return t
+
+
+# ---------------- 第 4 步：统一投影、全球底图、地形晕渲（八卷共用，参数在 core/geo/config.toml） ----------------
+
+GEO_LAND = r"""  // 第 4 步（core/geo）：全球底图垫在本卷陆地下面（伸进本卷范围一窄条，拼接处不露缝）。海岸线从两份多边形描出：
+  // 本卷陆地跳过落在范围边上的切边，全球陆地跳过本卷范围以内的部分，两者都跳过接缝上的切边
+  const WB = GEO.world ? GEO.world.box : null, near = (u, v) => Math.abs(u - v) < .011;
+  const onSeam = (a, b) => (near(a[0], __SEAM__) && near(b[0], __SEAM__)) || (near(a[0], __SEAM__ + 360) && near(b[0], __SEAM__ + 360));
+  const edge = p => (near(p[0], WB[0]) ? 1 : 0) | (near(p[0], WB[1]) ? 2 : 0) | (near(p[1], WB[2]) ? 4 : 0) | (near(p[1], WB[3]) ? 8 : 0);
+  const inBox = p => p[0] > WB[0] - .011 && p[0] < WB[1] + .011 && p[1] > WB[2] - .011 && p[1] < WB[3] + .011;
+  function coastD(rings, world) {
+    let d = "";
+    for (const r of rings) {
+      const ll = []; let x = 0, y = 0;
+      for (let i = 0; i < r.length; i += 2) { x += r[i]; y += r[i + 1]; ll.push([x / 100, y / 100]); }
+      ll.push(ll[0]);
+      let pen = false;
+      for (let i = 1; i < ll.length; i++) {
+        const a = ll[i - 1], b = ll[i];
+        if (WB && (onSeam(a, b) || (world ? inBox(a) && inBox(b) : edge(a) & edge(b)))) { pen = false; continue; }
+        const pb = proj(b[0], b[1]);
+        if (!pen) { const pa = proj(a[0], a[1]); d += "M" + pa[0].toFixed(1) + " " + pa[1].toFixed(1); pen = true; }
+        d += "L" + pb[0].toFixed(1) + " " + pb[1].toFixed(1);
+      }
+    }
+    return d;
+  }
+  const worldD = GEO.world ? GEO.world.fill.map(p => p.map(r => P(decode(r), true)).join(" ")).join(" ") : "";
+  // 两份陆地各描一道陆地色的细边，盖住拼接处抗锯齿留下的细缝（真正的海岸线另有描边压在上面）
+  if (worldD) lLand.append(el("path", { d: worldD, fill: "var(--land)", stroke: "var(--land)", "stroke-width": 1, "vector-effect": "non-scaling-stroke", "fill-rule": "evenodd" }));
+  lLand.append(el("path", { d: landD, fill: "var(--land)", stroke: "var(--land)", "stroke-width": 1, "vector-effect": "non-scaling-stroke", "fill-rule": "evenodd" }));
+  if (GEO.world) for (const r of GEO.world.lakes) lLand.append(el("path", { d: P(decode(r), true), fill: "var(--water-fill)", stroke: "var(--water)", "stroke-width": .7, "vector-effect": "non-scaling-stroke" }));
+  lLand.append(el("path", { d: coastD(GEO.land.flat(), false) + (GEO.world ? coastD(GEO.world.fill.flat(), true) : ""), fill: "none", stroke: "var(--coast)", "stroke-width": .8, "vector-effect": "non-scaling-stroke", "stroke-linejoin": "round" }));
+  // 地形晕渲：粗档在下、细档在上，先普通叠成一张，再整体 hard-light（浓淡见 --hill-op），只画在陆地上
+  if (GEO.hill) {
+    const hc = el("clipPath", { id: "hillclip" });
+    hc.append(el("path", { d: landD, "clip-rule": "evenodd" }));
+    if (worldD) hc.append(el("path", { d: worldD, "clip-rule": "evenodd" }));
+    defs.append(hc);
+    const g = el("g", { class: "hill", "clip-path": "url(#hillclip)" });
+    for (const H of GEO.hill) g.append(el("image", { href: H.src, x: H.x, y: H.y, width: H.w, height: H.h, preserveAspectRatio: "none" }));
+    lHill.append(g);
+  }
+"""
+
+SYM_RELIEF = """    relief: '<path d="M1 12 5.5 4 8.5 8.5 10.5 6 13 12Z" fill="var(--ink-3)" opacity=".55"/><path d="M5.5 4 4 12H1Z" fill="var(--ink)" opacity=".5"/>',\n"""
+
+
+def geo_css(cfg):
+    r = cfg["relief"]
+    return (f"  /* 第 4 步：地形晕渲浓淡（core/geo/config.toml） */\n"
+            f"  :root {{ --hill-op:{r['opacity_light']:g}; }}\n"
+            f"  @media (prefers-color-scheme: dark) {{ :root:not([data-theme=\"light\"]) {{ --hill-op:{r['opacity_dark']:g}; }} }}\n"
+            f"  :root[data-theme=\"dark\"] {{ --hill-op:{r['opacity_dark']:g}; }}\n"
+            f"  .hill {{ mix-blend-mode:hard-light; opacity:var(--hill-op); pointer-events:none; }}\n")
+
+
+def patch_geo(t, cfg, simple):
+    p = cfg["projection"]
+    # 1. 统一投影（民国卷的前端读 GEO.proj，由 core/geo/geo.py 改数据）
+    if "GEO.proj.map(v => v * RAD)" not in t:
+        t = re1(t, r"const p1 = \d+ \* RAD, p2 = \d+ \* RAD, p0 = \d+ \* RAD, l0 = \d+ \* RAD;",
+                f"const p1 = {p['parallels'][0]} * RAD, p2 = {p['parallels'][1]} * RAD, p0 = {p['center'][1]} * RAD, l0 = {p['center'][0]} * RAD;",
+                "投影参数")
+    # 2. 接缝
+    t = sub1(t, "  function proj(lon, lat) {\n", f"  function proj(lon, lat) {{\n    if (lon < {p['seam']}) lon += 360;\n", "接缝")
+    # 3. 晕渲图层：疆域之上、界线与注记之下
+    if simple:
+        t = sub1(t, 'lState = layer("state"), ', 'lState = layer("state"), lHill = layer("hill"), ', "晕渲图层")
+    else:
+        t = sub1(t, 'lHatch = layer("hatch"), ', 'lHatch = layer("hatch"), lHill = layer("hill"), ', "晕渲图层")
+    # 4. 陆地、全球底图、海岸线、晕渲
+    old = ('  lLand.append(el("path", { d: landD, fill: "var(--land)", stroke: "none", "fill-rule": "evenodd" }));\n'
+           '  lLand.append(el("path", { d: landD, fill: "none", stroke: "var(--coast)", "stroke-width": .8, "vector-effect": "non-scaling-stroke", "stroke-linejoin": "round" }));\n')
+    t = sub1(t, old, GEO_LAND.replace("__SEAM__", str(p["seam"])), "陆地绘制")
+    # 5. 图例开关「地形」
+    if simple:
+        t = sub1(t, '{ id:"territory", zh:"疆域", en:"Territories" }, ', '{ id:"territory", zh:"疆域", en:"Territories" }, { id:"relief", zh:"地形", en:"Relief" }, ', "图例项")
+        t = sub1(t, 'const n = L.id === "territory" || L.id === "prov" ? ""', 'const n = L.id === "territory" || L.id === "prov" || L.id === "relief" ? ""', "图例计数")
+        t = sub1(t, 'if (!["territory", "prov"].includes(LAYERS[j].id) && !ITEMS.some', 'if (!["territory", "relief", "prov"].includes(LAYERS[j].id) && !ITEMS.some', "图例筛选")
+    else:
+        t = re1(t, r'(\{ id: "terr", name: "疆域", en: "Territor(?:y|ies)" \}, )', r'\1{ id: "relief", name: "地形", en: "Relief" }, ', "图例项")
+    t = sub1(t, "    range: '", SYM_RELIEF + "    range: '", "图例图标")
+    t = sub1(t, '    b.setAttribute("aria-pressed", layerOn[id] ? "true" : "false");\n',
+             '    b.setAttribute("aria-pressed", layerOn[id] ? "true" : "false");\n'
+             '    if (id === "relief") lHill.setAttribute("display", layerOn.relief ? "inline" : "none");\n', "图例开关")
+    # 6. 浓淡
+    i = t.index("\n</style>")
+    return t[:i] + "\n" + geo_css(cfg) + t[i:]

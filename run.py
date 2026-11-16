@@ -7,6 +7,8 @@
   python run.py --draft            英文有缺译或过期时也照常生成（缺译处显示中文），只供预览
   python run.py --web              不重算各卷，只由 eras/<短名>/legacy.html 重建全局表、v1 数据和新页面
   python run.py --v1               只重建全局表（global/）与各卷 v1 数据包（build/v1/），不出页面
+  python run.py --geo              重新生成地形晕渲与全球底图（geodata/relief/、geodata/world/），再出新页面；
+                                   改了 core/geo/config.toml 里投影、分档、底图的参数后用。第一次运行会下载晕渲原图（约 42 MB）
   python run.py --hub              只更新首页：hub/index.html → docs/index.html
   python run.py --check            不构建，只核对 docs/ 与各卷成品、首页源文件是否一致
   python run.py --list             列出各卷短名
@@ -14,7 +16,8 @@
 构建分三段（规范第十九节）：
   1. 各卷仍用自己原来的构建脚本 eras/<短名>/run.py 推算疆域、拼成旧版页面，存为 eras/<短名>/legacy.html（入库，是数据来源）；
   2. core/v1/registry.py 由八卷 legacy.html 重建全局表，core/v1/build.py 转成 v1 数据包并套用第 3 步的改正（build/v1/，不入库）；
-  3. core/web/assemble.py 由 v1 数据生成新页面 docs/<短名>/index.html（共用时间轴、深链接等，见 core/web/）。
+  3. core/web/assemble.py 由 v1 数据生成新页面 docs/<短名>/index.html（共用时间轴、深链接等，见 core/web/）；
+     统一投影、全球底图、地形晕渲（第 4 步）由 core/geo/ 预先生成到 geodata/relief/、geodata/world/（入库），出页面时并入。
 第 5—7 步改为由 v1 数据直接推算、出图后，第 1 段退役。
 """
 import argparse, hashlib, shutil, subprocess, sys, time
@@ -55,9 +58,11 @@ def build_era(slug, html=False, draft=False):
     print(f"==== {slug} 完成（{time.time() - t0:.0f}s）→ eras/{slug}/legacy.html", flush=True)
 
 
-def run_core(eras, web=True):
-    """第 2、3 段：全局表 → v1 数据 → 新页面"""
-    steps = [("v1/registry.py", []), ("v1/build.py", eras)] + ([("web/assemble.py", eras)] if web else [])
+def run_core(eras, web=True, geo=False):
+    """第 2、3 段：全局表 → v1 数据 →（地形晕渲与全球底图）→ 新页面"""
+    steps = [("v1/registry.py", []), ("v1/build.py", eras)]
+    if geo: steps += [("geo/relief.py", eras), ("geo/world.py", eras)]
+    if web: steps += [("web/assemble.py", eras)]
     for script, extra in steps:
         r = subprocess.run([sys.executable, str(ROOT / "core" / script)] + extra, cwd=ROOT)
         if r.returncode != 0:
@@ -104,6 +109,7 @@ def main():
     ap.add_argument("--draft", action="store_true", help="英文缺译时也照常生成")
     ap.add_argument("--web", action="store_true", help="不重算各卷，只重建全局表、v1 数据和新页面")
     ap.add_argument("--v1", action="store_true", help="只重建全局表与 v1 数据包")
+    ap.add_argument("--geo", action="store_true", help="重新生成地形晕渲与全球底图，再出新页面")
     ap.add_argument("--hub", action="store_true", help="只更新首页")
     ap.add_argument("--check", action="store_true", help="只核对 docs/ 是否最新")
     ap.add_argument("--list", action="store_true", help="列出各卷短名")
@@ -117,8 +123,8 @@ def main():
     unknown = [e for e in a.eras if e not in SLUGS]
     if unknown:
         sys.exit(f"没有这一卷：{'、'.join(unknown)}（python run.py --list 查看）")
-    if a.v1 or a.web:
-        run_core(a.eras, web=a.web)
+    if a.v1 or a.web or a.geo:
+        run_core(a.eras, web=a.web or a.geo, geo=a.geo)
         return
     DOCS.mkdir(exist_ok=True)
     (DOCS / ".nojekyll").touch()

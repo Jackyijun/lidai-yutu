@@ -35,13 +35,15 @@ lidai-yutu/
 │                          era.toml 卷的基本信息；legacy.html 旧构建的成品（数据来源）；short.tsv 时间轴短标题
 ├── core/v1/               统一数据格式 v1：格式说明 FORMAT.md、旧格式转换、全局表生成、第 3 步的改正
 ├── core/web/              统一前端：由 v1 生成各卷新页面（时间轴、深链接），说明见 core/web/README.md
+├── core/geo/              统一投影、全球底图、地形晕渲：参数集中在 config.toml，说明见 core/geo/README.md
 ├── global/                全局表：地点、政权、山川、译名；decisions.toml 人工决定；review/ 审定清单
-├── geodata/               底图只存一份（ne/、etopo20/、prov/、derived/）；各卷 geodata/ 里是指向这里的符号链接
+├── geodata/               底图只存一份（ne/、etopo20/、prov/、derived/）；各卷 geodata/ 里是指向这里的符号链接；
+│                          relief/<短名>/ 各卷的地形晕渲图、world/<短名>.json 各卷范围以外的全球陆地（由 core/geo 生成，入库）
 ├── tools/thumbs.py        首页缩略图
 └── docs/                  GitHub Pages 发布目录：index.html 是首页，<短名>/index.html 是各卷
 ```
 
-各卷短名是旧仓库名去掉 `-map`：chunqiu、zhanguo、hanmosanguo、liangjin-nanbeichao、suitang、tangsong、songyuan、minguo-xinzhongguo。构建分三段：各卷仍用自己原来的构建脚本推算疆域，成品存为 `eras/<短名>/legacy.html`；由它重建全局表、转成 v1 数据并套用第 3 步的改正；再由 v1 生成新页面 `docs/<短名>/index.html`。
+各卷短名是旧仓库名去掉 `-map`：chunqiu、zhanguo、hanmosanguo、liangjin-nanbeichao、suitang、tangsong、songyuan、minguo-xinzhongguo。构建分三段：各卷仍用自己原来的构建脚本推算疆域，成品存为 `eras/<短名>/legacy.html`；由它重建全局表、转成 v1 数据并套用第 3 步的改正；再由 v1 生成新页面 `docs/<短名>/index.html`，同时并入 `geodata/relief/`、`geodata/world/` 里预先生成的地形晕渲与全球底图。
 
 ```bash
 pip install -r requirements.txt
@@ -50,12 +52,15 @@ python run.py zhanguo songyuan   # 只构建这几卷
 python run.py --html             # 各卷跳过疆域计算，只重新拼装（须先完整构建过一次）
 python run.py --web              # 不重算疆域，只由 legacy.html 重建全局表、v1 数据和新页面（改短标题、改正后用这个）
 python run.py --v1               # 只重建全局表与各卷 v1 数据包（build/v1/，不入库）
+python run.py --geo              # 重新生成地形晕渲与全球底图，再出新页面（改了 core/geo/config.toml 里投影、分档、底图参数后用；第一次会下载晕渲原图约 42 MB）
 python run.py --hub              # 只更新首页
 python run.py --check            # 核对 legacy.html、docs/ 是否是本地最新构建的结果
 python run.py --list             # 列出各卷短名
 ```
 
 GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
+
+迁移第 4 步统一了投影、加上了全球底图和地形晕渲：八卷改用同一个 Albers 投影（中央经线 105°E、原点纬线 35°N），接缝挪到大西洋 30°W；缩到最小能看到全世界（南极洲除外），各卷范围以外补上 Natural Earth 1:50m 的陆地与大湖；地形晕渲取自 Natural Earth 1:10m Shaded Relief，分辨率按地区分三档（中国本部及周边 2 km、亚欧大陆 5 km、全球 10 km），同一个地方在哪一卷都一样清楚，图例里可以关掉。每页因此增加 0.6—1.2 MB。浓淡、分档等参数都在 [`core/geo/config.toml`](core/geo/config.toml)，说明见 [`core/geo/README.md`](core/geo/README.md)。
 
 迁移第 3 步上线了统一前端：八卷新页面共用一套时间轴（上为按真实年代比例的细条，下为等宽刻度：年份 / 短标题 / 年号）和深链接（地址栏 `#y=1127&sel=polity:金&lang=en` 这样记下当前节点、选中对象、视野、着色、缩放与语言，可直接分享），播放都可切 1× / 2×，界面语言各卷与首页共用；地图本身与旧版逐项相同，只先改了不牵动疆域的点位、英文译名和几处名称（见 `global/corrections.md`）。说明见 [`core/web/README.md`](core/web/README.md)。
 

@@ -248,7 +248,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 | `nodes` | 节点数 |
 | `[coloring]` | 着色切换：`modes`（按钮文字与代号）、`default` |
 | `[layers]` | 用到的条目类别及条数 |
-| `[projection]` | 现行投影参数 |
+| `[projection]` | 新页面的投影参数（第 4 步起八卷统一，以 `core/geo/config.toml` 为准）；`legacy` 记旧版页面的原点纬线、中央经线 |
 | `[junction.prev]` `[junction.next]` | 与前后两卷的衔接 |
 | `[legacy]` | 旧仓库、旧网址、新网址 |
 

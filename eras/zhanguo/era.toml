@@ -31,11 +31,13 @@ people = 18
 wall = 10
 road = 3
 
-[projection]                # 现行投影。第 4 步统一为 Albers 25°N/47°N、原点 35°N、中央经线 105°E
+[projection]                # 新页面的投影：第 4 步起八卷统一，参数以 core/geo/config.toml 为准
 kind = "albers"
 parallels = [25, 47]
-origin_lat = 33
-central_lon = 112
+origin_lat = 35
+central_lon = 105
+seam = -30                  # 接缝经度，小于它的经度加 360°
+legacy = [33, 112]           # 旧版页面（legacy.html）用的原点纬线、中央经线
 
 [junction.prev]
 era = "chunqiu"

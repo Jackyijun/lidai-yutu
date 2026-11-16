@@ -35,13 +35,15 @@ lidai-yutu/
 │                          era.toml describes the volume; legacy.html the old build's output (the data source); short.tsv timeline short titles
 ├── core/v1/               unified data format v1: spec FORMAT.md (in Chinese), legacy conversion, global-table generation, step-3 corrections
 ├── core/web/              unified front end: builds each volume's new page from v1 (timeline, deep links); see core/web/README.md (in Chinese)
+├── core/geo/              unified projection, world base map, terrain relief: all parameters in config.toml; see core/geo/README.md (in Chinese)
 ├── global/                global tables: places, polities, physical features, glossary; decisions.toml manual decisions; review/ lists to review
-├── geodata/               one copy of the base data (ne/, etopo20/, prov/, derived/); each volume's geodata/ holds symlinks to it
+├── geodata/               one copy of the base data (ne/, etopo20/, prov/, derived/); each volume's geodata/ holds symlinks to it;
+│                          relief/<slug>/ each volume's relief images, world/<slug>.json the world land outside each volume (made by core/geo, committed)
 ├── tools/thumbs.py        hub thumbnails
 └── docs/                  published by GitHub Pages: index.html is the hub, <slug>/index.html each volume
 ```
 
-A volume's slug is its old repository name without `-map`: chunqiu, zhanguo, hanmosanguo, liangjin-nanbeichao, suitang, tangsong, songyuan, minguo-xinzhongguo. The build has three stages: each volume still computes its territory with its own original build script and saves the result as `eras/<slug>/legacy.html`; from these the global tables are rebuilt, the data converted to v1 and the step-3 corrections applied; and the new pages `docs/<slug>/index.html` are generated from v1.
+A volume's slug is its old repository name without `-map`: chunqiu, zhanguo, hanmosanguo, liangjin-nanbeichao, suitang, tangsong, songyuan, minguo-xinzhongguo. The build has three stages: each volume still computes its territory with its own original build script and saves the result as `eras/<slug>/legacy.html`; from these the global tables are rebuilt, the data converted to v1 and the step-3 corrections applied; and the new pages `docs/<slug>/index.html` are generated from v1, with the terrain relief and world base map pre-generated in `geodata/relief/` and `geodata/world/` merged in.
 
 ```bash
 pip install -r requirements.txt
@@ -49,6 +51,7 @@ python run.py                    # build all eight volumes: territory → v1 dat
 python run.py zhanguo songyuan   # build only these volumes
 python run.py --html             # skip the territory computation, only reassemble (needs one full build first)
 python run.py --web              # no territory computation: rebuild the global tables, v1 data and new pages from legacy.html
+python run.py --geo              # regenerate the terrain relief and world base map, then the new pages (after changing projection, tiers or base-map settings in core/geo/config.toml; the first run downloads the ~42 MB relief source)
 python run.py --v1               # only rebuild the global tables and each volume's v1 bundle (build/v1/, not tracked)
 python run.py --hub              # only update the hub
 python run.py --check            # check whether legacy.html and docs/ hold the latest local builds
@@ -56,6 +59,8 @@ python run.py --list             # list the volume slugs
 ```
 
 GitHub Pages publishes from the `/docs` folder of the `main` branch.
+
+Migration step 4 unified the projection and added a world base map and terrain relief. All eight volumes now use one Albers projection (central meridian 105°E, origin latitude 35°N), with the seam moved to 30°W in the Atlantic; zoomed all the way out the whole world is shown (except Antarctica), with Natural Earth 1:50m land and large lakes outside each volume's own area. The relief comes from Natural Earth 1:10m Shaded Relief, in three tiers by region (China proper and its surroundings 2 km, Eurasia 5 km, the rest of the world 10 km), so a place looks equally sharp in every volume; it can be switched off in the legend. Each page grows by 0.6–1.2 MB. Opacity, tiers and other settings are all in [`core/geo/config.toml`](core/geo/config.toml); see [`core/geo/README.md`](core/geo/README.md) (in Chinese).
 
 Migration step 3 put a unified front end online: the eight new pages share one timeline (a thin strip on a true time scale above evenly spaced ticks showing year / short title / reign era) and deep links (the address records the current snapshot, the selected object, the view, the coloring, the zoom and the language, as in `#y=1127&sel=polity:金&lang=en`, ready to share); every volume plays at 1× or 2×, and the interface language is shared by all volumes and the hub. The maps themselves are the same as the old versions, apart from corrections that do not touch territory: point locations, English names and a few names (see `global/corrections.md`). See [`core/web/README.md`](core/web/README.md) (in Chinese).
 

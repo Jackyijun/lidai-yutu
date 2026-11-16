@@ -1,0 +1,53 @@
+# 第 4 步：统一投影、全球底图、地形晕渲。八卷共用的参数都在这里，改一处八卷都生效（规范第十九节）。
+#
+# 只改浓淡（opacity_*）：运行 python run.py --web 即可。
+# 改投影、分档、全球底图的参数：先 python run.py --geo（重新生成 geodata/relief/、geodata/world/），它会接着出新页面。
+
+[projection]
+# Albers 等积圆锥。前端 proj() 与 core/geo 的 Python 实现用同一组数
+parallels = [25, 47]        # 标准纬线
+center = [105, 35]          # 中央经线、原点纬线
+scale = 1000                # 1 个 SVG 单位 = 地球半径 / 1000 ≈ 6.37 km
+seam = -30                  # 接缝：经度小于它的一律加 360°，美洲排到亚洲东边，只切开格陵兰
+
+[relief]
+# 地形晕渲：Natural Earth 1:10m Shaded Relief（等经纬度 1′ 一格，灰度）。原图不入库，由 core/geo/relief.py 下载并校验
+source = "https://naciscdn.org/naturalearth/10m/raster/SR_HR.zip"
+sha256 = "b2619fff2fc73c17152983c066adfaa25c4b626916b822bad2fae8bcd9be41a5"
+flat = 205                  # 原图里平地与水面的灰度
+shade = 0.85                # 阴坡（比平地暗）压暗的倍数
+light = 1.6                 # 阳坡（比平地亮）提亮的倍数
+ramp = 1.0                  # 细档边上的透明度渐变带（度）
+quality = 50                # WebP 压缩质量
+opacity_light = 0.55        # 浅色模式浓淡
+opacity_dark = 0.50         # 深色模式浓淡
+world = [-30, 330, -60, 85] # 第三档（全球）的范围：西、东（按接缝展开）、南、北
+
+# 分辨率按地区定、不按卷定：同一个地方在哪一卷都是同样的像素。各卷只取本卷「全图」范围以内的档一、档二
+[[relief.tier]]
+id = "t1"
+name = "中国本部及周边"
+km = 2.0
+box = [70, 140, 15, 55]     # 西、东、南、北
+
+[[relief.tier]]
+id = "t2"
+name = "亚欧大陆"
+km = 5.0
+box = [-25, 180, -12, 82]
+
+[[relief.tier]]
+id = "t3"
+name = "全球"
+km = 10.0
+
+[world]
+# 全球底图：各卷范围以内仍用本卷 1:10m 陆地，范围以外补上全球陆地与大湖
+land = "geodata/ne/ne_50m_land.geojson"
+lakes = "geodata/ne/ne_10m_lakes.geojson"
+south = -60                 # 南极洲不画
+simplify = 0.06             # 化简容差（度）
+min_area = 0.04             # 小于此面积（平方度）的岛不画
+lake_area = 1.5             # 大于此面积的湖才画
+segment = 0.5               # 长边每 0.5° 加一点，投影后贴合曲线（本卷陆地被范围切出的直边也一样）
+overlap = 0.1               # 全球陆地伸进本卷范围 0.1°，压在本卷陆地下面，免得两块拼接处露出一道细缝
