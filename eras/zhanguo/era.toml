@@ -31,7 +31,7 @@ people = 18
 wall = 10
 road = 3
 
-[projection]                # 新页面的投影：第 4 步起八卷统一，参数以 core/geo/config.toml 为准
+[projection]                # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准
 kind = "albers"
 parallels = [25, 47]
 origin_lat = 35

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """全球底图：各卷范围以外的陆地与大湖（geodata/world/<短名>.json，入库）。
 
-  python core/geo/world.py [短名 ...]     不写短名则八卷全做；需要先有 build/v1/<短名>.json
+  python core/geo/world.py [短名 ...]     不写短名则各卷全做；需要先有 build/v1/<短名>.json
 
 全球陆地用 Natural Earth 1:50m、大湖用 1:10m（geodata/ne/ 已随仓库附带），化简后只存一份；
 各卷挖掉本卷陆地范围（那里仍用本卷自己的 1:10m 陆地；挖时向里缩 0.1°，让两块陆地叠一窄条，拼接处不露缝），按接缝（config.toml 的 seam）切开、西半边东移 360°，

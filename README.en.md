@@ -8,22 +8,23 @@ The index page of the historical map series, in order: the title-slip header, th
 | --- | --- | --- | --- |
 | I | The Spring and Autumn Period (770–476 BC) | https://jackyijun.github.io/lidai-yutu/chunqiu/ | https://jackyijun.github.io/chunqiu-map/ |
 | II | The Warring States (475–212 BC) | https://jackyijun.github.io/lidai-yutu/zhanguo/ | https://jackyijun.github.io/zhanguo-map/ |
-| III | Late Han and the Three Kingdoms (184–280) | https://jackyijun.github.io/lidai-yutu/hanmosanguo/ | https://jackyijun.github.io/hanmosanguo-map/ |
-| IV | Jin, Sixteen Kingdoms and Northern and Southern Dynasties (280–581) | https://jackyijun.github.io/lidai-yutu/liangjin-nanbeichao/ | https://jackyijun.github.io/liangjin-nanbeichao-map/ |
-| V | Sui and Early Tang (581–669) | https://jackyijun.github.io/lidai-yutu/suitang/ | https://jackyijun.github.io/suitang-map/ |
-| VI | Late Tang and the Five Dynasties (755–979; the map itself is titled Between Tang and Song) | https://jackyijun.github.io/lidai-yutu/tangsong/ | https://jackyijun.github.io/tangsong-map/ |
-| VII | Song · Liao · Xia · Jin · Yuan (979–1279) | https://jackyijun.github.io/lidai-yutu/songyuan/ | https://jackyijun.github.io/songyuan-map/ |
-| VIII | Republican China to the Early PRC (1911–1954) | https://jackyijun.github.io/lidai-yutu/minguo-xinzhongguo/ | https://jackyijun.github.io/minguo-xinzhongguo-map/ |
+| III | Qin and Han (212 BC–AD 184) | https://jackyijun.github.io/lidai-yutu/qinhan/ | (new in this repository, no old version) |
+| IV | Late Han and the Three Kingdoms (184–280) | https://jackyijun.github.io/lidai-yutu/hanmosanguo/ | https://jackyijun.github.io/hanmosanguo-map/ |
+| V | Jin, Sixteen Kingdoms and Northern and Southern Dynasties (280–581) | https://jackyijun.github.io/lidai-yutu/liangjin-nanbeichao/ | https://jackyijun.github.io/liangjin-nanbeichao-map/ |
+| VI | Sui and Early Tang (581–669) | https://jackyijun.github.io/lidai-yutu/suitang/ | https://jackyijun.github.io/suitang-map/ |
+| VII | Late Tang and the Five Dynasties (755–979; the map itself is titled Between Tang and Song) | https://jackyijun.github.io/lidai-yutu/tangsong/ | https://jackyijun.github.io/tangsong-map/ |
+| VIII | Song · Liao · Xia · Jin · Yuan (979–1279) | https://jackyijun.github.io/lidai-yutu/songyuan/ | https://jackyijun.github.io/songyuan-map/ |
+| IX | Republican China to the Early PRC (1911–1954) | https://jackyijun.github.io/lidai-yutu/minguo-xinzhongguo/ | https://jackyijun.github.io/minguo-xinzhongguo-map/ |
 
-Volumes I and II join without a seam: the last snapshot of the Spring and Autumn map (476 BC) and the first of the Warring States map (475 BC) have identical territory and colors. Volumes III, IV and V join the same way: the Jin map copies the junction snapshots at both ends, so its first snapshot matches the last of the Late Han map (280) and its last snapshot matches the first of the Sui–Tang map (581) in territory and colors.
+Volumes I to VI join without a seam: at each junction the two neighboring volumes have identical territory and colors. The last snapshot of the Spring and Autumn map (476 BC) matches the first of the Warring States map (475 BC); the last of the Warring States map matches the first of the Qin and Han map (212 BC); the last of the Qin and Han map matches the first of the Late Han map (184); the last of the Late Han map matches the first of the Jin map (280); and the last of the Jin map matches the first of the Sui–Tang map (581). The Qin and Han map and the Jin map both copy the junction snapshots at either end.
 
-The hub's source file `hub/index.html` is self-contained (the build copies it unchanged to `docs/index.html` for publishing): its styles, script and all eight thumbnails are written into the file, and it loads no outside resources. Its palette, fonts and hairlines match the maps' shared style guide (历史形势图统一规范), and it follows the system's light or dark setting.
+The hub's source file `hub/index.html` is self-contained (the build copies it unchanged to `docs/index.html` for publishing): its styles, script and all nine thumbnails are written into the file, and it loads no outside resources. Its palette, fonts and hairlines match the maps' shared style guide (历史形势图统一规范), and it follows the system's light or dark setting.
 
 Live page: https://jackyijun.github.io/lidai-yutu/
 
 ## Single repository (migration in progress since November 2026)
 
-This repository is being turned into a single repository for the whole atlas: the code, source material and base data of all eight volumes have moved in, and the unified data format, global gazetteer, shared projection and terrain, unified territory engine and the hub's timeline mode will all be built here. Steps and progress are in section 19 of the style guide (历史形势图统一规范). Each volume's old repository and address are kept as the old edition and no longer change.
+This repository is being turned into a single repository for the whole atlas: the code, source material and base data of the original eight volumes have moved in, the new Qin and Han volume was compiled here directly, and the unified data format, global gazetteer, shared projection and terrain, unified territory engine and the hub's timeline mode will all be built here. Steps and progress are in section 19 of the style guide (历史形势图统一规范). Each volume's old repository and address are kept as the old edition and no longer change.
 
 ```
 lidai-yutu/
@@ -44,23 +45,25 @@ lidai-yutu/
 └── docs/                  published by GitHub Pages: index.html is the hub, <slug>/index.html each volume
 ```
 
-A volume's slug is its old repository name without `-map`: chunqiu, zhanguo, hanmosanguo, liangjin-nanbeichao, suitang, tangsong, songyuan, minguo-xinzhongguo. The build has three stages: each volume still computes its territory with its own original build script and saves the result as `eras/<slug>/legacy.html`; from these the global tables are rebuilt, the data converted to v1 and the step-3 corrections applied; and the new pages `docs/<slug>/index.html` are generated from v1, with the terrain relief and world base map pre-generated in `geodata/relief/` and `geodata/world/` merged in.
+A volume's slug is its old repository name without `-map`: chunqiu, zhanguo, hanmosanguo, liangjin-nanbeichao, suitang, tangsong, songyuan, minguo-xinzhongguo; the Qin and Han volume has no old repository and its slug is qinhan. The build has three stages: each volume still computes its territory with its own original build script and saves the result as `eras/<slug>/legacy.html`; from these the global tables are rebuilt, the data converted to v1 and the step-3 corrections applied; and the new pages `docs/<slug>/index.html` are generated from v1, with the terrain relief and world base map pre-generated in `geodata/relief/` and `geodata/world/` merged in.
 
 ```bash
 pip install -r requirements.txt
-python run.py                    # build all eight volumes: territory → v1 data → new pages, then update the hub
+python run.py                    # build all nine volumes: territory → v1 data → new pages, then update the hub
 python run.py zhanguo songyuan   # build only these volumes
 python run.py --html             # skip the territory computation, only reassemble (needs one full build first)
 python run.py --web              # no territory computation: rebuild the global tables, v1 data and new pages from legacy.html
 python run.py --geo              # regenerate the terrain relief and world base map, then the new pages (after changing projection, tiers or base-map settings in core/geo/config.toml; the first run downloads the ~42 MB relief source)
 python run.py --v1               # only rebuild the global tables and each volume's v1 bundle (build/v1/, not tracked)
-python run.py --engine           # unified territory engine, run alongside: recompute the territory of volumes IV, V, VII and VIII (Jin, Sui–Tang, Song–Yuan, Republican) from v1 data and compare each snapshot with the current pages (build/engine/; the pages are not changed)
+python run.py --engine           # unified territory engine, run alongside: recompute the territory of volumes V, VI, VIII and IX (Jin, Sui–Tang, Song–Yuan, Republican) from v1 data and compare each snapshot with the current pages (build/engine/; the pages are not changed)
 python run.py --hub              # only update the hub
 python run.py --check            # check whether legacy.html and docs/ hold the latest local builds
 python run.py --list             # list the volume slugs
 ```
 
 GitHub Pages publishes from the `/docs` folder of the `main` branch.
+
+Migration step 6 compiled the [Qin and Han volume](eras/qinhan/README.en.md) (212 BC–AD 184, 54 snapshots) in this repository, filling the gap between the Warring States and Late Han. The Late Han and the Three Kingdoms volume accordingly dropped its prologue snapshot for AD 94 and now opens with the Yellow Turban Uprising in 184, and the later volumes were renumbered. Qin and Han is the first volume whose territory comes straight from the unified territory engine: `eras/qinhan/src/` turns the source material into ownership data and entries, the engine (`core/engine/`) computes the commanderies' territory, and the junction snapshots are copied from the end of the Warring States and the start of Late Han; the build takes two passes, which `python run.py` does automatically. Adding a volume leaves the other volumes' global IDs unchanged: any that automatic naming would change are pinned in `global/decisions.toml`.
 
 Migration step 5 wrote the unified territory engine, [`core/engine/`](core/engine/README.md) (in Chinese). It works on one world-wide grid laid over the shared projection (about 7 km per cell); the position of each cell, the terrain, the mountain ranges and the random variation depend only on longitude and latitude, so a place costs the same in every volume and neighbouring volumes will be able to share their territory seeds. The outer edge can be hand-drawn (the Jin and Sui–Tang volumes) or set by how far each seed reaches (the Song–Yuan and Republican volumes), and the Republican volume's border walls are built in. For now the engine only runs alongside: it recomputes four volumes from their own ownership data and compares every snapshot with the current pages, which stay unchanged; in step 7 the volumes switch over one by one.
 
@@ -80,7 +83,7 @@ The 中 | EN switch at the top right changes the language; Chinese is the defaul
 - Links from the contents into each volume carry the current language (`#zh` / `#en`), so each map opens in the same language; the new volume pages read and write the same `lidai-yutu:lang`.
 - Page text is written in pairs in the same place: `<span class="zh">…</span><span class="en" lang="en">…</span>`, and only the one matching `<html lang>` is shown. The timeline is built by the script at the end of the page; each entry in its dynasty and period bands `BANDS` also carries a Chinese and an English name.
 - In English the headings and volume titles switch to a Latin serif (Iowan Old Style, Palatino and the like) and the body text to the system sans-serif; the wide CJK letter-spacing is dropped and group headings are set in capitals. The vertical title slip 历代舆图 and the two seals stay as they are, with the English title set to the right of the slip.
-- Volume titles, subtitles, coloring modes and the terms in the stats lines follow each map's own English version: time nodes are snapshots, 州府 and 州郡 are prefectures, 郡国 and 郡县 are commanderies, 藩镇 is written fanzhen, and 方镇 are regional commands; in the Republican volume, 城市 are cities and 派系与属地 are factions and dependencies. Volume VI is titled Late Tang and the Five Dynasties in English, matching 唐末五代 on the Chinese page; the map's own English title is Between Tang and Song.
+- Volume titles, subtitles, coloring modes and the terms in the stats lines follow each map's own English version: time nodes are snapshots, 州府 and 州郡 are prefectures, 郡国 and 郡县 are commanderies, 藩镇 is written fanzhen, and 方镇 are regional commands; in the Republican volume, 城市 are cities and 派系与属地 are factions and dependencies. Volume VII is titled Late Tang and the Five Dynasties in English, matching 唐末五代 on the Chinese page; the map's own English title is Between Tang and Song.
 - Each thumbnail holds two sets of labels, Chinese and English (`<g class="t-lab zh">`, `<g class="t-lab en">`), and also shows only the one for the current language. The English names come from each map's data; see "Generating thumbnails" below.
 
 ## Adding a volume
@@ -163,11 +166,12 @@ Options:
 - `--zh "id=Chinese name;…"`: override a Chinese label, for a short name (伪蒙疆 for 伪蒙疆联合委员会) or a different name: the map gives the CPC-held areas a collective name such as 中共（边区·根据地） or 中华苏维埃共和国, and the thumbnail names the area the label sits on instead, 陕甘苏区 (Shaanxi-Gansu Soviet Area) at 1937.07 and 陕甘宁边区 (Shaanxi-Gansu-Ningxia Border Region) at 1937.12.
 - `--fs "id=size;…"`: set the size of a Chinese label (the English follows at 0.82 times); 0 leaves the label out, for a label hidden under the caption.
 
-The settings for the current eight:
+The settings for the current nine:
 
 ```bash
 python3 tools/thumbs.py <Spring and Autumn index.html> --id cq --year -632 --box 105.5 122.5 28.6 41.0
 python3 tools/thumbs.py <Warring States index.html> --id zg --year -300 --box 102.6 124.2 25.6 42.4
+python3 tools/thumbs.py <Qin and Han index.html>    --id qh --mode pol --box 78 132 16 50   # opening node: 108 BC
 python3 tools/thumbs.py <Late Han index.html>       --id hs --year 229 --mode zhen --box 97.5 125.5 19 43
 python3 tools/thumbs.py <Jin index.html>            --id lj --mode pol                 # opening node: 401
 python3 tools/thumbs.py <Sui–Tang index.html>       --id st --mode pol                 # opening node: 619

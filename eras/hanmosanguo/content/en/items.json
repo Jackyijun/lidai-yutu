@@ -894,30 +894,6 @@
   "mod": "east of Luoyang, Henan (Han–Wei Luoyang city site)",
   "note": "Sima Yan accepted the abdication in 265 and kept Luoyang as his capital."
  },
- "battle:稽落山之战": {
-  "old": "Battle of Mount Jiluo",
-  "mod": "Ömnögovi area, Mongolia (location disputed)",
-  "yt": "89",
-  "sides": "Han and the Southern Xiongnu defeated the Northern Xiongnu",
-  "cmd": "Dou Xian and Geng Bing vs. the Northern Chanyu",
-  "note": "Dou Xian and Geng Bing led Han troops and Southern Xiongnu cavalry beyond the frontier, routed the Northern Chanyu and took the surrender of more than 200,000 people; Dou Xian climbed the Yanran Mountains and had Ban Gu compose an inscription carved in the rock to record his victory before returning."
- },
- "battle:金微山之战": {
-  "old": "Battle of the Jinwei Mountains",
-  "mod": "Altai Mountains (location disputed)",
-  "yt": "91",
-  "sides": "Han defeated the Northern Xiongnu",
-  "cmd": "Geng Kui and Ren Shang vs. the Northern Chanyu",
-  "note": "Geng Kui and Ren Shang went more than 5,000 li beyond the Juyan frontier and routed the Northern Chanyu in the Jinwei Mountains; the main body of the Northern Xiongnu moved west, and all the land north of the Gobi passed to the Xianbei."
- },
- "battle:焉耆之战": {
-  "old": "Battle of Karasahr",
-  "mod": "Yanqi, Xinjiang",
-  "yt": "94",
-  "sides": "Han (with troops from the states of the Western Regions) defeated Karasahr",
-  "cmd": "Ban Chao vs. Guang, King of Karasahr",
-  "note": "Ban Chao raised more than 70,000 troops from eight states including Kucha and Shanshan to attack Karasahr, beheaded the kings of Karasahr and Weili and sent their heads to the capital; the fifty-odd states of the Western Regions all sent hostages and submitted."
- },
  "battle:逢义山之战": {
   "old": "Battle of Mount Fengyi",
   "mod": "north of Guyuan, Ningxia (location disputed)",
@@ -1956,24 +1932,6 @@
   "old": "Jingmen and Huya",
   "mod": "between Yidu and Yichang, Hubei",
   "note": "The gateway of the Yangtze as it leaves the Three Gorges, with Mount Jingmen on the south bank and Mount Huya on the north. Wu stretched iron chains across the river here, which Wang Jun burned through in 280."
- },
- "event:燕然勒铭": {
-  "old": "Inscription on the Yanran Mountains",
-  "mod": "Delgerkhangai, Dundgovi Province, Mongolia (cliff inscription)",
-  "yt": "89",
-  "note": "After routing the Northern Xiongnu, Dou Xian climbed the Yanran Mountains and had the Army Protector of the Centre Ban Gu compose an inscription carved in the rock, \"performing the feng rite on the mountain and cutting the stone to proclaim supreme virtue\". In 2017 a joint Chinese–Mongolian survey team found and deciphered this cliff inscription in Dundgovi Province, Mongolia."
- },
- "event:蔡伦造纸": {
-  "old": "Cai Lun's papermaking",
-  "mod": "Luoyang, Henan",
-  "yt": "105",
-  "note": "Cai Lun, Regular Palace Attendant and Director of the Imperial Workshops, made paper from tree bark, hemp ends, rags and old fishing nets and presented it in 105; \"from then on everyone used it, and the whole realm called it Marquis Cai's paper\"."
- },
- "event:张衡地动仪": {
-  "old": "Zhang Heng's seismoscope",
-  "mod": "Luoyang, Henan",
-  "yt": "132",
-  "note": "Zhang Heng, Grand Astrologer, made a seismoscope cast in fine bronze, shaped like a wine vessel, with a dragon's mouth holding a ball in each of the eight directions; in 138 it detected an earthquake in Longxi."
  },
  "event:党锢之祸": {
   "old": "Partisan Prohibitions",

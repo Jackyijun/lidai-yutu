@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""全局表：把八卷里的地点、政权、山川归并成跨卷的同一个对象，给出全局 ID（规范第十九节第 2 步）。
+"""全局表：把各卷里的地点、政权、山川归并成跨卷的同一个对象，给出全局 ID（规范第十九节第 2 步）。
 
   python core/v1/registry.py        重建 global/ 下的各表与 global/review/ 下的审定清单
 
@@ -28,8 +28,8 @@ import legacy
 ROOT = Path(__file__).resolve().parents[2]
 GLOBAL = ROOT / "global"
 REVIEW = GLOBAL / "review"
-ERAS = ["chunqiu", "zhanguo", "hanmosanguo", "liangjin-nanbeichao", "suitang", "tangsong", "songyuan", "minguo-xinzhongguo"]
-ERA_ZH = {"chunqiu": "春秋", "zhanguo": "战国", "hanmosanguo": "汉末", "liangjin-nanbeichao": "两晋",
+ERAS = ["chunqiu", "zhanguo", "qinhan", "hanmosanguo", "liangjin-nanbeichao", "suitang", "tangsong", "songyuan", "minguo-xinzhongguo"]
+ERA_ZH = {"chunqiu": "春秋", "zhanguo": "战国", "qinhan": "秦汉", "hanmosanguo": "汉末", "liangjin-nanbeichao": "两晋",
           "suitang": "隋唐", "tangsong": "唐宋", "songyuan": "宋元", "minguo-xinzhongguo": "民国"}
 
 
@@ -539,8 +539,11 @@ def build_physical(B, dec):
         base = pid
         while pid in ids:
             pid, k = f"{base}#{k}", k + 1
+        for ref, newid in pdec.get("id", {}).items():   # 钉住已发布的 ID
+            if ref in {c["ref"] for c in cs}:
+                pid = newid
         ids.add(pid)
-        geos = {json.dumps(c["geo"]) for c in cs if c["geo"]}
+        geos ={json.dumps(c["geo"]) for c in cs if c["geo"]}
         rec = {"id": pid, "c": cs[0]["c"], "n": name, "names": sorted({c["old"] for c in cs}),
                "mod": collections.Counter(c["mod"] for c in cs if c["mod"]).most_common(1)[0][0] if any(c["mod"] for c in cs) else "",
                "eras": sorted({c["era"] for c in cs}, key=ERAS.index), "refs": [c["ref"] for c in cs]}
@@ -571,7 +574,7 @@ def build_physical(B, dec):
 
 # ---------------------------------------------------------------- 衔接
 
-JUNCTIONS = [("chunqiu", "zhanguo"), ("hanmosanguo", "liangjin-nanbeichao"),
+JUNCTIONS = [("chunqiu", "zhanguo"), ("zhanguo", "qinhan"), ("qinhan", "hanmosanguo"), ("hanmosanguo", "liangjin-nanbeichao"),
              ("liangjin-nanbeichao", "suitang"), ("tangsong", "songyuan")]
 
 
@@ -647,7 +650,7 @@ def build_junctions(B, polities):
                 cover = inter / min(A.area, Z.area)       # 小的一方有多少落在大的一方里
                 if iou >= 0.25 or cover >= 0.6:
                     rename.append((pa, pz, iou, cover, A.area, Z.area, id2ref[pa], id2ref[pz]))
-        rows.append({"from": a, "to": z, "t_from": na["t"], "t_to": nz["t"], "same_time": na["t"] == nz["t"], "rename": rename,
+        rows.append({"from": a, "to": z, "t_from": na["t"], "t_to": nz["t"], "same_time": na["t"] // 12 == nz["t"] // 12, "rename": rename,
                      "only_from": sorted(set(ia) - set(iz)), "only_to": sorted(set(iz) - set(ia)), "ious": ious})
     return rows
 

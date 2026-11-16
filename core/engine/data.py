@@ -22,7 +22,7 @@ from shapely.geometry import shape, box
 ROOT = Path(__file__).resolve().parents[2]
 V1 = ROOT / "build" / "v1"
 NE = ROOT / "geodata" / "ne"
-ERAS = ["chunqiu", "zhanguo", "hanmosanguo", "liangjin-nanbeichao", "suitang", "tangsong", "songyuan", "minguo-xinzhongguo"]
+ERAS = ["chunqiu", "zhanguo", "qinhan", "hanmosanguo", "liangjin-nanbeichao", "suitang", "tangsong", "songyuan", "minguo-xinzhongguo"]
 
 try:
     import tomllib

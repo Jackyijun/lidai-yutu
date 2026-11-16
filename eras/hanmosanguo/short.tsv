@@ -1,7 +1,6 @@
 # 时间轴短标题（规范第十九节第 3 步）：每个节点一行，节点 = 年份（按月的卷为 年.月）。中文不超过 5 字，英文尽量不超过 18 个字母。
 # 由 core/v1/overlay.py 并入 v1 数据；改完重新运行 python run.py --v1 --web。
 节点	标题	短标题	英文
-94	东汉鼎盛·西域内属	东汉鼎盛	Han at its height
 184	黄巾起事	黄巾起事	Yellow Turbans
 189	董卓入京	董卓入京	Dong Zhuo
 190	关东联军讨董	关东讨董	Eastern coalition

@@ -2,7 +2,7 @@
 
 [![中文](https://img.shields.io/badge/lang-%E4%B8%AD%E6%96%87-red.svg)](README.md) [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.en.md)
 
-An interactive, bilingual (Chinese / English) historical map from the Yellow Turban Uprising to the reunification under Jin (184–280), with the Eastern Han at its height in Yongyuan 6 (94) as a prologue. It covers the territories of warlords and states at 36 snapshots, historical and modern names for 207 commanderies, kingdoms and towns, 117 battles, 50 events, 27 passes and 12 capitals and temporary courts, plus three layers specific to the period: provincial boundaries, the Shu roads and plank roads, and the canals of Cao Wei and Sun Wu.
+An interactive, bilingual (Chinese / English) historical map from the Yellow Turban Uprising to the reunification under Jin (184–280); its first snapshot joins the last snapshot of the Qin and Han volume (the prologue on the Eastern Han at its height in Yongyuan 6 (94) moved to that volume in November 2026). It covers the territories of warlords and states at 35 snapshots, historical and modern names for 207 commanderies, kingdoms and towns, 114 battles, 47 events, 27 passes and 12 capitals and temporary courts, plus three layers specific to the period: provincial boundaries, the Shu roads and plank roads, and the canals of Cao Wei and Sun Wu.
 
 ---
 
@@ -80,7 +80,7 @@ hanmosanguo-map/
 ├── content/               ★ historical content (hand-written; most edits go here)
 │   ├── seeds.py           320 assignment points: Eastern Han commandery and kingdom seats, towns, helper points used only for partitioning, tribal points
 │   ├── units.py           53 states, warlords, tribes and abandoned lands: names, colours, descriptions
-│   ├── nodes.py           36 snapshots: reign era, title, summary, and which commanderies changed hands that year
+│   ├── nodes.py           35 snapshots: reign era, title, summary, and which commanderies changed hands that year
 │   ├── items.py           capitals, battles, passes, events, peoples, historical names of mountains and rivers, canals, ancient and plank roads
 │   └── en/                ★ English version: translations matching the files above (JSON), zh.lock.json Chinese fingerprints, GLOSSARY.md naming conventions
 ├── src/

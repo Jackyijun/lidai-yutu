@@ -1,0 +1,46 @@
+# 第三卷 秦汉：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
+# 字段说明见 core/v1/FORMAT.md「era.toml」一节。
+
+slug = "qinhan"
+volume = 3
+title = "秦汉形势图"
+title_en = "Qin and Han"
+short = "秦汉"               # 总页与时间轴上的短名
+short_en = "Qin and Han"
+
+years = [-212, 184]          # 起止年（含），公元前记负数，与总页一致
+time = "month"               # 节点的时间精度：楚汉之际按月，其余按年（节点 tp 记 m / y）
+model = "layered"
+first = [-108, 9]            # 打开页面时停在哪个节点：前108 年（元封三年，太初以前年末取九月）
+nodes = 54
+
+[coloring]
+modes = [{ label = "郡国", key = "zhen" }, { label = "政权", key = "pol" }]
+default = "政权"
+
+[projection]                 # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准
+kind = "albers"
+parallels = [25, 47]
+origin_lat = 35
+central_lon = 105
+seam = -30
+
+[engine]                     # 统一疆域引擎：本卷直接由它出图（第 6 步起）
+outer = "reach"              # 外缘按可达代价定
+box = [55, 145, 8, 58]       # 推算范围 [西, 东, 南, 北]
+seeds = "build/reach.txt"    # 可达倍数 R=（由 src/build.py 从 content/seeds.py 写出）
+walls = false
+production = true            # 疆域由引擎推算后填回本卷（两遍构建，见 run.py）
+
+[junction.prev]
+era = "zhanguo"
+at = "-212"
+note = "共用节点：前212 年的疆域、秦郡郡界、文字照搬战国卷末节点"
+
+[junction.next]
+era = "hanmosanguo"
+at = "184"
+note = "共用节点：184 年的疆域与文字照搬汉末卷首节点"
+
+[legacy]                     # 新卷没有旧版
+new_url = "https://jackyijun.github.io/lidai-yutu/qinhan/"

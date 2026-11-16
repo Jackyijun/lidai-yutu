@@ -2,7 +2,7 @@
 """旧格式 ↔ v1 的转换（规范第十九节第 2 步）。
 
 旧格式：各卷 docs/<短名>/index.html 里内嵌的 GEO、DATA 两块 JSON，加上注入 CSS 的疆域色。
-v1：每卷一份 JSON（build/v1/<短名>.json），字段与写法八卷统一，格式见 core/v1/FORMAT.md。
+v1：每卷一份 JSON（build/v1/<短名>.json），字段与写法各卷统一，格式见 core/v1/FORMAT.md。
 
   extract(html)              从成品页面取出 GEO、DATA 与疆域色
   to_v1(slug, G, D, colors)  旧格式 → v1（不含全局 ID；ID 由 core/v1/build.py 另行挂上）
@@ -15,7 +15,7 @@ import re
 
 DEC = json.JSONDecoder()
 BEGIN = -999999          # 「自始」：旧格式里的 0 / -9999 年
-MONTHLY = {"minguo-xinzhongguo"}   # 旧格式里整数时间就是月序号的卷
+MONTHLY = {"minguo-xinzhongguo", "qinhan"}   # 旧格式里整数时间就是月序号的卷（秦汉卷节点的 y 也是月序号，另记 tp）
 
 
 # ---------------------------------------------------------------- 取数
@@ -236,6 +236,9 @@ def node_to_v1(sn, clock, pool, inline, fam):
         n["t"], n["tp"], n["title"] = sn["t"], "m", sn["ti"]
     elif "m" in sn:
         n["t"], n["tp"], n["title"] = tm(sn["y"], sn["m"]), "m", sn["t"]
+    elif clock.monthly:                  # 秦汉：y 是月序号，tp 记按年 / 按月，短标题写在节点里
+        n["t"], n["tp"], n["title"] = sn["y"], sn["tp"], sn["t"]
+        n["short"] = sn["sh"]
     else:
         n["t"], n["tp"], n["title"] = year_end(sn["y"]), "y", sn["t"]
     n["desc"] = sn["d"]
@@ -255,6 +258,8 @@ def node_to_v1(sn, clock, pool, inline, fam):
         if k in sn:
             n[k] = sn[k]
     en["lab"] = sn["labe"]
+    if "she" in sn and clock.monthly:
+        en["short"] = sn["she"]
     n["en"] = en
     ext = {k: sn[k] for k in ("zb", "zl") if k in sn}
     if ext:
@@ -262,7 +267,7 @@ def node_to_v1(sn, clock, pool, inline, fam):
     return n
 
 
-def node_from_v1(n, form, pool, inline, fam):
+def node_from_v1(n, form, pool, inline, fam, monthly=False):
     if fam == "A":
         sn = {"y": (n["t"] - 11) // 12, "t": n["title"], "d": n["desc"],
               "s": {k: pool[i] for k, i in n["u"].items()}, "l": n["ul"],
@@ -276,6 +281,8 @@ def node_from_v1(n, form, pool, inline, fam):
         sn.update(y=n["t"] // 12, m=n["t"] % 12 + 1, t=n["t"], ti=n["title"])
     elif form == "ym":
         sn.update(y=n["t"] // 12, m=n["t"] % 12 + 1, t=n["title"])
+    elif monthly:
+        sn.update(y=n["t"], tp=n["tp"], t=n["title"])
     else:
         sn.update(y=(n["t"] - 11) // 12, t=n["title"])
     sn["d"], sn["era"] = n["desc"], n["era"]
@@ -292,6 +299,8 @@ def node_from_v1(n, form, pool, inline, fam):
             sn[k] = n[k]
     en = n["en"]
     sn.update(te=en["title"], de=en["desc"], erae=en["era"], labe=en["lab"])
+    if monthly and form == "y":
+        sn.update(sh=n["short"], she=en["short"])
     if "era2" in en:
         sn["era2e"] = en["era2"]
     sn.update(n.get("ext", {}))
@@ -313,7 +322,7 @@ def to_v1(slug, G, D, colors):
         pool = Pool()
         form = "y"
     else:
-        z0 = next(iter(sn0["z"].values()))
+        z0 = next((v for sn in G["snaps"] for v in sn["z"].values()), 0)   # 秦汉卷第一遍构建时还没有疆域
         inline = isinstance(z0, list)
         pool = Pool(None if inline else G["pool"])
         form = "ymt" if "ti" in sn0 else ("ym" if "m" in sn0 else "y")
@@ -368,7 +377,7 @@ def to_v1(slug, G, D, colors):
     first = G.get("first")
     if first is None:                    # 隋唐把首屏记成节点序号
         first_t = nodes[D["first"]]["t"]
-    elif fam == "A" or form == "y":
+    elif fam == "A" or (form == "y" and not clock.monthly):
         first_t = year_end(first)
     else:
         first_t = first
@@ -382,7 +391,7 @@ def to_v1(slug, G, D, colors):
         ext["en"] = D["en"]
     bundle = {
         "v": 1, "era": slug, "model": "simple" if fam == "A" else "layered",
-        "time": "month" if form in ("ym", "ymt") else "year",
+        "time": "month" if form in ("ym", "ymt") or clock.monthly else "year",
         "first": first_t, "geom": pool.items, "base": base, "extent": extent,
         "polities": polities, "places": places, "nodes": nodes, "items": items, "ext": ext,
         "_legacy": {"fam": fam, "form": form, "inline": inline, "pool": "pool" in G,
@@ -405,11 +414,11 @@ def from_v1(b):
     G.update(b["extent"])
     if "zhoue" in b["ext"]:
         G["zhoue"] = b["ext"]["zhoue"]
-    G["snaps"] = [node_from_v1(n, form, pool, inline, fam) for n in b["nodes"]]
+    G["snaps"] = [node_from_v1(n, form, pool, inline, fam, clock.monthly) for n in b["nodes"]]
     if fam == "B" and not inline:
         G["pool"] = pool
     if lg["first"] == "G":
-        G["first"] = b["first"] if (fam == "B" and form != "y") else (b["first"] - 11) // 12
+        G["first"] = b["first"] if (fam == "B" and (form != "y" or clock.monthly)) else (b["first"] - 11) // 12
     else:
         D["first"] = [n["t"] for n in b["nodes"]].index(b["first"])
     colors = None

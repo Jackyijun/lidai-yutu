@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """地形晕渲：Natural Earth 1:10m Shaded Relief → 各卷的分档晕渲图（geodata/relief/<短名>/，入库）。
 
-  python core/geo/relief.py [短名 ...]     不写短名则八卷全做；需要先有 build/v1/<短名>.json
+  python core/geo/relief.py [短名 ...]     不写短名则各卷全做；需要先有 build/v1/<短名>.json
 
 原图（SR_HR.zip，约 42 MB）不入库：第一次运行时下载到 build/raw/ 并校验 sha256，解压后存一份 .npy 备用。
 网络不通时，手动下载 config.toml 里 [relief] source 那个文件放到 build/raw/ 即可。

@@ -1,8 +1,8 @@
-# 第八卷 民国至新中国：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
+# 第九卷 民国至新中国：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
 # 字段说明见 core/v1/FORMAT.md「era.toml」一节。
 
 slug = "minguo-xinzhongguo"
-volume = 8
+volume = 9
 title = "民国至新中国初期形势图"
 title_en = "Republican China to the Early PRC"
 short = "民国至新中国"            # 总页与时间轴上的短名
@@ -33,7 +33,7 @@ road = 6
 canal = 2
 air = 2
 
-[projection]                # 新页面的投影：第 4 步起八卷统一，参数以 core/geo/config.toml 为准
+[projection]                # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准
 kind = "albers"
 parallels = [25, 47]
 origin_lat = 35

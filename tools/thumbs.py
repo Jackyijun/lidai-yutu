@@ -25,7 +25,7 @@ col（本节点覆盖单位的浅、深两色），按节点所记的画。
   thumb-<id>.cap.txt    该节点的年份与中英标题，用来写缩略图说明 thumb-cap
 参数
   --year / --node       取哪一年 / 第几个节点；都不填取该图打开时的节点
-  --month 年.月         按月分节点的图（民国）按年月取节点，如 1937.12
+  --month 年.月         按月分节点的图（民国）按年月取节点，如 1937.12；秦汉卷楚汉之际的按月节点写纪年年.月，如 -206.2
   --box 西 东 南 北     缩略图取景的经纬框；缺省取该图源码里 FITS 的 cn 或 all
   --mode zhen|pol       分层模型的着色：二级单位（缺省）或政权
   --en "编号=英文名;…"   补或改英文注记，优先于图里的英文名；编号即单位编号（简单模型为政权键名）
@@ -390,6 +390,15 @@ def layered_model(mid, src, data, sn, view, mode):
     return terr, f'<g clip-path="url(#lc-{mid})">{outl}</g>', label_groups(cands), light, dark
 
 
+def tongjian(t):
+    """秦汉卷的月序号 → 纪年年、月：太初改历（前104）以前以十月为岁首，十至十二月记在下一年"""
+    yr, m = divmod(t, 12)
+    m += 1
+    if m >= 10 and yr + 1 <= -104:
+        yr += 1
+    return yr, m
+
+
 def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None, month=None):
     src, geo, data = extract(path)
     box = box or source_box(src)
@@ -399,7 +408,16 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None, m
         return assemble(mid, land, grat, rivers), "", "", ""
     snaps = geo["snaps"]
     monthly = bool(snaps) and "ti" in snaps[0]  # 民国式：节点按月，t 记月序号（年 × 12 + 月 − 1），标题存 ti
-    if month:  # 按月分节点的图用 --month 1937.12 指定
+    mindex = bool(snaps) and "tp" in snaps[0]  # 秦汉式：节点的 y 就是月序号，tp 记按年（y）或按月（m）；显示按通鉴纪年
+    if mindex:
+        for s in snaps:
+            s["_yr"], s["_m"] = tongjian(s["y"])
+    if month and mindex:  # 秦汉卷楚汉之际按月：--month -206.2（纪年年.月）
+        yy, mm = (int(v) for v in month.split("."))
+        node = next((i for i, s in enumerate(snaps) if s["tp"] == "m" and (s["_yr"], s["_m"]) == (yy, mm)), None)
+        if node is None:
+            sys.exit(f"没有 {month} 的节点")
+    elif month:  # 按月分节点的图用 --month 1937.12 指定
         yy, mm = (int(v) for v in month.split("."))
         node = next((i for i, s in enumerate(snaps) if s["y"] == yy and s.get("m") == mm), None)
         if node is None:
@@ -417,6 +435,8 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None, m
                 year = geo["first"]
             else:
                 year = snaps[data.get("first", 0)]["y"] if isinstance(data, dict) else snaps[0]["y"]
+        if mindex and node is None:  # --year 记纪年年份，取那一年按年的节点
+            node = next((i for i, s in enumerate(snaps) if s["y"] == year or (s["tp"] == "y" and s["_yr"] == year)), None)
         sn = snaps[node] if node is not None else next((s for s in snaps if s["y"] == year), None)
     if sn is None:
         sys.exit(f"没有 {year} 年的节点；可选：{[s['y'] for s in snaps]}")
@@ -428,8 +448,10 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None, m
         terr, extra, labels, light, dark = simple_model(mid, geo, data, sn, view)
     else:
         terr, extra, labels, light, dark = layered_model(mid, src, data, sn, view, mode)
-    y = sn["y"]
+    y = sn["_yr"] if mindex else sn["y"]
     yz, ye = (f"前{-y}", f"{-y} BC") if y < 0 else (str(y), str(y))
+    if mindex and sn["tp"] == "m":
+        yz, ye = f"{yz}.{sn['_m']}", f"{ye}, month {sn['_m']}"
     if monthly:
         yz = ye = f"{y}.{sn['m']:02d}"
     cap = f"zh: {yz}  {sn['ti'] if monthly else sn['t']}\nen: {ye}  {sn.get('te') or ''}\n"  # 缩略图说明的中英原文，取自该节点

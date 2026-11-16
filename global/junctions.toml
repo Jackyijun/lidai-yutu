@@ -15,6 +15,22 @@ kind = "adjacent"
 note = "两卷衔接节点上共有的政权疆域完全一致"
 
 [[junction]]
+from = "zhanguo"
+to = "qinhan"
+year = -212
+kind = "shared"
+owner = "zhanguo"
+note = "秦汉卷构建时照搬战国卷末节点前212 的秦、卫外廓、秦郡郡界与文字（eras/qinhan/src/build.py）"
+
+[[junction]]
+from = "qinhan"
+to = "hanmosanguo"
+year = 184
+kind = "shared"
+owner = "hanmosanguo"
+note = "秦汉卷构建时照搬汉末卷首节点 184 的政权外廓与文字，汉的郡国由引擎算出后裁进汉末卷的外廓；汉末卷 2026-11-16 删去 94 年序幕节点，从 184 年开始"
+
+[[junction]]
 from = "hanmosanguo"
 to = "liangjin-nanbeichao"
 year = 280
@@ -37,12 +53,6 @@ year = 979
 kind = "shared"
 owner = "songyuan"
 note = "2026-11-15 定：以宋元卷为准。宋元卷 979 年的女真要改为不属辽；唐宋卷 979 年节点照宋元卷对齐（见 global/corrections.md）"
-
-[[gap]]
-after = "zhanguo"
-before = "hanmosanguo"
-years = [-212, 184]
-plan = "秦汉卷 qinhan（第 6 步试点）"
 
 [[gap]]
 after = "suitang"

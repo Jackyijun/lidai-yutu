@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """历代舆图 · 单仓构建入口。
 
-  python run.py                    八卷全部构建：各卷算疆域 → v1 数据 → 新页面，再更新首页；产物收进 docs/
+  python run.py                    九卷全部构建：各卷算疆域 → v1 数据 → 新页面，再更新首页；产物收进 docs/
   python run.py zhanguo songyuan   只构建这几卷（短名见 python run.py --list）
   python run.py --html             各卷跳过疆域计算，只重新拼装（须先完整构建过一次）
   python run.py --draft            英文有缺译或过期时也照常生成（缺译处显示中文），只供预览
@@ -11,13 +11,14 @@
                                    改了 core/geo/config.toml 里投影、分档、底图的参数后用。第一次运行会下载晕渲原图（约 42 MB）
   python run.py --engine           第 5 步统一疆域引擎：由 v1 数据重算疆域（build/engine/），逐节点与现有页面比对，不改页面；
                                    只做 era.toml 里有 [engine] 的卷（两晋、隋唐、宋元、民国），也可指定短名
+                                   （秦汉卷的疆域本来就由引擎出图：python run.py qinhan 时自动两遍构建，见 eras/qinhan/run.py）
   python run.py --hub              只更新首页：hub/index.html → docs/index.html
   python run.py --check            不构建，只核对 docs/ 与各卷成品、首页源文件是否一致
   python run.py --list             列出各卷短名
 
 构建分三段（规范第十九节）：
   1. 各卷仍用自己原来的构建脚本 eras/<短名>/run.py 推算疆域、拼成旧版页面，存为 eras/<短名>/legacy.html（入库，是数据来源）；
-  2. core/v1/registry.py 由八卷 legacy.html 重建全局表，core/v1/build.py 转成 v1 数据包并套用第 3 步的改正（build/v1/，不入库）；
+  2. core/v1/registry.py 由九卷 legacy.html 重建全局表，core/v1/build.py 转成 v1 数据包并套用第 3 步的改正（build/v1/，不入库）；
   3. core/web/assemble.py 由 v1 数据生成新页面 docs/<短名>/index.html（共用时间轴、深链接等，见 core/web/）；
      统一投影、全球底图、地形晕渲（第 4 步）由 core/geo/ 预先生成到 geodata/relief/、geodata/world/（入库），出页面时并入。
 统一疆域引擎（第 5 步）在 core/engine/，目前只陪跑、比对（--engine），页面仍由第 1 段的疆域生成；
@@ -33,6 +34,7 @@ DOCS = ROOT / "docs"
 ERAS = [
     ("chunqiu",             "春秋列国形势图",             "前770—前476"),
     ("zhanguo",             "战国列国形势图",             "前475—前212"),
+    ("qinhan",              "秦汉形势图",                 "前212—184"),
     ("hanmosanguo",         "汉末三国形势图",             "184—280"),
     ("liangjin-nanbeichao", "两晋十六国南北朝形势图",     "280—581"),
     ("suitang",             "隋及唐初形势图",             "581—669"),
@@ -72,17 +74,39 @@ def run_core(eras, web=True, geo=False):
             sys.exit(f"失败：core/{script}")
 
 
+def production_eras():
+    """疆域直接由统一引擎出图的卷（era.toml [engine] production = true）：两遍构建"""
+    try:
+        import tomllib
+    except ImportError:
+        import tomli as tomllib
+    return [s for s in SLUGS if tomllib.loads((ROOT / "eras" / s / "era.toml").read_text(encoding="utf8")).get("engine", {}).get("production")]
+
+
+def engine_pass(slugs, html=False, draft=False):
+    """第一遍出的归属 → v1 → 统一引擎推算疆域 → 再构建一遍，把疆域填回去"""
+    todo = [s for s in slugs if s in production_eras()]
+    if not todo or html:
+        return
+    run_core([], web=False)
+    for slug in todo:
+        r = subprocess.run([sys.executable, str(ROOT / "core" / "engine" / "build.py"), slug], cwd=ROOT)
+        if r.returncode != 0:
+            sys.exit(f"失败：core/engine/build.py {slug}")
+        build_era(slug, html, draft)
+
+
 def engine_eras():
     """era.toml 里有 [engine] 的卷"""
     try:
         import tomllib
     except ImportError:
         import tomli as tomllib
-    return [s for s in SLUGS if "engine" in tomllib.loads((ROOT / "eras" / s / "era.toml").read_text(encoding="utf8"))]
+    return [s for s in SLUGS if "engine" in tomllib.loads((ROOT / "eras" / s / "era.toml").read_text(encoding="utf8")) and s not in production_eras()]
 
 
 def run_engine(eras):
-    """第 5 步：统一疆域引擎陪跑。先重建八卷的 v1 数据（全局山脉取自八卷），再逐卷推算疆域、与现有页面比对"""
+    """第 5 步：统一疆域引擎陪跑。先重建九卷的 v1 数据（全局山脉取自九卷），再逐卷推算疆域、与现有页面比对"""
     run_core([], web=False)
     todo = eras or engine_eras()
     for slug in todo:
@@ -159,6 +183,7 @@ def main():
     if not a.hub:
         for slug in (a.eras or SLUGS):
             build_era(slug, a.html, a.draft)
+        engine_pass(a.eras or SLUGS, a.html, a.draft)
         run_core(a.eras)
     build_hub()
 

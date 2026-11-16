@@ -6,6 +6,8 @@ An interactive historical map of the Warring States period through the Qin empir
 
 The map continues the [Spring and Autumn map](https://jackyijun.github.io/chunqiu-map/): the two share the same ownership points and the same travel-cost grid, so the last Spring and Autumn node (476 BC) and the first node here (475 BC) have pixel-identical territories and colours. The 37 nodes from 350 BC on are exactly as they were before the early Warring States was added.
 
+The map is followed by the Qin and Han map (Volume III, compiled in November 2026 in the combined lidai-yutu repository): its first node, 212 BC, copies the territory of Qin and Wey and the Qin commanderies from this map's last node, 212 BC, so the two maps have the same territory and colours where they meet.
+
 ---
 
 ## 1. Just open it

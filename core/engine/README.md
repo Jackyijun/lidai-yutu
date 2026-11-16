@@ -4,6 +4,8 @@
 
 目前只**陪跑**：由 v1 数据重算疆域，逐节点与现有页面比对，页面不变。第 7 步各卷逐个换到新引擎，由 v1 数据直接出图；到那时相邻两卷的衔接节点改为共用归属点。
 
+第 6 步新编的秦汉卷是第一个**直接由引擎出图**的卷（`era.toml` 的 `[engine]` 写 `production = true`）：本卷构建先出一遍没有几何的归属，转成 v1，`python core/engine/build.py qinhan` 推算各节点的郡国疆域，写到 `eras/qinhan/build/engine/qinhan.json`，本卷再构建一遍填进去。根目录 `python run.py` 自动走这两遍；`python run.py --engine` 的陪跑比对不含这类卷。
+
 ```
 python run.py --engine                       四卷全做（era.toml 里有 [engine] 的卷），先重建 v1 数据
 python run.py --engine suitang               只做一卷
@@ -46,7 +48,7 @@ python core/engine/regress.py suitang        只比对：build/engine/<短名>.r
 
 - 唐宋系六卷（分层模型）：归属点就是 v1 的 places（州府、城邑、参考点），归属取节点的 `own` 与 `pol`。
 - 春秋、战国（简单模型）：v1 里没有分区用的归属点，取两卷共用的 `content/seeds.txt`（归属沿革、`~年份` 退出分区）。单位是诸侯国，政权是它自己；春秋另按 `ALLEGIANCE` 把奉周的诸侯归到「周」，政权层的外缘就是共主着色的「周天下」。
-- 八卷读入后，每个节点有归属点的单位都与现有页面的单位逐个对上。春秋、战国这一步还不推算（外缘做法、海可通行等留到第 7 步定），v1 本身也到第 7 步再改成这一种写法。
+- 各卷读入后，每个节点有归属点的单位都与现有页面的单位逐个对上。春秋、战国这一步还不推算（外缘做法、海可通行等留到第 7 步定），v1 本身也到第 7 步再改成这一种写法。
 
 ## 分区、外缘与描界
 

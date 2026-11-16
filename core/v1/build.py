@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """v1 数据包：成品页面 → v1（附全局 ID）→ build/v1/<短名>.json（规范第十九节第 2 步）。
 
-  python core/v1/build.py              八卷全部
+  python core/v1/build.py              各卷全部
   python core/v1/build.py songyuan     只做这几卷
 
 每一卷：

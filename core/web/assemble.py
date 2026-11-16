@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """新版页面：v1 数据包 → docs/<短名>/index.html（规范第十九节第 3、4 步）。
 
-  python core/web/assemble.py              八卷全部
+  python core/web/assemble.py              各卷全部
   python core/web/assemble.py songyuan     只做这几卷
 
 数据来源是 core/v1/build.py 生成的 build/v1/<短名>.json（已附全局 ID）。各卷的史料与疆域仍由各卷自己的

@@ -1,8 +1,8 @@
-# 第五卷 隋及唐初：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
+# 第六卷 隋及唐初：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
 # 字段说明见 core/v1/FORMAT.md「era.toml」一节。
 
 slug = "suitang"
-volume = 5
+volume = 6
 title = "隋及唐初形势图"
 title_en = "Sui and Early Tang"
 short = "隋及唐初"            # 总页与时间轴上的短名
@@ -30,7 +30,7 @@ canal = 6
 desert = 3
 route = 1
 
-[projection]                # 新页面的投影：第 4 步起八卷统一，参数以 core/geo/config.toml 为准
+[projection]                # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准
 kind = "albers"
 parallels = [25, 47]
 origin_lat = 35

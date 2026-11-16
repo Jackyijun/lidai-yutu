@@ -8,22 +8,23 @@
 | --- | --- | --- | --- |
 | 卷一 | 春秋列国形势图（前770 — 前476） | https://jackyijun.github.io/lidai-yutu/chunqiu/ | https://jackyijun.github.io/chunqiu-map/ |
 | 卷二 | 战国列国形势图（前475 — 前212） | https://jackyijun.github.io/lidai-yutu/zhanguo/ | https://jackyijun.github.io/zhanguo-map/ |
-| 卷三 | 汉末三国形势图（184 — 280） | https://jackyijun.github.io/lidai-yutu/hanmosanguo/ | https://jackyijun.github.io/hanmosanguo-map/ |
-| 卷四 | 两晋十六国南北朝形势图（280 — 581） | https://jackyijun.github.io/lidai-yutu/liangjin-nanbeichao/ | https://jackyijun.github.io/liangjin-nanbeichao-map/ |
-| 卷五 | 隋及唐初形势图（581 — 669） | https://jackyijun.github.io/lidai-yutu/suitang/ | https://jackyijun.github.io/suitang-map/ |
-| 卷六 | 唐末五代形势图（755 — 979；地图本身题「唐宋之际形势图」） | https://jackyijun.github.io/lidai-yutu/tangsong/ | https://jackyijun.github.io/tangsong-map/ |
-| 卷七 | 宋辽夏金元形势图（979 — 1279） | https://jackyijun.github.io/lidai-yutu/songyuan/ | https://jackyijun.github.io/songyuan-map/ |
-| 卷八 | 民国至新中国初期形势图（1911 — 1954） | https://jackyijun.github.io/lidai-yutu/minguo-xinzhongguo/ | https://jackyijun.github.io/minguo-xinzhongguo-map/ |
+| 卷三 | 秦汉形势图（前212 — 184） | https://jackyijun.github.io/lidai-yutu/qinhan/ | （单仓新编，无旧版） |
+| 卷四 | 汉末三国形势图（184 — 280） | https://jackyijun.github.io/lidai-yutu/hanmosanguo/ | https://jackyijun.github.io/hanmosanguo-map/ |
+| 卷五 | 两晋十六国南北朝形势图（280 — 581） | https://jackyijun.github.io/lidai-yutu/liangjin-nanbeichao/ | https://jackyijun.github.io/liangjin-nanbeichao-map/ |
+| 卷六 | 隋及唐初形势图（581 — 669） | https://jackyijun.github.io/lidai-yutu/suitang/ | https://jackyijun.github.io/suitang-map/ |
+| 卷七 | 唐末五代形势图（755 — 979；地图本身题「唐宋之际形势图」） | https://jackyijun.github.io/lidai-yutu/tangsong/ | https://jackyijun.github.io/tangsong-map/ |
+| 卷八 | 宋辽夏金元形势图（979 — 1279） | https://jackyijun.github.io/lidai-yutu/songyuan/ | https://jackyijun.github.io/songyuan-map/ |
+| 卷九 | 民国至新中国初期形势图（1911 — 1954） | https://jackyijun.github.io/lidai-yutu/minguo-xinzhongguo/ | https://jackyijun.github.io/minguo-xinzhongguo-map/ |
 
-卷一、卷二首尾相接：春秋图末节点（前476）与战国图首节点（前475）的疆域、配色完全一致。卷三、卷四、卷五也首尾相接：两晋图照搬了两头的衔接节点，首节点与汉末三国图末节点（280），末节点与隋唐图首节点（581）的疆域、配色完全一致。
+卷一至卷六首尾相接，相邻两卷衔接节点的疆域、配色完全一致：春秋图末节点（前476）与战国图首节点（前475）；战国图末节点与秦汉图首节点（前212）；秦汉图末节点与汉末三国图首节点（184）；汉末三国图末节点与两晋图首节点（280）；两晋图末节点与隋唐图首节点（581）。秦汉、两晋两图都照搬了两头的衔接节点。
 
-首页源文件 `hub/index.html` 是自包含的（构建时原样复制到 `docs/index.html` 发布）：样式、脚本、八幅缩略图都写在文件里，不加载任何外部资源。色板、字体、细线与各图的《历史形势图统一规范》一致，深浅色跟随系统。
+首页源文件 `hub/index.html` 是自包含的（构建时原样复制到 `docs/index.html` 发布）：样式、脚本、九幅缩略图都写在文件里，不加载任何外部资源。色板、字体、细线与各图的《历史形势图统一规范》一致，深浅色跟随系统。
 
 线上地址：https://jackyijun.github.io/lidai-yutu/
 
 ## 单仓（2026-11 起迁移中）
 
-本仓库正在改造成整部图集的单仓：八卷的代码、史料和底图都已搬进来，以后的统一数据格式、全局地点表、统一投影与地形、统一疆域引擎和首页的时间轴模式，都在这里做。步骤与进度见《历史形势图统一规范》第十九节。各卷原来的仓库和网址保留为旧版，不再修改。
+本仓库正在改造成整部图集的单仓：原有八卷的代码、史料和底图都已搬进来，新增的秦汉卷直接在单仓里编，以后的统一数据格式、全局地点表、统一投影与地形、统一疆域引擎和首页的时间轴模式，都在这里做。步骤与进度见《历史形势图统一规范》第十九节。各卷原来的仓库和网址保留为旧版，不再修改。
 
 ```
 lidai-yutu/
@@ -44,11 +45,11 @@ lidai-yutu/
 └── docs/                  GitHub Pages 发布目录：index.html 是首页，<短名>/index.html 是各卷
 ```
 
-各卷短名是旧仓库名去掉 `-map`：chunqiu、zhanguo、hanmosanguo、liangjin-nanbeichao、suitang、tangsong、songyuan、minguo-xinzhongguo。构建分三段：各卷仍用自己原来的构建脚本推算疆域，成品存为 `eras/<短名>/legacy.html`；由它重建全局表、转成 v1 数据并套用第 3 步的改正；再由 v1 生成新页面 `docs/<短名>/index.html`，同时并入 `geodata/relief/`、`geodata/world/` 里预先生成的地形晕渲与全球底图。
+各卷短名是旧仓库名去掉 `-map`：chunqiu、zhanguo、hanmosanguo、liangjin-nanbeichao、suitang、tangsong、songyuan、minguo-xinzhongguo；秦汉卷没有旧仓库，短名 qinhan。构建分三段：各卷仍用自己原来的构建脚本推算疆域，成品存为 `eras/<短名>/legacy.html`；由它重建全局表、转成 v1 数据并套用第 3 步的改正；再由 v1 生成新页面 `docs/<短名>/index.html`，同时并入 `geodata/relief/`、`geodata/world/` 里预先生成的地形晕渲与全球底图。
 
 ```bash
 pip install -r requirements.txt
-python run.py                    # 八卷全部构建：疆域 → v1 数据 → 新页面，再更新首页
+python run.py                    # 九卷全部构建：疆域 → v1 数据 → 新页面，再更新首页
 python run.py zhanguo songyuan   # 只构建这几卷
 python run.py --html             # 各卷跳过疆域计算，只重新拼装（须先完整构建过一次）
 python run.py --web              # 不重算疆域，只由 legacy.html 重建全局表、v1 数据和新页面（改短标题、改正后用这个）
@@ -61,6 +62,8 @@ python run.py --list             # 列出各卷短名
 ```
 
 GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
+
+迁移第 6 步在单仓里新编了[秦汉卷](eras/qinhan/README.md)（前212 — 184，五十四个节点），补上战国与汉末三国之间的空档；汉末三国卷随之删去 94 年的序幕节点，从 184 年黄巾起事开始，卷次顺延。秦汉卷是第一部直接用统一疆域引擎出疆域的卷：`eras/qinhan/src/` 由史料生成归属与条目，引擎（`core/engine/`）推算郡国疆域，衔接节点照搬战国末、汉末首；构建要走两遍，`python run.py` 会自动做。加卷时各卷的全局 ID 不变，自动取名会变的在 `global/decisions.toml` 里钉住。
 
 迁移第 5 步写成了统一疆域引擎 [`core/engine/`](core/engine/README.md)：一张铺在统一投影上的全球格网（约 7 km 一格），格子的位置、地形、山脉、随机扰动只由经纬度决定，同一个地方在哪一卷代价都一样，相邻两卷将来可以共用归属点；外缘可以手绘（隋唐、两晋），也可以按可达代价定（宋元、民国），民国卷的国界墙也并了进来。目前只陪跑：拿两晋、隋唐、宋元、民国四卷的归属数据重算，与现有页面逐节点比对，页面不变；第 7 步各卷逐个换过去。
 
@@ -80,7 +83,7 @@ GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
 - 从目录点进各卷时，链接带上当前语言（`#zh` / `#en`），各图按同样的语言打开；各卷新页面也读写同一个 `lidai-yutu:lang`。
 - 页面文字成对写在同一处：`<span class="zh">…</span><span class="en" lang="en">…</span>`，按 `<html lang>` 只显示一种。时间长卷由页尾脚本生成，朝代与时代分段 `BANDS` 里每项也写了中英两个名字。
 - 英文模式下标题与卷名换西文衬线体（Iowan Old Style、Palatino 一类），正文换系统无衬线体，取消中文的大字距，组头改为大写。竖排题签「历代舆图」和两方印保留不变，英文标题排在题签右侧。
-- 卷名、主线、着色方式与统计用语都照各图自己的英文版：节点叫 snapshots，州府、州郡叫 prefectures，郡国、郡县叫 commanderies，藩镇写 fanzhen，方镇叫 regional commands，民国卷的城市叫 cities、派系与属地叫 factions and dependencies。卷六英文题名用 Late Tang and the Five Dynasties，与中文首页的「唐末五代」一致；地图本身的英文题名是 Between Tang and Song。
+- 卷名、主线、着色方式与统计用语都照各图自己的英文版：节点叫 snapshots，州府、州郡叫 prefectures，郡国、郡县叫 commanderies，藩镇写 fanzhen，方镇叫 regional commands，民国卷的城市叫 cities、派系与属地叫 factions and dependencies。卷七（唐末五代）英文题名用 Late Tang and the Five Dynasties，与中文首页的「唐末五代」一致；地图本身的英文题名是 Between Tang and Song。
 - 缩略图里画了中、英两组注记（`<g class="t-lab zh">`、`<g class="t-lab en">`），也按当前语言只显示一组。英文国名取自各图数据，见下文「生成缩略图」。
 
 ## 增加新卷
@@ -163,11 +166,12 @@ python3 tools/thumbs.py docs/songyuan/index.html --id sy --year 1120 --mode pol 
 - `--zh "编号=中文名;…"`：改中文注记，如用短名（伪蒙疆联合委员会写作「伪蒙疆」）或改称：中共所辖地区在地图上是「中共（边区·根据地）」「中华苏维埃共和国」这类总称，缩略图上按注记所在之地写，1937.07 写作「陕甘苏区」，1937.12 写作「陕甘宁边区」。
 - `--fs "编号=字号;…"`：指定中文注记字号（英文随之按 0.82 倍）；写 0 就不标，用于被说明框盖住的注记。
 
-现有八幅的参数：
+现有九幅的参数：
 
 ```bash
 python3 tools/thumbs.py <春秋 index.html>       --id cq --year -632 --box 105.5 122.5 28.6 41.0
 python3 tools/thumbs.py <战国 index.html>       --id zg --year -300 --box 102.6 124.2 25.6 42.4
+python3 tools/thumbs.py <秦汉 index.html>       --id qh --mode pol --box 78 132 16 50   # 打开时的节点：前108
 python3 tools/thumbs.py <汉末三国 index.html>   --id hs --year 229 --mode zhen --box 97.5 125.5 19 43
 python3 tools/thumbs.py <两晋 index.html>       --id lj --mode pol                 # 打开时的节点：401
 python3 tools/thumbs.py <隋及唐初 index.html>   --id st --mode pol                 # 打开时的节点：619

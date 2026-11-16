@@ -64,6 +64,8 @@ def shell_js():
 
 # ---------------- 唐宋系（layered） ----------------
 
+MONTH_INDEX = {"qinhan"}        # 节点 y 记月序号的卷（显示用模板里的 yParts / yTxt / sLab）
+
 LINK_LAYERED = r"""
   /* ---------------- 深链接（core/web/shell.js） ---------------- */
   const GIDS = __GIDS__, ALIAS = __ALIAS__;
@@ -213,13 +215,22 @@ def patch_layered(t, slug):
     if not (i < i2 < j2 <= i3):
         raise PatchError("时间轴：块次序不对")
     tl = TL_LAYERED.replace("__YRLABEL__", yrexpr).replace("__ERA__", era).replace("__CLS__", cls).replace("__TITLE__", title)
+    if slug in MONTH_INDEX:     # 秦汉：节点的 y 是月序号，细条按年、刻度按通鉴纪年（模板里的 yTxt / sLab）
+        tl = sub1(tl, "    pos: j => SNAPS[j].y + (SNAPS[j].m ? (SNAPS[j].m - .5) / 12 : .5),\n",
+                  "    pos: j => (SNAPS[j].y + .5) / 12,\n    axis: y => yTxt(y),\n", "秦汉时间轴位置")
     t = t[:i] + tl + t[j3:]
     t = sub1(t, '    ticks.querySelectorAll(".tick").forEach(b => b.setAttribute("aria-pressed", +b.dataset.j === j ? "true" : "false"));\n', "    TL.set(j);\n", "setSnap 刻度")
     t = re1(t, r'    const tk = ticks\.querySelector\(`\[data-j="\$\{j\}"\]`\);\n    if \(tk && ticks\.scrollWidth > ticks\.clientWidth\) ticks\.scrollTo\([^\n]*\n', "", "setSnap 滚动")
     if "ticks." in t.split("</script>\n<script>\n", 1)[1]:
         raise PatchError("时间轴：仍有 ticks 引用")
     # 深链接：启动最后
-    t = sub1(t, "  resize();\n})();\n", "  resize();\n" + LINK_LAYERED + "})();\n", "启动")
+    link = LINK_LAYERED
+    if slug in MONTH_INDEX:     # 深链接 y= 写纪年：-202.12、-200
+        link = sub1(link, "  const snapLabel = j => SNAPS[j].m ? `${SNAPS[j].y}.${SNAPS[j].m}` : String(SNAPS[j].y);\n",
+                    "  const snapLabel = j => { const [y, m] = yParts(SNAPS[j].y); return SNAPS[j].tp === \"m\" ? `${y}.${m}` : String(y); };\n", "秦汉深链接")
+        link = sub1(link, "    const want = y * 12 + m - 1, j = SNAPS.findIndex(s => s.y * 12 + (s.m || 12) - 1 >= want);\n",
+                    "    const want = (y <= -104 && m >= 10 ? y - 1 : y) * 12 + (b ? m : (y < -104 ? 9 : 12)) - 1, j = SNAPS.findIndex(s => s.y >= want);\n", "秦汉深链接解析")
+    t = sub1(t, "  resize();\n})();\n", "  resize();\n" + link + "})();\n", "启动")
     return t
 
 
@@ -346,7 +357,7 @@ def patch_simple(t, slug):
     return t
 
 
-# ---------------- 第 4 步：统一投影、全球底图、地形晕渲（八卷共用，参数在 core/geo/config.toml） ----------------
+# ---------------- 第 4 步：统一投影、全球底图、地形晕渲（各卷共用，参数在 core/geo/config.toml） ----------------
 
 GEO_LAND = r"""  // 第 4 步（core/geo）：全球底图垫在本卷陆地下面（伸进本卷范围一窄条，拼接处不露缝）。海岸线从两份多边形描出：
   // 本卷陆地跳过落在范围边上的切边，全球陆地跳过本卷范围以内的部分，两者都跳过接缝上的切边

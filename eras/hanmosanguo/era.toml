@@ -1,8 +1,8 @@
-# 第三卷 汉末三国：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
+# 第四卷 汉末三国：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
 # 字段说明见 core/v1/FORMAT.md「era.toml」一节。
 
 slug = "hanmosanguo"
-volume = 3
+volume = 4
 title = "汉末三国形势图"
 title_en = "Late Han and the Three Kingdoms"
 short = "汉末三国"            # 总页与时间轴上的短名
@@ -12,7 +12,7 @@ years = [184, 280]          # 起止年（含），公元前记负数，与总�
 time = "year"             # 节点的时间精度：year 按年，month 按月
 model = "layered"          # 数据模型：simple（战国式）或 layered（唐宋系）
 first = 229                 # 打开页面时停在哪一年的节点
-nodes = 36                 # 节点数（构建时核对）
+nodes = 35                 # 节点数（构建时核对）
 
 [coloring]                  # 着色切换：按钮文字与内部代号；没有切换的卷为空
 modes = [{ label = "诸侯", key = "zhen" }, { label = "政权", key = "pol" }]
@@ -20,8 +20,8 @@ default = "诸侯"
 
 [layers]                    # 本卷用到的条目类别及条数（核对用）
 river = 124
-battle = 117
-event = 50
+battle = 114
+event = 47
 range = 46
 pass = 27
 people = 26
@@ -30,7 +30,7 @@ capital = 12
 road = 9
 desert = 3
 
-[projection]                # 新页面的投影：第 4 步起八卷统一，参数以 core/geo/config.toml 为准
+[projection]                # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准
 kind = "albers"
 parallels = [25, 47]
 origin_lat = 35
@@ -39,9 +39,9 @@ seam = -30                  # 接缝经度，小于它的经度加 360°
 legacy = [34, 108]           # 旧版页面（legacy.html）用的原点纬线、中央经线
 
 [junction.prev]
-era = "zhanguo"
-at = "空档 -212 — 184"
-note = "秦汉卷 qinhan 待补"
+era = "qinhan"
+at = "184"
+note = "共用节点，以本卷为准（秦汉卷末节点照搬本卷首节点）"
 
 [junction.next]
 era = "liangjin-nanbeichao"

@@ -1480,8 +1480,8 @@
     const wrap = document.getElementById("chronwrap");
     wrap.replaceChildren();
     const intro = document.createElement("div"); intro.className = "intro";
-    intro.innerHTML = LZ(`<p>把战役、事件、都城迁移与地图上的 ${SNAPS.length} 个时间节点排成一条线，自东汉鼎盛至西晋灭吴。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>`,
-      `<p>Battles, events, capital moves and the map’s ${SNAPS.length} snapshots on a single line, from the height of the Eastern Han to the Jin conquest of Wu. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>${DATE_NOTE_EN}</p>`);
+    intro.innerHTML = LZ(`<p>把战役、事件、都城迁移与地图上的 ${SNAPS.length} 个时间节点排成一条线，自黄巾起事至西晋灭吴。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>`,
+      `<p>Battles, events, capital moves and the map’s ${SNAPS.length} snapshots on a single line, from the Yellow Turban Uprising to the Jin conquest of Wu. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>${DATE_NOTE_EN}</p>`);
     wrap.append(intro);
     const ev = [];
     for (const it of ITEMS) {

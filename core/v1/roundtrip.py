@@ -43,7 +43,7 @@ def check(slug):
 
 
 if __name__ == "__main__":
-    slugs = sys.argv[1:] or ["chunqiu", "zhanguo", "hanmosanguo", "liangjin-nanbeichao", "suitang", "tangsong", "songyuan", "minguo-xinzhongguo"]
+    slugs = sys.argv[1:] or ["chunqiu", "zhanguo", "qinhan", "hanmosanguo", "liangjin-nanbeichao", "suitang", "tangsong", "songyuan", "minguo-xinzhongguo"]
     bad = 0
     for s in slugs:
         b, probs = check(s)
