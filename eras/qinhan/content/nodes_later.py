@@ -46,21 +46,22 @@ def later(node, HSEAT):
     WY = {"西域诸国": "匈奴"}                                 # 西域役属匈奴（僮仆都尉）
     DH = {"西域诸国": "汉"}                                   # 都护时期：内属于汉
     LDH, LDHE = {"西域诸国": "西域都护（城郭诸国）"}, {"西域诸国": "Protectorate of the Western Regions (oasis states)"}
+    LWY, LWYE = {"西域诸国": "西域诸国（僮仆都尉）"}, {"西域诸国": "Oasis states (under the Xiongnu Commandant of Slaves)"}
 
     def X(key, y, **kw):
         g = kgroups(y) + list(kw.pop("groups", []))
         node(key, y, sys_="X", groups=g, seat={**HSEAT, **kw.pop("seat", {})}, **kw)
 
     # ---------------- 西汉 ----------------
-    X("h164", -164, polmap=WY)
-    X("h154", -154, polmap=WY)
-    X("h138", -138, polmap=WY)
-    X("h127", -127, polmap=WY)
-    X("h121", -121, polmap=WY)
-    X("h119", -119, polmap=WY)
-    X("h111", -111, polmap=WY)
-    X("h108", -108, polmap=WY)
-    X("h101", -101, polmap=WY)
+    X("h164", -164, polmap=WY, lab=LWY, lab_en=LWYE)
+    X("h154", -154, polmap=WY, lab=LWY, lab_en=LWYE)
+    X("h138", -138, polmap=WY, lab=LWY, lab_en=LWYE)
+    X("h127", -127, polmap=WY, lab=LWY, lab_en=LWYE)
+    X("h121", -121, polmap=WY, lab=LWY, lab_en=LWYE)
+    X("h119", -119, polmap=WY, lab=LWY, lab_en=LWYE)
+    X("h111", -111, polmap=WY, lab=LWY, lab_en=LWYE)
+    X("h108", -108, polmap=WY, lab=LWY, lab_en=LWYE)
+    X("h101", -101, polmap=WY, lab=LWY, lab_en=LWYE)
     X("h60", -60, polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)
     X("h51", -51, polmap=DH, h=["西域诸国", "呼韩邪"], lab=LDH, lab_en=LDHE)
     X("h36", -36, polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)
@@ -109,19 +110,20 @@ def later(node, HSEAT):
     # ---------------- 东汉 ----------------
     DS = {"汉": "河南尹", "北匈奴": "单于庭"}
     WYN = {"西域诸国": "北匈奴"}
+    NX = {"南匈奴": "汉"}                                     # 南匈奴 50 年入居西河美稷，内属于汉
     node("d43", 43, sys_="D", cent="汉", seat=DS, polmap={"西域诸国": "匈奴"})
     node("d48", 48, sys_="D", cent="汉", seat=DS, h=["南匈奴"], polmap=WYN)
-    node("d73", 73, sys_="D", cent="汉", seat=DS, polmap=WYN)
-    node("d89", 89, sys_="D", cent="汉", seat=DS)
-    node("d91", 91, sys_="D", cent="汉", seat=DS, polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)
-    node("d94", 94, sys_="D", cent="汉", seat=DS, polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)
-    node("d107", 107, sys_="D", cent="汉", seat=DS, polmap=WYN)
+    node("d73", 73, sys_="D", cent="汉", seat=DS, polmap={**WYN, **NX}, h=["南匈奴"])
+    node("d89", 89, sys_="D", cent="汉", seat=DS, polmap=NX, h=["南匈奴"])
+    node("d91", 91, sys_="D", cent="汉", seat=DS, polmap={**DH, **NX}, h=["西域诸国", "南匈奴"], lab=LDH, lab_en=LDHE)
+    node("d94", 94, sys_="D", cent="汉", seat=DS, polmap={**DH, **NX}, h=["西域诸国", "南匈奴"], lab=LDH, lab_en=LDHE)
+    node("d107", 107, sys_="D", cent="汉", seat=DS, polmap={**WYN, **NX}, h=["南匈奴"])
     LZS, LZSE = {"西域诸国": "西域长史（城郭诸国）"}, {"西域诸国": "Chief Clerk of the Western Regions (oasis states)"}
-    node("d127", 127, sys_="D", cent="汉", seat=DS, polmap=DH, h=["西域诸国"], lab=LZS, lab_en=LZSE)
-    node("d156", 156, sys_="D", cent="汉", seat=DS, polmap=DH, h=["西域诸国"], lab=LZS, lab_en=LZSE)
-    node("d169", 169, sys_="D", cent="汉", seat=DS)
-    node("d177", 177, sys_="D", cent="汉", seat=DS)
-    node("d184", 184, sys_="D", cent="汉", seat=DS, junction="hanmosanguo",
+    node("d127", 127, sys_="D", cent="汉", seat=DS, polmap={**DH, **NX}, h=["西域诸国", "南匈奴"], lab=LZS, lab_en=LZSE)
+    node("d156", 156, sys_="D", cent="汉", seat=DS, polmap={**DH, **NX}, h=["西域诸国", "南匈奴"], lab=LZS, lab_en=LZSE)
+    node("d169", 169, sys_="D", cent="汉", seat=DS, polmap=NX, h=["南匈奴"])
+    node("d177", 177, sys_="D", cent="汉", seat=DS, polmap=NX, h=["南匈奴"])
+    node("d184", 184, sys_="D", cent="汉", seat=DS, junction="hanmosanguo", polmap=NX, h=["南匈奴"],
          ext={"颍川郡": "黄巾", "汝南郡": "黄巾", "许": "黄巾", "长社": "黄巾", "襄城": "黄巾", "汝阴": "黄巾", "弋阳": "黄巾",
               "项县": "黄巾", "巨鹿郡": "黄巾", "安平国": "黄巾", "广宗": "黄巾", "下曲阳": "黄巾", "南阳郡": "黄巾", "新野": "黄巾",
               "穰": "黄巾", "鲁阳": "黄巾", "南乡": "黄巾", "金城郡": "凉州叛军", "西平": "凉州叛军", "令居": "凉州叛军", "枹罕": "宋建"})

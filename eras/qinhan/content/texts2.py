@@ -2,7 +2,7 @@
 """节点文字（续）：前200 年以后。"""
 
 TEXT2 = {
-    "h200": dict(era="高帝七年", era_en="Emperor Gaozu, year 7", t="白登之围·和亲", te="Siege of Baideng · heqin", sh="白登", she="Baideng",
+    "h200": dict(era="高帝七年", era_en="Emperor Gaozu, year 7", t="白登之围·和亲", te="Siege of Baideng · heqin", sh="白登之围", she="Baideng",
                  d="冒顿东灭东胡、西走月氏，南并楼烦、白羊河南王，北服浑庾、屈射、丁零、鬲昆、薪犁，尽收蒙恬所夺地。高祖疑忌功臣：燕王臧荼反被诛，以卢绾为燕王；"
                    "楚王韩信被擒于陈，楚分为荆、楚；立长子刘肥为齐王。韩王信徙太原、都马邑，降匈奴。七年高祖亲征，被围于白登七日，用陈平计得脱，"
                    "此后与匈奴和亲。",
@@ -59,7 +59,7 @@ TEXT2 = {
                     "set up, a hundred thousand settlers recruited for Shuofang and Meng Tian's old frontier rebuilt. The same year, on Zhufu Yan's advice, the "
                     "Edict of Grace allowed kings to divide their lands among younger sons as marquisates, so the kingdoms grew ever smaller; Qi was abolished "
                     "when its king, Liu Cichang, killed himself. In 128 BC the Ye chief Namnyeo had submitted and Canghai Commandery had been set up."),
-    "h121": dict(era="元狩二年", era_en="Yuanshou 2", t="河西之战", te="The Hexi campaign", sh="河西", she="Hexi",
+    "h121": dict(era="元狩二年", era_en="Yuanshou 2", t="河西之战", te="The Hexi campaign", sh="河西之战", she="Hexi",
                  d="霍去病春出陇西，过焉支山千余里；夏出北地，逾居延，至祁连山，大破匈奴休屠、浑邪部。秋浑邪王杀休屠王，率四万余众降汉，汉分处五属国，"
                    "河西走廊尽为汉有，自金城河西并南山至盐泽空无匈奴；后陆续置酒泉、张掖、敦煌、武威四郡。前122 年淮南王刘安、衡山王刘赐谋反，二国除。",
                  de="Huo Qubing struck out from Longxi in spring, more than a thousand li past Mount Yanzhi, and in summer from Beidi past Juyan to the Qilian "
@@ -67,7 +67,7 @@ TEXT2 = {
                     "40,000 people, who were settled in five dependent states. The whole Hexi Corridor became Han, and from Jincheng west along the Southern "
                     "Mountains to the Salt Marsh there were no more Xiongnu; the four commanderies of Jiuquan, Zhangye, Dunhuang and Wuwei were set up over the "
                     "following years. Liu An of Huainan and Liu Ci of Hengshan were found plotting rebellion in 122 BC and both kingdoms were abolished."),
-    "h119": dict(era="元狩四年", era_en="Yuanshou 4", t="漠北之战", te="Battle beyond the Gobi", sh="漠北", she="Gobi",
+    "h119": dict(era="元狩四年", era_en="Yuanshou 4", t="漠北之战", te="Battle beyond the Gobi", sh="漠北之战", she="Gobi",
                  d="卫青、霍去病各将五万骑，步兵转运者数十万，绝漠北击。卫青出定襄，与伊稚斜单于遇，单于溃围北走，汉军至窴颜山赵信城；霍去病出代郡二千余里，"
                    "破左贤王，封狼居胥山，禅于姑衍，临瀚海而还。「是后匈奴远遁，而幕南无王庭」。汉徙乌桓于五郡塞外，以护乌桓校尉监之。",
                  de="Wei Qing and Huo Qubing each led 50,000 horsemen, with hundreds of thousands of foot soldiers carrying supplies, across the Gobi. Wei Qing, "
@@ -89,7 +89,7 @@ TEXT2 = {
                    "至此武帝开边大体告成，郡国并行之局见于全图。",
                  de="In 110 BC Han destroyed Minyue and Dongyue and moved their peoples to the Yangzi–Huai region; in 109 BC the king of Dian surrendered and "
                     "Yizhou Commandery was set up. Ugeo, king of Wiman Joseon, blocked Zhenfan and other states from coming to the Han court and killed the "
-                    "Liaodong commandant She He; the Towered-Ship General Yang Pu crossed the Bohai while General of the Left Xun Zhi came out of Liaodong, and "
+                    "Liaodong commandant She He; Yang Pu, General of the Towered Ships, crossed the Bohai while General of the Left Xun Zhi came out of Liaodong, and "
                     "in the summer of Yuanfeng 3 Wangxian surrendered, the land becoming the four commanderies of Lelang, Lintun, Zhenfan and Xuantu. Zhao Ponu "
                     "captured the king of Loulan and broke Jushi, and Han built a line of watchtowers from Jiuquan to the Jade Gate. Emperor Wu's expansion "
                     "was now largely complete, and the whole map shows commanderies and kingdoms side by side."),
@@ -154,7 +154,7 @@ TEXT2 = {
                    "Feng gathered followers at Mount Lülin; in 18 Fan Chong of Langya rose at Ju and fought through Qing and Xu, his men painting their "
                    "eyebrows red: the Red Eyebrows. The armies Wang Mang sent east under Lian Dan and the Grand Preceptor Wang Kuang could not contain them."),
     "x23": dict(era="地皇四年", era_en="Dihuang 4", era2="更始元年", era2_en="Gengshi 1", t="昆阳之战·新亡", te="Kunyang · the fall of Xin",
-                sh="昆阳", she="Kunyang",
+                sh="昆阳之战", she="Kunyang",
                 d="二月绿林诸将立刘玄为帝，年号更始。王莽遣王寻、王邑号称百万围昆阳，六月刘秀以三千敢死士冲其中坚，会大雷风，新军溃。邓晔、于匡开武关，"
                   "九月一日（戊申）汉兵攻入长安，三日（庚戌）王莽死于渐台。更始都洛阳，遣刘秀徇河北；隗嚣据陇右，公孙述据蜀，各自拥兵。",
                 de="In the 2nd month the Lülin leaders set up Liu Xuan as emperor with the era name Gengshi. Wang Mang sent Wang Xun and Wang Yi with an army said "
@@ -203,7 +203,7 @@ TEXT2 = {
                   "取六十五城；伏波将军马援 42 年南征，43 年斩征侧、征贰，立铜柱为汉界。莎车王贤称雄西域。",
                 de="Lu Fang surrendered to Han in AD 40 but soon went back to the Xiongnu; the northern frontier suffered repeated Xiongnu and Wuhuan raids, and "
                    "in 39 the officials and people of Yanmen, Dai and Shanggu were moved east of the Juyong Pass. In 40 the sisters Trưng Trắc and Trưng Nhị "
-                   "rose in Jiaozhi, joined by Jiuzhen, Rinan and Hepu, taking sixty-five towns; Ma Yuan, the Wave-Calming General, marched south in 42 and in "
+                   "rose in Jiaozhi, joined by Jiuzhen, Rinan and Hepu, taking sixty-five towns; Ma Yuan, General Who Calms the Waves, marched south in 42 and in "
                    "43 beheaded both sisters, setting up bronze pillars to mark the Han frontier. King Xian of Yarkand dominated the Western Regions."),
     "d48": dict(era="建武二十四年", era_en="Jianwu 24", t="匈奴分南北", te="The Xiongnu split north and south", sh="分南北", she="North & south",
                 d="匈奴连年旱蝗，人畜死耗大半，单于继立之争又起。建武二十四年，统领南边八部的日逐王比自立为呼韩邪单于，款五原塞称臣，是为南匈奴；"
@@ -222,7 +222,7 @@ TEXT2 = {
                    "Yiwulu lands, where a Yihe commandant set up farming garrisons; Dou Gu sent his acting major Ban Chao with thirty-six men to the Western "
                    "Regions; Ban Chao fell on the Xiongnu envoys at Shanshan by night, and Shanshan and Khotan both submitted. The next year the Protector-General "
                    "and the Wu-Ji colonels were restored."),
-    "d89": dict(era="永元元年", era_en="Yongyuan 1", t="燕然勒石", te="The inscription at Yanran", sh="燕然", she="Yanran",
+    "d89": dict(era="永元元年", era_en="Yongyuan 1", t="勒石燕然", te="The inscription at Yanran", sh="勒石燕然", she="Yanran",
                 d="北匈奴内乱饥疫，南单于请兵北伐。永元元年车骑将军窦宪、耿秉率汉军与南匈奴、羌胡骑出鸡鹿塞、满夷谷、稒阳塞，会于涿邪山，大破北单于于稽落山，"
                   "降者二十余万人。窦宪登燕然山，命中护军班固作铭刻石而还。班超仍孤守疏勒、于阗。",
                 de="The Northern Xiongnu were torn by strife, famine and plague, and the southern chanyu asked for troops to attack them. In Yongyuan 1 the "

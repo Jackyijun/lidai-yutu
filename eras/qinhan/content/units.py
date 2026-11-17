@@ -98,8 +98,27 @@ _P = [
      "Zhizhi (northern Xiongnu)", "The chanyu Zhizhi held the north of the Gobi; in 49 BC he struck west at the Jiankun and Wujie and moved to the Jiankun lands, and in 44 BC, having killed a Han envoy, went west to Kangju and built a fortress on the Talas. In 36 BC Chen Tang and Gan Yanshou raised the forces of the Western Regions and killed him."),
     ("北匈奴", "北匈奴", "tribe", "hm:北匈奴", "48 年匈奴分裂，蒲奴单于据漠北，是为北匈奴。73 年起汉屡出击，89 年窦宪破之于稽落山，91 年北单于西遁，余部或降鲜卑；残部活动于蒲类、伊吾一带，屡寇西域。",
      "Northern Xiongnu", "When the Xiongnu split in AD 48 the chanyu Punu held the north of the Gobi: these were the Northern Xiongnu. Han attacked them repeatedly from 73; Dou Xian crushed them at Mount Jiluo in 89, and in 91 the northern chanyu fled west, many of his people joining the Xianbei, while remnants roamed around Pulei and Yiwu, raiding the Western Regions."),
-    ("南匈奴", "南匈奴", "tribe", "hm:南匈奴", "48 年匈奴日逐王比自立为呼韩邪单于，附汉，是为南匈奴；50 年入居西河美稷，部众散处北边诸郡。",
-     "Southern Xiongnu", "In AD 48 Bi, the Xiongnu Rizhu king, proclaimed himself chanyu with the title Huhanye and submitted to Han: these were the Southern Xiongnu. In 50 they settled at Meiji in Xihe, their people spread through the northern commanderies."),
+    ("南匈奴", "南匈奴", "tribe", "hm:南匈奴", "48 年匈奴南边八部共立日逐王比为呼韩邪单于，附汉，是为南匈奴。50 年入居西河美稷，汉置使匈奴中郎将监护；单于遣诸部分屯北地、朔方、五原、云中、定襄、雁门、代郡，为汉守边。89—91 年随窦宪击破北匈奴。此后一直作为内属部族居于北边诸郡，188 年单于羌渠为国人所杀，其子於夫罗流寓河东；216 年曹操分其众为五部。图上 50 年以后画作内属于汉（斜线）。",
+     "Southern Xiongnu", "In AD 48 the eight southern Xiongnu tribes made Bi, the Rizhu king, chanyu with the title Huhanye; he submitted to Han, and these were the Southern Xiongnu. In 50 they settled at Meiji in Xihe under a Han General of the Household Sent to the Xiongnu, and the chanyu stationed his tribes in Beidi, Shuofang, Wuyuan, Yunzhong, Dingxiang, Yanmen and Dai to guard the frontier for Han. In 89–91 they fought beside Dou Xian to crush the Northern Xiongnu. From then on they lived inside the northern commanderies as a dependent people; in 188 the chanyu Qiangqu was killed by his own people and his son Yufuluo was stranded in Hedong, and in 216 Cao Cao divided them into five divisions. From 50 the map shows them as nominally submitted to Han (hatched)."),
+    # 匈奴诸部（「郡国」着色下分部显示，「政权」着色下合为匈奴；界线为示意）
+    ("单于本部", "单于本部", "tribe", None, "单于直辖之地。《史记·匈奴列传》：「单于之庭直代、云中。」前123 年单于用赵信计「益北绝幕」，王庭北移；前119 年漠北之战后「漠南无王庭」。王庭所在史无确地，图上标在杭爱山东麓只是大致；各部之间也无明界，沿山川示意。",
+     "Chanyu's own domain", "Land under the chanyu's direct rule. The Shiji says the chanyu's court lay opposite Dai and Yunzhong; in 123 BC, on Zhao Xin's advice, the chanyu moved 'further north across the Gobi', and after the battle beyond the Gobi (119 BC) 'there was no royal court south of the Gobi'. The sources fix no site for the court, so its place at the eastern foot of the Khangai Mountains is only approximate; nor do they give borders between the divisions, which the map draws along mountains and rivers as a sketch."),
+    ("左贤王", "左贤王", "tribe", None, "匈奴左方（东方）诸王将之地，左贤王常为单于储副。《史记·匈奴列传》：「诸左方王将居东方，直上谷以往者，东接秽貉、朝鲜。」前119 年霍去病出代郡破左贤王，封狼居胥山。界线为示意。",
+     "Wise King of the Left", "Land of the kings and generals of the Xiongnu left (east); the Wise King of the Left was usually the chanyu's heir. The Shiji says they lived in the east, opposite Shanggu and beyond, bordering the Ye-Maek and Joseon. In 119 BC Huo Qubing came out of Dai, broke the Wise King of the Left and sacrificed on Mount Langjuxu. The borders are a sketch."),
+    ("右贤王", "右贤王", "tribe", None, "匈奴右方（西方）诸王将之地。《史记·匈奴列传》：「右方王将居西方，直上郡以西，接月氏、氐、羌。」前124 年卫青出高阙，夜围右贤王，右贤王仅以身免。界线为示意。",
+     "Wise King of the Right", "Land of the kings and generals of the Xiongnu right (west). The Shiji says they lived in the west, opposite Shang Commandery and beyond, bordering the Yuezhi, the Di and the Qiang. In 124 BC Wei Qing came out through Gaoque and surrounded the Wise King of the Right by night; the king barely escaped with his life. The borders are a sketch."),
+    ("浑邪王", "浑邪王", "tribe", None, "河西走廊西部，属匈奴右方。《汉书·地理志》张掖郡下：「故匈奴昆邪王地。」昆邪即浑邪。前121 年霍去病两击河西后，浑邪王杀休屠王，率众四万余人降汉。",
+     "Hunye king", "The western Hexi Corridor, part of the Xiongnu right. The Han shu Treatise on Geography notes under Zhangye that it was 'formerly the land of the Xiongnu Kunye king' (Kunye being Hunye). After Huo Qubing's two strikes into Hexi in 121 BC the Hunye king killed the Xiutu king and surrendered to Han with over 40,000 people."),
+    ("休屠王", "休屠王", "tribe", None, "河西走廊东部，属匈奴右方。《汉书·地理志》武威郡下：「故匈奴休屠王地。」前121 年霍去病获休屠王祭天金人；同年休屠王欲降而悔，为浑邪王所杀，其子金日磾入汉。",
+     "Xiutu king", "The eastern Hexi Corridor, part of the Xiongnu right. The Han shu Treatise on Geography notes under Wuwei that it was 'formerly the land of the Xiongnu Xiutu king'. In 121 BC Huo Qubing took the golden statue the Xiutu king used to worship Heaven; that year the king, having agreed to surrender, changed his mind and was killed by the Hunye king, and his son Jin Midi went to Han."),
+    ("楼烦白羊", "楼烦王·白羊王", "tribe", None, "河南地（河套）的楼烦王、白羊王。前209 年后匈奴乘秦末之乱复度河南；前127 年卫青取河南，「走白羊、楼烦王」，置朔方、五原郡。",
+     "Loufan and Baiyang kings", "The Loufan and Baiyang kings of the Ordos, the land 'south of the River' inside the Yellow River bend. The Xiongnu crossed back into the Ordos in the chaos after 209 BC; in 127 BC Wei Qing took the Ordos, 'driving off the Baiyang and Loufan kings', and set up Shuofang and Wuyuan commanderies."),
+    ("南边八部", "南边八部（日逐王比）", "tribe", None, "王莽末至建武年间，单于舆以比为右薁鞬日逐王，部领匈奴南边八部及乌桓（《后汉书·南匈奴列传》）。48 年八部共立比为呼韩邪单于，即南匈奴。",
+     "Eight southern tribes (Bi, the Rizhu king)", "Under the chanyu Yu (from the end of Wang Mang's reign into the Jianwu era) Bi was the Right Yujian Rizhu king, in charge of the eight southern Xiongnu tribes and the Wuhuan (Hou Han shu, Southern Xiongnu). In AD 48 the eight tribes made Bi chanyu as Huhanye: these became the Southern Xiongnu."),
+    ("北单于本部", "北单于本部", "tribe", None, "北单于直辖的漠北之地，王庭在今蒙古国杭爱山东麓一带。89 年窦宪破之于稽落山，91 年耿夔围北单于于金微山，北单于西遁。界线为示意。",
+     "Northern chanyu's own domain", "The land north of the Gobi under the northern chanyu's direct rule, with his court around the eastern foot of the Khangai Mountains. Dou Xian crushed him at Mount Jiluo in 89, and in 91 Geng Kui surrounded him at the Jinwei Mountains and he fled west. The borders are a sketch."),
+    ("呼衍王", "呼衍王", "tribe", None, "北匈奴西部的呼衍氏贵种，常在蒲类海（今巴里坤湖）一带游牧，控制车师、伊吾，屡寇西域（《后汉书·西域传》）。73 年窦固破之于天山，124 年后班勇屡与之争车师。界线为示意。",
+     "Huyan king", "The noble Huyan clan in the west of the Northern Xiongnu lands, who roamed around Lake Pulei (Lake Barkol), controlled Jushi and Yiwu and raided the Western Regions again and again (Hou Han shu, Western Regions). Dou Gu beat them in the Tianshan in 73, and from 124 Ban Yong fought them repeatedly for Jushi. The borders are a sketch."),
     ("东胡", "东胡", "tribe", "#8F9A6A", "战国以来居燕北的游牧部族，秦末强盛，向冒顿索宝马、阏氏与弃地；前206 年为冒顿所灭，余众退保乌桓山、鲜卑山，分为乌桓、鲜卑。",
      "Donghu", "Nomads living north of Yan since the Warring States, the Donghu grew strong at the end of Qin and demanded of Modu his best horse, his consort and the empty land between them; Modu destroyed them in 206 BC, and the survivors withdrew to the Wuhuan and Xianbei mountains, becoming the Wuhuan and the Xianbei."),
     ("乌桓", "乌桓", "tribe", "hm:乌桓", "东胡余部，居乌桓山，役属匈奴。前119 年汉破匈奴左地，徙乌桓于上谷、渔阳、右北平、辽西、辽东五郡塞外，置护乌桓校尉。49 年入居塞内。",
@@ -192,6 +211,10 @@ KINGDOM_NOTE = {
     "济东国": ("前144 年梁分为五之一，以东平之地封刘彭离；前116 年国除。", "One of the five parts of Liang from 144 BC, the area of Dongping given to Liu Pengli; abolished in 116 BC."),
     "常山国": ("前145 年封刘舜为常山王，前114 年国除，分其地为真定国与常山郡。", "Liu Shun was made king of Changshan in 145 BC; in 114 BC the kingdom was abolished and split into the Kingdom of Zhending and Changshan Commandery."),
 }
+
+# 部族的分部：单位 → 所属部族（节点的 polmap 未另写时用这里）
+SUB = {"单于本部": "匈奴", "左贤王": "匈奴", "右贤王": "匈奴", "浑邪王": "匈奴", "休屠王": "匈奴", "楼烦白羊": "匈奴", "南边八部": "匈奴",
+       "北单于本部": "北匈奴", "呼衍王": "北匈奴"}
 
 PALETTE = ["#6B8DAA", "#7E9A6A", "#B5675A", "#8C7DB3", "#D8BC8F", "#8A7298", "#9C8BC0", "#86A8CC", "#B9A65C", "#70B3AA",
            "#A8A86A", "#B091BF", "#CCAAD0", "#A0756A", "#A0C29C", "#87C2D3", "#C3B888", "#ACB4E1", "#C1946F", "#95C4A7",

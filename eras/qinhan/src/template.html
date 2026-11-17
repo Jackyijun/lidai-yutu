@@ -113,6 +113,8 @@
   .caption .pl.gap { margin-left:10px; }
   .caption .chip.rg { border-color:color-mix(in srgb, var(--c-yanyun) 55%, transparent); background:color-mix(in srgb, var(--c-yanyun) 9%, transparent); font-weight:600; }
   .caption .chip.rg:hover, .caption .chip.rg[aria-pressed="true"] { background:color-mix(in srgb, var(--c-yanyun) 20%, transparent); }
+  .caption .chip.rt { border-color:color-mix(in srgb, var(--c-route) 50%, transparent); background:color-mix(in srgb, var(--c-route) 8%, transparent); }
+  .caption .chip.rt:hover, .caption .chip.rt[aria-pressed="true"] { background:color-mix(in srgb, var(--c-route) 20%, transparent); }
   .caption .y { font-family:var(--f-mono); font-size:11px; color:var(--ink-3); margin-right:8px; }
 
   /* 主区 */
@@ -326,7 +328,7 @@
           <div class="states" id="legstates"></div>
           <div class="key"><span><svg width="14" height="12"><rect x="1" y="1" width="12" height="10" fill="none" stroke="var(--ink)" stroke-width="1.8"/></svg><span id="key1">政权疆界</span></span><span><svg width="14" height="12"><rect x="1" y="1" width="12" height="10" fill="url(#lgh)" stroke="var(--ink-3)" stroke-width=".8"/><defs><pattern id="lgh" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="var(--hatch)" stroke-width="1.6"/></pattern></defs></svg><span id="key2">名义内属</span></span></div>
           <ul id="legend"></ul>
-          <div class="foot" id="legfoot">疆域据《史记》《汉书》《后汉书》《资治通鉴》及谭其骧《中国历史地图集》第二册大意，由统一疆域引擎按郡国治所与县邑推算，沿山川划界，仅为示意。郡国以《汉书·地理志》（元始二年）与《续汉书·郡国志》为准，前180 年及以前用秦郡；王国的存废按《诸侯王表》，领域以元始二年的郡国近似。纪年从《资治通鉴》：太初改历（前104）以前以十月为岁首，十月至十二月记在新一年。斜线为名义内属（西域都护、西域长史所领诸国等）。首节点照搬战国卷末节点，末节点照搬汉末三国卷首节点。</div>
+          <div class="foot" id="legfoot">疆域据《史记》《汉书》《后汉书》《资治通鉴》及谭其骧《中国历史地图集》第二册大意，由统一疆域引擎按郡国治所与县邑推算，沿山川划界，仅为示意。郡国以《汉书·地理志》（元始二年）与《续汉书·郡国志》为准，前180 年及以前用秦郡；王国的存废按《诸侯王表》，领域以元始二年的郡国近似。纪年从《资治通鉴》：太初改历（前104）以前以十月为岁首，十月至十二月记在新一年。斜线为名义内属（西域都护、西域长史所领诸国，50 年以后入居北边诸郡的南匈奴等）。「郡国」着色下匈奴按《史记》《汉书》《后汉书》分为单于本部、左右贤王、浑邪、休屠诸部，界线为示意。行军路线中本节点涵盖月份内走过的一段画实线加箭头，此前走过的画虚线。首节点照搬战国卷末节点，末节点照搬汉末三国卷首节点。</div>
         </div>
       </div>
       <div class="float inset"><svg id="inset" width="140" height="100" aria-label="索引图"></svg><div class="cap" id="insetcap">索引</div></div>
@@ -377,7 +379,7 @@
   // 检索：中英文都收，英文去掉附加符号、统一大小写
   const FOLD = { "ı": "i", "ł": "l", "đ": "d", "ð": "d", "ø": "o", "æ": "ae", "œ": "oe", "ß": "ss", "ʼ": "'", "’": "'", "‘": "'", "ʿ": "'", "ʾ": "'", "–": "-", "—": "-" };
   const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[ıłđðøæœßʼ’‘ʿʾ–—]/g, c => FOLD[c]);
-  const K_OF = { capital: "var(--c-capital)", battle: "var(--c-battle)", pass: "var(--c-pass)", event: "var(--c-culture)", pref: "var(--c-city)", range: "var(--range)", river: "var(--water)", canal: "var(--water)", desert: "var(--desert)", people: "var(--ink-3)", region: "var(--c-yanyun)", road: "var(--c-road)" };
+  const K_OF = { capital: "var(--c-capital)", battle: "var(--c-battle)", pass: "var(--c-pass)", event: "var(--c-culture)", pref: "var(--c-city)", range: "var(--range)", river: "var(--water)", canal: "var(--water)", desert: "var(--desert)", people: "var(--ink-3)", region: "var(--c-yanyun)", road: "var(--c-road)", route: "var(--c-route)" };
   const seedZh = (s, Y) => { const S = SEEDS[s]; if (!S.nm) return S.n; let n = S.n; for (const [y, nm] of S.nm) if (Y >= y) n = nm; return n; };
   const seedName = (s, Y) => {
     if (LANG !== "en") return seedZh(s, Y);
@@ -527,18 +529,16 @@
     lCanal.append(el("path", { d, fill: "none", stroke: "var(--water)", "stroke-width": 1.5, "stroke-dasharray": "6 2 1.5 2", "vector-effect": "non-scaling-stroke", "data-y0": c.y0 || 0 }));
     (lineItems[c.it] ||= []).push({ d, y0: c.y0 || 0 });
   }
-  // 长城 · 道路 · 行军路线（geo 可以是多段）
+  // 长城 · 道路（geo 可以是多段）；行军路线另画（见 render）
   const segsOf = g => Array.isArray(g[0][0]) ? g : [g];
   for (const it of ITEMS.filter(i => i.c === "road")) {
-    const y0 = it.y ?? -1e9, y1 = it.sub === "route" ? (it.y1 ?? it.y) : 1e9, dy = { "data-y0": y0, "data-y1": y1 };
+    const y0 = it.y ?? -1e9, y1 = 1e9, dy = { "data-y0": y0, "data-y1": y1 };
     for (const seg of segsOf(it.geo)) {
       const d = P(lineLL(seg), false), base = { d, fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round", "vector-effect": "non-scaling-stroke", ...dy };
       if (it.sub === "wall") {
         lRoad.append(el("path", { ...base, stroke: "var(--c-wall)", "stroke-width": 4, opacity: .22 }));
         lRoad.append(el("path", { ...base, stroke: "var(--c-wall)", "stroke-width": 1.6, opacity: .9 }));
         lRoad.append(el("path", { ...base, stroke: "var(--c-wall)", "stroke-width": 4.2, "stroke-dasharray": "1.4 3.2", "stroke-linecap": "butt", opacity: .9 }));
-      } else if (it.sub === "route") {
-        lRoute.append(el("path", { ...base, stroke: "var(--c-route)", "stroke-width": 1.7, "stroke-dasharray": "7 3.5", opacity: .9, "marker-end": "url(#arrow)" }));
       } else {
         lRoad.append(el("path", { ...base, stroke: "var(--c-road)", "stroke-width": 4.5, opacity: .16 }));
         lRoad.append(el("path", { ...base, stroke: "var(--c-road)", "stroke-width": 1.4, "stroke-dasharray": "5 2.6", opacity: .95 }));
@@ -549,11 +549,16 @@
   for (const [i, ds] of Object.entries(lineItems)) {
     const it = ITEMS[i];
     for (const { d, closed, y0, y1 } of ds)
-      lHit.append(el("path", { d, class: "hit", "data-k": keyOf("i", i), "data-cat": it.sub === "route" ? "route" : it.c, "data-y0": y0 ?? -1e9, "data-y1": y1 ?? 1e9, fill: closed ? "transparent" : "none", stroke: "transparent", "stroke-width": 12, "vector-effect": "non-scaling-stroke", "pointer-events": closed ? "all" : "stroke" }));
+      lHit.append(el("path", { d, class: "hit", "data-k": keyOf("i", i), "data-cat": it.c, "data-y0": y0 ?? -1e9, "data-y1": y1 ?? 1e9, fill: closed ? "transparent" : "none", stroke: "transparent", "stroke-width": 12, "vector-effect": "non-scaling-stroke", "pointer-events": closed ? "all" : "stroke" }));
   }
   for (const it of ITEMS) if (it.anc) it.axy = proj(it.anc[0], it.anc[1]);
   for (const it of ITEMS) if (it.lon != null) it.xy = proj(it.lon, it.lat);
   for (const s of SEEDS) s.xy = proj(s.lon, s.lat);
+  // 行军路线：每点 [经, 纬, 到达月序号, 地名, 精度]；地图每个节点画本期走过的一段（实线加箭头），此前走过的画虚线
+  const ROUTES = (GEO.routes || []).map(R => ({ ...R, item: ITEMS[R.it], k: "i:" + R.it, xy: R.pts.map(p => proj(p[0], p[1])) }));
+  const ROUTE_OF = new Map(ROUTES.map(R => [R.it, R]));
+  const ptName = (RT, j) => LANG === "en" && RT.pe && RT.pe[j] ? RT.pe[j] : RT.pts[j][3];
+  const ptDate = p => yLab(p[2], p[4]);
   // 重要地域（燕云十六州）：范围线、分区分界线、分区注记
   const REGIONS = (GEO.regions || []).map(r => ({ ...r, item: ITEMS[r.it], k: "i:" + r.it, d: ringsD(r.rings),
     groups: r.groups.map(g => ({ ...g, xy: g.lab ? proj(g.lab[0], g.lab[1]) : null, d: g.lines.map(l => P(decode(l), false)).join(" ") })) }));
@@ -577,7 +582,8 @@
   const perText = j => j > 0 ? (sLab(SNAPS[j - 1]) === sLab(SNAPS[j]) ? sLab(SNAPS[j]) : `${yLab(perLo(j), SNAPS[j - 1].tp)}${DASH()}${sLab(SNAPS[j])}`) : LZ(`${sLab(SNAPS[j])} 以前`, `up to ${sLab(SNAPS[j])}`);
   const snapOfYear = y => { const j = SNAPS.findIndex(s => s.y >= y); return j < 0 ? SNAPS.length - 1 : j; };
   const inPeriod = (it, j) => it.y <= perHi(j) && (it.y1 ?? it.y) >= perLo(j);
-  const timed = it => it.c === "battle" || it.c === "event";
+  const timed = it => it.c === "battle" || it.c === "event" || it.c === "route";
+  const timedAt = it => it.c === "route" ? it.y1 : it.y;              // 不在本期时跳到哪个节点：路线取终点
   const LAYERS = [
     { id: "terr", name: "疆域", en: "Territory" }, { id: "zhou", name: "郡界", en: "Commandery borders" }, { id: "capital", name: "都城行在", en: "Capitals" }, { id: "seat", name: "都城治所", en: "Seats" }, { id: "pref", name: "郡国城邑", en: "Commanderies" },
     { id: "battle", name: "本期战役", en: "Battles" }, { id: "pass", name: "关隘", en: "Passes" }, { id: "event", name: "本期事件", en: "Events" }, { id: "people", name: "诸族", en: "Peoples" },
@@ -763,6 +769,41 @@
     let nShown = 0;
     const inView = (x, y) => x > -40 && x < W + 40 && y > -30 && y < H + 30;
 
+    // 行军路线：本期走过的一段实线加箭头，此前走过的虚线
+    if (layerOn.route) for (const RT of ROUTES) {
+      const it = RT.item;
+      if (!match(RT.k)) continue;
+      const on = isOn(RT.k), lo = perLo(si), hi = perHi(si);
+      if (!(it.y <= hi && it.y1 >= lo) && !on) continue;
+      const past = [], cur = [];
+      for (let i = 0; i < RT.pts.length - 1; i++) {
+        const b = RT.pts[i + 1];
+        if (b[2] > hi && !on) break;
+        (b[2] >= lo && b[2] <= hi ? cur : past).push([RT.xy[i], RT.xy[i + 1]]);
+      }
+      const seg = list => list.map(([a, b]) => `M${sx(a).toFixed(1)} ${sy(a).toFixed(1)}L${sx(b).toFixed(1)} ${sy(b).toFixed(1)}`).join("");
+      if (past.length) gMark.append(el("path", { d: seg(past), fill: "none", stroke: "var(--c-route)", "stroke-width": on ? 1.8 : 1.3, "stroke-dasharray": "4 3", opacity: on ? .85 : .55, "stroke-linecap": "round", "pointer-events": "none" }));
+      if (cur.length) {
+        gMark.append(el("path", { d: seg(cur), fill: "none", stroke: "var(--land)", "stroke-width": 5, opacity: .75, "stroke-linecap": "round", "stroke-linejoin": "round", "pointer-events": "none" }));
+        gMark.append(el("path", { d: seg(cur), fill: "none", stroke: "var(--c-route)", "stroke-width": on ? 3 : 2.2, "stroke-linecap": "round", "stroke-linejoin": "round", "pointer-events": "none" }));
+        for (const [a, b] of cur) {
+          const x1 = sx(a), y1 = sy(a), x2 = sx(b), y2 = sy(b), L = Math.hypot(x2 - x1, y2 - y1);
+          if (L < 22) continue;
+          const ux = (x2 - x1) / L, uy = (y2 - y1) / L, mx = x1 + (x2 - x1) * .55, my = y1 + (y2 - y1) * .55, s = 5.5;
+          gMark.append(el("path", { d: `M${(mx + ux * s).toFixed(1)} ${(my + uy * s).toFixed(1)}L${(mx - ux * s - uy * s * .8).toFixed(1)} ${(my - uy * s + ux * s * .8).toFixed(1)}L${(mx - ux * s + uy * s * .8).toFixed(1)} ${(my - uy * s - ux * s * .8).toFixed(1)}Z`, fill: "var(--c-route)", "pointer-events": "none" }));
+        }
+      }
+      const all = past.concat(cur);
+      if (all.length) {
+        gMark.append(el("path", { d: seg(all), class: "hit", "data-k": RT.k, fill: "none", stroke: on ? "color-mix(in srgb, var(--c-route) 22%, transparent)" : "transparent", "stroke-width": 10, "stroke-linecap": "round", "pointer-events": "stroke" }));
+        // 路线名标在本期最后一段（或全线最后一段）的终点旁
+        const last = (cur.length ? cur : all)[(cur.length ? cur : all).length - 1][1];
+        const x = sx(last), y = sy(last);
+        const rt = iF(it, "old"), rs = on ? 13 : 11.5;
+        if (inView(x, y)) items.push({ kind: "route", it, x, y, size: rs, text: rt, on, w: (isEN() ? mw(rt, rs, "d", on ? 700 : 600) : textW(rt, rs)) + 4, h: 14, pri: on ? -940 : 36 });
+      }
+    }
+
     // 都城（同址只画一个）
     const capAt = new Map();
     for (const it of ITEMS) if (it.c === "capital") {
@@ -876,8 +917,8 @@
     for (const it of ITEMS) {
       if (!it.axy || !["range", "river", "canal", "desert", "road"].includes(it.c)) continue;
       if (it.c === "canal" && (it.y0 || 0) > YY) continue;
-      if (it.c === "road" && (it.sub === "route" ? !(it.y <= perHi(si) && (it.y1 ?? it.y) >= perLo(si)) : (it.y ?? -1e9) > YY)) continue;
-      const lid = it.c === "river" ? "river" : it.sub === "route" ? "route" : it.c;
+      if (it.c === "road" && (it.y ?? -1e9) > YY) continue;
+      const lid = it.c === "river" ? "river" : it.c;
       if (!layerOn[lid] || !match(keyOf("i", it.i))) continue;
       const x = sx(it.axy), y = sy(it.axy);
       if (x < 10 || x > W - 10 || y < 10 || y > H - 10) continue;
@@ -942,6 +983,7 @@
       let cands;
       if (it.kind === "site") cands = [[it.r + 5, 0, "start"], [-it.r - 5, 0, "end"], [0, -it.r - 6, "middle"], [0, it.r + it.h - 1, "middle"], [it.r + 4, -it.h * .7, "start"], [-it.r - 4, -it.h * .7, "end"], [it.r + 4, it.h * .8, "start"], [-it.r - 4, it.h * .8, "end"]];
       else if (it.kind === "state" || it.kind === "region") cands = [[0, 0, "middle"], [0, -it.size * .9, "middle"], [0, it.size * .9, "middle"], [-it.size * 1.2, 0, "middle"], [it.size * 1.2, 0, "middle"]];
+      else if (it.kind === "route") cands = [[8, 0, "start"], [-8, 0, "end"], [0, -12, "middle"], [0, 16, "middle"], [8, -14, "start"], [-8, -14, "end"], [8, 14, "start"], [-8, 14, "end"]];
       else if (it.kind === "regsub") cands = [[0, 0, "middle"], [0, -16, "middle"], [0, 16, "middle"], [0, -30, "middle"], [0, 30, "middle"], [-48, 0, "middle"], [48, 0, "middle"], [-40, -22, "middle"], [40, -22, "middle"], [-40, 22, "middle"], [40, 22, "middle"]];
       else cands = [[0, 0, "middle"], [0, -14, "middle"], [0, 14, "middle"], [-30, 0, "middle"], [30, 0, "middle"]];
       let put = null;
@@ -975,6 +1017,8 @@
         txt({ class: "map-text lbl-geo", x: X, y: YP + 4, "text-anchor": "middle", "font-size": it.size, fill: "color-mix(in srgb, var(--range) 70%, var(--ink))", ...halo, "font-weight": it.on ? 700 : 500 }, it.text);
       } else if (it.kind === "zhou") {
         txt({ class: "map-text", x: X, y: YP + it.size * .36, "text-anchor": "middle", "font-size": it.size, "letter-spacing": it.ls + "px", "font-family": "var(--f-display)", fill: "color-mix(in srgb, var(--ink-3) 70%, var(--ink))", opacity: .9, ...halo, "font-weight": 600 }, it.text);
+      } else if (it.kind === "route") {
+        txt({ class: "map-text lbl-site", x: X, y: YP + 4, "text-anchor": put.anchor, "font-size": it.size, fill: "var(--c-route)", ...halo, "font-weight": it.on ? 700 : 600 }, it.text);
       } else if (it.kind === "road") {
         txt({ class: "map-text lbl-geo", x: X, y: YP + 4, "text-anchor": "middle", "font-size": it.size, fill: "var(--c-road)", ...halo, "font-weight": it.on ? 700 : 600 }, it.text);
       } else if (it.kind === "desert") {
@@ -995,8 +1039,7 @@
       n.setAttribute("stroke", on ? "color-mix(in srgb, var(--accent) 45%, transparent)" : "transparent");
       n.setAttribute("stroke-width", on ? 6 : 12);
       const c = n.dataset.cat;
-      const lo = c === "route" ? perLo(si) : YY, hi = c === "route" ? perHi(si) : YY;
-      n.setAttribute("display", layerOn[c === "river" ? "river" : c] && +n.dataset.y0 <= hi && +n.dataset.y1 >= lo ? "inline" : "none");
+      n.setAttribute("display", layerOn[c === "river" ? "river" : c] && +n.dataset.y0 <= YY && +n.dataset.y1 >= YY ? "inline" : "none");
     }
     lRange.setAttribute("display", layerOn.range ? "inline" : "none");
     lRiver.setAttribute("display", layerOn.river ? "inline" : "none");
@@ -1006,8 +1049,6 @@
     lRoad.setAttribute("display", layerOn.road ? "inline" : "none");
     for (const n of lRoad.children) n.setAttribute("display", +n.dataset.y0 <= YY ? "inline" : "none");
     for (const n of lRiver.children) n.setAttribute("display", +n.dataset.y0 <= YY && YY <= +n.dataset.y1 ? "inline" : "none");
-    lRoute.setAttribute("display", layerOn.route ? "inline" : "none");
-    for (const n of lRoute.children) n.setAttribute("display", +n.dataset.y0 <= perHi(si) && +n.dataset.y1 >= perLo(si) ? "inline" : "none");
     lZhou.setAttribute("display", layerOn.zhou ? "inline" : "none");
     lDesert.setAttribute("display", layerOn.desert ? "inline" : "none");
     lProv.setAttribute("display", layerOn.prov ? "inline" : "none");
@@ -1128,7 +1169,15 @@
     if (it.c === "capital") meta = `<span class="tag st" style="--k:${uVar(it.st)}">${esc(uShort(it.st))}</span><span class="mono">${yrsText(it.yrs)}</span>` + (capActive(it, YY) ? LZ("时为都城", "capital at this date") : "");
     else if (it.c === "battle") meta = `<span class="mono">${esc(iF(it, "yt"))}</span>${esc(iF(it, "sides"))}` + (it.cmd ? `<br><span class="mono">${LZ("主将", "Commanders")}</span>${esc(iF(it, "cmd"))}` : "");
     else if (it.c === "event") meta = `<span class="mono">${esc(iF(it, "yt"))}</span>`;
-    if (timed(it) && !inPeriod(it, si)) meta += `<br><span class="mono">${LZ("不在本期", "Not in this period")}</span>` + (() => { const j = snapOfYear(it.y), y = sLab(SNAPS[j]), pt = perText(j), one = pt === y; return LZ(`见 ${y} 节点${one ? "" : `（${pt}）`}`, `see the ${y} snapshot${one ? "" : ` (${pt})`}`); })();
+    const RT = it.c === "route" ? ROUTE_OF.get(i) : null;
+    if (RT) {
+      const lo = perLo(si), hi = perHi(si), named = RT.pts.map((p, j) => [p, j]).filter(([p]) => p[3]);
+      const pl = named.filter(([p]) => p[2] >= lo && p[2] <= hi).map(([p, j]) => ptName(RT, j));
+      meta = `<span class="mono">${esc(iF(it, "yt"))}</span>` + (inPeriod(it, si) ? `<br><span class="mono">${LZ("本期", "This period")}</span>` + (pl.length ? esc(pl.join(" → ")) : LZ("无行军", "no movement")) : "");
+      if (mode === "row") return { old: iF(it, "old"), zh: it.old, mod: "", meta, note: iF(it, "note") || "", k: K_OF.route,
+        chain: `<span class="mono">${LZ("全程", "Full route")}</span>` + named.map(([p, j]) => `${esc(ptName(RT, j))}<span class="mono">${LZ(`（${ptDate(p)}）`, ` (${ptDate(p)})`)}</span>`).join(" → ") };
+    }
+    if (timed(it) && !inPeriod(it, si)) meta += `<br><span class="mono">${LZ("不在本期", "Not in this period")}</span>` + (() => { const j = snapOfYear(timedAt(it)), y = sLab(SNAPS[j]), pt = perText(j), one = pt === y; return LZ(`见 ${y} 节点${one ? "" : `（${pt}）`}`, `see the ${y} snapshot${one ? "" : ` (${pt})`}`); })();
     else if (it.c === "people") meta = `<span class="mono">${LZ(`${it.y0 > -2545 ? "约 " + yLab(it.y0) : "秦以前"}—${it.y1 >= 2208 ? "东汉以后" : yLab(it.y1)}`, `${it.y0 > -2545 ? "c. " + yLab(it.y0) : "before Qin"}–${it.y1 >= 2208 ? "after the Eastern Han" : yLab(it.y1)}`)}</span>`;
     else if (it.c === "canal" && it.y0 > -2545) meta = `<span class="mono">${LZ(`${yLab(it.y0)} 开凿`, `dug ${yLab(it.y0)}`)}</span>` + (it.y0 > YY ? LZ("本期尚未开凿", "not yet dug") : "");
     if (it.c === "region") {
@@ -1251,14 +1300,14 @@
     if (t === "i") {
       const it = ITEMS[i];
       if (it.c === "capital" && !capActive(it, SNAPS[si].y)) { const j = SNAPS.findIndex(sn => capActive(it, sn.y)); if (j >= 0) { setSnap(j, false); buildIndex(); } }
-      if (timed(it) && !inPeriod(it, si)) { setSnap(snapOfYear(it.y), false); buildIndex(); }
+      if (timed(it) && !inPeriod(it, si)) { setSnap(snapOfYear(timedAt(it)), false); buildIndex(); }
       if (it.c === "region" && SNAPS[si].y < it.y0) { setSnap(snapOfYear(it.y0), false); buildIndex(); }
     }
     buildTerr();
     if (!fromMap) {
       const p = focusPoint(k);
       if (p) {
-        const zk = t === "u" ? Math.max(view.k, 1.4) : (ITEMS[i] && ["range", "river", "canal", "desert", "region"].includes(ITEMS[i].c)) ? Math.max(view.k, 2.4) : Math.max(view.k, 5);
+        const zk = t === "u" ? Math.max(view.k, 1.4) : ITEMS[i] && ITEMS[i].c === "route" ? Math.max(Math.min(view.k, 1.6), .8) : (ITEMS[i] && ["range", "river", "canal", "desert", "region"].includes(ITEMS[i].c)) ? Math.max(view.k, 2.4) : Math.max(view.k, 5);
         setView(p[0], p[1], zk, true);
       } else render();
     } else {
@@ -1303,6 +1352,7 @@
       `<div class="pbs"><span class="pl">${LZ("本期战役", "Battles")} <span class="mono">${perText(j)}</span></span>` +
       (bs.length ? bs.map(it => `<button class="chip" data-k="${keyOf("i", it.i)}" aria-pressed="${selected === keyOf("i", it.i)}">${esc(iF(it, "old"))}<i>${esc(iF(it, "yt"))}</i></button>`).join("")
                  : `<span class="none">${LZ("无", "none")}</span>`) +
+      (() => { const rs = ITEMS.filter(it => it.c === "route" && inPeriod(it, j)); return rs.length ? `<span class="pl gap">${LZ("行军", "Campaigns")}</span>` + rs.map(it => `<button class="chip rt" data-k="${keyOf("i", it.i)}" aria-pressed="${selected === keyOf("i", it.i)}">${esc(iF(it, "old"))}</button>`).join("") : ""; })() +
       ITEMS.filter(it => it.c === "region" && s.y >= it.y0).map(it => `<span class="pl gap">${LZ("要地", "Region")}</span><button class="chip rg" data-k="${keyOf("i", it.i)}" aria-pressed="${selected === keyOf("i", it.i)}">${esc(iF(it, "old"))}</button>`).join("") + `</div>`;
     const tk = ticks.querySelector(`[data-j="${j}"]`);
     if (tk && ticks.scrollWidth > ticks.clientWidth) ticks.scrollTo({ left: tk.offsetLeft - ticks.clientWidth / 2 + tk.offsetWidth / 2, behavior: reduce() ? "auto" : "smooth" });
@@ -1354,6 +1404,7 @@
     terr: '<rect x="1" y="2" width="12" height="10" rx="1.5" fill="var(--u-0)" opacity=".7"/>',
     zhou: '<path d="M1 10 C4 7, 9 9, 13 4" stroke="var(--ink-2)" stroke-width="1.3" stroke-dasharray="1.2 2.4" stroke-linecap="round" fill="none"/>',
     road: '<path d="M1 7H13" stroke="var(--c-road)" stroke-width="4" opacity=".2"/><path d="M1 7H13" stroke="var(--c-road)" stroke-width="1.4" stroke-dasharray="3.5 1.8"/>',
+    route: '<path d="M1.5 11 L6 6 L12.5 3.5" stroke="var(--c-route)" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M12.8 3.4 L8.6 3.2 L10.6 6.6Z" fill="var(--c-route)"/>',
     capital: '<rect x="2" y="2" width="10" height="10" fill="var(--paper)" stroke="var(--c-capital)" stroke-width="1.4"/><rect x="4.6" y="4.6" width="4.8" height="4.8" fill="var(--c-capital)"/>',
     seat: '<circle cx="7" cy="7" r="5.2" fill="var(--paper)" stroke="var(--ink-2)" stroke-width="1.2"/><circle cx="7" cy="7" r="2.4" fill="var(--ink-2)"/>',
     pref: '<circle cx="7" cy="7" r="3.4" fill="var(--paper)" stroke="var(--c-city)" stroke-width="1.4"/>',
@@ -1451,6 +1502,12 @@
     periodic("battle", "battle", LZ("战役", "Battles"));
     simple("pass", "pass", LZ("关隘", "Passes"), "");
     periodic("event", "event", LZ("事件 · 文化", "Events & culture"));
+    {
+      const list = ITEMS.filter(it => it.c === "route" && match(keyOf("i", it.i))).sort((a, b) => a.y - b.y);
+      const cur = list.filter(it => inPeriod(it, si)), rest = list.filter(it => !inPeriod(it, si));
+      total += group("route", LZ("行军路线", "Campaign routes"), LZ(`本期 ${cur.length} · 共 ${list.length}`, `${cur.length} this period · ${list.length} total`), K_OF.route,
+        [...cur, ...rest].map(it => { const k = keyOf("i", it.i), f = info(k, "row"); return rowEl(k, K_OF.route, f.old, f.mod, f.meta, f.note, f.chain, !inPeriod(it, si), null, f.zh); }));
+    }
     // 郡国城邑
     const prefs = SEEDS.map((S, s) => s).filter(s => SEEDS[s].t !== "r" && match(keyOf("s", s)));
     total += group("pref", LZ("郡国 · 城邑", "Commanderies & towns"), LZ("古名 → 今地", "historical → modern"), "var(--c-city)", prefs.map(s => { const k = keyOf("s", s), f = info(k, "row"); return rowEl(k, f.k, f.old, f.mod, f.meta, "", f.chain, false, null, f.zh); }));
@@ -1467,7 +1524,7 @@
   }
 
   /* ---------------- 对照表 ---------------- */
-  const CATNAME = { region: ["地域", "Region"], capital: ["都城", "Capital"], battle: ["战役", "Battle"], pass: ["关隘", "Pass"], event: ["事件", "Event"], range: ["山脉", "Mountains"], river: ["水系", "Water"], canal: ["运河", "Canal"], road: ["古道", "Road"], desert: ["荒漠", "Desert"], people: ["诸族", "People"] };
+  const CATNAME = { region: ["地域", "Region"], capital: ["都城", "Capital"], battle: ["战役", "Battle"], pass: ["关隘", "Pass"], event: ["事件", "Event"], range: ["山脉", "Mountains"], river: ["水系", "Water"], canal: ["运河", "Canal"], road: ["古道", "Road"], route: ["行军", "Campaign"], desert: ["荒漠", "Desert"], people: ["诸族", "People"] };
   const DATE_NOTE_EN = "Dates give the lunar months of the Chinese sources (“12th month, 202 BC”) and are not converted to the Western calendar. Years follow the Zizhi tongjian: before the Taichu calendar reform of 104 BC the year began in the 10th month, so the 10th–12th months are counted in the new year and come before its 1st month.";
   function buildTable() {
     const wrap = document.getElementById("tablewrap");
@@ -1509,8 +1566,8 @@
     const wrap = document.getElementById("chronwrap");
     wrap.replaceChildren();
     const intro = document.createElement("div"); intro.className = "intro";
-    intro.innerHTML = LZ(`<p>把战役、事件、都城迁移与地图上的 ${SNAPS.length} 个时间节点排成一条线，自秦并天下至黄巾起事。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>`,
-      `<p>Battles, events, capital moves and the map’s ${SNAPS.length} snapshots on a single line, from the Qin empire to the Yellow Turbans. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>${DATE_NOTE_EN}</p>`);
+    intro.innerHTML = LZ(`<p>把战役、行军、事件、都城迁移与地图上的 ${SNAPS.length} 个时间节点排成一条线，自秦并天下至黄巾起事。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>`,
+      `<p>Battles, campaigns, events, capital moves and the map’s ${SNAPS.length} snapshots on a single line, from the Qin empire to the Yellow Turbans. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>${DATE_NOTE_EN}</p>`);
     wrap.append(intro);
     const ev = [];
     for (const it of ITEMS) {
@@ -1519,6 +1576,7 @@
       const yt = iF(it, "yt"), t0 = iF(it, "old"), note = iF(it, "note") || "";
       if (it.c === "battle") ev.push({ y: it.y, yt, t: t0, zh: it.old, kd: LZ("战役", "Battle"), p: `${iF(it, "sides")}${LZ("。", ". ")}${note}`, col: "var(--c-battle)", k });
       if (it.c === "event") ev.push({ y: it.y, yt, t: t0, zh: it.old, kd: LZ("事件 · 文化", "Event"), p: note, col: "var(--c-culture)", k });
+      if (it.c === "route") ev.push({ y: it.y, yt, t: t0, zh: it.old, kd: LZ("行军", "Campaign"), p: note, col: "var(--c-route)", k, end: it.y1 });
       if (it.c === "capital") for (const [a] of it.yrs) if (a > SNAPS[0].y) ev.push({ y: a, yt: yLab(a), t: LZ(`${UNITS[it.st].n}都${it.old}`, t0), zh: it.old, kd: LZ("都城", `Capital · ${uShort(it.st)}`), p: note, col: uVar(it.st), k });
     }
     if (!query) for (const s of SNAPS) ev.push({ y: s.y, yt: sLab(s), t: snT(s), kd: LZ(`地图节点 · ${s.era}${s.era2 ? "（" + s.era2 + "）" : ""}`, `Map snapshot · ${snEra(s)}${s.era2 ? " (" + snEra2(s) + ")" : ""}`), p: snD(s), col: "var(--ink)", snap: true });
@@ -1529,7 +1587,7 @@
       d.className = "ev" + (e.snap ? " snap" : ""); d.style.setProperty("--k", e.col);
       d.innerHTML = `<div class="yr">${esc(e.yt)}</div><div class="ln"><i></i></div><div class="evb"><b>${esc(e.t)}</b>${e.zh ? zhTag(e.zh) + (isEN() ? " " : "") : ""}<span class="k">${esc(e.kd)}</span><p>${esc(e.p)}</p></div>`;
       d.addEventListener("click", () => {
-        let j = SNAPS.findIndex(s => s.y >= e.y); if (j < 0) j = SNAPS.length - 1;
+        let j = SNAPS.findIndex(s => s.y >= (e.end ?? e.y)); if (j < 0) j = SNAPS.length - 1;
         setMode("map"); setSnap(j);
         if (e.k) requestAnimationFrame(() => select(e.k, false));
       });
@@ -1567,7 +1625,7 @@
 
   /* ---------------- 界面文字（中 / 英） ---------------- */
   const FOOT_ZH = document.getElementById("legfoot").textContent;
-  const FOOT_EN = "Borders follow in outline the Shiji, the Han shu, the Hou Han shu, the Zizhi tongjian and vol. 2 of Tan Qixiang's Historical Atlas of China, and are computed by the unified territory engine from commandery seats and county towns, with boundaries drawn along mountains and rivers; they are approximate. Commanderies and kingdoms follow the Han shu Treatise on Geography (AD 2) and the Treatise on Commanderies and Kingdoms of the Xu Han shu; up to 180 BC the Qin commanderies are used. Kingdoms appear and disappear as in the Tables of the Kings, their extent approximated by the AD 2 units. Years follow the Zizhi tongjian: before the Taichu reform (104 BC) the year began in the 10th month, so the 10th–12th months belong to the new year. Hatching marks nominal submission (such as the states under the Protector-General or Chief Clerk of the Western Regions). The first snapshot is copied from the last snapshot of the Warring States volume, the last from the first snapshot of the Late Han and the Three Kingdoms volume.";
+  const FOOT_EN = "Borders follow in outline the Shiji, the Han shu, the Hou Han shu, the Zizhi tongjian and vol. 2 of Tan Qixiang's Historical Atlas of China, and are computed by the unified territory engine from commandery seats and county towns, with boundaries drawn along mountains and rivers; they are approximate. Commanderies and kingdoms follow the Han shu Treatise on Geography (AD 2) and the Treatise on Commanderies and Kingdoms of the Xu Han shu; up to 180 BC the Qin commanderies are used. Kingdoms appear and disappear as in the Tables of the Kings, their extent approximated by the AD 2 units. Years follow the Zizhi tongjian: before the Taichu reform (104 BC) the year began in the 10th month, so the 10th–12th months belong to the new year. Hatching marks nominal submission (such as the states under the Protector-General or Chief Clerk of the Western Regions, or the Southern Xiongnu living inside the northern commanderies from AD 50). In the commanderies view the Xiongnu are divided, after the Shiji, the Han shu and the Hou Han shu, into the chanyu's own domain, the Wise Kings of the Left and Right, the Hunye and Xiutu kings and others; these borders are a sketch. Campaign routes are drawn solid with arrows only for the months covered by the current snapshot; earlier stretches are dashed. The first snapshot is copied from the last snapshot of the Warring States volume, the last from the first snapshot of the Late Han and the Three Kingdoms volume.";
   const FIT_EN = { all: "Whole map", cn: "Han China", ch: "Chu–Han", gz: "Guanzhong", gd: "East of the passes", wc: "Wu–Chu & Yangzi–Huai", hx: "Hexi & Western Regions", mb: "North of the Gobi", db: "Northeast & Korea", bs: "Ba–Shu", ln: "Lingnan & Jiaozhi", xn: "Southwestern Yi" };
   const FIT_ZH = Object.fromEntries([...document.querySelectorAll("#fit option")].map(o => [o.value, o.textContent]));
   function applyStatic() {

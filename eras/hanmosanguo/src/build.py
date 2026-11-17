@@ -202,7 +202,7 @@ def compute_snaps(base):
                           pol={UK[k]: UK[p] for k, p in r["pol"].items()},
                           lab={UK[k]: v for k, v in r["lab"].items() if v != UNITS[UK[k]]["n"]},
                           seat={UK[k]: SI[v] for k, v in r["seat"].items()},
-                          h=[UK[k] for k in r["pol"] if k in HATCH],
+                          h=[UK[k] for k in r["pol"] if k in HATCH or (k == "南匈奴" and r["pol"][k] == "汉")],   # 184 年南匈奴内属于汉
                           zb=zb, zl=zl))
         print(f"   {y:>4}  {len(z):>2} 单位  {len(p_out)} 政权", flush=True)
     unowned = [SEEDS[i]["id"] for i in range(len(SEEDS)) if not np.any(seedlab_land == i)]

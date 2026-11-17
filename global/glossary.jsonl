@@ -3246,6 +3246,7 @@
 {"id":"代国","kind":"polity","zh":"代国","en":"Kingdom of Dai"}
 {"id":"代郡","kind":"polity","zh":"代郡","en":"Dai Commandery"}
 {"id":"任城国","kind":"polity","zh":"任城国","en":"Kingdom of Rencheng"}
+{"id":"休屠王","kind":"polity","zh":"休屠王","en":"Xiutu king"}
 {"id":"会稽郡","kind":"polity","zh":"会稽郡","en":"Kuaiji Commandery"}
 {"id":"信都国","kind":"polity","zh":"信都国","en":"Kingdom of Xindu"}
 {"id":"儋耳郡","kind":"polity","zh":"儋耳郡","en":"Dan'er Commandery"}
@@ -3254,13 +3255,16 @@
 {"id":"勃海郡","kind":"polity","zh":"勃海郡","en":"Bohai Commandery"}
 {"id":"匈奴","kind":"polity","zh":"匈奴","en":"Xiongnu"}
 {"id":"北匈奴","kind":"polity","zh":"北匈奴","en":"Northern Xiongnu"}
+{"id":"北单于本部","kind":"polity","zh":"北单于本部","en":"Northern chanyu's own domain"}
 {"id":"北地郡","kind":"polity","zh":"北地郡","en":"Beidi Commandery"}
 {"id":"北海国","kind":"polity","zh":"北海国","en":"Kingdom of Beihai"}
 {"id":"北海郡","kind":"polity","zh":"北海郡","en":"Beihai Commandery"}
 {"id":"千乘郡","kind":"polity","zh":"千乘郡","en":"Qiancheng Commandery"}
+{"id":"单于本部","kind":"polity","zh":"单于本部","en":"Chanyu's own domain"}
 {"id":"南匈奴","kind":"polity","zh":"南匈奴","en":"Southern Xiongnu"}
 {"id":"南海郡","kind":"polity","zh":"南海郡","en":"Nanhai Commandery"}
 {"id":"南越","kind":"polity","zh":"南越","en":"Nanyue"}
+{"id":"南边八部（日逐王比）","kind":"polity","zh":"南边八部（日逐王比）","en":"Eight southern tribes (Bi, the Rizhu king)"}
 {"id":"南郡","kind":"polity","zh":"南郡","en":"Nan Commandery"}
 {"id":"南阳郡","kind":"polity","zh":"南阳郡","en":"Nanyang Commandery"}
 {"id":"博阳郡","kind":"polity","zh":"博阳郡","en":"Boyang Commandery"}
@@ -3268,9 +3272,11 @@
 {"id":"即墨郡","kind":"polity","zh":"即墨郡","en":"Jimo Commandery"}
 {"id":"右北平郡","kind":"polity","zh":"右北平郡","en":"Youbeiping Commandery"}
 {"id":"右扶风","kind":"polity","zh":"右扶风","en":"You Fufeng"}
+{"id":"右贤王","kind":"polity","zh":"右贤王","en":"Wise King of the Right"}
 {"id":"合浦郡","kind":"polity","zh":"合浦郡","en":"Hepu Commandery"}
 {"id":"吴国","kind":"polity","zh":"吴国","en":"Kingdom of Wu"}
 {"id":"吴郡","kind":"polity","zh":"吴郡","en":"Wu Commandery"}
+{"id":"呼衍王","kind":"polity","zh":"呼衍王","en":"Huyan king"}
 {"id":"呼韩邪（南匈奴）","kind":"polity","zh":"呼韩邪（南匈奴）","en":"Huhanye (southern Xiongnu)"}
 {"id":"哀牢","kind":"polity","zh":"哀牢","en":"Ailao"}
 {"id":"城阳郡","kind":"polity","zh":"城阳郡","en":"Chengyang Commandery"}
@@ -3291,6 +3297,7 @@
 {"id":"居延属国","kind":"polity","zh":"居延属国","en":"Juyan Dependent State"}
 {"id":"山阳郡","kind":"polity","zh":"山阳郡","en":"Shanyang Commandery"}
 {"id":"左冯翊","kind":"polity","zh":"左冯翊","en":"Zuo Pingyi"}
+{"id":"左贤王","kind":"polity","zh":"左贤王","en":"Wise King of the Left"}
 {"id":"巨鹿郡","kind":"polity","zh":"巨鹿郡","en":"Julu Commandery"}
 {"id":"巴郡","kind":"polity","zh":"巴郡","en":"Ba Commandery"}
 {"id":"常山","kind":"polity","zh":"常山","en":"Changshan"}
@@ -3327,6 +3334,7 @@
 {"id":"桂阳郡","kind":"polity","zh":"桂阳郡","en":"Guiyang Commandery"}
 {"id":"梁国","kind":"polity","zh":"梁国","en":"Kingdom of Liang"}
 {"id":"楚国","kind":"polity","zh":"楚国","en":"Kingdom of Chu"}
+{"id":"楼烦王·白羊王","kind":"polity","zh":"楼烦王·白羊王","en":"Loufan and Baiyang kings"}
 {"id":"武威郡","kind":"polity","zh":"武威郡","en":"Wuwei Commandery"}
 {"id":"武都郡","kind":"polity","zh":"武都郡","en":"Wudu Commandery"}
 {"id":"武陵郡","kind":"polity","zh":"武陵郡","en":"Wuling Commandery"}
@@ -3360,6 +3368,7 @@
 {"id":"济南国","kind":"polity","zh":"济南国","en":"Kingdom of Jinan"}
 {"id":"济南郡","kind":"polity","zh":"济南郡","en":"Jinan Commandery"}
 {"id":"济阴郡","kind":"polity","zh":"济阴郡","en":"Jiyin Commandery"}
+{"id":"浑邪王","kind":"polity","zh":"浑邪王","en":"Hunye king"}
 {"id":"涿郡","kind":"polity","zh":"涿郡","en":"Zhuo Commandery"}
 {"id":"淮南国","kind":"polity","zh":"淮南国","en":"Kingdom of Huainan"}
 {"id":"淮阳国","kind":"polity","zh":"淮阳国","en":"Kingdom of Huaiyang"}
@@ -4877,36 +4886,22 @@
 {"id":"road:云贵古道","kind":"physical","zh":"五尺道","en":"Five-Foot Road"}
 {"id":"road:傥骆道","kind":"physical","zh":"傥骆道","en":"Tangluo Road"}
 {"id":"road:光禄塞","kind":"physical","zh":"光禄塞（外城）","en":"Guanglu frontier (outer walls)"}
-{"id":"road:刘邦入关","kind":"physical","zh":"刘邦入关","en":"Liu Bang into Guanzhong"}
 {"id":"road:卢龙道","kind":"physical","zh":"卢龙道","en":"Lulong Road"}
-{"id":"road:卫青取河南","kind":"physical","zh":"卫青取河南","en":"Wei Qing takes the Ordos"}
-{"id":"road:卫青漠北","kind":"physical","zh":"卫青漠北","en":"Wei Qing beyond the Gobi"}
 {"id":"road:子午道","kind":"physical","zh":"子午道","en":"Ziwu Road"}
 {"id":"road:居延塞","kind":"physical","zh":"居延塞","en":"Juyan frontier wall"}
 {"id":"road:川滇西路","kind":"physical","zh":"川滇西路","en":"Western Sichuan–Yunnan Road"}
 {"id":"road:康藏公路","kind":"physical","zh":"康藏公路","en":"Xikang–Xizang Highway"}
-{"id":"road:张骞西使","kind":"physical","zh":"张骞西使（去程）","en":"Zhang Qian's journey west (outbound)"}
-{"id":"road:张骞西使（秦汉）","kind":"physical","zh":"张骞西使（归程）","en":"Zhang Qian's journey west (return)"}
-{"id":"road:李广利伐大宛","kind":"physical","zh":"李广利伐大宛","en":"Li Guangli against Dayuan"}
 {"id":"road:河西汉塞","kind":"physical","zh":"河西汉塞","en":"Han frontier wall of Hexi"}
 {"id":"road:滇缅公路","kind":"physical","zh":"滇缅公路","en":"Burma Road"}
 {"id":"road:祁山道","kind":"physical","zh":"祁山道","en":"Qishan Road"}
 {"id":"road:秦直道","kind":"physical","zh":"直道","en":"Straight Road"}
-{"id":"road:窦宪燕然","kind":"physical","zh":"窦宪燕然","en":"Dou Xian to Yanran"}
 {"id":"road:米仓道","kind":"physical","zh":"米仓道","en":"Micang Road"}
 {"id":"road:褒斜道","kind":"physical","zh":"褒斜道","en":"Baoye Road"}
 {"id":"road:西北国际交通线","kind":"physical","zh":"西北国际交通线","en":"Northwest International Route"}
-{"id":"road:还定三秦","kind":"physical","zh":"还定三秦","en":"Retaking the Three Qins"}
 {"id":"road:金牛道","kind":"physical","zh":"金牛道","en":"Jinniu Road"}
 {"id":"road:阴平道","kind":"physical","zh":"阴平道","en":"Yinping Road"}
 {"id":"road:陈仓道","kind":"physical","zh":"陈仓道","en":"Chencang Road"}
-{"id":"road:陈汤击郅支","kind":"physical","zh":"陈汤击郅支","en":"Chen Tang against Zhizhi"}
-{"id":"road:霍去病河西","kind":"physical","zh":"霍去病河西","en":"Huo Qubing in Hexi"}
-{"id":"road:霍去病漠北","kind":"physical","zh":"霍去病漠北","en":"Huo Qubing beyond the Gobi"}
 {"id":"road:青藏公路","kind":"physical","zh":"青藏公路","en":"Qinghai–Xizang Highway"}
-{"id":"road:韩信北伐","kind":"physical","zh":"韩信北伐","en":"Han Xin's northern campaign"}
-{"id":"road:项羽救赵入关","kind":"physical","zh":"项羽救赵入关","en":"Xiang Yu relieves Zhao and enters Guanzhong"}
-{"id":"road:马援南征","kind":"physical","zh":"马援南征","en":"Ma Yuan's southern campaign"}
 {"id":"road:驰道","kind":"physical","zh":"驰道","en":"Imperial highways"}
 {"id":"wall:楚方城","kind":"physical","zh":"楚方城","en":"Chu Fangcheng"}
 {"id":"wall:燕北长城","kind":"physical","zh":"燕北长城","en":"Yan Northern Long Wall"}

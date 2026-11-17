@@ -68,7 +68,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 | `first` | 打开页面时停在哪个节点（月序号） |
 | `meta` | 取自 `era.toml`：卷次、图名、短名、起止年 |
 | `geom` | 几何池，见下 |
-| `base` | 底图图层：`land` `prov` `border` `rivers` `lakes` `canals` `deserts` `seas` `regions` `routes`（各卷有多有少） |
+| `base` | 底图图层：`land` `prov` `border` `rivers` `lakes` `canals` `deserts` `seas` `regions` `routes`（各卷有多有少）。`routes` 是行军路线（隋唐、民国、秦汉）：每条 `{it: 条目序号, pts: [[经, 纬, 到达月序号, 地名, …]], pe: [英文地名]}`，地名空着的是折点；页面每个节点只画本期走过的一段 |
 | `extent` | 视野：`ext`（经纬度范围）`base`（底图范围）`extpoly` `proj`（投影参数） |
 | `polities` | 政权与二级单位 |
 | `places` | 地点（州府、城邑） |

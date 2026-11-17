@@ -283,10 +283,10 @@ def node_rows():
                 if p is None:
                     continue
             else:
-                u, p = o, nd["polmap"].get(o, o)
+                u, p = o, nd["polmap"].get(o, UN.SUB.get(o, o))
             own[i] = u
             pol[u] = p
-        for u in set(pol.values()):
+        for u in dict.fromkeys(pol.values()):          # 保持先后次序（集合的次序随哈希种子变，成品就不可复现）
             pol.setdefault(u, u)
         rows.append(dict(nd=nd, own=own, pol=pol))
     return rows
@@ -356,7 +356,18 @@ def junction(i, row, z, lz, p, lp):
     return z, p
 
 
+LAND = None                                        # 底图陆地（标注位置只按陆地部分算，main 里载入）
+
+
 def label_of(g):
+    if LAND is not None:                           # 首节点照搬战国卷的秦疆画到了海上：标注只按陆上部分算
+        try:
+            gl = shapely.make_valid(g).intersection(LAND)
+        except shapely.errors.GEOSException:
+            gl = shapely.make_valid(g).buffer(0.001).intersection(LAND)
+        gl = shapely.union_all(polys_of(gl)) if not gl.is_empty else gl
+        if not gl.is_empty and gl.area > 0.02 * g.area:
+            g = gl
     ps = polys_of(g)
     if not ps:
         return None
@@ -392,6 +403,9 @@ def main():
         for u, p in r["pol"].items():
             if u not in UK or p not in UK:
                 sys.exit(f"{r['nd']['label']}：单位 {u} 或政权 {p} 没有定义")
+    global LAND
+    base = json.loads((C.GEODATA / "base.json").read_text(encoding="utf8"))
+    LAND = shapely.union_all([geom_of(p) for p in base["land"]])       # 每块陆地是一组环（奇偶填充）
     eng = engine_geoms()
     pool, where = [], {}
 
@@ -431,7 +445,7 @@ def main():
                         L = label_of(g)
                         if L: lp[pu] = L
                     # 郡界：多郡国政权内部的界线与郡国名
-                    if len(us) > 1:
+                    if len(us) > 1 and UNITS[pu]["kind"] != "tribe":
                         zb += boundary_lines([zg[u] for u in us])
                         for u in us:
                             if u in lz and lz[u][2] >= 0.6:
@@ -457,7 +471,6 @@ def main():
         snaps.append(sn)
         print(f"   {nd['label']:>10}  {len(set(x for x in r['own'] if x)):>3} 单位  {len(p)} 政权层", flush=True)
 
-    base = json.loads((C.GEODATA / "base.json").read_text(encoding="utf8"))
     items, layers = IT.build(base, SEEDS, UK, ZG[1]["items"])
     hm_col = {u["k"]: HM[2][i] for i, u in enumerate(HM[1]["units"])}
     colors = UN.colors(UNITS, adj, ZG[1]["colors"], hm_col)

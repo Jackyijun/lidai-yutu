@@ -377,36 +377,22 @@
 {"id":"road:云贵古道","c":"road","n":"云贵古道","names":["五尺道"],"mod":"云贵古道","eras":["zhanguo","qinhan"],"refs":["zhanguo:i:413","qinhan:i:335"],"en":"Five-Foot Road","time":{"zhanguo":[-2634,null],"qinhan":[-31578,null]}}
 {"id":"road:傥骆道","c":"road","n":"傥骆道","names":["傥骆道"],"mod":"陕西周至—洋县","eras":["hanmosanguo"],"refs":["hanmosanguo:i:187"],"en":"Tangluo Road"}
 {"id":"road:光禄塞","c":"road","n":"光禄塞","names":["光禄塞（外城）"],"mod":"内蒙古阴山以北","eras":["qinhan"],"refs":["qinhan:i:338"],"en":"Guanglu frontier (outer walls)","time":{"qinhan":[-14586,null]}}
-{"id":"road:刘邦入关","c":"road","n":"刘邦入关","names":["刘邦入关"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:339"],"en":"Liu Bang into Guanzhong","time":{"qinhan":[-29790,-29694]}}
 {"id":"road:卢龙道","c":"road","n":"卢龙道","names":["卢龙道"],"mod":"河北迁西—辽宁朝阳","eras":["qinhan","hanmosanguo"],"refs":["qinhan:i:185","hanmosanguo:i:193"],"en":"Lulong Road"}
-{"id":"road:卫青取河南","c":"road","n":"卫青取河南","names":["卫青取河南"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:343"],"en":"Wei Qing takes the Ordos","time":{"qinhan":[-18282,-18222]}}
-{"id":"road:卫青漠北","c":"road","n":"卫青漠北","names":["卫青漠北"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:345"],"en":"Wei Qing beyond the Gobi","time":{"qinhan":[-17106,-17034]}}
 {"id":"road:子午道","c":"road","n":"子午道","names":["子午道"],"mod":"陕西西安南—汉中东","eras":["qinhan","hanmosanguo"],"refs":["qinhan:i:180","hanmosanguo:i:186"],"en":"Ziwu Road","time":{"qinhan":[726,null]}}
 {"id":"road:居延塞","c":"road","n":"居延塞","names":["居延塞"],"mod":"甘肃金塔—内蒙古额济纳","eras":["qinhan"],"refs":["qinhan:i:337"],"en":"Juyan frontier wall","time":{"qinhan":[-14586,null]}}
 {"id":"road:川滇西路","c":"road","n":"川滇西路","names":["川滇西路"],"mod":"今乐西公路与西昌—祥云公路","eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:1521"],"en":"Western Sichuan–Yunnan Road","time":{"minguo-xinzhongguo":[23292,119988]}}
 {"id":"road:康藏公路","c":"road","n":"康藏公路","names":["康藏公路"],"mod":"今雅安—康定—甘孜—昌都—拉萨一线，大体为 318、317 国道","eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:1522"],"en":"Xikang–Xizang Highway","time":{"minguo-xinzhongguo":[23459,119988]}}
-{"id":"road:张骞西使","c":"road","n":"张骞西使","names":["张骞西使（去程）"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:347"],"en":"Zhang Qian's journey west (outbound)","time":{"qinhan":[-19950,-18366]}}
-{"id":"road:张骞西使（秦汉）","c":"road","n":"张骞西使","names":["张骞西使（归程）"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:348"],"en":"Zhang Qian's journey west (return)","time":{"qinhan":[-18366,-18078]}}
-{"id":"road:李广利伐大宛","c":"road","n":"李广利伐大宛","names":["李广利伐大宛"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:349"],"en":"Li Guangli against Dayuan","time":{"qinhan":[-14622,-14478]}}
 {"id":"road:河西汉塞","c":"road","n":"河西汉塞","names":["河西汉塞"],"mod":"甘肃永登—敦煌西","eras":["qinhan"],"refs":["qinhan:i:336"],"en":"Han frontier wall of Hexi","time":{"qinhan":[-15882,null]}}
 {"id":"road:滇缅公路","c":"road","n":"滇缅公路","names":["滇缅公路"],"mod":"今 320 国道昆明—瑞丽段及缅甸木姐—腊戍公路","eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:1518"],"en":"Burma Road","time":{"minguo-xinzhongguo":[23267,23308]}}
 {"id":"road:祁山道","c":"road","n":"祁山道","names":["祁山道"],"mod":"陕西勉县—甘肃礼县—天水","eras":["qinhan","hanmosanguo"],"refs":["qinhan:i:182","hanmosanguo:i:189"],"en":"Qishan Road"}
 {"id":"road:秦直道","c":"road","n":"秦直道","names":["直道"],"mod":"秦直道","eras":["zhanguo","qinhan"],"refs":["zhanguo:i:412","qinhan:i:334"],"en":"Straight Road","time":{"zhanguo":[-2538,null],"qinhan":[-30426,null]}}
-{"id":"road:窦宪燕然","c":"road","n":"窦宪燕然","names":["窦宪燕然"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:352"],"en":"Dou Xian to Yanran","time":{"qinhan":[12882,12918]}}
 {"id":"road:米仓道","c":"road","n":"米仓道","names":["米仓道"],"mod":"陕西汉中—四川巴中","eras":["qinhan","hanmosanguo"],"refs":["qinhan:i:184","hanmosanguo:i:191"],"en":"Micang Road"}
 {"id":"road:褒斜道","c":"road","n":"褒斜道","names":["褒斜道"],"mod":"陕西眉县—汉中褒城","eras":["qinhan","hanmosanguo"],"refs":["qinhan:i:179","hanmosanguo:i:185"],"en":"Baoye Road","time":{"qinhan":[-17130,null]}}
 {"id":"road:西北国际交通线","c":"road","n":"西北国际交通线","names":["西北国际交通线"],"mod":"今连霍高速新疆、甘肃段一线","eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:1520"],"en":"Northwest International Route","time":{"minguo-xinzhongguo":[23253,23297]}}
-{"id":"road:还定三秦","c":"road","n":"还定三秦","names":["还定三秦"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:341"],"en":"Retaking the Three Qins","time":{"qinhan":[-29610,-29574]}}
 {"id":"road:金牛道","c":"road","n":"金牛道","names":["金牛道"],"mod":"陕西勉县—四川广元—剑阁—成都","eras":["qinhan","hanmosanguo"],"refs":["qinhan:i:183","hanmosanguo:i:190"],"en":"Jinniu Road"}
 {"id":"road:阴平道","c":"road","n":"阴平道","names":["阴平道"],"mod":"甘肃文县—四川平武—江油","eras":["hanmosanguo"],"refs":["hanmosanguo:i:192"],"en":"Yinping Road"}
 {"id":"road:陈仓道","c":"road","n":"陈仓道","names":["陈仓道"],"mod":"陕西宝鸡—凤县—略阳—勉县","eras":["qinhan","hanmosanguo"],"refs":["qinhan:i:181","hanmosanguo:i:188"],"en":"Chencang Road"}
-{"id":"road:陈汤击郅支","c":"road","n":"陈汤击郅支","names":["陈汤击郅支"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:350"],"en":"Chen Tang against Zhizhi","time":{"qinhan":[-5118,-5070]}}
-{"id":"road:霍去病河西","c":"road","n":"霍去病河西","names":["霍去病河西"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:344"],"en":"Huo Qubing in Hexi","time":{"qinhan":[-17394,-17322]}}
-{"id":"road:霍去病漠北","c":"road","n":"霍去病漠北","names":["霍去病漠北"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:346"],"en":"Huo Qubing beyond the Gobi","time":{"qinhan":[-17106,-17034]}}
 {"id":"road:青藏公路","c":"road","n":"青藏公路","names":["青藏公路"],"mod":"今 109 国道西宁—拉萨段","eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:1523"],"en":"Qinghai–Xizang Highway","time":{"minguo-xinzhongguo":[23459,119988]}}
-{"id":"road:韩信北伐","c":"road","n":"韩信北伐","names":["韩信北伐"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:342"],"en":"Han Xin's northern campaign","time":{"qinhan":[-29430,-29250]}}
-{"id":"road:项羽救赵入关","c":"road","n":"项羽救赵入关","names":["项羽救赵入关"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:340"],"en":"Xiang Yu relieves Zhao and enters Guanzhong","time":{"qinhan":[-29850,-29670]}}
-{"id":"road:马援南征","c":"road","n":"马援南征","names":["马援南征"],"mod":"","eras":["qinhan"],"refs":["qinhan:i:351"],"en":"Ma Yuan's southern campaign","time":{"qinhan":[6054,6330]}}
 {"id":"road:驰道","c":"road","n":"驰道","names":["驰道"],"mod":"秦国道（示意）","eras":["zhanguo","qinhan"],"refs":["zhanguo:i:411","qinhan:i:333"],"en":"Imperial highways","time":{"zhanguo":[-2634,null],"qinhan":[-31578,null]}}
 {"id":"wall:楚方城","c":"wall","n":"楚方城","names":["楚方城"],"mod":"河南鲁山—方城—泌阳","eras":["chunqiu","zhanguo"],"refs":["chunqiu:i:407","zhanguo:i:359"],"en":"Chu Fangcheng","time":{"chunqiu":[-7866,null],"zhanguo":[-7794,-2574]}}
 {"id":"wall:燕北长城","c":"wall","n":"燕北长城","names":["燕北长城"],"mod":"河北张家口—内蒙古赤峰—辽宁辽阳","eras":["zhanguo","qinhan"],"refs":["zhanguo:i:356","qinhan:i:332"],"en":"Yan Northern Long Wall","time":{"zhanguo":[-3474,null],"qinhan":[-41658,null]}}

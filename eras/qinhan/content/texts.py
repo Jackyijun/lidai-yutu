@@ -41,7 +41,7 @@ TEXT = {
                      "still styled King Huai, and made Cheng, a prince of Han (韓), king of Han with Zhang Liang as minister. The men of Qi set up Tian Jia as king, "
                      "which Tian Rong would not accept."),
     "q208c": dict(era="二世二年九月", era_en="Second Emperor, year 2, 9th month",
-                  t="定陶之战", te="Battle of Dingtao", sh="定陶", she="Dingtao",
+                  t="定陶之战", te="Battle of Dingtao", sh="定陶之战", she="Dingtao",
                   d="项梁连破秦军于东阿、濮阳、定陶，渐有骄色。秦悉起兵益章邯，九月夜袭定陶，项梁战死。楚怀王自盱台徙都彭城，项羽、刘邦东还。"
                     "章邯以为楚地不足忧，渡河北击赵，破邯郸，徙其民于河内，王离围赵王歇于巨鹿。魏豹复下魏地二十余城，自立为魏王。",
                   de="Xiang Liang beat the Qin armies at Dong'e, Puyang and Dingtao and grew overconfident. Qin threw every man it had into Zhang Han's army, "
@@ -50,7 +50,7 @@ TEXT = {
                      "moved its people to Henei, while Wang Li besieged King Xie of Zhao at Julu. Wei Bao won back more than twenty cities of Wei and made "
                      "himself king."),
     "q207a": dict(era="二世三年十二月", era_en="Second Emperor, year 3, 12th month",
-                  t="巨鹿之战", te="Battle of Julu", sh="巨鹿", she="Julu",
+                  t="巨鹿之战", te="Battle of Julu", sh="巨鹿之战", she="Julu",
                   d="怀王遣宋义、项羽北救赵，遣刘邦西略地入关，约「先入定关中者王之」。宋义逗留安阳，项羽斩之，引兵渡河，「皆沉船，破釜甑」，"
                     "九战绝秦甬道，大破王离军于巨鹿，诸侯军皆作壁上观。战后诸侯将入辕门，莫敢仰视，皆属项羽。章邯退保棘原。",
                   de="King Huai sent Song Yi and Xiang Yu north to relieve Zhao and Liu Bang west into the passes, promising that whoever first took Guanzhong "
@@ -99,7 +99,7 @@ TEXT = {
                      "Road against Zhang Han, king of Yong, who fell back to hold Feiqiu, while Sima Xin of Sai and Dong Yi of Di surrendered to Han. Zang Tu "
                      "killed Han Guang, king of Liaodong, and annexed his land."),
     "q205a": dict(era="汉二年四月", era_en="Han year 2, 4th month",
-                  t="彭城之战", te="Battle of Pengcheng", sh="彭城", she="Pengcheng",
+                  t="彭城之战", te="Battle of Pengcheng", sh="彭城之战", she="Pengcheng",
                   d="汉王东出：河南王申阳降，韩信（韩襄王孙）破郑昌，立为韩王，殷王司马卬被虏；陈余逐张耳、复立赵歇，赵歇立陈余为代王。项羽北击田荣，田荣败死，"
                     "齐人立田广。项羽已于十月弑义帝于江中，三月汉王为之发丧，四月率五诸侯兵五十六万人入彭城。项羽以精兵三万自齐回师，大破汉军于彭城、睢水，"
                     "汉王仅以数十骑脱走，诸侯复附楚，魏豹叛汉。",
@@ -119,7 +119,7 @@ TEXT = {
                      "Xiayang on wooden jars, fell on Anyi and in the 9th month captured Wei Bao, making Hedong, Taiyuan and Shangdang commanderies; in the "
                      "intercalary 9th month he broke the Dai army and captured Xia Yue at Yuyu."),
     "q204": dict(era="汉三年", era_en="Han year 3",
-                 t="井陉之战·荥阳之困", te="Jingxing · the plight of Xingyang", sh="井陉", she="Jingxing",
+                 t="井陉之战·荥阳之困", te="Jingxing · the plight of Xingyang", sh="井陉之战", she="Jingxing",
                  d="十月韩信、张耳以数万人东下井陉，背水为阵，拔赵帜立汉赤帜，破赵军二十万，斩陈余于泜水，擒赵歇；燕王臧荼闻风降汉。十二月九江王英布归汉，"
                    "其地为项羽所并。项羽数断汉甬道，五月纪信诈降，汉王出荥阳；荥阳、成皋相继失守，周苛被杀。汉王北渡河，夺韩信军，复与楚相持于巩、洛。",
                  de="In the 10th month Han Xin and Zhang Er came down the Jingxing pass with a few tens of thousands of men, fought with their backs to a "
@@ -129,7 +129,7 @@ TEXT = {
                     "could escape from Xingyang. Xingyang and Chenggao fell one after the other and Zhou Ke was killed. The king of Han crossed to the north bank of the "
                     "Yellow River, took over Han Xin's army and again held the line against Chu at Gong and Luo."),
     "q203a": dict(era="汉四年十一月", era_en="Han year 4, 11th month",
-                  t="潍水之战", te="Battle of the Wei River", sh="潍水", she="Wei River",
+                  t="潍水之战", te="Battle of the Wei River", sh="潍水之战", she="Wei River",
                   d="郦食其说降齐王田广，韩信用蒯通之计乘虚袭齐，十月破历下，入临淄，田广烹郦食其东走。项羽遣龙且将二十万救齐，十一月韩信夜囊沙壅潍水上流，"
                     "半渡决之，斩龙且，虏田广，尽定齐地。同月汉王立张耳为赵王。此前十月汉军已大破楚大司马曹咎于汜水，夺回成皋，与项羽对峙于广武。",
                   de="Li Yiji had talked Tian Guang, king of Qi, into submitting, but Han Xin, on Kuai Tong's advice, struck while Qi was off guard: in the 10th "
@@ -146,7 +146,7 @@ TEXT = {
                      "the Honggou Canal, Han taking the west and Chu the east. In the 9th month he sent back Liu Bang's father and wife, broke camp and "
                      "turned east; the king of Han, on the advice of Zhang Liang and Chen Ping, broke the treaty and went after him."),
     "q202a": dict(era="汉五年十二月", era_en="Han year 5, 12th month",
-                  t="垓下之战", te="Battle of Gaixia", sh="垓下", she="Gaixia",
+                  t="垓下之战", te="Battle of Gaixia", sh="垓下之战", she="Gaixia",
                   d="汉王追项羽至固陵，韩信、彭越不至，汉军败；汉王许以陈以东傅海与齐王、睢阳以北至穀城与彭越，诸侯乃会。十二月韩信、彭越、英布、刘贾"
                     "合围项羽于垓下，夜闻四面楚歌，项羽溃围南走，至乌江自刎。楚地皆降，惟鲁坚守，持项羽首示之乃降。汉又遣卢绾、刘贾击临江王共尉。",
                   de="The king of Han caught up with Xiang Yu at Guling but Han Xin and Peng Yue failed to come, and the Han army was beaten; only when he "

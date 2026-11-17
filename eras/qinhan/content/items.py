@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """条目：都城、战役、事件、诸族、关隘、长城、道路、行军路线（山川、运河、古道、汉末已有的关隘取自 geodata/base.json）。
 
+行军路线另出底图图层 routes（与隋唐、民国卷同一格式）。
+
 日期一律写纪年年（+月），与节点一样按通鉴纪年换成月序号。"""
 import sys
 from pathlib import Path
@@ -23,6 +25,14 @@ def ytext(a, b=None, en=False):
     return f"{ylab(a, en)}–{ylab(b, en)}" if en else f"{ylab(a)}—{ylab(b)}"
 
 
+def span_t(sp):
+    """都城年段 → [起, 止) 月序号。(起年, 止年) 取整年；(起年, 月, 止年, 月) 精确到月，止月那个月起已不是都城"""
+    if len(sp) == 4:
+        return [t_of(sp[0], sp[1]), t_of(sp[2], sp[3])]
+    a, b = sp
+    return [t_of(a, 1 if a > -104 else 10), t_of(b, 12 if b >= -104 else 9)]
+
+
 def build(base, SEEDS, UK, zg_items):
     items = []
 
@@ -38,7 +48,7 @@ def build(base, SEEDS, UK, zg_items):
     near = lambda lon, lat: next((i for i, s in enumerate(SEEDS) if abs(s["lon"] - lon) < .15 and abs(s["lat"] - lat) < .15), None)
     for (old, en_old, unit, lon, lat, spans, mod, en_mod, note, en_note) in CAPITALS:
         o = dict(c="capital", old=old, mod=mod, note=note, lon=lon, lat=lat, st=UK[unit],
-                 yrs=[[t_of(a, 1 if a > -104 else 10), t_of(b, 12 if b >= -104 else 9)] for a, b in spans],
+                 yrs=[span_t(sp) for sp in spans],
                  e=dict(old=en_old, mod=en_mod, note=en_note))
         at = near(lon, lat)
         if at is not None:
@@ -65,7 +75,19 @@ def build(base, SEEDS, UK, zg_items):
     for (old, en_old, geo, y, mod, en_mod, note, en_note) in WALLS:
         add(dict(c="road", sub="wall", old=old, mod=mod, note=note, geo=geo, anc=geo[len(geo) // 2], major=True, y=t_of(y, 9),
                  e=dict(old=en_old, mod=en_mod, note=en_note)))
-    for (old, en_old, geo, a, ma, b, mb, note, en_note) in ROUTES:
-        add(dict(c="road", sub="route", old=old, mod="", note=note, geo=geo, anc=geo[len(geo) // 2], major=False,
-                 y=t_of(a, ma), y1=t_of(b, mb), yt=ytext(a, b), e=dict(old=en_old, note=en_note, yt=ytext(a, b, en=True))))
-    return items, {}
+    # 行军路线：条目 + 底图 routes（每点 [经, 纬, 月序号, 地名, 精度]），前端按节点画出已走过的一段
+    routes = []
+    for R in ROUTES:
+        pts, pe = [], []
+        for (n, ne, lon, lat, y, m) in R["pts"]:
+            pts.append([lon, lat, t_of(y, m), n, "m" if m else "y"])
+            pe.append(ne)
+        # 折点（无名）取下一个有名点的日期，保证每段的到达时间都有名可查
+        for j in range(len(pts) - 2, -1, -1):
+            if not pts[j][3]:
+                pts[j][2], pts[j][4] = pts[j + 1][2], pts[j + 1][4]
+        ys = [y for (_, _, _, _, y, _) in R["pts"]]
+        it = add(dict(c="route", old=R["name"], mod="", note=R["note"], y=pts[0][2], y1=pts[-1][2], yt=ytext(ys[0], ys[-1]),
+                      anc=pts[len(pts) // 2][:2], e=dict(old=R["en"], note=R["note_en"], yt=ytext(ys[0], ys[-1], en=True))))
+        routes.append(dict(it=it["i"], pts=pts, pe=pe))
+    return items, {"routes": routes}
