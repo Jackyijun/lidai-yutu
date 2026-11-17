@@ -252,3 +252,40 @@ def colors(U, adj, zg, hm):
         light[i] = c
         use[c] += 1
     return dict(light=light, dark=[fixed.get(i) or dark(c) for i, c in enumerate(light)])
+
+
+# 郡的说明（得名、建郡年代）：接在「治某」之后。(中文, 英文)
+JUN_NOTE = {
+    "朔方郡": ("前127 年卫青收河南地后，用主父偃之议置，募民十万口徙之，筑朔方城。郡名取《诗·小雅·出车》「天子命我，城彼朔方」。",
+            "Set up on Zhufu Yan's advice after Wei Qing recovered the Ordos in 127 BC; a hundred thousand settlers were recruited for it and the city "
+            "of Shuofang was built. The name comes from 'Chu che' in the Odes: 'The Son of Heaven bade me wall the north (shuofang).'"),
+    "五原郡": ("前127 年卫青收河南地后，以秦九原郡故地置，与朔方郡同时。",
+            "Set up on the old ground of Qin's Jiuyuan Commandery after Wei Qing recovered the Ordos in 127 BC, at the same time as Shuofang."),
+    "酒泉郡": ("郡名得于「其水若酒」（应劭注《汉书·地理志》），后世又有霍去病倾御酒入泉、与将士共饮的传说。故匈奴浑邪王地。建郡年份《汉书》"
+            "有二说：〈武帝纪〉在元狩二年（前121），〈地理志〉在太初元年（前104），今人考证多以为晚于〈武帝纪〉所记。图上从前121 年起画，"
+            "张掖、敦煌分出以前，河西走廊西部都画作酒泉郡。",
+            "Named, according to Ying Shao's note on the treatise on geography in the Hanshu, because 'its water is like wine (jiu)'; a later legend "
+            "has Huo Qubing pouring the emperor's gift of wine into the spring to share it with his men. Formerly the land of the Hunye king. The "
+            "Hanshu gives two dates: 121 BC in the Annals of Emperor Wu and 104 BC in the treatise on geography, and modern scholars mostly think "
+            "it came later than the Annals say. The map shows it from 121 BC, with the western Hexi Corridor drawn as Jiuquan until Zhangye and "
+            "Dunhuang were split off."),
+    "张掖郡": ("「张国臂掖，故曰张掖」（应劭注），取伸张汉之臂腋、断匈奴右臂之意。故匈奴浑邪王地。〈武帝纪〉元鼎六年（前111）分置，"
+            "〈地理志〉作太初元年（前104）；图上取前111 年。",
+            "'It stretches out the arm and armpit of the state, hence Zhangye' (Ying Shao): it extended Han's reach and cut off the Xiongnu's "
+            "right arm. Formerly the land of the Hunye king. Split off in 111 BC according to the Annals of Emperor Wu, in 104 BC according to the "
+            "treatise on geography; the map uses 111 BC."),
+    "敦煌郡": ("「敦，大也；煌，盛也」（应劭注）。〈武帝纪〉元鼎六年（前111）分置，〈地理志〉作后元元年（前88）分酒泉置；图上取前111 年。"
+            "西有玉门关、阳关，是通西域的门户。",
+            "'Dun means great, huang means flourishing' (Ying Shao). Split off in 111 BC according to the Annals of Emperor Wu, or from Jiuquan in "
+            "88 BC according to the treatise on geography; the map uses 111 BC. The Yumen and Yang passes to its west were the gateways to the "
+            "Western Regions."),
+    "武威郡": ("郡名一般释为彰显汉之武功军威。故匈奴休屠王地，霍去病所获休屠王祭天金人即出此地。〈武帝纪〉以为元狩二年（前121）与酒泉同置，"
+            "〈地理志〉作太初四年（前101），今人或以为迟至昭宣之际；图上从太初年间（前102）起画，此前画在张掖郡（更早是酒泉郡）内。",
+            "The name is usually explained as displaying Han's martial might. Formerly the land of the Xiutu king, whose golden statue for "
+            "worshipping Heaven Huo Qubing captured. The Annals of Emperor Wu have it set up together with Jiuquan in 121 BC, the treatise on "
+            "geography in 101 BC, and some modern scholars put it as late as the reigns of Emperors Zhao and Xuan; the map shows it from the Taichu "
+            "years (102 BC), and before that as part of Zhangye (earlier, Jiuquan)."),
+    "金城郡": ("前81 年分天水、陇西、张掖郡置。郡名一说初筑城时得金，一说取「金城汤池」坚固之意（《汉书·地理志》注引应劭、臣瓒）。",
+            "Formed in 81 BC from parts of Tianshui, Longxi and Zhangye. The name is explained either as gold having been found when the walls were "
+            "first built or as meaning 'a city of metal', impregnable (Ying Shao and Chen Zan, in the notes to the treatise on geography)."),
+}

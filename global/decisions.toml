@@ -33,7 +33,7 @@ merge = []
 "liangjin-nanbeichao:哈烈" = "哈烈"                                   # 自动取名为「赫拉特」
 "liangjin-nanbeichao:葱岭" = "葱岭守捉"                                 # 自动取名为「蒲犁」
 "minguo-xinzhongguo:阿尔泰" = "阿尔泰"                                  # 自动取名为「阿尔泰（新疆阿勒泰东部）」
-"hanmosanguo:i:341" = "玉门关（甘肃敦煌西北（小方盘城））"                         # 自动取名为「玉门关」
+"hanmosanguo:i:340" = "玉门关（甘肃敦煌西北（小方盘城））"                         # 自动取名为「玉门关」
 "songyuan:i:557" = "玉门关"                                          # 自动取名为「玉门关（甘肃瓜州东）」
 "minguo-xinzhongguo:巴东·苏" = "巴东"                                  # 自动取名为「巴东（印度尼西亚巴东）」
 "hanmosanguo:越巂郡" = "嶲州"                                          # 自动取名为「越巂郡」
@@ -50,7 +50,7 @@ merge = []
 "hanmosanguo:房陵" = "房州"                                           # 自动取名为「房陵」
 "minguo-xinzhongguo:i:864" = "函谷关"                                # 自动取名为「函谷关（河南灵宝王垛村）」
 "hanmosanguo:襄阳" = "襄州"                                           # 自动取名为「襄阳」
-"hanmosanguo:i:320" = "函谷关（河南新安东（汉函谷关遗址））"                        # 自动取名为「函谷关」
+"hanmosanguo:i:319" = "函谷关（河南新安东（汉函谷关遗址））"                        # 自动取名为「函谷关」
 "chunqiu:i:225" = "阙塞"                                            # 自动取名为「伊阙关」
 "hanmosanguo:野王" = "怀州"                                           # 自动取名为「野王」
 "hanmosanguo:安陆" = "安州"                                           # 自动取名为「安陆」
@@ -86,7 +86,7 @@ merge = []
 
 [[place]]
 id = "邺"
-refs = ["chunqiu:i:303", "zhanguo:i:148", "hanmosanguo:i:199", "hanmosanguo:魏郡", "qinhan:魏郡",
+refs = ["chunqiu:i:303", "zhanguo:i:148", "hanmosanguo:i:198", "hanmosanguo:魏郡", "qinhan:魏郡",
         "liangjin-nanbeichao:i:17", "liangjin-nanbeichao:i:19", "liangjin-nanbeichao:i:27",
         "liangjin-nanbeichao:i:60", "liangjin-nanbeichao:i:61"]
 mod = "河北临漳邺城遗址"
@@ -186,7 +186,7 @@ by = [[-9999, "榆中"], [581, "兰州"]]
 
 [[place]]
 id = "剑门关"
-refs = ["hanmosanguo:i:328"]
+refs = ["hanmosanguo:i:327"]
 mod = "四川剑阁北（剑门关）"
 sites = [{lon = 105.55, lat = 32.21}]
 
@@ -466,7 +466,7 @@ sites = [{lon = 114.36, lat = 33.00, note = "悬瓠城"}]
 
 [[place]]
 id = "虎牢关"
-anchor = "hanmosanguo:i:332"
+anchor = "hanmosanguo:i:331"
 add = ["chunqiu:i:223", "zhanguo:i:142"]
 mod = "河南荥阳汜水镇"
 sites = [{lon = 113.22, lat = 34.85, note = "虎牢、成皋"}]
@@ -608,7 +608,7 @@ sites = [{lon = 96.85, lat = 47.73}]
 
 [[place]]
 id = "井陉"
-anchor = "hanmosanguo:i:337"
+anchor = "hanmosanguo:i:336"
 mod = "河北石家庄鹿泉区西（土门关）"
 sites = [{lon = 114.25, lat = 38.05, note = "井陉口（土门关）"}]
 
@@ -624,7 +624,7 @@ sites = [{lon = 86.00, lat = 45.50}]
 
 [[place]]
 id = "卢龙塞"
-anchor = "hanmosanguo:i:340"
+anchor = "hanmosanguo:i:339"
 mod = "河北迁西喜峰口一带"
 sites = [{lon = 118.40, lat = 40.42}]
 
@@ -648,7 +648,7 @@ sites = [{lon = 108.26, lat = 15.72, note = "东阳（Đồng Dương）佛寺�
 
 [[place]]
 id = "孟津"
-anchor = "hanmosanguo:i:335"
+anchor = "hanmosanguo:i:334"
 mod = "河南洛阳孟津区会盟镇一带"
 sites = [{lon = 112.62, lat = 34.84}]
 
@@ -677,7 +677,7 @@ sites = [{lon = 108.62, lat = 23.12}]
 
 [[place]]
 id = "武关"
-anchor = "hanmosanguo:i:322"
+anchor = "hanmosanguo:i:321"
 mod = "陕西丹凤武关镇"
 sites = [{lon = 110.65, lat = 33.68}]
 
@@ -701,7 +701,7 @@ sites = [{lon = 119.90, lat = 32.48}]
 
 [[place]]
 id = "潼关"
-anchor = "hanmosanguo:i:321"
+anchor = "hanmosanguo:i:320"
 mod = "陕西潼关港口镇（潼关故城）"
 sites = [{lon = 110.33, lat = 34.60, note = "潼关故城；今潼关县城吴村是 1958 年后迁的"}]
 
@@ -730,7 +730,7 @@ sites = [{lon = 117.30, lat = 31.25}]
 
 [[place]]
 id = "萧关"
-anchor = "hanmosanguo:i:325"
+anchor = "hanmosanguo:i:324"
 mod = "宁夏固原东南"
 sites = [{lon = 106.40, lat = 35.90}]
 
@@ -771,7 +771,7 @@ sites = [{lon = 57.50, lat = 22.90}]
 
 [[place]]
 id = "陇关"
-anchor = "hanmosanguo:i:324"
+anchor = "hanmosanguo:i:323"
 mod = "陕西陇县西"
 sites = [{lon = 106.55, lat = 34.88}]
 
@@ -823,8 +823,9 @@ merge = [
 # 各卷画法不同的，定以哪一卷的几何为准（第 4、5 步换全局山川数据时用）；画错的另列进 corrections.toml。
 
 [physical]
-# 春秋、战国的「泰山·沂山」把泰山和沂山连成一条，与其余各卷单画的泰山不是同一个对象
-split = ["chunqiu:i:427", "zhanguo:i:432"]
+# 春秋、战国的「泰山·沂山」把泰山和沂山连成一条，与其余各卷单画的泰山不是同一个对象；
+# 春秋卷的菏水（吴王夫差所开，连济、泗）与战国卷的鸿沟是两条运河，原先因今名相同被并在一起
+split = ["chunqiu:i:427", "zhanguo:i:432", "chunqiu:i:473"]
 
 [physical.id]
 # 已发布的全局 ID 不改：秦汉卷并入后自动取名会变的，钉住原 ID

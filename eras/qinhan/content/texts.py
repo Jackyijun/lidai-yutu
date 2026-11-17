@@ -138,7 +138,7 @@ TEXT = {
                      "half across, beheading Long Ju, capturing Tian Guang and taking all Qi. That month the king of Han made Zhang Er king of Zhao. In the 10th month Han had "
                      "crushed the Chu Grand Marshal Cao Jiu on the Si River, retaken Chenggao and come face to face with Xiang Yu at Guangwu."),
     "q203b": dict(era="汉四年九月", era_en="Han year 4, 9th month",
-                  t="鸿沟议和", te="The Honggou Canal truce", sh="鸿沟", she="Honggou",
+                  t="鸿沟议和", te="The Honggou Canal truce", sh="鸿沟之约", she="Honggou truce",
                   d="二月汉王立韩信为齐王；七月立英布为淮南王。彭越往来梁地，绝楚粮道。项羽兵疲食尽，八月与汉约中分天下，割鸿沟以西为汉、以东为楚，"
                     "九月归还太公、吕后，解而东归；汉王用张良、陈平之计，背约追击。",
                   de="In the 2nd month the king of Han made Han Xin king of Qi, and in the 7th made Ying Bu king of Huainan. Peng Yue roamed the Liang lands "
@@ -155,7 +155,7 @@ TEXT = {
                      "night, he broke out to the south and cut his own throat at Wujiang. The Chu lands all submitted; only Lu held out until shown Xiang "
                      "Yu's head. Lu Wan and Liu Jia were sent against Gong Wei, king of Linjiang."),
     "q202b": dict(era="汉五年二月", era_en="Han year 5, 2nd month",
-                  t="刘邦称帝", te="Liu Bang becomes emperor", sh="称帝", she="Emperor",
+                  t="刘邦称帝", te="Liu Bang becomes emperor", sh="大汉开国", she="Han founded",
                   d="正月徙齐王韩信为楚王，都下邳；立彭越为梁王，都定陶。二月甲午汉王即皇帝位于汜水之阳，是为汉高祖。异姓七王：楚王韩信、梁王彭越、"
                     "淮南王英布、长沙王吴芮、韩王信、赵王张耳、燕王臧荼；关中、巴蜀与关东诸郡为汉直辖。五月罢兵归家，用娄敬之议定都关中（先居栎阳）。",
                   de="In the 1st month Han Xin was moved from Qi to be king of Chu at Xiapi, and Peng Yue was made king of Liang at Dingtao. On the jiawu day "

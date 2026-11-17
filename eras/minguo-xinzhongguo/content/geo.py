@@ -271,7 +271,7 @@ SKIP_LAKES_EXTRA = {'Barsakelmes Lake', 'Sarygamysh Köli', 'Lake Razazah', 'Ayd
 # 荒漠：名, 今名, Natural Earth 名, 按语
 DESERTS = [('塔克拉玛干沙漠', '塔克拉玛干沙漠', 'TAKLIMAKAN DESERT', ''),
  ('戈壁', '戈壁', 'GOBI DESERT', ''),
- ('毛乌素沙地', '毛乌素沙地', 'Mu Us Desert', ''),
+ ('毛乌素沙地', '毛乌素沙地', 'Mu Us Desert', '唐中后期、明后期两次大片沙化，明后期形成今日的沙地。'),
  ('卡拉库姆沙漠', '卡拉库姆沙漠', 'GARAGUM DESERT', ''),
  ('克孜勒库姆沙漠', '克孜勒库姆沙漠', 'QIZILQUM DESERT', ''),
  ('别特帕克达拉荒漠', '别特帕克达拉荒漠', 'BETPAQDALA DESERT', ''),

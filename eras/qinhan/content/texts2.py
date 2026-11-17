@@ -34,7 +34,7 @@ TEXT2 = {
                     "was divided into the six kingdoms of Qi, Jibei, Jinan, Zichuan, Jiaoxi and Jiaodong (besides Chengyang), and Huainan into Huainan, "
                     "Hengshan and Lujiang, all given to sons of the former kings. The chanyu Modu had crushed the Yuezhi in 176 BC, and after the chanyu Laoshang killed their king most of them moved west "
                     "to the Ili valley; Loulan, Wusun, Hujie and twenty-six neighbouring states all became subject to the Xiongnu."),
-    "h154": dict(era="景帝三年", era_en="Emperor Jing, year 3", t="七国之乱", te="Rebellion of the Seven States", sh="七国乱", she="Seven States",
+    "h154": dict(era="景帝三年", era_en="Emperor Jing, year 3", t="七国之乱", te="Rebellion of the Seven States", sh="七国之乱", she="Seven States revolt",
                  d="晁错上《削藩策》，削楚之东海、赵之常山、胶西六县。正月吴王刘濞联合楚、赵、胶西、胶东、菑川、济南起兵，以「诛晁错，清君侧」为名。"
                    "景帝斩晁错，遣周亚夫坚壁昌邑，以轻骑断吴楚粮道，梁王坚守睢阳；三月吴楚溃，刘濞走东越被杀，七国皆平。此后王国不得自治民补吏，"
                    "汉廷收其支郡，王国渐同于郡。",
@@ -52,38 +52,81 @@ TEXT2 = {
                     "Dong'ou; when Dong'ou appealed for help Yan Zhu brought the Kuaiji troops by sea and Minyue withdrew. The king of Dong'ou asked to move "
                     "his whole kingdom, and over forty thousand people were resettled between the Yangzi and the Huai, leaving the land empty."),
     "h127": dict(era="元朔二年", era_en="Yuanshuo 2", t="收河南·置朔方", te="The Ordos recovered · Shuofang", sh="收河南", she="Ordos",
-                 d="前133 年马邑之谋不成，汉匈和亲断绝。元朔二年卫青出云中，西至高阙、陇西，击走白羊、楼烦王，尽收河南地，置朔方、五原郡，募民十万口徙朔方，"
-                   "复缮蒙恬故塞。同年用主父偃之策行推恩令，诸侯王得分邑封子弟为列侯，王国由是愈小；齐国以齐王刘次昌自杀国除。前128 年濊君南闾降，置苍海郡。",
-                 de="After the failed ambush at Mayi in 133 BC the peace between Han and the Xiongnu broke down. In Yuanshuo 2 Wei Qing struck out from Yunzhong "
-                    "west to Gaoque and Longxi, drove off the Baiyang and Loufan kings and took back the whole of the Ordos; Shuofang and Wuyuan commanderies were "
-                    "set up, a hundred thousand settlers recruited for Shuofang and Meng Tian's old frontier rebuilt. The same year, on Zhufu Yan's advice, the "
+                 d="前133 年马邑之谋不成，汉匈和亲断绝。前129 年四将军各将万骑分道出塞，卫青初次领兵，出上谷直捣匈奴祭天的龙城，斩首虏七百，"
+                   "其余三路或败或无功；前128 年卫青再出雁门，斩首虏数千。元朔二年卫青、李息出云中，沿河西至高阙，迂回南下至陇西，击走白羊、楼烦王，"
+                   "捕首虏数千、牛羊百余万，全甲兵而还，尽收河南地，卫青封长平侯；置朔方、五原郡，募民十万口徙朔方，复缮蒙恬故塞。同年用主父偃之策行推恩令，诸侯王得分邑封子弟为列侯，王国由是愈小；齐国以齐王刘次昌自杀国除。前128 年濊君南闾降，置苍海郡。",
+                 de="After the failed ambush at Mayi in 133 BC the peace between Han and the Xiongnu broke down. In 129 BC four generals each led ten thousand "
+                    "horsemen out by separate roads; Wei Qing, in his first command, struck from Shanggu at Longcheng, where the Xiongnu sacrificed to Heaven, "
+                    "and took seven hundred heads and prisoners, while the other three columns were beaten or came back empty-handed. In 128 BC he went out "
+                    "again from Yanmen and took several thousand. In Yuanshuo 2 Wei Qing and Li Xi set out from Yunzhong, followed the river west to Gaoque and "
+                    "swung south to Longxi, driving off the Baiyang and Loufan kings; they took several thousand heads and prisoners and more than a million "
+                    "cattle and sheep, came home with the army intact and recovered the whole of the Ordos, and Wei Qing was made Marquis of Changping. "
+                    "Shuofang and Wuyuan commanderies were set up, a hundred thousand settlers were recruited for Shuofang, and Meng Tian's old frontier defences were repaired. The same year, on Zhufu Yan's advice, the "
                     "Edict of Grace allowed kings to divide their lands among younger sons as marquisates, so the kingdoms grew ever smaller; Qi was abolished "
                     "when its king, Liu Cichang, killed himself. In 128 BC the Ye chief Namnyeo had submitted and Canghai Commandery had been set up."),
+    "h123": dict(era="元朔六年", era_en="Yuanshuo 6", t="漠南之战", te="Battles south of the Gobi", sh="漠南之战", she="South Gobi",
+                 d="前124 年春，卫青将三万骑出朔方高阙，诸将合十余万分道并出，北行六七百里，夜围右贤王庭。右贤王以为汉兵不能至，饮醉，惊起，"
+                   "独与爱妾一人、壮骑数百溃围北去；汉得裨王十余人、众男女万五千余人、畜数千百万。武帝遣使者持大将军印，就军中拜卫青为大将军，"
+                   "诸将皆属焉，三子在襁褓中皆封侯。前123 年二月、四月，卫青两出定襄，斩首虏万余；年十八的剽姚校尉霍去病以轻勇骑八百弃大军数百里赴利，"
+                   "斩首虏二千余，斩单于大父行籍若侯产，生擒季父罗姑比，封冠军侯。前将军赵信兵败降匈奴，教单于「益北绝幕」以诱疲汉兵，单于庭由此北移。"
+                   "前126 年张骞自西域归汉。",
+                 de="In the spring of 124 BC Wei Qing led 30,000 horsemen out from Gaoque in Shuofang, while the other generals, bringing the total to more than 100,000 men, advanced "
+                    "by separate roads. Six or seven hundred li to the north he surrounded the camp of the Wise King of the Right by night. The king, sure that "
+                    "no Han army could reach him, was drunk; he woke and broke out northward with one favourite concubine and a few hundred picked riders, and "
+                    "Han took more than ten lesser kings, over 15,000 men and women and livestock running into the millions. The emperor sent an envoy with the "
+                    "seal of Grand General to appoint Wei Qing in the field, with all the generals under him, and made marquises of his three sons, still in "
+                    "swaddling clothes. In the 2nd and 4th months of 123 BC Wei Qing twice marched out of Dingxiang and took over ten thousand heads and "
+                    "prisoners. Huo Qubing, the eighteen-year-old Piaoyao Colonel, left the main army hundreds of li behind with eight hundred light horse, "
+                    "took over two thousand heads and prisoners, killed the chanyu's grand-uncle Chan, Marquis of Jiruo, captured his uncle Luogubi alive, and "
+                    "was made Marquis of Guanjun. The General of the Van, Zhao Xin, was defeated and went over to the Xiongnu; he told the chanyu to withdraw "
+                    "'farther north across the desert' to lure the Han armies on and wear them out, and the chanyu's court moved north. Zhang Qian had come back from the "
+                    "Western Regions in 126 BC."),
     "h121": dict(era="元狩二年", era_en="Yuanshou 2", t="河西之战", te="The Hexi campaign", sh="河西之战", she="Hexi",
-                 d="霍去病春出陇西，过焉支山千余里；夏出北地，逾居延，至祁连山，大破匈奴休屠、浑邪部。秋浑邪王杀休屠王，率四万余众降汉，汉分处五属国，"
-                   "河西走廊尽为汉有，自金城河西并南山至盐泽空无匈奴；后陆续置酒泉、张掖、敦煌、武威四郡。前122 年淮南王刘安、衡山王刘赐谋反，二国除。",
-                 de="Huo Qubing struck out from Longxi in spring, more than a thousand li past Mount Yanzhi, and in summer from Beidi past Juyan to the Qilian "
-                    "Mountains, crushing the Xiutu and Hunye divisions of the Xiongnu. In autumn the Hunye king killed the Xiutu king and surrendered with over "
-                    "40,000 people, who were settled in five dependent states. The whole Hexi Corridor became Han, and from Jincheng west along the Southern "
-                    "Mountains to the Salt Marsh there were no more Xiongnu; the four commanderies of Jiuquan, Zhangye, Dunhuang and Wuwei were set up over the "
-                    "following years. Liu An of Huainan and Liu Ci of Hengshan were found plotting rebellion in 122 BC and both kingdoms were abolished."),
+                 d="元狩二年春，骠骑将军霍去病将万骑出陇西，六日转战五王国，过焉支山千余里，鏖战皋兰山下，杀折兰王、卢胡王，执浑邪王子，"
+                   "收休屠王祭天金人；夏，与公孙敖分道出北地，公孙敖失道，霍去病独逾居延，经小月氏至祁连山，斩首虏三万余；李广、张骞同时出右北平牵制左贤王。"
+                   "秋，单于怒浑邪王屡败，欲诛之，浑邪王杀休屠王，率四万余众降汉，霍去病渡河受降，汉分处其众于五属国。匈奴歌曰：「亡我祁连山，"
+                   "使我六畜不蕃息；失我焉支山，使我妇女无颜色。」河西走廊尽为汉有，自金城河西并南山至盐泽空无匈奴；此后陆续在河西置郡（建郡年份诸说不一，"
+                   "见各郡说明）。前122 年淮南王刘安、衡山王刘赐谋反，二国除。",
+                 de="In the spring of Yuanshou 2 Huo Qubing, General of Swift Cavalry, led ten thousand horsemen out of Longxi, fought his way through five "
+                    "Xiongnu kingdoms in six days and pressed more than a thousand li past Mount Yanzhi; in a bloody close-quarters fight below Mount Gaolan he "
+                    "killed the Zhelan and Luhu kings, captured the Hunye king's son and took the golden statue the Xiutu king used to worship Heaven. In "
+                    "summer he and Gongsun Ao set out from Beidi by separate roads; Gongsun Ao lost his way, and Huo Qubing went on alone past Juyan and "
+                    "through the Lesser Yuezhi lands to the Qilian Mountains, taking more than 30,000 heads and prisoners, while Li Guang and Zhang Qian went "
+                    "out from Youbeiping to pin down the Wise King of the Left. In autumn the chanyu, furious at the Hunye king's repeated defeats, meant to "
+                    "have him killed; the Hunye king killed the Xiutu king and surrendered with over 40,000 people, Huo Qubing crossed the Yellow River to "
+                    "receive them, and they were settled in five dependent states. The Xiongnu sang: 'We have lost our Qilian Mountains, and our herds no "
+                    "longer thrive; we have lost our Mount Yanzhi, and our women have lost their colour.' The whole Hexi Corridor became Han, and from Jincheng "
+                    "west along the Southern Mountains to the Salt Marsh there were no more Xiongnu; commanderies were set up in Hexi over the following years "
+                    "(the dates are disputed; see each commandery). Liu An of Huainan and Liu Ci of Hengshan were found plotting rebellion in 122 BC and both kingdoms were abolished."),
     "h119": dict(era="元狩四年", era_en="Yuanshou 4", t="漠北之战", te="Battle beyond the Gobi", sh="漠北之战", she="Gobi",
-                 d="卫青、霍去病各将五万骑，步兵转运者数十万，绝漠北击。卫青出定襄，与伊稚斜单于遇，单于溃围北走，汉军至窴颜山赵信城；霍去病出代郡二千余里，"
-                   "破左贤王，封狼居胥山，禅于姑衍，临瀚海而还。「是后匈奴远遁，而幕南无王庭」。汉徙乌桓于五郡塞外，以护乌桓校尉监之。",
-                 de="Wei Qing and Huo Qubing each led 50,000 horsemen, with hundreds of thousands of foot soldiers carrying supplies, across the Gobi. Wei Qing, "
-                    "setting out from Dingxiang, met the chanyu Yizhixie, who broke through and fled north, and the Han army reached Zhao Xin's fort at Mount "
-                    "Tianyan; Huo Qubing marched more than two thousand li from Dai, crushed the Wise King of the Left, sacrificed to Heaven on Mount Langjuxu "
-                    "and to Earth on Mount Guyan, and turned back at the Hanhai. 'After this the Xiongnu fled far away, and there was no royal court south of "
-                    "the desert.' Han moved the Wuhuan beyond the frontier of five commanderies under a Protector of the Wuhuan."),
+                 d="元狩四年春，汉发骑十万，私马从者共十四万匹，步兵转运者数十万，令卫青、霍去病各将五万骑分道绝幕。卫青出定襄千余里，遇伊稚斜单于"
+                   "陈兵以待，以武刚车环为营，纵五千骑往击；日暮大风扬沙，两军不相见，汉益纵左右翼绕单于，单于与壮骑数百溃围西北遁，汉军追至窴颜山赵信城，"
+                   "取其积粟食军，烧余粟而还；前将军李广失道后期，自刭。霍去病出代二千余里，历涉离侯，济弓闾，破左贤王，斩首虏七万余，封狼居胥山，"
+                   "禅于姑衍，登临翰海而还。「是后匈奴远遁，而幕南无王庭」；汉亦马死十余万匹，此后多年不复大举出塞。武帝置大司马，卫青、霍去病并为大司马。"
+                   "汉徙乌桓于五郡塞外，以护乌桓校尉监之。",
+                 de="In the spring of Yuanshou 4 Han raised 100,000 cavalry, with 140,000 horses in all counting those the men brought privately, and hundreds "
+                    "of thousands of foot soldiers to carry supplies, and sent Wei Qing and Huo Qubing across the desert by separate roads with 50,000 horse "
+                    "each. More than a thousand li out of Dingxiang, Wei Qing found the chanyu Yizhixie drawn up waiting for him. He circled his armoured "
+                    "wagons into a laager and loosed five thousand horse at the enemy; at dusk a gale threw up the sand so that neither side could see the "
+                    "other, Han sent its wings round the chanyu, and the chanyu broke out to the north-west with a few hundred picked riders. The Han army "
+                    "pursued as far as Zhao Xin's fort at Mount Tianyan, fed itself on the grain stored there, burned the rest and turned back; the General of "
+                    "the Van, Li Guang, lost his way, arrived too late and cut his own throat. Huo Qubing marched more than two thousand li from Dai, passed "
+                    "Lihou, crossed the Gonglü, crushed the Wise King of the Left and took over 70,000 heads and prisoners; he sacrificed to Heaven on Mount "
+                    "Langjuxu and to Earth on Mount Guyan, climbed to look out over the Hanhai, and turned back. 'After this the Xiongnu fled far away, and "
+                    "there was no royal court south of the desert'; but Han had lost more than a hundred thousand horses and did not campaign on such a scale "
+                    "again for years. The emperor created the post of Grand Marshal and gave it to both Wei Qing and Huo Qubing. Han moved the Wuhuan beyond "
+                    "the frontier of five commanderies under a Protector of the Wuhuan."),
     "h111": dict(era="元鼎六年", era_en="Yuanding 6", t="平南越·开西南夷", te="Nanyue conquered · the southwest opened", sh="平南越", she="Nanyue",
                  d="南越相吕嘉杀王及汉使，元鼎五年路博德、杨仆五路进兵，六年冬破番禺，以其地置南海、苍梧、郁林、合浦、交趾、九真、日南、珠崖、儋耳九郡。"
-                   "回师平且兰，夜郎王入朝，以其地为牂柯郡，并置越嶲、沈黎、汶山、武都郡。同年李息击西羌，置护羌校尉；张骞二使西域已于前115 年归汉。",
+                   "回师平且兰，夜郎王入朝，以其地为牂柯郡，并置越嶲、沈黎、汶山、武都郡。同年李息击西羌，置护羌校尉；张骞二使西域已于前115 年归汉。前117 年霍去病卒，年二十四，"
+                   "武帝为起冢茂陵旁，象祁连山。",
                  de="Lü Jia, chancellor of Nanyue, killed his king and the Han envoys; in Yuanding 5 Lu Bode and Yang Pu advanced by five routes and in the winter "
                     "of year 6 took Panyu, making the land into the nine commanderies of Nanhai, Cangwu, Yulin, Hepu, Jiaozhi, Jiuzhen, Rinan, Zhuya and Dan'er. "
                     "On the way back the army destroyed Qielan; the king of Yelang came to court and his land became Zangke Commandery, while Yuexi, Shenli, "
                     "Wenshan and Wudu commanderies were also set up. That year Li Xi attacked the Western Qiang and a Protector of the Qiang was appointed; "
-                    "Zhang Qian had returned from his second mission to the west in 115 BC."),
-    "h108": dict(era="元封三年", era_en="Yuanfeng 3", t="平朝鲜·置四郡", te="Joseon conquered · four commanderies established", sh="四郡", she="4 commanderies",
+                    "Zhang Qian had returned from his second mission to the west in 115 BC. Huo Qubing had died in 117 BC, aged twenty-four; the emperor "
+                    "built him a tomb in the shape of the Qilian Mountains beside his own mausoleum at Maoling."),
+    "h108": dict(era="元封三年", era_en="Yuanfeng 3", t="平朝鲜·置四郡", te="Joseon conquered · four commanderies established", sh="置四郡", she="Four commanderies",
                  d="前110 年汉灭闽越、东越，徙其民于江淮；前109 年滇王降，置益州郡。卫氏朝鲜右渠王阻真番诸国朝汉，杀辽东都尉涉何；楼船将军杨仆浮渤海、"
                    "左将军荀彘出辽东夹击，元封三年夏王险城降，以其地置乐浪、临屯、真番、玄菟四郡。赵破奴虏楼兰王、破车师，汉自酒泉列亭障至玉门。"
                    "至此武帝开边大体告成，郡国并行之局见于全图。",
@@ -96,18 +139,20 @@ TEXT2 = {
     "h101": dict(era="太初四年", era_en="Taichu 4", t="伐大宛", te="War against Dayuan", sh="伐大宛", she="Dayuan",
                  d="前104 年改用太初历，以正月为岁首。贰师将军李广利求汗血马，首伐大宛不利；太初三年再发兵六万，围贵山城四十余日，大宛贵人杀王毋寡，"
                    "献马三千余匹，汉立亲汉的昧蔡为王。「西域震惧」，汉自敦煌西至盐泽往往起亭，轮台、渠犁屯田数百人，置使者校尉。光禄勋徐自为筑五原塞外列城"
-                   "（光禄塞），路博德筑居延泽上。",
+                   "（光禄塞），路博德筑居延泽上。前106 年大将军卫青卒，起冢茂陵旁，象庐山（匈奴境内的山）。",
                  de="In 104 BC the Taichu calendar was adopted, making the 1st month the start of the year. Li Guangli, the Ershi General, went for Dayuan's "
                     "'blood-sweating' horses; his first campaign failed, but in Taichu 3 he set out again with 60,000 men and besieged Guishan for over forty "
                     "days, until the Dayuan nobles killed their king Wugua, handed over more than three thousand horses, and Han installed the pro-Han Meicai as "
                     "king. 'The Western Regions shook with fear': Han built watch posts all the way west from Dunhuang to the Salt Marsh, settled several "
                     "hundred farming soldiers at Luntai and Quli under an envoy-commandant, while the Superintendent of the Palace Xu Ziwei built the chain of forts beyond Wuyuan (the Guanglu "
-                    "frontier) and Lu Bode fortified Lake Juyan."),
+                    "frontier) and Lu Bode fortified Lake Juyan. Wei Qing, the Grand General, had died in 106 BC; his tomb beside Maoling was built in the "
+                    "shape of Mount Lu, a mountain in the Xiongnu lands."),
     "h60": dict(era="神爵二年", era_en="Shenjue 2", t="置西域都护", te="Protectorate of the Western Regions founded", sh="西域都护", she="Protectorate",
-                d="前87 年武帝崩，此前下轮台诏罢远戍，昭帝时盐铁会议论政、霍光辅政。前71 年汉发五将军十五万骑与乌孙夹击匈奴，匈奴自此衰耗。神爵二年匈奴日逐王"
+                d="前100 年中郎将苏武出使匈奴被扣，单于徙之北海牧羊，留匈奴十九年，前81 年始归。前87 年武帝崩，此前下轮台诏罢远戍，昭帝时盐铁会议论政、霍光辅政。前71 年汉发五将军十五万骑与乌孙夹击匈奴，匈奴自此衰耗。神爵二年匈奴日逐王"
                   "先贤掸率众降汉，郑吉迎之，汉以郑吉并护车师以西北道，号西域都护，治乌垒城，统领西域三十六国，「汉之号令班西域矣」。前61 年赵充国屯田湟中，"
                   "平西羌，置金城属国。",
-                de="Emperor Wu died in 87 BC, having earlier issued the Luntai edict abandoning distant garrisons; under Emperor Zhao the Salt and Iron debate was "
+                de="In 100 BC Su Wu, a General of the Household on a mission to the Xiongnu, was detained there, and the chanyu banished him to herd sheep by the North Sea; he was held for nineteen years and "
+                   "came home only in 81 BC. Emperor Wu died in 87 BC, having earlier issued the Luntai edict abandoning distant garrisons; under Emperor Zhao the Salt and Iron debate was "
                    "held and Huo Guang ruled as regent. In 71 BC Han sent five generals with 150,000 horsemen to attack the Xiongnu together with Wusun, and the "
                    "Xiongnu declined from then on. In Shenjue 2 the Xiongnu Rizhu king Xianxianshan came over to Han with his people; Zheng Ji went to receive him, "
                    "and was given charge of the northern route west of Jushi as well, with the title Protector-General of the Western Regions, based at Wulei "

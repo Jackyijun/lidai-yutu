@@ -1913,6 +1913,7 @@
 {"id":"阳翟","kind":"place","zh":"栎","en":"Li"}
 {"id":"阳翟","kind":"place","zh":"阳翟","en":"Yangzhai"}
 {"id":"阳翟","kind":"place","zh":"禹县","en":"Yuxian"}
+{"id":"广武（河南荥阳广武镇）","kind":"place","zh":"广武（汉王城·霸王城）","en":"Guangwu (Han King's and Hegemon-King's forts)"}
 {"id":"马都拉","kind":"place","zh":"马都拉","en":"Madura"}
 {"id":"襄城","kind":"place","zh":"襄城","en":"Xiangcheng"}
 {"id":"醴陵","kind":"place","zh":"醴陵","en":"Liling"}
@@ -4338,6 +4339,7 @@
 {"id":"canal:白沟","kind":"physical","zh":"白沟","en":"Baigou Canal"}
 {"id":"canal:破冈渎","kind":"physical","zh":"破冈渎","en":"Pogang Canal"}
 {"id":"canal:苏伊士运河","kind":"physical","zh":"苏伊士运河","en":"Suez Canal"}
+{"id":"canal:蒗荡渠","kind":"physical","zh":"鸿沟（狼汤渠）","en":"Honggou Canal (Langtang Canal)"}
 {"id":"canal:蒗荡渠","kind":"physical","zh":"蒗荡渠（鸿沟）","en":"Langdang Canal (Honggou Canal)"}
 {"id":"canal:蔡河","kind":"physical","zh":"惠民河","en":"Huimin River"}
 {"id":"canal:通济渠","kind":"physical","zh":"通济渠（汴河）","en":"Tongji Canal (Bian River)"}
@@ -4362,13 +4364,13 @@
 {"id":"desert:塔克拉玛干沙漠","kind":"physical","zh":"大流沙","en":"Great Flowing Sands"}
 {"id":"desert:塔克拉玛干沙漠","kind":"physical","zh":"塔克拉玛干沙漠","en":"Taklimakan Desert"}
 {"id":"desert:塔尔沙漠","kind":"physical","zh":"塔尔沙漠","en":"Thar Desert"}
+{"id":"desert:大碛","kind":"physical","zh":"大漠","en":"Gobi","variants":{"Gobi":["宋元"],"Great Desert":["秦汉"]}}
 {"id":"desert:大碛","kind":"physical","zh":"大漠（瀚海）","en":"Great Desert (Hanhai)"}
 {"id":"desert:大碛","kind":"physical","zh":"大碛","en":"Great Gobi","variants":{"Great Desert":["唐宋"],"Great Gobi":["两晋","隋唐"]}}
-{"id":"desert:大碛","kind":"physical","zh":"大漠","en":"Gobi"}
 {"id":"desert:大碛","kind":"physical","zh":"戈壁","en":"Gobi"}
-{"id":"desert:毛乌素沙地","kind":"physical","zh":"毛乌素沙地","en":"Mu Us Desert","variants":{"Mu Us Desert":["秦汉","汉末"],"Mu Us Sandy Land":["民国"]}}
 {"id":"desert:毛乌素沙地","kind":"physical","zh":"普纳沙","en":"Puna Sands"}
 {"id":"desert:毛乌素沙地","kind":"physical","zh":"平夏沙地","en":"Pingxia Sands"}
+{"id":"desert:毛乌素沙地","kind":"physical","zh":"毛乌素沙地","en":"Mu Us Sandy Land"}
 {"id":"desert:鲁卜哈利沙漠","kind":"physical","zh":"鲁卜哈利沙漠","en":"Rub' al Khali"}
 {"id":"desert:鲁卜哈利沙漠","kind":"physical","zh":"空旷之地","en":"Empty Quarter"}
 {"id":"range:东黑海山脉","kind":"physical","zh":"本都山","en":"Pontic Mountains"}
@@ -4415,6 +4417,7 @@
 {"id":"range:太白山脉","kind":"physical","zh":"太白山脉","en":"Taebaek Mountains"}
 {"id":"range:太行山","kind":"physical","zh":"太行山","en":"Taihang Mountains"}
 {"id":"range:奥羽山脉","kind":"physical","zh":"奥羽山脉","en":"Ou Mountains"}
+{"id":"range:姑衍山","kind":"physical","zh":"姑衍山","en":"Mount Guyan"}
 {"id":"range:小白山脉","kind":"physical","zh":"小白山脉","en":"Sobaek Mountains"}
 {"id":"range:小高加索山","kind":"physical","zh":"小高加索山","en":"Lesser Caucasus"}
 {"id":"range:岷山","kind":"physical","zh":"岷山","en":"Min Mountains"}
@@ -4425,6 +4428,7 @@
 {"id":"range:巴尔干山","kind":"physical","zh":"巴尔干山","en":"Balkan Mountains"}
 {"id":"range:巴里桑山脉","kind":"physical","zh":"巴里桑山脉","en":"Barisan Mountains"}
 {"id":"range:庐山","kind":"physical","zh":"庐山","en":"Mount Lu"}
+{"id":"range:德勒格尔杭爱山","kind":"physical","zh":"燕然山","en":"Mount Yanran"}
 {"id":"range:恒山","kind":"physical","zh":"恒山","en":"Heng Mountains","variants":{"Heng Mountains":["秦汉","汉末","两晋","隋唐","唐宋","宋元","民国"],"Mount Heng":["春秋","战国"]}}
 {"id":"range:扎格罗斯山","kind":"physical","zh":"扎格罗斯山","en":"Zagros Mountains"}
 {"id":"range:托罗斯山","kind":"physical","zh":"托罗斯山","en":"Taurus Mountains"}
@@ -4432,8 +4436,8 @@
 {"id":"range:摩天岭","kind":"physical","zh":"摩天岭","en":"Motian Ridge"}
 {"id":"range:斯塔诺夫山脉","kind":"physical","zh":"外兴安岭","en":"Outer Hinggan Mountains"}
 {"id":"range:昆仑山","kind":"physical","zh":"昆仑山","en":"Kunlun Mountains"}
-{"id":"range:杭爱山","kind":"physical","zh":"燕然山","en":"Yanran Mountains"}
 {"id":"range:杭爱山","kind":"physical","zh":"杭爱山","en":"Khangai Mountains"}
+{"id":"range:杭爱山","kind":"physical","zh":"燕然山","en":"Yanran Mountains"}
 {"id":"range:桐柏山","kind":"physical","zh":"桐柏山","en":"Tongbai Mountains"}
 {"id":"range:横山","kind":"physical","zh":"横山","en":"Hengshan Range"}
 {"id":"range:横山","kind":"physical","zh":"横山（白于山）","en":"Hengshan Range (Baiyu Mountains)"}
@@ -4446,6 +4450,7 @@
 {"id":"range:泰沂山地","kind":"physical","zh":"泰山·沂山","en":"Mount Tai · Mount Yi"}
 {"id":"range:温迪亚山","kind":"physical","zh":"温迪亚山","en":"Vindhya Range"}
 {"id":"range:温迪亚山脉","kind":"physical","zh":"文荼山","en":"Vindhya Range"}
+{"id":"range:焉支山","kind":"physical","zh":"焉支山","en":"Mount Yanzhi"}
 {"id":"range:燕山","kind":"physical","zh":"燕山","en":"Yan Mountains"}
 {"id":"range:狼林山脉","kind":"physical","zh":"狼林山脉","en":"Rangrim Mountains"}
 {"id":"range:祁连山","kind":"physical","zh":"祁连山","en":"Qilian Mountains"}
@@ -4459,6 +4464,7 @@
 {"id":"range:突厥斯坦—阿赖山","kind":"physical","zh":"突厥斯坦—阿赖山","en":"Turkestan and Alay Ranges"}
 {"id":"range:罗多彼山","kind":"physical","zh":"罗多彼山","en":"Rhodopes"}
 {"id":"range:罗霄山","kind":"physical","zh":"罗霄山","en":"Luoxiao Mountains"}
+{"id":"range:肯特山","kind":"physical","zh":"狼居胥山","en":"Mount Langjuxu"}
 {"id":"range:肯特山","kind":"physical","zh":"不儿罕山","en":"Burkhan Khaldun"}
 {"id":"range:肯特山","kind":"physical","zh":"肯特山","en":"Khentii Mountains"}
 {"id":"range:苍山","kind":"physical","zh":"点苍山","en":"Diancang Mountains"}
@@ -4738,6 +4744,7 @@
 {"id":"river:澜沧江","kind":"physical","zh":"兰沧水","en":"Lancang River"}
 {"id":"river:澜沧江","kind":"physical","zh":"澜沧江","en":"Lancang River"}
 {"id":"river:澧水","kind":"physical","zh":"澧水","en":"Li River"}
+{"id":"river:瀚海","kind":"physical","zh":"瀚海","en":"Hanhai"}
 {"id":"river:玉龙喀什河","kind":"physical","zh":"于阗河","en":"Khotan River"}
 {"id":"river:玉龙喀什河","kind":"physical","zh":"白玉河","en":"White Jade River"}
 {"id":"river:玉龙喀什河","kind":"physical","zh":"玉龙喀什河","en":"Yurungkax River"}
@@ -4784,6 +4791,7 @@
 {"id":"river:芍陂","kind":"physical","zh":"芍陂","en":"Quebei"}
 {"id":"river:花剌子模海","kind":"physical","zh":"花剌子模海","en":"Sea of Khwarazm"}
 {"id":"river:荥泽","kind":"physical","zh":"荥泽","en":"Xing Marsh"}
+{"id":"river:菏水","kind":"physical","zh":"菏水","en":"He River"}
 {"id":"river:萨卡里亚河","kind":"physical","zh":"桑格里乌斯河","en":"Sangarius"}
 {"id":"river:萨卡里亚河","kind":"physical","zh":"萨卡里亚河","en":"Sakarya River"}
 {"id":"river:萨尔温江","kind":"physical","zh":"萨尔温江","en":"Salween River"}
@@ -4873,7 +4881,6 @@
 {"id":"river:鸭绿江","kind":"physical","zh":"马訾水","en":"Mazi River"}
 {"id":"river:鸭绿江","kind":"physical","zh":"鸭渌水","en":"Yalu River"}
 {"id":"river:鸭绿江","kind":"physical","zh":"鸭绿江","en":"Yalu River"}
-{"id":"river:鸿沟","kind":"physical","zh":"菏水","en":"He River"}
 {"id":"river:鸿沟","kind":"physical","zh":"鸿沟","en":"Honggou Canal"}
 {"id":"river:黄河","kind":"physical","zh":"河","en":"Yellow River","by_era":{"He":["春秋","战国"],"Yellow River":["两晋","隋唐","唐宋","宋元"]}}
 {"id":"river:黄河","kind":"physical","zh":"河（黄河）","en":"He (Yellow River)"}

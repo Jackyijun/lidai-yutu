@@ -104,7 +104,7 @@ def build(BASE, SEEDS):
         ts_map[it['i']] = add(d)
     # 荒漠
     for it in IT.TS:
-        if it['c'] != 'desert': continue
+        if it['c'] != 'desert' or it['old'] in IT.DESERT_DROP: continue
         d = dict(it); d.pop('i'); d['note'] = IT.DESERT_NOTE.get(it['old'], it.get('note', ''))
         ts_map[it['i']] = add(d)
     desert_item = {}

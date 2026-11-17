@@ -335,6 +335,9 @@ def junction(i, row, z, lz, p, lp):
     if nd.get("junction") == "hanmosanguo":
         hmu = {u["k"]: i for i, u in enumerate(HM[1]["units"])}
         han = geom_of(hm_rings(HM_184["z"][str(hmu["汉"])]))
+        # 汉的外廓取汉末卷的政权外廓（含内属的南匈奴）；没有就用汉这个单位本身
+        hp = HM_184.get("p", {}).get(str(hmu["汉"]))
+        han_outline = geom_of(hm_rings(hp)) if hp is not None else han
         zz = {}
         copied = {}
         for k, v in HM_184["z"].items():
@@ -343,6 +346,9 @@ def junction(i, row, z, lz, p, lp):
             if uk == "汉" or mine not in UK:
                 continue
             copied[UK[mine]] = geom_of(hm_rings(v))
+            # 照搬来的单位（如乌桓）本卷此时可能没有归属点：归属照汉末卷写
+            pk = HM[1]["units"][int(HM_184["pol"][k])]["k"]
+            row["pol"].setdefault(mine, ND.HM_UNIT.get(pk, pk))
         cut = shapely.union_all(list(copied.values()) + [han])
         hanu = {u: g for u, g in z.items() if row["pol"].get(UNITS[u]["k"]) == "汉"}
         zz.update(fill_gaps(hanu, han))
@@ -352,7 +358,7 @@ def junction(i, row, z, lz, p, lp):
                 g2 = g.difference(cut)
                 if not g2.is_empty:
                     zz[u] = g2
-        return zz, {UK["汉"]: han}
+        return zz, {UK["汉"]: han_outline}
     return z, p
 
 
@@ -399,6 +405,8 @@ def main():
         for u in dict.fromkeys(x for x in r["own"] if x):
             if u not in UK:
                 zh, en = UN.KINGDOM_NOTE.get(u) or jun_note(u)
+                if u in UN.JUN_NOTE:                   # 郡的得名、建郡年代
+                    zh, en = zh + UN.JUN_NOTE[u][0], (en + " " if en else "") + UN.JUN_NOTE[u][1]
                 add_unit(u, "zhen", note=zh, notee=en)
         for u, p in r["pol"].items():
             if u not in UK or p not in UK:
@@ -475,8 +483,21 @@ def main():
     hm_col = {u["k"]: HM[2][i] for i, u in enumerate(HM[1]["units"])}
     colors = UN.colors(UNITS, adj, ZG[1]["colors"], hm_col)
     first = next(s["y"] for s in snaps if s["y"] == label_t(*C.FIRST))
-    GEO = dict(land=base["land"], prov=base["prov"], border=base["border"], rivers=base["rivers"], lakes=base["lakes"],
-               canals=base["canals"], deserts=base["deserts"], snaps=snaps, pool=pool, regions=[],
+    bmap, regeo = layers.pop("base_map"), layers.pop("regeo")
+
+    def remap(layer):                              # 底图图层的 it 换成本卷条目序号，删去的条目连同几何一并去掉
+        out = []
+        for x in layer:
+            if "it" in x:
+                if bmap.get(x["it"]) is None:
+                    continue
+                x = dict(x, it=bmap[x["it"]])
+                if x["it"] in regeo:               # 改画的线（鸿沟与战国卷取同一走向）
+                    x["p"] = enc(regeo[x["it"]])
+            out.append(x)
+        return out
+    GEO = dict(land=base["land"], prov=base["prov"], border=base["border"], rivers=remap(base["rivers"]), lakes=remap(base["lakes"]),
+               canals=remap(base["canals"]), deserts=remap(base["deserts"]), snaps=snaps, pool=pool, regions=[],
                ext=[C.VIEW[0], C.VIEW[1], C.VIEW[2], C.VIEW[3]], first=first,
                zhoue={u["n"]: u["ne"] for u in UNITS if u["kind"] == "zhen"}, **layers)
     seeds_out = []

@@ -264,10 +264,11 @@ def build_items(base):
         add(dict(c="range", old=o, mod=m, note=n, geo=geo, anc=anc, major=mj))
 
     DES = {"大流沙": ("流沙", "塔克拉玛干沙漠"), "大碛": ("大漠（瀚海）", "戈壁"), "普纳沙": ("毛乌素沙地", "毛乌素沙地")}
+    DES_DROP = {"普纳沙"}      # 毛乌素沙地：大片流沙唐中后期（822 年首见记载）才出现，本卷不画
     desert_map = {}
     for i0 in sorted(TIT):
         it = TIT[i0]
-        if it["c"] != "desert": continue
+        if it["c"] != "desert" or it["old"] in DES_DROP: continue
         o, m = DES.get(it["old"], (it["old"], it["mod"]))
         desert_map[i0] = add(dict(c="desert", old=o, mod=m, note="", anc=it["anc"]))
 
@@ -300,7 +301,7 @@ def build_items(base):
         if any(abs(c.x - a) < 0.15 and abs(c.y - b) < 0.15 for a, b in I.DROP_LAKE_RINGS): continue
         if it is None and 108.6 < c.x < 109.1 and 40.8 < c.y < 41.1: continue   # 乌梁素海（近代形成）
         lakes.append(dict(l, it=river_map[it]) if it is not None else l)
-    deserts = [dict(d, it=desert_map[d["it"]]) for d in base["deserts"]]
+    deserts = [dict(d, it=desert_map[d["it"]]) for d in base["deserts"] if d["it"] in desert_map]
     return items, dict(rivers=rivers, lakes=lakes, canals=canals_geo, deserts=deserts)
 
 

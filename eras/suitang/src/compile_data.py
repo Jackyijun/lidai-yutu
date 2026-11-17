@@ -208,9 +208,10 @@ def build():
             d['note'] = note; d['y0'] = y0
             ts_map[it['i']] = add(d)
     # 荒漠
-    DESERT_NOTE = {'大流沙': '西域南北两道之间的大沙漠，玄奘东归时经其南缘，称“流沙”。', '大碛': '漠南与漠北之间的戈壁，隋唐人称大碛、沙碛；647 年唐于其间开参天可汗道。', '普纳沙': '夏州（统万城）一带，隋唐时已有沙化。'}
+    DESERT_NOTE = {'大流沙': '西域南北两道之间的大沙漠，玄奘东归时经其南缘，称“流沙”。', '大碛': '漠南与漠北之间的戈壁，隋唐人称大碛、沙碛；647 年唐于其间开参天可汗道。'}
+    DESERT_DROP = {'普纳沙'}   # 毛乌素沙地：大片流沙唐中后期（822 年首见记载）才出现，本卷（到 669 年）不画
     for it in IT.TS:
-        if it['c'] == 'desert':
+        if it['c'] == 'desert' and it['old'] not in DESERT_DROP:
             d = dict(it); d.pop('i'); d['note'] = DESERT_NOTE.get(it['old'], it.get('note', ''))
             ts_map[it['i']] = add(d)
     # 秦王征战路线
@@ -237,7 +238,7 @@ def build():
         GEO['lakes'].append({'r': enc_list(lk['r']), **({'it': it} if it is not None else {})})
     for c in BASE['canals']: GEO['canals'].append({'p': enc_list(c['p']), 'it': ts_map[c['ts_it']]})
     for d in BASE['deserts']:
-        if d.get('ts_it') is None: continue
+        if d.get('ts_it') is None or d['ts_it'] not in ts_map: continue
         GEO['deserts'].append({'r': enc_list(d['r']), 'it': ts_map[d['ts_it']]})
 
     # ---------------- DATA ----------------

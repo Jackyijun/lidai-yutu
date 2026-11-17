@@ -453,7 +453,7 @@
   const layer = id => { const g = el("g", { id: "L-" + id }); gGeo.append(g); return g; };
   const lLand = layer("land"), lDesert = layer("desert"), lTerr = layer("terr"), lHatch = layer("hatch"), lPolB = layer("polb"), lZhou = layer("zhou"), lRegion = layer("region"),
         lWater = layer("water"), lProv = layer("prov"), lBorder = layer("border"), lRange = layer("range"),
-        lRiver = layer("river"), lCanal = layer("canal"), lRoad = layer("road"), lRoute = layer("route"), lHit = layer("hit");
+        lRiver = layer("river"), lRoad = layer("road"), lCanal = layer("canal"), lRoute = layer("route"), lHit = layer("hit");
   // 斜线纹样（割据）
   {
     var hatchPat = el("pattern", { id: "hatch", width: 7, height: 7, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" });

@@ -57,6 +57,7 @@ def later(node, HSEAT):
     X("h154", -154, polmap=WY, lab=LWY, lab_en=LWYE)
     X("h138", -138, polmap=WY, lab=LWY, lab_en=LWYE)
     X("h127", -127, polmap=WY, lab=LWY, lab_en=LWYE)
+    X("h123", -123, polmap=WY, lab=LWY, lab_en=LWYE)       # 漠南之战（前124 夜袭右贤王、前123 两出定襄）
     X("h121", -121, polmap=WY, lab=LWY, lab_en=LWYE)
     X("h119", -119, polmap=WY, lab=LWY, lab_en=LWYE)
     X("h111", -111, polmap=WY, lab=LWY, lab_en=LWYE)

@@ -73,14 +73,58 @@ BATTLES = [
      "河南商丘南", "south of Shangqiu, Henan", "吴楚之兵猛攻梁国，梁王坚守睢阳，牵制叛军主力。", "Wu and Chu threw their armies at Liang, but its king held Suiyang and pinned down the rebels' main force."),
     ("下邑之战", "Battle of Xiayi", 116.25, 34.3, -154, 3, "汉 胜 吴楚", "Han defeated Wu and Chu", "周亚夫 vs 刘濞", "Zhou Yafu vs. Liu Bi",
      "安徽砀山东", "east of Dangshan, Anhui", "周亚夫坚壁昌邑，断吴楚粮道；吴楚饥疲北攻，大败于下邑。", "Zhou Yafu stayed behind his walls at Changyi and cut the Wu–Chu supply lines; hungry and exhausted, the rebels attacked north and were crushed at Xiayi."),
-    ("河南之战", "Battle for the Ordos", 107.6, 40.3, -127, 4, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 白羊王、楼烦王", "Wei Qing vs. the Baiyang and Loufan kings",
-     "内蒙古河套", "Hetao, Inner Mongolia", "卫青迂回高阙，切断河南匈奴与单于庭的联系，尽收河南地。", "Wei Qing swung round by Gaoque, cutting the Xiongnu of the Ordos off from the chanyu's court, and took the whole Ordos."),
-    ("漠南之战", "Battle south of the Gobi", 109.5, 42.5, -124, 6, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 右贤王", "Wei Qing vs. the Wise King of the Right",
-     "内蒙古阴山以北", "north of the Yin Mountains, Inner Mongolia", "卫青夜袭右贤王庭，俘裨王十余人、众万五千，拜大将军。", "Wei Qing fell on the camp of the Wise King of the Right by night, capturing over ten lesser kings and 15,000 people, and was made Grand General."),
+    ("龙城之战", "Battle of Longcheng", 113.8, 43.6, -129, 3, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 匈奴", "Wei Qing vs. the Xiongnu",
+     "地望有争议（一说在今蒙古国境内）", "location disputed (some place it in today's Mongolia)",
+     "卫青初次领兵：四将军各将万骑分出上谷、代、云中、雁门，卫青出上谷直捣匈奴大会祭天的龙城，斩首虏七百。公孙敖亡七千骑，李广兵败被俘、"
+     "夺马逃归，公孙贺无功。这是汉主动出击匈奴的第一次胜利，卫青封关内侯。",
+     "Wei Qing's first command. Four generals each led ten thousand horsemen out from Shanggu, Dai, Yunzhong and Yanmen; Wei Qing struck from "
+     "Shanggu at Longcheng, where the Xiongnu tribes gathered to sacrifice to Heaven, and took seven hundred heads and prisoners. Gongsun Ao lost "
+     "seven thousand men, Li Guang was beaten and captured and escaped on a stolen horse, and Gongsun He achieved nothing. It was Han's first "
+     "victory on the offensive against the Xiongnu, and Wei Qing was made a Marquis Within the Passes."),
+    ("河南之战", "Battle for the Ordos", 107.6, 40.3, -127, 3, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 白羊王、楼烦王", "Wei Qing vs. the Baiyang and Loufan kings",
+     "内蒙古河套", "Hetao, Inner Mongolia",
+     "卫青、李息出云中，沿河西进至高阙，迂回南下至陇西，切断河南匈奴与单于庭的联系，走白羊、楼烦王，捕首虏数千、牛羊百余万，全甲兵而还，"
+     "尽收河南地；卫青封长平侯。",
+     "Wei Qing and Li Xi set out from Yunzhong, followed the river west to Gaoque and swung south to Longxi, cutting the Xiongnu of the Ordos off "
+     "from the chanyu's court; they drove off the Baiyang and Loufan kings, took several thousand heads and prisoners and over a million cattle and "
+     "sheep, and came home with the army intact, having recovered the whole Ordos. Wei Qing was made Marquis of Changping."),
+    ("第一次漠南之战", "First battle south of the Gobi", 107.3, 43.7, -124, 2, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 右贤王", "Wei Qing vs. the Wise King of the Right",
+     "蒙古国南戈壁一带（大致）", "Ömnögovi, Mongolia (approx.)",
+     "卫青将三万骑出朔方高阙，北行六七百里，夜围右贤王庭。右贤王以为汉兵不能至，饮醉，惊起，与爱妾一人、壮骑数百溃围北去；汉得裨王十余人、"
+     "众男女万五千余人、畜数千百万。武帝遣使就军中拜卫青为大将军。",
+     "Wei Qing led 30,000 horsemen out from Gaoque in Shuofang and six or seven hundred li to the north surrounded the camp of the Wise King of the "
+     "Right by night. The king, sure that no Han army could reach him, was drunk; he woke and broke out northward with one favourite concubine and a "
+     "few hundred picked riders. Han took more than ten lesser kings, over 15,000 men and women and livestock running into the millions, and the "
+     "emperor sent an envoy to appoint Wei Qing Grand General in the field."),
+    ("第二次漠南之战", "Second battle south of the Gobi", 111.0, 42.6, -123, 4, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青、霍去病 vs 伊稚斜单于", "Wei Qing and Huo Qubing vs. the chanyu Yizhixie",
+     "内蒙古阴山以北（大致）", "north of the Yin Mountains, Inner Mongolia (approx.)",
+     "卫青二月、四月两出定襄，斩首虏万余。年十八的剽姚校尉霍去病以轻勇骑八百弃大军数百里赴利，斩首虏二千余，斩单于大父行籍若侯产，"
+     "生擒季父罗姑比，以功冠诸军封冠军侯。前将军赵信、右将军苏建以三千余骑独遇单于，全军覆没，赵信降匈奴，苏建独身脱还。",
+     "Wei Qing marched out of Dingxiang twice, in the 2nd and 4th months, taking over ten thousand heads and prisoners. Huo Qubing, an "
+     "eighteen-year-old serving as Piaoyao Colonel, left the main army hundreds of li behind with eight hundred light horse, took over two thousand heads and "
+     "prisoners, killed the chanyu's grand-uncle Chan, Marquis of Jiruo, and captured his uncle Luogubi alive; for outdoing the whole army he was made "
+     "Marquis of Guanjun. The General of the Van, Zhao Xin, and the General of the Right, Su Jian, ran into the chanyu's army on their own with more than three thousand "
+     "horse and lost them all: Zhao Xin went over to the Xiongnu and Su Jian escaped by himself."),
     ("河西之战", "Hexi campaign", 101.3, 38.1, -121, 6, "汉 胜 匈奴", "Han defeated the Xiongnu", "霍去病 vs 浑邪王、休屠王", "Huo Qubing vs. the Hunye and Xiutu kings",
-     "甘肃山丹焉支山一带", "Mount Yanzhi, Shandan, Gansu", "霍去病两出河西，斩首虏近四万；浑邪王杀休屠王来降，河西归汉。", "Huo Qubing twice struck into Hexi, killing or capturing nearly 40,000; the Hunye king killed the Xiutu king and surrendered, and Hexi passed to Han."),
+     "甘肃山丹焉支山一带", "Mount Yanzhi, Shandan, Gansu",
+     "春，霍去病将万骑出陇西，六日转战五王国，过焉支山千余里，鏖战皋兰山下，杀折兰王、卢胡王，执浑邪王子，收休屠王祭天金人，斩首虏八千余；"
+     "夏，与公孙敖分道出北地，公孙敖失道，霍去病独逾居延，经小月氏至祁连山，斩首虏三万余。秋，浑邪王杀休屠王来降，河西归汉。",
+     "In spring Huo Qubing led ten thousand horsemen out of Longxi, fought through five Xiongnu kingdoms in six days and pressed more than a "
+     "thousand li past Mount Yanzhi; in a bloody close-quarters fight below Mount Gaolan he killed the Zhelan and Luhu kings, captured the Hunye "
+     "king's son, took the Xiutu king's golden statue for worshipping Heaven and over 8,000 heads and prisoners. In summer he and Gongsun Ao set out "
+     "from Beidi by separate roads; Gongsun Ao lost his way, and Huo Qubing went on alone past Juyan and through the Lesser Yuezhi lands to the "
+     "Qilian Mountains, taking more than 30,000. In autumn the Hunye king killed the Xiutu king and surrendered, and Hexi passed to Han."),
     ("漠北之战", "Battle beyond the Gobi", 104.5, 46.5, -119, 6, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青、霍去病 vs 伊稚斜单于、左贤王", "Wei Qing and Huo Qubing vs. the chanyu Yizhixie and the Wise King of the Left",
-     "蒙古国中部", "central Mongolia", "卫青败单于至赵信城，霍去病封狼居胥山；匈奴远遁，漠南无王庭。", "Wei Qing beat the chanyu and pressed on to Zhao Xin's fort and Huo Qubing sacrificed on Mount Langjuxu; the Xiongnu fled far north, leaving no court south of the Gobi."),
+     "蒙古国中部", "central Mongolia",
+     "卫青出定襄千余里，遇单于陈兵以待，以武刚车环为营，纵五千骑往击；日暮大风扬沙，汉益纵左右翼绕单于，单于与壮骑数百溃围西北遁，"
+     "汉军追至窴颜山赵信城。霍去病出代二千余里，破左贤王，斩首虏七万余，封狼居胥山，禅于姑衍，登临翰海。李广失道后期，自刭。"
+     "「是后匈奴远遁，而幕南无王庭。」",
+     "More than a thousand li out of Dingxiang Wei Qing found the chanyu drawn up waiting; he circled his armoured wagons into a laager and loosed "
+     "five thousand horse at him. At dusk a gale threw up the sand, Han sent its wings round the chanyu, and he broke out to the north-west with a "
+     "few hundred picked riders; the Han army pursued him to Zhao Xin's fort at Mount Tianyan. Huo Qubing marched more than two thousand li from "
+     "Dai, crushed the Wise King of the Left, took over 70,000 heads and prisoners, sacrificed to Heaven on Mount Langjuxu and to Earth on Mount "
+     "Guyan and climbed to look out over the Hanhai. Li Guang lost his way, arrived too late and cut his own throat. 'After this the Xiongnu fled "
+     "far away, and there was no royal court south of the desert.'"),
     ("番禺之战", "Fall of Panyu", 113.27, 23.13, -111, 10, "汉 灭 南越", "Han destroyed Nanyue", "路博德、杨仆 vs 吕嘉", "Lu Bode and Yang Pu vs. Lü Jia",
      "广东广州", "Guangzhou, Guangdong", "楼船将军杨仆纵火烧城，伏波将军路博德招降，南越亡。", "Yang Pu, General of the Towered Ships, set the city on fire while Lu Bode, General Who Calms the Waves, took the surrender; Nanyue fell."),
     ("王险城之战", "Siege of Wangxian", 125.75, 39.02, -108, 6, "汉 灭 朝鲜", "Han destroyed Joseon", "杨仆、荀彘 vs 右渠", "Yang Pu and Xun Zhi vs. Ugeo",
@@ -168,6 +212,46 @@ EVENTS = [
     ("永和羌乱", "The Yonghe Qiang war", 106.5, 35.6, 140, None, "甘肃、宁夏", "Gansu and Ningxia", "且冻、傅难羌反，寇三辅，烧园陵，杀长吏，历五年乃平。", "The Qiedong and Funan Qiang rebelled, raiding the capital region, burning imperial tombs and killing officials; it took five years to suppress."),
     ("党锢之祸", "The Partisan Prohibitions", 112.6, 34.72, 166, None, "河南洛阳", "Luoyang, Henan", "宦官诬李膺等结党，禁锢终身；169 年再兴党狱，死者百余人。", "The eunuchs accused Li Ying and others of forming factions and barred them from office for life; a second purge in 169 killed over a hundred."),
     ("熹平石经", "The Xiping Stone Classics", 112.6, 34.72, 175, None, "河南洛阳（太学）", "Luoyang, Henan (Imperial Academy)", "蔡邕等正定六经文字，刻石立于太学门外。", "Cai Yong and others fixed the texts of the Six Classics, carved them in stone and set them up outside the Imperial Academy."),
+    ("浑邪王降", "Surrender of the Hunye king", 103.7, 37.0, -121, 8, "甘肃兰州以北黄河西岸一带（大致）", "west bank of the Yellow River north of Lanzhou, Gansu (approx.)",
+     "单于怒浑邪王屡败，欲诛之；浑邪王与休屠王谋降汉，休屠王中悔，浑邪王杀之，并其众。霍去病渡河受降，浑邪王部众多欲遁去，霍去病驰入营中"
+     "斩欲亡者八千人，降者四万余，号称十万，汉分处于五郡塞外为五属国。休屠王太子金日磾没入官养马，后为武帝顾命大臣。",
+     "The chanyu, furious at the Hunye king's repeated defeats, meant to have him killed; the Hunye king plotted with the Xiutu king to go over to "
+     "Han, and when the Xiutu king had second thoughts he killed him and took his people. Huo Qubing crossed the Yellow River to receive the "
+     "surrender; when many of the Hunye king's men tried to slip away, he rode into their camp and cut down eight thousand of them. More than 40,000 "
+     "surrendered (it was given out as 100,000) and were settled beyond the frontier of five commanderies as five dependent states. The Xiutu "
+     "king's heir, Jin Midi, was made a palace slave tending horses and later became one of the ministers Emperor Wu named on his deathbed."),
+    ("封狼居胥", "Sacrifice on Mount Langjuxu", 108.9, 48.6, -119, None, "蒙古国肯特山（一说）", "Khentii Mountains, Mongolia (one view)",
+     "霍去病破左贤王，封狼居胥山，禅于姑衍，登临翰海。封是筑土为坛祭天，禅是除地祭地，本是天子告成功的大礼；霍去病以此宣示汉兵所至。"
+     "「封狼居胥」从此成为武将功业的最高象征，辛弃疾「元嘉草草，封狼居胥，赢得仓皇北顾」即用此典。",
+     "Having crushed the Wise King of the Left, Huo Qubing performed the feng sacrifice to Heaven on Mount Langjuxu and the shan sacrifice to Earth "
+     "on Mount Guyan, then climbed to look out over the Hanhai. Feng meant raising an earth altar to Heaven and shan clearing the ground to "
+     "sacrifice to Earth, rites by which a Son of Heaven announced his achievements; Huo Qubing used them to proclaim how far Han arms had reached. "
+     "'Sacrificing on Langjuxu' became the supreme emblem of a general's success, and Xin Qiji's line on the hasty Yuanjia expedition that "
+     "dreamed of Langjuxu and ended in a panicked retreat draws on it."),
+    ("苏武牧羊", "Su Wu herds sheep", 106.6, 52.0, -100, None, "俄罗斯贝加尔湖一带", "Lake Baikal, Russia",
+     "前100 年中郎将苏武持节出使匈奴，因副使张胜参与谋劫单于母阏氏事被扣。单于幽之大窖中，苏武啮雪与旃毛并咽之，数日不死；乃徙北海上无人处，"
+     "使牧羝（公羊），曰「羝乳乃得归」。苏武杖汉节牧羊，卧起操持，节旄尽落。前81 年汉匈和亲，汉使以「天子射上林中得雁，足有系帛书」诘单于，"
+     "苏武始得归，留匈奴凡十九年。",
+     "In 100 BC Su Wu, a General of the Household, went to the Xiongnu as envoy bearing the emperor's tally, and was detained when his deputy Zhang Sheng "
+     "was implicated in a plot to kidnap the chanyu's mother. Shut in a cellar, Su Wu chewed snow and swallowed felt and survived for days; he was "
+     "then sent to an empty land by the North Sea to herd rams and told he could go home when they gave milk. He herded them leaning on the Han "
+     "tally, holding it waking and sleeping until all its tassels had fallen off. When Han and the Xiongnu made peace in 81 BC, a Han envoy "
+     "confronted the chanyu with the tale that the emperor had shot a wild goose in the Shanglin park with a silk letter tied to its foot, and Su "
+     "Wu was at last allowed home after nineteen years among the Xiongnu."),
+    ("勒石燕然", "Inscription on Mount Yanran", 104.554, 45.178, 89, None, "蒙古国中戈壁省德勒格尔杭爱", "Delgerkhangai, Dundgovi Province, Mongolia",
+     "窦宪大破北单于后登燕然山，去塞三千余里，令中护军班固作《封燕然山铭》，刻石勒功。摩崖于 1990 年代为当地人发现，2017 年中蒙联合考察队"
+     "释读确认，「勒石燕然」从此有了确切的地点。",
+     "After crushing the northern chanyu, Dou Xian climbed Mount Yanran, more than three thousand li beyond the frontier, and had his army "
+     "protector Ban Gu compose the Inscription for the Feng Sacrifice on Mount Yanran, which was carved into the rock. The cliff inscription was "
+     "found by local people in the 1990s and identified by a joint Chinese–Mongolian survey in 2017, giving 'carving the rock at Yanran' a precise "
+     "place on the map."),
+    ("鸿沟之约", "The Honggou agreement", 113.95, 34.8, -203, 8, "河南荥阳—开封一带鸿沟沿线", "along the Honggou between Xingyang and Kaifeng, Henan",
+     "楚汉相持数月，楚兵罢食绝，韩信又进击楚。项羽与汉约，「中分天下，割鸿沟以西者为汉，鸿沟而东者为楚」，归还太公、吕后，解而东归。"
+     "汉王欲西归，张良、陈平以为「此天亡楚之时也」，劝其背约追击。",
+     "After months of stalemate, with the Chu army exhausted, its food gone and Han Xin advancing on Chu, Xiang Yu agreed with Han to 'divide the "
+     "realm in two, the land west of the Honggou to Han and the land east of it to Chu', handed back the king of Han's father and wife and marched "
+     "away east. The king of Han meant to go back west, but Zhang Liang and Chen Ping told him that 'this is the moment Heaven has chosen to destroy "
+     "Chu' and urged him to break the agreement and pursue."),
 ]
 
 # (名, 英文名, 经, 纬, 起, 止, 说明, 英文说明)
@@ -192,6 +276,14 @@ PEOPLES = [
 
 # (名, 英文名, 经, 纬, 今地, 英文今地, 说明, 英文说明)
 PASSES = [
+    ("广武（汉王城·霸王城）", "Guangwu (Han King's and Hegemon-King's forts)", 113.47, 34.93, "河南荥阳广武镇", "Guangwu, Xingyang, Henan",
+     "荥阳北广武山上，楚汉相持之地。东西两城隔广武涧对峙，相传西为汉王城、东为霸王城，今人也把这道涧叫作鸿沟。前203 年项羽置太公于俎上欲烹之，"
+     "刘邦答以「幸分我一杯羹」；项羽请与汉王独身挑战，汉王数项羽十大罪，被伏弩射中胸口，扪足曰「虏中吾指」以安军心。",
+     "On Mount Guangwu north of Xingyang, where Chu and Han faced each other for months. Two forts stand on either side of the Guangwu ravine, by "
+     "tradition the Han King's fort to the west and the Hegemon-King's to the east, and the ravine itself is nowadays also called the Honggou. In "
+     "203 BC Xiang Yu set Liu Bang's father on a chopping block and threatened to boil him; Liu Bang replied that he hoped to be sent a cup of the "
+     "broth. When Xiang Yu challenged him to single combat, the king of Han listed Xiang Yu's ten great crimes and was hit in the chest by a hidden "
+     "crossbowman; clutching his foot, he cried 'The wretch has hit my toe!' to keep his army steady."),
     ("峣关", "Yao Pass", 109.42, 34.07, "陕西蓝田东南", "southeast of Lantian, Shaanxi", "武关通关中的要隘，刘邦入关曾袭破之。", "The key pass on the road from the Wu Pass into Guanzhong, taken by Liu Bang on his way in."),
     ("临晋关", "Linjin Pass", 110.25, 34.8, "陕西大荔东", "east of Dali, Shaanxi", "黄河蒲津渡口西岸，关中东北门户。", "The west bank of the Pujin ferry over the Yellow River, Guanzhong's north-eastern gate."),
     ("高阙", "Gaoque", 107.35, 41.15, "内蒙古阴山西段狼山", "Langshan, western Yin Mountains, Inner Mongolia", "阴山缺口，赵武灵王置塞，卫青由此出击。", "A gap in the Yin Mountains fortified by King Wuling of Zhao; Wei Qing struck out from here."),
@@ -275,6 +367,14 @@ ROUTES = [
       [("云中", "Yunzhong", 111.3, 40.3, -127, None), ("", "", 109.8, 40.8, -127, None), ("", "", 108.3, 41.0, -127, None),
        ("高阙", "Gaoque", 107.35, 41.15, -127, None), ("", "", 106.6, 40.0, -127, None), ("", "", 106.0, 38.5, -127, None),
        ("", "", 105.5, 37.0, -127, None), ("陇西", "Longxi", 104.5, 36.0, -127, None)]),
+    R("卫青夜袭右贤王", "Wei Qing's night raid on the Wise King of the Right",
+      "元朔五年春，卫青将三万骑出朔方高阙，诸将合十余万分道并出；北行六七百里，夜至右贤王庭围之，右贤王溃围北走，汉军俘裨王十余人、"
+      "众万五千余口而还，卫青就军中拜大将军。",
+      "In the spring of Yuanshuo 5 Wei Qing led 30,000 horsemen out from Gaoque in Shuofang, while the other generals, bringing the total to more than 100,000 men, "
+      "advanced by separate roads. Six or seven hundred li to the north he reached the camp of the Wise King of the Right by night and surrounded "
+      "it; the king broke out and fled north, and the Han army came back with more than ten lesser kings and over 15,000 captives. Wei Qing was "
+      "made Grand General in the field.",
+      [("高阙", "Gaoque", 107.35, 41.15, -124, 2), ("", "", 107.5, 42.4, -124, 2), ("右贤王庭", "Camp of the Wise King of the Right", 107.3, 43.7, -124, 2)]),
     R("霍去病河西·春", "Huo Qubing in Hexi: spring",
       "元狩二年春，霍去病将万骑出陇西，转战六日，过焉支山千余里，杀折兰王、卢胡王，获休屠王祭天金人。",
       "In the spring of 121 BC Huo Qubing led ten thousand horsemen out of Longxi, fought for six days and pushed over a thousand li past Mount Yanzhi, killing the Zhelan and Luhu kings and taking the golden statue the Xiutu king used to worship Heaven.",
@@ -286,15 +386,24 @@ ROUTES = [
       [("北地", "Beidi", 107.6, 36.3, -121, 6), ("", "", 105.8, 38.8, -121, 6), ("", "", 103.2, 40.6, -121, 6),
        ("居延泽", "Lake Juyan", 101.0, 41.9, -121, 6), ("", "", 99.9, 40.4, -121, 6), ("祁连山", "Qilian Mountains", 98.6, 39.3, -121, 6)]),
     R("卫青漠北", "Wei Qing beyond the Gobi",
-      "卫青出定襄，北行千余里，以武刚车环为营，纵骑击伊稚斜单于，单于溃围西北走，追至窴颜山赵信城，烧其积粟而还。",
-      "Wei Qing set out from Dingxiang and marched over a thousand li north. Circling his armoured wagons into a laager, he loosed his cavalry on the chanyu Yizhixie, who broke out to the north-west; Wei Qing pursued him to Zhao Xin's fort at Mount Tianyan, burned its grain stores and turned back.",
+      "卫青出定襄，北行千余里，遇伊稚斜单于陈兵以待，以武刚车环为营，纵五千骑往击；日暮大风扬沙，汉益纵左右翼绕单于，单于溃围西北走。"
+      "卫青追二百余里不及，至窴颜山赵信城，取其积粟食军，留一日，悉烧余粟而还。",
+      "Wei Qing set out from Dingxiang and marched over a thousand li north, where the chanyu Yizhixie was drawn up waiting. Circling his armoured "
+      "wagons into a laager, he loosed five thousand horse at him; at dusk a gale threw up the sand, Han sent its wings round the chanyu, and he "
+      "broke out to the north-west. Wei Qing pursued for over two hundred li without catching him, reached Zhao Xin's fort at Mount Tianyan, fed "
+      "his army on the grain stored there, stayed one day, burned the rest and turned back.",
       [("定襄", "Dingxiang", 111.65, 40.4, -119, None), ("", "", 110.8, 42.5, -119, None), ("", "", 108.5, 44.5, -119, None),
        ("", "", 105.5, 46.0, -119, None), ("窴颜山赵信城", "Zhao Xin's fort, Mount Tianyan", 103.2, 46.8, -119, None)]),
     R("霍去病漠北", "Huo Qubing beyond the Gobi",
-      "霍去病出代郡二千余里，破左贤王，封狼居胥山，禅于姑衍，临瀚海而还。",
-      "Huo Qubing marched over two thousand li from Dai, broke the Wise King of the Left, sacrificed to Heaven on Mount Langjuxu and to Earth at Guyan, and turned back at the Hanhai.",
-      [("代郡", "Dai", 114.57, 39.84, -119, None), ("", "", 114.2, 42.0, -119, None), ("", "", 112.5, 44.5, -119, None),
-       ("", "", 110.5, 46.5, -119, None), ("狼居胥山", "Mount Langjuxu", 108.8, 48.0, -119, None)]),
+      "霍去病出代二千余里，绝大幕，历涉离侯，济弓闾，破左贤王，斩首虏七万余，封狼居胥山，禅于姑衍，登临翰海而还。弓闾一般认为即弓卢水"
+      "（克鲁伦河）；翰海所指诸说不一，这里取贝加尔湖说。",
+      "Huo Qubing marched more than two thousand li from Dai, crossed the great desert, passed Lihou and crossed the Gonglü, broke the Wise King of "
+      "the Left and took over 70,000 heads and prisoners; he sacrificed to Heaven on Mount Langjuxu and to Earth on Mount Guyan, climbed to look out "
+      "over the Hanhai and turned back. The Gonglü is usually taken to be the Gonglu River (Kherlen); views differ on what the Hanhai was, and the "
+      "map follows the Lake Baikal identification.",
+      [("代郡", "Dai", 114.57, 39.84, -119, None), ("", "", 114.2, 42.0, -119, None), ("", "", 112.8, 44.6, -119, None),
+       ("弓闾", "Gonglü", 110.7, 47.3, -119, None), ("狼居胥山", "Mount Langjuxu", 108.9, 48.6, -119, None),
+       ("姑衍山", "Mount Guyan", 107.1, 48.15, -119, None), ("", "", 106.0, 49.9, -119, None), ("瀚海", "Hanhai", 104.9, 51.5, -119, None)]),
     R("张骞西使·去程", "Zhang Qian's journey west: outbound",
       "张骞出陇西，过河西为匈奴所得，留十余年；乘间西走，经大宛、康居至大月氏，又至大夏，留岁余。",
       "Zhang Qian went out through Longxi and was caught by the Xiongnu as he crossed Hexi; they held him for over ten years. He slipped away west through Dayuan and Kangju to the Great Yuezhi and on to Daxia, where he stayed a year and more.",
@@ -362,5 +471,83 @@ ROUTES = [
       "车骑将军窦宪与南单于等分三道出塞，自出鸡鹿塞，会诸军于涿邪山，大破北单于于稽落山，追至私渠比鞮海，登燕然山，令班固作铭，刻石记功而还。",
       "Dou Xian, General of Chariots and Cavalry, went out beyond the frontier in three columns with the southern chanyu; he set out himself from the Jilu frontier post, joined the other columns at Mount Zhuoye, crushed the northern chanyu at Mount Jiluo, pursued him to Lake Siqubiti, then climbed Mount Yanran, had Ban Gu compose an inscription and carved it in the rock before turning back.",
       [("鸡鹿塞", "Jilu frontier post", 106.6, 41.25, 89, None), ("涿邪山", "Mount Zhuoye", 104.5, 43.0, 89, None), ("稽落山", "Mount Jiluo", 102.0, 44.6, 89, None),
-       ("", "", 104.0, 45.5, 89, None), ("燕然山", "Mount Yanran", 105.6, 45.9, 89, None)]),
+       ("", "", 103.6, 45.35, 89, None), ("燕然山", "Mount Yanran", 104.554, 45.178, 89, None)]),
 ]
+
+
+# ---------------- 山川：新增与改动 ----------------
+# 新增：(类别, 细类, 古名, 英文古名, 线, 注记点, 今名, 英文今名, 说明, 英文说明)；线为 None 的只有注记（瀚海）
+PHYS_NEW = [
+    ("range", None, "狼居胥山", "Mount Langjuxu", [[107.6, 48.0], [108.4, 48.5], [109.2, 48.9], [110.0, 49.3]], [108.9, 48.75],   # 与宋元、民国卷的肯特山同一画法
+     "肯特山", "Khentii Mountains",
+     "前119 年霍去病破左贤王，于此「封」（筑坛祭天）。一般认为即今蒙古国肯特山，也有在今内蒙古境内诸说。",
+     "Where Huo Qubing performed the feng sacrifice to Heaven in 119 BC after crushing the Wise King of the Left. Usually identified with the "
+     "Khentii Mountains in Mongolia, though some place it in today's Inner Mongolia."),
+    ("range", None, "姑衍山", "Mount Guyan", [[106.75, 48.05], [107.1, 48.15], [107.45, 48.25]], [107.1, 48.15],
+     "地望不详，在狼居胥山附近", "location unknown, near Mount Langjuxu",
+     "霍去病封狼居胥后「禅于姑衍」（除地祭地）。今地不详，一般认为在狼居胥山附近，图上为示意。",
+     "After the sacrifice on Mount Langjuxu, Huo Qubing performed the shan sacrifice to Earth on Mount Guyan. Its modern location is unknown; it is "
+     "generally placed near Mount Langjuxu, and the map shows it only schematically."),
+    ("range", None, "燕然山", "Mount Yanran", [[104.25, 45.1], [104.55, 45.2], [104.95, 45.32]], [104.62, 45.26],
+     "德勒格尔杭爱山", "Delgerkhangai hills",
+     "汉代的燕然山。89 年窦宪大破北单于后登此山，令班固作铭、刻石记功；2017 年中蒙联合考察队在蒙古国中戈壁省德勒格尔杭爱的山崖上辨认出"
+     "《封燕然山铭》摩崖，燕然山的位置由此确定。",
+     "The Han dynasty's Mount Yanran. Dou Xian climbed it in 89 after crushing the northern chanyu and had Ban Gu's inscription carved here; in "
+     "2017 a joint Chinese–Mongolian survey identified the cliff inscription at Delgerkhangai in Dundgovi Province, Mongolia, fixing where Mount "
+     "Yanran was."),
+    ("range", None, "焉支山", "Mount Yanzhi", [[101.05, 38.32], [101.4, 38.45], [101.75, 38.56]], [101.4, 38.45],
+     "焉支山（大黄山）", "Mount Yanzhi (Dahuang Shan)",
+     "河西走廊中段，山丹、永昌之间。前121 年春霍去病过焉支山千余里。匈奴失此山，歌曰「失我焉支山，使我妇女无颜色」。",
+     "In the middle of the Hexi Corridor, between Shandan and Yongchang. In the spring of 121 BC Huo Qubing pressed more than a thousand li past it. "
+     "Losing it, the Xiongnu sang, 'We have lost our Mount Yanzhi, and our women have lost their colour.'"),
+    ("river", "lake", "瀚海", "Hanhai", None, [105.0, 51.85],
+     "贝加尔湖南部（一说）", "southern Lake Baikal (one view)",
+     "霍去病封狼居胥、禅姑衍之后「登临翰海」而还。翰海所指说法不一：一说即贝加尔湖，一说呼伦湖，一说杭爱山，也有人认为泛指漠北的大湖；"
+     "图上取贝加尔湖说。后世「饮马瀚海」即用此典；以「瀚海」专指戈壁沙漠是明代以后的用法。",
+     "After the sacrifices on Mount Langjuxu and Mount Guyan, Huo Qubing 'climbed to look out over the Hanhai' and turned back. What the Hanhai "
+     "was is disputed: Lake Baikal, Lake Hulun and the Khangai Mountains have all been proposed, and some take it as any great lake beyond the "
+     "Gobi; the map follows the Lake Baikal view. Later writers' 'watering horses at the Hanhai' alludes to this; using 'Hanhai' as the standard name for the Gobi "
+     "dates only from the Ming."),
+]
+
+PHYS_MAJOR = {"狼居胥山", "燕然山"}       # 缩小时也标出来
+
+# 底图（汉末卷）条目的改动：古名 → None（本卷不画）或要改的字段
+BASE_EDIT = {
+    "毛乌素沙地": None,          # 大片流沙唐中后期（822 年首见记载）才出现，本卷不画
+    "燕然山": dict(old="杭爱山", eold="Khangai Mountains",
+                note="蒙古高原西部的主脉。汉代的燕然山一般认为是其东南的余脉：2017 年在蒙古国中戈壁省德勒格尔杭爱找到了《封燕然山铭》摩崖（见「燕然山」）。",
+                enote="The main range of the western Mongolian plateau. The Han dynasty's Mount Yanran is generally taken to be an outlier to its "
+                      "south-east: in 2017 the cliff inscription for the feng sacrifice on Mount Yanran was found at Delgerkhangai in Dundgovi "
+                      "Province, Mongolia (see Mount Yanran)."),
+    "大漠（瀚海）": dict(old="大漠", eold="Great Desert",
+                   note="汉人称「幕」「大幕」，卫青、霍去病「绝幕」北击匈奴即穿越此漠。以「瀚海」专指戈壁是明代以后的事。",
+                   enote="The Han called it the mu or the Great Mu; when Wei Qing and Huo Qubing 'crossed the mu' to strike north at the Xiongnu, "
+                         "this was the desert they crossed. 'Hanhai' became the standard name for the Gobi only from the Ming."),
+    "北海": dict(note="匈奴北境的大湖。前100 年苏武出使匈奴被扣，单于徙之北海上无人处牧羊（见「苏武牧羊」）。湖的南部一说即霍去病「登临翰海」之地（见「瀚海」）。",
+               enote="The great lake on the northern edge of the Xiongnu lands. Su Wu, detained by the Xiongnu in 100 BC, was sent to herd sheep in "
+                     "an empty land by the North Sea (see Su Wu herds sheep). On one view, followed by this map, its southern part is the Hanhai over which Huo "
+                     "Qubing climbed to look out (see Hanhai)."),
+    "祁连山": dict(note="颜师古注：「匈奴谓天为祁连。」前121 年夏霍去病逾居延至祁连山，大破匈奴。匈奴失祁连、焉支二山，歌曰「亡我祁连山，使我六畜不蕃息」。",
+                enote="Yan Shigu notes that 'the Xiongnu call Heaven qilian'. In the summer of 121 BC Huo Qubing passed Juyan and reached the Qilian "
+                      "Mountains, crushing the Xiongnu. Having lost the Qilian and Yanzhi mountains, the Xiongnu sang, 'We have lost our Qilian "
+                      "Mountains, and our herds no longer thrive.'"),
+    "阴山": dict(note="漠南的屏障，匈奴依以为苑囿。前127 年卫青收河南地，复缮秦塞；侯应称匈奴失阴山之后，「过之未尝不哭也」。",
+               enote="The barrier south of the Gobi, which the Xiongnu used as their hunting park. After Wei Qing recovered the Ordos in 127 BC the "
+                     "Qin frontier was repaired; Hou Ying said that after losing the Yin Mountains the Xiongnu 'never passed them without weeping'."),
+    "蒗荡渠（鸿沟）": dict(old="鸿沟（狼汤渠）", eold="Honggou Canal (Langtang Canal)",
+                      geo=[[113.45, 34.9], [113.95, 34.8], [114.35, 34.8], [114.55, 34.45], [114.75, 34.05], [114.88, 33.73], [115.0, 33.45]],
+                      note="战国魏惠王时（前360 年起）开凿，自荥阳引河水东经大梁，南下至陈入颍，沟通河、淮；《汉书·地理志》称狼汤渠，北魏《水经注》"
+                           "作蒗荡渠。前203 年楚汉相持日久，项羽与汉约「中分天下，割鸿沟以西者为汉，鸿沟而东者为楚」，归还太公、吕后引兵东归；"
+                           "汉王用张良、陈平之计背约追击，次年垓下灭楚。后世象棋盘上的「楚河汉界」一般认为即由此而来。走向与战国卷相同。",
+                      enote="Dug from 360 BC under King Hui of Wei, it drew water from the Yellow River at Xingyang, ran east past Daliang and then "
+                            "south to Chen, where it joined the Ying, linking the Yellow River and the Huai. The treatise on geography in the Hanshu "
+                            "calls it the Langtang Canal, and the Northern Wei Commentary on the Water Classic the Langdang Canal. In 203 BC, after "
+                            "a long stand-off between Chu and Han, Xiang Yu agreed with Han to 'divide the realm in two, the land west of the Honggou to Han and the "
+                            "land east of it to Chu', handed back the king of Han's father and wife and marched his army east; on the advice of Zhang "
+                            "Liang and Chen Ping the king of Han broke the agreement and pursued him, destroying Chu at Gaixia the next year. The "
+                            "'Chu river, Han border' across the middle of the Chinese chessboard is generally thought to come from this. Drawn along "
+                            "the same course as in the Warring States volume."),
+    "弓卢水": dict(note="霍去病「济弓闾」，弓闾一般认为即弓卢水。",
+                enote="Huo Qubing 'crossed the Gonglü', which is usually taken to be the Gonglu River."),
+}

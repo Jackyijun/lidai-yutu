@@ -10,7 +10,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from nodes import t_of  # noqa: E402
-from items_data import CAPITALS, BATTLES, EVENTS, PEOPLES, PASSES, WALLS, ROUTES  # noqa: E402
+from items_data import CAPITALS, BATTLES, EVENTS, PEOPLES, PASSES, WALLS, ROUTES, PHYS_NEW, PHYS_MAJOR, BASE_EDIT  # noqa: E402
 
 
 def ylab(y, en=False):
@@ -41,8 +41,29 @@ def build(base, SEEDS, UK, zg_items):
         items.append(o)
         return o
 
+    bmap = {}                                      # 底图条目序号 → 本卷条目序号（删去的为 None），底图图层的 it 据此改
+    regeo = {}                                     # 本卷条目序号 → 改画的线（经纬点）
     for it in base["items"]:
+        ed = BASE_EDIT.get(it["old"], {})
+        if ed is None:
+            bmap[it["i"]] = None
+            continue
         o = {k: v for k, v in it.items() if k != "i"}
+        o["e"] = dict(o.get("e") or {})
+        for k in ("old", "note"):
+            if k in ed:
+                o[k] = ed[k]
+            if "e" + k in ed:
+                o["e"][k] = ed["e" + k]
+        bmap[it["i"]] = add(o)["i"]
+        if "geo" in ed:
+            regeo[bmap[it["i"]]] = ed["geo"]
+    for (c, sub, old, en_old, geo, anc, mod, en_mod, note, en_note) in PHYS_NEW:
+        o = dict(c=c, old=old, mod=mod, note=note, major=old in PHYS_MAJOR, anc=anc, e=dict(old=en_old, mod=en_mod, note=en_note))
+        if sub:
+            o["sub"] = sub
+        if geo:
+            o["geo"] = geo
         add(o)
     # 都城
     near = lambda lon, lat: next((i for i, s in enumerate(SEEDS) if abs(s["lon"] - lon) < .15 and abs(s["lat"] - lat) < .15), None)
@@ -90,4 +111,4 @@ def build(base, SEEDS, UK, zg_items):
         it = add(dict(c="route", old=R["name"], mod="", note=R["note"], y=pts[0][2], y1=pts[-1][2], yt=ytext(ys[0], ys[-1]),
                       anc=pts[len(pts) // 2][:2], e=dict(old=R["en"], note=R["note_en"], yt=ytext(ys[0], ys[-1], en=True))))
         routes.append(dict(it=it["i"], pts=pts, pe=pe))
-    return items, {"routes": routes}
+    return items, {"routes": routes, "base_map": bmap, "regeo": regeo}

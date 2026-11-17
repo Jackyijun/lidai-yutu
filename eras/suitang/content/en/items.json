@@ -1998,11 +1998,6 @@
   "mod": "Gobi Desert",
   "note": "The desert between the southern and northern steppes, called the Great Gobi (Daqi) or the Sandy Gobi (Shaqi) by Sui and Tang people; in 647 Tang opened the Road to the Heavenly Qaghan across it."
  },
- "desert:普纳沙": {
-  "old": "Puna Sands",
-  "mod": "Mu Us Desert",
-  "note": "Around Xiazhou (Tongwan City); desertification was already under way here in Sui and Tang times."
- },
  "route:秦王李世民征战路线": {
   "old": "Campaign route of Li Shimin, Prince of Qin",
   "mod": "617–649",
