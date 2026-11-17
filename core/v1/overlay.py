@@ -6,7 +6,8 @@
   · 条目点位（都城、关隘等）的坐标，按 global/places.jsonl 的城址；州府（唐宋系）与春秋、战国的城邑条目是疆域归属点，留到第 5—7 步；
   · 英文译名统一（global/corrections.md「英文」一节）；
   · global/corrections.toml 里标了 step = 3 的内容改正；
-  · 时间轴短标题（eras/<短名>/short.tsv）。
+  · 时间轴短标题（eras/<短名>/short.tsv）；
+  · 全局配色（global/palette.toml，按政权全局 ID；规范第三节）。
 """
 import csv
 import json
@@ -190,6 +191,32 @@ def apply_shorts(slug, b):
     return n
 
 
+def palette():
+    """global/palette.toml 的 [color]：全局 ID → [浅色, 深色]"""
+    import tomllib
+    return tomllib.loads((ROOT / "global" / "palette.toml").read_text(encoding="utf8")).get("color", {})
+
+
+def apply_palette(b, pal):
+    """按全局 ID 改政权配色；改过色的政权，节点里逐年渐变的 col（两晋卷的高句丽、林邑）随之去掉"""
+    n, hit = 0, set()
+    for i, p in enumerate(b["polities"]):
+        c = pal.get(p.get("gid"))
+        if c and list(p["color"]) != list(c):
+            p["color"] = list(c)
+            n += 1
+        if c:
+            hit.add(str(i) if b["model"] == "layered" else p["key"])
+    for nd in b["nodes"]:
+        col = nd.get("col")
+        if col:
+            for k in [k for k in col if k in hit]:
+                del col[k]
+            if not col:
+                del nd["col"]
+    return n
+
+
 def apply(slug, b, fixes, content):
     """fixes：registry.py 写出的 build/v1/fixes.json；content：corrections.toml 的 [[fix]]"""
     done = []
@@ -208,4 +235,7 @@ def apply(slug, b, fixes, content):
     s = apply_shorts(slug, b)
     if s:
         done.append(f"时间轴短标题 {s} 个")
+    c = apply_palette(b, palette())
+    if c:
+        done.append(f"全局配色 {c} 个政权")
     return done

@@ -434,6 +434,11 @@ def build_polities(B, dec):
         pre.append((cs, name))
     pre.sort(key=lambda x: (-sum(c["nn"] for c in x[0]), order[x[0][0]["era"]], x[1]))
     seen, out, colors_review, en_review = collections.Counter(), [], [], []
+    pal = load_toml(GLOBAL / "palette.toml")
+    wude, pcol = pal.get("wude", {}), pal.get("color", {})
+    for g, de in wude.get("gid", {}).items():
+        if pcol.get(g, [None])[0] != wude.get(de):
+            sys.exit(f"global/palette.toml：{g} 定为{de}，[color] 里却是 {pcol.get(g)}")
     for cs, name in pre:
         pid = name
         if names[name] > 1:
@@ -449,7 +454,7 @@ def build_polities(B, dec):
         ens = collections.Counter(c["en"] for c in cs if c["en"])
         rec = {"id": pid, "n": name, "kind": cs[-1]["kind"],     # 部族升为政权的（契丹→辽），以最后一卷为准
                "eras": [c["era"] for c in cs], "refs": [c["ref"] for c in cs],
-               "colors": {c["era"]: c["color"] for c in cs}}
+               "colors": {c["era"]: pcol.get(pid, c["color"]) for c in cs}}
         if ens:
             rec["en"] = ens.most_common(1)[0][0]
         if len({c["n"] for c in cs}) > 1:
@@ -457,11 +462,14 @@ def build_polities(B, dec):
         if len({c["kind"] for c in cs}) > 1:
             rec["kinds"] = {c["era"]: c["kind"] for c in cs}
         out.append(rec)
-        if len({tuple(c["color"]) for c in cs}) > 1:
+        if len({tuple(v) for v in rec["colors"].values()}) > 1:
             colors_review.append((pid, cs))
         if len(ens) > 1:
             en_review.append((pid, cs))
     dup_check(out, "政权", "polities")
+    stale = sorted(set(pcol) - {r["id"] for r in out})
+    if stale:
+        sys.exit(f"global/palette.toml 里这些全局 ID 已不存在：{'、'.join(stale)}")
     out.sort(key=lambda r: (ERAS.index(r["eras"][0]), r["id"]))
     return out, flagged, colors_review, en_review, cands
 
@@ -703,7 +711,7 @@ def main():
     rows2 = [(f"{a['n']}（{ERA_ZH[a['era']]}）↔ {b['n']}（{ERA_ZH[b['era']]}）", a["en"], f"{gap:.0f}") for a, b, gap in flagged]
     rows3 = [(pid, "；".join(f"{ERA_ZH[c['era']]} {c['en']}" for c in cs)) for pid, cs in en_review]
     (REVIEW / "polities.md").write_text(
-        "# 政权审定清单\n\n## 同一政权、各卷配色不同\n\n衔接年份共存的政权已经同色；下面这些在不相邻的卷里颜色不同。统一时间轴上同一政权最好同色，第 3 步统一前端时再定以哪一卷为准。\n\n"
+        "# 政权审定清单\n\n## 同一政权、各卷配色不同\n\n同一政权跨卷同色，由 `global/palette.toml` 统一（规范第三节）；下面列的是套用全局配色后仍然不同的，应为空。\n\n"
         + md_table(["全局 ID", "各卷名称与浅色"], rows)
         + "\n\n## 同名、同英文名，但时间不连续，未合并\n\n按规则当作不同政权（前后两段相隔超过 60 年，又不是隔着空档首尾相接）。若其实是同一政权，写进 `[polities] merge`。\n\n"
         + md_table(["两处", "英文名", "相隔年数"], rows2)

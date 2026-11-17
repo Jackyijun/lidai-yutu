@@ -38,10 +38,11 @@ lidai-yutu/
 ├── core/web/              unified front end: builds each volume's new page from v1 (timeline, deep links); see core/web/README.md (in Chinese)
 ├── core/geo/              unified projection, world base map, terrain relief: all parameters in config.toml; see core/geo/README.md (in Chinese)
 ├── core/engine/           unified territory engine (for now it runs alongside for comparison): all parameters in config.toml; see core/engine/README.md (in Chinese)
-├── global/                global tables: places, polities, physical features, glossary; decisions.toml manual decisions; review/ lists to review
+├── global/                global tables: places, polities, physical features, glossary; palette.toml the shared palette; decisions.toml manual decisions; review/ lists to review
 ├── geodata/               one copy of the base data (ne/, etopo20/, prov/, derived/); each volume's geodata/ holds symlinks to it;
 │                          relief/<slug>/ each volume's relief images, world/<slug>.json the world land outside each volume (made by core/geo, committed)
 ├── tools/thumbs.py        hub thumbnails
+├── tools/colorcheck.py    palette survey: colour difference between neighbouring polities in every volume
 └── docs/                  published by GitHub Pages: index.html is the hub, <slug>/index.html each volume
 ```
 
@@ -62,6 +63,8 @@ python run.py --list             # list the volume slugs
 ```
 
 GitHub Pages publishes from the `/docs` folder of the `main` branch.
+
+All nine volumes now take their colours from [`global/palette.toml`](global/palette.toml), keyed by each polity's global ID, so a polity has the same colour in every volume. The main dynasties take the colour of their phase in the Five Phases cycle, in a light, low-saturation form: Qin (Water) black, the two Han dynasties, Sui and Song (Fire) red, with Shu Han, heir to Han, a shade lighter; Xin, Cao Wei and Tang (Earth) yellow; Jin (Metal) white. The other polities were recoloured where needed so that no two neighbouring territories in any snapshot clash. The Republican volume keeps its colours, except for the Netherlands, the Tibetan government and Afghanistan, which could not be told apart from British territory. After changing colours, rerun `python3 tools/colorcheck.py` (after `python run.py --web` or `--v1`) and regenerate the hub thumbnails.
 
 Migration step 6 compiled the [Qin and Han volume](eras/qinhan/README.en.md) (212 BC–AD 184, 54 snapshots) in this repository, filling the gap between the Warring States and Late Han. The Late Han and the Three Kingdoms volume accordingly dropped its prologue snapshot for AD 94 and now opens with the Yellow Turban Uprising in 184, and the later volumes were renumbered. Qin and Han is the first volume whose territory comes straight from the unified territory engine: `eras/qinhan/src/` turns the source material into ownership data and entries, the engine (`core/engine/`) computes the commanderies' territory, and the junction snapshots are copied from the end of the Warring States and the start of Late Han; the build takes two passes, which `python run.py` does automatically. Adding a volume leaves the other volumes' global IDs unchanged: any that automatic naming would change are pinned in `global/decisions.toml`.
 

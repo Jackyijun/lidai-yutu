@@ -38,10 +38,11 @@ lidai-yutu/
 ├── core/web/              统一前端：由 v1 生成各卷新页面（时间轴、深链接），说明见 core/web/README.md
 ├── core/geo/              统一投影、全球底图、地形晕渲：参数集中在 config.toml，说明见 core/geo/README.md
 ├── core/engine/           统一疆域引擎（目前只陪跑比对）：参数集中在 config.toml，说明见 core/engine/README.md
-├── global/                全局表：地点、政权、山川、译名；decisions.toml 人工决定；review/ 审定清单
+├── global/                全局表：地点、政权、山川、译名；palette.toml 全局配色；decisions.toml 人工决定；review/ 审定清单
 ├── geodata/               底图只存一份（ne/、etopo20/、prov/、derived/）；各卷 geodata/ 里是指向这里的符号链接；
 │                          relief/<短名>/ 各卷的地形晕渲图、world/<短名>.json 各卷范围以外的全球陆地（由 core/geo 生成，入库）
 ├── tools/thumbs.py        首页缩略图
+├── tools/colorcheck.py    配色普查：各卷相邻政权的色差
 └── docs/                  GitHub Pages 发布目录：index.html 是首页，<短名>/index.html 是各卷
 ```
 
@@ -62,6 +63,8 @@ python run.py --list             # 列出各卷短名
 ```
 
 GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
+
+九卷配色统一由 [`global/palette.toml`](global/palette.toml) 按政权的全局 ID 定，同一政权在各卷同色。主朝取五德之色（轻量版，低饱和）：秦水德尚黑，两汉、隋、宋火德尚赤（蜀汉承汉，浅一档），新、曹魏、唐土德尚黄，晋金德尚白；其余政权按九卷各节点里的邻接避让，相邻的两块不撞色。民国卷保持原色，只改了与英属地分不开的荷兰、西藏地方政府、阿富汗。改了配色用 `python3 tools/colorcheck.py` 复查（要先跑 `python run.py --web` 或 `--v1`），再重出首页缩略图。
 
 迁移第 6 步在单仓里新编了[秦汉卷](eras/qinhan/README.md)（前212 — 184，五十四个节点），补上战国与汉末三国之间的空档；汉末三国卷随之删去 94 年的序幕节点，从 184 年黄巾起事开始，卷次顺延。秦汉卷是第一部直接用统一疆域引擎出疆域的卷：`eras/qinhan/src/` 由史料生成归属与条目，引擎（`core/engine/`）推算郡国疆域，衔接节点照搬战国末、汉末首；构建要走两遍，`python run.py` 会自动做。加卷时各卷的全局 ID 不变，自动取名会变的在 `global/decisions.toml` 里钉住。
 
