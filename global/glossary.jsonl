@@ -915,6 +915,7 @@
 {"id":"河州","kind":"place","zh":"枹罕","en":"Fuhan"}
 {"id":"河州","kind":"place","zh":"临夏","en":"Linxia"}
 {"id":"河州","kind":"place","zh":"河州","en":"Hezhou"}
+{"id":"赵信城","kind":"place","zh":"赵信城","en":"Zhao Xin's fort"}
 {"id":"叠州","kind":"place","zh":"迭部","en":"Tewo"}
 {"id":"叠州","kind":"place","zh":"叠州","en":"Diezhou"}
 {"id":"永登","kind":"place","zh":"永登","en":"Yongdeng"}
@@ -3260,6 +3261,7 @@
 {"id":"北地郡","kind":"polity","zh":"北地郡","en":"Beidi Commandery"}
 {"id":"北海国","kind":"polity","zh":"北海国","en":"Kingdom of Beihai"}
 {"id":"北海郡","kind":"polity","zh":"北海郡","en":"Beihai Commandery"}
+{"id":"北道诸国（龟兹·焉耆）","kind":"polity","zh":"北道诸国（龟兹·焉耆）","en":"Northern-route states (Kucha and Karasahr)"}
 {"id":"千乘郡","kind":"polity","zh":"千乘郡","en":"Qiancheng Commandery"}
 {"id":"单于本部","kind":"polity","zh":"单于本部","en":"Chanyu's own domain"}
 {"id":"南匈奴","kind":"polity","zh":"南匈奴","en":"Southern Xiongnu"}
@@ -3385,6 +3387,7 @@
 {"id":"犍为郡","kind":"polity","zh":"犍为郡","en":"Qianwei Commandery"}
 {"id":"玄菟郡","kind":"polity","zh":"玄菟郡","en":"Xuantu Commandery"}
 {"id":"珠崖郡","kind":"polity","zh":"珠崖郡","en":"Zhuya Commandery"}
+{"id":"班超所据诸国","kind":"polity","zh":"班超所据诸国","en":"States held by Ban Chao"}
 {"id":"琅邪国","kind":"polity","zh":"琅邪国","en":"Kingdom of Langya"}
 {"id":"琅邪郡","kind":"polity","zh":"琅邪郡","en":"Langya Commandery"}
 {"id":"瓯雒","kind":"polity","zh":"瓯雒","en":"Âu Lạc"}

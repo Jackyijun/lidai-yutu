@@ -81,6 +81,12 @@ BATTLES = [
      "Shanggu at Longcheng, where the Xiongnu tribes gathered to sacrifice to Heaven, and took seven hundred heads and prisoners. Gongsun Ao lost "
      "seven thousand men, Li Guang was beaten and captured and escaped on a stolen horse, and Gongsun He achieved nothing. It was Han's first "
      "victory on the offensive against the Xiongnu, and Wei Qing was made a Marquis Within the Passes."),
+    ("雁门之战", "Battle beyond Yanmen", 112.7, 41.3, -128, 9, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 匈奴", "Wei Qing vs. the Xiongnu",
+     "雁门塞外（大致，今内蒙古中南部）", "beyond the Yanmen frontier, south-central Inner Mongolia (approx.)",
+     "元朔元年秋，匈奴二万骑入辽西、渔阳、雁门；卫青以车骑将军将三万骑出雁门，李息出代，斩首虏数千。卫青七次出击匈奴，这是第二次。",
+     "In the autumn of Yuanshuo 1, after 20,000 Xiongnu horsemen had raided Liaoxi, Yuyang and Yanmen, Wei Qing, as General of Chariots and "
+     "Cavalry, led 30,000 horsemen out of Yanmen while Li Xi set out from Dai; they took several thousand heads and prisoners. It was the second "
+     "of Wei Qing's seven campaigns against the Xiongnu."),
     ("河南之战", "Battle for the Ordos", 107.6, 40.3, -127, 3, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 白羊王、楼烦王", "Wei Qing vs. the Baiyang and Loufan kings",
      "内蒙古河套", "Hetao, Inner Mongolia",
      "卫青、李息出云中，沿河西进至高阙，迂回南下至陇西，切断河南匈奴与单于庭的联系，走白羊、楼烦王，捕首虏数千、牛羊百余万，全甲兵而还，"
@@ -118,13 +124,15 @@ BATTLES = [
      "蒙古国中部", "central Mongolia",
      "卫青出定襄千余里，遇单于陈兵以待，以武刚车环为营，纵五千骑往击；日暮大风扬沙，汉益纵左右翼绕单于，单于与壮骑数百溃围西北遁，"
      "汉军追至窴颜山赵信城。霍去病出代二千余里，破左贤王，斩首虏七万余，封狼居胥山，禅于姑衍，登临翰海。李广失道后期，自刭。"
-     "「是后匈奴远遁，而幕南无王庭。」",
+     "「是后匈奴远遁，而幕南无王庭。」此役之后二人不复出塞：卫青前后七出击匈奴，斩捕首虏五万余级；霍去病六出，其四出以将军，斩捕首虏十一万余级（《史记》）。",
      "More than a thousand li out of Dingxiang Wei Qing found the chanyu drawn up waiting; he circled his armoured wagons into a laager and loosed "
      "five thousand horse at him. At dusk a gale threw up the sand, Han sent its wings round the chanyu, and he broke out to the north-west with a "
      "few hundred picked riders; the Han army pursued him to Zhao Xin's fort at Mount Tianyan. Huo Qubing marched more than two thousand li from "
      "Dai, crushed the Wise King of the Left, took over 70,000 heads and prisoners, sacrificed to Heaven on Mount Langjuxu and to Earth on Mount "
      "Guyan and climbed to look out over the Hanhai. Li Guang lost his way, arrived too late and cut his own throat. 'After this the Xiongnu fled "
-     "far away, and there was no royal court south of the desert.'"),
+     "far away, and there was no royal court south of the desert.' Neither man took the field again: in all Wei Qing campaigned against the "
+     "Xiongnu seven times, taking more than 50,000 heads and prisoners, and Huo Qubing six times, four of them as a general, taking more than "
+     "110,000 (Shiji)."),
     ("番禺之战", "Fall of Panyu", 113.27, 23.13, -111, 10, "汉 灭 南越", "Han destroyed Nanyue", "路博德、杨仆 vs 吕嘉", "Lu Bode and Yang Pu vs. Lü Jia",
      "广东广州", "Guangzhou, Guangdong", "楼船将军杨仆纵火烧城，伏波将军路博德招降，南越亡。", "Yang Pu, General of the Towered Ships, set the city on fire while Lu Bode, General Who Calms the Waves, took the surrender; Nanyue fell."),
     ("王险城之战", "Siege of Wangxian", 125.75, 39.02, -108, 6, "汉 灭 朝鲜", "Han destroyed Joseon", "杨仆、荀彘 vs 右渠", "Yang Pu and Xun Zhi vs. Ugeo",
@@ -155,8 +163,22 @@ BATTLES = [
      "越南河内一带", "Hanoi area, Vietnam", "马援缘海而进，随山刊道千余里，破征侧于浪泊，次年斩之。", "Ma Yuan advanced along the coast, cutting a road through the hills for over a thousand li, beat Trưng Trắc at Langbo and beheaded her the next year."),
     ("天山之战", "Battle of the Tianshan", 93.0, 43.6, 73, 2, "汉 胜 北匈奴", "Han defeated the Northern Xiongnu", "窦固、耿忠 vs 呼衍王", "Dou Gu and Geng Zhong vs. the Huyan king",
      "新疆巴里坤湖一带", "Lake Barkol, Xinjiang", "窦固出酒泉，破呼衍王于天山，追至蒲类海，取伊吾卢地。", "Dou Gu marched from Jiuquan, beat the Huyan king in the Tianshan, pursued him to Lake Pulei and took the Yiwulu lands."),
+    ("蒲类海之战", "Battle of Lake Pulei", 92.8, 43.65, 74, 11, "汉 胜 北匈奴", "Han defeated the Northern Xiongnu", "窦固、耿秉、刘张 vs 北匈奴", "Dou Gu, Geng Bing and Liu Zhang vs. the Northern Xiongnu",
+     "新疆巴里坤湖", "Lake Barkol, Xinjiang",
+     "窦固、耿秉、刘张出敦煌昆仑塞，破北匈奴于蒲类海上，遂入车师；耿秉先击车师后王，后王安得出门迎降，前王亦降。于是复置西域都护、戊己校尉。",
+     "Dou Gu, Geng Bing and Liu Zhang set out from the Kunlun frontier post of Dunhuang, beat the Northern Xiongnu on the shore of Lake Pulei and "
+     "entered Jushi; Geng Bing struck first at the Rear King, An'de, who came out of his gate to surrender, and the Front King submitted too. The "
+     "Protector-General and the Wu-Ji colonels were then restored."),
     ("疏勒之守", "Defence of the Shule fort", 89.7, 43.8, 75, 6, "汉 守 疏勒城", "Han held the Shule fort", "耿恭", "Geng Gong",
-     "新疆奇台（石城子遗址）", "Shichengzi site, Qitai, Xinjiang", "北匈奴与车师围戊己校尉耿恭于车师后部疏勒城，拜井得泉，坚守经年，生还者十三人。", "The Northern Xiongnu and Jushi besieged the Wu-Ji colonel Geng Gong at the fort of Shule in Further Jushi; he found water by bowing to the well and held out for a year, only thirteen men surviving."),
+     "新疆奇台（石城子遗址）", "Shichengzi site, Qitai, Xinjiang", "北匈奴与车师围戊己校尉耿恭于车师后部疏勒城，拜井得泉，坚守经年，生还者十三人。", "The Northern Xiongnu and Jushi besieged the Wu-Ji colonel Geng Gong at the fort of Shule in the Rear Kingdom of Jushi; he found water by bowing to the well and held out for a year, only thirteen men surviving."),
+    ("交河城之战", "Battle of Jiaohe", 89.07, 42.95, 76, 1, "汉 胜 车师", "Han defeated Jushi", "段彭、王蒙、皇甫援 vs 车师", "Duan Peng, Wang Meng and Huangfu Yuan vs. Jushi",
+     "新疆吐鲁番交河故城", "Jiaohe ruins, Turpan, Xinjiang",
+     "建初元年正月，酒泉太守段彭等发张掖、酒泉、敦煌三郡及鄯善兵七千余人，会柳中击车师，攻交河城，斩首三千八百级，北匈奴惊走，车师复降。己校尉关宠已没；"
+     "范羌分兵二千越天山迎耿恭。章帝随即罢都护与戊己校尉。",
+     "In the 1st month of Jianchu 1 Duan Peng, Administrator of Jiuquan, and others gathered over 7,000 men from Zhangye, Jiuquan, Dunhuang and "
+     "Shanshan at Liuzhong, attacked Jushi and stormed Jiaohe, taking 3,800 heads; the Northern Xiongnu fled and Jushi submitted again. The "
+     "Ji colonel Guan Chong was already dead; Fan Qiang took 2,000 men over the Tianshan to bring out Geng Gong. Emperor Zhang then abolished the "
+     "Protector-General and the Wu-Ji colonels."),
     ("稽落山之战", "Battle of Mount Jiluo", 102.0, 44.6, 89, 6, "汉·南匈奴 胜 北匈奴", "Han and the Southern Xiongnu defeated the Northern Xiongnu", "窦宪、耿秉 vs 北单于", "Dou Xian and Geng Bing vs. the northern chanyu",
      "蒙古国南戈壁一带（地望有争议）", "Ömnögovi, Mongolia (location disputed)", "汉军与南匈奴出塞，大破北单于，降者二十余万人。", "Han troops and the Southern Xiongnu crossed the frontier and crushed the northern chanyu; more than 200,000 surrendered."),
     ("金微山之战", "Battle of the Jinwei Mountains", 89.5, 47.8, 91, 2, "汉 胜 北匈奴", "Han defeated the Northern Xiongnu", "耿夔、任尚 vs 北单于", "Geng Kui and Ren Shang vs. the northern chanyu",
@@ -291,6 +313,19 @@ PASSES = [
     ("居延塞", "Juyan frontier", 101.0, 41.9, "内蒙古额济纳旗", "Ejin Banner, Inner Mongolia", "前102 年路博德筑，出土汉简数万枚。", "Built by Lu Bode in 102 BC; tens of thousands of Han wooden slips have been found here."),
     ("乌垒城", "Wulei", 84.6, 41.75, "新疆轮台东", "east of Luntai, Xinjiang", "西域都护治所。", "Seat of the Protector-General of the Western Regions."),
     ("柳中", "Liuzhong", 89.7, 42.9, "新疆鄯善鲁克沁", "Lukqun, Shanshan County, Xinjiang", "东汉戊己校尉、西域长史屯田之所。", "Farming garrison of the Eastern Han Wu-Ji colonel and the Chief Clerk of the Western Regions."),
+    ("赵信城", "Zhao Xin's fort", 103.2, 46.8, "蒙古国杭爱山南麓（一说；点位示意）", "southern foot of the Khangai Mountains, Mongolia (one view; approximate)",
+     "前123 年赵信兵败复降匈奴，单于以为自次王，以姊妻之，筑城居之，故名。前119 年卫青追单于至窴颜山赵信城，取其积粟食军，留一日，悉烧余粟而还。"
+     "史籍只说在窴颜山下，今地无定说：一说在杭爱山南麓（窴颜山为杭爱山南支），图上取此说；一说在色楞格河支流哈努伊河中游，附近有匈奴古城遗址；"
+     "蒙古学者曾把南戈壁省巴彦布拉格城址比作赵信城，主持发掘的俄罗斯学者科瓦列夫则认为是汉受降城，城中合葬的士卒经古 DNA 与同位素分析为华北人。"
+     "谭其骧《中国历史地图集》不标。",
+     "After his defeat in 123 BC Zhao Xin went back over to the Xiongnu; the chanyu made him the Zici king, gave him his elder sister in marriage "
+     "and built a fort for him to live in, hence its name. In 119 BC Wei Qing pursued the chanyu to Zhao Xin's fort at Mount Tianyan, fed his army "
+     "on the grain stored there, stayed one day and burned the rest. The sources say only that it lay below Mount Tianyan, and its modern site is "
+     "unsettled: one view puts it at the southern foot of the Khangai Mountains (Mount Tianyan being a southern spur of the Khangai), which the "
+     "map follows; another on the middle Khanuy River, a tributary of the Selenge, near the ruins of a Xiongnu walled town. Mongolian scholars "
+     "once identified the walled site of Bayanbulag in Ömnögovi as Zhao Xin's fort, but its excavator, the Russian archaeologist Alexey Kovalev, takes it for the Han fort of "
+     "Shouxiang, and ancient DNA and isotope analysis show that the soldiers buried together there came from northern China. Tan Qixiang's Historical "
+     "Atlas of China does not mark it."),
     ("令居塞", "Lingju frontier", 103.3, 36.6, "甘肃永登", "Yongdeng, Gansu", "前121 年后筑，河西塞的起点。", "Built after 121 BC, the starting point of the Hexi frontier."),
 ]
 
@@ -361,6 +396,12 @@ ROUTES = [
        ("阏与", "Yuyu", 113.57, 37.33, -205, 9), ("井陉", "Jingxing", 114.05, 38.03, -204, 10), ("平原", "Pingyuan", 116.43, 37.17, -203, 10),
        ("历下", "Lixia", 117.0, 36.65, -203, 10), ("临淄", "Linzi", 118.35, 36.85, -203, 10), ("潍水", "Wei River", 119.35, 36.5, -203, 11)]),
     # ---------------- 西汉 ----------------
+    R("卫青龙城", "Wei Qing to Longcheng",
+      "元光六年，匈奴入上谷杀略吏民，汉遣四将军各将万骑出击：卫青以车骑将军出上谷，至龙城，斩首虏七百；公孙敖出代、李广出雁门皆败，公孙贺出云中无功。",
+      "In Yuanguang 6, after the Xiongnu had raided Shanggu, killing and carrying off officials and people, Han sent four generals with ten thousand horsemen each against them. Wei Qing, as "
+      "General of Chariots and Cavalry, went out from Shanggu to Longcheng and took seven hundred heads and prisoners; Gongsun Ao from Dai and Li "
+      "Guang from Yanmen were both defeated, and Gongsun He from Yunzhong achieved nothing.",
+      [("上谷", "Shanggu", 115.5, 40.4, -129, 3), ("", "", 115.2, 41.7, -129, 3), ("龙城", "Longcheng", 113.8, 43.6, -129, 3)]),
     R("卫青取河南", "Wei Qing takes the Ordos",
       "卫青出云中，沿河西行至高阙，南下至陇西，包抄河南匈奴，走白羊、楼烦王，遂取河南地，置朔方、五原郡。",
       "Wei Qing set out from Yunzhong, followed the river west to Gaoque and swept south to Longxi, enveloping the Xiongnu of the Ordos; he drove off the Baiyang and Loufan kings, took the Ordos and set up Shuofang and Wuyuan commanderies.",
@@ -375,30 +416,49 @@ ROUTES = [
       "it; the king broke out and fled north, and the Han army came back with more than ten lesser kings and over 15,000 captives. Wei Qing was "
       "made Grand General in the field.",
       [("高阙", "Gaoque", 107.35, 41.15, -124, 2), ("", "", 107.5, 42.4, -124, 2), ("右贤王庭", "Camp of the Wise King of the Right", 107.3, 43.7, -124, 2)]),
+    R("卫青两出定襄", "Wei Qing's two sorties from Dingxiang",
+      "元朔六年二月，大将军卫青率中、左、前、右、后、强弩六将军十余万骑出定襄，斩首三千余级，还师休士马于定襄、云中、雁门；四月复出定襄，"
+      "斩首虏万余。前将军赵信、右将军苏建并军三千余骑独遇单于，战一日余，汉兵且尽，赵信降匈奴，苏建独身脱还。",
+      "In the 2nd month of Yuanshuo 6 the Grand General Wei Qing led six generals and more than 100,000 horsemen out of Dingxiang, took over "
+      "3,000 heads and fell back to rest his men and horses in Dingxiang, Yunzhong and Yanmen; in the 4th month he went out from Dingxiang again "
+      "and took over 10,000 heads and prisoners. The General of the Van, Zhao Xin, and the General of the Right, Su Jian, whose combined force of more than 3,000 horsemen ran into the "
+      "chanyu on their own, fought for more than a day until their men were nearly all gone; Zhao Xin went over to the Xiongnu and Su Jian escaped alone.",
+      [("定襄", "Dingxiang", 111.65, 40.4, -123, 2), ("", "", 111.4, 41.6, -123, 4), ("漠南", "South of the Gobi", 111.0, 42.6, -123, 4)]),
+    R("霍去病八百骑", "Huo Qubing's eight hundred",
+      "同年四月，年十八的剽姚校尉霍去病与轻勇骑八百，弃大军数百里赴利，斩首虏二千零二十八级，斩单于大父行籍若侯产，生捕季父罗姑比，功冠全军，封冠军侯。",
+      "In the 4th month of the same year Huo Qubing, the eighteen-year-old Piaoyao Colonel, rode with eight hundred light horse several hundred "
+      "li ahead of the main army, took 2,028 heads and prisoners, killed Chan, Marquis of Jiruo, a member of the chanyu's grandfather's "
+      "generation, and captured the chanyu's uncle Luogubi; his feat outshone the whole army, and he was made Marquis of Guanjun.",
+      [("定襄", "Dingxiang", 111.65, 40.4, -123, 4), ("", "", 111.3, 41.8, -123, 4), ("", "", 110.6, 42.9, -123, 4),
+       ("深入数百里", "Several hundred li ahead", 110.0, 43.6, -123, 4)]),
     R("霍去病河西·春", "Huo Qubing in Hexi: spring",
       "元狩二年春，霍去病将万骑出陇西，转战六日，过焉支山千余里，杀折兰王、卢胡王，获休屠王祭天金人。",
       "In the spring of 121 BC Huo Qubing led ten thousand horsemen out of Longxi, fought for six days and pushed over a thousand li past Mount Yanzhi, killing the Zhelan and Luhu kings and taking the golden statue the Xiutu king used to worship Heaven.",
       [("陇西", "Longxi", 103.86, 35.38, -121, 3), ("", "", 102.9, 36.65, -121, 3), ("", "", 102.0, 37.8, -121, 3),
        ("焉支山", "Mount Yanzhi", 101.4, 38.45, -121, 3)]),
     R("霍去病河西·夏", "Huo Qubing in Hexi: summer",
-      "同年夏，霍去病出北地，逾居延泽，南下经小月氏，攻祁连山，大破匈奴；秋，浑邪王杀休屠王，率四万余人降汉，河西归汉。",
-      "That summer Huo Qubing set out from Beidi, passed Lake Juyan, turned south through the Lesser Yuezhi lands and struck at the Qilian Mountains, crushing the Xiongnu. In the autumn the Hunye king killed the Xiutu king and surrendered with over 40,000 people, and Hexi passed to Han.",
+      "同年夏，霍去病出北地，逾居延泽，南下经小月氏，攻祁连山，得酋涂王，斩首虏三万二百级，获五王、五王母、单于阏氏、王子五十九人，相国、将军、当户、都尉六十三人；秋，浑邪王杀休屠王，率四万余人降汉，河西归汉。",
+      "That summer Huo Qubing set out from Beidi, passed Lake Juyan, turned south through the Lesser Yuezhi lands and struck at the Qilian Mountains, where he took the Qiutu king and 30,200 heads and "
+      "prisoners, capturing five kings and five kings' mothers, the chanyu's consort, fifty-nine princes and sixty-three chancellors, generals, "
+      "danghu and commandants. In the autumn the Hunye king killed the Xiutu king and surrendered with over 40,000 people, and Hexi passed to Han.",
       [("北地", "Beidi", 107.6, 36.3, -121, 6), ("", "", 105.8, 38.8, -121, 6), ("", "", 103.2, 40.6, -121, 6),
        ("居延泽", "Lake Juyan", 101.0, 41.9, -121, 6), ("", "", 99.9, 40.4, -121, 6), ("祁连山", "Qilian Mountains", 98.6, 39.3, -121, 6)]),
     R("卫青漠北", "Wei Qing beyond the Gobi",
       "卫青出定襄，北行千余里，遇伊稚斜单于陈兵以待，以武刚车环为营，纵五千骑往击；日暮大风扬沙，汉益纵左右翼绕单于，单于溃围西北走。"
-      "卫青追二百余里不及，至窴颜山赵信城，取其积粟食军，留一日，悉烧余粟而还。",
+      "卫青追二百余里不及，至窴颜山赵信城，取其积粟食军，留一日，悉烧余粟而还。前将军李广、右将军赵食其并军出东道，惑失道，后大将军，李广引刀自刭。",
       "Wei Qing set out from Dingxiang and marched over a thousand li north, where the chanyu Yizhixie was drawn up waiting. Circling his armoured "
       "wagons into a laager, he loosed five thousand horse at him; at dusk a gale threw up the sand, Han sent its wings round the chanyu, and he "
       "broke out to the north-west. Wei Qing pursued for over two hundred li without catching him, reached Zhao Xin's fort at Mount Tianyan, fed "
-      "his army on the grain stored there, stayed one day, burned the rest and turned back.",
+      "his army on the grain stored there, stayed one day, burned the rest and turned back. Li Guang, General of the Van, and Zhao Shiqi, General of the Right, sent together by the eastern "
+      "road, lost their way and arrived after the battle; Li Guang cut his own throat.",
       [("定襄", "Dingxiang", 111.65, 40.4, -119, None), ("", "", 110.8, 42.5, -119, None), ("", "", 108.5, 44.5, -119, None),
        ("", "", 105.5, 46.0, -119, None), ("窴颜山赵信城", "Zhao Xin's fort, Mount Tianyan", 103.2, 46.8, -119, None)]),
     R("霍去病漠北", "Huo Qubing beyond the Gobi",
-      "霍去病出代二千余里，绝大幕，历涉离侯，济弓闾，破左贤王，斩首虏七万余，封狼居胥山，禅于姑衍，登临翰海而还。弓闾一般认为即弓卢水"
+      "霍去病出代二千余里，绝大幕，历涉离侯，济弓闾，破左贤王，斩首虏七万余，获屯头王、韩王等三人及将军、相国、当户、都尉八十三人，封狼居胥山，禅于姑衍，登临翰海而还。弓闾一般认为即弓卢水"
       "（克鲁伦河）；翰海所指诸说不一，这里取贝加尔湖说。",
       "Huo Qubing marched more than two thousand li from Dai, crossed the great desert, passed Lihou and crossed the Gonglü, broke the Wise King of "
-      "the Left and took over 70,000 heads and prisoners; he sacrificed to Heaven on Mount Langjuxu and to Earth on Mount Guyan, climbed to look out "
+      "the Left and took over 70,000 heads and prisoners, capturing three kings, among them the Xiongnu kings of Tuntou and Han, and eighty-three generals, "
+      "chancellors, danghu and commandants; he sacrificed to Heaven on Mount Langjuxu and to Earth on Mount Guyan, climbed to look out "
       "over the Hanhai and turned back. The Gonglü is usually taken to be the Gonglu River (Kherlen); views differ on what the Hanhai was, and the "
       "map follows the Lake Baikal identification.",
       [("代郡", "Dai", 114.57, 39.84, -119, None), ("", "", 114.2, 42.0, -119, None), ("", "", 112.8, 44.6, -119, None),
@@ -467,6 +527,28 @@ ROUTES = [
       "When the Trưng sisters rose and more than sixty towns south of the Five Ranges joined them, Ma Yuan, General Who Calms the Waves, advanced from Hepu along the coast, cutting a road through the hills for over a thousand li, beat Trưng Trắc at Langbo, beheaded her the next year and pursued the remnants in Jiuzhen as far as Jufeng.",
       [("合浦", "Hepu", 109.2, 21.7, 42, None), ("", "", 108.2, 21.6, 42, None), ("", "", 107.0, 21.4, 42, None),
        ("浪泊", "Langbo", 105.95, 21.2, 42, None), ("居风", "Jufeng", 105.75, 19.85, 43, None)]),
+    R("班超经营西域", "Ban Chao in the Western Regions",
+      "永平十六年班超以假司马随窦固击伊吾，旋率吏士三十六人出使：在鄯善夜袭匈奴使者，鄯善降；至于阗，斩巫，于阗王广德杀匈奴使者而降；明年春至疏勒，"
+      "执龟兹所立的疏勒王兜题。76 年都护罢后，超还疏勒坚守，78 年率疏勒、康居、于阗、拘弥兵一万攻破姑墨石城，87 年发于阗诸国兵二万五千破莎车，"
+      "91 年为都护，居龟兹它乾城，94 年发八国兵七万讨平焉耆。超在西域三十一年，102 年东归，同年卒。",
+      "In Yongping 16 Ban Chao, an acting major, fought under Dou Gu at Yiwu and was then sent west with thirty-six men. At Shanshan he fell on "
+      "the Xiongnu envoys by night and Shanshan submitted; at Khotan he beheaded a shaman, and King Guangde killed the Xiongnu envoys and "
+      "submitted; the next spring he reached Kashgar and seized Douti, the king Kucha had imposed there. After the Protectorate was abandoned in "
+      "76 he went back to hold Kashgar; in 78 he led 10,000 men from Kashgar, Kangju, Khotan and Jumi to storm the stone fort of Gumo, in 87 he "
+      "took Yarkand with 25,000 men from Khotan and its neighbours, in 91 he became Protector-General at Tuoqian in Kucha, and in 94 he crushed "
+      "Karasahr with 70,000 men from eight states. He spent thirty-one years in the Western Regions and went home in 102, dying the same year.",
+      [("伊吾卢", "Yiwulu", 93.5, 42.8, 73, 2), ("鄯善", "Shanshan", 88.17, 39.03, 73, None), ("于阗", "Khotan", 79.93, 37.1, 73, None),
+       ("疏勒", "Kashgar", 75.98, 39.47, 74, 3), ("姑墨", "Gumo", 80.27, 41.17, 78, None), ("莎车", "Yarkand", 77.25, 38.42, 87, None),
+       ("它乾城", "Tuoqian", 82.65, 41.6, 91, None), ("焉耆", "Karasahr", 86.57, 42.05, 94, 7)]),
+    R("耿恭还玉门", "Geng Gong's return to the Jade Gate",
+      "建初元年正月，援军破车师于交河城，军吏范羌领兵二千越天山，雪深丈余，至疏勒城迎耿恭。耿恭余众随之东归，虏兵追之，且战且行，"
+      "发疏勒时尚有二十六人，随路死没，三月至玉门，唯余十三人，衣屦穿决，形容枯槁。",
+      "In the 1st month of Jianchu 1, after the relief army had broken Jushi at Jiaohe, the officer Fan Qiang took 2,000 men over the Tianshan "
+      "through snow more than a zhang deep to bring out Geng Gong from the fort of Shule. Geng Gong and his remaining men went east with Fan Qiang, fighting off "
+      "the pursuing enemy as they marched; twenty-six of them left Shule, men died along the way, and when they reached the Jade Gate in the 3rd month "
+      "only thirteen were left, their clothes and shoes in tatters and their faces gaunt.",
+      [("疏勒城", "Shule fort", 89.7, 43.8, 76, 1), ("", "", 89.4, 43.3, 76, 2), ("柳中", "Liuzhong", 89.7, 42.9, 76, 2),
+       ("", "", 91.6, 42.4, 76, 3), ("", "", 93.0, 41.3, 76, 3), ("玉门关", "Jade Gate", 93.87, 40.35, 76, 3)]),
     R("窦宪燕然", "Dou Xian to Yanran",
       "车骑将军窦宪与南单于等分三道出塞，自出鸡鹿塞，会诸军于涿邪山，大破北单于于稽落山，追至私渠比鞮海，登燕然山，令班固作铭，刻石记功而还。",
       "Dou Xian, General of Chariots and Cavalry, went out beyond the frontier in three columns with the southern chanyu; he set out himself from the Jilu frontier post, joined the other columns at Mount Zhuoye, crushed the northern chanyu at Mount Jiluo, pursued him to Lake Siqubiti, then climbed Mount Yanran, had Ban Gu compose an inscription and carved it in the rock before turning back.",

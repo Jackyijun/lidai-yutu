@@ -12,7 +12,7 @@ years = [-212, 184]          # 起止年（含），公元前记负数，与总�
 time = "month"               # 节点的时间精度：楚汉之际按月，其余按年（节点 tp 记 m / y）
 model = "layered"
 first = [-108, 9]            # 打开页面时停在哪个节点：前108 年（元封三年，太初以前年末取九月）
-nodes = 55
+nodes = 57
 
 [coloring]
 modes = [{ label = "郡国", key = "zhen" }, { label = "政权", key = "pol" }]

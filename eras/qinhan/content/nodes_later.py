@@ -68,7 +68,8 @@ def later(node, HSEAT):
     X("h36", -36, polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)
     X("x2", 2, polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)
     # ---------------- 新 ----------------
-    node("x9", 9, sys_="X", cent="新", seat={"新": "京兆尹", "匈奴": "单于庭"})
+    node("x9", 9, sys_="X", cent="新", seat={"新": "京兆尹", "匈奴": "单于庭"},
+         polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)     # 都护但钦 13 年才被焉耆所杀，9 年末西域仍属都护
     node("x18", 18, sys_="X", cent="新", groups=[("赤眉", "赤眉", ["琅邪郡", "城阳国", "东海郡", "泰山郡"])],
          seat={"新": "京兆尹", "匈奴": "单于庭"})
     # ---------------- 两汉之际 ----------------
@@ -114,8 +115,24 @@ def later(node, HSEAT):
     NX = {"南匈奴": "汉"}                                     # 南匈奴 50 年入居西河美稷，内属于汉
     node("d43", 43, sys_="D", cent="汉", seat=DS, polmap={"西域诸国": "匈奴"})
     node("d48", 48, sys_="D", cent="汉", seat=DS, h=["南匈奴"], polmap=WYN)
-    node("d73", 73, sys_="D", cent="汉", seat=DS, polmap={**WYN, **NX}, h=["南匈奴"])
-    node("d89", 89, sys_="D", cent="汉", seat=DS, polmap=NX, h=["南匈奴"])
+    # 三绝三通：74 年复置都护（一通）时龟兹、焉耆等北道诸国仍附北匈奴；76 年罢都护（二绝）后班超据疏勒、于阗；89 年又破莎车
+    BEI = "龟兹 它乾城 姑墨 温宿 尉头 焉耆 尉犁 轮台"
+    CHESHI = "交河 高昌壁 车师后部"
+    EXT = lambda spec: {s_: u for u, ids in spec.items() for s_ in ids.split()}
+    node("d73", 73, sys_="D", cent="汉", seat=DS, polmap={**WYN, **NX, "班超": "汉"}, h=["南匈奴", "班超"],
+         ext=EXT({"班超": "鄯善 楼兰 且末 精绝 于阗 皮山"}),
+         lab={"班超": "鄯善·于阗（附汉）"}, lab_en={"班超": "Shanshan and Khotan (submitting to Han)"})
+    node("d74", 74, sys_="D", cent="汉", seat=DS, polmap={**DH, **NX, "北道诸国": "北匈奴"}, h=["西域诸国", "南匈奴"],
+         ext=EXT({"北道诸国": BEI}),
+         lab={**LDH, "北道诸国": "龟兹·焉耆（附北匈奴）"}, lab_en={**LDHE, "北道诸国": "Kucha and Karasahr (under the Northern Xiongnu)"})
+    node("d76", 76, sys_="D", cent="汉", seat=DS, polmap={**NX, "北道诸国": "北匈奴", "班超": "汉"}, h=["南匈奴", "班超"],
+         ext=EXT({"北道诸国": BEI, "班超": "疏勒 于阗 皮山 莎车"}),
+         lab={"北道诸国": "北道诸国（附北匈奴）", "班超": "班超（疏勒·于阗）"},
+         lab_en={"北道诸国": "Northern-route states (under the Northern Xiongnu)", "班超": "Ban Chao (Kashgar and Khotan)"})
+    node("d89", 89, sys_="D", cent="汉", seat=DS, polmap={**NX, "北道诸国": "北匈奴", "班超": "汉"}, h=["南匈奴", "班超"],
+         ext=EXT({"北道诸国": BEI + " " + CHESHI, "班超": "疏勒 于阗 皮山 莎车 蒲犁"}),
+         lab={"北道诸国": "北道诸国·车师（附北匈奴）", "班超": "班超（疏勒·于阗·莎车）"},
+         lab_en={"北道诸国": "Northern-route states and Jushi (under the Northern Xiongnu)", "班超": "Ban Chao (Kashgar, Khotan and Yarkand)"})
     node("d91", 91, sys_="D", cent="汉", seat=DS, polmap={**DH, **NX}, h=["西域诸国", "南匈奴"], lab=LDH, lab_en=LDHE)
     node("d94", 94, sys_="D", cent="汉", seat=DS, polmap={**DH, **NX}, h=["西域诸国", "南匈奴"], lab=LDH, lab_en=LDHE)
     node("d107", 107, sys_="D", cent="汉", seat=DS, polmap={**WYN, **NX}, h=["南匈奴"])

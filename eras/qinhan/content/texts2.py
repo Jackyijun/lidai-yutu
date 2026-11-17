@@ -184,20 +184,24 @@ TEXT2 = {
                   "ruled as Duke Who Secures the Han. The Protector-General oversaw fifty states."),
     "x9": dict(era="始建国元年", era_en="Shijianguo 1", t="王莽代汉", te="Wang Mang takes the throne", sh="王莽代汉", she="Wang Mang",
                d="初始元年十二月王莽受汉禅，建国号新，改元始建国，以十二月为正月。行王田、私属，五均六筦，改币制；诸侯王降为公，次年皆废；大改郡县名称与长吏官名。"
-                 "又改匈奴单于玺为「新匈奴单于章」，贬句丽王为侯，西域诸国王为侯，四夷离心：匈奴寇边，13 年焉耆杀西域都护但钦，西域遂绝。",
+                 "又改匈奴单于玺为「新匈奴单于章」，贬句丽王为侯，西域诸国王为侯，四夷离心：匈奴寇边，13 年焉耆杀西域都护但钦。",
                de="In the 12th month of Chushi 1 Wang Mang accepted the abdication of Han, naming his dynasty Xin and his era Shijianguo and making the 12th "
                   "month the 1st. He nationalised land and banned the sale of slaves, set up price controls and state monopolies and changed the coinage; kings "
                   "were reduced to dukes and abolished the following year, and the names of commanderies, counties and their officials were overhauled. He "
                   "replaced the Xiongnu chanyu's seal with one reading 'Seal of the Xin Xiongnu chanyu' and demoted the king of Goguryeo and the kings of the "
                   "Western Regions to marquises, alienating every neighbour: the Xiongnu raided the frontier, and in AD 13 Karasahr killed the Protector-General "
-                  "Dan Qin, and contact with the Western Regions was cut off."),
+                  "Dan Qin."),
     "x18": dict(era="天凤五年", era_en="Tianfeng 5", t="绿林赤眉", te="Lülin and the Red Eyebrows", sh="绿林赤眉", she="Lülin",
                 d="连年旱蝗，河决魏郡（11 年）后黄河改道东流、河南北久成泽国，饥民四起。17 年王匡、王凤聚众于绿林山；18 年琅邪樊崇起于莒，转战青、徐，"
-                  "以朱涂眉为号，称赤眉。王莽遣廉丹、太师王匡东击，不能制。",
+                  "以朱涂眉为号，称赤眉。王莽遣廉丹、太师王匡东击，不能制。16 年五威将王骏、西域都护李崇出击焉耆，王骏中伏被杀，李崇收余众退保龟兹，"
+                  "此后与中原隔绝，莽死而没，西域遂绝，是为《后汉书》所说「三绝三通」的第一绝。",
                 de="Year after year of drought and locusts, together with the Yellow River's breach at Wei Commandery in AD 11 — after which the river changed "
                    "course to the east and the lands north and south of it lay long under water — drove the starving to revolt. In 17 Wang Kuang and Wang "
                    "Feng gathered followers at Mount Lülin; in 18 Fan Chong of Langya rose at Ju and fought through Qing and Xu, his men painting their "
-                   "eyebrows red: the Red Eyebrows. The armies Wang Mang sent east under Lian Dan and the Grand Preceptor Wang Kuang could not contain them."),
+                   "eyebrows red: the Red Eyebrows. The armies Wang Mang sent east under Lian Dan and the Grand Preceptor Wang Kuang could not contain them. "
+                   "In 16 Wang Mang's general Wang Jun and the Protector-General Li Chong attacked Karasahr; Wang Jun was killed in an ambush, and Li Chong "
+                   "withdrew with the survivors to Kucha, where he was cut off from China and died after Wang Mang's fall. The Western Regions were lost: "
+                   "the first of the 'three breaks and three reopenings' of the Hou Han shu."),
     "x23": dict(era="地皇四年", era_en="Dihuang 4", era2="更始元年", era2_en="Gengshi 1", t="昆阳之战·新亡", te="Kunyang · the fall of Xin",
                 sh="昆阳之战", she="Kunyang",
                 d="二月绿林诸将立刘玄为帝，年号更始。王莽遣王寻、王邑号称百万围昆阳，六月刘秀以三千敢死士冲其中坚，会大雷风，新军溃。邓晔、于匡开武关，"
@@ -245,11 +249,13 @@ TEXT2 = {
                    "and the Hexi commanderies passed to the Eastern Han."),
     "d43": dict(era="建武十九年", era_en="Jianwu 19", t="马援平交趾", te="Ma Yuan pacifies Jiaozhi", sh="平交趾", she="Jiaozhi",
                 d="卢芳 40 年降汉，旋复入匈奴；北边屡遭匈奴、乌桓寇掠，39 年徙雁门、代、上谷吏民于居庸关以东。40 年交趾征侧、征贰姊妹起兵，九真、日南、合浦响应，"
-                  "取六十五城；伏波将军马援 42 年南征，43 年斩征侧、征贰，立铜柱为汉界。莎车王贤称雄西域。",
+                  "取六十五城；伏波将军马援 42 年南征，43 年斩征侧、征贰，立铜柱为汉界。西域诸国不堪匈奴敛税，建武中皆遣使求内属、愿请都护，光武以天下初定，不许；莎车王贤乘势称雄西域。",
                 de="Lu Fang surrendered to Han in AD 40 but soon went back to the Xiongnu; the northern frontier suffered repeated Xiongnu and Wuhuan raids, and "
                    "in 39 the officials and people of Yanmen, Dai and Shanggu were moved east of the Juyong Pass. In 40 the sisters Trưng Trắc and Trưng Nhị "
                    "rose in Jiaozhi, joined by Jiuzhen, Rinan and Hepu, taking sixty-five towns; Ma Yuan, General Who Calms the Waves, marched south in 42 and in "
-                   "43 beheaded both sisters, setting up bronze pillars to mark the Han frontier. King Xian of Yarkand dominated the Western Regions."),
+                   "43 beheaded both sisters, setting up bronze pillars to mark the Han frontier. Unable to bear the Xiongnu's exactions, the states of the Western Regions all "
+                   "sent envoys in the Jianwu era asking to become Han subjects and to be given a Protector-General, but Guangwu, with the empire barely settled, refused; King Xian "
+                   "of Yarkand took the chance to dominate the Western Regions."),
     "d48": dict(era="建武二十四年", era_en="Jianwu 24", t="匈奴分南北", te="The Xiongnu split north and south", sh="分南北", she="North & south",
                 d="匈奴连年旱蝗，人畜死耗大半，单于继立之争又起。建武二十四年，统领南边八部的日逐王比自立为呼韩邪单于，款五原塞称臣，是为南匈奴；"
                   "蒲奴单于据漠北，是为北匈奴。50 年南单于入居西河美稷，置使匈奴中郎将护之。49 年乌桓内附，居缘边诸郡。",
@@ -261,27 +267,51 @@ TEXT2 = {
     "d73": dict(era="永平十六年", era_en="Yongping 16", t="窦固出塞·班超使西域", te="Dou Gu beyond the frontier · Ban Chao in the west",
                 sh="班超出使", she="Ban Chao",
                 d="69 年哀牢王柳貌内属，置永昌郡，汉地西达伊洛瓦底江。永平十六年窦固、耿忠出酒泉，击北匈奴呼衍王于天山，追至蒲类海，取伊吾卢地，置宜禾都尉屯田；"
-                  "窦固遣假司马班超以三十六人使西域，夜袭匈奴使者于鄯善，鄯善、于阗皆降。次年复置西域都护、戊己校尉。",
+                  "窦固遣假司马班超以三十六人使西域，夜袭匈奴使者于鄯善（「不入虎穴，不得虎子」），鄯善、于阗皆降。「西域自绝六十五载，乃复通焉」。",
                 de="In 69 King Liumao of Ailao submitted and Yongchang Commandery was set up, carrying Han territory west to the Irrawaddy. In Yongping 16 Dou Gu "
                    "and Geng Zhong set out from Jiuquan, beat the Huyan king of the Northern Xiongnu in the Tianshan, pursued him to Lake Pulei and took the "
                    "Yiwulu lands, where a Yihe commandant set up farming garrisons; Dou Gu sent his acting major Ban Chao with thirty-six men to the Western "
-                   "Regions; Ban Chao fell on the Xiongnu envoys at Shanshan by night, and Shanshan and Khotan both submitted. The next year the Protector-General "
-                   "and the Wu-Ji colonels were restored."),
+                   "Regions; Ban Chao fell on the Xiongnu envoys at Shanshan by night ('if you do not enter the tiger's den, you cannot catch its cub'), and "
+                   "Shanshan and Khotan both submitted. 'The Western Regions, cut off for sixty-five years, were opened up once more.'"),
+    "d74": dict(era="永平十七年", era_en="Yongping 17", t="车师降·复置西域都护", te="Jushi submits · the Protectorate restored",
+                sh="复置都护", she="Protectorate again",
+                d="永平十七年十一月，窦固、耿秉、刘张出敦煌昆仑塞，破北匈奴于蒲类海上，进入车师，车师后王安得、前王相继请降。于是复置西域都护、戊己校尉："
+                  "陈睦为都护，耿恭、关宠分屯车师后部金蒲城、前部柳中城。班超已于是年春至疏勒，执龟兹所立的疏勒王兜题，立故王兄子忠。"
+                  "西域复通，是为三绝三通的第一通；惟龟兹、焉耆等北道诸国仍附北匈奴。",
+                de="In the 11th month of Yongping 17 Dou Gu, Geng Bing and Liu Zhang set out from the Kunlun frontier post of Dunhuang, beat the Northern "
+                   "Xiongnu on the shore of Lake Pulei and entered Jushi, where An'de, the Rear King, and then the Front King surrendered. The "
+                   "Protector-General and the Wu-Ji colonels were then restored: Chen Mu became Protector-General, and Geng Gong and Guan Chong were "
+                   "stationed at Jinpu in the Rear Kingdom of Jushi and at Liuzhong in the Front Kingdom. That spring Ban Chao had reached Kashgar, seized "
+                   "Douti, the king Kucha had imposed there, and set up Zhong, a nephew of the former king. The Western Regions were reopened, the first "
+                   "of the 'three reopenings', though Kucha, Karasahr and the other northern-route states still sided with the Northern Xiongnu."),
+    "d76": dict(era="建初元年", era_en="Jianchu 1", t="耿恭守疏勒·罢西域都护", te="Geng Gong at the Shule fort · the Protectorate abandoned",
+                sh="疏勒城之围", she="Shule siege",
+                d="永平十八年三月北匈奴二万骑攻车师，耿恭移据车师后部疏勒城，匈奴断其涧水，恭穿井十五丈，拜井得泉；八月明帝崩，焉耆、龟兹攻没都护陈睦，"
+                  "北匈奴围关宠于柳中。建初元年正月，段彭等发张掖、酒泉、敦煌三郡及鄯善兵七千余人，破车师于交河城，关宠已没；范羌越天山迎耿恭，"
+                  "三月至玉门，生还者仅十三人。章帝不欲疲敝中国，罢都护与戊己校尉，次年又罢伊吾屯田，是为第二绝。班超奉诏东归，于阗王侯抱马脚号泣，超遂还疏勒坚守。",
+                de="In the 3rd month of Yongping 18 the Northern Xiongnu attacked Jushi with 20,000 horsemen. Geng Gong moved into the fort of Shule in the Rear "
+                   "Kingdom; the Xiongnu cut off its stream, and he dug a well fifteen zhang deep and found water by bowing to it. In the 8th month "
+                   "Emperor Ming died; Karasahr and Kucha attacked and killed the Protector-General Chen Mu, and the Northern Xiongnu besieged Guan Chong "
+                   "at Liuzhong. In the 1st month of Jianchu 1 Duan Peng and others, with more than 7,000 men from Zhangye, Jiuquan, Dunhuang and "
+                   "Shanshan, broke Jushi at Jiaohe, but Guan Chong was already dead; Fan Qiang crossed the Tianshan to bring Geng Gong out, and in the "
+                   "3rd month only thirteen men reached the Jade Gate alive. Unwilling to exhaust China, Emperor Zhang abolished the Protector-General "
+                   "and the Wu-Ji colonels, and the next year gave up the Yiwu farming garrison too: the second break. Ban Chao was ordered home, but at "
+                   "Khotan the king and nobles clung weeping to his horse's legs, and he went back to hold Kashgar."),
     "d89": dict(era="永元元年", era_en="Yongyuan 1", t="勒石燕然", te="The inscription at Yanran", sh="勒石燕然", she="Yanran",
                 d="北匈奴内乱饥疫，南单于请兵北伐。永元元年车骑将军窦宪、耿秉率汉军与南匈奴、羌胡骑出鸡鹿塞、满夷谷、稒阳塞，会于涿邪山，大破北单于于稽落山，"
-                  "降者二十余万人。窦宪登燕然山，命中护军班固作铭刻石而还。班超仍孤守疏勒、于阗。",
+                  "降者二十余万人。窦宪登燕然山，命中护军班固作铭刻石而还。班超仍以疏勒、于阗为根据，87 年已发于阗诸国兵破莎车。",
                 de="The Northern Xiongnu were torn by strife, famine and plague, and the southern chanyu asked for troops to attack them. In Yongyuan 1 the "
                    "General of Chariots and Cavalry Dou Xian and Geng Bing led Han troops with Southern Xiongnu, Qiang and Hu horsemen out by the Jilu frontier post, the Manyi Valley "
                    "and the Guyang frontier post, joined forces at Mount Zhuoye and crushed the northern chanyu at Mount Jiluo, more than 200,000 people "
                    "surrendering. Dou Xian climbed Mount Yanran and had his army protector Ban Gu compose an inscription carved on the rock before turning back. Ban Chao still "
-                   "held out alone in Kashgar and Khotan."),
+                   "held Kashgar and Khotan as his base, and in 87 had led the troops of Khotan and its neighbours to take Yarkand."),
     "d91": dict(era="永元三年", era_en="Yongyuan 3", t="北匈奴西遁", te="The Northern Xiongnu flee west", sh="北匈奴遁", she="Xiongnu flee",
                 d="永元二年窦宪遣兵复取伊吾；三年耿夔、任尚出居延塞，围北单于于金微山，大破之，北单于西走，不知所在。鲜卑转徙据其故地，匈奴余种十余万落皆自号鲜卑。"
-                  "龟兹、姑墨、温宿皆降，以班超为西域都护，居龟兹它乾城。90 年贵霜副王谢率七万众攻班超，粮尽请和。",
+                  "龟兹、姑墨、温宿皆降，以班超为西域都护，居龟兹它乾城，西域复通，是为第二通。90 年贵霜副王谢率七万众攻班超，粮尽请和。",
                 de="In Yongyuan 2 Dou Xian sent troops to retake Yiwu; in year 3 Geng Kui and Ren Shang came out by the Juyan frontier, surrounded the northern "
                    "chanyu at the Jinwei Mountains and routed him, and he fled west to no one knew where. The Xianbei moved into his old lands, and more than a "
                    "hundred thousand households of Xiongnu remnants called themselves Xianbei. Kucha, Gumo and Wensu all submitted, and Ban Chao was made "
-                   "Protector-General, based at Tuoqian in Kucha. In 90 the Kushan viceroy Xie had attacked Ban Chao with 70,000 men but sued for peace when his "
+                   "Protector-General, based at Tuoqian in Kucha: the second reopening of the Western Regions. In 90 the Kushan viceroy Xie had attacked Ban Chao with 70,000 men but sued for peace when his "
                    "supplies ran out."),
     "d94": dict(era="永元六年", era_en="Yongyuan 6", t="西域内属", te="The Western Regions submit", sh="西域内属", she="West submits",
                 d="永元六年秋班超发龟兹、鄯善等八国兵七万余人，讨焉耆、危须、尉犁，斩焉耆王广，传首京师，更立元孟。「于是西域五十余国悉皆纳质内属」，"
@@ -291,20 +321,26 @@ TEXT2 = {
                    "Western Regions all sent hostages and submitted': Eastern Han control of the Western Regions was at its height. In 97 Ban Chao sent Gan "
                    "Ying towards Da Qin; he reached the shore of the sea of Tiaozhi and turned back. (This snapshot used to open the Late Han and the Three Kingdoms volume.)"),
     "d107": dict(era="永初元年", era_en="Yongchu 1", t="罢西域都护·羌乱", te="The Protectorate abandoned · the Qiang war", sh="罢都护", she="Protectorate ends",
-                 d="班超 102 年东归，继任都护任尚苛急失众，西域诸国反叛，围攻都护段禧。永初元年诏罢西域都护，迎还伊吾、柳中屯田吏士。同年征发羌骑赴西域，"
+                 d="班超 102 年东归，继任都护任尚苛急失众，西域诸国反叛，围攻都护段禧。永初元年诏罢西域都护，迎还伊吾、柳中屯田吏士；北匈奴复收属诸国，共为边寇十余年，是为第三绝。同年征发羌骑赴西域，"
                    "羌众溃散，先零羌滇零在北地自称天子，寇掠三辅、断陇道，汉军屡败，凉州大乱；111 年陇西、安定、北地、上郡四郡内迁。",
                  de="Ban Chao went home in 102; his successor Ren Shang's harshness lost the states' loyalty, and they rose and besieged the Protector-General "
-                    "Duan Xi. In Yongchu 1 an edict abolished the Protectorate and recalled the farming garrisons of Yiwu and Liuzhong. That year Qiang "
+                    "Duan Xi. In Yongchu 1 an edict abolished the Protectorate and recalled the farming garrisons of Yiwu and Liuzhong; the Northern Xiongnu took the "
+                    "states back under their control and raided the frontier with them for more than ten years: the third break. That year Qiang "
                     "horsemen conscripted for the Western Regions deserted; Dianlian of the Xianlian Qiang proclaimed himself Son of Heaven in Beidi, raided "
                     "the capital region and cut the road to Long, the Han armies were beaten again and again, and Liang Province fell into chaos; in 111 the "
                     "commanderies of Longxi, Anding, Beidi and Shang were moved inland."),
-    "d127": dict(era="永建二年", era_en="Yongjian 2", t="班勇复通西域", te="Ban Yong reopens the west", sh="班勇", she="Ban Yong",
+    "d127": dict(era="永建二年", era_en="Yongjian 2", t="班勇复通西域", te="Ban Yong reopens the west", sh="复通西域", she="West reopened",
                  d="118 年先零羌平，凉州稍安。123 年以班超之子班勇为西域长史，屯柳中，124—126 年破车师前后部，逐北匈奴呼衍王，鄯善、龟兹、姑墨、温宿诸国皆服。"
-                   "永建二年班勇与敦煌太守张朗讨焉耆，焉耆王元孟降，「于是龟兹、疏勒、于阗、莎车等十七国皆来服从」。",
+                   "永建二年班勇与敦煌太守张朗讨焉耆，焉耆王元孟降，「于是龟兹、疏勒、于阗、莎车等十七国皆来服从」。《后汉书·西域传》：「自建武至于延光，西域三绝三通。」"
+                   "王莽时绝，永平十七年复置都护；建初元年罢都护，永元三年班超为都护；永初元年罢都护，延光二年班勇为长史。",
                  de="The Xianlian Qiang were subdued in 118 and Liang Province grew quieter. In 123 Ban Chao's son Ban Yong was made Chief Clerk of the "
                     "Western Regions, garrisoned at Liuzhong; in 124–126 he broke the front and rear kingdoms of Jushi and drove off the Huyan king of the "
                     "Northern Xiongnu, and Shanshan, Kucha, Gumo and Wensu all submitted. In Yongjian 2 Ban Yong and Zhang Lang, Administrator of Dunhuang, "
-                    "attacked Karasahr; its king Yuanmeng surrendered, 'and Kucha, Kashgar, Khotan, Yarkand and seventeen states in all came to submit'."),
+                    "attacked Karasahr; its king Yuanmeng surrendered, 'and Kucha, Kashgar, Khotan, Yarkand and seventeen states in all came to submit'. In the "
+                    "words of the Hou Han shu, 'from Jianwu to Yanguang, the Western Regions were three times cut off and three times reopened': cut off under "
+                    "Wang Mang and reopened when the Protectorate was restored in Yongping 17; cut off when it was abandoned in Jianchu 1 and reopened when Ban "
+                    "Chao became Protector-General in Yongyuan 3; cut off when it was abandoned in Yongchu 1 and reopened when Ban Yong became Chief Clerk in "
+                    "Yanguang 2."),
     "d156": dict(era="永寿二年", era_en="Yongshou 2", t="檀石槐统一鲜卑", te="Tanshihuai unites the Xianbei", sh="檀石槐", she="Tanshihuai",
                  d="140—145 年羌乱再起，三辅、陇右残破。鲜卑檀石槐勇健有谋略，立庭于弹汗山歠仇水上，东西部大人皆归焉，南抄缘边，北拒丁零，东却夫余，西击乌孙，"
                    "「尽据匈奴故地，东西万四千余里」。永寿二年寇云中，此后连年入塞。166 年起党锢之祸，宦官专权。",
