@@ -425,6 +425,7 @@ def main():
 
     snaps = []
     adj = defaultdict(set)
+    zl_en = {}                                     # 郡名注记的英文：zl 里用了本节点别名或非郡国单位名的，补进 GEO.zhoue
     for i, r in enumerate(rows):
         nd = r["nd"]
         z, lz, p, lp, zb, zl = {}, {}, {}, {}, [], []
@@ -457,7 +458,15 @@ def main():
                         zb += boundary_lines([zg[u] for u in us])
                         for u in us:
                             if u in lz and lz[u][2] >= 0.6:
-                                zl.append([UNITS[u]["n"]] + lz[u])
+                                k = UNITS[u]["k"]
+                                if k in nd["lab"]:         # 本节点有别名（如 73 年「鄯善·于阗（附汉）」）就标别名
+                                    name, name_en = nd["lab"][k], nd["lab_en"].get(k, UNITS[u]["ne"])
+                                else:
+                                    name, name_en = UNITS[u]["n"], UNITS[u]["ne"]
+                                if UNITS[u]["kind"] != "zhen" or k in nd["lab"]:
+                                    assert zl_en.get(name, name_en) == name_en, (name, zl_en[name], name_en)
+                                    zl_en[name] = name_en
+                                zl.append([name] + lz[u])
             ks = list(zg)
             for a in range(len(ks)):
                 for b in range(a + 1, len(ks)):
@@ -499,7 +508,7 @@ def main():
     GEO = dict(land=base["land"], prov=base["prov"], border=base["border"], rivers=remap(base["rivers"]), lakes=remap(base["lakes"]),
                canals=remap(base["canals"]), deserts=remap(base["deserts"]), snaps=snaps, pool=pool, regions=[],
                ext=[C.VIEW[0], C.VIEW[1], C.VIEW[2], C.VIEW[3]], first=first,
-               zhoue={u["n"]: u["ne"] for u in UNITS if u["kind"] == "zhen"}, **layers)
+               zhoue={**{u["n"]: u["ne"] for u in UNITS if u["kind"] == "zhen"}, **zl_en}, **layers)
     seeds_out = []
     for s in SEEDS:
         o = {k: s[k] for k in ("id", "n", "mod", "lon", "lat", "t")}
