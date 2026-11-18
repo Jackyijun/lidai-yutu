@@ -133,6 +133,7 @@ def later(node, HSEAT):
          ext=EXT({"北道诸国": BEI + " " + CHESHI, "班超": "疏勒 于阗 皮山 莎车 蒲犁"}),
          lab={"北道诸国": "北道诸国·车师（附北匈奴）", "班超": "班超（疏勒·于阗·莎车）"},
          lab_en={"北道诸国": "Northern-route states and Jushi (under the Northern Xiongnu)", "班超": "Ban Chao (Kashgar, Khotan and Yarkand)"})
+    DS = {"汉": "河南尹"}                                     # 91 年北单于为耿夔所破、西走，此后北匈奴余部不知王庭所在
     node("d91", 91, sys_="D", cent="汉", seat=DS, polmap={**DH, **NX}, h=["西域诸国", "南匈奴"], lab=LDH, lab_en=LDHE)
     node("d94", 94, sys_="D", cent="汉", seat=DS, polmap={**DH, **NX}, h=["西域诸国", "南匈奴"], lab=LDH, lab_en=LDHE)
     node("d107", 107, sys_="D", cent="汉", seat=DS, polmap={**WYN, **NX}, h=["南匈奴"])

@@ -50,13 +50,14 @@ CAPITALS = [
      "the Longcheng north of it, which was far beyond the reach of Han armies at the time. After the chanyu's court moved north in 123 BC, the "
      "great assembly moved north of the Gobi with it (see the chanyu's court). The point only follows Wei Qing's line of march from Shanggu; "
      "the modern site is unknown."),
-    ("单于庭", "The chanyu's court", "匈奴", 102.6, 47.3, [(-123, 48)], "蒙古国后杭爱省鄂尔浑河中游（大致）",
+    ("单于庭", "The chanyu's court", "匈奴", 102.6, 47.3, [(-123, 91)], "蒙古国后杭爱省鄂尔浑河中游（大致）",
      "middle Orkhon River, Arkhangai, Mongolia (approx.)",
      "前123 年赵信劝单于「益北绝幕」以后的单于庭，在大漠以北。前119 年卫青出定襄绝幕，与单于会战，追至窴颜山赵信城；此后「幕南无王庭」。"
      "前105 年儿单于立，「单于益西北」。王庭随水草迁徙，正月诸长小会于此，五月大会龙城。考古上，后杭爱省鄂尔浑河与塔米尔河交汇一带有两处候选："
      "2014—2018 年中蒙联合发掘的和日门塔拉「三连城」，内城不见居住痕迹，发掘者认为可能是史籍所记祭祀、会盟的龙城；"
      "2020 年蒙古学者在交汇处以北约 27 公里的城址出土「天子单于」瓦当，认为即龙城。也有学者认为后者是单于庭、三连城才是龙城。"
-     "点位取鄂尔浑河中游，只是大致。",
+     "48 年匈奴分裂后为北单于庭；89 年窦宪破北单于于稽落山，91 年耿夔出居延塞，围北单于于金微山，北单于逃走，不知所在，"
+     "王庭从此不在漠北。点位取鄂尔浑河中游，只是大致。",
      "The chanyu's court after 123 BC, when Zhao Xin advised the chanyu to move 'further north across the Gobi'. In 119 BC Wei Qing crossed "
      "the Gobi from Dingxiang, fought the chanyu and pursued him as far as Zhao Xin's fort at Mount Tianyan; after that 'there was no royal court "
      "south of the Gobi'. After the boy chanyu came to the throne in 105 BC, 'the chanyu moved further north-west'. The court moved with the "
@@ -65,7 +66,10 @@ CAPITALS = [
      "Chinese–Mongolian team in 2014–2018, whose inner enclosure shows no sign of habitation and which its excavators think may be the "
      "Longcheng of the sources, the place of sacrifices and assemblies; and a walled site about 27 km north of the confluence, where Mongolian "
      "archaeologists found eaves tiles reading 'Son of Heaven, the chanyu' in 2020 and which they take to be Longcheng. Some scholars hold "
-     "instead that the latter was the chanyu's court and the triple town Longcheng. The point on the middle Orkhon is only approximate."),
+     "instead that the latter was the chanyu's court and the triple town Longcheng. After the Xiongnu split in AD 48 it was the court "
+     "of the northern chanyu; in 89 Dou Xian defeated the northern chanyu at Mount Jiluo, and in 91 Geng Kui marched out of the Juyan "
+     "frontier and surrounded him in the Jinwei Mountains, from where he fled and was lost track of. After that there was no royal "
+     "court north of the Gobi. The point on the middle Orkhon is only approximate."),
     ("单于庭（光禄城）", "The chanyu's court (Guanglu fort)", "呼韩邪", 109.5, 41.3, [(-51, -43)], "内蒙古包头固阳一带（大致）",
      "Guyang area, Baotou, Inner Mongolia (approx.)",
      "前51 年呼韩邪单于入朝甘泉宫，称臣于汉；归国时「自请愿留居光禄塞下，有急保汉受降城」。汉遣董忠、韩昌率骑一万六千送单于出朔方鸡鹿塞，"
