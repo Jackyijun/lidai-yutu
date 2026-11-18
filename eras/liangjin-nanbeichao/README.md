@@ -85,6 +85,8 @@ liangjin-nanbeichao-map/
 
 ## 五、工作原理
 
+> 单仓新页面（`docs/liangjin-nanbeichao/`）的疆域，第 7 步（2026-11-17）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py liangjin-nanbeichao` 时自动重算）；归属、文字、条目仍出自本卷。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+
 **疆域算法**（`src/territory.py`，参数在 `src/config.py`）沿用《隋及唐初形势图》，投影中心也相同（102°E / 36°N）：
 
 1. **栅格**：在投影平面上切等距格子，每格约 6.4 km；只建在全图外缘之内（约 1676 × 1281 格）。海与面积 0.15 平方度以上的湖不可通行。

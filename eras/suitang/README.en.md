@@ -71,6 +71,8 @@ suitang-map/
 
 ## 5. How it works
 
+> From migration step 7 (17 November 2026) the territory on the new page in the single repository (`docs/suitang/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py suitang` at the repository root). Ownership, text and entries still come from this volume. What follows describes this volume's own older algorithm, now used only for the old page and `legacy.html`.
+
 **Territory algorithm** (`src/territory.py`, parameters in `src/config.py`):
 
 1. **Grid**: 46°–148° E, 3°–60° N, cells about 6.4 km (0.057°). Sea and lakes of 0.15 square degrees or more are impassable.

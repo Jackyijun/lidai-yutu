@@ -40,6 +40,7 @@ legacy = [36, 102]           # 旧版页面（legacy.html）用的原点纬线�
 
 [engine]                    # 第 5 步统一疆域引擎（core/engine/）的外缘设置；归属点与节点取 v1 数据包
 outer = "frontier"          # 手绘外缘：content/frontier.py
+geometry = "engine"         # 第 7 步起页面疆域由统一引擎出：eras/liangjin-nanbeichao/engine.json（构建时重算，入库），生成 v1 时换进去
 
 [junction.prev]
 era = "hanmosanguo"

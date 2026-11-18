@@ -3,12 +3,14 @@
 
   python core/v1/build.py              各卷全部
   python core/v1/build.py songyuan     只做这几卷
+  python core/v1/build.py --lenient    疆域已换到统一引擎的卷，eras/<短名>/engine.json 过期时先用旧几何、不停下（run.py 重算前用）
 
 每一卷：
   1. 往返校验：v1 转回旧格式，必须与成品里的 GEO、DATA、疆域色完全相同；
   2. 核对 eras/<短名>/era.toml（时间精度、数据模型、节点数、首屏节点）与数据一致；
   3. 按 global/ 各表给政权、地点、山川条目附上全局 ID（字段 gid）；
-  4. 套用第 3 步先行的改正（core/v1/overlay.py：条目点位、英文译名、标了 step = 3 的内容、时间轴短标题），记在 meta.overlay。
+  4. 疆域已换到统一引擎的卷（era.toml [engine] geometry = "engine"，第 7 步）：几何换成 eras/<短名>/engine.json（core/v1/engine_geom.py）；
+  5. 套用第 3 步先行的改正（core/v1/overlay.py：条目点位、英文译名、标了 step = 3 的内容、时间轴短标题），记在 meta.overlay。
 global/ 各表与 build/v1/fixes.json 须先由 core/v1/registry.py 生成；本脚本只读不写。build/ 不入库。
 """
 import json
@@ -16,6 +18,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import engine_geom
 import overlay
 import roundtrip
 from registry import ERAS, GLOBAL, ROOT, load_toml
@@ -84,7 +87,8 @@ def attach(slug, b, pl, po, ph, seats):
 
 
 def main():
-    slugs = sys.argv[1:] or ERAS
+    lenient = "--lenient" in sys.argv
+    slugs = [a for a in sys.argv[1:] if not a.startswith("--")] or ERAS
     bad = [s for s in slugs if s not in ERAS]
     if bad:
         sys.exit(f"没有这一卷：{'、'.join(bad)}")
@@ -109,7 +113,8 @@ def main():
         if missing:
             probs.append(f"{len(missing)} 条在全局表里查不到（全局表过期？先运行 registry.py）：{'、'.join(missing[:5])}")
         b["meta"] = {k: meta[k] for k in ("volume", "title", "title_en", "short", "short_en", "years")}
-        b["meta"]["overlay"] = overlay.apply(slug, b, fixes, content)
+        eg = engine_geom.apply(slug, b, strict=not lenient)
+        b["meta"]["overlay"] = ([eg] if eg else []) + overlay.apply(slug, b, fixes, content)
         path = OUT / f"{slug}.json"
         path.write_text(json.dumps(b, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
         size = path.stat().st_size / 1e6

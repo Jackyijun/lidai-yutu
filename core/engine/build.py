@@ -214,7 +214,10 @@ def run(slug, log=None):
 
     OUT.mkdir(parents=True, exist_ok=True)
     meta = {"window": [win.i0, win.j0, win.ni, win.nj], "cell": win.cell, "outer": sp["outer"],
-            "seeds": {str(i): [int(r), int(c)] for i, (r, c) in where.items()}}
+            "seeds": {str(i): [int(r), int(c)] for i, (r, c) in where.items()},
+            "input": DA.fingerprint(slug, b)}                                  # 第 7 步：eras/<短名>/engine.json 是否过期
+    if b["model"] == "layered":
+        meta["keys"] = {u: b["polities"][int(u)]["key"] for u in units}      # 单位序号 → 单位键（衔接节点按键对上邻卷）
     res = {"era": slug, "geom": pool, "nodes": out_nodes, "meta": meta}
     (OUT / f"{slug}.json").write_text(json.dumps(res, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
     np.savez_compressed(OUT / f"{slug}.npz", lab=labs[group(N[-1][0], N[-1][3])], land=C["land"])

@@ -8,6 +8,7 @@
   land(bbox)              Natural Earth 1:10m 陆地与小岛（经纬度多边形）
   ne_ranges()             Natural Earth 山地多边形
   frontier(slug)          手绘外缘（隋唐、两晋），没有则 None
+  fingerprint(slug, b)    引擎输入的指纹（归属点、节点归属、引擎参数、外缘设置）：eras/<短名>/engine.json 过期没有，靠它判断
   spec / region / reach_mult / walls    各卷的外缘设置、推算范围、各点可达倍数、国界墙
 """
 import importlib.util
@@ -49,7 +50,7 @@ def dec(a):
     return out
 
 
-def view(slug):
+def view(slug, b=None):
     """引擎读入的统一格式：两种政权模型合成一种「点 → 单位 → 政权」（规范第十九节）。
 
       seeds  [(经, 纬, 键)]
@@ -59,7 +60,7 @@ def view(slug):
     单位键就是 v1 节点 u 的键。分层卷（唐宋系六卷）取 v1 的 places 与节点 own / pol。
     简单卷（春秋、战国）的 v1 里没有分区用的归属点，取两卷共用的 content/seeds.txt（归属沿革、~年份退出）：
     单位是诸侯国，政权是它自己；春秋另按 ALLEGIANCE 把奉周的诸侯归到「周」，政权层的外缘就是共主着色的「周天下」。"""
-    b = bundle(slug)
+    b = b or bundle(slug)
     if b["model"] == "layered":
         S = [(p["lon"], p["lat"], p["key"]) for p in b["places"]]
         N = []
@@ -307,3 +308,21 @@ def walls(slug, s):
         pb = shapely.union_all([g.boundary for g in pv]).difference(coast).difference(fixed_g.buffer(0.1))
         prov = lines(pb)
     return dict(fixed=fixed, prov=prov, var=var)
+
+
+# ---------------- 引擎输入的指纹（第 7 步） ----------------
+def fingerprint(slug, b=None):
+    """由引擎读入的东西算一个指纹：归属点与各节点的「点 → 单位 → 政权」（view）、core/engine/config.toml、
+    era.toml 的 [engine]、手绘外缘文件。各卷页面疆域取 eras/<短名>/engine.json 时，拿它判断那份结果是不是按当前归属算的。
+    山脉、界河、陆地等全局底图不计在内（改了要手动重算：python run.py <短名>）。"""
+    import hashlib
+    S, N = view(slug, b)
+    h = hashlib.sha1()
+    h.update(json.dumps([[list(x) for x in S], [[t, own, sorted(pol.items()), act] for t, own, pol, act in N]],
+                        ensure_ascii=False, separators=(",", ":")).encode("utf8"))
+    h.update((ROOT / "core" / "engine" / "config.toml").read_bytes())
+    h.update(json.dumps({k: v for k, v in spec(slug).items() if k != "geometry"}, sort_keys=True, ensure_ascii=False).encode("utf8"))
+    fr = ROOT / "eras" / slug / "content" / "frontier.py"
+    if fr.exists():
+        h.update(fr.read_bytes())
+    return h.hexdigest()[:16]

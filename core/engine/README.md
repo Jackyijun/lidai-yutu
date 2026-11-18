@@ -2,12 +2,14 @@
 
 八卷原来用了四套疆域引擎（规范第十三节）。这里把它们合成一套：以两晋、隋唐那套为底（投影平面上的等距格子、16 邻接多源最短路、两侧共用的界线），并入宋元、民国的可达代价外缘、闭运算与国界墙。
 
-目前只**陪跑**：由 v1 数据重算疆域，逐节点与现有页面比对，页面不变。第 7 步各卷逐个换到新引擎，由 v1 数据直接出图；到那时相邻两卷的衔接节点改为共用归属点。
+第 5 步时只**陪跑**：由 v1 数据重算疆域，逐节点与现有页面比对，页面不变。第 7 步起各卷逐个换过来（见下「第 7 步：旧卷换到引擎」），目前已换隋唐、两晋。
 
 第 6 步新编的秦汉卷是第一个**直接由引擎出图**的卷（`era.toml` 的 `[engine]` 写 `production = true`）：本卷构建先出一遍没有几何的归属，转成 v1，`python core/engine/build.py qinhan` 推算各节点的郡国疆域，写到 `eras/qinhan/build/engine/qinhan.json`，本卷再构建一遍填进去。根目录 `python run.py` 自动走这两遍；`python run.py --engine` 的陪跑比对不含这类卷。
 
+第 7 步起旧卷也逐个换过来：`era.toml` 的 `[engine]` 写 `geometry = "engine"`（现为隋唐、两晋），见下「第 7 步：旧卷换到引擎」。
+
 ```
-python run.py --engine                       四卷全做（era.toml 里有 [engine] 的卷），先重建 v1 数据
+python run.py --engine                       四卷全做（era.toml 里有 [engine] 的卷），先重建 v1 数据；已换到引擎的卷比的是 legacy.html 里旧引擎画的
 python run.py --engine suitang               只做一卷
 python core/engine/build.py suitang          只推算：build/engine/<短名>.json（几何池 + 各节点 u / ul / pu / pul）
 python core/engine/regress.py suitang        只比对：build/engine/<短名>.regress.json
@@ -76,6 +78,17 @@ python core/engine/regress.py suitang        只比对：build/engine/<短名>.r
 - 变化多在归属点稀疏的地方（塔里木、青藏边缘诸部、洱海、林邑等），那里界线主要由地形和随机扰动决定；宋元、民国另有按可达代价定的外缘。民国卷有国界墙，变化最小。
 - 两晋 10.5% 的是 280 年节点：旧版照搬汉末三国的几何（经纬格、8 邻接），新引擎按本卷归属点重算。
 - 覆盖图在陆地上都有效（没有白缝、叠色）；两晋卷 30 个节点在爪哇岛东端以南的海面上有一段约 6 km 的细缝，页面按陆地裁剪，看不到。
+
+## 第 7 步：旧卷换到引擎
+
+旧卷的第 1 段构建（各卷自己的 `run.py`）照旧出归属、文字与条目，存为 `legacy.html`；疆域改由引擎出：
+
+1. `python run.py <短名>` 构建这一卷时，先由刚出的 legacy.html 生成 v1（`core/v1/build.py --lenient`），引擎按 v1 的归属推算，结果复制为 `eras/<短名>/engine.json`（入库）；
+2. 生成 v1 时（`core/v1/engine_geom.py`），各节点的几何 u / ul / pu / pul 换成 engine.json 里的。engine.json 入库，所以 `python run.py --web` 不必重算疆域，结果也与库版本无关；
+3. engine.json 记着引擎输入的指纹（`data.py` 的 `fingerprint()`：归属点、各节点「点 → 单位 → 政权」、`config.toml`、era.toml 的 `[engine]`、手绘外缘文件）。归属改了而没重算，`core/v1/build.py` 与 `python run.py --check` 都会报出来。山脉、界河、陆地等全局底图不计在指纹里，改了要手动重算这几卷；
+4. 衔接节点按 `global/junctions.toml`：本卷为准的照用本卷引擎的结果；对方为准、对方也已换到引擎的，在对方的推算范围（手绘外缘）以内照搬对方引擎的几何，以外用本卷的，跨线的同一单位两部分合并；对方为准、还没换的，这个节点整个保留 legacy.html 里的几何（旧构建本来就照搬了对方）。两晋卷 581 年照搬隋唐（两卷在隋唐外缘以内一致），280 年暂时保留照搬汉末卷的旧几何。
+
+换引擎时（2026-11-17）的变化见下表「第 5 步的比对结果」的两晋、隋唐两行：陆地归属变化 6.9%、5.6%，多在归属点稀疏处。另有一处画法上的统一：塔里木盆地中央的「大流沙」「罗布」等无主参考点，旧引擎在前 649 年以前把它们周围的沙漠分给焉耆、龟兹，新引擎各节点一律留白。
 
 ## 比对（regress.py）
 

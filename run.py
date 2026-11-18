@@ -9,9 +9,10 @@
   python run.py --v1               只重建全局表（global/）与各卷 v1 数据包（build/v1/），不出页面
   python run.py --geo              重新生成地形晕渲与全球底图（geodata/relief/、geodata/world/），再出新页面；
                                    改了 core/geo/config.toml 里投影、分档、底图的参数后用。第一次运行会下载晕渲原图（约 42 MB）
-  python run.py --engine           第 5 步统一疆域引擎：由 v1 数据重算疆域（build/engine/），逐节点与现有页面比对，不改页面；
-                                   只做 era.toml 里有 [engine] 的卷（两晋、隋唐、宋元、民国），也可指定短名
-                                   （秦汉卷的疆域本来就由引擎出图：python run.py qinhan 时自动两遍构建，见 eras/qinhan/run.py）
+  python run.py --engine           统一疆域引擎陪跑：由 v1 数据重算疆域（build/engine/），逐节点与旧引擎画的疆域比对，不改页面；
+                                   只做 era.toml 里有 [engine] 的卷，也可指定短名
+                                   （秦汉卷的疆域本来就由引擎出图：python run.py qinhan 时自动两遍构建，见 eras/qinhan/run.py；
+                                    已换到引擎的旧卷（[engine] geometry = "engine"，第 7 步）构建时自动重算 eras/<短名>/engine.json）
   python run.py --hub              只更新首页：hub/index.html → docs/index.html
   python run.py --check            不构建，只核对 docs/ 与各卷成品、首页源文件是否一致
   python run.py --list             列出各卷短名
@@ -21,8 +22,9 @@
   2. core/v1/registry.py 由九卷 legacy.html 重建全局表，core/v1/build.py 转成 v1 数据包并套用第 3 步的改正（build/v1/，不入库）；
   3. core/web/assemble.py 由 v1 数据生成新页面 docs/<短名>/index.html（共用时间轴、深链接等，见 core/web/）；
      统一投影、全球底图、地形晕渲（第 4 步）由 core/geo/ 预先生成到 geodata/relief/、geodata/world/（入库），出页面时并入。
-统一疆域引擎（第 5 步）在 core/engine/，目前只陪跑、比对（--engine），页面仍由第 1 段的疆域生成；
-第 7 步各卷换到新引擎、由 v1 数据直接推算出图后，第 1 段退役。
+统一疆域引擎（第 5 步）在 core/engine/。第 7 步起旧卷逐个换过去：era.toml [engine] 写 geometry = "engine" 的卷，
+第 1 段照旧出归属、文字与条目，疆域则由引擎按 v1 数据推算，结果存为 eras/<短名>/engine.json（入库），第 2 段生成 v1 时换进去
+（core/v1/engine_geom.py；衔接节点按 global/junctions.toml 照搬为准的一卷）。各卷都换完后，第 1 段的疆域计算退役。
 """
 import argparse, hashlib, shutil, subprocess, sys, time
 from pathlib import Path
@@ -63,9 +65,10 @@ def build_era(slug, html=False, draft=False):
     print(f"==== {slug} 完成（{time.time() - t0:.0f}s）→ eras/{slug}/legacy.html", flush=True)
 
 
-def run_core(eras, web=True, geo=False):
-    """第 2、3 段：全局表 → v1 数据 →（地形晕渲与全球底图）→ 新页面"""
-    steps = [("v1/registry.py", []), ("v1/build.py", eras)]
+def run_core(eras, web=True, geo=False, lenient=False):
+    """第 2、3 段：全局表 → v1 数据 →（地形晕渲与全球底图）→ 新页面。
+    lenient：已换到引擎的卷 engine.json 过期时先用旧几何（重算疆域之前出 v1 用）"""
+    steps = [("v1/registry.py", []), ("v1/build.py", eras + (["--lenient"] if lenient else []))]
     if geo: steps += [("geo/relief.py", eras), ("geo/world.py", eras)]
     if web: steps += [("web/assemble.py", eras)]
     for script, extra in steps:
@@ -87,13 +90,38 @@ def engine_pass(slugs, html=False, draft=False):
     """第一遍出的归属 → v1 → 统一引擎推算疆域 → 再构建一遍，把疆域填回去"""
     todo = [s for s in slugs if s in production_eras()]
     if not todo or html:
-        return
-    run_core([], web=False)
+        return False
+    run_core([], web=False, lenient=True)
     for slug in todo:
         r = subprocess.run([sys.executable, str(ROOT / "core" / "engine" / "build.py"), slug], cwd=ROOT)
         if r.returncode != 0:
             sys.exit(f"失败：core/engine/build.py {slug}")
         build_era(slug, html, draft)
+    return True
+
+
+def migrated_eras():
+    """第 7 步已换到统一引擎的旧卷（era.toml [engine] geometry = "engine"）"""
+    try:
+        import tomllib
+    except ImportError:
+        import tomli as tomllib
+    return [s for s in SLUGS if tomllib.loads((ROOT / "eras" / s / "era.toml").read_text(encoding="utf8")).get("engine", {}).get("geometry") == "engine"]
+
+
+def engine_pages(slugs, html=False, v1_fresh=False):
+    """已换到引擎的旧卷：按刚出的归属重算疆域 → eras/<短名>/engine.json（入库），第 2 段生成 v1 时换进去"""
+    todo = [s for s in slugs if s in migrated_eras()]
+    if not todo or html:
+        return
+    if not v1_fresh:
+        run_core([], web=False, lenient=True)
+    for slug in todo:
+        r = subprocess.run([sys.executable, str(ROOT / "core" / "engine" / "build.py"), slug], cwd=ROOT)
+        if r.returncode != 0:
+            sys.exit(f"失败：core/engine/build.py {slug}")
+        shutil.copyfile(ROOT / "build" / "engine" / f"{slug}.json", ROOT / "eras" / slug / "engine.json")
+        print(f"==== {slug} 疆域 → eras/{slug}/engine.json", flush=True)
 
 
 def engine_eras():
@@ -107,14 +135,14 @@ def engine_eras():
 
 def run_engine(eras):
     """第 5 步：统一疆域引擎陪跑。先重建九卷的 v1 数据（全局山脉取自九卷），再逐卷推算疆域、与现有页面比对"""
-    run_core([], web=False)
+    run_core([], web=False, lenient=True)
     todo = eras or engine_eras()
     for slug in todo:
         for script in ("engine/build.py", "engine/regress.py"):
             r = subprocess.run([sys.executable, str(ROOT / "core" / script), slug], cwd=ROOT)
             if r.returncode != 0:
                 sys.exit(f"失败：core/{script} {slug}")
-    print("\n比对结果在 build/engine/<短名>.regress.json；页面没有改动")
+    print("\n比对结果在 build/engine/<短名>.regress.json；页面没有改动（已换到引擎的卷，比的是旧引擎画的 legacy.html）")
 
 
 def build_hub():
@@ -140,8 +168,16 @@ def check():
             notes.append("docs/ 里缺这一卷"); bad += 1
         elif not v1.exists():
             notes.append("还没生成 v1 数据（无从比对新页面）")
-        elif assemble.render(slug, json.loads(v1.read_text(encoding="utf8"))) != pub.read_text(encoding="utf8"):
-            notes.append("docs/ 不是由当前 v1 数据生成的"); bad += 1
+        else:
+            b = json.loads(v1.read_text(encoding="utf8"))
+            if assemble.render(slug, b) != pub.read_text(encoding="utf8"):
+                notes.append("docs/ 不是由当前 v1 数据生成的"); bad += 1
+            if slug in migrated_eras():
+                sys.path.insert(0, str(ROOT / "core" / "engine"))
+                import data as DA
+                eng = ROOT / "eras" / slug / "engine.json"
+                if not eng.exists() or json.loads(eng.read_text(encoding="utf8"))["meta"].get("input") != DA.fingerprint(slug, b):
+                    notes.append("engine.json 不是按当前归属算的（python run.py " + slug + " 重算）"); bad += 1
         print(f"  {slug:20s} {title}（{years}）  {'；'.join(notes) or '一致'}")
     hub = "一致" if sha(DOCS / "index.html") == sha(ROOT / "hub" / "index.html") else "不一致"
     if hub != "一致":
@@ -183,7 +219,8 @@ def main():
     if not a.hub:
         for slug in (a.eras or SLUGS):
             build_era(slug, a.html, a.draft)
-        engine_pass(a.eras or SLUGS, a.html, a.draft)
+        fresh = engine_pass(a.eras or SLUGS, a.html, a.draft)
+        engine_pages(a.eras or SLUGS, a.html, v1_fresh=fresh)
         run_core(a.eras)
     build_hub()
 

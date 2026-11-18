@@ -68,8 +68,19 @@ def straight(win, g, land, inner_far, km=20.0):
     return n, mx
 
 
+def old_bundle(slug):
+    """比对的「旧」一方：一般就是 v1 数据包；疆域已换到引擎的卷（第 7 步），v1 里已是引擎的几何，改取 legacy.html 里旧引擎画的"""
+    sys.path.insert(0, str(ROOT / "core" / "v1"))
+    import engine_geom
+    if not engine_geom.migrated(slug):
+        return DA.bundle(slug)
+    import legacy
+    html = (ROOT / "eras" / slug / "legacy.html").read_text(encoding="utf8")
+    return legacy.to_v1(slug, *legacy.extract(html))
+
+
 def run(slug):
-    b = DA.bundle(slug)
+    b = old_bundle(slug)
     new = json.loads((OUT / f"{slug}.json").read_text(encoding="utf8"))
     z = np.load(OUT / f"{slug}.npz")
     i0, j0, ni, nj = new["meta"]["window"]

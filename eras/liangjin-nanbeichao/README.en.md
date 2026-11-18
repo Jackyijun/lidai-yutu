@@ -85,6 +85,8 @@ liangjin-nanbeichao-map/
 
 ## 5. How it works
 
+> From migration step 7 (17 November 2026) the territory on the new page in the single repository (`docs/liangjin-nanbeichao/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py liangjin-nanbeichao` at the repository root). Ownership, text and entries still come from this volume. What follows describes this volume's own older algorithm, now used only for the old page and `legacy.html`.
+
 **Territory algorithm** (`src/territory.py`, parameters in `src/config.py`), taken over from the Sui and Early Tang map, with the same projection center (102°E / 36°N):
 
 1. **Grid**: the projected plane is cut into equal cells about 6.4 km across, built only inside the map's outer edge (about 1676 × 1281 cells). Sea and lakes larger than 0.15 square degrees are impassable.

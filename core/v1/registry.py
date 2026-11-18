@@ -34,10 +34,12 @@ ERA_ZH = {"chunqiu": "春秋", "zhanguo": "战国", "qinhan": "秦汉", "hanmosa
 
 
 def load_bundles():
+    import engine_geom
     out = {}
     for slug in ERAS:
         html = (ROOT / "eras" / slug / "legacy.html").read_text(encoding="utf8")
         out[slug] = legacy.to_v1(slug, *legacy.extract(html))
+        engine_geom.apply(slug, out[slug], strict=False, log=lambda *a: None)    # 疆域已换到统一引擎的卷（第 7 步）
     return out
 
 

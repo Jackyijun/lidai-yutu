@@ -37,7 +37,7 @@ lidai-yutu/
 ├── core/v1/               统一数据格式 v1：格式说明 FORMAT.md、旧格式转换、全局表生成、第 3 步的改正
 ├── core/web/              统一前端：由 v1 生成各卷新页面（时间轴、深链接），说明见 core/web/README.md
 ├── core/geo/              统一投影、全球底图、地形晕渲：参数集中在 config.toml，说明见 core/geo/README.md
-├── core/engine/           统一疆域引擎（目前只陪跑比对）：参数集中在 config.toml，说明见 core/engine/README.md
+├── core/engine/           统一疆域引擎（秦汉、隋唐、两晋的疆域由它出，其余各卷陪跑比对）：参数集中在 config.toml，说明见 core/engine/README.md
 ├── global/                全局表：地点、政权、山川、译名；palette.toml 全局配色；decisions.toml 人工决定；review/ 审定清单
 ├── geodata/               底图只存一份（ne/、etopo20/、prov/、derived/）；各卷 geodata/ 里是指向这里的符号链接；
 │                          relief/<短名>/ 各卷的地形晕渲图、world/<短名>.json 各卷范围以外的全球陆地（由 core/geo 生成，入库）
@@ -46,7 +46,7 @@ lidai-yutu/
 └── docs/                  GitHub Pages 发布目录：index.html 是首页，<短名>/index.html 是各卷
 ```
 
-各卷短名是旧仓库名去掉 `-map`：chunqiu、zhanguo、hanmosanguo、liangjin-nanbeichao、suitang、tangsong、songyuan、minguo-xinzhongguo；秦汉卷没有旧仓库，短名 qinhan。构建分三段：各卷仍用自己原来的构建脚本推算疆域，成品存为 `eras/<短名>/legacy.html`；由它重建全局表、转成 v1 数据并套用第 3 步的改正；再由 v1 生成新页面 `docs/<短名>/index.html`，同时并入 `geodata/relief/`、`geodata/world/` 里预先生成的地形晕渲与全球底图。
+各卷短名是旧仓库名去掉 `-map`：chunqiu、zhanguo、hanmosanguo、liangjin-nanbeichao、suitang、tangsong、songyuan、minguo-xinzhongguo；秦汉卷没有旧仓库，短名 qinhan。构建分三段：各卷仍用自己原来的构建脚本推算疆域，成品存为 `eras/<短名>/legacy.html`；由它重建全局表、转成 v1 数据并套用第 3 步的改正；再由 v1 生成新页面 `docs/<短名>/index.html`，同时并入 `geodata/relief/`、`geodata/world/` 里预先生成的地形晕渲与全球底图。已换到统一疆域引擎的卷（`era.toml` 的 `[engine]` 写 `geometry = "engine"`，现为隋唐、两晋），疆域改由引擎按 v1 的归属推算，结果存为 `eras/<短名>/engine.json`（入库），生成 v1 时换掉 legacy.html 里旧引擎画的几何；`python run.py` 构建这几卷时会自动重算。
 
 ```bash
 pip install -r requirements.txt
@@ -56,7 +56,7 @@ python run.py --html             # 各卷跳过疆域计算，只重新拼装（
 python run.py --web              # 不重算疆域，只由 legacy.html 重建全局表、v1 数据和新页面（改短标题、改正后用这个）
 python run.py --v1               # 只重建全局表与各卷 v1 数据包（build/v1/，不入库）
 python run.py --geo              # 重新生成地形晕渲与全球底图，再出新页面（改了 core/geo/config.toml 里投影、分档、底图参数后用；第一次会下载晕渲原图约 42 MB）
-python run.py --engine           # 统一疆域引擎陪跑：由 v1 数据重算两晋、隋唐、宋元、民国的疆域，逐节点与现有页面比对（build/engine/，不改页面）
+python run.py --engine           # 统一疆域引擎陪跑：由 v1 数据重算两晋、隋唐、宋元、民国的疆域，逐节点与旧引擎画的疆域比对（build/engine/，不改页面）
 python run.py --hub              # 只更新首页
 python run.py --check            # 核对 legacy.html、docs/ 是否是本地最新构建的结果
 python run.py --list             # 列出各卷短名
@@ -66,9 +66,11 @@ GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
 
 九卷配色统一由 [`global/palette.toml`](global/palette.toml) 按政权的全局 ID 定，同一政权在各卷同色。主朝取五德之色（轻量版，低饱和）：秦水德尚黑，两汉、隋、宋火德尚赤（蜀汉承汉，浅一档），新、曹魏、唐土德尚黄，晋金德尚白；其余政权按九卷各节点里的邻接避让，相邻的两块不撞色。民国卷保持原色，只改了与英属地分不开的荷兰、西藏地方政府、阿富汗。改了配色用 `python3 tools/colorcheck.py` 复查（要先跑 `python run.py --web` 或 `--v1`），再重出首页缩略图。
 
+迁移第 7 步把旧卷逐个换到统一疆域引擎，先换了隋唐、两晋两卷（2026-11-17）：两卷的归属、文字、条目都不变，疆域由引擎按各节点的归属重算，陆地归属变化隋唐约 5.6%、两晋约 6.9%，多在归属点稀疏的塔里木、青藏边缘、东北与南海诸国；每个归属点都落在本方疆域里，界线上没有长直线段。581 年衔接节点在隋唐卷的手绘外缘以内照搬隋唐的引擎几何，两卷一致；280 年衔接节点暂时保留照搬汉末卷的旧几何，等汉末卷换过来。宋元、民国、唐宋、汉末、春秋与战国随后。
+
 迁移第 6 步在单仓里新编了[秦汉卷](eras/qinhan/README.md)（前212 — 184，五十七个节点），补上战国与汉末三国之间的空档；汉末三国卷随之删去 94 年的序幕节点，从 184 年黄巾起事开始，卷次顺延。秦汉卷是第一部直接用统一疆域引擎出疆域的卷：`eras/qinhan/src/` 由史料生成归属与条目，引擎（`core/engine/`）推算郡国疆域，衔接节点照搬战国末、汉末首；构建要走两遍，`python run.py` 会自动做。加卷时各卷的全局 ID 不变，自动取名会变的在 `global/decisions.toml` 里钉住。
 
-迁移第 5 步写成了统一疆域引擎 [`core/engine/`](core/engine/README.md)：一张铺在统一投影上的全球格网（约 7 km 一格），格子的位置、地形、山脉、随机扰动只由经纬度决定，同一个地方在哪一卷代价都一样，相邻两卷将来可以共用归属点；外缘可以手绘（隋唐、两晋），也可以按可达代价定（宋元、民国），民国卷的国界墙也并了进来。目前只陪跑：拿两晋、隋唐、宋元、民国四卷的归属数据重算，与现有页面逐节点比对，页面不变；第 7 步各卷逐个换过去。
+迁移第 5 步写成了统一疆域引擎 [`core/engine/`](core/engine/README.md)：一张铺在统一投影上的全球格网（约 7 km 一格），格子的位置、地形、山脉、随机扰动只由经纬度决定，同一个地方在哪一卷代价都一样，相邻两卷将来可以共用归属点；外缘可以手绘（隋唐、两晋），也可以按可达代价定（宋元、民国），民国卷的国界墙也并了进来。第 5 步时只陪跑：拿两晋、隋唐、宋元、民国四卷的归属数据重算，与现有页面逐节点比对，页面不变；第 7 步起各卷逐个换过去。
 
 迁移第 4 步统一了投影、加上了全球底图和地形晕渲：八卷改用同一个 Albers 投影（中央经线 105°E、原点纬线 35°N），接缝挪到大西洋 30°W；缩到最小能看到全世界（南极洲除外），各卷范围以外补上 Natural Earth 1:50m 的陆地与大湖；地形晕渲取自 Natural Earth 1:10m Shaded Relief，分辨率按地区分三档（中国本部及周边 2 km、亚欧大陆 5 km、全球 10 km），同一个地方在哪一卷都一样清楚，图例里可以关掉。每页因此增加 0.6—1.2 MB。浓淡、分档等参数都在 [`core/geo/config.toml`](core/geo/config.toml)，说明见 [`core/geo/README.md`](core/geo/README.md)。
 

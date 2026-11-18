@@ -252,7 +252,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 | `[coloring]` | 着色切换：`modes`（按钮文字与代号）、`default` |
 | `[layers]` | 用到的条目类别及条数 |
 | `[projection]` | 新页面的投影参数（第 4 步起各卷统一，以 `core/geo/config.toml` 为准）；`legacy` 记旧版页面的原点纬线、中央经线 |
-| `[engine]` | 统一疆域引擎的外缘设置（第 5 步，目前两晋、隋唐、宋元、民国、秦汉有；秦汉写 `production = true`，疆域直接由引擎出，见根目录 `run.py` 的两遍构建）：`outer` 为 `frontier`（手绘外缘）或 `reach`（按可达代价，另写推算范围 `box`、写 `R=` 倍数的 `seeds` 文件、设置文件 `config`、国界墙 `walls` 与省界 `prov_walls`），见 `core/engine/README.md` |
+| `[engine]` | 统一疆域引擎的外缘设置（第 5 步，目前两晋、隋唐、宋元、民国、秦汉有；秦汉写 `production = true`，疆域直接由引擎出，见根目录 `run.py` 的两遍构建；第 7 步起旧卷写 `geometry = "engine"`（现为隋唐、两晋），页面疆域取 `eras/<短名>/engine.json`，生成 v1 时换进去，见 `core/v1/engine_geom.py`）：`outer` 为 `frontier`（手绘外缘）或 `reach`（按可达代价，另写推算范围 `box`、写 `R=` 倍数的 `seeds` 文件、设置文件 `config`、国界墙 `walls` 与省界 `prov_walls`），见 `core/engine/README.md` |
 | `[junction.prev]` `[junction.next]` | 与前后两卷的衔接 |
 | `[legacy]` | 旧仓库、旧网址、新网址 |
 
