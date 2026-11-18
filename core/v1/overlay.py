@@ -7,7 +7,8 @@
   · 英文译名统一（global/corrections.md「英文」一节）；
   · global/corrections.toml 里标了 step = 3 的内容改正；
   · 时间轴短标题（eras/<短名>/short.tsv）；
-  · 全局配色（global/palette.toml，按政权全局 ID；规范第三节）。
+  · 全局配色（global/palette.toml，按政权全局 ID；规范第三节）；
+  · 大漠的范围（geodata/derived/damo.json，由 tools/damo.py 从生态区改绘，七卷共用；规范第十九节「大漠范围」）。
 """
 import csv
 import json
@@ -217,9 +218,46 @@ def apply_palette(b, pal):
     return n
 
 
+DAMO_NOTE = ("范围据 RESOLVE 生态区（2017）的戈壁三区改绘，扣去漠南草原与河西、居延绿洲。",
+             "Extent redrawn from the three Gobi ecoregions of RESOLVE Ecoregions 2017, leaving out the steppe south of the desert "
+             "and the Hexi and Juyan oases.")
+DAMO_NOTE_QINHAN = ("乌兰布和沙漠北部是汉代朔方郡的垦区，东汉以后弃垦才沙化，本卷不画。",
+                    "The northern Ulan Buh Desert was farmland in the Han-dynasty Shuofang Commandery and turned to sand only after "
+                    "it was abandoned from the Eastern Han onward, so it is left out here.")
+
+
+def apply_damo(slug, b):
+    """大漠（全局 ID desert:大碛）换成 tools/damo.py 由生态区改绘的范围（geodata/derived/damo.json），各卷共用；
+    原来取的是 Natural Earth 地理区的「GOBI DESERT」注记区，盖住了阴山以北的漠南、河西走廊与胪朐河"""
+    import engine_geom
+    its = [it for it in b["items"] if it.get("gid") == "desert:大碛"]
+    if not its:
+        return 0
+    dm = json.loads((ROOT / "geodata" / "derived" / "damo.json").read_text(encoding="utf8"))
+    rings = dm["qinhan" if slug == "qinhan" else "all"]
+    ids = {it["i"] for it in its}
+    base = b["base"]["deserts"]
+    at = next(n for n, d in enumerate(base) if d.get("it") in ids)
+    keep = [d for d in base if d.get("it") not in ids]
+    new = [{"r": engine_geom.enc_ring(r), "it": its[0]["i"]} for r in rings]
+    b["base"]["deserts"] = keep[:at] + new + keep[at:]
+    for it in its:
+        it["anc"] = list(dm["label"])
+        zh, en = DAMO_NOTE
+        if slug == "qinhan":
+            zh, en = zh + DAMO_NOTE_QINHAN[0], en + " " + DAMO_NOTE_QINHAN[1]
+        it["note"] = (it.get("note") or "") + zh
+        e = it.setdefault("en", {})
+        e["note"] = ((e.get("note") or "") + " " + en).strip()
+    return len(its)
+
+
 def apply(slug, b, fixes, content):
     """fixes：registry.py 写出的 build/v1/fixes.json；content：corrections.toml 的 [[fix]]"""
     done = []
+    d = apply_damo(slug, b)
+    if d:
+        done.append("大漠范围（生态区改绘）")
     c = apply_coords(slug, b, fixes.get("coords", []))
     if c:
         done.append(f"条目坐标 {c} 处")

@@ -94,8 +94,8 @@ BATTLES = [
      "Wei Qing and Li Xi set out from Yunzhong, followed the river west to Gaoque and swung south to Longxi, cutting the Xiongnu of the Ordos off "
      "from the chanyu's court; they drove off the Baiyang and Loufan kings, took several thousand heads and prisoners and over a million cattle and "
      "sheep, and came home with the army intact, having recovered the whole Ordos. Wei Qing was made Marquis of Changping."),
-    ("第一次漠南之战", "First battle south of the Gobi", 107.3, 43.7, -124, 2, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 右贤王", "Wei Qing vs. the Wise King of the Right",
-     "蒙古国南戈壁一带（大致）", "Ömnögovi, Mongolia (approx.)",
+    ("第一次漠南之战", "First battle south of the Gobi", 108.2, 42.8, -124, 2, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 右贤王", "Wei Qing vs. the Wise King of the Right",
+     "内蒙古乌拉特中旗海流图以北、中蒙边境一带（大致）", "the Sino-Mongolian border north of Haliut, Urad Middle Banner, Inner Mongolia (approx.)",
      "卫青将三万骑出朔方高阙，北行六七百里，夜围右贤王庭。右贤王以为汉兵不能至，饮醉，惊起，与爱妾一人、壮骑数百溃围北去；汉得裨王十余人、"
      "众男女万五千余人、畜数千百万。武帝遣使就军中拜卫青为大将军。",
      "Wei Qing led 30,000 horsemen out from Gaoque in Shuofang and six or seven hundred li to the north surrounded the camp of the Wise King of the "
@@ -415,7 +415,7 @@ ROUTES = [
       "advanced by separate roads. Six or seven hundred li to the north he reached the camp of the Wise King of the Right by night and surrounded "
       "it; the king broke out and fled north, and the Han army came back with more than ten lesser kings and over 15,000 captives. Wei Qing was "
       "made Grand General in the field.",
-      [("高阙", "Gaoque", 107.35, 41.15, -124, 2), ("", "", 107.5, 42.4, -124, 2), ("右贤王庭", "Camp of the Wise King of the Right", 107.3, 43.7, -124, 2)]),
+      [("高阙", "Gaoque", 107.35, 41.15, -124, 2), ("", "", 107.75, 42.0, -124, 2), ("右贤王庭", "Camp of the Wise King of the Right", 108.2, 42.8, -124, 2)]),
     R("卫青两出定襄", "Wei Qing's two sorties from Dingxiang",
       "元朔六年二月，大将军卫青率中、左、前、右、后、强弩六将军十余万骑出定襄，斩首三千余级，还师休士马于定襄、云中、雁门；四月复出定襄，"
       "斩首虏万余。前将军赵信、右将军苏建并军三千余骑独遇单于，战一日余，汉兵且尽，赵信降匈奴，苏建独身脱还。",
