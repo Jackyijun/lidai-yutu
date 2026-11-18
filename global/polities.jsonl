@@ -95,7 +95,7 @@
 {"id":"乐浪郡","n":"乐浪郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:乐浪郡"],"colors":{"qinhan":["#5C9B83","#68AC8C"]},"en":"Lelang Commandery"}
 {"id":"九原郡","n":"九原郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:九原郡"],"colors":{"qinhan":["#3D8D9B","#3CA2B3"]},"en":"Jiuyuan Commandery"}
 {"id":"九江","n":"九江","kind":"state","eras":["qinhan"],"refs":["qinhan:九江"],"colors":{"qinhan":["#DDA99A","#FABCA5"]},"en":"Jiujiang"}
-{"id":"九江郡","n":"九江郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:九江郡"],"colors":{"qinhan":["#DDA99A","#FABCA5"]},"en":"Jiujiang Commandery"}
+{"id":"九江郡","n":"九江郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:九江郡"],"colors":{"qinhan":["#8CC5B3","#9EDBC0"]},"en":"Jiujiang Commandery"}
 {"id":"九真郡","n":"九真郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:九真郡"],"colors":{"qinhan":["#86A8CC","#97BADA"]},"en":"Jiuzhen Commandery"}
 {"id":"云中郡","n":"云中郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:云中郡"],"colors":{"qinhan":["#A3CB9A","#B0E1A5"]},"en":"Yunzhong Commandery"}
 {"id":"五原郡","n":"五原郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:五原郡"],"colors":{"qinhan":["#6FA5CB","#77B9E7"]},"en":"Wuyuan Commandery"}
@@ -115,7 +115,7 @@
 {"id":"匈奴","n":"匈奴","kind":"tribe","eras":["qinhan"],"refs":["qinhan:匈奴"],"colors":{"qinhan":["#6481B0","#7093CC"]},"en":"Xiongnu"}
 {"id":"北匈奴","n":"北匈奴","kind":"tribe","eras":["qinhan","hanmosanguo"],"refs":["qinhan:北匈奴","hanmosanguo:北匈奴"],"colors":{"qinhan":["#6481B0","#7093CC"],"hanmosanguo":["#6481B0","#7093CC"]},"en":"Northern Xiongnu"}
 {"id":"北单于本部","n":"北单于本部","kind":"tribe","eras":["qinhan"],"refs":["qinhan:北单于本部"],"colors":{"qinhan":["#428BA1","#439FBA"]},"en":"Northern chanyu's own domain"}
-{"id":"北地郡","n":"北地郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:北地郡"],"colors":{"qinhan":["#86A8CC","#97BADA"]},"en":"Beidi Commandery"}
+{"id":"北地郡","n":"北地郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:北地郡"],"colors":{"qinhan":["#B9A65C","#D1B862"]},"en":"Beidi Commandery"}
 {"id":"北海国","n":"北海国","kind":"zhen","eras":["qinhan"],"refs":["qinhan:北海国"],"colors":{"qinhan":["#4A9079","#4EA589"]},"en":"Kingdom of Beihai"}
 {"id":"北海郡","n":"北海郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:北海郡"],"colors":{"qinhan":["#9499D0","#A5AAED"]},"en":"Beihai Commandery"}
 {"id":"北道诸国（龟兹·焉耆）","n":"北道诸国（龟兹·焉耆）","kind":"tribe","eras":["qinhan"],"refs":["qinhan:北道诸国"],"colors":{"qinhan":["#6B8DAA","#799DB6"]},"en":"Northern-route states (Kucha and Karasahr)"}
@@ -125,7 +125,7 @@
 {"id":"南海郡","n":"南海郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:南海郡"],"colors":{"qinhan":["#95C4A7","#A8DAB3"]},"en":"Nanhai Commandery"}
 {"id":"南越","n":"南越","kind":"state","eras":["qinhan"],"refs":["qinhan:南越"],"colors":{"qinhan":["#91B5BC","#97CBD5"]},"en":"Nanyue"}
 {"id":"南边八部（日逐王比）","n":"南边八部（日逐王比）","kind":"tribe","eras":["qinhan"],"refs":["qinhan:南边八部"],"colors":{"qinhan":["#97C2F0","#AFD5FE"]},"en":"Eight southern tribes (Bi, the Rizhu king)"}
-{"id":"南郡","n":"南郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:南郡"],"colors":{"qinhan":["#A8A86A","#BEBA71"]},"en":"Nan Commandery"}
+{"id":"南郡","n":"南郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:南郡"],"colors":{"qinhan":["#B091BF","#C7A1CC"]},"en":"Nan Commandery"}
 {"id":"南阳郡","n":"南阳郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:南阳郡"],"colors":{"qinhan":["#6B8DAA","#799DB6"]},"en":"Nanyang Commandery"}
 {"id":"博阳郡","n":"博阳郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:博阳郡"],"colors":{"qinhan":["#8C7DB3","#9E8BC0"]},"en":"Boyang Commandery"}
 {"id":"卢芳","n":"卢芳","kind":"state","eras":["qinhan"],"refs":["qinhan:卢芳"],"colors":{"qinhan":["#9A8E7C","#AE9E85"]},"en":"Lu Fang"}
@@ -146,7 +146,7 @@
 {"id":"大夏","n":"大夏","kind":"state","eras":["qinhan"],"refs":["qinhan:大夏"],"colors":{"qinhan":["#A49F83","#B9B28A"]},"en":"Daxia (Bactria)"}
 {"id":"大宛","n":"大宛","kind":"state","eras":["qinhan"],"refs":["qinhan:大宛"],"colors":{"qinhan":["#B4845C","#CE9463"]},"en":"Dayuan (Ferghana)"}
 {"id":"大月氏","n":"大月氏","kind":"tribe","eras":["qinhan"],"refs":["qinhan:大月氏"],"colors":{"qinhan":["#9BA16E","#AFB376"]},"en":"Great Yuezhi"}
-{"id":"天水郡","n":"天水郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:天水郡"],"colors":{"qinhan":["#8985B8","#9B94C5"]},"en":"Tianshui Commandery"}
+{"id":"天水郡","n":"天水郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:天水郡"],"colors":{"qinhan":["#D3A8C7","#EEBAD5"]},"en":"Tianshui Commandery"}
 {"id":"太原郡","n":"太原郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:太原郡"],"colors":{"qinhan":["#7C8DC1","#8A9FDE"]},"en":"Taiyuan Commandery"}
 {"id":"夫余","n":"夫余","kind":"tribe","eras":["qinhan","hanmosanguo","liangjin-nanbeichao"],"refs":["qinhan:夫余","hanmosanguo:夫余","liangjin-nanbeichao:夫余"],"colors":{"qinhan":["#9998CC","#ADA9DA"],"hanmosanguo":["#9998CC","#ADA9DA"],"liangjin-nanbeichao":["#9998CC","#ADA9DA"]},"en":"Buyeo"}
 {"id":"安定郡","n":"安定郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:安定郡"],"colors":{"qinhan":["#82CFC0","#87E6D4"]},"en":"Anding Commandery"}
@@ -197,7 +197,7 @@
 {"id":"楼烦王·白羊王","n":"楼烦王·白羊王","kind":"tribe","eras":["qinhan"],"refs":["qinhan:楼烦白羊"],"colors":{"qinhan":["#B4845C","#CE9463"]},"en":"Loufan and Baiyang kings"}
 {"id":"武威郡","n":"武威郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:武威郡"],"colors":{"qinhan":["#B091BF","#C7A1CC"]},"en":"Wuwei Commandery"}
 {"id":"武都郡","n":"武都郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:武都郡"],"colors":{"qinhan":["#998F74","#AFA17B"]},"en":"Wudu Commandery"}
-{"id":"武陵郡","n":"武陵郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:武陵郡"],"colors":{"qinhan":["#8985B8","#9B94C5"]},"en":"Wuling Commandery"}
+{"id":"武陵郡","n":"武陵郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:武陵郡"],"colors":{"qinhan":["#D4B08B","#F0C395"]},"en":"Wuling Commandery"}
 {"id":"殷","n":"殷","kind":"state","eras":["qinhan"],"refs":["qinhan:殷"],"colors":{"qinhan":["#AE856E","#C89477"]},"en":"Yin"}
 {"id":"永昌郡","n":"永昌郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:永昌郡"],"colors":{"qinhan":["#977776","#B28584"]},"en":"Yongchang Commandery"}
 {"id":"汉中郡","n":"汉中郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:汉中郡"],"colors":{"qinhan":["#7DCCDA","#80E2F3"]},"en":"Hanzhong Commandery"}
@@ -214,13 +214,13 @@
 {"id":"河内郡","n":"河内郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:河内郡"],"colors":{"qinhan":["#72BFB0","#76D5C3"]},"en":"Henei Commandery"}
 {"id":"河南","n":"河南","kind":"state","eras":["qinhan"],"refs":["qinhan:河南"],"colors":{"qinhan":["#86A8CC","#97BADA"]},"en":"Henan"}
 {"id":"河南尹","n":"河南尹","kind":"zhen","eras":["qinhan"],"refs":["qinhan:河南尹"],"colors":{"qinhan":["#A16D8F","#BA7BA4"]},"en":"Henan Yin"}
-{"id":"河南郡","n":"河南郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:河南郡"],"colors":{"qinhan":["#87C2D3","#99D7E2"]},"en":"Henan Commandery"}
+{"id":"河南郡","n":"河南郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:河南郡"],"colors":{"qinhan":["#C3B888","#DCCC92"]},"en":"Henan Commandery"}
 {"id":"河西（窦融）","n":"河西（窦融）","kind":"state","eras":["qinhan"],"refs":["qinhan:窦融"],"colors":{"qinhan":["#BDB5A0","#D6C9AB"]},"en":"Hexi (Dou Rong)"}
 {"id":"河间国","n":"河间国","kind":"zhen","eras":["qinhan"],"refs":["qinhan:河间国"],"colors":{"qinhan":["#62AFA0","#65C5B3"]},"en":"Kingdom of Hejian"}
 {"id":"泗水国","n":"泗水国","kind":"zhen","eras":["qinhan"],"refs":["qinhan:泗水国"],"colors":{"qinhan":["#A3CB9A","#B0E1A5"]},"en":"Kingdom of Sishui"}
 {"id":"泗水郡","n":"泗水郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:泗水郡"],"colors":{"qinhan":["#B5675A","#CD7260"]},"en":"Sishui Commandery"}
 {"id":"泰山郡","n":"泰山郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:泰山郡"],"colors":{"qinhan":["#5187AB","#579AC6"]},"en":"Taishan Commandery"}
-{"id":"洞庭郡","n":"洞庭郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:洞庭郡"],"colors":{"qinhan":["#8C7DB3","#9E8BC0"]},"en":"Dongting Commandery"}
+{"id":"洞庭郡","n":"洞庭郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:洞庭郡"],"colors":{"qinhan":["#9C8BC0","#B09ACD"]},"en":"Dongting Commandery"}
 {"id":"济东国","n":"济东国","kind":"zhen","eras":["qinhan"],"refs":["qinhan:济东国"],"colors":{"qinhan":["#DEB39C","#FAC3A6"]},"en":"Kingdom of Jidong"}
 {"id":"济北","n":"济北","kind":"state","eras":["qinhan"],"refs":["qinhan:济北"],"colors":{"qinhan":["#8E87BD","#A097D9"]},"en":"Jibei"}
 {"id":"济北国","n":"济北国","kind":"zhen","eras":["qinhan"],"refs":["qinhan:济北国"],"colors":{"qinhan":["#AEBDE5","#C0D0FC"]},"en":"Kingdom of Jibei"}
@@ -243,7 +243,7 @@
 {"id":"牂牁郡","n":"牂牁郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:牂牁郡"],"colors":{"qinhan":["#A4754E","#BD8454"]},"en":"Zangke Commandery"}
 {"id":"犍为郡","n":"犍为郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:犍为郡"],"colors":{"qinhan":["#7E9A6A","#8EAB71"]},"en":"Qianwei Commandery"}
 {"id":"玄菟郡","n":"玄菟郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:玄菟郡"],"colors":{"qinhan":["#CB8C81","#E79A8D"]},"en":"Xuantu Commandery"}
-{"id":"珠崖郡","n":"珠崖郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:珠崖郡"],"colors":{"qinhan":["#B091BF","#C7A1CC"]},"en":"Zhuya Commandery"}
+{"id":"珠崖郡","n":"珠崖郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:珠崖郡"],"colors":{"qinhan":["#CCAAD0","#E7BDDF"]},"en":"Zhuya Commandery"}
 {"id":"班超所据诸国","n":"班超所据诸国","kind":"tribe","eras":["qinhan"],"refs":["qinhan:班超"],"colors":{"qinhan":["#AF9C7C","#C7AE83"]},"en":"States held by Ban Chao"}
 {"id":"琅邪国","n":"琅邪国","kind":"zhen","eras":["qinhan"],"refs":["qinhan:琅邪国"],"colors":{"qinhan":["#977776","#B28584"]},"en":"Kingdom of Langya"}
 {"id":"琅邪郡","n":"琅邪郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:琅邪郡"],"colors":{"qinhan":["#6B8DAA","#799DB6"]},"en":"Langya Commandery"}
@@ -269,7 +269,7 @@
 {"id":"西南夷","n":"西南夷","kind":"tribe","eras":["qinhan"],"refs":["qinhan:西南夷"],"colors":{"qinhan":["#8775A9","#9B84C4"]},"en":"Southwestern peoples"}
 {"id":"西域诸国","n":"西域诸国","kind":"tribe","eras":["qinhan","hanmosanguo","liangjin-nanbeichao"],"refs":["qinhan:西域诸国","hanmosanguo:西域诸国","liangjin-nanbeichao:西域诸国"],"colors":{"qinhan":["#B5A3DA","#CAB3F6"],"hanmosanguo":["#B5A3DA","#CAB3F6"],"liangjin-nanbeichao":["#B5A3DA","#CAB3F6"]},"en":"States of the Western Regions"}
 {"id":"西楚","n":"西楚","kind":"state","eras":["qinhan"],"refs":["qinhan:西楚"],"colors":{"qinhan":["#7E9A6A","#8FAE7B"]},"en":"Western Chu"}
-{"id":"西河郡","n":"西河郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:西河郡"],"colors":{"qinhan":["#B091BF","#C7A1CC"]},"en":"Xihe Commandery"}
+{"id":"西河郡","n":"西河郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:西河郡"],"colors":{"qinhan":["#CCAAD0","#E7BDDF"]},"en":"Xihe Commandery"}
 {"id":"西魏·秦汉","n":"西魏","kind":"state","eras":["qinhan"],"refs":["qinhan:西魏"],"colors":{"qinhan":["#9A889F","#B197B8"]},"en":"Western Wei"}
 {"id":"诸羌","n":"诸羌","kind":"tribe","eras":["qinhan","hanmosanguo","liangjin-nanbeichao"],"refs":["qinhan:羌","hanmosanguo:羌","liangjin-nanbeichao:羌"],"colors":{"qinhan":["#7CCED2","#7FE4E9"],"hanmosanguo":["#7CCED2","#7FE4E9"],"liangjin-nanbeichao":["#7CCED2","#7FE4E9"]},"en":"Qiang tribes","names":["羌","诸羌"]}
 {"id":"象郡","n":"象郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:象郡"],"colors":{"qinhan":["#D89F80","#F3AF89"]},"en":"Xiang Commandery"}
