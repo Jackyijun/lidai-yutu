@@ -404,7 +404,7 @@
 {"id":"卡拉特","n":"卡拉特","names":["卡拉特"],"mod":"巴基斯坦卡拉特","lon":66.59,"lat":29.03,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:卡拉特"],"en":"Kalat"}
 {"id":"萨列哈尔德","n":"萨列哈尔德","names":["奥布多尔斯克","萨列哈尔德"],"mod":"俄罗斯萨列哈尔德","lon":66.6,"lat":66.53,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:萨列哈尔德"],"en":"Salekhard"}
 {"id":"史国","n":"史国","names":["佉沙州","佉沙（史国）","史国","史国（羯霜那）","渴石"],"mod":"乌兹别克斯坦沙赫里萨布兹","lon":66.83,"lat":39.06,"eras":["liangjin-nanbeichao","suitang","songyuan"],"refs":["liangjin-nanbeichao:史国","songyuan:渴石","suitang:史国"],"en":"Kesh","en_variants":["Kesh","Kesh (Shi)"]}
-{"id":"缚喝","n":"缚喝","names":["吐火罗诸府","巴尔赫","巴里黑（巴尔赫）","缚喝","蓝市","蓝市城","薄知（缚喝）"],"mod":"阿富汗巴尔赫","lon":66.9,"lat":36.76,"eras":["qinhan","liangjin-nanbeichao","suitang","songyuan"],"refs":["liangjin-nanbeichao:缚喝","qinhan:i:228","qinhan:蓝市","songyuan:巴尔赫","suitang:缚喝"],"en":"Lanshi","en_variants":["Bactra (Balkh)","Balkh","Lanshi"]}
+{"id":"缚喝","n":"缚喝","names":["吐火罗诸府","巴尔赫","巴里黑（巴尔赫）","缚喝","蓝市","蓝市城","薄知（缚喝）"],"mod":"阿富汗巴尔赫","lon":66.9,"lat":36.76,"eras":["qinhan","liangjin-nanbeichao","suitang","songyuan"],"refs":["liangjin-nanbeichao:缚喝","qinhan:i:230","qinhan:蓝市","songyuan:巴尔赫","suitang:缚喝"],"en":"Lanshi","en_variants":["Bactra (Balkh)","Balkh","Lanshi"]}
 {"id":"铁门","n":"铁门","names":["铁门"],"mod":"乌兹别克斯坦苏尔汉河州拜孙山口（约）","lon":66.95,"lat":38.35,"eras":["suitang","songyuan"],"refs":["songyuan:i:559","suitang:i:127"],"en":"Iron Gate","sites":[{"lon":66.95,"lat":38.35}]}
 {"id":"粟特","n":"粟特","names":["粟特"],"mod":"","lon":66.95,"lat":39.65,"eras":["qinhan"],"refs":["qinhan:粟特"],"en":"Sogdiana"}
 {"id":"撒马尔罕","n":"撒马尔罕","names":["康国","康国（萨末建城）","康居都督府","撒马尔罕","撒马尔罕（寻思干）","撒马尔罕（花剌子模）","萨末建（康国）"],"mod":"乌兹别克斯坦撒马尔罕","lon":66.97,"lat":39.65,"eras":["liangjin-nanbeichao","suitang","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:康国","minguo-xinzhongguo:i:353","minguo-xinzhongguo:撒马尔罕","songyuan:i:342","songyuan:i:343","songyuan:撒马尔罕","suitang:康国"],"en":"Samarkand","en_variants":["Samarkand","Samarkand (Kang)","Samarkand (Khwarazm)"]}
@@ -464,7 +464,7 @@
 {"id":"阿克莫林斯克","n":"阿克莫林斯克","names":["阿克莫林斯克"],"mod":"哈萨克斯坦阿斯塔纳","lon":71.43,"lat":51.13,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:阿克莫林斯克"],"en":"Akmolinsk"}
 {"id":"木尔坦","n":"木尔坦","names":["木尔坦"],"mod":"巴基斯坦木尔坦","lon":71.47,"lat":30.2,"eras":["songyuan","minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:木尔坦","songyuan:木尔坦"],"en":"Multan"}
 {"id":"白沙瓦","n":"白沙瓦","names":["富楼沙（犍陀罗）","犍陀罗","白沙瓦"],"mod":"巴基斯坦白沙瓦","lon":71.58,"lat":34.01,"eras":["qinhan","liangjin-nanbeichao","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:富楼沙","minguo-xinzhongguo:白沙瓦","qinhan:犍陀罗","songyuan:白沙瓦"],"en":"Peshawar","en_variants":["Gandhara","Peshawar","Purushapura (Gandhara)"],"sites":[{"lon":71.57,"lat":34.01,"eras":["songyuan"]},{"lon":71.58,"lat":34.01,"eras":["liangjin-nanbeichao","minguo-xinzhongguo"]},{"lon":71.6,"lat":34.0,"eras":["qinhan"]}]}
-{"id":"贵山","n":"贵山","names":["贵山","贵山城"],"mod":"费尔干纳盆地西部（地望有争议）","lon":71.6,"lat":40.5,"eras":["qinhan"],"refs":["qinhan:i:227","qinhan:贵山"],"en":"Guishan"}
+{"id":"贵山","n":"贵山","names":["贵山","贵山城"],"mod":"费尔干纳盆地西部（地望有争议）","lon":71.6,"lat":40.5,"eras":["qinhan"],"refs":["qinhan:i:229","qinhan:贵山"],"en":"Guishan"}
 {"id":"拔汗那","n":"拔汗那","names":["休循州都督府","拔汗那","拔汗那（渴塞城）","破洛那（大宛）"],"mod":"乌兹别克斯坦费尔干纳盆地","lon":71.6,"lat":40.7,"eras":["liangjin-nanbeichao","suitang"],"refs":["liangjin-nanbeichao:拔汗那","suitang:拔汗那"],"en":"Ferghana (Dayuan)","en_variants":["Ferghana","Ferghana (Dayuan)"]}
 {"id":"巴哈瓦尔布尔","n":"巴哈瓦尔布尔","names":["巴哈瓦尔布尔"],"mod":"巴基斯坦巴哈瓦尔布尔","lon":71.68,"lat":29.4,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:巴哈瓦尔布尔"],"en":"Bahawalpur"}
 {"id":"费尔干纳","n":"费尔干纳","names":["费尔干纳"],"mod":"乌兹别克斯坦费尔干纳盆地（纳曼干一带）","lon":71.7,"lat":40.9,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:费尔干纳"]}
@@ -551,7 +551,7 @@
 {"id":"瓜廖尔","n":"瓜廖尔","names":["瓜廖尔"],"mod":"印度中央邦瓜廖尔","lon":78.17,"lat":26.22,"eras":["songyuan","minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:瓜廖尔","songyuan:瓜廖尔"],"en":"Gwalior"}
 {"id":"达罗毗荼","n":"达罗毗荼","names":["达罗毗荼"],"mod":"印度泰米尔纳德南部","lon":78.2,"lat":10.0,"eras":["liangjin-nanbeichao"],"refs":["liangjin-nanbeichao:达罗毗荼"]}
 {"id":"皮山","n":"皮山","names":["皮山"],"mod":"","lon":78.3,"lat":37.6,"eras":["qinhan"],"refs":["qinhan:皮山"],"en":"Pishan"}
-{"id":"赤谷","n":"赤谷","names":["赤谷","赤谷城"],"mod":"吉尔吉斯斯坦伊塞克湖东南","lon":78.4,"lat":42.2,"eras":["qinhan"],"refs":["qinhan:i:226","qinhan:赤谷"],"en":"Chigu"}
+{"id":"赤谷","n":"赤谷","names":["赤谷","赤谷城"],"mod":"吉尔吉斯斯坦伊塞克湖东南","lon":78.4,"lat":42.2,"eras":["qinhan"],"refs":["qinhan:i:228","qinhan:赤谷"],"en":"Chigu"}
 {"id":"海得拉巴","n":"海得拉巴","names":["海得拉巴"],"mod":"印度海得拉巴","lon":78.47,"lat":17.39,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:344","minguo-xinzhongguo:海得拉巴"],"en":"Hyderabad"}
 {"id":"伊丽水","n":"伊丽水","names":["伊丽水"],"mod":"伊犁河下游","lon":78.5,"lat":44.3,"eras":["liangjin-nanbeichao","suitang"],"refs":["liangjin-nanbeichao:伊丽水","suitang:伊丽水"]}
 {"id":"巴楚","n":"巴楚","names":["巴楚"],"mod":"新疆巴楚","lon":78.55,"lat":39.78,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:巴楚"],"en":"Bachu"}
@@ -610,7 +610,7 @@
 {"id":"桑巴尔布尔","n":"桑巴尔布尔","names":["桑巴尔布尔"],"mod":"印度桑巴尔布尔","lon":83.97,"lat":21.47,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:桑巴尔布尔"],"en":"Sambalpur"}
 {"id":"轮台（84.25,41.80）","n":"轮台","names":["轮台"],"mod":"","lon":84.25,"lat":41.8,"eras":["qinhan"],"refs":["qinhan:轮台"],"en":"Luntai"}
 {"id":"鹰娑川","n":"鹰娑川","names":["鹰娑川"],"mod":"新疆和静巴音布鲁克（裕勒都斯河谷）","lon":84.3,"lat":43.0,"eras":["liangjin-nanbeichao","suitang"],"refs":["liangjin-nanbeichao:鹰娑川","suitang:鹰娑川"]}
-{"id":"乌垒城","n":"乌垒城","names":["乌垒城"],"mod":"新疆轮台东","lon":84.6,"lat":41.75,"eras":["qinhan"],"refs":["qinhan:i:341"],"en":"Wulei"}
+{"id":"乌垒城","n":"乌垒城","names":["乌垒城"],"mod":"新疆轮台东","lon":84.6,"lat":41.75,"eras":["qinhan"],"refs":["qinhan:i:343"],"en":"Wulei"}
 {"id":"乌苏","n":"乌苏","names":["乌苏"],"mod":"新疆乌苏","lon":84.68,"lat":44.42,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:乌苏"],"en":"Wusu"}
 {"id":"托木斯克","n":"托木斯克","names":["托木斯克"],"mod":"俄罗斯托木斯克","lon":84.95,"lat":56.48,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:托木斯克"],"en":"Tomsk"}
 {"id":"羯陵伽","n":"羯陵伽","names":["羯陵伽"],"mod":"印度奥里萨","lon":85.0,"lat":20.3,"eras":["liangjin-nanbeichao"],"refs":["liangjin-nanbeichao:羯陵伽"]}
@@ -667,7 +667,7 @@
 {"id":"高昌","n":"高昌","names":["火州","西州","高昌","高昌城","高昌城（高昌国都）","高昌壁"],"mod":"新疆吐鲁番高昌故城","lon":89.53,"lat":42.85,"eras":["qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["hanmosanguo:高昌壁","liangjin-nanbeichao:i:44","liangjin-nanbeichao:i:45","liangjin-nanbeichao:西州","qinhan:高昌壁","songyuan:i:338","songyuan:西州","suitang:i:41","suitang:西州","tangsong:i:222","tangsong:西州"],"en":"Xizhou","en_variants":["Gaochang","Gaochang City","Gaochang Fort","Qocho","Xizhou"]}
 {"id":"奇台","n":"奇台","names":["奇台"],"mod":"新疆奇台","lon":89.59,"lat":44.02,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:奇台"],"en":"Qitai"}
 {"id":"江孜","n":"江孜","names":["江孜"],"mod":"西藏江孜","lon":89.6,"lat":28.91,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:江孜"],"en":"Gyangze"}
-{"id":"柳中","n":"柳中","names":["柳中"],"mod":"新疆鄯善鲁克沁","lon":89.7,"lat":42.9,"eras":["qinhan"],"refs":["qinhan:i:342"],"en":"Liuzhong"}
+{"id":"柳中","n":"柳中","names":["柳中"],"mod":"新疆鄯善鲁克沁","lon":89.7,"lat":42.9,"eras":["qinhan"],"refs":["qinhan:i:344"],"en":"Liuzhong"}
 {"id":"阿尔泰","n":"阿尔泰","names":["阿尔泰"],"mod":"新疆阿勒泰东部","lon":89.8,"lat":46.6,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:阿尔泰"]}
 {"id":"普那卡","n":"普那卡","names":["普那卡"],"mod":"不丹普那卡","lon":89.86,"lat":27.58,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:342","minguo-xinzhongguo:普那卡"],"en":"Punakha"}
 {"id":"楼兰","n":"楼兰","names":["楼兰"],"mod":"新疆若羌罗布泊西北（LA 古城）","lon":89.9,"lat":40.5,"eras":["qinhan","hanmosanguo"],"refs":["hanmosanguo:楼兰","qinhan:楼兰"],"en":"Loulan"}
@@ -875,7 +875,7 @@
 {"id":"银生城","n":"银生城","names":["银生城"],"mod":"云南景东","lon":100.85,"lat":24.4,"eras":["tangsong","songyuan"],"refs":["songyuan:银生城","tangsong:银生城"],"en":"Yinsheng City"}
 {"id":"思茅","n":"思茅","names":["思茅"],"mod":"云南普洱思茅区","lon":100.97,"lat":22.79,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:思茅"],"en":"Simao"}
 {"id":"多麦","n":"多麦","names":["多麦"],"mod":"青海果洛","lon":101.0,"lat":34.5,"eras":["tangsong","songyuan"],"refs":["songyuan:多麦","tangsong:多麦"]}
-{"id":"居延塞","n":"居延塞","names":["居延塞"],"mod":"内蒙古额济纳旗","lon":101.0,"lat":41.9,"eras":["qinhan"],"refs":["qinhan:i:340"],"en":"Juyan frontier"}
+{"id":"居延塞","n":"居延塞","names":["居延塞"],"mod":"内蒙古额济纳旗","lon":101.0,"lat":41.9,"eras":["qinhan"],"refs":["qinhan:i:342"],"en":"Juyan frontier"}
 {"id":"鲜卑（101.00,46.50）","n":"鲜卑","names":["鲜卑"],"mod":"","lon":101.0,"lat":46.5,"eras":["hanmosanguo"],"refs":["hanmosanguo:鲜卑8"]}
 {"id":"额济纳","n":"额济纳","names":["额济纳"],"mod":"内蒙古额济纳旗","lon":101.06,"lat":41.96,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:额济纳"],"en":"Ejin"}
 {"id":"怡保","n":"怡保","names":["怡保"],"mod":"马来西亚怡保","lon":101.08,"lat":4.6,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:怡保"],"en":"Ipoh"}
@@ -953,7 +953,7 @@
 {"id":"文单","n":"文单","names":["万象","文单"],"mod":"老挝万象","lon":102.6,"lat":17.97,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:文单","minguo-xinzhongguo:i:312","minguo-xinzhongguo:i:314","minguo-xinzhongguo:万象","songyuan:文单","suitang:文单","tangsong:文单"],"en":"Vientiane","en_variants":["Vientiane","Wendan"]}
 {"id":"益州郡","n":"益州郡","names":["建宁郡","益州郡"],"mod":"云南昆明晋宁区东","lon":102.6,"lat":24.68,"eras":["qinhan","hanmosanguo"],"refs":["hanmosanguo:益州郡","qinhan:益州郡"],"en":"Yizhou Commandery"}
 {"id":"党项","n":"党项","names":["党项"],"mod":"四川若尔盖一带","lon":102.6,"lat":33.6,"eras":["liangjin-nanbeichao","suitang"],"refs":["liangjin-nanbeichao:党项","suitang:党项"]}
-{"id":"单于庭","n":"单于庭","names":["单于庭"],"mod":"蒙古国杭爱山东麓（大致）","lon":102.6,"lat":47.3,"eras":["qinhan"],"refs":["qinhan:i:225","qinhan:单于庭"],"en":"The chanyu's court"}
+{"id":"单于庭","n":"单于庭","names":["单于庭"],"mod":"蒙古国后杭爱省鄂尔浑河中游（大致）","lon":102.6,"lat":47.3,"eras":["qinhan"],"refs":["qinhan:i:227","qinhan:单于庭"],"en":"The chanyu's court"}
 {"id":"拜林","n":"拜林","names":["拜林"],"mod":"柬埔寨拜林","lon":102.61,"lat":12.85,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:拜林"],"en":"Pailin"}
 {"id":"姑臧","n":"姑臧","names":["凉州","凉州（西凉府）","姑臧","武威","武威郡"],"mod":"甘肃武威","lon":102.64,"lat":37.93,"eras":["qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["hanmosanguo:武威郡","liangjin-nanbeichao:i:20","liangjin-nanbeichao:i:39","liangjin-nanbeichao:i:41","liangjin-nanbeichao:i:43","liangjin-nanbeichao:凉州","minguo-xinzhongguo:武威","qinhan:武威郡","songyuan:凉州","suitang:i:19","suitang:凉州","tangsong:凉州"],"en":"Guzang","en_variants":["Guzang","Liangzhou","Wuwei"]}
 {"id":"黎州","n":"黎州","names":["汉源","黎州"],"mod":"四川汉源","lon":102.65,"lat":29.35,"eras":["tangsong","songyuan","minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:汉源","songyuan:黎州","tangsong:黎州"],"en":"Lizhou","en_variants":["Hanyuan","Lizhou"]}
@@ -980,11 +980,11 @@
 {"id":"马德望","n":"马德望","names":["马德望"],"mod":"柬埔寨马德望","lon":103.2,"lat":13.1,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:马德望"],"en":"Battambang"}
 {"id":"川圹","n":"川圹","names":["川圹"],"mod":"老挝川圹","lon":103.2,"lat":19.45,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:川圹"],"en":"Xieng Khouang"}
 {"id":"河州","n":"河州","names":["临夏","导河","枹罕","枹罕郡","河州"],"mod":"甘肃临夏","lon":103.2,"lat":35.6,"eras":["qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["hanmosanguo:枹罕","liangjin-nanbeichao:i:38","liangjin-nanbeichao:河州","minguo-xinzhongguo:临夏","qinhan:枹罕","songyuan:河州","suitang:河州","tangsong:河州"],"en":"Fuhan","en_variants":["Fuhan","Hezhou","Linxia"]}
-{"id":"赵信城","n":"赵信城","names":["赵信城"],"mod":"蒙古国杭爱山南麓（一说；点位示意）","lon":103.2,"lat":46.8,"eras":["qinhan"],"refs":["qinhan:i:343"],"en":"Zhao Xin's fort"}
+{"id":"赵信城","n":"赵信城","names":["赵信城"],"mod":"蒙古国杭爱山南麓（一说；点位示意）","lon":103.2,"lat":46.8,"eras":["qinhan"],"refs":["qinhan:i:345"],"en":"Zhao Xin's fort"}
 {"id":"叠州","n":"叠州","names":["叠州","同昌郡","迭部"],"mod":"甘肃迭部","lon":103.22,"lat":34.06,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:叠州","minguo-xinzhongguo:迭部","songyuan:叠州","suitang:叠州","tangsong:叠州"],"en":"Diezhou","en_variants":["Diezhou","Tewo"]}
 {"id":"永登","n":"永登","names":["永登"],"mod":"甘肃永登","lon":103.26,"lat":36.74,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:永登"],"en":"Yongdeng"}
 {"id":"金城郡","n":"金城郡","names":["金城郡"],"mod":"甘肃永靖西北","lon":103.3,"lat":36.15,"eras":["qinhan","hanmosanguo"],"refs":["hanmosanguo:金城郡","qinhan:金城郡"],"en":"Jincheng Commandery"}
-{"id":"令居塞","n":"令居塞","names":["令居塞"],"mod":"甘肃永登","lon":103.3,"lat":36.6,"eras":["qinhan"],"refs":["qinhan:i:344"],"en":"Lingju frontier"}
+{"id":"令居塞","n":"令居塞","names":["令居塞"],"mod":"甘肃永登","lon":103.3,"lat":36.6,"eras":["qinhan"],"refs":["qinhan:i:347"],"en":"Lingju frontier"}
 {"id":"关丹","n":"关丹","names":["关丹"],"mod":"马来西亚关丹","lon":103.33,"lat":3.81,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:关丹"],"en":"Kuantan"}
 {"id":"维州","n":"维州","names":["威州","维州"],"mod":"四川理县薛城","lon":103.35,"lat":31.53,"eras":["tangsong","songyuan"],"refs":["songyuan:维州","tangsong:维州"],"en":"Weizhou"}
 {"id":"洮州","n":"洮州","names":["临洮郡","洮州","洮阳"],"mod":"甘肃临潭","lon":103.35,"lat":34.7,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:洮州","songyuan:洮州","suitang:洮州","tangsong:洮州"],"en":"Taozhou","en_variants":["Taoyang","Taozhou"]}
@@ -1027,7 +1027,7 @@
 {"id":"那产","n":"那产","names":["那产"],"mod":"越南山罗那产","lon":104.03,"lat":21.22,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:那产"],"en":"Nà Sản"}
 {"id":"岷州","n":"岷州","names":["临洮","临洮郡溢乐县","岷县","岷州"],"mod":"甘肃岷县","lon":104.03,"lat":34.43,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:岷州","minguo-xinzhongguo:岷县","songyuan:岷州","suitang:岷州","tangsong:岷州"],"en":"Minzhou","en_variants":["Lintao","Minxian","Minzhou"]}
 {"id":"桑怒","n":"桑怒","names":["桑怒"],"mod":"老挝桑怒","lon":104.04,"lat":20.42,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:313","minguo-xinzhongguo:桑怒"],"en":"Sam Neua"}
-{"id":"成都","n":"成都","names":["成都","成都府","成都（前蜀）","成都（南京）","成都（后蜀）","益州","蜀郡"],"mod":"四川成都","lon":104.06,"lat":30.66,"eras":["zhanguo","qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["hanmosanguo:i:200","hanmosanguo:蜀郡","liangjin-nanbeichao:i:15","liangjin-nanbeichao:i:53","liangjin-nanbeichao:益州","minguo-xinzhongguo:i:264","minguo-xinzhongguo:成都","qinhan:i:229","qinhan:蜀郡","songyuan:成都府","suitang:益州","tangsong:i:172","tangsong:i:187","tangsong:i:203","tangsong:成都府","zhanguo:i:66"],"en":"Chengdu","en_variants":["Chengdu","Chengdu (Former Shu)","Chengdu (Later Shu)","Chengdu (Southern Capital)","Chengdu Fu","Yizhou"]}
+{"id":"成都","n":"成都","names":["成都","成都府","成都（前蜀）","成都（南京）","成都（后蜀）","益州","蜀郡"],"mod":"四川成都","lon":104.06,"lat":30.66,"eras":["zhanguo","qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["hanmosanguo:i:200","hanmosanguo:蜀郡","liangjin-nanbeichao:i:15","liangjin-nanbeichao:i:53","liangjin-nanbeichao:益州","minguo-xinzhongguo:i:264","minguo-xinzhongguo:成都","qinhan:i:231","qinhan:蜀郡","songyuan:成都府","suitang:益州","tangsong:i:172","tangsong:i:187","tangsong:i:203","tangsong:成都府","zhanguo:i:66"],"en":"Chengdu","en_variants":["Chengdu","Chengdu (Former Shu)","Chengdu (Later Shu)","Chengdu (Southern Capital)","Chengdu Fu","Yizhou"]}
 {"id":"景泰","n":"景泰","names":["景泰"],"mod":"甘肃景泰","lon":104.06,"lat":37.18,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:景泰"],"en":"Jingtai"}
 {"id":"宣威","n":"宣威","names":["宣威"],"mod":"云南宣威","lon":104.1,"lat":26.22,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:宣威"],"en":"Xuanwei"}
 {"id":"陵州","n":"陵州","names":["仙井监","陵州","隆山郡","隆州"],"mod":"四川仁寿","lon":104.1,"lat":30.08,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:陵州","songyuan:陵州","suitang:陵州","tangsong:陵州"],"en":"Lingzhou"}
@@ -1075,6 +1075,7 @@
 {"id":"武州","n":"武州","names":["武州","武都","武都郡","阶州"],"mod":"甘肃陇南武都","lon":104.92,"lat":33.39,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:武州","minguo-xinzhongguo:武都","songyuan:阶州","suitang:武州","tangsong:阶州"],"en":"Wudu","en_variants":["Jiezhou","Wudu","Wuzhou"]}
 {"id":"扶南","n":"扶南","names":["扶南","特牧城（扶南都）","特牧（扶南都）"],"mod":"柬埔寨吴哥波雷（扶南故地）","lon":104.98,"lat":10.98,"eras":["liangjin-nanbeichao","suitang"],"refs":["liangjin-nanbeichao:i:81","liangjin-nanbeichao:扶南","suitang:扶南"],"en":"Vyadhapura (Funan capital)"}
 {"id":"河江","n":"河江","names":["河江"],"mod":"越南河江","lon":104.98,"lat":22.82,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:河江"],"en":"Hà Giang"}
+{"id":"受降城","n":"受降城","names":["受降城"],"mod":"蒙古国南戈壁省瑙木冈苏木南（巴彦布拉格城址；一说内蒙古乌拉特中旗东）","lon":105.0,"lat":42.6,"eras":["qinhan"],"refs":["qinhan:i:346"],"en":"Shouxiang City"}
 {"id":"大碛","n":"大碛","names":["大碛"],"mod":"蒙古南戈壁","lon":105.0,"lat":43.5,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:大碛","songyuan:大碛","suitang:大碛","tangsong:大碛"]}
 {"id":"真腊","n":"真腊","names":["伊奢那城（真腊都）","伊奢那城（真腊）","特牧城（扶南都）","真腊","真腊故地"],"mod":"柬埔寨磅同三波坡雷古","lon":105.04,"lat":12.87,"eras":["liangjin-nanbeichao","suitang"],"refs":["liangjin-nanbeichao:真腊","suitang:真腊"],"en":"Chenla homeland","en_variants":["Chenla","Chenla homeland"]}
 {"id":"扎西","n":"扎西","names":["扎西"],"mod":"云南威信扎西","lon":105.05,"lat":27.84,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:扎西"],"en":"Zhaxi"}
@@ -1093,7 +1094,7 @@
 {"id":"毕节","n":"毕节","names":["毕节"],"mod":"贵州毕节","lon":105.29,"lat":27.3,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:毕节"],"en":"Bijie"}
 {"id":"句町","n":"句町","names":["句町"],"mod":"","lon":105.3,"lat":24.4,"eras":["qinhan","hanmosanguo"],"refs":["hanmosanguo:句町","qinhan:句町"],"en":"Gouding"}
 {"id":"和平","n":"和平","names":["和平"],"mod":"越南和平","lon":105.34,"lat":20.81,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:和平"],"en":"Hòa Bình"}
-{"id":"冀","n":"冀","names":["冀","汉阳郡"],"mod":"甘肃甘谷东","lon":105.35,"lat":34.73,"eras":["zhanguo","qinhan","hanmosanguo"],"refs":["hanmosanguo:汉阳郡","qinhan:i:231","qinhan:汉阳郡","zhanguo:i:180"],"en":"Ji","sites":[{"lon":105.33,"lat":34.75,"eras":["zhanguo"]},{"lon":105.35,"lat":34.73,"eras":["qinhan","hanmosanguo"]}]}
+{"id":"冀","n":"冀","names":["冀","汉阳郡"],"mod":"甘肃甘谷东","lon":105.35,"lat":34.73,"eras":["zhanguo","qinhan","hanmosanguo"],"refs":["hanmosanguo:汉阳郡","qinhan:i:233","qinhan:汉阳郡","zhanguo:i:180"],"en":"Ji","sites":[{"lon":105.33,"lat":34.75,"eras":["zhanguo"]},{"lon":105.35,"lat":34.73,"eras":["qinhan","hanmosanguo"]}]}
 {"id":"祁山","n":"祁山","names":["祁山"],"mod":"甘肃礼县东（祁山堡）","lon":105.37,"lat":34.12,"eras":["qinhan","hanmosanguo"],"refs":["hanmosanguo:i:330","qinhan:i:192"],"en":"Mount Qi"}
 {"id":"峰州","n":"峰州","names":["交趾郡嘉宁县","嘉宁（新昌）","峰州"],"mod":"越南富寿越池一带","lon":105.4,"lat":21.3,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:峰州","songyuan:峰州","suitang:峰州","tangsong:峰州"],"en":"Phong Châu","en_variants":["Fengzhou","Jianing (Xinchang)","Phong Châu"]}
 {"id":"普州","n":"普州","names":["普州","资阳郡安岳县"],"mod":"四川安岳","lon":105.4,"lat":30.1,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:普州","songyuan:普州","suitang:普州","tangsong:普州"],"en":"Puzhou"}
@@ -1189,7 +1190,7 @@
 {"id":"朱吾","n":"朱吾","names":["朱吾"],"mod":"","lon":106.6,"lat":17.4,"eras":["qinhan"],"refs":["qinhan:朱吾"],"en":"Zhuwu"}
 {"id":"占城北境","n":"占城北境","names":["占城北境","比景","比景郡","西卷（日南）"],"mod":"越南广治一带","lon":106.6,"lat":17.47,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:比景","songyuan:占城北境","suitang:比景","tangsong:占城北境"],"en":"Xijuan (Rinan)","en_variants":["Bijing","Xijuan (Rinan)"]}
 {"id":"田州","n":"田州","names":["田州","田州（羁縻）"],"mod":"广西百色一带","lon":106.6,"lat":23.9,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:田州","songyuan:田州","suitang:田州","tangsong:田州"],"en":"Tianzhou"}
-{"id":"鸡鹿塞","n":"鸡鹿塞","names":["鸡鹿塞"],"mod":"内蒙古磴口西北","lon":106.6,"lat":41.25,"eras":["qinhan"],"refs":["qinhan:i:339"],"en":"Jilu frontier post"}
+{"id":"鸡鹿塞","n":"鸡鹿塞","names":["鸡鹿塞"],"mod":"内蒙古磴口西北","lon":106.6,"lat":41.25,"eras":["qinhan"],"refs":["qinhan:i:341"],"en":"Jilu frontier post"}
 {"id":"洞海","n":"洞海","names":["洞海"],"mod":"越南洞海","lon":106.62,"lat":17.47,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:洞海"],"en":"Đồng Hới"}
 {"id":"百色","n":"百色","names":["百色"],"mod":"广西百色","lon":106.62,"lat":23.9,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:百色"],"en":"Baise"}
 {"id":"阳平关","n":"阳平关","names":["阳平关"],"mod":"陕西勉县西（汉代阳平关）","lon":106.62,"lat":33.15,"eras":["qinhan","hanmosanguo","liangjin-nanbeichao"],"refs":["hanmosanguo:i:325","liangjin-nanbeichao:i:282","qinhan:i:190"],"en":"Yangping Pass","sites":[{"lon":106.58,"lat":33.18,"eras":["liangjin-nanbeichao"]},{"lon":106.62,"lat":33.15,"eras":["qinhan","hanmosanguo"]}]}
@@ -1241,7 +1242,7 @@
 {"id":"城固","n":"城固","names":["城固"],"mod":"陕西城固","lon":107.33,"lat":33.15,"eras":["zhanguo"],"refs":["zhanguo:i:307"],"en":"Chenggu"}
 {"id":"成固","n":"成固","names":["成固"],"mod":"","lon":107.33,"lat":33.15,"eras":["qinhan","hanmosanguo"],"refs":["hanmosanguo:成固","qinhan:成固"],"en":"Chenggu"}
 {"id":"泾州","n":"泾州","names":["安定","安定郡","泾州"],"mod":"甘肃泾川","lon":107.35,"lat":35.33,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:泾州","songyuan:泾州","suitang:泾州","tangsong:泾州"],"en":"Jingzhou","en_variants":["Anding","Jingzhou"]}
-{"id":"高阙","n":"高阙","names":["高阙"],"mod":"内蒙古乌拉特后旗东南","lon":107.35,"lat":41.15,"eras":["zhanguo","qinhan"],"refs":["qinhan:i:338","qinhan:高阙","zhanguo:i:147"],"en":"Gaoque"}
+{"id":"高阙","n":"高阙","names":["高阙"],"mod":"内蒙古乌拉特后旗东南","lon":107.35,"lat":41.15,"eras":["zhanguo","qinhan"],"refs":["qinhan:i:340","qinhan:高阙","zhanguo:i:147"],"en":"Gaoque"}
 {"id":"临尘","n":"临尘","names":["临尘"],"mod":"","lon":107.36,"lat":22.4,"eras":["qinhan"],"refs":["qinhan:秦·临尘"],"en":"Linchen"}
 {"id":"临河","n":"临河","names":["临河"],"mod":"内蒙古巴彦淖尔临河区","lon":107.36,"lat":40.75,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:临河"],"en":"Linhe"}
 {"id":"东兰","n":"东兰","names":["东兰"],"mod":"广西东兰","lon":107.37,"lat":24.51,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:东兰"],"en":"Donglan"}
@@ -1261,6 +1262,7 @@
 {"id":"卢容","n":"卢容","names":["卢容"],"mod":"","lon":107.6,"lat":16.45,"eras":["qinhan","hanmosanguo"],"refs":["hanmosanguo:卢容","qinhan:卢容"],"en":"Lurong"}
 {"id":"马领","n":"马领","names":["马领"],"mod":"","lon":107.6,"lat":36.3,"eras":["qinhan"],"refs":["qinhan:马领"],"en":"Maling"}
 {"id":"盐州","n":"盐州","names":["定边","盐川郡","盐州"],"mod":"陕西定边","lon":107.6,"lat":37.58,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:盐州","minguo-xinzhongguo:定边","songyuan:盐州","suitang:盐州","tangsong:盐州"],"en":"Yanzhou","en_variants":["Dingbian","Yanzhou"]}
+{"id":"西受降城","n":"西受降城","names":["西受降城"],"mod":"内蒙古乌拉特中旗乌加河镇西南（一说临河高油坊古城）","lon":107.6,"lat":40.98,"eras":["tangsong"],"refs":["tangsong:i:324"],"en":"Western Shouxiang City"}
 {"id":"万隆","n":"万隆","names":["万隆"],"mod":"印度尼西亚万隆","lon":107.61,"lat":-6.91,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:万隆"],"en":"Bandung"}
 {"id":"西峰","n":"西峰","names":["西峰"],"mod":"甘肃庆阳西峰区","lon":107.64,"lat":35.73,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:西峰"],"en":"Xifeng"}
 {"id":"夷州","n":"夷州","names":["夷州","夷州（羁縻）"],"mod":"贵州凤冈","lon":107.7,"lat":27.95,"eras":["tangsong","songyuan"],"refs":["songyuan:夷州","tangsong:夷州"],"en":"Yizhou"}
@@ -1368,7 +1370,7 @@
 {"id":"融州","n":"融州","names":["融州"],"mod":"广西融水","lon":109.4,"lat":25.08,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:融州","songyuan:融州","suitang:融州","tangsong:融州"],"en":"Rongzhou"}
 {"id":"斡难河源","n":"斡难河源","names":["斡难河","斡难河源"],"mod":"蒙古肯特省斡难河上游","lon":109.4,"lat":48.9,"eras":["songyuan"],"refs":["songyuan:斡难河源"],"en":"Source of the Onon"}
 {"id":"来凤","n":"来凤","names":["来凤"],"mod":"湖北来凤","lon":109.41,"lat":29.49,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:来凤"],"en":"Laifeng"}
-{"id":"峣关","n":"峣关","names":["峣关"],"mod":"陕西蓝田东南","lon":109.42,"lat":34.07,"eras":["zhanguo","qinhan"],"refs":["qinhan:i:336","zhanguo:i:132"],"en":"Yao Pass"}
+{"id":"峣关","n":"峣关","names":["峣关"],"mod":"陕西蓝田东南","lon":109.42,"lat":34.07,"eras":["zhanguo","qinhan"],"refs":["qinhan:i:338","zhanguo:i:132"],"en":"Yao Pass"}
 {"id":"洛川","n":"洛川","names":["洛川"],"mod":"陕西洛川","lon":109.43,"lat":35.76,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:洛川"],"en":"Luochuan"}
 {"id":"奉节","n":"奉节","names":["奉节"],"mod":"重庆奉节","lon":109.46,"lat":31.02,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:奉节"],"en":"Fengjie"}
 {"id":"夔州","n":"夔州","names":["信州","夔州","巴东郡","永安","鱼","鱼复","鱼复（白帝城）"],"mod":"重庆奉节","lon":109.47,"lat":31.04,"eras":["chunqiu","zhanguo","qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["chunqiu:i:344","hanmosanguo:鱼复","liangjin-nanbeichao:夔州","qinhan:鱼复","songyuan:夔州","suitang:夔州","tangsong:夔州","zhanguo:i:310"],"en":"Yufu","en_variants":["Kuizhou","Yu","Yufu","Yufu (Baidi City)"],"sites":[{"lon":109.55,"lat":31.04,"to":619,"note":"鱼复（白帝城）"},{"lon":109.47,"lat":31.04,"from":620,"note":"夔州、奉节旧城（移治年份约）"}]}
@@ -1410,7 +1412,7 @@
 {"id":"同州","n":"临晋","names":["临晋","冯翊","冯翊郡","冯翊郡（临晋）","同州","大荔"],"mod":"陕西大荔","lon":109.94,"lat":34.8,"eras":["chunqiu","zhanguo","qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["chunqiu:i:271","hanmosanguo:临晋","liangjin-nanbeichao:同州","minguo-xinzhongguo:大荔","qinhan:临晋","songyuan:同州","suitang:同州","tangsong:同州","zhanguo:i:187"],"en":"Linjin","en_variants":["Dali","Linjin","Pingyi","Tongzhou"],"sites":[{"lon":109.94,"lat":34.8,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"]},{"lon":109.95,"lat":34.8,"eras":["qinhan","hanmosanguo"]},{"lon":109.98,"lat":34.8,"eras":["chunqiu","zhanguo"]}]}
 {"id":"溪州","n":"溪州","names":["溪州","溪州（彭氏）"],"mod":"湖南永顺东南","lon":109.95,"lat":28.95,"eras":["tangsong","songyuan"],"refs":["songyuan:溪州","tangsong:溪州"],"en":"Xizhou"}
 {"id":"白州","n":"白州","names":["白州"],"mod":"广西博白","lon":109.97,"lat":22.27,"eras":["tangsong","songyuan"],"refs":["songyuan:白州","tangsong:白州"],"en":"Baizhou"}
-{"id":"中受降城","n":"中受降城","names":["中受降城"],"mod":"内蒙古包头南","lon":109.97,"lat":40.55,"eras":["tangsong","songyuan"],"refs":["songyuan:中受降城","tangsong:中受降城"],"en":"Central Shouxiang City"}
+{"id":"中受降城","n":"中受降城","names":["中受降城"],"mod":"内蒙古包头南","lon":109.97,"lat":40.55,"eras":["tangsong","songyuan"],"refs":["songyuan:中受降城","tangsong:i:323","tangsong:中受降城"],"en":"Central Shouxiang City"}
 {"id":"大荔王城","n":"大荔王城","names":["大荔王城"],"mod":"陕西大荔东","lon":109.98,"lat":34.78,"eras":["chunqiu","zhanguo"],"refs":["chunqiu:i:87","zhanguo:i:77"],"en":"Dali Wangcheng"}
 {"id":"东胜","n":"东胜","names":["东胜"],"mod":"内蒙古鄂尔多斯东胜区","lon":109.98,"lat":39.82,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:东胜"],"en":"Dongsheng"}
 {"id":"洪江","n":"洪江","names":["洪江"],"mod":"湖南洪江","lon":109.99,"lat":27.12,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:洪江"],"en":"Hongjiang"}
@@ -1432,7 +1434,7 @@
 {"id":"米脂","n":"米脂","names":["米脂"],"mod":"陕西米脂","lon":110.18,"lat":37.76,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:米脂"],"en":"Mizhi"}
 {"id":"辰阳","n":"辰阳","names":["辰阳"],"mod":"湖南辰溪","lon":110.2,"lat":28.0,"eras":["zhanguo"],"refs":["zhanguo:i:303"],"en":"Chenyang"}
 {"id":"上庸","n":"上庸","names":["上庸"],"mod":"湖北竹山西南","lon":110.2,"lat":32.2,"eras":["chunqiu","zhanguo","qinhan","hanmosanguo"],"refs":["chunqiu:i:90","hanmosanguo:上庸","qinhan:上庸","zhanguo:i:298"],"en":"Shangyong","sites":[{"lon":110.2,"lat":32.2,"eras":["chunqiu","zhanguo"]},{"lon":110.23,"lat":32.23,"eras":["qinhan","hanmosanguo"]}]}
-{"id":"临晋关","n":"临晋关","names":["临晋关"],"mod":"陕西大荔东","lon":110.25,"lat":34.8,"eras":["qinhan"],"refs":["qinhan:i:337"],"en":"Linjin Pass"}
+{"id":"临晋关","n":"临晋关","names":["临晋关"],"mod":"陕西大荔东","lon":110.25,"lat":34.8,"eras":["qinhan"],"refs":["qinhan:i:339"],"en":"Linjin Pass"}
 {"id":"绥州","n":"绥州","names":["绥州","绥德","绥德军","雕阴郡"],"mod":"陕西绥德","lon":110.26,"lat":37.5,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:绥州","minguo-xinzhongguo:绥德","songyuan:绥州","suitang:绥州","tangsong:绥州"],"en":"Suizhou","en_variants":["Suide","Suizhou"]}
 {"id":"罗州","n":"罗州","names":["化州（罗州故地）","合浦郡石城县","罗州"],"mod":"广东廉江","lon":110.27,"lat":21.6,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:罗州","songyuan:罗州","suitang:罗州","tangsong:罗州"],"en":"Luozhou"}
 {"id":"蒲津","n":"蒲津","names":["蒲津","蒲阪津"],"mod":"山西永济西","lon":110.28,"lat":34.9,"eras":["chunqiu","zhanguo"],"refs":["chunqiu:i:234","zhanguo:i:140"],"en":"Pujin Ford","en_variants":["Puban Ford","Pujin Ford"]}
@@ -1515,6 +1517,7 @@
 {"id":"兴县","n":"兴县","names":["兴县"],"mod":"山西兴县","lon":111.13,"lat":38.46,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:兴县"],"en":"Xingxian"}
 {"id":"河曲","n":"河曲","names":["河曲"],"mod":"山西河曲","lon":111.14,"lat":39.38,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:河曲"],"en":"Hequ"}
 {"id":"灌阳","n":"灌阳","names":["灌阳"],"mod":"广西灌阳","lon":111.16,"lat":25.49,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:灌阳"],"en":"Guanyang"}
+{"id":"东受降城","n":"东受降城","names":["东受降城"],"mod":"内蒙古托克托大皇城","lon":111.17,"lat":40.29,"eras":["tangsong"],"refs":["tangsong:i:322"],"en":"Eastern Shouxiang City"}
 {"id":"安邑","n":"安邑","names":["安邑","安邑（河东）","河东郡"],"mod":"山西夏县西北（禹王城）","lon":111.18,"lat":35.12,"eras":["zhanguo","qinhan","hanmosanguo","liangjin-nanbeichao"],"refs":["hanmosanguo:i:195","hanmosanguo:河东郡","liangjin-nanbeichao:安邑","qinhan:河东郡","zhanguo:i:35"],"en":"Anyi","en_variants":["Anyi","Anyi (Hedong)"],"sites":[{"lon":111.18,"lat":35.12,"eras":["qinhan","hanmosanguo","liangjin-nanbeichao"]},{"lon":111.22,"lat":35.1,"eras":["zhanguo"]}]}
 {"id":"均州","n":"均州","names":["均州","武当","淅州","淅阳郡"],"mod":"湖北丹江口（旧均县）","lon":111.2,"lat":32.6,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:均州","songyuan:均州","suitang:均州","tangsong:均州"],"en":"Junzhou","en_variants":["Junzhou","Wudang"]}
 {"id":"阴地","n":"阴地","names":["阴地"],"mod":"河南卢氏东北","lon":111.2,"lat":34.12,"eras":["chunqiu"],"refs":["chunqiu:i:261"],"en":"Yindi"}
@@ -1552,6 +1555,7 @@
 {"id":"岢岚","n":"岢岚","names":["岢岚"],"mod":"山西岢岚","lon":111.57,"lat":38.7,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:岢岚"],"en":"Kelan"}
 {"id":"营道","n":"营道","names":["营道"],"mod":"","lon":111.6,"lat":25.5,"eras":["qinhan","hanmosanguo"],"refs":["hanmosanguo:营道","qinhan:营道"],"en":"Yingdao"}
 {"id":"道州","n":"道州","names":["永州营道县","营州","营阳","道县","道州"],"mod":"湖南道县","lon":111.6,"lat":25.53,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:道州","minguo-xinzhongguo:道县","songyuan:道州","suitang:道州","tangsong:道州"],"en":"Daozhou","en_variants":["Daoxian","Daozhou","Yingyang"]}
+{"id":"单于庭（漠南）","n":"漠南","names":["单于庭（漠南）"],"mod":"内蒙古乌兰察布北部（大致）","lon":111.6,"lat":42.4,"eras":["qinhan"],"refs":["qinhan:i:225","qinhan:单于庭（漠南）"],"en":"The chanyu's court (south of the Gobi)"}
 {"id":"永州","n":"永州","names":["永州","泉陵（零陵）","零陵","零陵郡"],"mod":"湖南永州零陵区","lon":111.61,"lat":26.22,"eras":["qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["hanmosanguo:零陵郡","liangjin-nanbeichao:永州","minguo-xinzhongguo:零陵","qinhan:零陵郡","songyuan:永州","suitang:永州","tangsong:永州"],"en":"Yongzhou","en_variants":["Lingling","Lingling Commandery","Quanling (Lingling)","Yongzhou"],"sites":[{"lon":111.61,"lat":26.22,"note":"泉陵、零陵，永州府城（今零陵区）；北面的冷水滩是另一处"}]}
 {"id":"谷","n":"谷","names":["谷"],"mod":"湖北谷城","lon":111.65,"lat":32.27,"eras":["chunqiu"],"refs":["chunqiu:i:340"],"en":"Gu"}
 {"id":"成乐","n":"成乐","names":["成乐"],"mod":"","lon":111.65,"lat":40.4,"eras":["qinhan"],"refs":["qinhan:成乐"],"en":"Chengle"}
@@ -1723,7 +1727,7 @@
 {"id":"东虢","n":"东虢","names":["东虢"],"mod":"河南荥阳东北","lon":113.45,"lat":34.85,"eras":["chunqiu"],"refs":["chunqiu:i:104"],"en":"East Guo"}
 {"id":"新堤","n":"新堤","names":["新堤"],"mod":"湖北洪湖新堤","lon":113.47,"lat":29.82,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:新堤"],"en":"Xindi"}
 {"id":"阳翟","n":"阳翟","names":["栎","禹县","阳翟","颍川郡"],"mod":"河南禹州","lon":113.47,"lat":34.15,"eras":["chunqiu","zhanguo","qinhan","hanmosanguo","minguo-xinzhongguo"],"refs":["chunqiu:i:239","hanmosanguo:颍川郡","minguo-xinzhongguo:禹县","qinhan:颍川郡","zhanguo:i:39"],"en":"Yangzhai","en_variants":["Li","Yangzhai","Yuxian"]}
-{"id":"广武（河南荥阳广武镇）","n":"广武","names":["广武（汉王城·霸王城）"],"mod":"河南荥阳广武镇","lon":113.47,"lat":34.93,"eras":["qinhan"],"refs":["qinhan:i:335"],"en":"Guangwu (Han King's and Hegemon-King's forts)"}
+{"id":"广武（河南荥阳广武镇）","n":"广武","names":["广武（汉王城·霸王城）"],"mod":"河南荥阳广武镇","lon":113.47,"lat":34.93,"eras":["qinhan"],"refs":["qinhan:i:337"],"en":"Guangwu (Han King's and Hegemon-King's forts)"}
 {"id":"马都拉","n":"马都拉","names":["马都拉"],"mod":"印度尼西亚马都拉岛帕梅卡桑","lon":113.48,"lat":-7.16,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:马都拉"],"en":"Madura"}
 {"id":"襄城","n":"襄城","names":["襄城"],"mod":"河南襄城","lon":113.48,"lat":33.85,"eras":["zhanguo","qinhan","hanmosanguo"],"refs":["hanmosanguo:襄城","qinhan:襄城","zhanguo:i:218"],"en":"Xiangcheng"}
 {"id":"醴陵","n":"醴陵","names":["醴陵"],"mod":"湖南醴陵","lon":113.5,"lat":27.65,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:醴陵"],"en":"Liling"}
@@ -1756,6 +1760,7 @@
 {"id":"婆罗洲内陆","n":"婆罗洲内陆","names":["婆罗洲内陆"],"mod":"印度尼西亚加里曼丹中部山林","lon":113.8,"lat":0.8,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:婆罗洲内陆"]}
 {"id":"共","n":"共","names":["共"],"mod":"河南辉县","lon":113.8,"lat":35.46,"eras":["chunqiu","zhanguo"],"refs":["chunqiu:i:299","zhanguo:i:201"],"en":"Gong"}
 {"id":"黑山（113.80,36.62）","n":"黑山","names":["黑山（太行山中）"],"mod":"","lon":113.8,"lat":36.62,"eras":["hanmosanguo"],"refs":["hanmosanguo:黑山2"]}
+{"id":"茏城","n":"龙城","names":["茏城（龙城）"],"mod":"内蒙古锡林郭勒盟西部（漠南，大致）","lon":113.8,"lat":43.8,"eras":["qinhan"],"refs":["qinhan:i:226"],"en":"Longcheng"}
 {"id":"维季姆高原","n":"维季姆高原","names":["维季姆高原"],"mod":"俄罗斯维季姆高原","lon":113.8,"lat":54.5,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:维季姆高原"]}
 {"id":"通城","n":"通城","names":["通城"],"mod":"湖北通城","lon":113.81,"lat":29.25,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:通城"],"en":"Tongcheng"}
 {"id":"许昌","n":"许昌","names":["许","许县","许州","许昌","颍川郡","颍昌府"],"mod":"河南许昌","lon":113.82,"lat":34.03,"eras":["chunqiu","zhanguo","qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["chunqiu:i:129","hanmosanguo:i:196","hanmosanguo:许","liangjin-nanbeichao:许州","minguo-xinzhongguo:许昌","qinhan:许","songyuan:许州","suitang:许州","tangsong:许州","zhanguo:i:217"],"en":"Xu","en_variants":["Xu","Xuchang","Xuzhou"],"sites":[{"lon":113.95,"lat":34.02,"to":580,"note":"许国故城、汉魏许都故城（张潘镇）"},{"lon":113.82,"lat":34.03,"from":581,"note":"隋许州治长社，今许昌"}]}
@@ -1958,7 +1963,7 @@
 {"id":"陆丰","n":"陆丰","names":["陆丰"],"mod":"广东陆丰","lon":115.64,"lat":22.95,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:陆丰"],"en":"Lufeng"}
 {"id":"寻乌","n":"寻乌","names":["寻乌"],"mod":"江西寻乌","lon":115.65,"lat":24.96,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:寻乌"],"en":"Xunwu"}
 {"id":"固始","n":"固始","names":["固始"],"mod":"河南固始","lon":115.65,"lat":32.17,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:固始"],"en":"Gushi"}
-{"id":"商丘","n":"商丘","names":["南京应天府","商丘","宋州","应天府","应天府（南京）","归德","归德府","梁国","梁郡","睢阳","睢阳（梁国）"],"mod":"河南商丘","lon":115.65,"lat":34.43,"eras":["chunqiu","zhanguo","qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["chunqiu:i:108","hanmosanguo:梁国","liangjin-nanbeichao:宋州","minguo-xinzhongguo:商丘","qinhan:i:230","qinhan:梁国","songyuan:i:291","songyuan:宋州","suitang:宋州","tangsong:宋州","zhanguo:i:55"],"en":"Shangqiu","en_variants":["Shangqiu","Songzhou","Suiyang","Suiyang (Liang Kingdom)","Yingtian Fu (Southern Capital)"],"sites":[{"lon":115.65,"lat":34.43}]}
+{"id":"商丘","n":"商丘","names":["南京应天府","商丘","宋州","应天府","应天府（南京）","归德","归德府","梁国","梁郡","睢阳","睢阳（梁国）"],"mod":"河南商丘","lon":115.65,"lat":34.43,"eras":["chunqiu","zhanguo","qinhan","hanmosanguo","liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["chunqiu:i:108","hanmosanguo:梁国","liangjin-nanbeichao:宋州","minguo-xinzhongguo:商丘","qinhan:i:232","qinhan:梁国","songyuan:i:291","songyuan:宋州","suitang:宋州","tangsong:宋州","zhanguo:i:55"],"en":"Shangqiu","en_variants":["Shangqiu","Songzhou","Suiyang","Suiyang (Liang Kingdom)","Yingtian Fu (Southern Capital)"],"sites":[{"lon":115.65,"lat":34.43}]}
 {"id":"衡水","n":"衡水","names":["衡水"],"mod":"河北衡水","lon":115.67,"lat":37.73,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:衡水"],"en":"Hengshui"}
 {"id":"沽源","n":"沽源","names":["沽源"],"mod":"河北沽源","lon":115.69,"lat":41.67,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:沽源"],"en":"Guyuan"}
 {"id":"蓼","n":"蓼","names":["蓼"],"mod":"河南固始东北","lon":115.7,"lat":32.25,"eras":["chunqiu"],"refs":["chunqiu:i:143"],"en":"Liao"}

@@ -47,6 +47,8 @@ def Qg(spec):
 def node(key, y, m=None, sys_="X", cent="汉", groups=(), pred=None, ext=None, polmap=None, lab=None, lab_en=None,
          seat=None, h=(), junction=None):
     tx = TEXT[key]
+    if y <= -124 and (seat or {}).get("匈奴") == "单于庭":      # 前123 年赵信劝单于「益北绝幕」以前，单于庭在漠南（「直代、云中」）
+        seat = {**seat, "匈奴": "单于庭（漠南）"}
     NODES.append(dict(key=key, t=t_of(y, m), tp="m" if m else "y", label=f"{y}" + (f"·{m}" if m else ""),
                       sys=sys_, cent=cent, groups=list(groups), pred=pred, ext=ext or {}, polmap=polmap or {},
                       lab=lab or {}, lab_en=lab_en or {}, seat=seat or {}, h=list(h), junction=junction,

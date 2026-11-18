@@ -1048,6 +1048,7 @@
 {"id":"扶南","kind":"place","zh":"特牧城（扶南都）","en":"Vyadhapura (Funan capital)"}
 {"id":"扶南","kind":"place","zh":"特牧（扶南都）","en":"Vyadhapura (Funan capital)"}
 {"id":"河江","kind":"place","zh":"河江","en":"Hà Giang"}
+{"id":"受降城","kind":"place","zh":"受降城","en":"Shouxiang City"}
 {"id":"真腊","kind":"place","zh":"真腊故地","en":"Chenla homeland"}
 {"id":"真腊","kind":"place","zh":"真腊","en":"Chenla"}
 {"id":"扎西","kind":"place","zh":"扎西","en":"Zhaxi"}
@@ -1287,6 +1288,7 @@
 {"id":"马领","kind":"place","zh":"马领","en":"Maling"}
 {"id":"盐州","kind":"place","zh":"定边","en":"Dingbian"}
 {"id":"盐州","kind":"place","zh":"盐州","en":"Yanzhou"}
+{"id":"西受降城","kind":"place","zh":"西受降城","en":"Western Shouxiang City"}
 {"id":"万隆","kind":"place","zh":"万隆","en":"Bandung"}
 {"id":"西峰","kind":"place","zh":"西峰","en":"Xifeng"}
 {"id":"夷州","kind":"place","zh":"夷州","en":"Yizhou"}
@@ -1600,6 +1602,7 @@
 {"id":"兴县","kind":"place","zh":"兴县","en":"Xingxian"}
 {"id":"河曲","kind":"place","zh":"河曲","en":"Hequ"}
 {"id":"灌阳","kind":"place","zh":"灌阳","en":"Guanyang"}
+{"id":"东受降城","kind":"place","zh":"东受降城","en":"Eastern Shouxiang City"}
 {"id":"安邑","kind":"place","zh":"安邑","en":"Anyi"}
 {"id":"安邑","kind":"place","zh":"安邑（河东）","en":"Anyi (Hedong)"}
 {"id":"均州","kind":"place","zh":"武当","en":"Wudang"}
@@ -1654,6 +1657,7 @@
 {"id":"道州","kind":"place","zh":"营阳","en":"Yingyang"}
 {"id":"道州","kind":"place","zh":"道县","en":"Daoxian"}
 {"id":"道州","kind":"place","zh":"道州","en":"Daozhou"}
+{"id":"单于庭（漠南）","kind":"place","zh":"单于庭（漠南）","en":"The chanyu's court (south of the Gobi)"}
 {"id":"永州","kind":"place","zh":"零陵郡","en":"Lingling Commandery"}
 {"id":"永州","kind":"place","zh":"泉陵（零陵）","en":"Quanling (Lingling)"}
 {"id":"永州","kind":"place","zh":"零陵","en":"Lingling"}
@@ -1952,6 +1956,7 @@
 {"id":"东莞","kind":"place","zh":"东莞","en":"Dongguan"}
 {"id":"代郡","kind":"place","zh":"代郡","en":"Dai Commandery"}
 {"id":"共","kind":"place","zh":"共","en":"Gong"}
+{"id":"茏城","kind":"place","zh":"茏城（龙城）","en":"Longcheng"}
 {"id":"通城","kind":"place","zh":"通城","en":"Tongcheng"}
 {"id":"许昌","kind":"place","zh":"许","en":"Xu"}
 {"id":"许昌","kind":"place","zh":"许昌","en":"Xuchang"}

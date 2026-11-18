@@ -70,6 +70,7 @@ NAMES = {
     "千乘郡": "Qiancheng Commandery",
     "华阴": "Huayin",
     "单于庭": "The chanyu's court",
+    "单于庭（漠南）": "The chanyu's court (south of the Gobi)",
     "南乡": "Nanxiang",
     "南海郡": "Nanhai Commandery",
     "南郡": "Nan Commandery",

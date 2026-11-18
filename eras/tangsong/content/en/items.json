@@ -2060,5 +2060,20 @@
    "王满渡": "Wangman Ford",
    "狼虎谷": "Langhu Valley"
   }
+ },
+ "pass:东受降城": {
+  "old": "Eastern Shouxiang City",
+  "mod": "Dahuangcheng, Togtoh, Inner Mongolia",
+  "note": "The eastern of the three Shouxiang cities built by Zhang Renyuan in 708 (for why they were built, see the Central Shouxiang City), about four hundred li east of the central one. It held 7,000 men and 1,700 horses, and the Zhenwu army was first based here. Standing on the north bank of the Yellow River, it was worn away by the water over the years until its walls crumbled; in 825 the military governor of Zhenwu asked to move it south of the Suiyuan beacon, and the new city was finished in the tenth month of that year (one view puts it at the Baita site in today's Hohhot). The old site later held Dongsheng Prefecture under the Liao and Jin and the Dongsheng Garrison under the Ming."
+ },
+ "pass:中受降城": {
+  "old": "Central Shouxiang City",
+  "mod": "south of Baotou, Inner Mongolia (another view: Ergouwan site, Dalad Banner)",
+  "note": "The central one of the three Shouxiang cities built in 708 by Zhang Renyuan, Commander-in-Chief of the Shuofang circuit. Until then the Shuofang army and the Turks had the Yellow River as their border. On its north bank stood the Fuyun shrine, where the Turks, whenever they raided south, would first sacrifice and pray for luck, then pasture their horses and drill their troops before crossing the river. That year Mochuo Khagan took his whole army west against Suoge of the Türgesh, and Zhang Renyuan asked to seize the land south of the Gobi while it lay empty and to build three cities on the north bank, each within reach of the next, to cut the Turks' road south. Tang Xiujing objected that since the two Han dynasties the Yellow River had been the border and that cities built in enemy country would end up in enemy hands, but Emperor Zhongzong backed Zhang Renyuan. The central city was built on the site of the Fuyun shrine; all three were finished in sixty days, and 1,800 beacon posts were set up north of Mount Niutouchaona. After this the Turks could no longer cross the Yin Mountains to graze, Shuofang was free of raids, and tens of thousands of frontier troops could be stood down. The central city held 6,000 men and 2,000 horses; in 714 the Anbei Protectorate moved its seat here, and the main road across the desert to the Uyghur khagan's camp started from here."
+ },
+ "pass:西受降城": {
+  "old": "Western Shouxiang City",
+  "mod": "south-west of Wujiahe, Urad Middle Banner, Inner Mongolia (another view: Gaoyoufang site, Linhe)",
+  "note": "The western of the three Shouxiang cities built by Zhang Renyuan in 708 (for why they were built, see the Central Shouxiang City), south of the Langshan pass on the north bank of the Yellow River, about four hundred li west of the central one. It held 7,000 men and 1,700 horses. It stood at the mouth of the desert road: beyond the Langshan lay the Great Gobi. In the Kaiyuan years the Tang and the Turks traded here, silk for horses. In the Yuanhe years the Yellow River washed it away; when the court debated moving the garrison to the old Tiande city, Lu Tan and others argued that this city 'stands at the mouth of the desert, on the enemy's main road, with good water and rich grass', and should not be lightly given up. Its site is disputed; one view is that it first stood at the Gaoyoufang site in Linhe and after the flood moved to the Fendou site in today's Urad Middle Banner."
  }
 }

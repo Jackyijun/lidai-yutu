@@ -25,8 +25,47 @@ CAPITALS = [
     ("东瓯", "Dong'ou", "东瓯", 120.65, 28.0, [(-192, -138)], "浙江温州", "Wenzhou, Zhejiang", "东海王摇都城，俗称东瓯。", "Capital of Yao, king of Donghai, commonly called Dong'ou."),
     ("王险城", "Wangxian", "朝鲜", 125.75, 39.02, [(-194, -108)], "朝鲜平壤一带", "Pyongyang area, North Korea",
      "卫氏朝鲜都城；汉置乐浪郡朝鲜县。", "Capital of Wiman Joseon; under Han, Chaoxian County of Lelang Commandery."),
-    ("单于庭", "The chanyu's court", "匈奴", 102.6, 47.3, [(-212, 48)], "蒙古国杭爱山东麓（大致）", "eastern foot of the Khangai Mountains, Mongolia (approx.)",
-     "匈奴单于王庭，随水草迁徙；龙城为其大会祭天之所。", "The chanyu's moving court, following water and pasture; Longcheng was where the tribes gathered to sacrifice to Heaven."),
+    ("单于庭（漠南）", "The chanyu's court (south of the Gobi)", "匈奴", 111.6, 42.4, [(-212, -124)], "内蒙古乌兰察布北部（大致）",
+     "northern Ulanqab, Inner Mongolia (approx.)",
+     "单于的王庭，随水草迁徙，并无固定城郭。《史记》叙冒顿时诸王分地：左方王将居东方，右方王将居西方，「而单于之庭直代、云中」，"
+     "即在代郡、云中郡正北的漠南，具体地点史无明文，点位只是示意。前123 年赵信降匈奴，劝单于「益北绝幕，以诱罢汉兵」，"
+     "单于庭从此移到大漠以北；前119 年漠北之战后「幕南无王庭」。",
+     "The chanyu's court, which moved with the water and pasture and had no fixed walls. Describing the lands of the kings under Modu, the "
+     "Shiji says the kings and generals of the left lived in the east and those of the right in the west, 'and the chanyu's court faced Dai and Yunzhong': "
+     "south of the Gobi, due north of Dai and Yunzhong commanderies. The sources give no exact site, so the point is only a sketch. After Zhao "
+     "Xin went over to the Xiongnu in 123 BC, he advised the chanyu to move 'further north across the Gobi to lure the Han troops on and wear "
+     "them out', and from then on the court lay north of the desert; after the battle beyond the Gobi in 119 BC 'there was no royal court "
+     "south of the Gobi'."),
+    ("茏城（龙城）", "Longcheng", "匈奴", 113.8, 43.8, [(-212, -124)], "内蒙古锡林郭勒盟西部（漠南，大致）",
+     "western Xilingol, Inner Mongolia (south of the Gobi; approx.)",
+     "匈奴一年三会：正月诸长小会于单于庭；五月大会茏城，祭祖先、天地、鬼神；秋天马肥时大会蹛林，清点人口牲畜。前129 年卫青率万骑出上谷，"
+     "直捣茏城，斩首虏七百，是汉主动出击匈奴的第一次胜利。《史记》作「茏城」，《汉书》作「龙城」；有学者认为卫青所到的茏城在漠南，"
+     "与漠北的龙城不是一地，漠北远在当时汉军的作战范围之外。前123 年单于庭北迁以后，大会之所也随之移到漠北（见单于庭）。"
+     "点位只按卫青出上谷的方向示意，今地无考。",
+     "The Xiongnu held three assemblies a year: the chiefs held a lesser assembly at the chanyu's court in the first month; in the fifth they held the great "
+     "assembly at Longcheng and sacrificed to their ancestors, Heaven and Earth, and the spirits; and in autumn, when the horses were fat, they "
+     "assembled at Dailin to count their people and herds. In 129 BC Wei Qing rode out from Shanggu with ten thousand horsemen, struck at "
+     "Longcheng and took seven hundred heads and prisoners, Han's first victory on the offensive against the Xiongnu. The Shiji and the Hanshu "
+     "write the name with different characters, and some scholars hold that the Longcheng Wei Qing reached lay south of the Gobi and was not "
+     "the Longcheng north of it, which was far beyond the reach of Han armies at the time. After the chanyu's court moved north in 123 BC, the "
+     "great assembly moved north of the Gobi with it (see the chanyu's court). The point only follows Wei Qing's line of march from Shanggu; "
+     "the modern site is unknown."),
+    ("单于庭", "The chanyu's court", "匈奴", 102.6, 47.3, [(-123, 48)], "蒙古国后杭爱省鄂尔浑河中游（大致）",
+     "middle Orkhon River, Arkhangai, Mongolia (approx.)",
+     "前123 年赵信劝单于「益北绝幕」以后的单于庭，在大漠以北。前119 年卫青出定襄绝幕，与单于会战，追至窴颜山赵信城；此后「幕南无王庭」。"
+     "前105 年儿单于立，「单于益西北」。王庭随水草迁徙，正月诸长小会于此，五月大会龙城。考古上，后杭爱省鄂尔浑河与塔米尔河交汇一带有两处候选："
+     "2014—2018 年中蒙联合发掘的和日门塔拉「三连城」，内城不见居住痕迹，发掘者认为可能是史籍所记祭祀、会盟的龙城；"
+     "2020 年蒙古学者在交汇处以北约 27 公里的城址出土「天子单于」瓦当，认为即龙城。也有学者认为后者是单于庭、三连城才是龙城。"
+     "点位取鄂尔浑河中游，只是大致。",
+     "The chanyu's court after 123 BC, when Zhao Xin advised the chanyu to move 'further north across the Gobi'. In 119 BC Wei Qing crossed "
+     "the Gobi from Dingxiang, fought the chanyu and pursued him as far as Zhao Xin's fort at Mount Tianyan; after that 'there was no royal court "
+     "south of the Gobi'. After the boy chanyu came to the throne in 105 BC, 'the chanyu moved further north-west'. The court moved with the "
+     "water and pasture; the chiefs held a lesser assembly here in the first month, and the great assembly met at Longcheng in the fifth. Archaeology offers "
+     "two candidates where the Orkhon and Tamir rivers meet in Arkhangai: the 'triple town' of Khermen Tal, excavated by a joint "
+     "Chinese–Mongolian team in 2014–2018, whose inner enclosure shows no sign of habitation and which its excavators think may be the "
+     "Longcheng of the sources, the place of sacrifices and assemblies; and a walled site about 27 km north of the confluence, where Mongolian "
+     "archaeologists found eaves tiles reading 'Son of Heaven, the chanyu' in 2020 and which they take to be Longcheng. Some scholars hold "
+     "instead that the latter was the chanyu's court and the triple town Longcheng. The point on the middle Orkhon is only approximate."),
     ("赤谷城", "Chigu", "乌孙", 78.4, 42.2, [(-130, 184)], "吉尔吉斯斯坦伊塞克湖东南", "southeast of Lake Issyk-Kul, Kyrgyzstan", "乌孙昆莫（昆弥）治所。", "Seat of the Wusun kunmo (kunmi)."),
     ("贵山城", "Guishan", "大宛", 71.6, 40.5, [(-212, 184)], "费尔干纳盆地西部（地望有争议）", "western Ferghana basin (location disputed)", "大宛王治所。", "Seat of the king of Dayuan (Ferghana)."),
     ("蓝市城", "Lanshi", "大月氏", 66.9, 36.75, [(-130, 40)], "阿富汗巴尔赫", "Balkh, Afghanistan", "大夏都城，大月氏南迁后以为都。", "Capital of Daxia (Bactria); the Great Yuezhi made it their capital after moving south."),
@@ -74,13 +113,14 @@ BATTLES = [
     ("下邑之战", "Battle of Xiayi", 116.25, 34.3, -154, 3, "汉 胜 吴楚", "Han defeated Wu and Chu", "周亚夫 vs 刘濞", "Zhou Yafu vs. Liu Bi",
      "安徽砀山东", "east of Dangshan, Anhui", "周亚夫坚壁昌邑，断吴楚粮道；吴楚饥疲北攻，大败于下邑。", "Zhou Yafu stayed behind his walls at Changyi and cut the Wu–Chu supply lines; hungry and exhausted, the rebels attacked north and were crushed at Xiayi."),
     ("龙城之战", "Battle of Longcheng", 113.8, 43.6, -129, 3, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 匈奴", "Wei Qing vs. the Xiongnu",
-     "地望有争议（一说在今蒙古国境内）", "location disputed (some place it in today's Mongolia)",
+     "内蒙古锡林郭勒盟西部（漠南，大致）", "western Xilingol, Inner Mongolia (south of the Gobi; approx.)",
      "卫青初次领兵：四将军各将万骑分出上谷、代、云中、雁门，卫青出上谷直捣匈奴大会祭天的龙城，斩首虏七百。公孙敖亡七千骑，李广兵败被俘、"
-     "夺马逃归，公孙贺无功。这是汉主动出击匈奴的第一次胜利，卫青封关内侯。",
+     "夺马逃归，公孙贺无功。这是汉主动出击匈奴的第一次胜利，卫青封关内侯。《史记》作「茏城」，有学者认为在漠南，与漠北的龙城未必一地。",
      "Wei Qing's first command. Four generals each led ten thousand horsemen out from Shanggu, Dai, Yunzhong and Yanmen; Wei Qing struck from "
      "Shanggu at Longcheng, where the Xiongnu tribes gathered to sacrifice to Heaven, and took seven hundred heads and prisoners. Gongsun Ao lost "
      "seven thousand men, Li Guang was beaten and captured and escaped on a stolen horse, and Gongsun He achieved nothing. It was Han's first "
-     "victory on the offensive against the Xiongnu, and Wei Qing was made a Marquis Within the Passes."),
+     "victory on the offensive against the Xiongnu, and Wei Qing was made a Marquis Within the Passes. The Shiji writes the name with a "
+     "different character, and some scholars think this Longcheng lay south of the Gobi and was not necessarily the same place as the Longcheng north of it."),
     ("雁门之战", "Battle beyond Yanmen", 112.7, 41.3, -128, 9, "汉 胜 匈奴", "Han defeated the Xiongnu", "卫青 vs 匈奴", "Wei Qing vs. the Xiongnu",
      "雁门塞外（大致，今内蒙古中南部）", "beyond the Yanmen frontier, south-central Inner Mongolia (approx.)",
      "元朔元年秋，匈奴二万骑入辽西、渔阳、雁门；卫青以车骑将军将三万骑出雁门，李息出代，斩首虏数千。卫青七次出击匈奴，这是第二次。",
@@ -326,6 +366,24 @@ PASSES = [
      "once identified the walled site of Bayanbulag in Ömnögovi as Zhao Xin's fort, but its excavator, the Russian archaeologist Alexey Kovalev, takes it for the Han fort of "
      "Shouxiang, and ancient DNA and isotope analysis show that the soldiers buried together there came from northern China. Tan Qixiang's Historical "
      "Atlas of China does not mark it."),
+    ("受降城", "Shouxiang City", 105.0, 42.6, "蒙古国南戈壁省瑙木冈苏木南（巴彦布拉格城址；一说内蒙古乌拉特中旗东）",
+     "south of Nomgon sum, Ömnögovi, Mongolia (Bayanbulag site; another view: east of Urad Middle Banner, Inner Mongolia)",
+     "「受降」即接受投降。前105 年乌维单于死，子儿单于年少好杀，国人多不安，匈奴左大都尉暗中派人告汉：欲杀单于来降，汉远，请发兵来迎。"
+     "前104 年武帝令因杅将军公孙敖出塞筑城以待，仍嫌太远。次年浞野侯赵破奴率二万骑出朔方西北二千余里接应，左大都尉事泄被杀，"
+     "赵破奴回师途中在距受降城四百里处被八万骑围困，全军覆没；单于乘胜遣兵攻城，不能下。此后城孤悬塞外，汉匈反复争夺："
+     "前81 年壶衍鞮单于派九千骑屯驻于此以备汉；前71 年五将军出击时，城中设有汉朝的受降都尉。史书只说在塞外；2009 年俄蒙考古队认为即巴彦布拉格城址，"
+     "城旁乱葬坑出土的士卒经基因与同位素分析来自华北，但最早的尸骨测年早于筑城，比定仍有争议。",
+     "Shouxiang means 'receiving surrender'. In 105 BC the chanyu Wuwei died; his son, the boy chanyu, was young and fond of killing, and many of "
+     "his people were uneasy. The Xiongnu Chief Commandant of the Left secretly sent word to Han that he meant to kill the chanyu and surrender, "
+     "and asked for troops to meet him, since Han was far away. In 104 BC Emperor Wu had Gongsun Ao, General Yinyu, build a fort beyond the "
+     "frontier to receive him, though even that was thought too far. The next year Zhao Ponu, Marquis of Zhuoye, led twenty thousand horsemen more "
+     "than two thousand li north-west from Shuofang to meet the commandant, but the plot was discovered and the commandant killed; on the way "
+     "back Zhao Ponu was surrounded by eighty thousand horsemen four hundred li short of the fort and his whole army was lost. The chanyu then "
+     "sent troops against the fort, but they could not take it. Standing alone beyond the frontier, it changed hands more than once: in 81 BC "
+     "the chanyu Huyandi stationed nine thousand horsemen here against Han, and when five Han generals attacked in 71 BC it was the post of a "
+     "Han commandant for receiving surrender. The sources say only that it lay beyond the frontier; in 2009 a Russian–Mongolian team "
+     "identified it with the walled site of Bayanbulag, and DNA and isotope analysis shows that the soldiers in a mass grave beside it came "
+     "from northern China, but the earliest skeletons date from before the fort was built, so the identification is still debated."),
     ("令居塞", "Lingju frontier", 103.3, 36.6, "甘肃永登", "Yongdeng, Gansu", "前121 年后筑，河西塞的起点。", "Built after 121 BC, the starting point of the Hexi frontier."),
 ]
 
