@@ -64,7 +64,7 @@ def later(node, HSEAT):
     X("h108", -108, polmap=WY, lab=LWY, lab_en=LWYE)
     X("h101", -101, polmap=WY, lab=LWY, lab_en=LWYE)
     X("h60", -60, polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)
-    X("h51", -51, polmap=DH, h=["西域诸国", "呼韩邪"], lab=LDH, lab_en=LDHE)
+    X("h51", -51, polmap=DH, h=["西域诸国", "呼韩邪"], lab=LDH, lab_en=LDHE, seat={"呼韩邪": "光禄塞"})   # 呼韩邪「愿留居光禄塞下」
     X("h36", -36, polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)
     X("x2", 2, polmap=DH, h=["西域诸国"], lab=LDH, lab_en=LDHE)
     # ---------------- 新 ----------------

@@ -584,6 +584,12 @@
   const inPeriod = (it, j) => it.y <= perHi(j) && (it.y1 ?? it.y) >= perLo(j);
   const timed = it => it.c === "battle" || it.c === "event" || it.c === "route";
   const timedAt = it => it.c === "route" ? it.y1 : it.y;              // 不在本期时跳到哪个节点：路线取终点
+  // 关隘起止：yrs 为 [起, 止) 月序号的年段，没有的本卷始终都在；止在末节点之后的写「起」，起在首节点以前的写「秦以前」
+  const passOn = (it, Y) => !it.yrs || it.yrs.some(([a, b]) => a <= Y && Y < b);
+  const passYrsText = it => (it.yo ? LZ("约 ", "c.\u00a0") : "") + it.yrs.map(([a, b]) => {
+    const A = a <= SNAPS[0].y ? LZ("秦以前", "pre-Qin") : yLab(a);
+    return b > SNAPS[SNAPS.length - 1].y ? LZ(`${A} 起`, `from ${A}`) : `${A}${DASH()}${yLab(b)}`;
+  }).join(LZ("，", ", "));
   const LAYERS = [
     { id: "terr", name: "疆域", en: "Territory" }, { id: "zhou", name: "郡界", en: "Commandery borders" }, { id: "capital", name: "都城行在", en: "Capitals" }, { id: "seat", name: "都城治所", en: "Seats" }, { id: "pref", name: "郡国城邑", en: "Commanderies" },
     { id: "battle", name: "本期战役", en: "Battles" }, { id: "pass", name: "关隘", en: "Passes" }, { id: "event", name: "本期事件", en: "Events" }, { id: "people", name: "诸族", en: "Peoples" },
@@ -842,8 +848,8 @@
         if (!c || c.it !== it) { if (!isOn(k)) continue; pts.push({ kind: "capital", k, xy: it.xy, ord: 1, it, act: false, u: it.st, fut: true }); continue; }
         pts.push({ kind: "capital", k, xy: it.xy, ord: c.act ? 6 : 1, it, act: c.act, u: it.st }); continue;
       }
-      // 战役、事件只画本节点涵盖年份内的；其他时期的仅在悬停或选中时淡显
-      const off = timed(it) && !inPeriod(it, si);
+      // 战役、事件只画本节点涵盖年份内的，关隘只画本节点时已设、未废的；其他的仅在悬停或选中时淡显
+      const off = it.c === "pass" ? !passOn(it, YY) : timed(it) && !inPeriod(it, si);
       if (off && !isOn(k)) continue;
       pts.push({ kind: it.c, k, xy: it.xy, ord: it.c === "pass" ? 2 : it.c === "event" ? 1.5 : 4, it, fut: off, recent: it.c === "battle" && !off });
     }
@@ -1179,6 +1185,8 @@
     }
     if (timed(it) && !inPeriod(it, si)) meta += `<br><span class="mono">${LZ("不在本期", "Not in this period")}</span>` + (() => { const j = snapOfYear(timedAt(it)), y = sLab(SNAPS[j]), pt = perText(j), one = pt === y; return LZ(`见 ${y} 节点${one ? "" : `（${pt}）`}`, `see the ${y} snapshot${one ? "" : ` (${pt})`}`); })();
     else if (it.c === "people") meta = `<span class="mono">${LZ(`${it.y0 > -2545 ? "约 " + yLab(it.y0) : "秦以前"}—${it.y1 >= 2208 ? "东汉以后" : yLab(it.y1)}`, `${it.y0 > -2545 ? "c. " + yLab(it.y0) : "before Qin"}–${it.y1 >= 2208 ? "after the Eastern Han" : yLab(it.y1)}`)}</span>`;
+    else if (it.c === "pass" && it.yrs) meta = `<span class="mono">${passYrsText(it)}</span>` + (passOn(it, YY) ? "" :
+      `<br><span class="mono">${LZ("不在本期", "Not in this period")}</span>` + (YY < it.yrs[0][0] ? LZ("尚未设置", "not yet established") : LZ("已废置", "discontinued")));
     else if (it.c === "canal" && it.y0 > -2545) meta = `<span class="mono">${LZ(`${yLab(it.y0)} 开凿`, `dug ${yLab(it.y0)}`)}</span>` + (it.y0 > YY ? LZ("本期尚未开凿", "not yet dug") : "");
     if (it.c === "region") {
       const list = it.members.map(s => `${esc(seedName(s, YY))}<span class="mono">${LZ(`（${esc(SEEDS[s].mod)}）`, ` (${esc(sMod(SEEDS[s]))})`)}</span>`).join(LZ("、", ", "));
@@ -1500,7 +1508,12 @@
       total += group(id, name, LZ(`本期 ${cur.length} · 共 ${list.length}`, `${cur.length} this period · ${list.length} total`), K_OF[c], [...cur, ...rest].map(it => { const k = keyOf("i", it.i), f = info(k, "row"); return rowEl(k, K_OF[c], f.old, f.mod, f.meta, f.note, null, !inPeriod(it, si), null, f.zh); }));
     };
     periodic("battle", "battle", LZ("战役", "Battles"));
-    simple("pass", "pass", LZ("关隘", "Passes"), "");
+    {
+      const list = ITEMS.filter(it => it.c === "pass" && match(keyOf("i", it.i)));
+      const cur = list.filter(it => passOn(it, YY)), rest = list.filter(it => !passOn(it, YY));
+      total += group("pass", LZ("关隘", "Passes"), LZ(`本期 ${cur.length} · 共 ${list.length}`, `${cur.length} this period · ${list.length} total`), K_OF.pass,
+        [...cur, ...rest].map(it => { const k = keyOf("i", it.i), f = info(k, "row"); return rowEl(k, K_OF.pass, f.old, f.mod, f.meta, f.note, null, !passOn(it, YY), null, f.zh); }));
+    }
     periodic("event", "event", LZ("事件 · 文化", "Events & culture"));
     {
       const list = ITEMS.filter(it => it.c === "route" && match(keyOf("i", it.i))).sort((a, b) => a.y - b.y);
@@ -1554,7 +1567,7 @@
     for (const it of ITEMS) {
       if (!CATNAME[it.c] || !match(keyOf("i", it.i))) continue;
       const ll = it.lon != null ? [it.lon, it.lat] : it.anc;
-      const when = it.c === "capital" ? yrsText(it.yrs) : it.c === "region" ? `${it.y0}${DASH()}` : it.yt ? esc(iF(it, "yt")) : it.c === "people" ? `${it.y0}${DASH()}${it.y1}` : "";
+      const when = it.c === "capital" ? yrsText(it.yrs) : it.c === "pass" ? (it.yrs ? passYrsText(it) : "") : it.c === "region" ? `${it.y0}${DASH()}` : it.yt ? esc(iF(it, "yt")) : it.c === "people" ? `${it.y0}${DASH()}${it.y1}` : "";
       addRow(keyOf("i", it.i), iF(it, "old"), iF(it, "mod"), pick(CATNAME[it.c]) + (it.c === "capital" ? LZ("·", " · ") + uShort(it.st) : ""), it.c === "capital" ? uVar(it.st) : K_OF[it.c], when, ll,
         it.c === "battle" ? `${iF(it, "sides")}${LZ("。", ". ")}${iF(it, "note")}` : iF(it, "note"), null, it.old);
     }

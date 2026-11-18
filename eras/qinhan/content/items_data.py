@@ -66,6 +66,33 @@ CAPITALS = [
      "Longcheng of the sources, the place of sacrifices and assemblies; and a walled site about 27 km north of the confluence, where Mongolian "
      "archaeologists found eaves tiles reading 'Son of Heaven, the chanyu' in 2020 and which they take to be Longcheng. Some scholars hold "
      "instead that the latter was the chanyu's court and the triple town Longcheng. The point on the middle Orkhon is only approximate."),
+    ("单于庭（光禄城）", "The chanyu's court (Guanglu fort)", "呼韩邪", 109.5, 41.3, [(-51, -43)], "内蒙古包头固阳一带（大致）",
+     "Guyang area, Baotou, Inner Mongolia (approx.)",
+     "前51 年呼韩邪单于入朝甘泉宫，称臣于汉；归国时「自请愿留居光禄塞下，有急保汉受降城」。汉遣董忠、韩昌率骑一万六千送单于出朔方鸡鹿塞，"
+     "留下护卫，前后转运边谷三万四千斛供其食用。光禄城是前102 年徐自为所筑五原塞外列城之一，《汉书·地理志》说由稒阳「北出石门障得光禄城」。"
+     "这时漠北的单于庭为郅支单于所据，郅支后来西迁坚昆、康居；呼韩邪部众日渐恢复，「塞下禽兽尽」，大臣多劝北归，约前43 年回到单于庭。"
+     "点位只按光禄塞示意。",
+     "In 51 BC the chanyu Huhanye came to court at the Ganquan Palace and acknowledged himself a subject of Han; on leaving he 'asked to stay "
+     "by the Guanglu frontier and, in an emergency, to take refuge in the Han fort of Shouxiang'. Han sent Dong Zhong and Han Chang with "
+     "sixteen thousand horsemen to escort him out through the Jilu frontier post in Shuofang and stay on to guard him, and supplied him "
+     "with 34,000 hu of grain from the frontier commanderies in all. Guanglu was one of the line of forts that Xu Ziwei built beyond the Wuyuan frontier in 102 BC; the "
+     "treatise on geography in the Hanshu, under Guyang County, reaches it by going 'north out through the Shimen barrier'. Meanwhile the court north of the "
+     "Gobi was held by the chanyu Zhizhi, who later moved west to the Jiankun and the Kangju. As Huhanye's people recovered and 'the game "
+     "along the frontier was hunted out', his ministers urged him to go back north, and around 43 BC he returned to the chanyu's court. The "
+     "marker is placed at the Guanglu frontier and is only approximate."),
+    ("南单于庭（美稷）", "The southern chanyu's court (Meiji)", "南匈奴", 110.9, 39.8, [(50, 184)], "内蒙古准格尔旗西北（大致）",
+     "northwestern Jungar Banner, Inner Mongolia (approx.)",
+     "48 年匈奴南边八部共立日逐王比为呼韩邪单于，附汉。50 年汉遣中郎将段郴、副校尉王郁「立其庭，去五原西部塞八十里」；"
+     "同年冬，南单于与北单于交战不利，诏令徙居西河郡美稷县，段郴、王郁留驻西河护卫（此后设使匈奴中郎将监护），"
+     "南单于庭从此设在塞内，诸部分屯北边诸郡。此后南单于庭长期设在美稷；188 年羌渠单于被杀，其子於夫罗为国人所拒、不得归国，后留居河东平阳。"
+     "美稷故城一说即准格尔旗纳林古城。",
+     "In AD 48 the eight southern Xiongnu tribes together made Bi, the Rizhu king, chanyu under the title Huhanye, and he submitted to Han. In "
+     "50 Han sent the General of the Household Duan Chen and the Deputy Colonel Wang Yu to 'set up his court eighty li from the western "
+     "frontier of Wuyuan'; that winter, after the southern chanyu had fared badly against the northern chanyu, he was ordered to move to Meiji "
+     "County in Xihe Commandery, and Duan Chen and Wang Yu stayed in Xihe to guard him (a General of the Household Emissary to the Xiongnu "
+     "was later appointed to supervise him). From then on the southern chanyu's court lay inside the frontier, and his tribes were stationed across the "
+     "northern commanderies. The court remained at Meiji for a long time; in 188 the chanyu Qiangqu was killed and his son Yufuluo was rejected by "
+     "his own people, and, unable to return, he eventually settled at Pingyang in Hedong. The old town of Meiji is sometimes identified with the walled site of Nalin in Jungar Banner."),
     ("赤谷城", "Chigu", "乌孙", 78.4, 42.2, [(-130, 184)], "吉尔吉斯斯坦伊塞克湖东南", "southeast of Lake Issyk-Kul, Kyrgyzstan", "乌孙昆莫（昆弥）治所。", "Seat of the Wusun kunmo (kunmi)."),
     ("贵山城", "Guishan", "大宛", 71.6, 40.5, [(-212, 184)], "费尔干纳盆地西部（地望有争议）", "western Ferghana basin (location disputed)", "大宛王治所。", "Seat of the king of Dayuan (Ferghana)."),
     ("蓝市城", "Lanshi", "大月氏", 66.9, 36.75, [(-130, 40)], "阿富汗巴尔赫", "Balkh, Afghanistan", "大夏都城，大月氏南迁后以为都。", "Capital of Daxia (Bactria); the Great Yuezhi made it their capital after moving south."),
@@ -346,13 +373,39 @@ PASSES = [
      "203 BC Xiang Yu set Liu Bang's father on a chopping block and threatened to boil him; Liu Bang replied that he hoped to be sent a cup of the "
      "broth. When Xiang Yu challenged him to single combat, the king of Han listed Xiang Yu's ten great crimes and was hit in the chest by a hidden "
      "crossbowman; clutching his foot, he cried 'The wretch has hit my toe!' to keep his army steady."),
+    ("函谷关", "Hangu Pass", 110.91, 34.63, "河南灵宝北（秦函谷关遗址）", "north of Lingbao, Henan (Qin Hangu Pass site)",
+     "战国时秦所置的东方门户，在今灵宝王垛村，扼崤函古道。前206 年刘邦先入关中，遣兵守函谷关；项羽至，不得入，"
+     "使当阳君黥布等击破关城。前114 年关东移至新安（见新安的函谷关），故关改置弘农县。",
+     "Qin's eastern gateway, set up in the Warring States period at today's Wangduo village in Lingbao, commanding the road through the "
+     "Xiao and Hangu defiles. In 206 BC Liu Bang, the first to enter Guanzhong, sent troops to hold the Hangu Pass; when Xiang Yu arrived and "
+     "could not get through, he had Qing Bu, Lord of Dangyang, and others storm it. In 114 BC the pass was moved east to Xin'an (see the "
+     "Hangu Pass at Xin'an), and the county of Hongnong was set up at the old pass."),
     ("峣关", "Yao Pass", 109.42, 34.07, "陕西蓝田东南", "southeast of Lantian, Shaanxi", "武关通关中的要隘，刘邦入关曾袭破之。", "The key pass on the road from the Wu Pass into Guanzhong, taken by Liu Bang on his way in."),
     ("临晋关", "Linjin Pass", 110.25, 34.8, "陕西大荔东", "east of Dali, Shaanxi", "黄河蒲津渡口西岸，关中东北门户。", "The west bank of the Pujin ferry over the Yellow River, Guanzhong's north-eastern gate."),
     ("高阙", "Gaoque", 107.35, 41.15, "内蒙古阴山西段狼山", "Langshan, western Yin Mountains, Inner Mongolia", "阴山缺口，赵武灵王置塞，卫青由此出击。", "A gap in the Yin Mountains fortified by King Wuling of Zhao; Wei Qing struck out from here."),
-    ("鸡鹿塞", "Jilu frontier post", 106.6, 41.25, "内蒙古磴口西北", "northwest of Dengkou, Inner Mongolia", "朔方郡西北塞口，窦宪出征北匈奴即由此。", "A frontier gate in the north-west of Shuofang Commandery, from which Dou Xian set out against the Northern Xiongnu."),
+    ("鸡鹿塞", "Jilu frontier post", 106.6, 41.25, "内蒙古磴口西北", "northwest of Dengkou, Inner Mongolia",
+     "朔方郡西北塞口，在今磴口西北哈隆格乃峡谷口，存石筑障城。始筑年代史无明文，当在前127 年置朔方郡以后；"
+     "前51 年汉以骑兵一万六千护送呼韩邪单于由此出塞，是其首见；89 年窦宪出征北匈奴也由此出塞。",
+     "A frontier gate in the north-west of Shuofang Commandery, at the mouth of the Halonggenai gorge north-west of today's Dengkou, where "
+     "a stone-walled fort survives. The sources do not say when it was built, though it was presumably after Shuofang Commandery was set up in 127 BC; "
+     "it first appears in 51 BC, when sixteen thousand Han horsemen escorted the chanyu Huhanye out through it, and in AD 89 Dou Xian "
+     "marched out through it against the Northern Xiongnu."),
     ("居延塞", "Juyan frontier", 101.0, 41.9, "内蒙古额济纳旗", "Ejin Banner, Inner Mongolia", "前102 年路博德筑，出土汉简数万枚。", "Built by Lu Bode in 102 BC; tens of thousands of Han wooden slips have been found here."),
-    ("乌垒城", "Wulei", 84.6, 41.75, "新疆轮台东", "east of Luntai, Xinjiang", "西域都护治所。", "Seat of the Protector-General of the Western Regions."),
-    ("柳中", "Liuzhong", 89.7, 42.9, "新疆鄯善鲁克沁", "Lukqun, Shanshan County, Xinjiang", "东汉戊己校尉、西域长史屯田之所。", "Farming garrison of the Eastern Han Wu-Ji colonel and the Chief Clerk of the Western Regions."),
+    ("乌垒城", "Wulei", 84.6, 41.75, "新疆轮台东", "east of Luntai, Xinjiang",
+     "西域都护治所。前60 年郑吉为西域都护，「中西域而立莫府，治乌垒城」。王莽时西域叛离，13 年焉耆杀都护但钦；"
+     "16 年都护李崇兵败，退保龟兹；23 年王莽死，李崇没于西域，西域遂绝。东汉 74 年复置都护，陈睦的治所史无明文；91 年班超为都护，居龟兹它乾城。",
+     "Seat of the Protector-General of the Western Regions. In 60 BC Zheng Ji became Protector-General and 'set up his headquarters in the "
+     "middle of the Western Regions, governing from the city of Wulei'. Under Wang Mang the Western Regions broke away: in AD 13 Yanqi "
+     "killed the Protector-General Dan Qin, and in 16 the Protector-General Li Chong was defeated and fell back to hold Qiuci; when Wang Mang died "
+     "in 23 Li Chong was lost, and contact with the Western Regions ceased. When the Eastern Han restored the office in 74, the sources "
+     "do not say where the new Protector-General, Chen Mu, had his seat; from 91 Ban Chao, as Protector-General, was based at Tagan in Qiuci."),
+    ("柳中", "Liuzhong", 89.7, 42.9, "新疆鄯善鲁克沁", "Lukqun, Shanshan County, Xinjiang",
+     "东汉戊己校尉、西域长史屯田之所。74 年复置戊己校尉，关宠屯柳中城；次年北匈奴与车师围攻，76 年汉军赶到时关宠已死，遂罢戊己校尉。"
+     "123 年班勇为西域长史，将弛刑士五百人西屯柳中，次年起平定车师前后部。",
+     "Farming garrison of the Eastern Han Wu-Ji colonel and the Chief Clerk of the Western Regions. When the Wu-Ji colonels were restored in "
+     "AD 74, Guan Chong was stationed at the town of Liuzhong; the next year the Northern Xiongnu and Jushi besieged him, and by the time a "
+     "Han relief force arrived in 76 he was dead, and the office of Wu-Ji colonel was abolished. In 123 Ban Yong, as Chief Clerk of the Western Regions, led "
+     "five hundred convict soldiers west to garrison Liuzhong, and from the next year subdued the Front and Rear kingdoms of Jushi."),
     ("赵信城", "Zhao Xin's fort", 103.2, 46.8, "蒙古国杭爱山南麓（一说；点位示意）", "southern foot of the Khangai Mountains, Mongolia (one view; approximate)",
      "前123 年赵信兵败复降匈奴，单于以为自次王，以姊妻之，筑城居之，故名。前119 年卫青追单于至窴颜山赵信城，取其积粟食军，留一日，悉烧余粟而还。"
      "史籍只说在窴颜山下，今地无定说：一说在杭爱山南麓（窴颜山为杭爱山南支），图上取此说；一说在色楞格河支流哈努伊河中游，附近有匈奴古城遗址；"
@@ -371,21 +424,42 @@ PASSES = [
      "「受降」即接受投降。前105 年乌维单于死，子儿单于年少好杀，国人多不安，匈奴左大都尉暗中派人告汉：欲杀单于来降，汉远，请发兵来迎。"
      "前104 年武帝令因杅将军公孙敖出塞筑城以待，仍嫌太远。次年浞野侯赵破奴率二万骑出朔方西北二千余里接应，左大都尉事泄被杀，"
      "赵破奴回师途中在距受降城四百里处被八万骑围困，全军覆没；单于乘胜遣兵攻城，不能下。此后城孤悬塞外，汉匈反复争夺："
-     "前81 年壶衍鞮单于派九千骑屯驻于此以备汉；前71 年五将军出击时，城中设有汉朝的受降都尉。史书只说在塞外；2009 年俄蒙考古队认为即巴彦布拉格城址，"
+     "前81 年壶衍鞮单于派九千骑屯驻于此以备汉；前71 年五将军出击时，城中设有汉朝的受降都尉；前51 年呼韩邪单于附汉，"
+     "请居光禄塞下，「有急保汉受降城」。史书只说在塞外；2009 年俄蒙考古队认为即巴彦布拉格城址，"
      "城旁乱葬坑出土的士卒经基因与同位素分析来自华北，但最早的尸骨测年早于筑城，比定仍有争议。",
      "Shouxiang means 'receiving surrender'. In 105 BC the chanyu Wuwei died; his son, the boy chanyu, was young and fond of killing, and many of "
      "his people were uneasy. The Xiongnu Chief Commandant of the Left secretly sent word to Han that he meant to kill the chanyu and surrender, "
-     "and asked for troops to meet him, since Han was far away. In 104 BC Emperor Wu had Gongsun Ao, General Yinyu, build a fort beyond the "
+     "and asked for troops to meet him, since Han was far away. In 104 BC Emperor Wu had Gongsun Ao, the Yinyu General, build a fort beyond the "
      "frontier to receive him, though even that was thought too far. The next year Zhao Ponu, Marquis of Zhuoye, led twenty thousand horsemen more "
      "than two thousand li north-west from Shuofang to meet the commandant, but the plot was discovered and the commandant killed; on the way "
      "back Zhao Ponu was surrounded by eighty thousand horsemen four hundred li short of the fort and his whole army was lost. The chanyu then "
      "sent troops against the fort, but they could not take it. Standing alone beyond the frontier, it changed hands more than once: in 81 BC "
-     "the chanyu Huyandi stationed nine thousand horsemen here against Han, and when five Han generals attacked in 71 BC it was the post of a "
-     "Han commandant for receiving surrender. The sources say only that it lay beyond the frontier; in 2009 a Russian–Mongolian team "
-     "identified it with the walled site of Bayanbulag, and DNA and isotope analysis shows that the soldiers in a mass grave beside it came "
-     "from northern China, but the earliest skeletons date from before the fort was built, so the identification is still debated."),
-    ("令居塞", "Lingju frontier", 103.3, 36.6, "甘肃永登", "Yongdeng, Gansu", "前121 年后筑，河西塞的起点。", "Built after 121 BC, the starting point of the Hexi frontier."),
+     "the chanyu Huyandi stationed nine thousand horsemen here against Han, when five Han generals took the field against the Xiongnu in 71 BC, a "
+     "Han Commandant for Receiving Surrender was stationed there; and in 51 BC Huhanye, newly submitted to Han, asked to stay by the Guanglu "
+     "frontier and, 'in an emergency, to take refuge in the Han fort of Shouxiang'. The sources say only that it lay beyond the frontier. In 2009 a "
+     "Russian–Mongolian team identified it with the walled site of Bayanbulag. DNA and isotope analysis shows that the soldiers in a mass grave "
+     "beside it came from northern China, but the earliest skeletons date from before the fort was built, so the identification is still debated."),
+    ("令居塞", "Lingju frontier", 103.3, 36.6, "甘肃永登", "Yongdeng, Gansu",
+     "前121 年浑邪王降汉、河西归汉，前119 年以后汉「渡河自朔方以西至令居，往往通渠置田」；约前115 年张骞自乌孙归后，"
+     "「汉始筑令居以西」，是为河西塞的起点。",
+     "After the Hunye king surrendered in 121 BC and the Hexi Corridor passed to Han, from 119 BC Han 'crossed the [Yellow] River and, from "
+     "Shuofang west to Lingju, dug canals and set up farms in many places'; around 115 BC, after Zhang Qian came back from the Wusun, 'Han "
+     "began to build [fortifications] west of Lingju', making Lingju the starting point of the Hexi frontier."),
 ]
+
+# 关隘的起止：名 → (年段, 是否约数)。年段同都城，(起年, 止年)，止年 None 表示到卷末仍在；约数在信息栏写「约」。
+# 不在表里的关隘本卷始终都在（秦以前已有，或建置年代无考）。汉末底图带来的关隘写在 BASE_EDIT 的 yrs、yo 里。
+PASS_YRS = {
+    "函谷关": ([(-212, -115)], False),           # 灵宝的秦关；前114 年东移新安
+    "广武（汉王城·霸王城）": ([(-203, None)], False),
+    "鸡鹿塞": ([(-127, None)], True),            # 置朔方郡以后；前51 年首见
+    "居延塞": ([(-102, None)], False),
+    "乌垒城": ([(-60, 16)], False),              # 西域都护治所：郑吉至李崇退保龟兹
+    "柳中": ([(74, 76), (123, None)], False),    # 关宠屯柳中；班勇屯柳中
+    "赵信城": ([(-123, None)], False),
+    "受降城": ([(-104, None)], False),
+    "令居塞": ([(-115, None)], True),            # 「汉始筑令居以西」
+}
 
 # (名, 英文名, 线, 起年, 今地, 英文今地, 说明, 英文说明)
 WALLS = [
@@ -688,6 +762,27 @@ BASE_EDIT = {
                             "Liang and Chen Ping the king of Han broke the agreement and pursued him, destroying Chu at Gaixia the next year. The "
                             "'Chu river, Han border' across the middle of the Chinese chessboard is generally thought to come from this. Drawn along "
                             "the same course as in the Warring States volume."),
+    "函谷关": dict(yrs=[(-114, None)],
+                note="前114 年（元鼎三年），杨仆（后为楼船将军）耻为关外民，请以家财东移关城，武帝遂徙关于新安，去故关三百里，为洛阳西面门户；"
+                     "故关在今灵宝，改置弘农县（见灵宝的函谷关）。",
+                enote="In 114 BC Yang Pu (later General of the Towered Ships), ashamed that his home lay outside the pass, asked to have it moved east at his "
+                      "own expense, and Emperor Wu moved it to Xin'an, three hundred li east of the old one; it became the western gateway to "
+                      "Luoyang. The old pass, at today's Lingbao, became the county of Hongnong (see the Hangu Pass at Lingbao)."),
+    "玉门关": dict(yrs=[(-101, None)], yo=True,
+                note="汉代通西域北道的关口，与阳关合称两关。设关年代与关址都有争议：一说前111 年前后筑塞至酒泉时初置，在敦煌以东——"
+                     "前103 年李广利首伐大宛不利，武帝「使使遮玉门」，军有敢入者斩，李广利只得留在敦煌，可见关仍在敦煌以东，此后才西移；"
+                     "一说自始即在敦煌西北。点位取小方盘城（玉门都尉治所）。",
+                enote="The Han pass on the Northern Route of the Western Regions. Together with the Yang Pass it made up the 'two passes'. Both its "
+                      "date and its site are disputed. On one view it was first set up around 111 BC, when the frontier was extended to Jiuquan, and lay "
+                      "east of Dunhuang: when Li Guangli's first campaign against Dayuan failed in 103 BC, Emperor Wu 'sent envoys to block the "
+                      "Yumen Pass' with orders to behead any soldier who dared to enter, and Li Guangli had to stay at Dunhuang, so the pass was still east "
+                      "of it; only later was it moved west. On another view it stood north-west of Dunhuang from the start. The map marker is "
+                      "placed at the Xiaofangpan fort, seat of the Chief Commandant of Yumen."),
+    "阳关": dict(yrs=[(-101, None)], yo=True,
+               note="汉代通西域南道的关口。与玉门关同为敦煌郡西境的两关，即「列四郡，据两关」；设置年代与玉门关一样有争议。",
+               enote="The Han pass on the Southern Route of the Western Regions. With the Yumen Pass it formed the 'two passes' on the western "
+                     "edge of Dunhuang Commandery — in the Hanshu's words, Han 'set up four commanderies and held the two passes'; like the "
+                     "Yumen Pass, its founding date is disputed."),
     "弓卢水": dict(note="霍去病「济弓闾」，弓闾一般认为即弓卢水。",
                 enote="Huo Qubing 'crossed the Gonglü', which is usually taken to be the Gonglu River."),
 }

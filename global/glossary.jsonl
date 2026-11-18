@@ -1433,6 +1433,7 @@
 {"id":"延州","kind":"place","zh":"延安","en":"Yan'an"}
 {"id":"延州","kind":"place","zh":"高奴","en":"Gaonu"}
 {"id":"延州","kind":"place","zh":"延州","en":"Yanzhou"}
+{"id":"光禄塞","kind":"place","zh":"单于庭（光禄城）","en":"The chanyu's court (Guanglu fort)"}
 {"id":"光禄塞","kind":"place","zh":"光禄塞","en":"Guanglu Fort"}
 {"id":"崖县","kind":"place","zh":"崖县","en":"Yaxian"}
 {"id":"渭南","kind":"place","zh":"渭南","en":"Weinan"}
@@ -1575,6 +1576,7 @@
 {"id":"藤州","kind":"place","zh":"藤州","en":"Tengzhou"}
 {"id":"弘农","kind":"place","zh":"弘农","en":"Hongnong"}
 {"id":"美稷","kind":"place","zh":"美稷","en":"Meiji"}
+{"id":"美稷","kind":"place","zh":"南单于庭（美稷）","en":"The southern chanyu's court (Meiji)"}
 {"id":"函谷关","kind":"place","zh":"函谷关","en":"Hangu Pass"}
 {"id":"茂名","kind":"place","zh":"茂名","en":"Maoming"}
 {"id":"隰州","kind":"place","zh":"蒲子","en":"Puzi"}

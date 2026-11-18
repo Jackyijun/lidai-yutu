@@ -10,7 +10,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from nodes import t_of  # noqa: E402
-from items_data import CAPITALS, BATTLES, EVENTS, PEOPLES, PASSES, WALLS, ROUTES, PHYS_NEW, PHYS_MAJOR, BASE_EDIT  # noqa: E402
+from items_data import CAPITALS, BATTLES, EVENTS, PEOPLES, PASSES, PASS_YRS, WALLS, ROUTES, PHYS_NEW, PHYS_MAJOR, BASE_EDIT  # noqa: E402
 
 
 def ylab(y, en=False):
@@ -30,6 +30,8 @@ def span_t(sp):
     if len(sp) == 4:
         return [t_of(sp[0], sp[1]), t_of(sp[2], sp[3])]
     a, b = sp
+    if b is None or b >= 184:                      # 到卷末（184 年）仍在的：止于卷末之后，末节点（184 年十二月）也算在内
+        b = 185
     return [t_of(a, 1 if a > -104 else 10), t_of(b, 12 if b >= -104 else 9)]
 
 
@@ -55,6 +57,10 @@ def build(base, SEEDS, UK, zg_items):
                 o[k] = ed[k]
             if "e" + k in ed:
                 o["e"][k] = ed["e" + k]
+        if "yrs" in ed:                            # 关隘起止
+            o["yrs"] = [span_t(sp) for sp in ed["yrs"]]
+            if ed.get("yo"):
+                o["yo"] = 1
         bmap[it["i"]] = add(o)["i"]
         if "geo" in ed:
             regeo[bmap[it["i"]]] = ed["geo"]
@@ -85,7 +91,13 @@ def build(base, SEEDS, UK, zg_items):
         add(dict(c="people", old=old, mod="", note=note, lon=lon, lat=lat, y0=t_of(a, 1 if a > -104 else 10),
                  y1=t_of(b, 12 if b >= -104 else 9), e=dict(old=en_old, note=en_note)))
     for (old, en_old, lon, lat, mod, en_mod, note, en_note) in PASSES:
-        add(dict(c="pass", old=old, mod=mod, note=note, lon=lon, lat=lat, e=dict(old=en_old, mod=en_mod, note=en_note)))
+        o = dict(c="pass", old=old, mod=mod, note=note, lon=lon, lat=lat, e=dict(old=en_old, mod=en_mod, note=en_note))
+        if old in PASS_YRS:                        # 起止：前端只在年段内画，信息栏写年段
+            spans, approx = PASS_YRS[old]
+            o["yrs"] = [span_t(sp) for sp in spans]
+            if approx:
+                o["yo"] = 1
+        add(o)
     # 长城、驰道直道：战国卷的取过来，汉塞新画
     for it in zg_items:
         if not ((it["c"] == "wall" and it.get("y1") is None) or it["c"] == "road"):
