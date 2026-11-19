@@ -604,7 +604,7 @@
 {"id":"天平","n":"天平","kind":"zhen","eras":["tangsong"],"refs":["tangsong:天平"],"colors":{"tangsong":["#5187AB","#579AC6"]},"en":"Tianping"}
 {"id":"天德","n":"天德","kind":"zhen","eras":["tangsong"],"refs":["tangsong:天德"],"colors":{"tangsong":["#9F7EAA","#B68DC3"]},"en":"Tiande"}
 {"id":"奉国（蔡州）","n":"奉国（蔡州）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:奉国"],"colors":{"tangsong":["#7A8750","#8B9A57"]},"en":"Fengguo (Caizhou)"}
-{"id":"女真","n":"女真","kind":"tribe","eras":["tangsong","songyuan"],"refs":["tangsong:女真","songyuan:女真"],"colors":{"tangsong":["#9F7849","#B7884E"],"songyuan":["#9F7849","#B7884E"]},"en":"Jurchens"}
+{"id":"女真","n":"女真","kind":"tribe","eras":["tangsong","songyuan"],"refs":["tangsong:女真","songyuan:女真"],"colors":{"tangsong":["#858166","#99936D"],"songyuan":["#858166","#99936D"]},"en":"Jurchens"}
 {"id":"宋","n":"宋","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:宋","songyuan:宋"],"colors":{"tangsong":["#B26A5E","#CD7869"],"songyuan":["#B26A5E","#CD7869"]},"en":"Song"}
 {"id":"定安国","n":"定安国","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:定安国","songyuan:定安国"],"colors":{"tangsong":["#DEA8A5","#FBB6B3"],"songyuan":["#DEA8A5","#FBB6B3"]},"en":"Jeongan (Ding'an)"}
 {"id":"宣歙","n":"宣歙","kind":"zhen","eras":["tangsong"],"refs":["tangsong:宣歙"],"colors":{"tangsong":["#B8C499","#CAD9A2"]},"en":"Xuanshe"}

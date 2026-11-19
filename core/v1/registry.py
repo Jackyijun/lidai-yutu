@@ -636,13 +636,18 @@ def build_junctions(B, polities):
         ia = {ref2id[f"{a}:{k}"]: v for k, v in sa.items()}
         iz = {ref2id[f"{z}:{k}"]: v for k, v in sz.items()}
         common = sorted(set(ia) & set(iz))
+        # 只比两卷都画到的范围：一卷图幅截掉的边角（如唐宋卷东到 136°E，宋元卷画到日本全境）不算画法不一致
+        from shapely.ops import unary_union
+        drawn = lambda d: unary_union([v for v in d.values() if v is not None and not v.is_empty])
+        both = drawn(sa).intersection(drawn(sz))
         ious = []
         for pid in common:
             A, Z = ia[pid], iz[pid]
             if A is None or Z is None or A.is_empty or Z.is_empty:
                 continue
-            u = A.union(Z).area
-            ious.append((pid, A.intersection(Z).area / u if u else 1.0, A.area, Z.area))
+            A2, Z2 = A.intersection(both), Z.intersection(both)
+            u = A2.union(Z2).area
+            ious.append((pid, A2.intersection(Z2).area / u if u else 1.0, A.area, Z.area))
         # 只在一边出现的政权，两两比对疆域：重合度高的多半是同一政权在两卷里名字不同
         id2ref = {}
         for k in sa:
@@ -782,7 +787,8 @@ def main():
     # 衔接年份：前一卷最后一个节点与后一卷第一个节点
     jrows = build_junctions(B, polities)
     parts = ["# 衔接审定清单\n\n相邻两卷在衔接年份各画了一次疆域。`global/junctions.toml` 里记着每个衔接年份以哪一卷为准；"
-             "这里列出两卷在衔接节点上的差别，供核对。重合度 = 交集面积 ÷ 并集面积，1 表示完全一样。\n"]
+             "这里列出两卷在衔接节点上的差别，供核对。重合度 = 交集面积 ÷ 并集面积，1 表示完全一样；"
+             "只在两卷都画到的范围内比（图幅边缘被一卷截掉的部分不算），面积栏仍是各卷画出的全部面积。\n"]
     for r in jrows:
         yy = lambda t: f"前{-(t // 12)}" if t < 0 else str(t // 12)
         same = "同一年" if r["same_time"] else f"相邻两年（{yy(r['t_from'])} / {yy(r['t_to'])}）"
@@ -794,7 +800,7 @@ def main():
                                   [(pid, f"{iou:.2f}", f"{aa:.1f}", f"{zz:.1f}") for pid, iou, aa, zz in sorted(low, key=lambda x: x[1])]) + "\n")
         if r["rename"]:
             parts.append(f"\n两卷名字不同、疆域相交的政权。重合度高的多半是同一政权换了名字（若是，把末栏抄进 `global/decisions.toml` 的 `[polities] merge`）；"
-                         f"重合度低而「小者落入」高的，是一卷单列、另一卷并入了别的政权（如唐宋卷单列的女真、室韦，宋元卷画在辽的范围里），这类不要合并，属于衔接年份画法不一致。\n\n"
+                         f"重合度低而「小者落入」高的，是一卷单列、另一卷并入了别的政权（如一卷单列的部族，另一卷画在宗主政权的范围里），这类不要合并，属于衔接年份画法不一致。\n\n"
                          + md_table([ERA_ZH[r["from"]], ERA_ZH[r["to"]], "重合度", "小者落入", "面积", "decisions.toml"],
                                     [(x, y, f"{iou:.2f}", f"{cov:.2f}", f"{aa:.0f} / {zz:.0f}", f'`["{ra}", "{rz}"],`')
                                      for x, y, iou, cov, aa, zz, ra, rz in sorted(r["rename"], key=lambda q: -q[2])]) + "\n")

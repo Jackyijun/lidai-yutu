@@ -113,7 +113,7 @@ songyuan-map/
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/songyuan/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py songyuan` 时自动重算）；归属、文字、条目仍出自本卷。疆域简化容差放宽到 0.25 格（`era.toml` 的 `[engine]`）；999 年花剌子模的玉龙杰赤、希瓦两点在 `content/seeds.txt` 里写了 `R=0.2`，只留阿姆河下游绿洲。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+> 单仓新页面（`docs/songyuan/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py songyuan` 时自动重算）；归属、文字、条目仍出自本卷。疆域简化容差放宽到 0.25 格（`era.toml` 的 `[engine]`）；999 年花剌子模的玉龙杰赤、希瓦两点在 `content/seeds.txt` 里写了 `R=0.2`，只留阿姆河下游绿洲；阿里一线补了普兰、仲巴两个区域辅助点。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
 
 ```
 content/ ──────┐

@@ -1,6 +1,6 @@
 {
- "地点": 2759,
- "跨卷地点": 942,
+ "地点": 2761,
+ "跨卷地点": 944,
  "地点待审": 0,
  "坐标改正": 130,
  "政权与二级单位": 1167,
@@ -17,8 +17,8 @@
   "chunqiu→zhanguo": 0,
   "zhanguo→qinhan": 0,
   "qinhan→hanmosanguo": 0,
-  "hanmosanguo→liangjin-nanbeichao": 1,
-  "liangjin-nanbeichao→suitang": 4,
-  "tangsong→songyuan": 21
+  "hanmosanguo→liangjin-nanbeichao": 0,
+  "liangjin-nanbeichao→suitang": 0,
+  "tangsong→songyuan": 0
  }
 }

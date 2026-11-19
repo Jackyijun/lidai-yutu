@@ -103,7 +103,7 @@ songyuan-map/
 
 ## 5. How it works
 
-> From migration step 7 (18 November 2026) the territory on the new page in the single repository (`docs/songyuan/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py songyuan` at the repository root). Ownership, text and entries still come from this volume. The border simplification tolerance is relaxed to 0.25 cells (`[engine]` in `era.toml`), and the Khwarezm seeds Gurganj and Khiva carry `R=0.2` in `content/seeds.txt`, so that in 999 Khwarezm keeps only the lower Amu Darya oasis. What follows describes this volume's own older algorithm, now used only for the old page and `legacy.html`.
+> From migration step 7 (18 November 2026) the territory on the new page in the single repository (`docs/songyuan/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py songyuan` at the repository root). Ownership, text and entries still come from this volume. The border simplification tolerance is relaxed to 0.25 cells (`[engine]` in `era.toml`), and the Khwarezm seeds Gurganj and Khiva carry `R=0.2` in `content/seeds.txt`, so that in 999 Khwarezm keeps only the lower Amu Darya oasis; two helper seeds for the Ngari stretch, Purang and Zhongba, were added. What follows describes this volume's own older algorithm, now used only for the old page and `legacy.html`.
 
 ```
 content/ ──────┐

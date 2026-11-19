@@ -39,6 +39,12 @@ central_lon = 105
 seam = -30                  # 接缝经度，小于它的经度加 360°
 legacy = [35, 104]           # 旧版页面（legacy.html）用的原点纬线、中央经线
 
+[engine]                    # 第 5 步统一疆域引擎（core/engine/）的外缘设置；归属点与节点取 v1 数据包
+outer = "reach"             # 按可达代价定外缘（参数见 core/engine/config.toml 的 [outer]）
+geometry = "engine"         # 第 7 步起页面疆域由统一引擎出：eras/tangsong/engine.json（构建时重算，入库），生成 v1 时换进去
+box = [72.0, 136.0, 15.5, 55.0]   # 推算范围 [西, 东, 南, 北]，同旧引擎的 EXTENT（src/config.py）
+seeds = "content/seeds.txt" # 各点可达倍数（R=）写在这里
+
 [junction.prev]
 era = "suitang"
 at = "空档 669 — 755"
@@ -47,7 +53,7 @@ note = "隋唐卷延长到 755 年时补上"
 [junction.next]
 era = "songyuan"
 at = "979"
-note = "共用节点，以哪一卷为准待定"
+note = "共用节点，以宋元卷为准（global/junctions.toml）"
 
 [legacy]                    # 旧版：原仓库与原网址保持不变，总页上留「旧版 ↗」链接
 repo = "Jackyijun/tangsong-map"

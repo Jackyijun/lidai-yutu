@@ -11,8 +11,10 @@ engine.json 记着引擎输入的指纹（core/engine/data.py 的 fingerprint）
 
 衔接节点（global/junctions.toml 里 shared 的一年）：
   - 本卷是准的一方：照用本卷引擎的结果；
-  - 对方是准、对方也已换到引擎：在对方的推算范围（手绘外缘）以内照搬对方引擎的几何，范围以外用本卷的，
-    跨线的同一单位两部分合并（单位按键对上）；
+  - 对方是准、对方也已换到引擎：在对方的推算范围（手绘外缘，或可达代价卷的 box 减 EXCLUDE）以内照搬对方引擎的几何，
+    范围以外用本卷的，跨线的同一单位两部分合并；对方的几何先裁到本卷自己的推算范围，
+    本卷范围以外对方才有的单位不照搬。对方的单位依次按同键、同全局 ID（global/polities.jsonl）、
+    所属政权（对方政权层几何过半落在哪个本卷单位）对上本卷的单位，对不上的那块用本卷自己的几何；
   - 对方是准、还没换到引擎：这个节点整个保留 legacy.html 里的几何（旧构建本来就照搬了对方）。
 """
 import json
@@ -116,33 +118,77 @@ def junction_nodes(slug, b):
     return out
 
 
-def region_of(owner):
-    """准的一卷的推算范围（经纬度多边形）：手绘外缘。按可达代价定外缘的卷换过来时再补"""
+def gid_of():
+    """全局政权表的引用 → 全局 ID，{"卷:单位键": ID}（取 global/polities.jsonl，即上一次生成的全局表；同一政权各卷键不同时靠它对上）"""
+    out = {}
+    for line in (ROOT / "global" / "polities.jsonl").read_text(encoding="utf8").splitlines():
+        if line.strip():
+            d = json.loads(line)
+            for r in d.get("refs", []):
+                out[r] = d["id"]
+    return out
+
+
+def region_of(slug):
+    """一卷的推算范围（经纬度多边形）：手绘外缘（outer = "frontier"），或按可达代价定外缘的卷的 box 减去 EXCLUDE（outer = "reach"）"""
     import shapely
     import data as DA
-    sp = DA.spec(owner)
-    if sp.get("outer") != "frontier":
-        sys.exit(f"{owner}：衔接照搬目前只支持手绘外缘的卷（outer = \"frontier\"）")
-    fr = DA.frontier(owner)
-    return shapely.Polygon(fr).buffer(0)
+    sp = DA.spec(slug)
+    if sp.get("outer") == "frontier":
+        return shapely.Polygon(DA.frontier(slug)).buffer(0)
+    if sp.get("outer") == "reach":
+        return DA.region(slug, sp)
+    sys.exit(f"{slug}：era.toml 的 [engine] 没写 outer，算不出推算范围")
 
 
-def merge_node(b, mine, eng_mine, owner, theirs):
+def merge_node(slug, b, mine, eng_mine, owner, theirs):
     """衔接节点：对方范围以内照搬对方引擎的几何，以外用本卷引擎的。返回本卷单位序号 → shapely"""
     import shapely
     oe = load(owner)
     R = region_of(owner)
     R_in = R.buffer(-PAD_IN)
+    M = region_of(slug)                                  # 本卷自己的推算范围：对方的几何只取这里面的
     on = oe["nodes"][theirs]
     okeys = oe["meta"]["keys"]
     idx = {p["key"]: str(i) for i, p in enumerate(b["polities"])}
-    A = {}
+    G = gid_of()
+    by_gid = {G[f"{slug}:{p['key']}"]: str(i) for i, p in enumerate(b["polities"]) if f"{slug}:{p['key']}" in G}
+    ogid = {k: G.get(f"{owner}:{k}") for k in okeys.values()}
+    PU = {p: shape_of(oe["geom"][g]) for p, g in on.get("pu", {}).items()}   # 对方多单位政权的合并疆域
+
+    def okey_all():
+        """对方 v1 的单位表（序号 → 键）；引擎结果只记了画出来的单位，多单位政权本身的键要从这里取"""
+        f = ROOT / "build" / "v1" / f"{owner}.json"
+        if not f.exists():
+            sys.exit(f"衔接节点：缺 build/v1/{owner}.json，先构建 {owner}")
+        return [p["key"] for p in json.loads(f.read_text(encoding="utf8"))["polities"]]
+
+    def pol_of(u, a):
+        """对方单位 u 所属的政权（取包含它最多的合并疆域），无则 None"""
+        best = max(PU.items(), key=lambda kv: kv[1].intersection(a).area, default=(None, None))
+        return best[0] if best[0] is not None and best[1].intersection(a).area > 0.5 * a.area else None
+
+    A, lost = {}, []
     for u, g in on["u"].items():
         k = okeys[u]
-        if k not in idx:
-            sys.exit(f"衔接节点：{owner} 的单位「{k}」在本卷没有同键的单位")
-        A[idx[k]] = shape_of(oe["geom"][g])
+        a = polys(shape_of(oe["geom"][g]).intersection(M))
+        if a.is_empty:
+            continue                                     # 整个在本卷范围以外（如宋元卷的欧洲诸国）
+        # 对上本卷的单位：同键 → 全局表里是同一政权（宋元卷的西夏 = 唐宋卷的定难）→ 所属政权对上本卷的单位
+        # （宋元卷宋的各路 = 唐宋卷的宋，辽的各道与乌古敌烈 = 唐宋卷的契丹）
+        mine_k = idx.get(k) or by_gid.get(ogid.get(k))
+        if mine_k is None:
+            p = pol_of(u, a)
+            if p is not None:
+                pk = okeys.get(p) or okey_all()[int(p)]
+                mine_k = idx.get(pk) or by_gid.get(G.get(f"{owner}:{pk}"))
+        if mine_k is None:
+            lost.append(a)                               # 本卷没有对应的单位（如宋元卷伸到 72°E 以东的萨曼）：这里用本卷自己的几何
+            continue
+        A[mine_k] = polys(A[mine_k].union(a)) if mine_k in A else a
     A_all = shapely.union_all(list(A.values()))
+    if lost:
+        R_in = R_in.difference(shapely.union_all(lost))
     B = {u: shape_of(eng_mine["geom"][g]) for u, g in eng_mine["nodes"][mine]["u"].items()}
     out = {}
     for u in sorted(set(A) | set(B), key=lambda x: (len(x), x)):
@@ -151,7 +197,7 @@ def merge_node(b, mine, eng_mine, owner, theirs):
         g = polys(inside.union(outside))
         if not g.is_empty:
             out[u] = (g, inside.area, outside.area)
-    return out, on, oe
+    return out, on, oe, ogid
 
 
 # ---------------- 换几何 ----------------
@@ -192,15 +238,17 @@ def apply(slug, b, strict=True, log=print):
             notes.append(f"{n['t'] // 12} 年衔接节点保留旧几何（{owner} 为准，尚未换到引擎）")
             continue
         if owner:                                             # 对方为准、也已换：范围内照搬对方
-            geoms, on, oe = merge_node(b, i, e, owner, theirs)
+            geoms, on, oe, ogid = merge_node(slug, b, i, e, owner, theirs)
             u, ul = {}, {}
             for k, (g, a_in, a_out) in geoms.items():
                 rr = rings_of(g)
                 if not rr:
                     continue
                 u[k] = put(rr)
-                okey = next((ou for ou, kk in oe["meta"]["keys"].items()
-                             if b["polities"][int(k)]["key"] == kk), None)
+                me = b["polities"][int(k)]
+                okey = next((ou for ou, kk in oe["meta"]["keys"].items() if me["key"] == kk), None) \
+                    or next((ou for ou, kk in oe["meta"]["keys"].items()
+                             if ogid.get(kk) and ogid.get(kk) == gid_of().get(f"{slug}:{me['key']}")), None)
                 L = on["ul"].get(okey) if a_in >= a_out and okey is not None else en["ul"].get(k)
                 L = L or en["ul"].get(k) or (on["ul"].get(okey) if okey else None)
                 if L:

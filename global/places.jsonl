@@ -581,6 +581,7 @@
 {"id":"阿力麻里","n":"阿力麻里","names":["阿力麻里"],"mod":"新疆霍城","lon":80.9,"lat":44.15,"eras":["songyuan"],"refs":["songyuan:i:320","songyuan:阿力麻里"],"en":"Almaliq"}
 {"id":"勒克瑙","n":"勒克瑙","names":["勒克瑙"],"mod":"印度勒克瑙","lon":80.95,"lat":26.85,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:勒克瑙"],"en":"Lucknow"}
 {"id":"西伯利亚2","n":"西伯利亚2","names":["西伯利亚2"],"mod":"俄罗斯阿尔泰边疆区","lon":81.0,"lat":53.8,"eras":["tangsong","songyuan"],"refs":["songyuan:西伯利亚2","tangsong:西伯利亚2"]}
+{"id":"普兰","n":"普兰","names":["普兰"],"mod":"西藏普兰（玛旁雍错南）","lon":81.18,"lat":30.29,"eras":["tangsong","songyuan"],"refs":["songyuan:普兰","tangsong:普兰"]}
 {"id":"伊犁","n":"伊犁","names":["伊犁"],"mod":"","lon":81.3,"lat":43.9,"eras":["qinhan"],"refs":["qinhan:伊犁"],"en":"Ili"}
 {"id":"弓月城","n":"弓月城","names":["弓月城"],"mod":"新疆伊宁一带","lon":81.3,"lat":43.9,"eras":["liangjin-nanbeichao","suitang","tangsong"],"refs":["liangjin-nanbeichao:弓月城","suitang:弓月城","tangsong:弓月城"],"en":"Gongyue City"}
 {"id":"伊宁","n":"伊宁","names":["伊宁","宁远"],"mod":"新疆伊宁","lon":81.32,"lat":43.92,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:286","minguo-xinzhongguo:伊宁"],"en":"Yining"}
@@ -608,6 +609,7 @@
 {"id":"叶密立","n":"叶密立","names":["叶密立","叶密立（窝阔台系）"],"mod":"新疆额敏","lon":83.65,"lat":46.53,"eras":["songyuan"],"refs":["songyuan:i:312","songyuan:i:321","songyuan:叶密立"],"en":"Emil","en_variants":["Emil","Emil (Ögedeid line)"]}
 {"id":"巴尔瑙尔","n":"巴尔瑙尔","names":["巴尔瑙尔"],"mod":"俄罗斯巴尔瑙尔","lon":83.78,"lat":53.35,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:巴尔瑙尔"],"en":"Barnaul"}
 {"id":"桑巴尔布尔","n":"桑巴尔布尔","names":["桑巴尔布尔"],"mod":"印度桑巴尔布尔","lon":83.97,"lat":21.47,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:桑巴尔布尔"],"en":"Sambalpur"}
+{"id":"仲巴","n":"仲巴","names":["仲巴"],"mod":"西藏仲巴（雅鲁藏布江上游）","lon":84.03,"lat":29.77,"eras":["tangsong","songyuan"],"refs":["songyuan:仲巴","tangsong:仲巴"]}
 {"id":"轮台（84.25,41.80）","n":"轮台","names":["轮台"],"mod":"","lon":84.25,"lat":41.8,"eras":["qinhan"],"refs":["qinhan:轮台"],"en":"Luntai"}
 {"id":"鹰娑川","n":"鹰娑川","names":["鹰娑川"],"mod":"新疆和静巴音布鲁克（裕勒都斯河谷）","lon":84.3,"lat":43.0,"eras":["liangjin-nanbeichao","suitang"],"refs":["liangjin-nanbeichao:鹰娑川","suitang:鹰娑川"]}
 {"id":"乌垒城","n":"乌垒城","names":["乌垒城"],"mod":"新疆轮台东","lon":84.6,"lat":41.75,"eras":["qinhan"],"refs":["qinhan:i:346"],"en":"Wulei"}
