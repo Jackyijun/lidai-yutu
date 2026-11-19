@@ -120,7 +120,7 @@ tangsong-map/
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/tangsong/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py tangsong` 时自动重算）；归属、文字、条目仍出自本卷。外缘按可达代价定，推算范围同旧引擎的图幅（`era.toml` 的 `[engine]`）；979 年衔接节点在本卷范围内照搬宋元卷的引擎几何。阿里一线在 `content/seeds.txt` 里补了普兰、仲巴两个区域辅助点。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+> 单仓新页面（`docs/tangsong/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py tangsong` 时自动重算）；归属、文字、条目仍出自本卷。外缘按可达代价定，推算范围同旧引擎的图幅（`era.toml` 的 `[engine]`）；979 年衔接节点在本卷范围内照搬宋元卷的引擎几何。阿里一线在 `content/seeds.txt` 里补了普兰、仲巴两个区域辅助点，朝鲜半岛以东补了郁陵岛一点（远洋小岛只认离有主地约 85 km 以内的，郁陵岛离岸约 130 km）。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
 
 ```
 content/*.txt, *.py ─┐

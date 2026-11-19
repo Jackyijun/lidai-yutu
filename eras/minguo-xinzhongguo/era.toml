@@ -50,6 +50,7 @@ config = "src/config.py"    # 从这里读 EXCLUDE（推算范围里剔除的欧
 seeds = "content/seeds"     # 各点可达倍数（R=）写在这里
 walls = true                # 今国界与手画的历史界线烧成墙
 prov_walls = true           # 今中国省界烧成弱墙
+far_islands = true          # 远洋小岛也并入最近的一方：殖民地、委任统治地的群岛（南洋群岛、吉尔伯特、明打威等）多没有归属点
 
 [junction.prev]
 era = "songyuan"

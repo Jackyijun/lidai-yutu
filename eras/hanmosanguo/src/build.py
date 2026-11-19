@@ -22,49 +22,11 @@ import terrain as T
 UK = {u["k"]: i for i, u in enumerate(UNITS)}
 SI = {s["id"]: i for i, s in enumerate(SEEDS)}
 assert len(SI) == len(SEEDS), "种子 id 重复"
-JUN = {s["id"]: s for s in SEEDS if s["t"] == "z"}
 HATCH = {"公孙氏", "士燮", "张鲁", "黑山"}       # 名义臣属、实则自立（斜线）
-STATES = ("汉", "曹", "刘备", "孙", "晋")        # 州界只在这几个政权内部画
+from zhou import JUN, STATES, jun_of, zhou_han, zhou_of   # 郡、州的归属（统一引擎画州界也用，见 zhou.py）
 
 
 # ================================================================ 归属
-def jun_of(s):
-    return s["id"] if s["t"] == "z" else (s["j"] if s["j"] in JUN else None)
-
-def zhou_han(s):
-    j = jun_of(s)
-    return JUN[j]["j"] if j else None
-
-WEI = {"河南尹": "司州", "河内郡": "司州", "河东郡": "司州", "弘农郡": "司州",
-       "京兆尹": "雍州", "左冯翊": "雍州", "右扶风": "雍州", "汉阳郡": "雍州", "陇西郡": "雍州", "安定郡": "雍州", "北地郡": "雍州", "武都郡": "雍州", "阴平": "雍州"}
-JIN = {"河南尹": "司州", "河内郡": "司州", "河东郡": "司州", "弘农郡": "司州", "魏郡": "司州",
-       "京兆尹": "雍州", "左冯翊": "雍州", "右扶风": "雍州", "安定郡": "雍州", "北地郡": "雍州",
-       "汉阳郡": "秦州", "陇西郡": "秦州", "武都郡": "秦州", "阴平": "秦州",
-       "汉中郡": "梁州", "巴郡": "梁州", "广汉郡": "梁州",
-       "益州郡": "宁州", "永昌郡": "宁州",
-       "辽东郡": "平州", "玄菟郡": "平州", "乐浪郡": "平州", "辽东属国": "平州",
-       "平原郡": "冀州", "南海郡": "广州", "苍梧郡": "广州", "郁林郡": "广州"}
-SEED_JIN = {"始安": "广州", "曲江": "广州", "临贺": "广州", "上庸": "荆州", "房陵": "荆州", "西城": "荆州"}
-SEED_WEI = {"上庸": "荆州", "房陵": "荆州", "西城": "荆州"}
-
-def zhou_of(s, y, owner_k):
-    """某年某地属哪个州：220 年前用东汉十三州，三国用魏蜀吴各自的州，晋用太康十九州。"""
-    j = jun_of(s)
-    if not j: return None
-    han = JUN[j]["j"]
-    if y < 220: return han
-    if y < 265:
-        if owner_k == "刘备": return "益州"
-        if owner_k == "孙":
-            if han == "交州" and y >= 264 and j in ("南海郡", "苍梧郡", "郁林郡"): return "广州"
-            return han
-        return SEED_WEI.get(s["id"]) or WEI.get(j) or han
-    if owner_k == "孙":
-        if han == "交州" and (j in ("南海郡", "苍梧郡", "郁林郡") or s["id"] in ("临贺",)): return "广州"
-        if s["id"] in ("始安", "曲江"): return "广州"
-        return han
-    return SEED_JIN.get(s["id"]) or JIN.get(j) or han
-
 def seeds_in(kind, key):
     out = []
     for i, s in enumerate(SEEDS):
@@ -332,6 +294,27 @@ def dark(hx):
     return "#%02X%02X%02X" % (f(r, 1.13), f(g, 1.11), f(b, 1.07))
 
 
+def write_reach():
+    """统一疆域引擎（单仓第 7 步）用的各点可达倍数，写到 build/reach.txt（era.toml 的 [engine] seeds）。
+    旧算法的可达距离是「分区半径（度）× REACH_MULT」个代价·度；引擎的是 [outer] reach 个代价·投影单位（1° 约 17.45 投影单位）。
+    两套代价的尺度不同（引擎的地形项更重），照字面折算外缘会缩进去一成多，所以再乘 REACH_ENGINE_SCALE（1.5：试过 1、1.5、2，
+    1.5 时全卷有主陆地面积与旧版最接近、归属变化最小）。单独构建本卷（不在单仓里）时没有引擎设置，不写。"""
+    import math
+    eng = C.ROOT.parent.parent / "core" / "engine" / "config.toml"
+    if not eng.exists(): return
+    try:
+        import tomllib
+    except ImportError:
+        import tomli as tomllib
+    base = tomllib.loads(eng.read_text(encoding="utf8"))["outer"]["reach"]
+    deg = 1000 * math.pi / 180
+    k = C.REACH_MULT * deg / base * C.REACH_ENGINE_SCALE
+    rows = [f"{s['id']} {s['lon']} {s['lat']} - R={(s.get('R') or C.REACH_DEFAULT[s['t']]) * k * C.REACH_ENGINE_ADJ.get(s['id'], 1):.3f}\n"
+            for s in SEEDS]
+    (C.BUILD / "reach.txt").write_text("# 由 src/build.py 从 content/seeds.py 写出：点 经 纬 - R=可达倍数（分区半径折算，见 write_reach）\n"
+                                       + "".join(rows), encoding="utf8")
+
+
 def main():
     base = json.load(open(C.GEODATA / "base.json", encoding="utf8"))
     items, layers = build_items(base)
@@ -353,6 +336,7 @@ def main():
     C.BUILD.mkdir(exist_ok=True)
     dump = lambda o, p: open(p, "w", encoding="utf8").write(json.dumps(o, ensure_ascii=False, separators=(",", ":")))
     dump(GEO, C.BUILD / "geo.json"); dump(DATA, C.BUILD / "data.json"); dump(colors, C.BUILD / "colors.json")
+    write_reach()
     print(f"   {len(snaps)} 个节点 · {len(items)} 条目 · {len(SEEDS)} 个郡国城邑点 · {len(UNITS)} 个政权诸侯部族")
     print("   " + " ".join(f"{k} {v}" for k, v in Counter(i['c'] for i in items).most_common()))
 

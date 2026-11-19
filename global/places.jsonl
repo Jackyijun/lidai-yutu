@@ -2624,6 +2624,7 @@
 {"id":"南九州","n":"南九州","names":["南九州"],"mod":"日本鹿儿岛一带","lon":130.6,"lat":31.8,"eras":["liangjin-nanbeichao","suitang"],"refs":["liangjin-nanbeichao:南九州","suitang:南九州"]}
 {"id":"九州","n":"九州","names":["九州"],"mod":"","lon":130.7,"lat":32.6,"eras":["qinhan"],"refs":["qinhan:九州"],"en":"Kyushu"}
 {"id":"波西耶特","n":"波西耶特","names":["波西耶特"],"mod":"俄罗斯滨海边疆区波西耶特","lon":130.79,"lat":42.65,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:波西耶特"],"en":"Posyet"}
+{"id":"郁陵岛","n":"郁陵岛","names":["郁陵岛"],"mod":"韩国郁陵岛（于山国）","lon":130.87,"lat":37.5,"eras":["tangsong","songyuan"],"refs":["songyuan:郁陵岛","tangsong:郁陵岛"]}
 {"id":"绥芬河","n":"绥芬河","names":["绥芬河"],"mod":"黑龙江绥芬河","lon":131.15,"lat":44.4,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:绥芬河"],"en":"Suifenhe"}
 {"id":"索龙","n":"索龙","names":["索龙"],"mod":"印度尼西亚索龙","lon":131.25,"lat":-0.88,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:索龙"],"en":"Sorong"}
 {"id":"密山","n":"密山","names":["密山"],"mod":"黑龙江密山","lon":131.87,"lat":45.55,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:密山"],"en":"Mishan"}

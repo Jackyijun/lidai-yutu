@@ -38,6 +38,14 @@ central_lon = 105
 seam = -30                  # 接缝经度，小于它的经度加 360°
 legacy = [34, 108]           # 旧版页面（legacy.html）用的原点纬线、中央经线
 
+[engine]                    # 统一疆域引擎（core/engine/）的外缘设置；归属点与节点取 v1 数据包
+outer = "reach"             # 按可达代价定外缘（参数见 core/engine/config.toml 的 [outer]）
+geometry = "engine"         # 第 7 步起页面疆域由统一引擎出：eras/hanmosanguo/engine.json（构建时重算，入库），生成 v1 时换进去
+box = [72.0, 136.0, 14.0, 55.0]   # 推算范围 [西, 东, 南, 北]，同旧引擎的栅格范围（src/config.py 的 GRID_LON、GRID_LAT）
+seeds = "build/reach.txt"   # 可达倍数 R=（由 src/build.py 从 content/seeds.py 的分区半径折算写出）
+zones = "src/zhou.py"       # 按「诸侯 × 州」分块描界，另出州界与州名（同旧构建）
+zone_label_min = 1.2        # 州名只标在面积大于此值（平方度）的州，同 src/config.py 的 ZHOU_LABEL_MIN_AREA
+
 [junction.prev]
 era = "qinhan"
 at = "184"

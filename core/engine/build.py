@@ -74,6 +74,27 @@ def label_of(g, land):
     return [round(float(lon), 2), round(float(lat), 2), round(sum(p.area for p in ps) / GR.DEG ** 2, 2), round(r / GR.DEG, 2)]
 
 
+def zone_lines(polys):
+    """覆盖图里相邻多边形之间的共享边（内部分界线，不含外缘），编码同疆域环；短于 0.08° 的不要"""
+    if len(polys) < 2:
+        return []
+    allb = shapely.union_all([p.boundary for p in polys])
+    outer = shapely.union_all(polys).boundary
+    inner = allb.difference(outer.buffer(1e-6 * GR.DEG))
+    if inner.is_empty:
+        return []
+    inner = shapely.line_merge(inner) if inner.geom_type == "MultiLineString" else inner
+    out = []
+    for ln in shapely.get_parts(inner):
+        if ln.geom_type != "LineString" or ln.length <= 0.08 * GR.DEG:
+            continue
+        a = np.asarray(ln.coords)
+        e = enc_ll(*geo.inv(a[:, 0], a[:, 1]))
+        if len(e) >= 4:
+            out.append(e)
+    return out
+
+
 def keep_points(geoms, own, code, pts, clip, win):
     """兜底：仍有归属点不在本方疆域内的（多在国界墙交汇处、推算范围边上），在点周围补一个半径 0.6 格的小圆，
     从别的单位里扣掉。原地修改 geoms，返回补过的点的序号"""
@@ -150,7 +171,7 @@ def run(slug, log=None):
         cost = C["cost"].copy()
         for i in k[0]:
             cost += C["var"][i][1]
-        labs[k], dist, w = PA.run(win, C, pts, inner, cost, reach, act, log)
+        labs[k], dist, w = PA.run(win, C, pts, inner, cost, reach, act, log, far_islands=sp.get("far_islands", False))
         where.update(w)
         log("最短路完成", "墙", [C["var"][i][0] for i in k[0]] or "常设", "" if act is None else f"参与分区 {sum(act)} 点")
     pins = sorted(set(where.values()))
@@ -159,8 +180,15 @@ def run(slug, log=None):
         wallm |= v[2]
     warp = TR.Warp(win, C["river"] | wallm, pins)
 
-    units = sorted({u for _, own, _, _ in N for u in own if u is not None}, key=lambda u: (len(u), u))
+    Z = DA.zones(slug, sp, b, N)                    # 二级区划块（汉末卷的州）：按「单位 × 区划块」分类，描完再按单位合并
+    SEP = "\x1f"
+    if Z is not None:
+        log("区划块", len({z for row in Z for z in row if z}), "个")
+    cls = [own if Z is None else [None if u is None else u if z is None else u + SEP + z for u, z in zip(own, Z[ni])]
+           for ni, (_, own, _, _) in enumerate(N)]
+    units = sorted({u for own in cls for u in own if u is not None}, key=lambda u: (len(u), u))
     code = {u: i for i, u in enumerate(units)}
+    ukeys = sorted({u for _, own, _, _ in N for u in own if u is not None}, key=lambda u: (len(u), u))
     pool, poolk = [], {}
 
     def put(rr):
@@ -171,7 +199,8 @@ def run(slug, log=None):
 
     cache = {}
     out_nodes = []
-    for t, own, pol, act in N:
+    for ni, (t, own0, pol, act) in enumerate(N):
+        own = cls[ni]
         lab = labs[group(t, act)]
         sc = np.array([-1 if u is None or (act is not None and not act[i]) else code[u] for i, u in enumerate(own)] + [-1], np.int32)   # 末位给 -1
         U = sc[np.where(lab >= 0, lab, len(own))]
@@ -182,15 +211,24 @@ def run(slug, log=None):
             if cache[h][1]:
                 log("护点", "、".join(S[i][2] for i in cache[h][1]))
         geoms = cache[h][0]
+        if Z is not None:                                 # 区划块按单位合并（用一般的并：护点、去碎块后共享边未必逐点重合）
+            by_u, by_z = {}, {}
+            for k, g in geoms.items():
+                uk, _, zk = units[k].partition(SEP)
+                by_u.setdefault(uk, []).append(g)
+                if zk:
+                    by_z.setdefault(zk, []).append(g)
+            merged = {uk: (shapely.union_all(gs) if len(gs) > 1 else gs[0]) for uk, gs in by_u.items()}
+        else:
+            merged = {units[k]: g for k, g in geoms.items()}
         u, ul, g_u = {}, {}, {}
-        for k in sorted(geoms):
-            key = units[k]
-            rr = rings_of(geoms[k])
+        for key in sorted(merged, key=lambda u: (len(u), u)):
+            rr = rings_of(merged[key])
             if not rr:
                 continue
-            g_u[key] = geoms[k]
+            g_u[key] = merged[key]
             u[key] = put(rr)
-            L = label_of(geoms[k], C["land_xy"])
+            L = label_of(merged[key], C["land_xy"])
             if L:
                 ul[key] = L
         # 政权层：有两个以上单位，或唯一的单位不是政权自己（宋元先例）
@@ -209,7 +247,14 @@ def run(slug, log=None):
                 L = label_of(g, C["land_xy"])
                 if L:
                     pul[p] = L
-        out_nodes.append({"t": t, "u": u, "ul": ul, "pu": pu, "pul": pul})
+        nd = {"t": t, "u": u, "ul": ul, "pu": pu, "pul": pul}
+        if Z is not None:                                 # 区划界（块与块之间的共享边，不含外缘）与区划名
+            zg = {zk: (shapely.union_all(gs) if len(gs) > 1 else gs[0]) for zk, gs in sorted(by_z.items())}
+            nd["zb"] = put(zone_lines(list(zg.values())))
+            zmin = sp.get("zone_label_min", 0) * GR.DEG ** 2
+            nd["zl"] = [[zk.split("|")[0]] + L for zk, g in zg.items()
+                        if g.area >= zmin and (L := label_of(g, C["land_xy"]))]
+        out_nodes.append(nd)
         log(f"节点 {t // 12}.{t % 12 + 1:02d}", len(u), "单位", len(pu), "政权层")
 
     OUT.mkdir(parents=True, exist_ok=True)
@@ -217,7 +262,7 @@ def run(slug, log=None):
             "seeds": {str(i): [int(r), int(c)] for i, (r, c) in where.items()},
             "input": DA.fingerprint(slug, b)}                                  # 第 7 步：eras/<短名>/engine.json 是否过期
     if b["model"] == "layered":
-        meta["keys"] = {u: b["polities"][int(u)]["key"] for u in units}      # 单位序号 → 单位键（衔接节点按键对上邻卷）
+        meta["keys"] = {u: b["polities"][int(u)]["key"] for u in ukeys}      # 单位序号 → 单位键（衔接节点按键对上邻卷）
     res = {"era": slug, "geom": pool, "nodes": out_nodes, "meta": meta}
     (OUT / f"{slug}.json").write_text(json.dumps(res, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
     np.savez_compressed(OUT / f"{slug}.npz", lab=labs[group(N[-1][0], N[-1][3])], land=C["land"])

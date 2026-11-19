@@ -104,6 +104,8 @@ hanmosanguo-map/
 
 ## 五、工作原理
 
+> 单仓新页面（`docs/hanmosanguo/`）的疆域，第 7 步（2026-11-19）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py hanmosanguo` 时自动重算）；归属、文字、条目仍出自本卷。外缘按可达代价定，推算范围同旧引擎的栅格（`era.toml` 的 `[engine]`）；各点的可达倍数由 `content/seeds.py` 的分区半径折算，`src/build.py` 写出 `build/reach.txt`（系数见 `src/config.py` 的 `REACH_ENGINE_SCALE`、`REACH_ENGINE_ADJ`）。州界、州名也由引擎按「诸侯 × 州」分块描出，定州的规则在 `src/zhou.py`，旧构建与引擎共用。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+
 ```
 content/*.py ─────┐
 geodata/ (底图) ───┼─► build.py + terrain.py ─► build/*.json ─► assemble.py ─► docs/index.html

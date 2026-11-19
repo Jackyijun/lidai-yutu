@@ -28,7 +28,7 @@ to = "hanmosanguo"
 year = 184
 kind = "shared"
 owner = "hanmosanguo"
-note = "秦汉卷构建时照搬汉末卷首节点 184 的政权外廓与文字，汉的郡国由引擎算出后裁进汉末卷的外廓；汉末卷 2026-11-16 删去 94 年序幕节点，从 184 年开始"
+note = "秦汉卷构建时照搬汉末卷首节点 184 的政权外廓与文字，汉的郡国由引擎算出后裁进汉末卷的外廓；汉末卷 2026-11-16 删去 94 年序幕节点，从 184 年开始；2026-11-19 汉末卷换到统一引擎后，外廓取 eras/hanmosanguo/engine.json"
 
 [[junction]]
 from = "hanmosanguo"
@@ -36,7 +36,7 @@ to = "liangjin-nanbeichao"
 year = 280
 kind = "shared"
 owner = "hanmosanguo"
-note = "两晋卷构建时读入 eras/liangjin-nanbeichao/geodata/junction_hanmo280.json"
+note = "两晋卷旧构建读入 eras/liangjin-nanbeichao/geodata/junction_hanmo280.json；2026-11-19 汉末卷换到统一引擎后，新页面在汉末卷的推算范围内照搬它的引擎几何（core/v1/engine_geom.py），汉末卷留白处照两晋卷画"
 
 [[junction]]
 from = "liangjin-nanbeichao"

@@ -85,7 +85,7 @@ liangjin-nanbeichao-map/
 
 ## 5. How it works
 
-> From migration step 7 (17 November 2026) the territory on the new page in the single repository (`docs/liangjin-nanbeichao/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py liangjin-nanbeichao` at the repository root). Ownership, text and entries still come from this volume. What follows describes this volume's own older algorithm, now used only for the old page and `legacy.html`.
+> From migration step 7 (17 November 2026) the territory on the new page in the single repository (`docs/liangjin-nanbeichao/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py liangjin-nanbeichao` at the repository root). Ownership, text and entries still come from this volume. The two junction snapshots copy the neighboring volumes' engine geometry: the 581 snapshot within the Sui–Tang volume's hand-drawn outer edge, and the 280 snapshot (since the Late Han volume moved to the engine on 19 November 2026) within the Late Han volume's computed area; where the neighboring volume leaves land blank, this volume draws its own. What follows describes this volume's own older algorithm, now used only for the old page and `legacy.html`.
 
 **Territory algorithm** (`src/territory.py`, parameters in `src/config.py`), taken over from the Sui and Early Tang map, with the same projection center (102°E / 36°N):
 

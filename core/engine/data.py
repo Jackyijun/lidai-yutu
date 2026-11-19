@@ -222,7 +222,10 @@ def spec(slug):
       outer = "reach"      按可达代价定外缘；box = 推算范围 [西, 东, 南, 北]，seeds = 写 R=倍数 的归属点文件
       config = "src/config.py"   这一卷自己的设置文件，读其中的 EXCLUDE（推算范围里剔除的多边形）与国界墙
       walls = true / prov_walls = true   烧国界墙 / 今中国省界弱墙（民国）
-      simplify = 0.25      覆盖简化容差（格），不写取 config.toml 的 [trace] simplify（0.06）；视野大、节点多的卷放宽，免得页面过大"""
+      simplify = 0.25      覆盖简化容差（格），不写取 config.toml 的 [trace] simplify（0.06）；视野大、节点多的卷放宽，免得页面过大
+      far_islands = true   远洋小岛也并入最近的一方（民国卷：殖民地、委任统治地的群岛多没有归属点）；缺省只认离有主地闭运算半径以内的
+      zones = "src/zhou.py" 二级区划（汉末卷的州）：这个文件的 zone_of(点键, 年, 单位键, 政权键, 单位种类) 给出各点所在的区划块，
+                           按「单位 × 区划」分块描界，另出区划界 zb 与区划名 zl（zone_label_min：标名的最小面积，平方度）"""
     t = tomllib.loads((ROOT / "eras" / slug / "era.toml").read_text(encoding="utf8"))
     s = t.get("engine")
     if not s:
@@ -239,9 +242,11 @@ def era_module(slug, rel):
 
 
 def reach_mult(slug, s):
-    """各点可达代价倍数：seeds 文件里的 R=倍数，{点 ID: 倍数}"""
+    """各点可达代价倍数：seeds 文件里的 R=倍数，{点 ID: 倍数}；不写 seeds、也没有 content/seeds.txt 的卷一律取 1"""
     out = {}
     p = ROOT / "eras" / slug / s.get("seeds", "content/seeds.txt")
+    if "seeds" not in s and not p.exists():
+        return out
     files = sorted(p.glob("*.txt")) if p.is_dir() else [p]
     for f in files:
         for line in f.read_text(encoding="utf8").splitlines():
@@ -252,6 +257,29 @@ def reach_mult(slug, s):
                 if x.startswith("R="):
                     out[t[0]] = float(x[2:])
     return out
+
+
+def zones(slug, s, b, N):
+    """[engine] zones：各节点各点所在的区划块（与 N 等长，每项是各点的块键字符串，None 为不分块）；没写 zones 的卷返回 None"""
+    if not s.get("zones"):
+        return None
+    m = era_module(slug, s["zones"])
+    P = b["polities"]
+    out = []
+    for t, own, pol, act in N:
+        y = t // 12
+        row = []
+        for (_, _, key), u in zip(view_seeds(b), own):
+            if u is None:
+                row.append(None); continue
+            z = m.zone_of(key, y, P[int(u)]["key"], P[int(pol[u])]["key"], P[int(u)]["kind"])
+            row.append(None if z is None else "|".join(z) if isinstance(z, tuple) else str(z))
+        out.append(row)
+    return out
+
+
+def view_seeds(b):
+    return [(p["lon"], p["lat"], p["key"]) for p in b["places"]]
 
 
 def region(slug, s):
@@ -326,4 +354,8 @@ def fingerprint(slug, b=None):
     fr = ROOT / "eras" / slug / "content" / "frontier.py"
     if fr.exists():
         h.update(fr.read_bytes())
+    sp = spec(slug)
+    if sp.get("zones"):                               # 区划块：规则文件与它读的归属点文件
+        h.update((ROOT / "eras" / slug / sp["zones"]).read_bytes())
+        h.update(json.dumps(zones(slug, sp, b or bundle(slug), N), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
     return h.hexdigest()[:16]

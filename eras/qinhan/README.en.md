@@ -74,7 +74,7 @@ Each snapshot gives the commandery system `sys`, the central dynasty `cent`, the
 
 - The unified engine computes each unit's territory from the ownership points on the world-wide grid (outer edge by reach cost, `[engine]` in `era.toml`; each point's reach factor `R=` is set in `seeds.py` and written to `build/reach.txt` at build time).
 - The 212 BC snapshot copies the last snapshot of the Warring States volume: the outlines of Qin and Wey and the boundaries of the 51 Qin commanderies (less Taiwan, Hainan and Jeju), and its text.
-- The AD 184 snapshot copies the first snapshot of the Late Han volume: the state outlines are copied, and Han's commanderies, computed by the engine, are clipped to the Late Han volume's outline of Han with the gaps filled.
+- The AD 184 snapshot copies the first snapshot of the Late Han volume: the state outlines are copied, and Han's commanderies, computed by the engine, are clipped to the Late Han volume's outline of Han with the gaps filled. Since the Late Han volume moved to the unified engine (19 November 2026), the outlines come from `eras/hanmosanguo/engine.json`, matching the new Late Han page; whenever the Late Han territory is recomputed, this volume must be rebuilt as well.
 - Colors: states shared with the Warring States or Late Han volume take both their light and dark colors from that volume (written `zg:` / `hm:` in `units.py`); the rest are taken from the palette by adjacency.
 
 ## 5. Layout

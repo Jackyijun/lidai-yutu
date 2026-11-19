@@ -85,7 +85,7 @@ liangjin-nanbeichao-map/
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/liangjin-nanbeichao/`）的疆域，第 7 步（2026-11-17）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py liangjin-nanbeichao` 时自动重算）；归属、文字、条目仍出自本卷。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+> 单仓新页面（`docs/liangjin-nanbeichao/`）的疆域，第 7 步（2026-11-17）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py liangjin-nanbeichao` 时自动重算）；归属、文字、条目仍出自本卷。两个衔接节点照搬邻卷的引擎几何：581 年在隋唐卷的手绘外缘以内，280 年（2026-11-19 汉末卷换到引擎后）在汉末卷的推算范围以内，邻卷没画的地方照本卷画。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
 
 **疆域算法**（`src/territory.py`，参数在 `src/config.py`）沿用《隋及唐初形势图》，投影中心也相同（102°E / 36°N）：
 

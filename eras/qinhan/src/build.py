@@ -131,6 +131,27 @@ QIN_POLY = {J.qin_unit(k): geom_of(r) for k, r in ZG_LAST["j"].items()}
 HM_184 = next(s for s in HM[0]["snaps"] if s["y"] == 184)
 
 
+def hm_engine_184():
+    """汉末卷已换到统一引擎（第 7 步）时，184 节点的疆域改取它的 eras/hanmosanguo/engine.json，与汉末卷新页面一致；
+    归属、文字仍取 legacy.html。engine.json 里的单位按单位键对回 legacy.html 的序号"""
+    try:
+        import tomllib
+    except ImportError:
+        import tomli as tomllib
+    hm = C.REPO / "eras" / "hanmosanguo"
+    if tomllib.loads((hm / "era.toml").read_text(encoding="utf8")).get("engine", {}).get("geometry") != "engine":
+        return
+    e = json.loads((hm / "engine.json").read_text(encoding="utf8"))
+    en = next(n for n in e["nodes"] if n["t"] // 12 == 184)
+    idx = {u["k"]: str(i) for i, u in enumerate(HM[1]["units"])}
+    key = e["meta"]["keys"]
+    HM_184["z"] = {idx[key[k]]: e["geom"][g] for k, g in en["u"].items()}
+    HM_184["p"] = {idx[key[k]]: e["geom"][g] for k, g in en["pu"].items()}
+
+
+hm_engine_184()
+
+
 def hm_rings(v):
     return HM[0]["pool"][v] if isinstance(v, int) else v
 

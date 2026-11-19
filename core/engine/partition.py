@@ -62,9 +62,11 @@ def snap(win, node, nid, pts, active=None, log=print):
     return starts, owner, where
 
 
-def outer_reach(lab, D, node, reach):
+def outer_reach(lab, D, node, reach, far_islands=False):
     """可达代价定外缘（规范第十三节第 4 条）：超出该点可达代价的格子为无主地；外缘闭运算填平圆弧间的凹口，
-    小空隙并回，再高斯平滑（海面与推算范围以外当作有主，免得海岛、半岛尖被磨掉）。owned 格归最近的可达格的点"""
+    小空隙并回，再高斯平滑（海面与推算范围以外当作有主，免得海岛、半岛尖被磨掉）。owned 格归最近的可达格的点。
+    小空隙、近岸小岛只认离有主地闭运算半径以内的；far_islands（era.toml [engine]，民国卷）则远洋小岛也并入最近的一方
+    （殖民地、委任统治地的群岛多没有归属点）"""
     O = cfg()["outer"]
     inreach = node & (lab >= 0) & (D <= reach[np.clip(lab, 0, None)])
     dil = ndimage.distance_transform_edt(~inreach) <= O["close"]
@@ -72,13 +74,19 @@ def outer_reach(lab, D, node, reach):
     lbl, nl = ndimage.label(node & ~closed)
     if nl:
         sz = ndimage.sum(np.ones_like(lbl), lbl, range(1, nl + 1))
-        closed |= np.isin(lbl, np.nonzero(sz < O["hole_max"])[0] + 1)
+        small = np.nonzero(sz < O["hole_max"])[0] + 1
+        if not far_islands:                                # 只并回离有主地不远（闭运算半径以内）的空隙与近岸小岛
+            near = ndimage.distance_transform_edt(~closed) <= O["close"]
+            small = np.intersect1d(small, np.unique(lbl[near & (lbl > 0)]))
+        closed |= np.isin(lbl, small)
     owned = (ndimage.gaussian_filter((closed | ~node).astype(float), O["edge_sigma"]) > .5) & node
+    if not far_islands:                                    # 平滑时海面与范围外当作有主，远洋孤岛、范围边上的碎块也会被「抹」成有主：只认离有主地不远的
+        owned &= ndimage.distance_transform_edt(~closed) <= O["close"]
     _, (jr, jc) = ndimage.distance_transform_edt(~inreach, return_indices=True)
     return np.where(owned, lab[jr, jc], -1).astype(np.int32)
 
 
-def run(win, C, pts, inner, cost=None, reach=None, active=None, log=print):
+def run(win, C, pts, inner, cost=None, reach=None, active=None, log=print, far_islands=False):
     """返回每格归属点序号 lab（-1 无主或界外）、到最近点的代价距离 dist、各点的起点格。
     inner：栅格只建在这里（手绘外缘或推算范围）；reach：各点的可达代价（None 则不限，外缘由 inner 定）"""
     node = C["land"] & inner
@@ -93,7 +101,7 @@ def run(win, C, pts, inner, cost=None, reach=None, active=None, log=print):
     D = np.full(win.shape, np.inf); D[node] = dist
     unreached = np.zeros(win.shape, bool); unreached[node] = lab_n < 0
     if reach is not None:
-        lab = outer_reach(lab, D, node, reach)
+        lab = outer_reach(lab, D, node, reach, far_islands)
         log("可达范围内陆地", int((lab >= 0).sum()), "/", int(node.sum()))
     # 疆域向海面、大湖延伸；没有归属点够得着的孤岛就近并入（都只在 inner 以内）
     d, (ir, ic) = ndimage.distance_transform_edt(lab < 0, return_indices=True)

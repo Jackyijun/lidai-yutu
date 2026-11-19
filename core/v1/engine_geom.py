@@ -16,6 +16,8 @@ engine.json 记着引擎输入的指纹（core/engine/data.py 的 fingerprint）
     本卷范围以外对方才有的单位不照搬。对方的单位依次按同键、同全局 ID（global/polities.jsonl）、
     所属政权（对方政权层几何过半落在哪个本卷单位）对上本卷的单位，对不上的那块用本卷自己的几何；
   - 对方是准、还没换到引擎：这个节点整个保留 legacy.html 里的几何（旧构建本来就照搬了对方）。
+
+区划界（汉末卷的州界，节点 ext 的 zb / zl）：引擎按 era.toml [engine] 的 zones 分块时一并换成引擎的，否则照旧。
 """
 import json
 import sys
@@ -193,7 +195,8 @@ def merge_node(slug, b, mine, eng_mine, owner, theirs):
     out = {}
     for u in sorted(set(A) | set(B), key=lambda x: (len(x), x)):
         inside = A.get(u, shapely.Polygon())
-        outside = B[u].difference(A_all).difference(R_in) if u in B else shapely.Polygon()
+        # 对方有的单位：范围以内只用对方的；对方没有的单位（对方留白处，如汉末卷 280 年没画的天竺、扶南、倭）照本卷画
+        outside = (B[u].difference(A_all).difference(R_in) if u in A else B[u].difference(A_all)) if u in B else shapely.Polygon()
         g = polys(inside.union(outside))
         if not g.is_empty:
             out[u] = (g, inside.area, outside.area)
@@ -232,7 +235,14 @@ def apply(slug, b, strict=True, log=print):
     notes = []
     for i, (n, en) in enumerate(zip(b["nodes"], e["nodes"])):
         owner, theirs = J.get(i, (None, None))
-        if owner and not migrated(owner):                    # 对方为准、还没换：整节点保留旧几何
+        keep = owner and (not migrated(owner) or not path_of(owner).exists())
+        ext = n.get("ext") or {}
+        if "zb" in ext:                                       # 区划界（汉末卷的州界）：引擎有就换，没有照旧（序号换到新的几何池）
+            if "zb" in en and not keep:
+                ext["zb"], ext["zl"] = put(e["geom"][en["zb"]]), en["zl"]
+            else:
+                ext["zb"] = put(old_pool[ext["zb"]])
+        if keep:                                              # 对方为准、还没换（或还没算出 engine.json）：整节点保留旧几何
             n["u"] = {k: put(old_pool[g]) for k, g in n["u"].items()}
             n["pu"] = {k: put(old_pool[g]) for k, g in n.get("pu", {}).items()}
             notes.append(f"{n['t'] // 12} 年衔接节点保留旧几何（{owner} 为准，尚未换到引擎）")
