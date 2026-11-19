@@ -221,7 +221,8 @@ def spec(slug):
       outer = "frontier"   手绘外缘（content/frontier.py）
       outer = "reach"      按可达代价定外缘；box = 推算范围 [西, 东, 南, 北]，seeds = 写 R=倍数 的归属点文件
       config = "src/config.py"   这一卷自己的设置文件，读其中的 EXCLUDE（推算范围里剔除的多边形）与国界墙
-      walls = true / prov_walls = true   烧国界墙 / 今中国省界弱墙（民国）"""
+      walls = true / prov_walls = true   烧国界墙 / 今中国省界弱墙（民国）
+      simplify = 0.25      覆盖简化容差（格），不写取 config.toml 的 [trace] simplify（0.06）；视野大、节点多的卷放宽，免得页面过大"""
     t = tomllib.loads((ROOT / "eras" / slug / "era.toml").read_text(encoding="utf8"))
     s = t.get("engine")
     if not s:

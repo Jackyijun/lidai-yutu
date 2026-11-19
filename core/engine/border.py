@@ -199,13 +199,15 @@ class Warp:
         return np.c_[x, y]
 
 
-def polygons(win, lab, warp, clip=None, pins=(), log=print):
-    """分类栅格 → {类: 投影坐标多边形}（已加位移、覆盖简化、按外缘裁剪、去掉碎块）"""
+def polygons(win, lab, warp, clip=None, pins=(), log=print, simplify=None):
+    """分类栅格 → {类: 投影坐标多边形}（已加位移、覆盖简化、按外缘裁剪、去掉碎块）。
+    simplify：覆盖简化容差（格），默认取 config.toml 的 [trace] simplify；视野大、节点多的卷可在 era.toml [engine] 里放宽"""
     T = cfg()["trace"]
     by, arg = faces_of(lab, pins, log)
     keys = sorted(by)
     cov = [shapely.transform(by[k], warp) for k in keys]
-    cov = shapely.coverage_simplify(np.array(cov, dtype=object), tolerance=T["simplify"] * win.cell)
+    tol = T["simplify"] if simplify is None else simplify
+    cov = shapely.coverage_simplify(np.array(cov, dtype=object), tolerance=tol * win.cell)
     out = {}
     for k, g in zip(keys, cov):
         if k < 0:

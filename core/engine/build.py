@@ -177,7 +177,7 @@ def run(slug, log=None):
         U = sc[np.where(lab >= 0, lab, len(own))]
         h = hashlib.sha1(U.tobytes()).hexdigest()
         if h not in cache:
-            g0, _ = TR.polygons(win, U, warp, clip=clip, pins=pins, log=log)
+            g0, _ = TR.polygons(win, U, warp, clip=clip, pins=pins, log=log, simplify=sp.get("simplify"))
             cache[h] = (g0, keep_points(g0, own if act is None else [u if a else None for u, a in zip(own, act)], code, pts, clip, win))
             if cache[h][1]:
                 log("护点", "、".join(S[i][2] for i in cache[h][1]))

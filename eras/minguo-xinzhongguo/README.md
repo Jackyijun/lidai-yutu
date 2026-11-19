@@ -127,6 +127,8 @@ minguo-xinzhongguo-map/
 
 ## 五、工作原理
 
+> 单仓新页面（`docs/minguo-xinzhongguo/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py minguo-xinzhongguo` 时自动重算）；归属、文字、条目仍出自本卷。疆域简化容差放宽到 0.25 格（`era.toml` 的 `[engine]`），页面体积与旧版相当；国界墙与省界弱墙照旧，由引擎烧进代价栅格。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+
 ```
 content/ ──────┐
                ├─► build.py ─► build/geo.json + data.json ─► assemble.py ─► docs/index.html

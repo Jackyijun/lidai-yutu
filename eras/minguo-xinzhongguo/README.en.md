@@ -127,6 +127,8 @@ minguo-xinzhongguo-map/
 
 ## 5. How it works
 
+> From migration step 7 (18 November 2026) the territory on the new page in the single repository (`docs/minguo-xinzhongguo/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py minguo-xinzhongguo` at the repository root). Ownership, text and entries still come from this volume. The border simplification tolerance is relaxed to 0.25 cells (`[engine]` in `era.toml`), keeping the page about as large as before; the national-border walls and the weak provincial walls are burned into the cost grid by the engine as before. What follows describes this volume's own older algorithm, now used only for the old page and `legacy.html`.
+
 ```
 content/ ──────┐
                ├─► build.py ─► build/geo.json + data.json ─► assemble.py ─► docs/index.html
