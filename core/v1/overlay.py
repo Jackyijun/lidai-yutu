@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-"""第 3 步在新页面上先行改正的内容（规范第十九节第 3 步）。
+"""在新页面上改正的内容（规范第十九节第 3 步起）。
 
-各卷成品（eras/<短名>/legacy.html）保持原样，作为数据来源；build.py 转成 v1 后在这里套用改正，新页面由改正后的 v1 生成。
-只改不牵动疆域的：
-  · 条目点位（都城、关隘等）的坐标，按 global/places.jsonl 的城址；州府（唐宋系）与春秋、战国的城邑条目是疆域归属点，留到第 5—7 步；
+各卷成品（eras/<短名>/legacy.html）保持原样，作为数据来源；build.py 转成 v1 后在这里套用改正，新页面由改正后的 v1 生成：
+  · 坐标（apply_coords，build.py 在换引擎几何之前先套用）：条目点位（都城、关隘等）与归属点（州府等）按 global/places.jsonl 的城址。
+    归属点是统一引擎的输入，疆域按改后的点重算；春秋、战国的归属点不在 v1 里，直接改在两卷共用的 content/seeds.txt，
+    这里只改两卷的城邑条目；
+  · 山川改画（apply_ranges）：decisions.toml [physical.prefer] 写了 page = true 的，各卷都画成选定那一卷的线（武陵山、伏牛山）；
   · 英文译名统一（global/corrections.md「英文」一节）；
   · global/corrections.toml 里标了 step = 3 的内容改正；
   · 时间轴短标题（eras/<短名>/short.tsv）；
@@ -15,12 +17,6 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-LAYERED = {"qinhan", "hanmosanguo", "liangjin-nanbeichao", "suitang", "tangsong", "songyuan", "minguo-xinzhongguo"}
-
-
-def page_coord_ok(era, ref):
-    """坐标改正能否在第 3 步先改：唐宋系的条目（非州府）"""
-    return era in LAYERED and ref.startswith(f"{era}:i:")
 
 
 def node_index(b, year):
@@ -56,11 +52,11 @@ def fix_tangsong_zhancheng(b):
 
 
 def fix_tangsong_chenla(b):
-    # 802 年阇耶跋摩二世统一陆、水真腊，建吴哥王朝；疆域扩大留到第 5—7 步
+    # 802 年阇耶跋摩二世统一陆、水真腊，建吴哥王朝。疆域不另改：本卷图幅南到 15.5°N，吴哥与湄公河三角洲都在图外
     k, p = polity(b, "文单")
     p["n"], p["en"]["n"] = "真腊（吴哥）", "Chenla (Angkor)"
     set_lab(b, k, "文单（陆真腊）", "Wendan (Land Chenla)", range(0, node_index(b, 802)))
-    return "唐宋卷「文单（陆真腊）」：802 年以后标「真腊（吴哥）」（疆域留到第 5—7 步）"
+    return "唐宋卷「文单（陆真腊）」：802 年以后标「真腊（吴哥）」"
 
 
 def fix_songyuan_indrapura(b):
@@ -120,15 +116,37 @@ def gids_of(g):
 
 
 def apply_coords(slug, b, fixes):
+    """fixes：build/v1/fixes.json 的 coords。引用是「卷:i:序号」的改条目，「卷:键」的改归属点（连同它所对应的条目）"""
+    items = {o["i"]: o for o in b["items"]}
     n = 0
     for f in fixes:
-        if f["era"] != slug or not page_coord_ok(slug, f["ref"]):
+        if f["era"] != slug:
             continue
-        i = int(f["ref"].rsplit(":", 1)[1])
-        o = b["items"][i]
-        assert o["i"] == i, (slug, i)
-        o["lon"], o["lat"] = f["lon"], f["lat"]
+        key = f["ref"].split(":", 1)[1]
+        if key.startswith("i:"):
+            o = items[int(key[2:])]
+            o["lon"], o["lat"] = f["lon"], f["lat"]
+        else:
+            p = next(p for p in b["places"] if p["key"] == key)
+            p["lon"], p["lat"] = f["lon"], f["lat"]
+            if "item" in p:
+                o = items[p["item"]]
+                o["lon"], o["lat"] = f["lon"], f["lat"]
         n += 1
+    return n
+
+
+def apply_ranges(b, ranges):
+    """fixes：build/v1/fixes.json 的 ranges，[{id, geo, anc}]：这些山脉各卷都画成同一条线，注记点随之"""
+    by = {r["id"]: r for r in ranges}
+    n = 0
+    for it in b["items"]:
+        r = by.get(it.get("gid"))
+        if r and it.get("geo") != r["geo"]:
+            it["geo"] = [list(q) for q in r["geo"]]
+            if r["anc"]:
+                it["anc"] = list(r["anc"])
+            n += 1
     return n
 
 
@@ -253,14 +271,14 @@ def apply_damo(slug, b):
 
 
 def apply(slug, b, fixes, content):
-    """fixes：registry.py 写出的 build/v1/fixes.json；content：corrections.toml 的 [[fix]]"""
+    """fixes：registry.py 写出的 build/v1/fixes.json；content：corrections.toml 的 [[fix]]。坐标另由 apply_coords 先改"""
     done = []
     d = apply_damo(slug, b)
     if d:
         done.append("大漠范围（生态区改绘）")
-    c = apply_coords(slug, b, fixes.get("coords", []))
-    if c:
-        done.append(f"条目坐标 {c} 处")
+    r = apply_ranges(b, fixes.get("ranges", []))
+    if r:
+        done.append(f"山脉改画 {r} 条")
     e = apply_en(slug, b, fixes.get("en", []))
     if e:
         done.append(f"英文译名 {e} 处")

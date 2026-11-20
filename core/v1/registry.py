@@ -34,13 +34,45 @@ ERA_ZH = {"chunqiu": "春秋", "zhanguo": "战国", "qinhan": "秦汉", "hanmosa
 
 
 def load_bundles():
-    import engine_geom
+    """九卷 legacy.html → v1。疆域还是旧几何：换引擎几何要等坐标改正定下来（引擎的归属点用改后的坐标），见 engine_geometry"""
     out = {}
     for slug in ERAS:
         html = (ROOT / "eras" / slug / "legacy.html").read_text(encoding="utf8")
         out[slug] = legacy.to_v1(slug, *legacy.extract(html))
-        engine_geom.apply(slug, out[slug], strict=False, log=lambda *a: None)    # 疆域已换到统一引擎的卷（第 7 步）
     return out
+
+
+def engine_geometry(B, coords):
+    """疆域已换到统一引擎的卷（第 7 步）换上引擎几何。先照 build.py 的做法套用坐标改正，
+    引擎输入的指纹才对得上（归属点用改后的坐标）"""
+    import engine_geom
+    import overlay
+    for slug in ERAS:
+        overlay.apply_coords(slug, B[slug], coords)
+        engine_geom.apply(slug, B[slug], strict=False, log=lambda *a: None)
+
+
+def coord_fixes(B, p_fix, dec):
+    """坐标改正：哪些套用（build/v1/fixes.json 的 coords），以及改正清单的各行。
+    一条一个坐标：同一条有几段年代各不相符的（治所迁城），取年代最长的一段；那一段不到本条年代一半的不改
+    （如两晋卷只在 581 年衔接节点改名的洛口仓，其余年代的坐标是对的）；decisions.toml 的 [places.keep] 列出的也不改（引用 → 原因）"""
+    keep = dec.get("places", {}).get("keep", {})
+    yy = lambda y: f"前{-y}" if y < 0 else str(y)
+    best = {}
+    for pid, c, y0, y1, st in p_fix:
+        r0, r1 = ref_years(B, c["ref"])
+        span = y1 - y0 + 1
+        if c["ref"] not in keep and 2 * span >= r1 - r0 + 1 and span > best.get(c["ref"], (0, None))[0]:
+            best[c["ref"]] = (span, y0)
+    rows, coords = [], []
+    for pid, c, y0, y1, st in sorted(p_fix, key=lambda x: (ERAS.index(x[1]["era"]), x[0], x[1]["ref"])):
+        ok = best.get(c["ref"]) == (y1 - y0 + 1, y0)
+        rows.append((ERA_ZH[c["era"]], f"{c['main']} `{c['ref']}`", pid, f"{yy(y0)}—{yy(y1)}",
+                     f"{c['ll'][0]:.2f},{c['ll'][1]:.2f}", f"{st['lon']:.2f},{st['lat']:.2f}", st.get("note", ""),
+                     "新页面已改" if ok else f"不改：{keep[c['ref']]}" if c["ref"] in keep else "不改：本条按年代长的一段定点"))
+        if ok:
+            coords.append({"era": c["era"], "ref": c["ref"], "id": pid, "lon": st["lon"], "lat": st["lat"]})
+    return coords, rows
 
 
 def load_toml(p):
@@ -690,6 +722,8 @@ def main():
     B = load_bundles()
     dec = load_decisions()
     places, p_review, cands, p_fix = build_places(B, dec)
+    coords, c_rows = coord_fixes(B, p_fix, dec)
+    engine_geometry(B, coords)
     polities, flagged, colors_review, en_review, po_cands = build_polities(B, dec)
     physical, phys_review, ph_cands = build_physical(B, dec)
     write_jsonl(GLOBAL / "places.jsonl", places)
@@ -810,36 +844,39 @@ def main():
             parts.append(f"\n只在{ERA_ZH[r['to']]}卷衔接节点上有：{'、'.join(r['only_to'])}\n")
     (REVIEW / "junctions.md").write_text("".join(parts), encoding="utf8")
 
-    # 改正清单：各卷页面里要改的地方（坐标由 [[place]]、[[seat]] 推出，其余手写在 corrections.toml）
-    # 不牵动疆域的（条目点位、英文、标了 step = 3 的内容）第 3 步已在新页面上改（core/v1/overlay.py），其余留到第 5—7 步
-    import overlay
-    yy = lambda y: f"前{-y}" if y < 0 else str(y)
-    S3, S5 = "新页面已改", "第 5—7 步"
-    rows, coords = [], []
-    for pid, c, y0, y1, st in sorted(p_fix, key=lambda x: (ERAS.index(x[1]["era"]), x[0], x[1]["ref"])):
-        ok = overlay.page_coord_ok(c["era"], c["ref"])
-        rows.append((ERA_ZH[c["era"]], f"{c['main']} `{c['ref']}`", pid, f"{yy(y0)}—{yy(y1)}",
-                     f"{c['ll'][0]:.2f},{c['ll'][1]:.2f}", f"{st['lon']:.2f},{st['lat']:.2f}", st.get("note", ""), S3 if ok else S5))
-        coords.append({"era": c["era"], "ref": c["ref"], "id": pid, "lon": st["lon"], "lat": st["lat"]})
+    # 改正清单：各卷页面里要改的地方（坐标由 [[place]]、[[seat]] 推出，其余手写在 corrections.toml），都由 core/v1/overlay.py
+    # 在生成 v1 时套用；牵动疆域的归属点坐标套用在推算疆域之前（见 engine_geometry），春秋、战国的归属点直接改在 content/seeds.txt
+    S3 = "新页面已改"
+    rows = c_rows
     fixes = load_toml(GLOBAL / "corrections.toml").get("fix", []) if (GLOBAL / "corrections.toml").exists() else []
-    rows2 = [("、".join(ERA_ZH.get(e, e) for e in f["era"].split("、")), f.get("at", ""), f["what"], f.get("why", ""),
-              S3 if f.get("step") == 3 else S5) for f in fixes]
+    rows2 = [("、".join(ERA_ZH.get(e, e) for e in f["era"].split("、")), f.get("at", ""), f["what"], f.get("why", ""), S3)
+             for f in fixes]
     rows3 = [(ERA_ZH[era], kind, rid, zh, e, best, S3) for era, kind, rid, zh, e, best in
              sorted(en_fix, key=lambda x: (ERAS.index(x[0]), x[1], x[2]))]
     KIND = {"地点": "place", "政权": "polity", "山川": "physical"}
+    # 页面上也改画的山川（decisions.toml [physical.prefer] 写 page = true 的）：各卷都画成选定那一卷的线
+    prefer = dec.get("physical", {}).get("prefer", {})
+    ranges = []
+    for rec in physical:
+        pf = prefer.get(rec["id"], {})
+        if pf.get("page"):
+            src = next(c for c in ph_cands if c["ref"] in rec["refs"] and c["era"] == pf["era"])
+            ranges.append({"id": rec["id"], "geo": src["geo"], "anc": src["anc"]})
     (ROOT / "build" / "v1").mkdir(parents=True, exist_ok=True)
     (ROOT / "build" / "v1" / "fixes.json").write_text(json.dumps({
         "coords": coords,
         "en": [{"era": era, "kind": KIND[kind], "id": rid, "zh": zh, "cur": e, "best": best} for era, kind, rid, zh, e, best in en_fix],
+        "ranges": ranges,
     }, ensure_ascii=False, indent=0), encoding="utf8")
     n3 = sum(r[-1] == S3 for r in rows)
     (GLOBAL / "corrections.md").write_text(
         "# 各卷改正清单\n\n第 2 步审定出来、各卷页面里要改的地方。全局表已经按改正后的写。"
-        "不牵动疆域的（都城、关隘等条目的点位，英文译名，部分内容）第 3 步已在新页面上改，见末栏「新页面已改」"
-        "（`core/v1/overlay.py` 在生成 v1 数据时套用，各卷原始数据暂不动）；"
-        "牵动疆域的（州府与春秋、战国城邑这些归属点的坐标、疆域本身）留到第 5—7 步重算疆域时改。"
+        "都由 `core/v1/overlay.py` 在生成 v1 数据时套用，各卷原始数据（legacy.html）不动。"
+        "条目点位、英文译名、标了 step = 3 的内容第 3 步先改；牵动疆域的（州府与春秋、战国城邑这些归属点的坐标）"
+        "第 7 步之后一并改了，疆域按改后的点由统一引擎重算（春秋、战国的归属点直接改在两卷共用的 content/seeds.txt）。"
         "本文件由 `python core/v1/registry.py` 生成，内容改正手写在 `global/corrections.toml`。\n\n"
-        f"## 坐标（{len(rows)} 处，新页面已改 {n3} 处）\n\n与全局地点表里那个年代的城址相距 2 km 以上的（坐标精度约 1 km）。\n\n"
+        f"## 坐标（{len(rows)} 处，新页面已改 {n3} 处）\n\n与全局地点表里那个年代的城址相距 2 km 以上的（坐标精度约 1 km）。"
+        "一条只有一个坐标：同一条有几段年代各不相符的（治所迁城），取年代最长的一段；那一段不到本条年代一半的不改。\n\n"
         + md_table(["卷", "条目", "全局地点", "年代", "现坐标", "应为", "城址", "状态"], rows)
         + f"\n\n## 内容（{len(rows2)} 处）\n\n" + md_table(["卷", "年代", "改什么", "依据", "状态"], rows2)
         + f"\n\n## 英文（{len(rows3)} 处）\n\n同一对象、同一中文名，统一成一种英文写法后，各卷要改的。\n\n"

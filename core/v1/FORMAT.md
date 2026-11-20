@@ -192,7 +192,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 3. 另一座城（原本就在、或另起新城，另有名字）：拆开。州郡治所从甲城迁到乙城时，这个州那一条按年代挂到两城上。例：邺与安阳（580 年相州移治）、上都与桓州、熊津与泗沘、定陶与菏泽。
 4. 相距 40 km 以上的一律拆开。
 
-各卷坐标与审定后的城址相距 2 km 以上的，自动列进 `global/corrections.md`，等各卷改页面时照改。
+各卷坐标与审定后的城址相距 2 km 以上的，自动列进 `global/corrections.md`，生成 v1 时照改（见下文「改正」）。
 
 **政权**。同名（名称或键相同）、不同卷的两个政权，在下列情形合并：前后两段相隔不超过 60 年；或者前一段延续到前一卷末尾、后一段从后一卷开头出现，且两卷相邻（隔着空档首尾相接）。相隔更久、英文名又相同的（春秋的宋与赵宋），按不同政权处理，列入 `review/polities.md` 供核对。英文名不同的也列在那里；配色由 `global/palette.toml` 统一，套用后各卷仍不同的也列出（应为空）。
 
@@ -264,13 +264,14 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 
 `[[gap]]`：`after` `before` `years` `plan`（准备由哪一卷补上）。
 
-## 第 3 步的改正（overlay）
+## 改正（overlay，第 3 步起）
 
 `build.py` 往返校验通过、附上全局 ID 之后，由 `core/v1/overlay.py` 在 v1 数据包上套用以下改正，记在 `meta.overlay`；`legacy.html` 与各卷源文件不动：
 
-- **条目点位**：`registry.py` 按 `decisions.toml` 的城址推出的坐标改正（`global/corrections.md`「坐标」一节），只改唐宋系的都城、关隘等条目；州府与春秋、战国的城邑条目是疆域归属点，留到第 5—7 步重算疆域时改。
+- **坐标**：`registry.py` 按 `decisions.toml` 的城址推出的坐标改正（`global/corrections.md`「坐标」一节，写在 `build/v1/fixes.json` 的 `coords`），条目点位与归属点都改；归属点连同它对应的条目一起挪。归属点是统一引擎的输入，所以坐标在换引擎几何（`engine_geom.py`）之前先套用（`overlay.apply_coords`，`registry.py` 生成全局表时同样先套用），`engine.json` 的指纹按改后的坐标算。一个点只有一个坐标：同一条有几段年代对不上城址的（治所迁城、改名），取最长的一段；最长的一段不到本条年代一半的不改；挪过去会与别的点重合之类的，写进 `decisions.toml` 的 `[places.keep]`（引用 = 原因），也不改；状态栏写「不改」与原因。春秋、战国的归属点不在 v1 里，改在两卷共用的 `content/seeds.txt`（第 3 步只改了唐宋系的都城、关隘等条目，归属点 2026-11-19 改完）。
+- **山川改画**：`decisions.toml` 的 `[physical.prefer]` 写了 `page = true` 的，各卷页面上都画成选定那一卷的线与注记点（`fixes.json` 的 `ranges`；武陵山、伏牛山）。
 - **英文译名**：`corrections.md`「英文」一节全部。
-- **内容**：`global/corrections.toml` 里标了 `step = 3` 的，`id` 对应 `overlay.py` 里的改正函数；牵动疆域的不标，留到第 5—7 步。
+- **内容**：`global/corrections.toml` 里标了 `step = 3` 的，`id` 对应 `overlay.py` 里的改正函数。
 - **时间轴短标题**：`eras/<短名>/short.tsv`，每个节点一行（按月的卷写 `年.月`），中文不超过 5 字。
 
-`corrections.md` 末栏「状态」标明哪些新页面已改、哪些留到第 5—7 步。
+`corrections.md` 末栏「状态」标明新页面已改，或为什么不改。
