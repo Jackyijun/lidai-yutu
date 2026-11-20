@@ -44,3 +44,145 @@ note = "共用节点：184 年的疆域与文字照搬汉末卷首节点"
 
 [legacy]                     # 新卷没有旧版
 new_url = "https://jackyijun.github.io/lidai-yutu/qinhan/"
+
+[web]                       # 新页面（core/web/template.html）各卷不同的文字与开关，说明见 core/web/README.md
+# 时间单位：year 年；ym 年 + 月（隋唐、两晋）；t 月序号（民国）；qinhan 月序号、通鉴纪年（秦汉）
+time = "qinhan"
+# 旧版页面记界面语言用的键（读一次，兼容旧访客）
+lang_key = "qinhan-map:lang"
+# 标签页标题 [中, 英]
+doc_title = ["秦汉形势图", "Qin and Han, 212 BC–AD 184"]
+# 顶栏标题
+h1 = ["秦汉形势图", "Qin and Han"]
+# 顶栏副题
+sub = ["前212 — 184 · 从秦并天下到黄巾起事 · 古今地名对照", "212 BC–AD 184 · from the Qin empire to the Yellow Turbans · historical and modern place names"]
+# 地图的无障碍名称
+map_label = ["秦汉形势图", "Map of the Qin and Han"]
+# 视野：[代号, 中文名, 英文名, [西, 东, 南, 北]]，第一项为默认
+fits = [
+  ["all", "全图", "Whole map", [60, 140, 12, 56]],
+  ["cn", "汉地", "Han China", [97, 127, 17, 44]],
+  ["ch", "楚汉", "Chu–Han", [106, 122, 29.5, 40.5]],
+  ["gz", "关中", "Guanzhong", [104, 112, 32.5, 37.5]],
+  ["gd", "关东", "East of the passes", [111, 122.5, 32, 40.5]],
+  ["wc", "吴楚·江淮", "Wu–Chu & Yangzi–Huai", [113.5, 122.5, 27, 34.5]],
+  ["hx", "河西·西域", "Hexi & Western Regions", [70, 105, 34, 46]],
+  ["mb", "漠北", "North of the Gobi", [88, 124, 38, 54]],
+  ["db", "东北·朝鲜", "Northeast & Korea", [116, 132, 34, 47]],
+  ["bs", "巴蜀", "Ba–Shu", [101, 111, 26.5, 34.5]],
+  ["ln", "岭南·交趾", "Lingnan & Jiaozhi", [103, 117.5, 15, 26.5]],
+  ["xn", "西南夷", "Southwestern Yi", [96, 110, 22, 30]],
+]
+# 打开页面时的视野
+fit0 = "all"
+# 打开页面时的着色：zhen（二级单位）或 pol（政权）
+cmode = "pol"
+# 图例里的图层开关：[代号, 中文名, 英文名]，按显示次序
+layers = [
+  ["terr", "疆域", "Territory"],
+  ["relief", "地形", "Relief"],
+  ["zhou", "郡界", "Commandery borders"],
+  ["capital", "都城行在", "Capitals"],
+  ["seat", "都城治所", "Seats"],
+  ["pref", "郡国城邑", "Commanderies"],
+  ["battle", "本期战役", "Battles"],
+  ["pass", "关隘", "Passes"],
+  ["event", "本期事件", "Events"],
+  ["people", "诸族", "Peoples"],
+  ["range", "山脉", "Mountains"],
+  ["river", "水系湖泽", "Rivers & lakes"],
+  ["canal", "运河", "Canals"],
+  ["road", "长城·道路", "Walls & roads"],
+  ["route", "行军路线", "Campaign routes"],
+  ["desert", "荒漠", "Deserts"],
+  ["prov", "今省界", "Mod. provinces"],
+  ["border", "今国界", "Mod. borders"],
+]
+# 图例的斜线说明
+key2 = ["名义内属", "Nominal submission"]
+# 图例是否列「行军路线」
+key_route = false
+# 图例脚注 [中, 英]
+foot = ["疆域据《史记》《汉书》《后汉书》《资治通鉴》及谭其骧《中国历史地图集》第二册大意，由统一疆域引擎按郡国治所与县邑推算，沿山川划界，仅为示意。郡国以《汉书·地理志》（元始二年）与《续汉书·郡国志》为准，前180 年及以前用秦郡；王国的存废按《诸侯王表》，领域以元始二年的郡国近似。纪年从《资治通鉴》：太初改历（前104）以前以十月为岁首，十月至十二月记在新一年。斜线为名义内属（西域都护、西域长史所领诸国，50 年以后入居北边诸郡的南匈奴等）。「郡国」着色下匈奴按《史记》《汉书》《后汉书》分为单于本部、左右贤王、浑邪、休屠诸部，界线为示意。行军路线中本节点涵盖月份内走过的一段画实线加箭头，此前走过的画虚线。首节点照搬战国卷末节点，末节点照搬汉末三国卷首节点。", "Borders follow in outline the Shiji, the Han shu, the Hou Han shu, the Zizhi tongjian and vol. 2 of Tan Qixiang's Historical Atlas of China, and are computed by the unified territory engine from commandery seats and county towns, with boundaries drawn along mountains and rivers; they are approximate. Commanderies and kingdoms follow the Han shu Treatise on Geography (AD 2) and the Treatise on Commanderies and Kingdoms of the Xu Han shu; up to 180 BC the Qin commanderies are used. Kingdoms appear and disappear as in the Tables of the Kings, their extent approximated by the AD 2 units. Years follow the Zizhi tongjian: before the Taichu reform (104 BC) the year began in the 10th month, so the 10th–12th months belong to the new year. Hatching marks nominal submission (such as the states under the Protector-General or Chief Clerk of the Western Regions, or the Southern Xiongnu living inside the northern commanderies from AD 50). In the commanderies view the Xiongnu are divided, after the Shiji, the Han shu and the Hou Han shu, into the chanyu's own domain, the Wise Kings of the Left and Right, the Hunye and Xiutu kings and others; these borders are a sketch. Campaign routes are drawn solid with arrows only for the months covered by the current snapshot; earlier stretches are dashed. The first snapshot is copied from the last snapshot of the Warring States volume, the last from the first snapshot of the Late Han and the Three Kingdoms volume."]
+# 索引图高度（宽 140）
+inset_h = 100
+# 索引图范围 [西, 东, 南, 北]
+inset_box = [72, 136, 15.5, 55]
+# 经纬网（缺省按底图范围）：[经线起, 止, 纬度起, 止, 步长, 纬线起, 止, 经度起, 止, 步长]
+grat = [75, 135, 15, 56, 1, 20, 55, 70, 138, 1]
+# 长城、道路等线状地物画在运河之下（缺省画在运河之上）
+lines_under_canal = true
+# 斜线单位在说明里的标签
+htag = ["名义内属", "Nominal submission"]
+# 顶栏计数里二级单位的说法 [中, 英单数, 英复数]
+count_zhen = ["个郡国", "commanderies & kingdoms", "commanderies & kingdoms"]
+# 政权说明里「领 N 州」的说法 [中（{n} 为数）, 英单数, 英复数]
+holds = ["领 {n} 个郡国", "commandery or kingdom", "commanderies and kingdoms"]
+# 「领 N」数所辖二级单位（缺省数归属点）
+holds_units = true
+# 所领地点一行的标题
+holds_label = ["领郡", "Holds"]
+# 无归属地点的标签
+unowned = ["无属", "unclaimed"]
+# 诸族年代：[起界, 起界文字, 止界, 止界文字, 「约」放最前]
+people = [-2545, ["秦以前", "before Qin"], 2208, ["东汉以后", "after the Eastern Han"], false]
+# 运河开凿年份：[此年以前不写年份, 那时的说法, 「本期尚未开凿」加括号]
+canal = [-2545, false, false]
+# 时间轴刻度的样式：[字段, 比较, 值, 样式名]，取第一条符合的
+era_cls = [["tp", "==", "m", "mon"]]
+# 时间轴提示里加节点标题
+tl_t = true
+# 播放每节点毫秒数（缺省 2400）
+play_ms = 2600
+# 节点说明里路线一组的名称
+route_chip = ["行军", "Campaigns"]
+# 二级单位着色下，图例列各单位（缺省列政权）
+legend_units = true
+# 图例小标题 [[二级单位着色], [政权着色]]（缺省「本时期政权」）
+legsub = [["本期郡国与政权", "Commanderies, kingdoms & states"], ["本期政权", "States (nominal allegiance)"]]
+# 索引里默认收起的组
+closed = ["pref", "people", "other", "range", "road"]
+# 索引里州府一组的名称
+pref_group = ["郡国 · 城邑", "Commanderies & towns"]
+# 对照表里州府的类别名
+pref_kind = ["郡国", "Commandery"]
+# 索引里其他时期一组的名称
+other_group = ["其他时期的政权与郡国", "States, commanderies and kingdoms of other periods"]
+# 索引里二级单位一组的名称
+zhen_group = ["郡国", "Commanderies & kingdoms"]
+# 英文检索框的提示
+q_en = "Search names"
+# 英文对照表、年表里关于日期的说明
+date_note_en = "Dates give the lunar months of the Chinese sources (“12th month, 202 BC”) and are not converted to the Western calendar. Years follow the Zizhi tongjian: before the Taichu calendar reform of 104 BC the year began in the 10th month, so the 10th–12th months are counted in the new year and come before its 1st month."
+# 对照表导语（{n} 为节点数，{date_note} 为上一项）
+table_intro = ["<p>图中全部郡国、城邑与地物，一名一行。郡国与城邑的“归属沿革”取自地图上 {n} 个时间节点，连续相同的归属合并显示。经纬度取今日遗址或所在城市，可在任意地图应用中定位；点击任一行回到地图并定位。</p>", "<p>Every commandery, town and feature on the map, one name per row. The allegiance of commanderies and towns is taken from the map’s {n} snapshots, with consecutive identical entries merged. Coordinates are those of the modern site or city and work in any map app; click a row to return to the map.</p><p>{date_note}</p>"]
+# 年表导语
+chron_intro = ["<p>把战役、行军、事件、都城迁移与地图上的 {n} 个时间节点排成一条线，自秦并天下至黄巾起事。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>", "<p>Battles, campaigns, events, capital moves and the map’s {n} snapshots on a single line, from the Qin empire to the Yellow Turbans. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
+# 年表收哪些年份的都城迁移 [起, 止, 起是否不含]（起为 false 取首节点，止为 false 不设上限）
+chron_cap = [false, false, true]
+
+[web.kind_txt]  # 单位种类的称呼
+state = ["政权", "State"]
+zhen = ["郡国", "Commandery / kingdom"]
+tribe = ["部族", "Tribe"]
+waste = ["弃地", "Abandoned land"]
+sub = ["属部", "Subordinate"]
+
+[web.cm]  # 着色按钮：zhen 名称与提示、pol 提示
+zhen = ["郡国", "Commanderies"]
+zhen_title = ["按郡国分色：中原王朝的郡与王国各一色，郡国并行一目了然", "Color by commandery and kingdom: each commandery and each kingdom of the central dynasty has its own color, so the coexistence of the two shows at a glance"]
+pol_title = ["按政权分色：郡与王国都并入所属政权", "Color by state: commanderies and kingdoms merge into the state they belong to"]
+
+[web.catname]  # 对照表的类别名
+region = ["地域", "Region"]
+capital = ["都城", "Capital"]
+battle = ["战役", "Battle"]
+pass = ["关隘", "Pass"]
+event = ["事件", "Event"]
+range = ["山脉", "Mountains"]
+river = ["水系", "Water"]
+canal = ["运河", "Canal"]
+road = ["古道", "Road"]
+route = ["行军", "Campaign"]
+desert = ["荒漠", "Desert"]
+people = ["诸族", "People"]

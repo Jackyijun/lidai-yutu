@@ -61,3 +61,179 @@ note = "元明卷 yuanming、清卷 qing 待补"
 repo = "Jackyijun/minguo-xinzhongguo-map"
 url = "https://jackyijun.github.io/minguo-xinzhongguo-map/"
 new_url = "https://jackyijun.github.io/lidai-yutu/minguo-xinzhongguo/"
+
+[web]                       # 新页面（core/web/template.html）各卷不同的文字与开关，说明见 core/web/README.md
+# 时间单位：year 年；ym 年 + 月（隋唐、两晋）；t 月序号（民国）；qinhan 月序号、通鉴纪年（秦汉）
+time = "t"
+# 旧版页面记界面语言用的键（读一次，兼容旧访客）
+lang_key = "minguo-xinzhongguo-map:lang"
+# 标签页标题 [中, 英]
+doc_title = ["民国至新中国初期形势图", "Republican China to the Early PRC"]
+# 顶栏标题
+h1 = ["民国至新中国初期形势图", "Republican China to the Early PRC"]
+# 顶栏副题
+sub = ["1911 — 1954 · 辛亥革命至抗美援朝胜利、日内瓦会议 · 古今地名对照", "1911–1954 · from the 1911 Revolution to victory in Korea and the Geneva Conference · historical and modern place names"]
+# 地图的无障碍名称
+map_label = ["民国至新中国初期形势图", "Map of China from the Republic to the early People’s Republic"]
+# 视野：[代号, 中文名, 英文名, [西, 东, 南, 北]]，第一项为默认
+fits = [
+  ["cn", "中国", "China", [73, 135, 17, 54]],
+  ["all", "亚洲全图", "Asia", [32, 162, -9, 60]],
+  ["cz", "长征沿线", "Long March", [99, 117.5, 24, 38.5]],
+  ["hb", "华北", "North China", [110, 123, 34, 42.5]],
+  ["db", "东北", "Northeast China", [117, 135, 38.5, 53.5]],
+  ["hd", "华东", "East China", [114, 123, 26, 35.5]],
+  ["hz", "华中", "Central China", [108, 118.5, 25.5, 34.5]],
+  ["hn", "华南", "South China", [104, 120, 17.5, 26.5]],
+  ["xn", "西南", "Southwest", [97, 110, 21, 33]],
+  ["xb", "西北", "Northwest", [100, 112, 33, 41.5]],
+  ["xj", "新疆", "Xinjiang", [73, 97, 34, 49.5]],
+  ["xz", "西藏·青康", "Xizang, Qinghai & Xikang", [78, 104, 26, 39]],
+  ["mg", "蒙古", "Mongolia", [86, 122, 40, 53]],
+  ["cj", "朝鲜·日本", "Korea & Japan", [124, 146, 30, 46]],
+  ["kw", "朝鲜战场", "Korean War", [123.8, 130.8, 34.2, 40.6]],
+  ["sib", "西伯利亚", "Siberia", [60, 180, 45, 70]],
+  ["dny", "东南亚", "Mainland Southeast Asia", [92, 110, 0, 28]],
+  ["yz", "印度支那", "Indochina", [100.5, 109.8, 8.5, 23.6]],
+  ["ny", "南洋", "Malay Archipelago", [94, 142, -11, 20]],
+  ["tpy", "太平洋", "Pacific", [118, 185, -12, 36]],
+  ["nyy", "南亚", "South Asia", [60, 98, 5, 37]],
+  ["zy", "中亚·伊朗", "Central Asia & Iran", [44, 82, 25, 52]],
+  ["xy", "西亚", "West Asia", [26, 62, 12, 43]],
+]
+# 打开页面时的视野
+fit0 = "cn"
+# 打开页面时的着色：zhen（二级单位）或 pol（政权）
+cmode = "zhen"
+# 图例里的图层开关：[代号, 中文名, 英文名]，按显示次序
+layers = [
+  ["terr", "疆域", "Territories"],
+  ["relief", "地形", "Relief"],
+  ["capital", "都城驻地", "Capitals"],
+  ["seat", "派系治所", "Faction seats"],
+  ["pref", "城市城镇", "Cities & towns"],
+  ["battle", "本期战役", "Battles"],
+  ["route", "行军路线", "Campaigns"],
+  ["event", "本期事件", "Events"],
+  ["pass", "关隘", "Passes"],
+  ["conc", "租界·租借地", "Concessions"],
+  ["rail", "铁路", "Railways"],
+  ["road", "公路·航线", "Roads & air routes"],
+  ["range", "山脉", "Mountains"],
+  ["river", "水系湖泽", "Rivers & lakes"],
+  ["canal", "运河", "Canals"],
+  ["desert", "荒漠", "Deserts"],
+  ["sea", "海名", "Seas"],
+  ["prov", "今省界", "Modern provinces"],
+  ["border", "今国界", "Modern borders"],
+]
+# 图例的斜线说明
+key2 = ["名实不符", "Nominal ≠ actual control"]
+# 图例是否列「行军路线」
+key_route = true
+# 图例脚注 [中, 英]
+foot = ["中国疆域据各时期官方文书、战史与谭其骧《中国历史地图集》第八册等大意推定；国际与殖民地界以今国界为基础按年代修订（三八线、北纬五十度线等），境内派系、根据地与战线以城市、县城的控制为单位沿山川推算，仅为示意。斜线表示名义归属与实际控制不一致：傀儡政权、名义服从中央的地方实力派、受保护国与委任统治地、名义属国民政府的中共边区等。战役、事件与行军路线只显示当前节点所涵盖的月份（上一节点之后至本节点）。", "Chinese territories follow official records, campaign histories and, in outline, vol. 8 of Tan Qixiang’s Historical Atlas of China; international and colonial borders start from modern boundaries revised for the period (the 38th parallel, the 50th parallel on Sakhalin, etc.); factions, base areas and front lines inside China are reconstructed from the control of cities and county towns and bounded along mountains and rivers, so they are only indicative. Hatching marks a gap between nominal and actual control: puppet regimes, regional strongmen nominally under the central government, protectorates and mandates, and the Communist border regions nominally under the Nationalist government. Battles, events and campaign routes are shown only for the months covered by the current snapshot."]
+# 索引图高度（宽 140）
+inset_h = 84
+# 索引图范围 [西, 东, 南, 北]
+inset_box = [14, 146, 10, 62]
+# 推算范围以外罩一层薄纸色并以虚线标出
+veil = true
+# 斜线单位当作藩属：政权着色下加虚线轮廓与名称，说明标「藩属·附庸 / 宗主」，索引另列一组
+vassal = true
+# 索引里藩属一组的名称
+vassal_group = ["傀儡 · 自立 · 保护国（斜线）", "Puppets, autonomous and protected (hatched)"]
+# 顶栏计数里二级单位的说法 [中, 英单数, 英复数]
+count_zhen = ["个派系与属地", "faction & dependencies", "factions & dependencies"]
+# 政权说明里「领 N 州」的说法 [中（{n} 为数）, 英单数, 英复数]
+holds = ["领 {n} 处城镇", "place", "places"]
+# 所领地点一行的标题
+holds_label = ["所领", "Places"]
+# 治所的说法
+seat_word = "驻地"
+# 时间轴刻度的样式：[字段, 比较, 值, 样式名]，取第一条符合的
+era_cls = [["y", "<", 1911, "era-s"], ["t", ">=", 23397, "era-y"]]
+# 时间轴的年号同年只写一次
+era_once = true
+# 时间轴提示里加节点标题
+tl_t = true
+# 索引里事件一组的名称
+event_group = ["事件", "Events"]
+# 年表里事件的类别名
+event_kd = ["事件", "Event"]
+# 索引里默认收起的组
+closed = ["pref", "other", "range", "zhen", "conc", "lines", "pass", "river"]
+# 索引里都城一组的名称
+cap_group = ["都城 · 驻地", "Capitals & seats"]
+# 索引里州府一组的名称
+pref_group = ["城市 · 城镇", "Cities & towns"]
+# 索引里州府一组的小标题
+pref_sub = ["当时名 → 今地", "then → modern"]
+# 对照表里州府的类别名
+pref_kind = ["城市", "City"]
+# 对照表里城邑的类别名
+town_kind = ["城镇", "Town"]
+# 索引里其他时期一组的名称
+other_group = ["其他时期的政权与派系", "States and factions of other periods"]
+# 索引里二级单位一组的名称
+zhen_group = ["派系 · 根据地 · 属地", "Factions · base areas · dependencies"]
+# 英文对照表、年表里关于日期的说明
+date_note_en = "All dates are Gregorian; the Republic of China adopted the Western calendar on 1 January 1912, and events of 1910–1911 are also given in Gregorian months."
+# 对照表导语（{n} 为节点数，{date_note} 为上一项）
+table_intro = ["<p>图中全部城市、城镇与地物，一名一行。城市的“归属沿革”取自地图上 {n} 个时间节点（按月），连续相同的归属合并显示。经纬度取今日城市或遗址，可在任意地图应用中定位；点击任一行回到地图并定位。日期一律为公历。</p>", "<p>Every city, town and feature on the map, one name per row. A city’s allegiance is taken from the map’s {n} monthly snapshots, with consecutive identical entries merged. Coordinates are those of the modern city or site and work in any map app; click a row to return to the map.</p><p>{date_note}</p>"]
+# 年表导语
+chron_intro = ["<p>把战役、事件、行军、都城迁移与地图上的 {n} 个时间节点（按月）排成一条线，日期一律为公历。灰底为地图节点；点击任一事件，地图会跳到该事件所在时段的节点并定位。</p>", "<p>Battles, events, campaigns, capital moves and the map’s {n} snapshots on a single line. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
+# 年表里都城迁移的写法（{st} 政权，{old} 都城）
+cap_text = "{st}以{old}为都"
+# 本卷专属样式
+css = """
+td.when { white-space:normal; min-width:12ch; max-width:30ch; line-height:1.6; }
+html[lang="en"] .caption { max-height:9.8em; }
+html[lang="en"] .row { grid-template-columns:fit-content(62%) minmax(0,1fr); }
+"""
+
+[web.sym]  # 图例图标（覆盖通用图标）
+road = "<path d=\"M1 10 C5 9, 8 5, 13 4\" stroke=\"var(--c-road)\" stroke-width=\"1.4\" stroke-dasharray=\"3 1.6\" fill=\"none\"/><path d=\"M1 13 C6 12, 9 8, 13 8\" stroke=\"var(--c-air)\" stroke-width=\"1.4\" stroke-dasharray=\".8 2.4\" stroke-linecap=\"round\" fill=\"none\"/>"
+
+[web.kind_txt]  # 单位种类的称呼
+state = ["政权", "State"]
+zhen = ["下属单位", "Subdivision"]
+tribe = ["部族", "Tribe"]
+
+[web.subkind]  # 二级单位按所属政权的称呼
+"中共" = ["根据地", "Base area"]
+"国民政府" = ["派系", "Faction"]
+"北洋政府" = ["派系", "Faction"]
+"清" = ["属部", "Dependency"]
+"革命军" = ["军政府", "Military government"]
+"讨袁军" = ["讨袁省份", "Anti-Yuan province"]
+"护国军" = ["护国省份", "National Protection province"]
+"日本" = ["殖民地·占领区", "Colony / occupied area"]
+"英国" = ["属地", "Dependency"]
+"法国" = ["属地", "Dependency"]
+"荷兰" = ["属地", "Dependency"]
+"美国" = ["属地", "Dependency"]
+"葡萄牙" = ["属地", "Dependency"]
+"德国" = ["属地", "Dependency"]
+"俄国" = ["属地·占领区", "Dependency / occupied area"]
+"汪伪" = ["下属政权", "Subordinate regime"]
+
+[web.cm]  # 着色按钮：zhen 名称与提示、pol 提示
+zhen = ["派系", "Factions"]
+zhen_title = ["按派系、根据地、殖民地分区分色", "Color by faction, base area and colonial division"]
+pol_title = ["按政权分色", "Color by state"]
+
+[web.catname]  # 对照表的类别名
+capital = ["都城", "Capital"]
+battle = ["战役", "Battle"]
+route = ["行军", "Campaign"]
+pass = ["关隘", "Pass"]
+event = ["事件", "Event"]
+conc = ["租界", "Concession"]
+rail = ["铁路", "Railway"]
+road = ["公路", "Road"]
+air = ["航线", "Air route"]
+range = ["山脉", "Mountains"]
+river = ["水系", "Water"]
+canal = ["运河", "Canal"]
+desert = ["荒漠", "Desert"]

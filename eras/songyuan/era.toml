@@ -60,3 +60,143 @@ note = "元明卷 yuanming、清卷 qing 待补"
 repo = "Jackyijun/songyuan-map"
 url = "https://jackyijun.github.io/songyuan-map/"
 new_url = "https://jackyijun.github.io/lidai-yutu/songyuan/"
+
+[web]                       # 新页面（core/web/template.html）各卷不同的文字与开关，说明见 core/web/README.md
+# 时间单位：year 年；ym 年 + 月（隋唐、两晋）；t 月序号（民国）；qinhan 月序号、通鉴纪年（秦汉）
+time = "year"
+# 旧版页面记界面语言用的键（读一次，兼容旧访客）
+lang_key = "songyuan-map:lang"
+# 标签页标题 [中, 英]
+doc_title = ["宋辽夏金元形势图", "Song, Liao, Xia, Jin and Yuan, 979–1279"]
+# 顶栏标题
+h1 = ["宋辽夏金元形势图", "Song · Liao · Xia · Jin · Yuan"]
+# 顶栏副题
+sub = ["979 — 1279 · 北宋统一至崖山 · 古今地名对照", "979–1279 · from the Song reunification to Yamen · historical and modern place names"]
+# 地图的无障碍名称
+map_label = ["宋辽夏金元形势图", "Map of the Song, Liao, Xia, Jin and Yuan"]
+# 视野：[代号, 中文名, 英文名, [西, 东, 南, 北]]，第一项为默认
+fits = [
+  ["cn", "宋辽金夏", "Song, Liao, Jin, Xia", [96, 128, 19, 47]],
+  ["all", "全图", "Whole map", [14, 146, 10, 62]],
+  ["mg", "蒙古帝国", "Mongol Empire", [22, 138, 16, 58]],
+  ["zy", "中原", "Central Plains", [110, 118.6, 32.2, 37.6]],
+  ["hb", "河北·燕云", "Hebei & Yan-Yun", [110.5, 120.5, 35.2, 41.8]],
+  ["gx", "关陇·西夏", "Guanzhong & Western Xia", [99.5, 111.5, 33, 41.5]],
+  ["jh", "江淮·江南", "Huai & Jiangnan", [112, 122.5, 27.5, 34.6]],
+  ["bs", "巴蜀·京湖", "Sichuan & Jinghu", [101, 114.5, 27, 34.5]],
+  ["ln", "两广·交趾", "Lingnan & Đại Việt", [103, 118, 16, 26.6]],
+  ["nz", "吐蕃·大理", "Tibet & Dali", [78, 108, 20, 37]],
+  ["db", "东北·高丽", "Manchuria & Goryeo", [116, 135, 36, 50]],
+  ["mb", "漠北草原", "Mongolian steppe", [86, 125, 40, 53]],
+  ["xy", "西域·西辽", "Western Regions & Western Liao", [66, 97, 35, 48.5]],
+  ["hz", "河中·呼罗珊", "Transoxiana & Khorasan", [52, 76, 30, 46]],
+  ["yl", "伊朗·两河", "Iran & Mesopotamia", [38, 62, 26, 42]],
+  ["lf", "小亚·黎凡特", "Anatolia & the Levant", [25, 46.5, 28.5, 42.5]],
+  ["qc", "钦察·罗斯", "Kipchak Steppe & Rus'", [28, 62, 42, 60]],
+  ["oz", "东欧·巴尔干", "Eastern Europe & Balkans", [14, 36, 38, 56]],
+]
+# 打开页面时的视野
+fit0 = "cn"
+# 打开页面时的着色：zhen（二级单位）或 pol（政权）
+cmode = "pol"
+# 图例里的图层开关：[代号, 中文名, 英文名]，按显示次序
+layers = [
+  ["terr", "疆域", "Territories"],
+  ["relief", "地形", "Relief"],
+  ["region", "燕云十六州", "Sixteen Prefectures"],
+  ["capital", "都城行在", "Capitals"],
+  ["seat", "路府治所", "Circuit seats"],
+  ["pref", "州府城邑", "Prefectures"],
+  ["battle", "本期战役", "Battles"],
+  ["route", "行军路线", "Campaigns"],
+  ["pass", "关隘", "Passes"],
+  ["event", "本期事件", "Events"],
+  ["people", "诸族", "Peoples"],
+  ["range", "山脉", "Mountains"],
+  ["river", "水系湖泽", "Rivers & lakes"],
+  ["canal", "运河", "Canals"],
+  ["desert", "荒漠", "Deserts"],
+  ["sea", "海名", "Seas"],
+  ["prov", "今省界", "Modern provinces"],
+  ["border", "今国界", "Modern borders"],
+]
+# 图例的斜线说明
+key2 = ["藩属·附庸", "Vassal or tributary"]
+# 图例是否列「行军路线」
+key_route = true
+# 图例脚注 [中, 英]
+foot = ["疆域据《宋史》《辽史》《金史》《元史》《续资治通鉴长编》《建炎以来系年要录》及谭其骧《中国历史地图集》第六、七册大意推定；中亚、西亚、欧洲部分据通行史地图集大意推定。以州府城邑为单位、沿山川划界，仅为示意。斜线为藩属或附庸。战役、事件与行军路线只显示当前节点所涵盖的年份（上一节点之后至本节点）。红色虚线为燕云十六州（至 1125 年）。", "Borders are reconstructed from the Song, Liao, Jin and Yuan dynastic histories, Li Tao’s Xu zizhi tongjian changbian and Li Xinchuan’s Jianyan yilai xinian yaolu, following in outline vols. 6–7 of Tan Qixiang’s Historical Atlas of China; Central Asia, West Asia and Europe follow standard historical atlases. Territory is assigned prefecture by prefecture and bounded along mountains and rivers, so it is only indicative. Hatching marks vassals and tributaries. Battles, events and campaign routes are shown only for the years covered by the current snapshot (after the previous snapshot, up to this one). The red dashed line marks the Sixteen Prefectures (until 1125)."]
+# 索引图高度（宽 140）
+inset_h = 84
+# 索引图范围 [西, 东, 南, 北]
+inset_box = [14, 146, 10, 62]
+# 推算范围以外罩一层薄纸色并以虚线标出
+veil = true
+# 斜线单位当作藩属：政权着色下加虚线轮廓与名称，说明标「藩属·附庸 / 宗主」，索引另列一组
+vassal = true
+# 顶栏计数里二级单位的说法 [中, 英单数, 英复数]
+count_zhen = ["个路·汗国", "subdivision", "subdivisions"]
+# 顶栏计数不算斜线单位
+count_skip_h = true
+# 政权说明里「领 N 州」的说法 [中（{n} 为数）, 英单数, 英复数]
+holds = ["领 {n} 州（处）", "prefecture", "prefectures"]
+# 所领地点一行的标题
+holds_label = ["领州", "Prefectures"]
+# 诸族年代：[起界, 起界文字, 止界, 止界文字, 「约」放最前]
+people = [979, ["宋初", "early Song"], 1279, ["宋末", "late Song"], true]
+# 时间轴刻度的样式：[字段, 比较, 值, 样式名]，取第一条符合的
+era_cls = [["y", ">=", 1271, "era-y"], ["y", ">=", 1127, "era-s"]]
+# 索引里默认收起的组
+closed = ["pref", "people", "other", "range", "zhen"]
+# 索引里其他时期一组的名称
+other_group = ["其他时期的政权与路·汗国", "States and subdivisions of other periods"]
+# 索引里二级单位一组的名称
+zhen_group = ["路 · 道 · 兀鲁思 · 行省", "Circuits · uluses · provinces"]
+# 英文对照表、年表里关于日期的说明
+date_note_en = "Dates in East Asia give the lunar month (“5th month, 979”); the year is the Western year in which most of that lunar year falls, so a 12th month can reach into January of the next year. Dates elsewhere use Julian months."
+# 对照表导语（{n} 为节点数，{date_note} 为上一项）
+table_intro = ["<p>图中全部州府、城邑与地物，一名一行。州府的“归属沿革”取自地图上 {n} 个时间节点，连续相同的归属合并显示。经纬度取今日遗址或所在城市，可在任意地图应用中定位；点击任一行回到地图并定位。</p>", "<p>Every prefecture, town and feature on the map, one name per row. A prefecture’s allegiance is taken from the map’s {n} snapshots, with consecutive identical entries merged. Coordinates are those of the modern site or city and work in any map app; click a row to return to the map.</p><p>{date_note}</p>"]
+# 年表导语
+chron_intro = ["<p>把战役、事件、行军、都城迁移与地图上的 {n} 个时间节点排成一条线。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>", "<p>Battles, events, campaigns, capital moves and the map’s {n} snapshots on a single line. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
+# 年表收哪些年份的都城迁移 [起, 止, 起是否不含]（起为 false 取首节点，止为 false 不设上限）
+chron_cap = [979, 1279, false]
+# 本卷专属样式
+css = """
+html[lang="en"] .row { grid-template-columns:fit-content(62%) minmax(0,1fr); }
+"""
+
+[web.kind_txt]  # 单位种类的称呼
+state = ["政权", "State"]
+zhen = ["下属单位", "Subdivision"]
+tribe = ["部族", "Tribe"]
+
+[web.subkind]  # 二级单位按所属政权的称呼
+"宋" = ["路", "Circuit"]
+"金" = ["路", "Circuit"]
+"伪齐" = ["路", "Circuit"]
+"辽" = ["道", "Circuit"]
+"北辽" = ["道", "Circuit"]
+"大蒙古国" = ["兀鲁思", "Ulus"]
+"元" = ["行省", "Province"]
+"十字军诸国" = ["十字军国家", "Crusader state"]
+"神圣罗马帝国" = ["诸侯国", "Imperial state"]
+"罗斯" = ["公国", "Principality"]
+"塞尔柱" = ["分支政权", "Seljuk branch"]
+
+[web.cm]  # 着色按钮：zhen 名称与提示、pol 提示
+zhen = ["路·汗国", "Circuits & uluses"]
+zhen_title = ["宋路、辽道、金路、蒙古兀鲁思、元行省分色", "Color by Song, Liao and Jin circuits, Mongol uluses and Yuan provinces"]
+pol_title = ["按政权分色", "Color by state"]
+
+[web.catname]  # 对照表的类别名
+region = ["地域", "Region"]
+capital = ["都城", "Capital"]
+battle = ["战役", "Battle"]
+route = ["行军", "Campaign"]
+pass = ["关隘", "Pass"]
+event = ["事件", "Event"]
+range = ["山脉", "Mountains"]
+river = ["水系", "Water"]
+canal = ["运河", "Canal"]
+desert = ["荒漠", "Desert"]
+people = ["诸族", "People"]

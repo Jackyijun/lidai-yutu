@@ -255,6 +255,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 | `[engine]` | 统一疆域引擎的外缘设置（第 5 步，目前两晋、隋唐、宋元、民国、秦汉有；秦汉写 `production = true`，疆域直接由引擎出，见根目录 `run.py` 的两遍构建；第 7 步起旧卷写 `geometry = "engine"`（现为隋唐、两晋），页面疆域取 `eras/<短名>/engine.json`，生成 v1 时换进去，见 `core/v1/engine_geom.py`）：`outer` 为 `frontier`（手绘外缘）或 `reach`（按可达代价，另写推算范围 `box`、写 `R=` 倍数的 `seeds` 文件、设置文件 `config`、国界墙 `walls` 与省界 `prov_walls`），见 `core/engine/README.md` |
 | `[junction.prev]` `[junction.next]` | 与前后两卷的衔接 |
 | `[legacy]` | 旧仓库、旧网址、新网址 |
+| `[web]` | 新页面各卷不同的文字与开关（统一模板 `core/web/template.html` 读；春秋、战国两卷还没有）：标题、视野、图例、索引分组名、对照表与年表的导语等中英文字，以及时间单位 `time`、斜线画法 `hatch` 等少数开关。每项的含义写在该项上面的注释，总的说明见 `core/web/README.md` |
 
 `build.py` 会核对 `time` `model` `nodes` `first` 与数据一致。
 

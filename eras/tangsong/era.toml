@@ -59,3 +59,128 @@ note = "共用节点，以宋元卷为准（global/junctions.toml）"
 repo = "Jackyijun/tangsong-map"
 url = "https://jackyijun.github.io/tangsong-map/"
 new_url = "https://jackyijun.github.io/lidai-yutu/tangsong/"
+
+[web]                       # 新页面（core/web/template.html）各卷不同的文字与开关，说明见 core/web/README.md
+# 时间单位：year 年；ym 年 + 月（隋唐、两晋）；t 月序号（民国）；qinhan 月序号、通鉴纪年（秦汉）
+time = "year"
+# 旧版页面记界面语言用的键（读一次，兼容旧访客）
+lang_key = "tangsong-map:lang"
+# 标签页标题 [中, 英]
+doc_title = ["唐宋之际形势图", "Between Tang and Song, 755–979"]
+# 顶栏标题
+h1 = ["唐宋之际形势图", "Between Tang and Song"]
+# 顶栏副题
+sub = ["755 — 979 · 安史之乱至宋初 · 古今地名对照", "755–979 · from the An Lushan Rebellion to the early Song · historical and modern place names"]
+# 地图的无障碍名称
+map_label = ["唐宋之际形势图", "Map of China between the Tang and the Song"]
+# 视野：[代号, 中文名, 英文名, [西, 东, 南, 北]]，第一项为默认
+fits = [
+  ["cn", "中国", "China", [96, 127, 18.5, 45.5]],
+  ["all", "全图", "Whole map", [72, 136, 15.5, 55]],
+  ["zy", "中原", "Central Plains", [110, 118.6, 32.2, 37.6]],
+  ["gz", "关中·河陇", "Guanzhong & Hexi-Longyou", [101.5, 112, 32.2, 39.5]],
+  ["hb", "河北·河东", "Hebei & Hedong", [110.5, 120.2, 34.6, 41.6]],
+  ["jh", "江淮·江南", "Huai & Jiangnan", [112, 122.5, 27.5, 34.6]],
+  ["bs", "巴蜀·黔中", "Sichuan & Qianzhong", [101, 111, 26.6, 34]],
+  ["ln", "岭南·安南", "Lingnan & Annan", [104, 118, 17.6, 26.6]],
+  ["xy", "西域", "Western Regions", [73, 101, 35, 47]],
+  ["db", "东北·朝鲜", "Manchuria & Korea", [116, 135, 36, 50]],
+  ["nz", "吐蕃·南诏", "Tibet & Nanzhao", [78, 108, 20, 37]],
+]
+# 打开页面时的视野
+fit0 = "cn"
+# 打开页面时的着色：zhen（二级单位）或 pol（政权）
+cmode = "zhen"
+# 图例里的图层开关：[代号, 中文名, 英文名]，按显示次序
+layers = [
+  ["terr", "疆域", "Territories"],
+  ["relief", "地形", "Relief"],
+  ["region", "燕云十六州", "Sixteen Prefectures"],
+  ["capital", "都城行在", "Capitals"],
+  ["seat", "藩镇治所", "Fanzhen seats"],
+  ["pref", "州府城邑", "Prefectures"],
+  ["battle", "本期战役", "Battles"],
+  ["route", "行军路线", "Campaigns"],
+  ["pass", "关隘", "Passes"],
+  ["event", "本期事件", "Events"],
+  ["people", "诸族", "Peoples"],
+  ["range", "山脉", "Mountains"],
+  ["river", "水系湖泽", "Rivers & lakes"],
+  ["canal", "运河", "Canals"],
+  ["desert", "荒漠", "Deserts"],
+  ["prov", "今省界", "Modern provinces"],
+  ["border", "今国界", "Modern borders"],
+]
+# 图例的斜线说明
+key2 = ["割据藩镇", "Autonomous fanzhen"]
+# 图例是否列「行军路线」
+key_route = true
+# 图例脚注 [中, 英]
+foot = ["疆域据两《唐书》《资治通鉴》《新五代史》及谭其骧《中国历史地图集》第五册大意推定，以州为单位、沿山川划界，仅为示意。战役、事件与行军路线只显示当前节点所涵盖的年份（上一节点之后至本节点）。红色虚线为燕云十六州（938 年起）。点击疆域、城邑、战役、山川均可查看说明。", "Borders are reconstructed from the Old and New Tang Histories, the Zizhi tongjian and the New History of the Five Dynasties, following in outline vol. 5 of Tan Qixiang’s Historical Atlas of China. Territory is assigned prefecture by prefecture and bounded along mountains and rivers, so it is only indicative. Battles, events and campaign routes are shown only for the years covered by the current snapshot (after the previous snapshot, up to this one). The red dashed line marks the Sixteen Prefectures (from 938). Click any territory, city, battle, mountain or river for notes."]
+# 索引图高度（宽 140）
+inset_h = 100
+# 索引图范围 [西, 东, 南, 北]
+inset_box = [72, 136, 15.5, 55]
+# 经纬网（缺省按底图范围）：[经线起, 止, 纬度起, 止, 步长, 纬线起, 止, 经度起, 止, 步长]
+grat = [75, 135, 15, 56, 1, 20, 55, 70, 138, 1]
+# 旧都处照画州府点（缺省都城与旧都处都不画）
+oldcap_pref = true
+# 斜线画法：zhen 只在二级单位着色下画；all 两种着色都画；缺省两种着色都画，政权着色下并入宗主国的单位另补斜线
+hatch = "zhen"
+# 斜线单位在说明里的标签
+htag = ["割据", "Autonomous"]
+# 顶栏计数里二级单位的说法 [中, 英单数, 英复数]
+count_zhen = ["个藩镇", "fanzhen", "fanzhen"]
+# 政权说明里「领 N 州」的说法 [中（{n} 为数）, 英单数, 英复数]
+holds = ["领 {n} 州（处）", "prefecture", "prefectures"]
+# 所领地点一行的标题
+holds_label = ["领州", "Prefectures"]
+# 诸族年代：[起界, 起界文字, 止界, 止界文字, 「约」放最前]
+people = [false, false, 979, ["宋初", "early Song"], true]
+# 重要地域的标签（数据里没有时用；{y0} 为起年）
+region_tag = ["{y0} 年割予契丹", "ceded to the Khitans in {y0}"]
+# 时间轴刻度的样式：[字段, 比较, 值, 样式名]，取第一条符合的
+era_cls = [["y", ">=", 907, "era5"]]
+# 播放每节点毫秒数（缺省 2400）
+play_ms = 2600
+# 索引里默认收起的组
+closed = ["pref", "people", "other", "range"]
+# 索引里其他时期一组的名称
+other_group = ["其他时期的政权与藩镇", "States and fanzhen of other periods"]
+# 索引里二级单位一组的名称
+zhen_group = ["藩镇", "Fanzhen (military circuits)"]
+# 英文对照表、年表里关于日期的说明
+date_note_en = "Dates give the Chinese lunar month (“11th month, 755”), not a converted Western date; the year is the Western year in which most of that lunar year falls, so a 12th month can reach into January of the next year."
+# 对照表导语（{n} 为节点数，{date_note} 为上一项）
+table_intro = ["<p>图中全部州府、城邑与地物，一名一行。州府的“归属沿革”取自地图上 {n} 个时间节点，连续相同的归属合并显示。经纬度取今日遗址或所在城市，可在任意地图应用中定位；点击任一行回到地图并定位。</p>", "<p>Every prefecture, town and feature on the map, one name per row. A prefecture’s allegiance is taken from the map’s {n} snapshots, with consecutive identical entries merged. Coordinates are those of the modern site or city and work in any map app; click a row to return to the map.</p><p>{date_note}</p>"]
+# 年表导语
+chron_intro = ["<p>把战役、事件、行军、都城迁移与地图上的 {n} 个时间节点排成一条线。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>", "<p>Battles, events, campaigns, capital moves and the map’s {n} snapshots on a single line. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
+# 年表收哪些年份的都城迁移 [起, 止, 起是否不含]（起为 false 取首节点，止为 false 不设上限）
+chron_cap = [750, 979, false]
+# 本卷专属样式
+css = """
+html[lang="en"] .row { grid-template-columns:fit-content(62%) minmax(0,1fr); }
+"""
+
+[web.kind_txt]  # 单位种类的称呼
+state = ["政权", "State"]
+zhen = ["藩镇", "Fanzhen"]
+tribe = ["部族", "Tribe"]
+
+[web.cm]  # 着色按钮：zhen 名称与提示、pol 提示
+zhen = ["藩镇", "Fanzhen"]
+zhen_title = ["唐朝内部按藩镇分色", "Color the Tang by fanzhen (military circuits)"]
+pol_title = ["按政权分色", "Color by state"]
+
+[web.catname]  # 对照表的类别名
+region = ["地域", "Region"]
+capital = ["都城", "Capital"]
+battle = ["战役", "Battle"]
+route = ["行军", "Campaign"]
+pass = ["关隘", "Pass"]
+event = ["事件", "Event"]
+range = ["山脉", "Mountains"]
+river = ["水系", "Water"]
+canal = ["运河", "Canal"]
+desert = ["荒漠", "Desert"]
+people = ["诸族", "People"]

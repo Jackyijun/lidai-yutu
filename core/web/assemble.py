@@ -4,8 +4,8 @@
   python core/web/assemble.py              各卷全部
   python core/web/assemble.py songyuan     只做这几卷
 
-数据来源是 core/v1/build.py 生成的 build/v1/<短名>.json（已附全局 ID）。各卷的史料与疆域仍由各卷自己的
-构建脚本算出，成品存为 eras/<短名>/legacy.html（入库），v1 由它无损转出。
+数据来源是 core/v1/build.py 生成的 build/v1/<短名>.json（已附全局 ID）。秦汉至民国七卷套统一模板
+core/web/template.html，各卷不同的文字与开关取 era.toml 的 [web]；春秋、战国两卷还用各卷旧模板，由 patch.py 换外壳。
 """
 import json
 import sys
@@ -34,6 +34,44 @@ def dumps(o):
 
 def template_for(slug):
     return (ROOT / "eras" / slug / "src" / "template.html").read_text(encoding="utf8")
+
+
+def web_config(slug):
+    """era.toml [web]：各卷页面的文字与开关（见 core/web/README.md）；没有这一节的卷用各卷旧模板"""
+    from registry import load_toml
+    return load_toml(ROOT / "eras" / slug / "era.toml").get("web")
+
+
+ROUTE_KEY = ('<span><svg width="16" height="12"><path d="M1 9 L8 5 L15 3" stroke="var(--c-route)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>'
+             '<span id="key3">行军路线</span></span>')
+
+
+def web_template(slug):
+    """统一模板 core/web/template.html，按 era.toml [web] 填各卷的文字与开关"""
+    from html import escape
+    t = (ROOT / "core" / "web" / "template.html").read_text(encoding="utf8")
+    cfg = geo.load()
+    w = web_config(slug)
+    p = cfg["projection"]
+    t = t.replace("  /*__SHELL_CSS__*/\n", patch.shell_css()).replace("__SHELL_JS__\n", patch.shell_js()).replace("  /*__GEO_CSS__*/\n", patch.geo_css(cfg))
+    t = (t.replace("__P1__", str(p["parallels"][0])).replace("__P2__", str(p["parallels"][1])).replace("__P0__", str(p["center"][1]))
+         .replace("__L0__", str(p["center"][0])).replace("__SEAM__", str(p["seam"])))
+    fit0 = w.get("fit0") or w["fits"][0][0]
+    opts = "".join(f'        <option value="{v}"{" selected" if v == fit0 else ""}>{escape(zh)}</option>\n' for v, zh, en, box in w["fits"])
+    cm = w["cm"]
+    btn = lambda key, pressed, title, label: f'        <button data-cm="{key}" aria-pressed="{"true" if pressed else "false"}" title="{escape(title)}">{escape(label)}</button>\n'
+    cms = btn("zhen", w["cmode"] == "zhen", cm["zhen_title"][0], cm["zhen"][0]) + btn("pol", w["cmode"] == "pol", cm["pol_title"][0], "政权")
+    for k, v in (("doc_title", escape(w["doc_title"][0])), ("h1", escape(w["h1"][0])), ("sub", escape(w["sub"][0])), ("map_label", escape(w["map_label"][0])),
+                 ("key2", escape(w["key2"][0])), ("foot", escape(w["foot"][0], quote=False)), ("inset_h", str(w["inset_h"])),
+                 ("key_route", ROUTE_KEY if w.get("key_route") else ""), ("fit_options", opts), ("cmode_buttons", cms)):
+        assert "{{" + k + "}}" in t, k
+        t = t.replace("{{" + k + "}}", v)
+    assert "{{" not in t, t[t.index("{{") - 40:t.index("{{") + 60]
+    if w.get("css"):
+        i = t.index("\n</style>")
+        t = t[:i] + "\n  /* 本卷专属（era.toml [web] css） */\n" + "".join("  " + l + "\n" for l in w["css"].strip().splitlines()) + t[i + 1:]
+    js = {k: v for k, v in w.items() if k != "css"}
+    return t.replace("__WEB__", dumps(js))
 
 
 def item_year(o):
@@ -101,15 +139,16 @@ def shorts(b, G):
                 s["she"] = n["en"]["short"]
 
 
-def render(slug, b, template=None, new=True):
+def render(slug, b, new=True):
     G, D, colors = legacy.from_v1(b)
-    t = template if template is not None else template_for(slug)
+    unified = web_config(slug) is not None
+    t = web_template(slug) if unified and new else template_for(slug)
     if new:
         shorts(b, G)
         gids, alias = tokens(b)
-        simple = "__UCSS_LIGHT__" not in t
-        t = patch.patch_simple(t, slug) if simple else patch.patch_layered(t, slug)
-        t = patch.patch_geo(t, geo.load(), simple)          # 第 4 步：统一投影、全球底图、地形晕渲
+        if not unified:                                         # 春秋、战国：各卷旧模板换外壳
+            t = patch.patch_simple(t, slug)
+            t = patch.patch_geo(t, geo.load(), True)            # 第 4 步：统一投影、全球底图、地形晕渲
         geo.apply(slug, G)
         t = t.replace("__GIDS__", dumps(gids)).replace("__ALIAS__", dumps(alias))
     if "__UCSS_LIGHT__" in t:                       # 唐宋系：疆域色写成 --u-<序号>
