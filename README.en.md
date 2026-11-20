@@ -147,6 +147,7 @@ Labels are drawn in two sets:
 - English is taken from the map's data. For the Spring and Autumn and Warring States maps it is the node's period alias `labe`, or else the `eold` of the state's entry. For the other maps it is, in order of preference, the node's period alias `labe`, the unit's short map name `se`, or its full name `ne`, with anything in parentheses removed.
 - English labels are spaced by estimated text width, long names break onto two lines at a space, and a name that will not fit is left out.
 - Chinese label size follows the size of the territory, and a label is not allowed to run much wider than its territory: a state made up of several units used to get at least 15px, and now shrinks to fit when that is too wide (in the Republican volume many small states are made up of several units, which is why Puppet Mengjiang and the CPC border regions were drawn too large). `--zh` can switch to a short name and `--fs` can set the size; see below.
+- Labels sit at the map's own label points. The unified engine finds each label point over the whole territory (the point farthest from its border), so for a large state that point often falls outside the thumbnail frame and the label is left out. For units given with `--inframe`, a label point outside the frame is moved into the part of the territory inside the frame, to the spot farthest from both the territory's border and the frame edge (Tibet in the Tang–Song volume, the Tibetan tribes in the Song–Yuan volume). This is off by default: turned on for every unit, it would add many small labels crowded along the frame edges.
 - For a map that has no English yet, `--en "id=English name;…"` supplies the English thumbnail labels (keyed by unit id); these also take precedence over the map's own English names.
 
 ```bash
@@ -171,19 +172,20 @@ Options:
 - `--blank`: draw only land, sea, rivers and the graticule, for a volume in preparation.
 - `--en "id=English name;…"`: add or override English labels, as above.
 - `--zh "id=Chinese name;…"`: override a Chinese label, for a short name (伪蒙疆 for 伪蒙疆联合委员会) or a different name: the map gives the CPC-held areas a collective name such as 中共（边区·根据地） or 中华苏维埃共和国, and the thumbnail names the area the label sits on instead, 陕甘苏区 (Shaanxi-Gansu Soviet Area) at 1937.07 and 陕甘宁边区 (Shaanxi-Gansu-Ningxia Border Region) at 1937.12.
-- `--fs "id=size;…"`: set the size of a Chinese label (the English follows at 0.82 times); 0 leaves the label out, for a label hidden under the caption.
+- `--fs "id=size;…"`: set the size of a Chinese label (the English follows at 0.82 times); 0 leaves the label out, for a label hidden under the caption. For the Spring and Autumn and Warring States maps, use the state name, e.g. `--fs "淮夷=8"`: this keeps the label of a slightly small territory whose computed size is under 8 and would otherwise be dropped.
+- `--inframe "id;…"`: units whose label point is moved inside the frame when it falls outside, as above; for the Spring and Autumn and Warring States maps, use state names.
 
 The settings for the current nine:
 
 ```bash
-python3 tools/thumbs.py <Spring and Autumn index.html> --id cq --year -632 --box 105.5 122.5 28.6 41.0
+python3 tools/thumbs.py <Spring and Autumn index.html> --id cq --year -632 --box 105.5 122.5 28.6 41.0 --fs "淮夷=8;舒=8"
 python3 tools/thumbs.py <Warring States index.html> --id zg --year -300 --box 102.6 124.2 25.6 42.4
 python3 tools/thumbs.py <Qin and Han index.html>    --id qh --mode pol --box 78 132 16 50   # opening node: 108 BC
 python3 tools/thumbs.py <Late Han index.html>       --id hs --year 229 --mode zhen --box 97.5 125.5 19 43
 python3 tools/thumbs.py <Jin index.html>            --id lj --mode pol                 # opening node: 401
 python3 tools/thumbs.py <Sui–Tang index.html>       --id st --mode pol                 # opening node: 619
-python3 tools/thumbs.py <Tang–Song index.html>      --id ts --year 820 --mode zhen --box 95 127.5 19 46.5
-python3 tools/thumbs.py <Song–Yuan index.html>      --id sy --year 1120 --mode pol
+python3 tools/thumbs.py <Tang–Song index.html>      --id ts --year 820 --mode zhen --box 95 127.5 19 46.5 --inframe 2 --fs "19=10"   # Tibet, Silla
+python3 tools/thumbs.py <Song–Yuan index.html>      --id sy --year 1120 --mode pol --inframe 86   # Tibetan tribes
 python3 tools/thumbs.py <Republican index.html>     --id mg --month 1937.07 --box 78 146 17 55 --zh "80=陕甘苏区" --fs "80=9.5;98=0" \
     --en "80=Shaanxi-Gansu Soviet Area"         # 1937.07, Lugou Bridge Incident, colored by faction (the map opens on 1937.12)
 ```

@@ -37,6 +37,7 @@ RAD = math.pi / 180
 EN = {}  # --en 补的英文注记：编号 → 英文名
 ZH = {}  # --zh 改的中文注记（如短名）：编号 → 中文名
 FS = {}  # --fs 指定的中文注记字号：编号 → 字号（英文随之按 0.82 倍）
+INFRAME = set()  # --inframe 注记点在取景框外时改标在框内那部分疆域里的单位（编号；简单模型写国名）
 
 
 # ---------------------------------------------------------------- 读源码
@@ -171,6 +172,46 @@ def simplify(pts, tol):
 
 
 fmt = lambda p: f"{round(p[0], 1):g} {round(p[1], 1):g}"
+
+
+def frame_anchor(view, rings, step=5, m=8):
+    """注记点在取景框外时（大政权的不可达极点常在框外，统一引擎的注记点按整块疆域定），在框内的那部分里另找一点（--inframe）：
+    格点上离疆域边界与框边都最远处。返回 (x, y, 到边界的距离，像素)；框内没有这块疆域就返回 None"""
+    polys = []
+    for r in rings:
+        pts = clip_ring([view.ll(*q) for q in decode(r)], 0)
+        if len(pts) >= 3:
+            polys.append(simplify(pts + [pts[0]], .8)[:-1])
+    if not polys: return None
+    segs = [(a, b) for P in polys for a, b in zip(P, P[1:] + P[:1])]
+    best = None
+    for gy in range(m, H - m + 1, step):
+        for gx in range(m, W - m + 1, step):
+            inside = False
+            for P in polys:
+                j = len(P) - 1
+                for i in range(len(P)):
+                    (xi, yi), (xj, yj) = P[i], P[j]
+                    if (yi > gy) != (yj > gy) and gx < (xj - xi) * (gy - yi) / (yj - yi) + xi:
+                        inside = not inside
+                    j = i
+            if not inside: continue
+            d = min(gx, W - gx, gy, H - gy)
+            floor = best[2] if best else 0
+            for (ax, ay), (bx, by) in segs:
+                dx, dy = bx - ax, by - ay
+                L2 = dx * dx + dy * dy
+                t = 0 if L2 == 0 else max(0, min(1, ((gx - ax) * dx + (gy - ay) * dy) / L2))
+                dd = math.hypot(gx - ax - t * dx, gy - ay - t * dy)
+                if dd < d:
+                    d = dd
+                    if d <= floor: break
+            if best is None or d > best[2]: best = (gx, gy, d)
+    return best
+
+
+def out_of_frame(x, y, m=10):
+    return x < m or x > W - m or y < m or y > H - m
 
 
 def ring_d(view, flat, tol=.55):
@@ -329,12 +370,15 @@ def simple_model(mid, geo, data, sn, view):
         anc = max(sn.get("l", {}).get(st, []), key=lambda a: a[2], default=None)
         if anc:
             x, y = view.ll(anc[0], anc[1])
-            fs = max(7.5, min(17, anc[3] * view.ppd * .62))
+            r = anc[3] * view.ppd
+            if st in INFRAME and out_of_frame(x, y) and (fa := frame_anchor(view, rings)):
+                x, y, r = fa
+            fs = FS[st] if st in FS else max(7.5, min(17, r * .62))
             it = next((i for i in data["items"] if i.get("c") == "state" and i.get("k") == st), {})
             # 中文用当年别名或国名（去括注），英文用当年别名或 eold
             zh = sn.get("lab", {}).get(st) or re.sub(r"（.*?）", "", it.get("old") or st) or st
             en = EN.get(str(st)) or short_en(sn.get("labe", {}).get(st) or it.get("eold"))
-            if fs >= 8: cands.append((x, y, zh, fs, var, en, anc[3] * view.ppd))
+            if fs >= 8: cands.append((x, y, zh, fs, var, en, r))
     return terr, "", label_groups(cands), light, dark
 
 
@@ -374,6 +418,8 @@ def layered_model(mid, src, data, sn, view, mode):
             name = ZH.get(key) or re.sub(r"[（(].*?[）)]", "", sn.get("lab", {}).get(key) or units[p]["n"])
             x, y = view.ll(anc[0], anc[1])
             rpx = anc[3] * view.ppd  # 注记点处的内切半径（像素）
+            if key in INFRAME and out_of_frame(x, y) and rings and (fa := frame_anchor(view, rings)):
+                x, y, rpx = fa
             fs = max(7.5, min(18, rpx * .5))
             if len(name) <= 2: fs = max(fs, min(10, rpx * .8))  # 一两字的短名能放进更小的疆域
             if p in multi: fs = max(fs, 15)
@@ -470,12 +516,14 @@ if __name__ == "__main__":
     ap.add_argument("--blank", action="store_true")
     ap.add_argument("--en", default="", help='补或改英文注记，如 "0=Eastern Jin;73=Northern Wei"')
     ap.add_argument("--zh", default="", help='改中文注记（如用短名），如 "88=伪蒙疆;80=陕甘宁边区"')
-    ap.add_argument("--fs", default="", help='指定中文注记字号，如 "88=10;80=9"')
+    ap.add_argument("--fs", default="", help='指定中文注记字号，如 "88=10;80=9"（简单模型写国名，如 "淮夷=8"）；0 为不标')
+    ap.add_argument("--inframe", default="", help='注记点在框外时改标在框内的单位，如 "4;12"（简单模型写国名）')
     ap.add_argument("--out", default=".")
     a = ap.parse_args()
     EN.update((k.strip(), v.strip()) for k, v in (kv.split("=", 1) for kv in a.en.split(";") if "=" in kv))
     ZH.update((k.strip(), v.strip()) for k, v in (kv.split("=", 1) for kv in a.zh.split(";") if "=" in kv))
     FS.update((k.strip(), float(v)) for k, v in (kv.split("=", 1) for kv in a.fs.split(";") if "=" in kv))
+    INFRAME.update(k.strip() for k in a.inframe.split(";") if k.strip())
     svg, light, dark, cap = build(a.html, a.id, a.year, a.box, a.mode, a.blank, a.node, a.month)
     os.makedirs(a.out, exist_ok=True)
     open(os.path.join(a.out, f"thumb-{a.id}.svg"), "w", encoding="utf8").write(svg)

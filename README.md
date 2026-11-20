@@ -147,6 +147,7 @@ GitHub Pages 的发布来源设为 `main` 分支的 `/docs`。
 - 英文取自该图数据：春秋、战国先取节点的当年别名 `labe`，再取政权条目的 `eold`；其余各图依次取节点的当年别名 `labe`、单位的地图短名 `se`、全称 `ne`，去掉括注。
 - 英文按估算字宽避让，长名在空格处折成两行，放不下就不标。
 - 中文注记的字号随疆域大小定，注记不比疆域宽太多：由几个单位合成的政权原本至少 15px，放不下就照疆域缩小（民国卷的小政权多由几个单位合成，伪蒙疆、中共边区就因此被放得太大）。还可以用 `--zh` 改用短名、用 `--fs` 指定字号，见下。
+- 注记标在该图自己的注记点上。统一引擎按整块疆域找注记点（离边界最远处），大政权的注记点常落在取景框外，缩略图上就不标了；用 `--inframe` 指定的单位，注记点在框外时改标在框内那部分疆域里离边界、框边都最远处（唐宋卷的吐蕃、宋元卷的吐蕃诸部）。没有默认打开：全开会在框边多出许多挤着的小注记。
 - 图还没有英文时，用 `--en "编号=英文名;…"` 补缩略图的英文注记（编号即单位编号），它也优先于图里的英文名。
 
 ```bash
@@ -171,19 +172,20 @@ python3 tools/thumbs.py docs/songyuan/index.html --id sy --year 1120 --mode pol 
 - `--blank`：只画海陆、河流、经纬网，用于编修中的卷。
 - `--en "编号=英文名;…"`：补或改英文注记，见上。
 - `--zh "编号=中文名;…"`：改中文注记，如用短名（伪蒙疆联合委员会写作「伪蒙疆」）或改称：中共所辖地区在地图上是「中共（边区·根据地）」「中华苏维埃共和国」这类总称，缩略图上按注记所在之地写，1937.07 写作「陕甘苏区」，1937.12 写作「陕甘宁边区」。
-- `--fs "编号=字号;…"`：指定中文注记字号（英文随之按 0.82 倍）；写 0 就不标，用于被说明框盖住的注记。
+- `--fs "编号=字号;…"`：指定中文注记字号（英文随之按 0.82 倍）；写 0 就不标，用于被说明框盖住的注记。春秋、战国两图按国名写，如 `--fs "淮夷=8"`：疆域略小、按规则字号不到 8 就不标的，可以这样保住。
+- `--inframe "编号;…"`：注记点在取景框外时改标在框内的单位，见上；春秋、战国两图写国名。
 
 现有九幅的参数：
 
 ```bash
-python3 tools/thumbs.py <春秋 index.html>       --id cq --year -632 --box 105.5 122.5 28.6 41.0
+python3 tools/thumbs.py <春秋 index.html>       --id cq --year -632 --box 105.5 122.5 28.6 41.0 --fs "淮夷=8;舒=8"
 python3 tools/thumbs.py <战国 index.html>       --id zg --year -300 --box 102.6 124.2 25.6 42.4
 python3 tools/thumbs.py <秦汉 index.html>       --id qh --mode pol --box 78 132 16 50   # 打开时的节点：前108
 python3 tools/thumbs.py <汉末三国 index.html>   --id hs --year 229 --mode zhen --box 97.5 125.5 19 43
 python3 tools/thumbs.py <两晋 index.html>       --id lj --mode pol                 # 打开时的节点：401
 python3 tools/thumbs.py <隋及唐初 index.html>   --id st --mode pol                 # 打开时的节点：619
-python3 tools/thumbs.py <唐宋 index.html>       --id ts --year 820 --mode zhen --box 95 127.5 19 46.5
-python3 tools/thumbs.py <宋辽夏金元 index.html> --id sy --year 1120 --mode pol
+python3 tools/thumbs.py <唐宋 index.html>       --id ts --year 820 --mode zhen --box 95 127.5 19 46.5 --inframe 2 --fs "19=10"   # 吐蕃、新罗
+python3 tools/thumbs.py <宋辽夏金元 index.html> --id sy --year 1120 --mode pol --inframe 86   # 吐蕃诸部
 python3 tools/thumbs.py <民国 index.html>       --id mg --month 1937.07 --box 78 146 17 55 --zh "80=陕甘苏区" --fs "80=9.5;98=0" \
     --en "80=Shaanxi-Gansu Soviet Area"         # 1937.07 七七事变，派系着色（地图打开时是 1937.12）
 ```
