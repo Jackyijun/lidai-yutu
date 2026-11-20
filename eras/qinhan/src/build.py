@@ -125,9 +125,37 @@ ZG = legacy_of("zhanguo")
 HM = legacy_of("hanmosanguo")
 ZG_LAST = ZG[0]["snaps"][-1]
 ZG_JUN = {it["k"]: it for it in ZG[1]["items"] if it["c"] == "jun"}
+
+
+def zg_engine_212():
+    """战国卷已换到统一引擎（第 7 步）时，前212 节点的秦、卫外廓与秦郡郡界改取它的 eras/zhanguo/engine.json，与战国卷新页面一致；
+    文字仍取 legacy.html。引擎按郡治细分秦的各块（zp）就是秦郡，键与 legacy.html 的秦郡条目相同"""
+    try:
+        import tomllib
+    except ImportError:
+        import tomli as tomllib
+    zg = C.REPO / "eras" / "zhanguo"
+    if tomllib.loads((zg / "era.toml").read_text(encoding="utf8")).get("engine", {}).get("geometry") != "engine":
+        return
+    if not (zg / "engine.json").exists():                # 全新克隆、还没算出来：第一遍先用 legacy.html，第二遍再换
+        print("   战国卷还没有 engine.json，前212 这一遍先照搬 legacy.html")
+        return
+    e = json.loads((zg / "engine.json").read_text(encoding="utf8"))
+    en = e["nodes"][-1]
+    if en["t"] // 12 != ZG_LAST["y"]:
+        sys.exit(f"eras/zhanguo/engine.json 末节点是 {en['t'] // 12} 年，legacy.html 是 {ZG_LAST['y']} 年")
+    ZG_LAST["s"] = {k: e["geom"][g] for k, g in en["u"].items()}
+    ZG_LAST["j"] = {k: e["geom"][g] for k, g in en["zp"].items()}
+    ZG_LAST["engine"] = True
+
+
+# 各点归哪个秦郡（Q 一套郡制，前212—前180）照旧按 legacy.html 的秦郡郡界定：这是本卷的归属数据，不随战国卷换引擎而变
+QIN_POLY_SEED = {J.qin_unit(k): geom_of(r) for k, r in ZG_LAST["j"].items()}
+ZG_LAST_LEGACY = {"s": dict(ZG_LAST["s"]), "poly": QIN_POLY_SEED}   # 配色的邻接也照旧按 legacy.html 的几何算（见 junction 的 legacy）
+zg_engine_212()
 # 秦郡治所的坐标与战国卷同名城邑条目不符的，取城邑条目（同地同坐标）
 QIN_SEAT_LL = {"肤施": (109.8, 38.0)}     # 战国卷秦郡表记在米脂一带，城邑条目 zhanguo:i:161 在榆林东南
-QIN_POLY = {J.qin_unit(k): geom_of(r) for k, r in ZG_LAST["j"].items()}
+QIN_POLY = {J.qin_unit(k): geom_of(r) for k, r in ZG_LAST["j"].items()}   # 前212 节点画的秦郡郡界
 HM_184 = next(s for s in HM[0]["snaps"] if s["y"] == 184)
 
 
@@ -140,6 +168,9 @@ def hm_engine_184():
         import tomli as tomllib
     hm = C.REPO / "eras" / "hanmosanguo"
     if tomllib.loads((hm / "era.toml").read_text(encoding="utf8")).get("engine", {}).get("geometry") != "engine":
+        return
+    if not (hm / "engine.json").exists():                # 全新克隆、还没算出来：第一遍先用 legacy.html，第二遍再换
+        print("   汉末卷还没有 engine.json，184 这一遍先照搬 legacy.html")
         return
     e = json.loads((hm / "engine.json").read_text(encoding="utf8"))
     en = next(n for n in e["nodes"] if n["t"] // 12 == 184)
@@ -205,7 +236,7 @@ def load_seeds():
             s["qj"] = SD.QO[s["id"]]
         elif "qj" not in s:
             P = Point(s["lon"], s["lat"])
-            s["qj"] = next((k for k, g in QIN_POLY.items() if g.contains(P)), None)
+            s["qj"] = next((k for k, g in QIN_POLY_SEED.items() if g.contains(P)), None)
     # 某套郡制下没有归属的点，取最近的有归属的点
     for key in ("qj", "xj", "dj"):
         have = [s for s in out if s[key]]
@@ -336,15 +367,21 @@ def fill_gaps(units, outline, others=()):
     return out
 
 
-def junction(i, row, z, lz, p, lp):
-    """首尾节点照搬邻卷：返回改过的 z / p（单位序号 → 多边形）"""
+def junction(i, row, z, lz, p, lp, legacy=False):
+    """首尾节点照搬邻卷：返回改过的 z / p（单位序号 → 多边形）。
+    legacy = True：前212 节点照搬 legacy.html 里战国卷旧构建的秦、卫与秦郡（只用来算配色的邻接，各单位颜色不随战国卷换引擎而变）"""
     nd = row["nd"]
     if nd.get("junction") == "zhanguo":
-        # 战国卷的秦疆外缘在海上画得很宽（那一卷的底图没有台湾、海南、济州岛），本卷底图有，这几个岛扣出去
+        src_s = ZG_LAST_LEGACY["s"] if legacy else ZG_LAST["s"]
+        src_poly = ZG_LAST_LEGACY["poly"] if legacy else QIN_POLY
+        # 战国卷旧构建的秦疆外缘在海上画得很宽（那一卷的底图没有台湾、海南、济州岛），本卷底图有，这几个岛扣出去。
+        # 战国卷换到统一引擎后外缘贴着海岸，不再扣：几个矩形会切掉雷州半岛南端、平潭一带的陆地
         isl = shapely.union_all([shapely.box(119.8, 21.8, 122.2, 25.5), shapely.box(108.4, 17.9, 111.3, 20.3), shapely.box(126.1, 33.1, 127.0, 33.6)])
-        qin = geom_of(ZG_LAST["s"]["秦"]).difference(isl)
-        wei = geom_of(ZG_LAST["s"]["卫"])
-        inner = {UK[k]: g for k, g in QIN_POLY.items() if k in UK}
+        if not legacy and ZG_LAST.get("engine"):
+            isl = shapely.Polygon()
+        qin = geom_of(src_s["秦"]).difference(isl)
+        wei = geom_of(src_s["卫"])
+        inner = {UK[k]: g for k, g in src_poly.items() if k in UK}
         zz = {u: g for u, g in z.items() if row["pol"].get(UNITS[u]["k"]) not in ("秦", "卫")}
         # 秦以外的单位：扣掉照搬来的秦、卫；秦本身的郡用战国卷的郡界
         for u in list(zz):
@@ -452,9 +489,10 @@ def main():
         z, lz, p, lp, zb, zl = {}, {}, {}, {}, [], []
         if eng and len(eng["nodes"]) == len(rows):
             en_ = eng["nodes"][i]
-            zg = {int(k): geom_of(eng["geom"][v]) for k, v in en_["u"].items()}
-            pg = {int(k): geom_of(eng["geom"][v]) for k, v in en_["pu"].items()}
-            zg, pg = junction(i, r, zg, None, pg, None)
+            zg0 = {int(k): geom_of(eng["geom"][v]) for k, v in en_["u"].items()}
+            pg0 = {int(k): geom_of(eng["geom"][v]) for k, v in en_["pu"].items()}
+            zg, pg = junction(i, r, zg0, None, pg0, None)
+            za = junction(i, r, zg0, None, pg0, None, legacy=True)[0] if nd.get("junction") == "zhanguo" else zg
             for u, g in zg.items():
                 rr = rings_of(g)
                 if rr:
@@ -488,10 +526,10 @@ def main():
                                     assert zl_en.get(name, name_en) == name_en, (name, zl_en[name], name_en)
                                     zl_en[name] = name_en
                                 zl.append([name] + lz[u])
-            ks = list(zg)
+            ks = list(za)
             for a in range(len(ks)):
                 for b in range(a + 1, len(ks)):
-                    if zg[ks[a]].distance(zg[ks[b]]) < 0.05:
+                    if za[ks[a]].distance(za[ks[b]]) < 0.05:
                         adj[ks[a]].add(ks[b]); adj[ks[b]].add(ks[a])
         sn = dict(y=nd["t"], tp=nd["tp"], era=nd["era"], era2=nd.get("era2", ""), t=nd["title"], d=nd["desc"],
                   z=z, lz=lz, p=p, lp=lp,

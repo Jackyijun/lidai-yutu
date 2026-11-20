@@ -5,6 +5,9 @@
 
 数据包里每个归属点（州府、城邑、参考点）先分得一块「势力格」（全卷一次）；每个节点按「点 → 单位」归属
 把格子分类，描出共享界线的覆盖图，单位之并即政权（有两个以上单位的政权另出一层）。
+
+简单卷（春秋、战国）的单位注记 ul 照旧页面的写法：每个单位一组 [[经, 纬, 面积, 半径], …]（最大的一块，另加不小于它 30% 的
+飞地，最多 3 处），面积按 0.05° 见方的格数计——页面按它定国名字号。
 """
 import hashlib
 import json
@@ -14,6 +17,7 @@ from pathlib import Path
 
 import numpy as np
 import shapely
+from scipy import ndimage
 from shapely.ops import polylabel
 
 HERE = Path(__file__).resolve().parent
@@ -74,6 +78,30 @@ def label_of(g, land):
     return [round(float(lon), 2), round(float(lat), 2), round(sum(p.area for p in ps) / GR.DEG ** 2, 2), round(r / GR.DEG, 2)]
 
 
+OLD_CELL = 0.05 ** 2    # 简单卷旧页面的注记面积单位：0.05° 见方的格
+
+
+def labels_simple(g, land):
+    """简单卷的单位注记：陆上最大的一块，另加不小于 max(40 格, 最大块 30%) 的飞地，最多 3 处；面积换成旧页面的格数"""
+    gl = g.intersection(land)
+    ps = sorted((p for p in shapely.get_parts(gl) if p.geom_type == "Polygon"), key=lambda p: -p.area)
+    out = []
+    for p in ps[:3]:
+        try:
+            c = polylabel(p, tolerance=0.5)
+        except Exception:
+            c = p.representative_point()
+        lon, lat = geo.inv(c.x, c.y)
+        n = p.area / GR.DEG ** 2 / max(np.cos(np.radians(float(lat))), .2) / OLD_CELL
+        if out and n < max(40, out[0][2] * .3):
+            continue
+        r = p.exterior.distance(c)
+        for ring in p.interiors:
+            r = min(r, ring.distance(c))
+        out.append([round(float(lon), 2), round(float(lat), 2), int(round(n)), round(r / GR.DEG, 2)])
+    return out
+
+
 def zone_lines(polys):
     """覆盖图里相邻多边形之间的共享边（内部分界线，不含外缘），编码同疆域环；短于 0.08° 的不要"""
     if len(polys) < 2:
@@ -95,10 +123,37 @@ def zone_lines(polys):
     return out
 
 
-def keep_points(geoms, own, code, pts, clip, win):
+def rounded_contains(g, P):
+    """g 按页面的坐标精度（经纬度 0.01°，奇偶填充）取整后是否仍严格包含点 P（投影坐标）"""
+    lon, lat = geo.inv(P.x, P.y)
+    Q = shapely.Point(float(lon), float(lat))
+    for p in shapely.get_parts(g):
+        if not p.buffer(0.02 * GR.DEG).contains(P):
+            continue
+        rings = []
+        for r in [p.exterior] + list(p.interiors):
+            a = np.asarray(r.coords)
+            lo, la = geo.inv(a[:, 0], a[:, 1])
+            q = shapely.Polygon(np.c_[np.round(lo, 2), np.round(la, 2)])
+            rings.append(q if q.is_valid else shapely.make_valid(q))
+        if not rings:
+            continue
+        h = rings[0]
+        for q in rings[1:]:
+            h = h.symmetric_difference(q)
+        if h.contains(Q) and h.boundary.distance(Q) > 1e-9:
+            return True
+    return False
+
+
+def keep_points(geoms, own, code, pts, clip, win, units=None):
     """兜底：仍有归属点不在本方疆域内的（多在国界墙交汇处、推算范围边上），在点周围补一个半径 0.6 格的小圆，
-    从别的单位里扣掉。原地修改 geoms，返回补过的点的序号"""
+    从别的单位里扣掉。原地修改 geoms，返回补过的点的序号。
+    贴着本方界线（不到 0.01°）的点再按页面的坐标精度（0.01°）取整后查一遍：取整后落到界线上或界外的也补（多是界河岸边的点）。
+    这一查按单位（同一单位的区划块合起来，units 是类别序号 → 类别键）：压在本单位区划块之间的界线上不算"""
     fixed = []
+    eps = 0.01 * GR.DEG
+    unit_of = (lambda k: units[k].partition("\x1f")[0]) if units is not None else (lambda k: k)
     for i, u in enumerate(own):
         if u is None:
             continue
@@ -107,7 +162,12 @@ def keep_points(geoms, own, code, pts, clip, win):
             continue                                  # 外缘以外的点本来就不画
         k = code[u]
         if k in geoms and geoms[k].contains(P):
-            continue
+            if geoms[k].boundary.distance(P) > eps:
+                continue
+            same = [j for j in geoms if unit_of(j) == unit_of(k)]
+            g = geoms[k] if len(same) == 1 else shapely.union_all([geoms[j] for j in same])
+            if rounded_contains(g, P):
+                continue
         disk = P.buffer(0.6 * win.cell, 16)
         for j in list(geoms):
             if j != k and geoms[j].intersects(disk):
@@ -127,12 +187,12 @@ def setup(slug, log=print):
         reg = shapely.Polygon(np.c_[fx, fy]).buffer(0)
         inner = reg.buffer(cfg()["partition"]["frontier_pad"] * cell)
         clip = reg
-    elif sp["outer"] == "reach":
+    elif sp["outer"] in ("reach", "box"):
         g = shapely.segmentize(DA.region(slug, sp), 0.25)
         reg = shapely.make_valid(CO.to_xy(g))
         inner, clip = reg, None
     else:
-        sys.exit(f"{slug}：era.toml [engine] outer 只能是 frontier 或 reach")
+        sys.exit(f"{slug}：era.toml [engine] outer 只能是 frontier、reach 或 box")
     xmin, ymin, xmax, ymax = inner.bounds
     win = GR.Window(xmin, xmax, ymin, ymax, pad=2)
     return sp, win, inner, clip, reg
@@ -163,7 +223,7 @@ def run(slug, log=None):
         return (tuple(i for i, v in enumerate(C["var"]) if v[3] <= t < v[4]),
                 None if act is None else tuple(i for i, a in enumerate(act) if a))
 
-    labs, where = {}, {}
+    labs, where, costs = {}, {}, {}
     for t, _, _, act in N:
         k = group(t, act)
         if k in labs:
@@ -171,6 +231,7 @@ def run(slug, log=None):
         cost = C["cost"].copy()
         for i in k[0]:
             cost += C["var"][i][1]
+        costs[k] = cost
         labs[k], dist, w = PA.run(win, C, pts, inner, cost, reach, act, log, far_islands=sp.get("far_islands", False))
         where.update(w)
         log("最短路完成", "墙", [C["var"][i][0] for i in k[0]] or "常设", "" if act is None else f"参与分区 {sum(act)} 点")
@@ -181,15 +242,29 @@ def run(slug, log=None):
     warp = TR.Warp(win, C["river"] | wallm, pins)
 
     Z = DA.zones(slug, sp, b, N)                    # 二级区划块（汉末卷的州）：按「单位 × 区划块」分类，描完再按单位合并
+    SUB = DA.sub(slug, sp)                          # 按治所细分一个单位的格子（战国卷的秦郡）：同样按「单位 × 块」分类
+    if Z is not None and SUB is not None:
+        sys.exit(f"{slug}：[engine] 的 zones 与 sub 只能写一个")
     SEP = "\x1f"
     if Z is not None:
         log("区划块", len({z for row in Z for z in row if z}), "个")
     cls = [own if Z is None else [None if u is None else u if z is None else u + SEP + z for u, z in zip(own, Z[ni])]
            for ni, (_, own, _, _) in enumerate(N)]
-    units = sorted({u for own in cls for u in own if u is not None}, key=lambda u: (len(u), u))
+    units = {u for own in cls for u in own if u is not None}
+    if SUB is not None:
+        s_unit, s_hosts, s_near, seats = SUB
+        units |= {s_unit + SEP + k for k, _, _, _ in seats}
+        qx, qy = geo.proj(np.array([q[1] for q in seats]), np.array([q[2] for q in seats]))
+        s_pts = list(zip(qx, qy))
+        s_rc = [tuple(int(round(float(v))) for v in win.rc(x, y)) for x, y in s_pts]
+        s_labs = {}
+        log("细分", s_unit, len(seats), "个治所")
+    units = sorted(units, key=lambda u: (len(u), u))
     code = {u: i for i, u in enumerate(units)}
     ukeys = sorted({u for _, own, _, _ in N for u in own if u is not None}, key=lambda u: (len(u), u))
     pool, poolk = [], {}
+    simple = b["model"] == "simple"
+    land_u = shapely.union_all(C["land_xy"]) if simple else None
 
     def put(rr):
         k = json.dumps(rr, separators=(",", ":"))
@@ -204,14 +279,31 @@ def run(slug, log=None):
         lab = labs[group(t, act)]
         sc = np.array([-1 if u is None or (act is not None and not act[i]) else code[u] for i, u in enumerate(own)] + [-1], np.int32)   # 末位给 -1
         U = sc[np.where(lab >= 0, lab, len(own))]
+        if SUB is not None and s_unit in code:           # 细分：治所落在 HOSTS 疆域里、已始置的参与，就近分走这个单位的格子
+            hc = {code[h] for h in s_hosts if h in code}
+            near = ndimage.distance_transform_edt(~np.isin(U, list(hc))) <= s_near
+            on = tuple(q for q, (_, _, _, y0) in enumerate(seats) if y0 <= t // 12 and 0 <= s_rc[q][0] < win.nj
+                       and 0 <= s_rc[q][1] < win.ni and near[s_rc[q]])
+            m = U == code[s_unit]
+            if on and m.any():
+                gk = (group(t, act)[0], on)
+                if gk not in s_labs:
+                    s_labs[gk] = PA.run(win, C, s_pts, inner, costs[group(t, act)], None,
+                                        [q in on for q in range(len(seats))], lambda *a: None)[0]
+                sl = s_labs[gk]
+                zc = np.array([code[s_unit + SEP + q[0]] for q in seats], np.int32)
+                hit = m & (sl >= 0)
+                U = U.copy(); U[hit] = zc[sl[hit]]
+                own = [s_unit + SEP + seats[sl[where[i]]][0] if u == s_unit and i in where and sl[where[i]] >= 0 else u
+                       for i, u in enumerate(own)]
         h = hashlib.sha1(U.tobytes()).hexdigest()
         if h not in cache:
             g0, _ = TR.polygons(win, U, warp, clip=clip, pins=pins, log=log, simplify=sp.get("simplify"))
-            cache[h] = (g0, keep_points(g0, own if act is None else [u if a else None for u, a in zip(own, act)], code, pts, clip, win))
+            cache[h] = (g0, keep_points(g0, own if act is None else [u if a else None for u, a in zip(own, act)], code, pts, clip, win, units))
             if cache[h][1]:
                 log("护点", "、".join(S[i][2] for i in cache[h][1]))
         geoms = cache[h][0]
-        if Z is not None:                                 # 区划块按单位合并（用一般的并：护点、去碎块后共享边未必逐点重合）
+        if Z is not None or SUB is not None:              # 区划块按单位合并（用一般的并：护点、去碎块后共享边未必逐点重合）
             by_u, by_z = {}, {}
             for k, g in geoms.items():
                 uk, _, zk = units[k].partition(SEP)
@@ -228,7 +320,7 @@ def run(slug, log=None):
                 continue
             g_u[key] = merged[key]
             u[key] = put(rr)
-            L = label_of(merged[key], C["land_xy"])
+            L = labels_simple(merged[key], land_u) if simple else label_of(merged[key], C["land_xy"])
             if L:
                 ul[key] = L
         # 政权层：有两个以上单位，或唯一的单位不是政权自己（宋元先例）
@@ -248,6 +340,16 @@ def run(slug, log=None):
                 if L:
                     pul[p] = L
         nd = {"t": t, "u": u, "ul": ul, "pu": pu, "pul": pul}
+        if SUB is not None:                               # 细分块（秦郡）：各块多边形与注记
+            zp, zpl = {}, {}
+            for zk, gs in sorted(by_z.items()):
+                g = shapely.union_all(gs) if len(gs) > 1 else gs[0]
+                rr = rings_of(g)
+                if rr:
+                    zp[zk] = put(rr)
+                    if (L := label_of(g, C["land_xy"])):
+                        zpl[zk] = L
+            nd["zp"], nd["zpl"] = zp, zpl
         if Z is not None:                                 # 区划界（块与块之间的共享边，不含外缘）与区划名
             zg = {zk: (shapely.union_all(gs) if len(gs) > 1 else gs[0]) for zk, gs in sorted(by_z.items())}
             nd["zb"] = put(zone_lines(list(zg.values())))
@@ -263,6 +365,10 @@ def run(slug, log=None):
             "input": DA.fingerprint(slug, b)}                                  # 第 7 步：eras/<短名>/engine.json 是否过期
     if b["model"] == "layered":
         meta["keys"] = {u: b["polities"][int(u)]["key"] for u in ukeys}      # 单位序号 → 单位键（衔接节点按键对上邻卷）
+    else:
+        meta["keys"] = {u: u for u in ukeys}                                 # 简单卷的单位就以键为名
+    if SUB is not None:
+        meta["sub"] = s_unit
     res = {"era": slug, "geom": pool, "nodes": out_nodes, "meta": meta}
     (OUT / f"{slug}.json").write_text(json.dumps(res, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
     np.savez_compressed(OUT / f"{slug}.npz", lab=labs[group(N[-1][0], N[-1][3])], land=C["land"])

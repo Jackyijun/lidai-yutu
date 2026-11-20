@@ -76,7 +76,7 @@ chunqiu-map/
 │   └── .nojekyll          tells GitHub Pages to publish the files as they are
 ├── README.md · README.en.md   Chinese · English documentation
 ├── content/               ★ historical content (hand-written; this is what you edit)
-│   ├── seeds.txt          468 ownership points: name, coordinates, which state held it when
+│   ├── seeds.txt          474 ownership points: name, coordinates, which state held it when
 │   │                      (shared with the Warring States map; identical in both repositories)
 │   ├── features.py        state profiles, colours, tribal peoples and aliases; 46 time nodes and their
 │   │                      timeline labels; capitals, battles, passes, major cities, towns, events and
@@ -109,6 +109,8 @@ The files in `src/` derive from those of the same name in the Warring States rep
 ---
 
 ## 5. How it works
+
+> From migration step 7 (19 November 2026) the territory on the new page in the single repository (`docs/chunqiu/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py chunqiu` at the repository root). Ownership, text and entries still come from this volume, and the seeds are still the `content/seeds.txt` shared with the Warring States volume. The outer edge is handled as in the old build (`outer = "box"` under `[engine]` in `era.toml`): the computed area is the grid described below (97°–128.5°E, 18°–44.5°N), all land inside it goes to the nearest seed except islands that cannot be reached over land and lie well offshore, such as Taiwan; these, and the areas held by seeds that belong to no state, are left blank. Unlike the old build, costs follow the unified engine's terrain and the sea cannot be crossed, so territory is no longer drawn out over the sea. The outline of the Zhou realm in Suzerain colouring is taken from Zhou in the engine's polity layer (the royal domain together with the states that acknowledge Zhou). The two volumes share their seeds, costs and computed area, so the territory of 476 BC in this volume and of 475 BC in the Warring States volume is byte-for-byte identical. What follows describes this volume's own older algorithm, now used only for the old page and `legacy.html`.
 
 ```
 content/seeds.txt ──┐

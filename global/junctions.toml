@@ -20,7 +20,7 @@ to = "qinhan"
 year = -212
 kind = "shared"
 owner = "zhanguo"
-note = "秦汉卷构建时照搬战国卷末节点前212 的秦、卫外廓、秦郡郡界与文字（eras/qinhan/src/build.py）"
+note = "秦汉卷构建时照搬战国卷末节点前212 的秦、卫外廓、秦郡郡界与文字（eras/qinhan/src/build.py）；2026-11-19 战国卷换到统一引擎后，外廓与郡界取 eras/zhanguo/engine.json"
 
 [[junction]]
 from = "qinhan"

@@ -46,6 +46,8 @@ def geom_xy(rings):
 def raster(win, gs, keep):
     lab = np.full(win.shape, -1, np.int32)
     for k, g in gs.items():
+        if g.is_empty:                     # 旧页面偶有画不出来的单位（环太小）
+            continue
         m = CO.mask_of(win, [g])
         lab[m & keep] = k
     return lab

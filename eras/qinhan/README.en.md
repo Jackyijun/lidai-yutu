@@ -60,7 +60,7 @@ Each point has an ownership history `TL`: `[(year, owner)]`, where the owner is 
 
 | System | Snapshots | Commandery of a point |
 | --- | --- | --- |
-| Q Qin commanderies | 212–180 BC | the Qin commandery whose boundary in the Warring States volume's last snapshot contains it (`QO` can override) |
+| Q Qin commanderies | 212–180 BC | the Qin commandery whose boundary in the last snapshot of the Warring States volume's old build (`legacy.html`) contains it (`QO` can override) |
 | X Western Han units | 164 BC–AD 23 | converted from the Eastern Han unit by `jun.XH_OF_DH` (`XO` can override, also by period) |
 | D Eastern Han units | AD 25–184 | the unit recorded in the Late Han volume (`DO` can override) |
 
@@ -73,7 +73,7 @@ Each snapshot gives the commandery system `sys`, the central dynasty `cent`, the
 ### Computation and junctions
 
 - The unified engine computes each unit's territory from the ownership points on the world-wide grid (outer edge by reach cost, `[engine]` in `era.toml`; each point's reach factor `R=` is set in `seeds.py` and written to `build/reach.txt` at build time).
-- The 212 BC snapshot copies the last snapshot of the Warring States volume: the outlines of Qin and Wey and the boundaries of the 51 Qin commanderies (less Taiwan, Hainan and Jeju), and its text.
+- The 212 BC snapshot copies the last snapshot of the Warring States volume: the outlines of Qin and Wey and the boundaries of the 51 Qin commanderies, and the text as well. Since the Warring States volume moved to the unified engine (19 November 2026), the outlines and commandery boundaries come from `eras/zhanguo/engine.json` (where the engine subdivides Qin by commandery seat), matching the new Warring States page. The old build drew Qin's territory out over the sea, so Taiwan, Hainan and Jeju used to be cut out; the engine's outer edge follows the coast, so nothing is cut out anymore. Which Qin commandery each place belongs to (the Q system) is still decided by the commandery boundaries in the Warring States volume's `legacy.html`, and so is the adjacency used to choose the colors of the commanderies and kingdoms; neither changes with the switch. Whenever the Warring States territory is recomputed, this volume must be rebuilt as well (`python run.py zhanguo qinhan` at the repository root does both in one run).
 - The AD 184 snapshot copies the first snapshot of the Late Han volume: the state outlines are copied, and Han's commanderies, computed by the engine, are clipped to the Late Han volume's outline of Han with the gaps filled. Since the Late Han volume moved to the unified engine (19 November 2026), the outlines come from `eras/hanmosanguo/engine.json`, matching the new Late Han page; whenever the Late Han territory is recomputed, this volume must be rebuilt as well.
 - Colors: states shared with the Warring States or Late Han volume take both their light and dark colors from that volume (written `zg:` / `hm:` in `units.py`); the rest are taken from the palette by adjacency.
 

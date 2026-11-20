@@ -10,6 +10,7 @@
   frontier(slug)          手绘外缘（隋唐、两晋），没有则 None
   fingerprint(slug, b)    引擎输入的指纹（归属点、节点归属、引擎参数、外缘设置）：eras/<短名>/engine.json 过期没有，靠它判断
   spec / region / reach_mult / walls    各卷的外缘设置、推算范围、各点可达倍数、国界墙
+  zones / sub             二级区划：按归属点分块（汉末卷的州）/ 按治所就近细分一个单位的格子（战国卷的秦郡）
 """
 import importlib.util
 import json
@@ -220,12 +221,16 @@ def spec(slug):
     """era.toml 的 [engine]：
       outer = "frontier"   手绘外缘（content/frontier.py）
       outer = "reach"      按可达代价定外缘；box = 推算范围 [西, 东, 南, 北]，seeds = 写 R=倍数 的归属点文件
+      outer = "box"        box 以内的陆地全部分给代价最近的点，不按可达代价截断；外缘由不属任何一方的点（·）定（春秋、战国）
       config = "src/config.py"   这一卷自己的设置文件，读其中的 EXCLUDE（推算范围里剔除的多边形）与国界墙
       walls = true / prov_walls = true   烧国界墙 / 今中国省界弱墙（民国）
       simplify = 0.25      覆盖简化容差（格），不写取 config.toml 的 [trace] simplify（0.06）；视野大、节点多的卷放宽，免得页面过大
       far_islands = true   远洋小岛也并入最近的一方（民国卷：殖民地、委任统治地的群岛多没有归属点）；缺省只认离有主地闭运算半径以内的
       zones = "src/zhou.py" 二级区划（汉末卷的州）：这个文件的 zone_of(点键, 年, 单位键, 政权键, 单位种类) 给出各点所在的区划块，
-                           按「单位 × 区划」分块描界，另出区划界 zb 与区划名 zl（zone_label_min：标名的最小面积，平方度）"""
+                           按「单位 × 区划」分块描界，另出区划界 zb 与区划名 zl（zone_label_min：标名的最小面积，平方度）
+      sub = "src/jun.py"   一个单位的格子再按治所就近细分（战国卷的秦郡）：这个文件的 UNIT 是被细分的单位，HOSTS 是治所须落在
+                           其疆域里的单位（NEAR：离其疆域不到这么多格的也算），seats() 给出 [(块键, 经, 纬, 始置年)]；
+                           另出各块的多边形 zp 与注记 zpl"""
     t = tomllib.loads((ROOT / "eras" / slug / "era.toml").read_text(encoding="utf8"))
     s = t.get("engine")
     if not s:
@@ -257,6 +262,14 @@ def reach_mult(slug, s):
                 if x.startswith("R="):
                     out[t[0]] = float(x[2:])
     return out
+
+
+def sub(slug, s):
+    """[engine] sub：(被细分的单位, 治所须落在其中的单位, 容差格数, [(块键, 经, 纬, 始置年)])；没写 sub 的卷返回 None"""
+    if not s.get("sub"):
+        return None
+    m = era_module(slug, s["sub"])
+    return m.UNIT, tuple(m.HOSTS), float(getattr(m, "NEAR", 0)), [(str(k), float(lo), float(la), int(y0)) for k, lo, la, y0 in m.seats()]
 
 
 def zones(slug, s, b, N):
@@ -358,4 +371,6 @@ def fingerprint(slug, b=None):
     if sp.get("zones"):                               # 区划块：规则文件与它读的归属点文件
         h.update((ROOT / "eras" / slug / sp["zones"]).read_bytes())
         h.update(json.dumps(zones(slug, sp, b or bundle(slug), N), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
+    if sp.get("sub"):                                 # 细分：治所表
+        h.update(json.dumps(sub(slug, sp), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
     return h.hexdigest()[:16]

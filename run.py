@@ -86,12 +86,13 @@ def production_eras():
     return [s for s in SLUGS if tomllib.loads((ROOT / "eras" / s / "era.toml").read_text(encoding="utf8")).get("engine", {}).get("production")]
 
 
-def engine_pass(slugs, html=False, draft=False):
+def engine_pass(slugs, html=False, draft=False, v1_fresh=False):
     """第一遍出的归属 → v1 → 统一引擎推算疆域 → 再构建一遍，把疆域填回去"""
     todo = [s for s in slugs if s in production_eras()]
     if not todo or html:
         return False
-    run_core([], web=False, lenient=True)
+    if not v1_fresh:
+        run_core([], web=False, lenient=True)
     for slug in todo:
         r = subprocess.run([sys.executable, str(ROOT / "core" / "engine" / "build.py"), slug], cwd=ROOT)
         if r.returncode != 0:
@@ -110,10 +111,11 @@ def migrated_eras():
 
 
 def engine_pages(slugs, html=False, v1_fresh=False):
-    """已换到引擎的旧卷：按刚出的归属重算疆域 → eras/<短名>/engine.json（入库），第 2 段生成 v1 时换进去"""
+    """已换到引擎的旧卷：按刚出的归属重算疆域 → eras/<短名>/engine.json（入库），第 2 段生成 v1 时换进去。
+    返回是否刚出过一遍 v1"""
     todo = [s for s in slugs if s in migrated_eras()]
     if not todo or html:
-        return
+        return v1_fresh
     if not v1_fresh:
         run_core([], web=False, lenient=True)
     for slug in todo:
@@ -122,6 +124,7 @@ def engine_pages(slugs, html=False, v1_fresh=False):
             sys.exit(f"失败：core/engine/build.py {slug}")
         shutil.copyfile(ROOT / "build" / "engine" / f"{slug}.json", ROOT / "eras" / slug / "engine.json")
         print(f"==== {slug} 疆域 → eras/{slug}/engine.json", flush=True)
+    return True
 
 
 def engine_eras():
@@ -219,8 +222,9 @@ def main():
     if not a.hub:
         for slug in (a.eras or SLUGS):
             build_era(slug, a.html, a.draft)
-        fresh = engine_pass(a.eras or SLUGS, a.html, a.draft)
-        engine_pages(a.eras or SLUGS, a.html, v1_fresh=fresh)
+        # 已换到引擎的旧卷先重算 engine.json：秦汉卷第二遍构建要照搬战国卷（前212）、汉末卷（184）的引擎疆域
+        fresh = engine_pages(a.eras or SLUGS, a.html)
+        engine_pass(a.eras or SLUGS, a.html, a.draft, v1_fresh=fresh)
         run_core(a.eras)
     build_hub()
 

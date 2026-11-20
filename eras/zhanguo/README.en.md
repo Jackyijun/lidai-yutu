@@ -78,7 +78,7 @@ zhanguo-map/
 │   ├── index.html         ★ the finished map, a single file (GitHub Pages serves it)
 │   └── .nojekyll          tells GitHub Pages to publish the files as they are
 ├── content/               ★ historical content (hand-written; this is what you edit)
-│   ├── seeds.txt          468 ownership points: name, coordinates, which state held it when (shared with the Spring and Autumn map; identical in both repositories)
+│   ├── seeds.txt          474 ownership points: name, coordinates, which state held it when (shared with the Spring and Autumn map; identical in both repositories)
 │   ├── features.py        state profiles, colours and tribal peoples, 49 time nodes and their timeline labels,
 │   │                      capitals, battles, passes, major cities, towns, events and works,
 │   │                      mountains, rivers, lakes and marshes, long walls, peoples,
@@ -109,6 +109,8 @@ zhanguo-map/
 ---
 
 ## 5. How it works
+
+> From migration step 7 (19 November 2026) the territory on the new page in the single repository (`docs/zhanguo/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py zhanguo` at the repository root). Ownership, text and entries still come from this volume, and the seeds are still the `content/seeds.txt` shared with the Spring and Autumn volume. The outer edge is handled as in the old build (`outer = "box"` under `[engine]` in `era.toml`): the computed area is the grid described below (97°–128.5°E, 18°–44.5°N), all land inside it goes to the nearest seed except islands that cannot be reached over land and lie well offshore, such as Taiwan; these, and the areas held by seeds that belong to no state, are left blank. Unlike the old build, costs follow the unified engine's terrain and the sea cannot be crossed, so territory is no longer drawn out over the sea. The Qin commanderies also come from the engine: Qin's cells are further subdivided, each going to its nearest commandery seat (`src/jun.py`; the list of seats is still `JUN` in `content/features.py`; a seat less than 4 cells outside the territory of Qin or Wey still counts, so that Dongting Commandery does not vanish). On 19 November 2026 four unowned seeds in the northwest (Wuwei, Zhangye, Alxa and Juyan) were added to `seeds.txt`, so that Qin's northwestern border in 212 BC runs along the Helan Mountains and the Yellow River. What follows describes this volume's own older algorithm, now used only for the old page and `legacy.html`.
 
 ```
 content/seeds.txt ──┐
