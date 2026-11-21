@@ -3,7 +3,8 @@ __pycache__/
 .venv/
 .DS_Store
 /build/
-# 各卷自己的中间产物与成品；发布用的成品在根目录 docs/<短名>/
+# 各卷第 1 段的中间产物；发布用的成品在根目录 docs/<短名>/
 eras/*/build/*
 !eras/*/build/.gitkeep
+# 2026-11 架构整理第三批以前各卷旧构建出的页面（现在不再生成），本地留着的也不入库
 eras/*/docs/

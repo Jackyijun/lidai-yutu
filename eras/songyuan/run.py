@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-"""宋辽夏金元形势图 · 一键构建。
+"""宋辽夏金元形势图 · 一键构建本卷的第 1 段：python run.py → source.json（单仓的 core/ 再由它出 v1 与新页面）。
 
-  python run.py               底图缺失则下载 → 计算疆域 → 生成 docs/index.html
-  python run.py --html        只重新拼装 HTML（改了 src/template.html 时用，几秒钟）
-  python run.py --draft       英文有缺译或过期时也照常生成（缺译处显示中文）；默认会报错停下
-  python run.py --open        构建完成后用浏览器打开
-  python run.py --preview 1141,1227,1279
-                              构建后用 matplotlib 画出这几个节点的疆域草图（build/preview-*.png）
+  python run.py               底图缺失则下载 → 底图与归属（build/geo.json、data.json）→ 汇编 source.json
+  python run.py --html        跳过底图与归属，只重新汇编（只改了英文译文时用）
+  python run.py --draft       英文有缺译或过期时也照常汇编（缺译处显示中文）；默认会报错停下
+
+疆域由统一疆域引擎推算（单仓根目录 python run.py songyuan），本卷不再自己算疆域、配色、出页面（2026-11 架构整理第三批起）。
 """
-import argparse, subprocess, sys, time, webbrowser
+import argparse, subprocess, sys, time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -23,22 +22,15 @@ def step(title, script, args=()):
     print(f"   用时 {time.time() - t0:.1f}s")
 
 def main():
-    ap = argparse.ArgumentParser(description="构建宋辽夏金元形势图")
-    ap.add_argument("--html", action="store_true", help="跳过计算，只重新拼装 HTML")
+    ap = argparse.ArgumentParser(description="构建宋辽夏金元形势图的第 1 段")
+    ap.add_argument("--html", action="store_true", help="跳过底图与归属，只重新汇编 source.json")
     ap.add_argument("--draft", action="store_true", help="英文缺译时不报错，缺译处显示中文")
-    ap.add_argument("--open", action="store_true", help="完成后在浏览器中打开")
-    ap.add_argument("--preview", metavar="YEARS", help="逗号分隔的年份，画疆域草图")
     a = ap.parse_args()
     if not a.html:
         step("下载底图（已有则跳过）", SRC / "fetch_data.py")
-        step("计算疆域（约 15–20 分钟）", SRC / "build.py")
-    step("拼装 HTML", SRC / "assemble.py", ["--draft"] if a.draft else [])
-    if a.preview:
-        step("画草图", ROOT / "tools" / "preview.py", [a.preview])
-    out = ROOT / "docs" / "index.html"
-    print(f"\n完成：{out}")
-    if a.open:
-        webbrowser.open(out.as_uri())
+        step("底图与归属", SRC / "build.py")
+    step("汇编 source.json", SRC / "assemble.py", ["--draft"] if a.draft else [])
+    print(f"\n完成：{ROOT / 'source.json'}")
 
 if __name__ == "__main__":
     main()

@@ -20,25 +20,25 @@ From the repository root:
 
 ```bash
 python run.py qinhan        # full build (two passes, see below)
-python run.py --web         # no territory computation: rebuild the global tables, v1 data and new pages from legacy.html
+python run.py --web         # no territory computation: rebuild the global tables, v1 data and new pages from each volume's source.json and engine.json
 ```
 
 The territory comes from the unified engine, so the build takes two passes, which `run.py` does automatically:
 
-1. `eras/qinhan/src/build.py` turns the source material into ownership data and entries (no geometry yet) and saves them as `legacy.html`;
-2. this is converted to a v1 bundle, and `core/engine/build.py qinhan` computes the commanderies' territory at every snapshot and writes it to `eras/qinhan/build/engine/qinhan.json`;
-3. `build.py` runs again, fills in the territory, merges the state outlines and commandery boundaries, and writes the page.
+1. `eras/qinhan/src/build.py --first` turns the source material into ownership data and entries (no geometry yet; it also skips the neighboring volumes' territory, since their engine.json may not have been recomputed yet) and assembles them into `source.json`;
+2. this is converted to a v1 bundle, and `core/engine/build.py qinhan` computes the commanderies' territory at every snapshot and writes it to `build/engine/qinhan.json` at the repository root (not tracked);
+3. `build.py` runs again, fills in the territory, merges the state outlines and commandery boundaries, and writes `source.json` (this volume's source.json includes the territory and is tracked); the repository then makes the v1 data and new page from it.
 
 When working inside this folder only:
 
 ```bash
 cd eras/qinhan
-python run.py               # source → ownership and entries, territory from the last engine run → docs/index.html
-python run.py --html        # only reassemble the HTML (after changing src/template.html only)
+python run.py               # source → ownership and entries, territory from the last engine run → source.json
+python run.py --html        # only reassemble source.json (when build/ already holds this pass's results)
 python run.py --base        # first regenerate the base map geodata/base.json (after changing src/basemap.py)
 ```
 
-After changing ownership (`content/seeds.py`, `nodes*.py`), run the full build from the repository root; otherwise the territory stays as it was after the last full build. After changing only text or colors, `python run.py` here followed by `python run.py --web` at the root is enough.
+After changing ownership (`content/seeds.py`, `nodes*.py`), run the full build from the repository root; otherwise the territory stays as it was after the last full build. After changing only text, `python run.py` here followed by `python run.py --web` at the root is enough.
 
 ## 3. Dates
 
@@ -60,7 +60,7 @@ Each point has an ownership history `TL`: `[(year, owner)]`, where the owner is 
 
 | System | Snapshots | Commandery of a point |
 | --- | --- | --- |
-| Q Qin commanderies | 212–180 BC | the Qin commandery whose boundary in the last snapshot of the Warring States volume's old build (`legacy.html`) contains it (`QO` can override) |
+| Q Qin commanderies | 212–180 BC | frozen in `content/qinjun.py` (originally decided from the Qin commandery boundaries in the last snapshot of the Warring States volume's old build; `QO` can override) |
 | X Western Han units | 164 BC–AD 23 | converted from the Eastern Han unit by `jun.XH_OF_DH` (`XO` can override, also by period) |
 | D Eastern Han units | AD 25–184 | the unit recorded in the Late Han volume (`DO` can override) |
 
@@ -75,14 +75,15 @@ Each snapshot gives the commandery system `sys`, the central dynasty `cent`, the
 - The unified engine computes each unit's territory from the ownership points on the world-wide grid (outer edge by reach cost, `[engine]` in `era.toml`; each point's reach factor `R=` is set in `seeds.py` and written to `build/reach.txt` at build time).
 - The 212 BC snapshot copies the last snapshot of the Warring States volume: the outlines of Qin and Wey and the boundaries of the 51 Qin commanderies, and the text as well. Since the Warring States volume moved to the unified engine (19 November 2026), the outlines and commandery boundaries come from `eras/zhanguo/engine.json` (where the engine subdivides Qin by commandery seat), matching the new Warring States page. The old build drew Qin's territory out over the sea, so Taiwan, Hainan and Jeju used to be cut out; the engine's outer edge follows the coast, so nothing is cut out anymore. Which Qin commandery each place belongs to (the Q system) used to be decided by the commandery boundaries drawn by the Warring States volume's old build. Since the third batch of the architecture cleanup (20 November 2026), the result has been frozen in `content/qinjun.py` (a place not listed there still takes the commandery of the nearest place that has one), and the colors of all commanderies and kingdoms are now set in `global/palette.toml`. Neither changes when the Warring States territory changes. Whenever the Warring States territory is recomputed, this volume must be rebuilt as well (`python run.py zhanguo qinhan` at the repository root does both in one run).
 - The AD 184 snapshot copies the first snapshot of the Late Han volume: the state outlines are copied, and Han's commanderies, computed by the engine, are clipped to the Late Han volume's outline of Han with the gaps filled. Since the Late Han volume moved to the unified engine (19 November 2026), the outlines come from `eras/hanmosanguo/engine.json`, matching the new Late Han page; whenever the Late Han territory is recomputed, this volume must be rebuilt as well.
-- Colors: states shared with the Warring States or Late Han volume take both their light and dark colors from that volume (written `zg:` / `hm:` in `units.py`); the rest were taken from the palette by adjacency. All colors are now set in `global/palette.toml` (since the third batch of the architecture cleanup, 20 November 2026).
+- Colors: all colors are set in the repository's `global/palette.toml` (by global polity ID; states shared with the Warring States and Late Han volumes have the same colors there). Formerly, states shared with those volumes took their colors from them (written `zg:` / `hm:` in `units.py`) and the rest were taken from a palette by adjacency; that was retired with the old build in the third batch of the architecture cleanup (November 2026).
 
 ## 5. Layout
 
 ```
 eras/qinhan/
-├── run.py                 this volume's build entry point (one pass)
+├── run.py                 stage-1 build entry point (one pass): → source.json
 ├── era.toml               basic facts (volume number, opening snapshot, coloring, engine settings, junctions)
+├── source.json            ★ the stage-1 output (tracked, territory included), from which the repository's v1 data is converted
 ├── content/
 │   ├── seeds.py           ownership points and their histories
 │   ├── jun.py             Qin commandery names, the 103 Western Han units, Eastern → Western Han conversion, English names of units
@@ -90,18 +91,16 @@ eras/qinhan/
 │   ├── nodes.py           snapshots of Qin, Chu–Han and early Han (Q system), and t_of
 │   ├── nodes_later.py     snapshots of Western Han, Xin and Eastern Han (X / D systems), and KINGDOMS
 │   ├── texts.py, texts2.py  snapshot titles, reign years and summaries (Chinese and English)
-│   ├── units.py           notes on states and peoples (Chinese and English), colors
+│   ├── units.py           notes on states and peoples (Chinese and English)
 │   ├── items.py, items_data.py  capitals, battles, events, peoples, passes, long walls, roads, campaign routes
 │   └── en_names.py, en_names_data.py  English for place and commandery names (generated by tools/en_names.py, then edited by hand)
 ├── src/
 │   ├── config.py          paths and constants (extent, Taichu, opening snapshot)
 │   ├── basemap.py         base map: rivers, lakes and physical entries of the Late Han volume within its extent, Natural Earth outside it
-│   ├── build.py           source → GEO / DATA in the old format (build/geo.json, data.json, colors.json)
-│   ├── assemble.py        assembles docs/index.html
-│   └── template.html      front end (based on the Late Han volume's template)
+│   ├── build.py           source → GEO / DATA in the old format (build/geo.json, data.json, plus build/reach.txt for the engine)
+│   └── assemble.py        assembles source.json
 ├── geodata/base.json      base map (generated by src/basemap.py, tracked)
-├── tools/en_names.py      generates content/en_names_data.py
-└── legacy.html            this volume's build output, from which the repository's v1 data is converted
+└── tools/en_names.py      generates content/en_names_data.py
 ```
 
 ## 6. Common changes
@@ -112,9 +111,10 @@ eras/qinhan/
 | the kingdoms or warlords in a snapshot | `groups`, `ext`, `KINGDOMS` in `content/nodes*.py` | the same |
 | snapshot titles and summaries | `content/texts*.py` (Chinese and English together) | `python run.py` here, `python run.py --web` at the root |
 | capitals, battles, events and other entries | `content/items_data.py` (Chinese and English together) | the same |
-| notes on states, colors | `content/units.py` | the same |
+| notes on states | `content/units.py` | the same |
+| colors | the repository's `global/palette.toml` (by global polity ID) | `python run.py --web` at the root |
 | English place names | the hand-edited block at the end of `content/en_names_data.py` | the same |
-| the interface | `src/template.html` | `python run.py --html` here, `python run.py --web` at the root |
+| the interface | the repository's `core/web/` (shared by the volumes; this volume's own text and switches are under `[web]` in `era.toml`) | `python run.py --web` at the root |
 
 The text and territory of the junction snapshots (212 BC, AD 184) are copied from the neighboring volumes by `build.py`; do not change them in this volume. When a neighboring volume changes, rebuild this one.
 

@@ -38,7 +38,7 @@ to = "liangjin-nanbeichao"
 year = 280
 kind = "shared"
 owner = "hanmosanguo"
-note = "两晋卷旧构建读入 eras/liangjin-nanbeichao/geodata/junction_hanmo280.json；2026-11-19 汉末卷换到统一引擎后，新页面在汉末卷的推算范围内照搬它的引擎几何（core/v1/engine_geom.py），汉末卷留白处照两晋卷画"
+note = "两晋卷第 1 段按 eras/liangjin-nanbeichao/geodata/junction_hanmo280.json（冻结的汉末卷疆域环）定这一年的归属；新页面在汉末卷的推算范围内照搬它的引擎几何（core/v1/engine_geom.py），汉末卷留白处照两晋卷画"
 
 [[junction]]
 from = "liangjin-nanbeichao"
@@ -46,7 +46,7 @@ to = "suitang"
 year = 581
 kind = "shared"
 owner = "suitang"
-note = "两晋卷构建时读入 eras/liangjin-nanbeichao/geodata/junction_suitang581.json"
+note = "两晋卷第 1 段按 eras/liangjin-nanbeichao/geodata/junction_suitang581.json（冻结的隋唐卷疆域环）定这一年的归属；新页面照搬隋唐卷的引擎几何"
 
 [[junction]]
 from = "tangsong"

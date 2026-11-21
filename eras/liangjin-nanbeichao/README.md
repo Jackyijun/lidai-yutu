@@ -8,7 +8,7 @@
 
 ## 一、直接看
 
-用浏览器打开 `docs/index.html` 即可，离线可用。右上角「中 | EN」切换中英文。
+单仓根目录构建后打开 **`docs/liangjin-nanbeichao/index.html`**：页面由单仓 `core/web/` 统一生成，数据、样式、脚本全部内嵌，不联网、不需要服务器。本目录自 2026-11 架构整理第三批起不再出页面。右上角「中 | EN」切换中英文。
 
 - **时间轴**：每个节点一格，格下写当年的晋、南朝年号，北方诸国年号写在说明栏开头；刻度圆点虚线圈为西晋、实线圈为东晋十六国、方点为南北朝。▶ 播放，旁边的「1× / 2×」切换倍速；键盘 ← → 逐个节点走。
 - **着色**：「政权」按政权分色；「方镇」把西晋诸王、东晋南朝的方镇、北魏末年的尔朱氏与高欢等单独着色。斜线为名义臣属、实则自立；虚线疆域为部族。
@@ -17,41 +17,46 @@
 
 ## 二、线上地址
 
-https://jackyijun.github.io/liangjin-nanbeichao-map/
+https://jackyijun.github.io/lidai-yutu/liangjin-nanbeichao/
+
+旧版（原仓库 `Jackyijun/liangjin-nanbeichao-map` 用本卷旧构建出的页面，保持原样）：https://jackyijun.github.io/liangjin-nanbeichao-map/
 
 ## 三、本地构建
 
-需要 Python 3.10 以上。
+在单仓根目录构建（Python 版本与依赖见单仓 README）：
 
 ```bash
-python -m venv .venv && source .venv/bin/activate      # Windows：.venv\Scripts\activate
-pip install -r requirements.txt
-python run.py                 # 全部重建，约 1.5 分钟，输出 docs/index.html
-python run.py --html          # 只改了 content/ 的归属或文字：沿用已算好的疆域，约半分钟
-python run.py --open          # 构建后在浏览器打开
-python run.py --html --draft  # 英文有缺译或过期时也先出页面（缺译处显示中文）；默认严格，会停下
-python run.py --preview 383   # 另出该年疆域草图 build/preview-383.png
+python run.py liangjin-nanbeichao  # 本卷第 1 段 → 统一引擎重算疆域（engine.json）→ v1 数据 → docs/liangjin-nanbeichao/index.html
+python run.py --web                # 不重算，只由各卷的 source.json、engine.json 重建 v1 数据与新页面
 ```
 
-同一份输入重建，`docs/index.html` 逐字节相同（随机种子固定）。
+本目录的 `run.py` 是第 1 段：由 `content/` 的史料与 `geodata/` 的底图写出 **`source.json`**（节点归属、文字、条目与底图，不含疆域与配色，入库），单仓由它转成 v1 数据。疆域由统一疆域引擎（单仓 `core/engine/`）按各节点的归属推算，结果存在本目录的 `engine.json`（入库）；颜色由单仓 `global/palette.toml` 定；页面由单仓 `core/web/` 生成。本卷原来的疆域推算、配色与页面模板 2026-11 架构整理第三批起退役。
 
-构建完成后，把 `docs/index.html` 一起提交并推送到 `main`，线上网页会自动更新（GitHub Pages 从 `/docs` 发布）。
+| 命令（本目录） | 作用 |
+|---|---|
+| `python run.py` | 检查底图 → 底图（`build/geo_base.json`）→ 各节点归属与条目 → 汇编 `source.json` |
+| `python run.py --html` | 已有底图就不重做，只重新汇编（只改了 `content/` 的归属或文字时用） |
+| `python run.py --draft` | 英文有缺译或过期时也照常汇编（缺译处显示中文）；默认严格，会停下 |
+
+改了 `content/` 以后，从单仓根目录 `python run.py liangjin-nanbeichao` 重建这一卷（第 1 段、疆域、页面一次做完）。只在本目录跑 `run.py` 不会更新 `engine.json` 和页面；归属变了而疆域没重算时，单仓 `python run.py --web` 发现引擎输入的指纹对不上，会停下。
+
+同一份输入，`source.json` 逐字节一致，可以用 git 追踪改动。
 
 ## 四、目录结构
 
 ```
-liangjin-nanbeichao-map/
-├── run.py              一键构建
-├── requirements.txt    numpy、scipy、shapely ≥ 2.1、scikit-image、matplotlib
+eras/liangjin-nanbeichao/
+├── run.py              第 1 段构建入口：→ source.json
+├── era.toml            卷的基本信息（卷次、首屏、统一引擎的设置、衔接、页面文字）
+├── source.json         ★ 第 1 段的产物（入库）：节点归属、文字、条目与底图，单仓的 v1 数据由它转出
+├── engine.json         统一疆域引擎算出的各节点疆域（入库；单仓 python run.py liangjin-nanbeichao 时重算）
+├── short.tsv           时间轴短标题
 ├── README.md           说明（中文）
 ├── README.en.md        英文说明，与 README.md 一一对应
-├── docs/
-│   ├── index.html      成品，单文件
-│   └── .nojekyll
 ├── content/            史料（手写）
 │   ├── seeds.py        560 个归属点：郡县治所 192、城邑 133（显示），仅参与分区的辅助点 235；含今地与名称沿革
 │   ├── groups.py       归属点分组（#关中、#河西、#淮南……），写节点时用
-│   ├── units.py        186 个单位：政权 101、方镇 44、部族 41；名称、颜色、按语
+│   ├── units.py        186 个单位：政权 101、方镇 44、部族 41；名称、按语
 │   ├── snaps.py        时间节点的写法与汇总；节点本身分写在下面四个文件
 │   ├── snaps_xijin.py  西晋 280—316（20 个节点）
 │   ├── snaps_dongjin.py 东晋十六国前期 318—383（27 个）
@@ -59,35 +64,34 @@ liangjin-nanbeichao-map/
 │   ├── snaps_nanbei.py 南北朝 442—581（43 个）
 │   ├── items.py        关隘、山脉、河湖、运河、荒漠的按语（沿用唐宋图几何，按本期改写）
 │   ├── items_hist.py   都城 87、战役 108、事件 65、诸族 24、行军与行程路线 15
-│   ├── frontier.py     全图外缘（东段、北段沿用隋唐图，向西、向南放宽）
+│   ├── frontier.py     全图外缘（东段、北段沿用隋唐图，向西、向南放宽；统一引擎按它定推算范围）
 │   └── en/             英文译文（units、labels、seeds、items、snaps、misc 六个 json）、zh.lock.json 指纹与 GLOSSARY.md 译名体例
 ├── src/
-│   ├── config.py       全部路径与可调参数
+│   ├── config.py       路径、底图范围与两端衔接数据的位置
 │   ├── fetch_data.py   校验 geodata/，缺失时从 GitHub 下载固定版本
-│   ├── build.py        算疆域，输出 build/*.json
+│   ├── build.py        底图与汇编，输出 build/*.json
 │   ├── basemap.py      底图：陆地、湖泊、河流、运河、荒漠、今国界、今省界
-│   ├── territory.py    疆域算法（见下）
-│   ├── compile_data.py 各节点归属 → 疆域多边形 → GEO / DATA；衔接节点照搬邻卷；配色
+│   ├── compile_data.py 各节点归属（衔接节点照搬邻卷的归属）、底图、条目 → GEO / DATA
 │   ├── items_build.py  条目汇编：都城、战役、事件、山川、路线、诸族
-│   ├── proj.py         Albers 等积圆锥投影（与页面一致）
 │   ├── i18n.py         英文版：检查缺译与过期、把译文并入数据
-│   ├── assemble.py     并入英文、检查缺译，注入模板，输出 docs/index.html
-│   └── template.html   前端
+│   └── assemble.py     并入英文、检查缺译，汇编成 source.json
 ├── geodata/            底图与两端衔接数据，随仓库附带，离线可构建
-│   ├── junction_hanmo280.json    《汉末三国形势图》280 年节点的疆域环、颜色、国名
-│   └── junction_suitang581.json  《隋及唐初形势图》581 年节点的疆域环、颜色、国名
+│   ├── junction_hanmo280.json    《汉末三国形势图》旧版 280 年节点的疆域环（冻结，定 280 年的归属）
+│   └── junction_suitang581.json  《隋及唐初形势图》旧版 581 年节点的疆域环（冻结，定 581 年的归属）
 ├── tools/
-│   ├── junction.py     从两张邻图的仓库重新取衔接数据
-│   ├── i18n.py         英文维护：status / todo / lock / table
-│   └── preview.py      matplotlib 疆域草图
+│   └── i18n.py         英文维护：status / todo / lock / table
 └── build/              中间产物
 ```
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/liangjin-nanbeichao/`）的疆域，第 7 步（2026-11-17）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py liangjin-nanbeichao` 时自动重算）；归属、文字、条目仍出自本卷。两个衔接节点照搬邻卷的引擎几何：581 年在隋唐卷的手绘外缘以内，280 年（2026-11-19 汉末卷换到引擎后）在汉末卷的推算范围以内，邻卷没画的地方照本卷画。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+> 单仓新页面（`docs/liangjin-nanbeichao/`）的疆域，第 7 步（2026-11-17）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py liangjin-nanbeichao` 时自动重算）；归属、文字、条目仍出自本卷。两个衔接节点照搬邻卷的引擎几何：581 年在隋唐卷的手绘外缘以内，280 年（2026-11-19 汉末卷换到引擎后）在汉末卷的推算范围以内，邻卷没画的地方照本卷画。
 
-**疆域算法**（`src/territory.py`，参数在 `src/config.py`）沿用《隋及唐初形势图》，投影中心也相同（102°E / 36°N）：
+**第 1 段**：`build.py` 检查底图 → `basemap.py` 出底图 → `compile_data.py` 按 `content/snaps_*.py` 定各节点的归属（衔接节点照搬邻卷，见下）→ `items_build.py` 汇编条目 → `assemble.py` 并入英文，写成 `source.json`。
+
+> 下面讲的疆域推算、配色与页面模板是本卷旧构建的做法，2026-11 架构整理第三批起已从本目录删去（第 1 段只出 `source.json`），留作说明旧版页面怎么来的。
+
+**旧构建的疆域算法**（原 `src/territory.py`，参数原在 `src/config.py`）沿用《隋及唐初形势图》，投影中心也相同（102°E / 36°N）：
 
 1. **栅格**：在投影平面上切等距格子，每格约 6.4 km；只建在全图外缘之内（约 1676 × 1281 格）。海与面积 0.15 平方度以上的湖不可通行。
 2. **代价**：平地 1，加 ETOPO20 坡度与高原海拔；山脉脊线烧出高斯形高代价带（主干峰值 +8，次要 +3.5），本图补了兴都库什、高加索、托罗斯、扎格罗斯、厄尔布尔士、文荼诸山；江、河、淮、汉与乌浒水、药杀水、幼发拉底河另加代价（淮水比隋唐图加重，南北朝长期以淮为界）；最后乘 ±38% 的多尺度平滑噪声。
@@ -97,28 +101,22 @@ liangjin-nanbeichao-map/
 6. **按节点合并**：每个节点在上一节点的归属上改动（`own` 覆盖、`move` 整体改归），`compile_data.py` 把势力格并成单位（政权、方镇、部族）与政权的疆域；注记取最大陆块的不可达极点；相邻节点没变的几何只存一份（`GEO.pool`）。
 7. **配色**：衔接年共存的政权取邻图原色；主要政权手选；其余在低彩度 OKLCH 色板里按全部节点的邻接关系贪心选色。高句丽、林邑两图颜色不同，逐节点由汉末图的颜色渐变到隋唐图的颜色。
 
-**页面**：`template.html` 由《隋及唐初形势图》的前端改出，按《历史形势图统一规范》加了方镇着色、北方年号、多条行军路线、节点内的部族升格（高句丽、柔然、高车由部族改按政权画）、逐节点颜色与倍速播放；`assemble.py` 把 `__GEO__`、`__DATA__`、`__UCSS_LIGHT__`、`__UCSS_DARK__` 四个占位符换成数据，输出单文件。
+**旧版页面**：原 `template.html` 由《隋及唐初形势图》的前端改出，按《历史形势图统一规范》加了方镇着色、北方年号、多条行军路线、节点内的部族升格（高句丽、柔然、高车由部族改按政权画）、逐节点颜色与倍速播放；原 `assemble.py` 把 `__GEO__`、`__DATA__`、`__UCSS_LIGHT__`、`__UCSS_DARK__` 四个占位符换成数据，输出单文件。
 
-**两端衔接**（规范第十八节）：
+**两端衔接**（规范第十八节）：新页面上两个衔接节点的疆域由单仓 `core/v1/engine_geom.py` 照搬邻卷的 `engine.json`（见本节开头）；本卷第 1 段只按两份冻结的邻卷疆域环定这两年的归属。下面前两条是旧构建的做法。
 
 - **280 年**：在《汉末三国形势图》的疆域推算范围内（东经 72°—136°、北纬 14.75°—55°），晋、鲜卑、夫余、高句丽、羌、西域诸国、林邑与「弃地」的疆域环、注记点、颜色、国名照搬该图 280 年节点；该图留白处由本图的政权补上，范围外由本图推算。280 年到下一节点（289 年）之间，西北、东北的界线改按本图的归属点推算，有一次小幅跳变。
 - **581 年**：在《隋及唐初形势图》外缘之内，隋、陈、后梁、突厥、吐谷浑、高句丽、百济、新罗、倭等 41 个单位照搬该图 581 年节点；州郡名在 581 年改用该图的开皇州名，隋、高句丽、倭、高昌、吐蕃、羊同的都城名与该图一致。节点概述也取自该图。
-- 两份衔接数据由 `tools/junction.py` 从两张邻图的仓库取出：
-
-```bash
-python tools/junction.py ../hanmosanguo-map ../suitang-map
-python run.py
-```
-
-邻图改了衔接节点，重跑这两行即可。构建时会校验：衔接节点里照搬的疆域环、注记点与浅深两色都与邻图一致（跨出邻图范围的单位，只比范围内的部分），不一致就停下。
+- 两份衔接数据（`geodata/junction_*.json`）是 2026-11 以前由 `tools/junction.py` 从两张邻图的旧版页面取出的。2026-11 架构整理第三批起这个脚本与「照搬的疆域环、注记点、颜色与邻图一致」的校验随旧构建退役，两份文件冻结，第 1 段只读其中的范围（`frame`）与各政权的疆域环，用来定 280、581 两年范围内各点的归属。邻卷改了衔接节点，这两份文件不会跟着变；衔接的合成留待之后重做。
 
 ## 六、常见修改
 
-- **改某个节点的归属**：编辑 `content/snaps_*.py` 里该节点的 `own`（单位 → 归属点列表，`#关中` 之类是 `groups.py` 里的分组），然后 `python run.py --html`。同一节点里后写的单位优先。
-- **加一个郡县或辅助点**：在 `content/seeds.py` 加一行（`键|名|今地|经度|纬度|类型|区域|名称沿革`，类型 z 郡治、c 城邑、r 仅参与分区），再在节点里分配归属，然后 `python run.py`（势力格要重算）。
-- **改按语、战役、事件、都城、路线**：编辑 `content/items_hist.py`、`items.py` 或 `units.py`，`python run.py --html`。路线的点写成（经度, 纬度, 年 + 月/12, 地名）。
-- **改外缘**：编辑 `content/frontier.py`，`python run.py`。
-- **改样式或交互**：编辑 `src/template.html`，`python run.py --html`。
+- **改某个节点的归属**：编辑 `content/snaps_*.py` 里该节点的 `own`（单位 → 归属点列表，`#关中` 之类是 `groups.py` 里的分组），然后在单仓根目录 `python run.py liangjin-nanbeichao`（疆域要重算）。同一节点里后写的单位优先。
+- **加一个郡县或辅助点**：在 `content/seeds.py` 加一行（`键|名|今地|经度|纬度|类型|区域|名称沿革`，类型 z 郡治、c 城邑、r 仅参与分区），再在节点里分配归属，然后在单仓根目录 `python run.py liangjin-nanbeichao`（疆域要重算）。
+- **改按语、战役、事件、都城、路线**：编辑 `content/items_hist.py`、`items.py` 或 `units.py`，本目录 `python run.py --html`，再在单仓根目录 `python run.py --web`。路线的点写成（经度, 纬度, 年 + 月/12, 地名）。
+- **改外缘**：编辑 `content/frontier.py`，然后在单仓根目录 `python run.py liangjin-nanbeichao`（统一引擎按它定推算范围）。
+- **改样式或交互**：页面模板在单仓 `core/web/`（各卷共用，各卷不同的文字与开关写在 `era.toml` 的 `[web]`），改后在单仓根目录 `python run.py --web`。
+- **改颜色**：在单仓 `global/palette.toml` 里改这个政权（按全局 ID，见 `global/polities.jsonl`）的浅、深两色，再在单仓根目录 `python run.py --web`；同一政权在各卷同色。
 - **改了中文文字**，同时改对应的英文并运行 `python tools/i18n.py lock`，否则构建会停下（见下节）。
 
 ## 七、英文版
@@ -132,21 +130,12 @@ python run.py
 
 ## 八、调参
 
-都在 `src/config.py`：
+疆域的推算参数不在本卷：统一引擎的通用参数在单仓 `core/engine/config.toml`，本卷的外缘、推算范围、简化容差等写在 `era.toml` 的 `[engine]`；颜色在单仓 `global/palette.toml`。本卷原来的栅格、代价、平滑与配色参数 2026-11 架构整理第三批起随旧构建一并退役。
 
-| 参数 | 作用 |
-| --- | --- |
-| `PX` | 格边长；越小界线越细，构建越慢 |
-| `RIDGE_MAJOR` / `RIDGE_MINOR` / `RIDGE_W` | 山脊带的高度与宽度；越高界线越贴山脊 |
-| `BORDER_RIVERS` | 界河及其加价 |
-| `NOISE_AMP` / `NOISE_SCALES` | 代价噪声；越大界线越曲折 |
-| `WARP` | 位移场的尺度与幅度（格） |
-| `SMOOTH_SIGMA` / `LAPLACE` | 描界前的高斯平滑与描界后的网络平滑 |
-| `SIMPLIFY` | 覆盖简化容差；越大文件越小，界线越折 |
-| `SEED` | 随机种子 |
+本卷 `src/config.py` 里只剩路径、底图范围与两端衔接数据的位置；全图外缘仍是 `content/frontier.py`。
 
 ## 九、资料与可靠程度
 
 疆域据《晋书》、南北八史（《宋书》《南齐书》《梁书》《陈书》《魏书》《北齐书》《周书》《南史》《北史》）、《资治通鉴》、《十六国春秋》辑本及谭其骧《中国历史地图集》第三、四册大意推定，以郡县为单位、沿山川划界，仅为示意。十六国更迭频繁，一年之内数易其主的地方按年末形势画；名义臣属、实则自立的方镇与附庸画斜线；草原、高原诸部并无确切界线。萨珊、罗马、天竺、南海诸国只画大势，据通行的世界史地图集。今地取遗址或所在城市。
 
-底图：Natural Earth 5.1.2（陆地、湖泊、河流、今国界）、ETOPO20 地形（matplotlib/basemap 1.4.1 附带），河湖运河、今省界与部分山川关隘沿用《唐宋之际形势图》。
+底图：Natural Earth 5.1.2（陆地、湖泊、河流、今国界），河湖运河、今省界与部分山川关隘沿用《唐宋之际形势图》。

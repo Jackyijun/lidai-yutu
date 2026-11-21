@@ -5,7 +5,7 @@
   python core/web/assemble.py songyuan     只做这几卷
 
 数据来源是 core/v1/build.py 生成的 build/v1/<短名>.json（已附全局 ID）。秦汉至民国七卷套统一模板
-core/web/template.html，各卷不同的文字与开关取 era.toml 的 [web]；春秋、战国两卷还用各卷旧模板，由 patch.py 换外壳。
+core/web/template.html，各卷不同的文字与开关取 era.toml 的 [web]；春秋、战国两卷还用战国式旧模板（core/web/old/），由 patch.py 换外壳。
 """
 import json
 import sys
@@ -33,11 +33,12 @@ def dumps(o):
 
 
 def template_for(slug):
-    return (ROOT / "eras" / slug / "src" / "template.html").read_text(encoding="utf8")
+    """春秋、战国两卷暂用的战国式旧模板 core/web/old/<短名>.html（原是两卷的 src/template.html，2026-11 架构整理第三批移来）"""
+    return (ROOT / "core" / "web" / "old" / f"{slug}.html").read_text(encoding="utf8")
 
 
 def web_config(slug):
-    """era.toml [web]：各卷页面的文字与开关（见 core/web/README.md）；没有这一节的卷用各卷旧模板"""
+    """era.toml [web]：各卷页面的文字与开关（见 core/web/README.md）；没有这一节的卷（春秋、战国）用 core/web/old/ 里的旧模板"""
     from registry import load_toml
     return load_toml(ROOT / "eras" / slug / "era.toml").get("web")
 

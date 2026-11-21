@@ -20,25 +20,25 @@
 
 ```bash
 python run.py qinhan        # 完整构建（两遍，见下）
-python run.py --web         # 不重算疆域，由 legacy.html 重建全局表、v1 数据与新页面
+python run.py --web         # 不重算疆域，由各卷的 source.json、engine.json 重建全局表、v1 数据与新页面
 ```
 
 疆域由统一引擎推算，所以要走两遍，`run.py` 会自动做：
 
-1. `eras/qinhan/src/build.py` 由史料出归属与条目（这一遍没有几何），存成 `legacy.html`；
-2. 转成 v1 数据包，`core/engine/build.py qinhan` 推算各节点的郡国疆域，写到 `eras/qinhan/build/engine/qinhan.json`；
-3. 再跑一遍 `build.py`，填入疆域、合成政权外廓与郡界，出页面。
+1. `eras/qinhan/src/build.py --first` 由史料出归属与条目（这一遍没有几何，也不读邻卷的疆域：邻卷的 engine.json 这时可能还没重算），汇编成 `source.json`；
+2. 转成 v1 数据包，`core/engine/build.py qinhan` 推算各节点的郡国疆域，写到仓库根目录的 `build/engine/qinhan.json`（不入库）；
+3. 再跑一遍 `build.py`，填入疆域、合成政权外廓与郡界，写出 `source.json`（本卷的 source.json 带疆域，入库）；单仓再由它出 v1 数据与新页面。
 
 只在本目录里改动时：
 
 ```bash
 cd eras/qinhan
-python run.py               # 史料 → 归属与条目，用上一次引擎的结果填疆域 → docs/index.html
-python run.py --html        # 只重新拼装 HTML（只改了 src/template.html 时）
+python run.py               # 史料 → 归属与条目，用上一次引擎的结果填疆域 → source.json
+python run.py --html        # 只重新汇编 source.json（build/ 已有这一遍的结果时）
 python run.py --base        # 先重新生成底图 geodata/base.json（改了 src/basemap.py 时）
 ```
 
-改了归属（`content/seeds.py`、`nodes*.py`）就要从仓库根目录完整构建，否则疆域还是上一次的。只改文字、颜色时，本目录 `python run.py` 加上根目录 `python run.py --web` 就够了。
+改了归属（`content/seeds.py`、`nodes*.py`）就要从仓库根目录完整构建，否则疆域还是上一次的。只改文字时，本目录 `python run.py` 加上根目录 `python run.py --web` 就够了。
 
 ## 三、纪年
 
@@ -60,7 +60,7 @@ python run.py --base        # 先重新生成底图 geodata/base.json（改了 s
 
 | 郡制 | 节点 | 点归哪个郡 |
 | --- | --- | --- |
-| Q 秦郡 | 前212—前180 | 落在战国卷旧版末节点（`legacy.html`）哪个秦郡的郡界里（`QO` 可指定） |
+| Q 秦郡 | 前212—前180 | 冻结在 `content/qinjun.py`（原按战国卷旧构建末节点的秦郡郡界判定；`QO` 可指定） |
 | X 西汉郡国 | 前164—23 | 由东汉郡国按 `jun.XH_OF_DH` 换算（`XO` 可指定，可按年份分段） |
 | D 东汉郡国 | 25—184 | 汉末卷记的郡（`DO` 可指定） |
 
@@ -75,14 +75,15 @@ python run.py --base        # 先重新生成底图 geodata/base.json（改了 s
 - 统一引擎按归属点在全球格网上推算各单位的疆域（外缘按可达代价，`era.toml` 的 `[engine]`；各点的可达倍数 `R=` 写在 `seeds.py`，构建时写成 `build/reach.txt`）。
 - 前212 节点照搬战国卷末节点：秦、卫的外廓与 51 个秦郡的郡界，文字也照搬。战国卷已换到统一引擎（2026-11-19），外廓与郡界取 `eras/zhanguo/engine.json`（引擎按郡治细分秦的各块），与战国卷新页面一致；旧构建的秦疆画到了海上，原先扣去台湾、海南、济州，引擎的外缘贴着海岸，不再扣。各点归哪个秦郡（Q 一套郡制）原按战国卷旧构建画的秦郡郡界定，架构整理第三批（2026-11-20）起冻结在 `content/qinjun.py`（表里没有的点照旧取最近的有归属的点所属的郡）；各郡国的颜色都已定在 `global/palette.toml`。两者都不随战国卷的疆域改变。战国卷重算疆域后，本卷要跟着重新构建（根目录 `python run.py zhanguo qinhan` 一次即可）。
 - 184 节点照搬汉末卷首节点：各政权的外廓照搬，汉的郡国由引擎算出后裁进汉末卷的汉的外廓、补上缝隙。汉末卷已换到统一引擎（2026-11-19），外廓取 `eras/hanmosanguo/engine.json`，与汉末卷新页面一致；汉末卷重算疆域后，本卷要跟着重新构建。
-- 配色：与战国、汉末共有的政权照搬两卷的浅、深两色（`units.py` 里写作 `zg:` / `hm:`）；其余原按邻接关系从色板里取；现在所有颜色都定在 `global/palette.toml`（架构整理第三批起，2026-11-20）。
+- 配色：所有颜色都定在单仓的 `global/palette.toml`（按政权全局 ID，与战国、汉末共有的政权同色）。原先与两卷共有的政权照搬两卷的颜色（`units.py` 里写作 `zg:` / `hm:`），其余按邻接关系从色板里取，2026-11 架构整理第三批起随旧构建退役。
 
 ## 五、目录
 
 ```
 eras/qinhan/
-├── run.py                 本卷构建入口（单遍）
+├── run.py                 第 1 段构建入口（单遍）：→ source.json
 ├── era.toml               卷的基本信息（卷次、首屏、着色、引擎设置、衔接）
+├── source.json            ★ 第 1 段的产物（入库，连同疆域）：单仓的 v1 数据由它转出
 ├── content/
 │   ├── seeds.py           归属点与归属沿革
 │   ├── jun.py             秦郡名、西汉 103 郡国、东汉→西汉换算、郡国英文
@@ -90,18 +91,16 @@ eras/qinhan/
 │   ├── nodes.py           节点（秦、楚汉、汉初，Q 郡制）与 t_of
 │   ├── nodes_later.py     节点（西汉、新、东汉，X / D 郡制）与 KINGDOMS
 │   ├── texts.py、texts2.py  节点标题、年号、概述（中英）
-│   ├── units.py           政权与部族的说明（中英）、配色
+│   ├── units.py           政权与部族的说明（中英）
 │   ├── items.py、items_data.py  都城、战役、事件、诸族、关隘、长城、道路、行军路线
 │   └── en_names.py、en_names_data.py  地名、郡国名的英文（由 tools/en_names.py 生成后手改）
 ├── src/
 │   ├── config.py          路径与常量（范围、太初、首屏）
 │   ├── basemap.py         底图：汉末卷范围内的河湖、山川条目沿用汉末卷，范围外补 Natural Earth
-│   ├── build.py           史料 → 旧格式 GEO / DATA（build/geo.json、data.json、colors.json）
-│   ├── assemble.py        拼装 docs/index.html
-│   └── template.html      前端（以汉末卷的模板为底）
+│   ├── build.py           史料 → 旧格式 GEO / DATA（build/geo.json、data.json，另写引擎读的 build/reach.txt）
+│   └── assemble.py        汇编成 source.json
 ├── geodata/base.json      底图（由 src/basemap.py 生成，入库）
-├── tools/en_names.py      生成 content/en_names_data.py
-└── legacy.html            本卷成品，单仓的 v1 数据由它转出
+└── tools/en_names.py      生成 content/en_names_data.py
 ```
 
 ## 六、常见修改
@@ -112,9 +111,10 @@ eras/qinhan/
 | 某个节点的王国、群雄 | `content/nodes*.py` 的 `groups`、`ext`、`KINGDOMS` | 同上 |
 | 节点标题、概述 | `content/texts*.py`（中英同改） | 本目录 `python run.py`，根目录 `python run.py --web` |
 | 都城、战役、事件等条目 | `content/items_data.py`（中英同改） | 同上 |
-| 政权说明、颜色 | `content/units.py` | 同上 |
+| 政权说明 | `content/units.py` | 同上 |
+| 颜色 | 单仓 `global/palette.toml`（按政权全局 ID） | 根目录 `python run.py --web` |
 | 地名英文 | `content/en_names_data.py` 末尾的手改段 | 同上 |
-| 界面 | `src/template.html` | 本目录 `python run.py --html`，根目录 `python run.py --web` |
+| 界面 | 单仓 `core/web/`（各卷共用；本卷不同的文字与开关在 `era.toml` 的 `[web]`） | 根目录 `python run.py --web` |
 
 衔接节点（前212、184）的文字和疆域由 `build.py` 从邻卷照搬，不要在本卷里改；邻卷改了，本卷重新构建即可。
 

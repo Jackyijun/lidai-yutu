@@ -1,13 +1,18 @@
-"""把 build/geo.json 与 content/ 的条目（连同 content/en/ 的英文）注入模板，生成不依赖任何外部文件的 docs/index.html。
+"""把 build/geo.json 与 content/ 的条目（连同 content/en/ 的英文）汇编成本卷的 source.json（单仓第 1 段的产物）。
 
   python src/assemble.py           严格：英文有缺译或过期就停下
   python src/assemble.py --draft   允许缺译（临时显示中文）与过期
+
+source.json 是旧版页面里内嵌的 GEO、DATA，不含疆域与配色：疆域由统一疆域引擎推算（本卷的 engine.json），
+颜色由单仓的 global/palette.toml 定，新页面由单仓 core/web/ 生成（架构整理第三批起本卷不再出页面）。
 """
 import json, sys, math
 import config as C
 import i18n
 sys.path.insert(0, str(C.CONTENT))
 import features as F
+sys.path.insert(0, str(C.ROOT.parent.parent / "core" / "v1"))
+import legacy
 
 def dec(fl):
     x = y = 0; out = []
@@ -41,7 +46,8 @@ def make():
             cur = None
             for y0, nm in al:
                 if sn["y"] >= y0: cur = nm
-            if cur and cur != names.get(k) and k in sn["s"]: lab[k] = cur
+            if cur and cur != names.get(k) and k in sn["live"]: lab[k] = cur
+        del sn["live"]
         if lab: sn["lab"] = lab
     I = []
     def add(**k):
@@ -132,7 +138,7 @@ def merge(GEO, I, draft):
             if v and it.get(fld): it["e" + fld] = v
     for s in GEO["snaps"]:
         y = str(s["y"])
-        s["sh"] = F.SNAP_SHORT[s["y"]]            # 时间轴短名（s 已用于疆域环）
+        s["sh"] = F.SNAP_SHORT[s["y"]]            # 时间轴短名（旧版页面里 s 是疆域环）
         for fld, out in (("t", "te"), ("s", "she"), ("d", "de")):
             v = ok("snaps", y, fld)
             if v: s[out] = v
@@ -161,16 +167,7 @@ if __name__ == "__main__":
     draft = "--draft" in sys.argv
     GEO, I = make()
     falls, alleg = merge(GEO, I, draft)
-    DATA = dict(items=I, colors={k: F.STATE_COLORS[k] for k, *_ in F.STATES}, states=[s[0] for s in F.STATES], falls=falls,
+    DATA = dict(items=I, states=[s[0] for s in F.STATES], falls=falls,
                 kinds=getattr(F, "STATE_KIND", {}), p0=getattr(F, "PERIOD0", F.SNAPS[0][0] - 5), playms=getattr(F, "PLAY_MS", 1700), alleg=alleg)
-    html = open(C.ROOT / "src" / "template.html", encoding="utf8").read()
-    html = html.replace("__GEO__", json.dumps(GEO, ensure_ascii=False, separators=(",", ":")))
-    html = html.replace("__DATA__", json.dumps(DATA, ensure_ascii=False, separators=(",", ":")))
-    # 生成配色 CSS
-    lt = "".join(f"--s-{i}:{F.STATE_COLORS[k][0]};" for i, (k, *_) in enumerate(F.STATES))
-    dk = "".join(f"--s-{i}:{F.STATE_COLORS[k][1]};" for i, (k, *_) in enumerate(F.STATES))
-    html = html.replace("/*__SLIGHT__*/", lt).replace("/*__SDARK__*/", dk)
-    C.DIST.mkdir(exist_ok=True)
-    (C.DIST / ".nojekyll").write_text("", encoding="utf8")   # 让 GitHub Pages 原样发布，不经 Jekyll 处理
-    open(C.DIST / "index.html", "w", encoding="utf8").write(html)
-    print(len(I), "items;", len(html) // 1024, "KB")
+    legacy.write_source(C.ROOT / "source.json", GEO, DATA)
+    print(len(I), "items;", (C.ROOT / "source.json").stat().st_size // 1024, "KB → source.json")

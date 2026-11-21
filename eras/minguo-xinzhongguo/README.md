@@ -10,9 +10,7 @@
 
 ## 一、直接看
 
-双击 **`docs/index.html`**，用任意现代浏览器（Chrome、Edge、Safari、Firefox）打开即可。
-
-这个文件约 12 MB，数据、样式、脚本全部内嵌：不联网、不需要服务器、不依赖任何外部库。可以直接拷到 U 盘、发给别人，或者放到自己的网站上。
+单仓根目录构建后打开 **`docs/minguo-xinzhongguo/index.html`**：页面由单仓 `core/web/` 统一生成，数据、样式、脚本全部内嵌，不联网、不需要服务器。本目录自 2026-11 架构整理第三批起不再出页面。
 
 - **时间轴**：每年至少一个节点，辛亥、北伐、长征、1937、1941—1942、1945、1948—1949 等年份按月拆成多期（如长征：1934.10 出发、1934.12 湘江、1935.01 遵义……1935.10 吴起镇）。点刻度跳转，左侧 ▶ 播放，下方 1× / 2× 切换倍速；键盘 ← → 逐节点。
 - **着色**：顶栏「派系 / 政权」切换。「派系」模式下北洋各系、地方实力派、国民政府中央、中共各苏区与根据地、日本各殖民地与占领区、英法荷美各属地分别着色；「政权」模式下并入所属政权。颜色按派系分色带，色带之间不重叠：国民党一脉为蓝（辛亥各省军政府为浅蓝），共产党各苏区、根据地、解放区与新中国各大区同为红色、以深浅区分，日本及其殖民地、占领区为深紫，伪政权为浅紫，清与北洋中央为黄，其余地方实力派与外国只用土黄、橄榄、绿、青绿，彩度较低。
@@ -27,69 +25,51 @@
 
 ## 二、线上地址
 
-https://jackyijun.github.io/minguo-xinzhongguo-map/
+https://jackyijun.github.io/lidai-yutu/minguo-xinzhongguo/
+
+旧版（原仓库 `Jackyijun/minguo-xinzhongguo-map` 用本卷旧构建出的页面，保持原样）：https://jackyijun.github.io/minguo-xinzhongguo-map/
 
 ---
 
 ## 三、本地构建
 
-改了史料内容（`content/`）或参数（`src/config.py`）之后才需要重新构建。需要 **Python 3.10 或更新版本**，内存 6 GB 以上。
-
-**macOS / Linux**
+在单仓根目录构建（Python 版本与依赖见单仓 README）：
 
 ```bash
-cd minguo-xinzhongguo-map
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python run.py --open
+python run.py minguo-xinzhongguo  # 本卷第 1 段 → 统一引擎重算疆域（engine.json）→ v1 数据 → docs/minguo-xinzhongguo/index.html
+python run.py --web               # 不重算，只由各卷的 source.json、engine.json 重建 v1 数据与新页面
 ```
 
-**Windows（PowerShell）**
+本目录的 `run.py` 是第 1 段：由 `content/` 的史料与 `geodata/` 的底图写出 **`source.json`**（节点归属、文字、条目与底图，不含疆域与配色，入库），单仓由它转成 v1 数据。疆域由统一疆域引擎（单仓 `core/engine/`）按各节点的归属推算，结果存在本目录的 `engine.json`（入库）；颜色由单仓 `global/palette.toml` 定；页面由单仓 `core/web/` 生成。本卷原来的疆域推算、配色与页面模板 2026-11 架构整理第三批起退役。
 
-```powershell
-cd minguo-xinzhongguo-map
-py -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python run.py --open
-```
-
-完整构建约 15—20 分钟（栅格 359 万格、115 个节点），完成后用浏览器打开新生成的 `docs/index.html`。
-
-| 命令 | 作用 |
+| 命令（本目录） | 作用 |
 |---|---|
-| `python run.py` | 检查史料 → 底图缺失则下载 → 计算疆域 → 拼装 HTML |
-| `python run.py --html` | 只重新拼装 HTML（只改了 `src/template.html` 或 `content/en/` 时用，几秒钟） |
-| `python run.py --html --draft` | 英文有缺译或过期时也照常生成（缺译处临时显示中文）；不加 `--draft` 时会报错停下 |
+| `python run.py` | 检查史料 → 底图缺失则下载 → 节点归属、底图与条目 → 汇编 `source.json` |
+| `python run.py --html` | 跳过前三步，只重新汇编（只改了 `content/en/` 时用） |
+| `python run.py --draft` | 英文有缺译或过期时也照常汇编（缺译处临时显示中文）；不加时会报错停下 |
 | `python tools/i18n.py status` | 英文版状态：缺译、过期、未登记指纹各多少条（详见第七节） |
-| `python run.py --open` | 构建完后在浏览器中打开 |
 | `python tools/check.py` | 只检查史料格式与引用（几秒钟）；`--node 1937.12` 列出某节点各单位领有的点，`--who 中共` 列出某单位在各节点领有多少点 |
-| `python run.py --preview 1937.12,1944.12` | 额外画出这几个节点的疆域草图到 `build/preview-*.png` |
-| `python tools/preview.py 1935.06 --box 99,118,24,39 --mode zhen` | 只画草图，可指定经纬框（西,东,南,北） |
-| `python tools/screenshot.py` | （可选，需 playwright）走一遍全部节点并截图，检查脚本错误 |
 | `python tools/stats.py` | 统计节点、条目、归属点、单位数量 |
-| `python tools/verify.py` | 逐节点核对每个归属点是否落在所属单位的疆域里，列出偏出 3 km 以上的点 |
 
-压缩包里已经带了底图数据（`geodata/`，约 43 MB），离线也能构建；删掉后 `run.py` 会自动从 GitHub 下载固定版本（ETOPO 地形另做 sha256 校验）。
+改了 `content/` 以后，从单仓根目录 `python run.py minguo-xinzhongguo` 重建这一卷（第 1 段、疆域、页面一次做完）。只在本目录跑 `run.py` 不会更新 `engine.json` 和页面；归属变了而疆域没重算时，单仓 `python run.py --web` 发现引擎输入的指纹对不上，会停下。
 
-同一环境下，同一份输入的构建结果逐字节一致，可以放心用 git 追踪改动。
+同一份输入，`source.json` 逐字节一致，可以用 git 追踪改动。
 
-构建完成后，把 `docs/index.html` 一起提交并推送到 `main`，线上网页会自动更新。
+底图数据（`geodata/`）随仓库附带，离线也能构建；文件缺了，`run.py` 会从 GitHub 下载固定版本。
 
 ---
 
 ## 四、目录结构
 
 ```
-minguo-xinzhongguo-map/
-├── run.py                 一键构建入口
-├── requirements.txt
-├── README.md              说明（中文，GitHub 首页默认显示）
+eras/minguo-xinzhongguo/
+├── run.py                 第 1 段构建入口：→ source.json
+├── era.toml               卷的基本信息（卷次、首屏、统一引擎的设置、衔接、页面文字）
+├── source.json            ★ 第 1 段的产物（入库）：节点归属、文字、条目与底图，单仓的 v1 数据由它转出
+├── engine.json            统一疆域引擎算出的各节点疆域（入库；单仓 python run.py minguo-xinzhongguo 时重算）
+├── short.tsv              时间轴短标题
+├── README.md              说明（中文）
 ├── README.en.md           说明（英文）
-├── docs/
-│   ├── index.html         ★ 成品，单文件（GitHub Pages 直接从 /docs 发布）
-│   └── .nojekyll
 ├── content/               ★ 史料内容（手写，主要改这里）
 │   ├── AGENTS.md          史料格式与文风规则（分工编写时的共同约定）
 │   ├── nodes.txt          115 个时间节点：年.月 | 纪年 | 标题
@@ -102,24 +82,19 @@ minguo-xinzhongguo-map/
 │   ├── geo.py             山脉、水系、湖泽、运河、荒漠、海名、黄泛区
 │   └── en/                ★ 英文版：与上面各文件一一对应的译文（JSON）、zh.lock.json 中文指纹、GLOSSARY.md 译名体例
 ├── src/
-│   ├── config.py          ★ 全部路径与可调参数（范围、投影、栅格、代价、国界墙、配色……）
+│   ├── config.py          路径、底图来源、范围与投影、国界墙（统一引擎读）、底图简化参数
 │   ├── content.py         读入并校验 content/（build.py 与 tools/check.py 共用）
 │   ├── fetch_data.py      底图缺失时下载固定版本
-│   ├── build.py           计算疆域，输出 build/geo.json、build/data.json
-│   ├── assemble.py        并入英文、检查缺译，把数据注入模板，输出 docs/index.html
-│   ├── i18n.py            英文版：列出需要翻译的条目、检查缺译与过期、把译文并入数据
-│   └── template.html      前端：页面结构、样式、交互脚本
+│   ├── build.py           节点归属、底图与条目，输出 build/geo.json、build/data.json
+│   ├── assemble.py        并入英文、检查缺译，汇编成 source.json
+│   └── i18n.py            英文版：列出需要翻译的条目、检查缺译与过期、把译文并入数据
 ├── geodata/
 │   ├── prov.json          今中国省界（简化）
-│   ├── ne/                Natural Earth 1:10m GeoJSON
-│   └── etopo/             ETOPO20 全球地形
+│   └── ne/                Natural Earth 1:10m GeoJSON
 ├── tools/
 │   ├── check.py           史料检查
-│   ├── preview.py         matplotlib 疆域草图
-│   ├── screenshot.py      playwright 截图检查
 │   ├── i18n.py            英文版维护：status / todo / lock / table
-│   ├── stats.py           数量统计
-│   └── verify.py          逐节点核对归属点是否落在所属疆域内
+│   └── stats.py           数量统计
 └── build/                 中间产物（可随时删除）
 ```
 
@@ -127,13 +102,12 @@ minguo-xinzhongguo-map/
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/minguo-xinzhongguo/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py minguo-xinzhongguo` 时自动重算）；归属、文字、条目仍出自本卷。疆域简化容差放宽到 0.25 格（`era.toml` 的 `[engine]`），页面体积与旧版相当；国界墙与省界弱墙照旧，由引擎烧进代价栅格。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+> 单仓新页面（`docs/minguo-xinzhongguo/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py minguo-xinzhongguo` 时自动重算）；归属、文字、条目仍出自本卷。疆域简化容差放宽到 0.25 格（`era.toml` 的 `[engine]`），页面体积与旧版相当；国界墙与省界弱墙照旧，由引擎烧进代价栅格。
 
 ```
 content/ ──────┐
-               ├─► build.py ─► build/geo.json + data.json ─► assemble.py ─► docs/index.html
-geodata/ ──────┘                                               ▲
-                                                 src/template.html
+               ├─► build.py ─► build/geo.json + data.json ─► assemble.py ─► source.json ─► 单仓 core/：统一引擎疆域、v1、新页面
+geodata/ ──────┘
 ```
 
 ### 1. 为什么疆域要“算”出来
@@ -142,7 +116,9 @@ geodata/ ──────┘                                               ▲
 
 本图用“混合做法”：近代的国界与殖民地界精确可考，单靠推算会画偏（如中缅、中印、印度支那各界），所以把今国界（剔除近代未定或晚出的几段）连同手画的历史界线（三八线、库页岛北纬 50° 线、关东州北界等）烧成代价极高的“国界墙”，推算出的分界就会贴着这些界线走。墙可以有时效：三八线只用到朝鲜战争爆发前，战时战线完全由归属点决定，1953 年 7 月起换成军事分界线，1954 年 7 月起加越南北纬 17 度线；中国境内的派系、根据地、占领区与战线仍完全由归属点推算，今省界只作一道弱墙。贴着国界的城镇（如希瓦、新义州）周围不烧墙，免得本城被墙带围住、格子反被远处的点占去。
 
-### 2. `build.py` 的步骤
+> 下面讲的疆域推算、配色与页面模板是本卷旧构建的做法，2026-11 架构整理第三批起已从本目录删去（第 1 段只出 `source.json`），留作说明旧版页面怎么来的。原来的 `tools/verify.py`（逐节点核对归属点是否落在所属疆域里）读的是旧构建的疆域，一并删去。
+
+### 2. 旧构建 `build.py` 的步骤
 
 1. **读史料**：`src/content.py` 读入并校验全部 `content/` 文件。时间一律换算成月序（年 × 12 + 月 − 1）。
 2. **解析时间节点**：`snaps/*.txt` 是一个小型声明式语言（语法见下文）。每个 `@年.月` 块继承上一节点的全部归属，只写变化的部分；中国各时段文件的第一块以 `!重置` 开头并写全全部中国归属点。
@@ -153,7 +129,7 @@ geodata/ ──────┘                                               ▲
 7. **配色**：每个单位先归入一个派系色带（`BANDS`）：国民党一脉蓝、辛亥军政府浅蓝、共产党红、日本深紫、伪政权浅紫、清与北洋黄，其余土黄—橄榄—绿—青绿；归带按 `BAND_UNITS` 指定，或按所属政权自动判断（只属中共的进红带，只属日本与伪政权的进紫带）。色带内再按全部节点的邻接关系贪心着色，相邻两块尽量拉开深浅；英法荷美各属地靠近宗主国的颜色。个别政权用 `PRESET_COLORS` 固定。
 8. **底图与条目**：海岸、今国界、湖泊、荒漠来自 Natural Earth，东端跨过国际日期变更线（含夏威夷、中途岛）。黄河 1938.06—1947.03 花园口决口改道，图上这段时间不画今黄河下游，改画黄泛区。
 
-### 3. 前端（`src/template.html`）
+### 3. 旧版前端（`src/template.html`）
 
 - **零依赖**：原生 JavaScript + SVG。
 - **时间**：每个节点涵盖“上一节点之后至本节点”的月份。战役、事件、行军路线只显示本期的；在索引、年表里点其他时期的条目，时间轴自动跳过去。铁路、租界按起止年月显示。
@@ -186,7 +162,9 @@ geodata/ ──────┘                                               ▲
 
 **边界不该翻过某座山**：在 `geo.py` 的 `RANGES` 里加这条山的脊线坐标，最后一位设为 `1`（主干，代价更高）。
 
-**只改页面样式或交互**：编辑 `src/template.html`，然后 `python run.py --html`。
+**改页面样式或交互**：页面模板在单仓 `core/web/`（各卷共用，各卷不同的文字与开关写在 `era.toml` 的 `[web]`），改后在单仓根目录 `python run.py --web`。
+
+**改颜色**：在单仓 `global/palette.toml` 里改这个政权（按全局 ID，见 `global/polities.jsonl`）的浅、深两色，再在单仓根目录 `python run.py --web`；同一政权在各卷同色。
 
 **新增或改动了任何中文**（点、条目、单位、节点说明……）：同时补写或改写 `content/en/` 里的英文，否则严格构建会报缺译或过期，见第七节。
 
@@ -228,35 +206,29 @@ geodata/ ──────┘                                               ▲
 1. `python tools/i18n.py status` 看缺译、过期各多少条；
 2. `python tools/i18n.py todo` 列出这些条目的中文，到对应 JSON 里补写或改写英文；
 3. `python tools/i18n.py lock` 登记新的中文指纹；
-4. `python run.py --html` 重新拼装。`python tools/i18n.py table` 可导出中英对照表供审校（`table names` 只导出名称）。
+4. `python run.py --html` 重新汇编 `source.json`，再在单仓根目录 `python run.py --web`。`python tools/i18n.py table` 可导出中英对照表供审校（`table names` 只导出名称）。
 
 英文先译名称、经作者审定，再译按语、节点概述与政权说明；两轮都经独立核查，核查中发现的中文史实与今地问题先改中文、再改英文。
 
 ---
 
-## 八、调参（`src/config.py`）
+## 八、调参
+
+疆域的推算参数不在本卷：统一引擎的通用参数在单仓 `core/engine/config.toml`，本卷的外缘、推算范围、简化容差等写在 `era.toml` 的 `[engine]`；颜色在单仓 `global/palette.toml`。本卷原来的栅格、代价、平滑与配色参数 2026-11 架构整理第三批起随旧构建一并退役。
+
+国界墙的强度（峰值、半宽、今省界弱墙、归属点周围不烧墙的范围）也在 `core/engine/config.toml` 的 `[walls]`。本卷 `src/config.py` 里留下的：
 
 | 参数 | 默认 | 作用 |
 |---|---|---|
-| `EXTENT` / `EXCLUDE` / `BASE_EXTENT` | 26°E—180°E、11°S—72°N，去掉欧洲、非洲 / 5°E—215°E、30°S—82°N | 疆域计算范围 / 底图范围 |
-| `CELL` | 1.15 | 栅格边长（投影单位，约 7.3 km）。调小更精细，时间与内存约按平方增长 |
-| `WALL` / `WALL_PROV` | (60, 14) / (5, 10) | 国界墙、今省界弱墙的代价峰值与半宽（km） |
-| `WALL_CARVE` | (8, 22) | 归属点周围 8 km 内不烧墙，到 22 km 恢复全强度，免得贴着国界的城镇被墙带围住 |
-| `WALL_SKIP` / `MANUAL_WALLS` / `VAR_NE_WALLS` | — | 不当作常设国界墙的今国界段落（克什米尔、麦克马洪线、朝鲜军事分界线）/ 手画的历史界线（可带起止月）/ 有时效的今国界段（朝鲜军事分界线自 1953.07） |
-| `RANGE_MAJOR` / `RANGE_MINOR` | (8.0, 26) / (3.5, 18) | 主干、次要山脉的代价峰值与半宽（km） |
-| `BORDER_RIVERS` | — | 界河的代价峰值与半宽 |
-| `NOISE_AMP` | 0.38 | 平滑噪声幅度，越大界线越曲折 |
-| `REACH` | 130 | 超出此代价距离（再乘各点 `R=` 倍数）的格子算无主地 |
-| `SIMPLIFY_TERR` | 0.018 | 覆盖简化容差（°），越大越粗略、文件越小 |
-| `BANDS` / `BAND_UNITS` / `JP_POLS` | — | 派系色带、指定归带的单位、日本与伪政权 |
-| `PRESET_COLORS` | — | 固定色的政权 |
+| `EXTENT` / `EXCLUDE` / `BASE_EXTENT` | 26°E—180°E、11°S—72°N，去掉欧洲、非洲 / 5°E—215°E、30°S—82°N | 疆域推算范围（统一引擎读 `EXCLUDE`；外框同 `era.toml` 的 `box`）/ 底图范围 |
+| `WALL_SKIP` / `MANUAL_WALLS` / `VAR_NE_WALLS` | — | 统一引擎读：不当作常设国界墙的今国界段落（克什米尔、麦克马洪线、朝鲜军事分界线）/ 手画的历史界线（可带起止月）/ 有时效的今国界段（朝鲜军事分界线自 1953.07） |
 | `FIRST` | 1937.12 | 首屏节点 |
 
 ---
 
 ## 九、资料与可靠程度
 
-- **底图**：[Natural Earth](https://www.naturalearthdata.com/) 1:10m 矢量数据（公有领域），固定在提交 `ca96624`；ETOPO20 地形取自 matplotlib basemap v1.4.1 示例数据。
+- **底图**：[Natural Earth](https://www.naturalearthdata.com/) 1:10m 矢量数据（公有领域），固定在提交 `ca96624`。
 - **今省界**：沿用《唐宋之际形势图》的简化省界。
 - **史料**：中国部分据各时期官方文书、战史与通行近代史著作，清末部分参照谭其骧《中国历史地图集》第八册（清时期）大意；亚洲各地据通行史地图集与各国通史大意。全部条目经过一轮独立核查。
 - **局限**：

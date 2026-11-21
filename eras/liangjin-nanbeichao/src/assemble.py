@@ -1,13 +1,14 @@
-# 并入英文、检查缺译（无 content/en/ 时只出中文版），把 build/out_data.json 注入 src/template.html，输出 docs/index.html（成品，单文件）
-# 另出 build/artifact.html：去掉文档外壳的同一页面，用于更新 claude.ai 上的地图
+# 并入英文、检查缺译（无 content/en/ 时只出中文版），把 build/out_data.json 汇编成本卷的 source.json（单仓第 1 段的产物）
 #   python src/assemble.py           严格：有缺译或过期的英文就报错退出
 #   python src/assemble.py --draft   草稿：缺译、过期处临时显示中文，只给警告
+# source.json 是旧版页面里内嵌的 GEO、DATA，不含疆域与配色：疆域由统一疆域引擎推算（本卷的 engine.json），
+# 颜色由单仓的 global/palette.toml 定，新页面由单仓 core/web/ 生成（架构整理第三批起本卷不再出页面）。
 import json, sys
 from collections import Counter
 import config as C
 import i18n
-
-SHELL_END = '</body></html>'
+sys.path.insert(0, str(C.ROOT.parent.parent / 'core' / 'v1'))
+import legacy
 
 
 def check_english(geo, data, draft):
@@ -34,19 +35,9 @@ def main(draft=False):
     else:                                   # 第一轮只交中文：没有 content/en/ 时不查缺译，界面隐藏「中 | EN」
         D['DATA']['noen'] = 1
         print('  [英文] 暂无 content/en/，只出中文版')
-    tpl = (C.SRC / 'template.html').read_text(encoding='utf-8')
-    js = lambda o: json.dumps(o, ensure_ascii=False, separators=(',', ':'))
-    out = tpl
-    for k, v in (('__UCSS_LIGHT__', D['css_l']), ('__UCSS_DARK__', D['css_d']), ('__GEO__', js(D['GEO'])), ('__DATA__', js(D['DATA']))):
-        assert k in out, k
-        out = out.replace(k, v)
-    C.DOCS.mkdir(exist_ok=True)
-    (C.DOCS / 'index.html').write_text(out, encoding='utf-8', newline='\n')
-    (C.DOCS / '.nojekyll').write_text('', encoding='utf-8')
-    shell, body = out.split('\n', 1)
-    assert shell.startswith('<!doctype html>') and body.rstrip().endswith(SHELL_END)
-    (C.BUILD / 'artifact.html').write_text(body.rstrip()[:-len(SHELL_END)].rstrip() + '\n', encoding='utf-8', newline='\n')
-    print(f'  [页面] docs/index.html {len(out.encode()) // 1024} KB')
+    out = C.ROOT / 'source.json'
+    legacy.write_source(out, D['GEO'], D['DATA'], inline=False)    # 旧版页面的疆域环存在几何池 GEO.pool 里，新页面照旧
+    print(f'  [source.json] {out.stat().st_size // 1024} KB')
 
 
 if __name__ == '__main__':

@@ -6,10 +6,7 @@ ROOT = Path(__file__).resolve().parent.parent
 REPO = ROOT.parent.parent
 CONTENT = ROOT / "content"
 GEODATA = ROOT / "geodata"
-BUILD = ROOT / "build"
-DOCS = ROOT / "docs"
-TEMPLATE = ROOT / "src" / "template.html"
-OUT_HTML = DOCS / "index.html"
+BUILD = ROOT / "build"                # 中间产物；本卷的产物是 ROOT / "source.json"
 NE = REPO / "geodata" / "ne"
 
 EXT = (50.0, 2.0, 152.0, 62.0)      # 河湖、国界数据范围 [西, 南, 东, 北]

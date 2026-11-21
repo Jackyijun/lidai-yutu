@@ -6,74 +6,78 @@
 
 ## 一、直接看
 
-用浏览器打开 `docs/index.html` 即可，离线可用。
+单仓根目录构建后打开 **`docs/suitang/index.html`**：页面由单仓 `core/web/` 统一生成，数据、样式、脚本全部内嵌，不联网、不需要服务器。本目录自 2026-11 架构整理第三批起不再出页面。
 
 - 语言：地图右上角「中 | EN」切换（年表、对照表视图里在内容区右上角），选择会记在浏览器里；网址末尾加 `#en` 直接打开英文版。英文界面里地图只标英文，悬停说明、索引、年表、对照表在英文名后附注汉字原名；检索中英文都可以，英文不必打变音符号。
 
 ## 二、线上地址
 
-https://jackyijun.github.io/suitang-map/
+https://jackyijun.github.io/lidai-yutu/suitang/
+
+旧版（原仓库 `Jackyijun/suitang-map` 用本卷旧构建出的页面，保持原样）：https://jackyijun.github.io/suitang-map/
 
 ## 三、本地构建
 
-需要 Python 3.10 以上。
+在单仓根目录构建（Python 版本与依赖见单仓 README）：
 
 ```bash
-python -m venv .venv && source .venv/bin/activate      # Windows：.venv\Scripts\activate
-pip install -r requirements.txt
-python run.py                 # 全部重建，约 1 分钟，输出 docs/index.html
-python run.py --html          # 只改了 content/ 的归属或文字：沿用已算好的疆域，几秒钟
-python run.py --draft         # 英文有缺译或过期时也照样出页面（缺译处显示中文）；默认严格，会停下
-python run.py --open          # 构建后在浏览器打开
-python run.py --preview 669   # 另出该年疆域草图 build/preview-669.png
+python run.py suitang  # 本卷第 1 段 → 统一引擎重算疆域（engine.json）→ v1 数据 → docs/suitang/index.html
+python run.py --web    # 不重算，只由各卷的 source.json、engine.json 重建 v1 数据与新页面
 ```
 
-同一份输入重建，`docs/index.html` 逐字节相同（随机种子固定）。
+本目录的 `run.py` 是第 1 段：由 `content/` 的史料与 `geodata/` 的底图写出 **`source.json`**（节点归属、文字、条目与底图，不含疆域与配色，入库），单仓由它转成 v1 数据。疆域由统一疆域引擎（单仓 `core/engine/`）按各节点的归属推算，结果存在本目录的 `engine.json`（入库）；颜色由单仓 `global/palette.toml` 定；页面由单仓 `core/web/` 生成。本卷原来的疆域推算、配色与页面模板 2026-11 架构整理第三批起退役。
 
-构建完成后，把 `docs/index.html` 一起提交并推送到 `main`，线上网页会自动更新。
+| 命令（本目录） | 作用 |
+|---|---|
+| `python run.py` | 检查底图 → 底图（`build/geo_base.json`）→ 各节点归属与条目 → 汇编 `source.json` |
+| `python run.py --html` | 已有底图就不重做，只重新汇编（只改了 `content/` 的文字或英文译文时用） |
+| `python run.py --draft` | 英文有缺译或过期时也照常汇编（缺译处显示中文）；默认严格，会停下 |
+
+改了 `content/` 以后，从单仓根目录 `python run.py suitang` 重建这一卷（第 1 段、疆域、页面一次做完）。只在本目录跑 `run.py` 不会更新 `engine.json` 和页面；归属变了而疆域没重算时，单仓 `python run.py --web` 发现引擎输入的指纹对不上，会停下。
+
+同一份输入，`source.json` 逐字节一致，可以用 git 追踪改动。
 
 ## 四、目录结构
 
 ```
-suitang-map/
-├── run.py              一键构建
-├── requirements.txt    numpy、scipy、shapely、scikit-image、matplotlib
-├── README.md           说明（中文，GitHub 首页默认显示）
+eras/suitang/
+├── run.py              第 1 段构建入口：→ source.json
+├── era.toml            卷的基本信息（卷次、首屏、统一引擎的设置、衔接、页面文字）
+├── source.json         ★ 第 1 段的产物（入库）：节点归属、文字、条目与底图，单仓的 v1 数据由它转出
+├── engine.json         统一疆域引擎算出的各节点疆域（入库；单仓 python run.py suitang 时重算）
+├── short.tsv           时间轴短标题
+├── README.md           说明（中文）
 ├── README.en.md        说明（英文）
-├── docs/
-│   ├── index.html      成品，单文件
-│   └── .nojekyll
 ├── content/            史料（手写）
 │   ├── seeds.py        465 个归属点：州郡城邑（显示）与仅参与分区的辅助点，含今地与名称沿革
-│   ├── units.py        政权、都护府、羁縻府州、部族：名称、颜色、按语
+│   ├── units.py        政权、都护府、羁縻府州、部族：名称、按语
 │   ├── snaps.py        26 个时间节点：标题、概述、各单位所领州郡、治所、别名
 │   ├── items.py        都城、战役、关隘、事件、山川按语、诸族、秦王征战路线
-│   ├── frontier.py     全图外缘（北疆按主流唐极盛图手绘）
+│   ├── frontier.py     全图外缘（北疆按主流唐极盛图手绘；统一引擎按它定推算范围）
 │   └── en/             英文版：与上面各文件对应的译文（JSON）、zh.lock.json 中文指纹、GLOSSARY.md 译名体例
 ├── src/
-│   ├── config.py       全部路径与可调参数
+│   ├── config.py       路径与底图范围
 │   ├── fetch_data.py   校验 geodata/，缺失时从 GitHub 下载固定版本
-│   ├── build.py        算疆域，输出 build/*.json
+│   ├── build.py        底图与汇编，输出 build/*.json
 │   ├── basemap.py      底图：陆地、湖泊、河流、运河、荒漠、今国界、今省界
-│   ├── territory.py    疆域算法（见下）
-│   ├── compile_data.py 各节点归属 → 疆域多边形 → GEO / DATA
-│   ├── proj.py         Albers 等积圆锥投影（与页面一致）
+│   ├── compile_data.py 各节点归属、底图、条目 → GEO / DATA
 │   ├── i18n.py         英文版：列出需要翻译的条目、检查缺译与过期、把译文并入数据
-│   ├── assemble.py     并入英文、检查缺译，注入模板，输出 docs/index.html
-│   └── template.html   前端
+│   └── assemble.py     并入英文、检查缺译，汇编成 source.json
 ├── geodata/            底图，随仓库附带，离线可构建
 ├── tools/
-│   ├── i18n.py         英文版维护：status / todo / lock / table
-│   ├── preview.py      matplotlib 疆域草图
-│   └── shot.js         可选：无头浏览器截图（需 Node 与 playwright）
+│   └── i18n.py         英文版维护：status / todo / lock / table
 └── build/              中间产物
 ```
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/suitang/`）的疆域，第 7 步（2026-11-17）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py suitang` 时自动重算）；归属、文字、条目仍出自本卷。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+> 单仓新页面（`docs/suitang/`）的疆域，第 7 步（2026-11-17）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py suitang` 时自动重算）；归属、文字、条目仍出自本卷。
 
-**疆域算法**（`src/territory.py`，参数在 `src/config.py`）：
+**第 1 段**：`build.py` 检查底图 → `basemap.py` 出底图 → `compile_data.py` 按 `content/snaps.py` 定各节点的归属、汇编条目 → `assemble.py` 并入英文，写成 `source.json`。
+
+> 下面讲的疆域推算、配色与页面模板是本卷旧构建的做法，2026-11 架构整理第三批起已从本目录删去（第 1 段只出 `source.json`），留作说明旧版页面怎么来的。
+
+**旧构建的疆域算法**（原 `src/territory.py`，参数原在 `src/config.py`）：
 
 1. **栅格**：东经 46°—148°、北纬 3°—60°，每格约 6.4 km（0.057°）。海与面积 0.15 平方度以上的湖不可通行。
 2. **代价**：平地 1，加 ETOPO20 坡度与高原海拔；山脉脊线烧出高斯形高代价带（主干峰值 +8，次要 +3.5），手绘脊线先加一点横向摆动；江、河、淮、汉与乌浒水、药杀水另加代价；最后乘 ±38% 的多尺度平滑噪声。
@@ -83,15 +87,16 @@ suitang-map/
 6. **成面**：界线网络成面，按格心归类，零星碎块并入相邻一方；再加一层平滑位移场（约 1—2 格，两种尺度），让平原上的界线带上河曲一样的小弯；最后用 GEOS `coverage_simplify` 整体简化。相邻势力格共用同一条边，无缝无叠。
 7. **按节点合并**：`compile_data.py` 按各节点的归属把势力格并成单位（政权、都护府）与政权的疆域，注记取最大陆块的不可达极点；相邻节点没变的几何只存一份（`GEO.pool`）。
 
-**页面**：`template.html` 是唐宋之际形势图的前端，按《历史形势图统一规范》改写，中英切换的做法同《宋辽夏金元形势图》；`assemble.py` 先用 `src/i18n.py` 并入英文、检查缺译，再把 `__GEO__`、`__DATA__`、`__UCSS_LIGHT__`、`__UCSS_DARK__` 四个占位符换成数据，输出单文件。
+**旧版页面**：原 `template.html` 是唐宋之际形势图的前端，按《历史形势图统一规范》改写，中英切换的做法同《宋辽夏金元形势图》；原 `assemble.py` 先用 `src/i18n.py` 并入英文、检查缺译，再把 `__GEO__`、`__DATA__`、`__UCSS_LIGHT__`、`__UCSS_DARK__` 四个占位符换成数据，输出单文件。
 
 ## 六、常见修改
 
-- **改某个节点的归属**：编辑 `content/snaps.py` 里该节点的 `own`（单位 → 州郡列表，`#HB` 之类是地区简写），然后 `python run.py --html`。
-- **加一个州郡或辅助点**：在 `content/seeds.py` 加一行（`名|今地|经度|纬度|类型|地区|名称沿革`，类型 z 州府、c 城邑、r 仅参与分区），再在 `snaps.py` 里分配归属，然后 `python run.py`（势力格要重算）。新的州郡名、今地要在 `content/en/seeds.json` 补英文。
-- **改按语、战役、事件**：编辑 `content/items.py` 或 `units.py`，在 `content/en/` 对应的 JSON 里同步改英文，`python tools/i18n.py lock` 后 `python run.py --html`。
-- **改北疆外缘**：编辑 `content/frontier.py` 的 `NORTH` 折线（经纬度），`python run.py`。
-- **改样式或交互**：编辑 `src/template.html`，`python run.py --html`。界面文字的英文写在模板里（`LZ(中文, 英文)`）。
+- **改某个节点的归属**：编辑 `content/snaps.py` 里该节点的 `own`（单位 → 州郡列表，`#HB` 之类是地区简写），然后在单仓根目录 `python run.py suitang`（疆域要重算）。
+- **加一个州郡或辅助点**：在 `content/seeds.py` 加一行（`名|今地|经度|纬度|类型|地区|名称沿革`，类型 z 州府、c 城邑、r 仅参与分区），再在 `snaps.py` 里分配归属，然后在单仓根目录 `python run.py suitang`（疆域要重算）。新的州郡名、今地要在 `content/en/seeds.json` 补英文。
+- **改按语、战役、事件**：编辑 `content/items.py` 或 `units.py`，在 `content/en/` 对应的 JSON 里同步改英文，`python tools/i18n.py lock` 后本目录 `python run.py --html`，再在单仓根目录 `python run.py --web`。
+- **改北疆外缘**：编辑 `content/frontier.py` 的 `NORTH` 折线（经纬度），然后在单仓根目录 `python run.py suitang`（统一引擎按它定推算范围）。
+- **改样式或交互**：页面模板在单仓 `core/web/`（各卷共用，各卷不同的文字与开关写在 `era.toml` 的 `[web]`），改后在单仓根目录 `python run.py --web`。
+- **改颜色**：在单仓 `global/palette.toml` 里改这个政权（按全局 ID，见 `global/polities.jsonl`）的浅、深两色，再在单仓根目录 `python run.py --web`；同一政权在各卷同色。
 
 ## 七、英文版
 
@@ -113,24 +118,15 @@ suitang-map/
 1. `python tools/i18n.py status` 看有几条缺译、过期；
 2. `python tools/i18n.py todo` 列出这些条目的中文，到对应 JSON 里补写或改写英文；
 3. `python tools/i18n.py lock` 记下新的中文指纹；
-4. `python run.py --html` 重新拼装（严格模式，缺译会报错）。
+4. `python run.py --html` 重新汇编 `source.json`（严格模式，缺译会报错），再在单仓根目录 `python run.py --web`。
 
 `python tools/i18n.py table` 导出全部中英对照到 `build/i18n-review.tsv`，便于审校。
 
 ## 八、调参
 
-都在 `src/config.py`：
+疆域的推算参数不在本卷：统一引擎的通用参数在单仓 `core/engine/config.toml`，本卷的外缘、推算范围、简化容差等写在 `era.toml` 的 `[engine]`；颜色在单仓 `global/palette.toml`。本卷原来的栅格、代价、平滑与配色参数 2026-11 架构整理第三批起随旧构建一并退役。
 
-| 参数 | 作用 |
-| --- | --- |
-| `PX` | 格边长；越小界线越细，构建越慢 |
-| `RIDGE_MAJOR` / `RIDGE_MINOR` / `RIDGE_W` | 山脊带的高度与宽度；越高界线越贴山脊 |
-| `BORDER_RIVERS` | 界河及其加价 |
-| `NOISE_AMP` / `NOISE_SCALES` | 代价噪声；越大界线越曲折 |
-| `WARP` | 位移场的尺度与幅度（格） |
-| `SMOOTH_SIGMA` / `LAPLACE` | 描界前的高斯平滑与描界后的网络平滑 |
-| `SIMPLIFY` | 覆盖简化容差；越大文件越小，界线越折 |
-| `SEED` | 随机种子 |
+本卷 `src/config.py` 里只剩路径与底图范围；全图外缘仍是 `content/frontier.py`。
 
 ## 九、资料与可靠程度
 
@@ -138,4 +134,4 @@ suitang-map/
 
 英文译名按 `content/en/GLOSSARY.md` 的体例：汉字圈地名用拼音，汉字圈以外用当时当地名称的通行英文写法，日期照写农历月序、不换算公历。
 
-底图：Natural Earth 5.1.2（陆地、湖泊、河流、今国界）、ETOPO20 地形（matplotlib/basemap 1.4.1 附带），河湖运河、今省界与部分山川关隘条目沿用《唐宋之际形势图》。
+底图：Natural Earth 5.1.2（陆地、湖泊、河流、今国界），河湖运河、今省界与部分山川关隘条目沿用《唐宋之际形势图》。

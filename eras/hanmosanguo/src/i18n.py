@@ -60,7 +60,8 @@ def seed_jnames(s):
 
 
 def zhou_names(geo):
-    return sorted({z[0] for s in geo["snaps"] for z in (s.get("zl") or [])})
+    """各节点用到的州名（build.py 写在 geo["zhou"]：按 src/zhou.py 的划法，凡有郡国落在其中的州；州名注记由统一引擎标）"""
+    return geo["zhou"]
 
 
 def required(geo, data):

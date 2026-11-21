@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""往返校验：成品页面 → v1 → 旧格式，必须与原来的 GEO、DATA、疆域色完全相同。"""
+"""往返校验：eras/<短名>/source.json → v1 → 旧格式，除疆域几何与配色外必须与 source.json 完全相同。
+
+source.json 没有疆域几何（秦汉卷除外）与疆域色：转回来的旧格式里，几何来自 v1（这时还是空的）、颜色来自 v1 的政权
+（这时还没套 global/palette.toml），所以比之前把 source.json 里没有的几何键、DATA.colors 去掉。"""
 import json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -31,14 +34,19 @@ def diff(a, b, path="", out=None, limit=8):
 
 
 def check(slug):
-    html = (ROOT / "eras" / slug / "legacy.html").read_text(encoding="utf8")
-    G, D, colors = legacy.extract(html)
-    b = legacy.to_v1(slug, G, D, colors)
+    G, D, form = legacy.load(slug)
+    b = legacy.to_v1(slug, G, D, form.get("inline"))
     b = json.loads(json.dumps(b, ensure_ascii=False))       # 经过一次 JSON，确保可序列化
-    G2, D2, c2 = legacy.from_v1(b)
+    G2, D2, _ = legacy.from_v1(b)
+    for sn, sn2 in zip(G["snaps"], G2["snaps"]):
+        for k in legacy.GEOM_KEYS:
+            if k not in sn:
+                sn2.pop(k, None)
+    if "pool" not in G:
+        G2.pop("pool", None)
+    if "colors" not in D:
+        D2.pop("colors", None)
     problems = diff(G, G2, "GEO") + diff(D, D2, "DATA")
-    if b["_legacy"]["fam"] == "B" and colors != c2:
-        problems.append("疆域色不同")
     return b, problems
 
 

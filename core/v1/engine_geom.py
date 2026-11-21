@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
-"""第 7 步：旧卷的页面疆域改由统一疆域引擎出（core/engine/）。
+"""各卷的页面疆域由统一疆域引擎出（core/engine/，第 7 步起）。
 
-era.toml 的 [engine] 写 geometry = "engine" 的卷，生成 v1 时把 legacy.html 里旧引擎画的几何（各节点 u / ul / pu / pul）
-换成 eras/<短名>/engine.json——那是 core/engine/build.py 的结果，入库，所以 python run.py --web 不必重算疆域，结果也与库版本无关。
-归属、文字、条目仍取 legacy.html。
+era.toml 的 [engine] 写 geometry = "engine" 的卷（秦汉以外的八卷），生成 v1 时把疆域（各节点 u / ul / pu / pul，
+战国卷的秦郡 ext j、汉末卷的州界 ext zb / zl，唐宋、宋元的重要地域）填成 eras/<短名>/engine.json——那是
+core/engine/build.py 的结果，入库，所以 python run.py --web 不必重算疆域，结果也与库版本无关。归属、文字、条目取
+各卷第 1 段的 source.json，那里面没有疆域（架构整理第三批起；此前取 legacy.html，换掉旧构建画的几何）。
 
 engine.json 记着引擎输入的指纹（core/engine/data.py 的 fingerprint）。归属点或节点归属改了、指纹对不上时：
   strict = True（默认）  停下，提示先运行 python run.py <短名> 重算；
-  strict = False         照用 legacy.html 的几何并提示（run.py 在重算之前先出一遍 v1 时用）。
+  strict = False         这一遍不带疆域并提示（run.py 在重算之前先出一遍 v1 给引擎读时用）。
 
 衔接节点（global/junctions.toml 里 shared 的一年）：
   - 本卷是准的一方：照用本卷引擎的结果；
-  - 对方是准、对方也已换到引擎：在对方的推算范围（手绘外缘，或可达代价卷的 box 减 EXCLUDE）以内照搬对方引擎的几何，
+  - 对方是准：在对方的推算范围（手绘外缘，或可达代价卷的 box 减 EXCLUDE）以内照搬对方引擎的几何，
     范围以外用本卷的，跨线的同一单位两部分合并；对方的几何先裁到本卷自己的推算范围，
     本卷范围以外对方才有的单位不照搬。对方的单位依次按同键、同全局 ID（global/polities.jsonl）、
     所属政权（对方政权层几何过半落在哪个本卷单位）对上本卷的单位，对不上的那块用本卷自己的几何；
-  - 对方是准、还没换到引擎：这个节点整个保留 legacy.html 里的几何（旧构建本来就照搬了对方）。
+    对方的 engine.json 缺了时（engine.json 入库，一般不会缺）：strict 停下，否则这一遍先用本卷自己的。
 
-区划界（汉末卷的州界，节点 ext 的 zb / zl）：引擎按 era.toml [engine] 的 zones 分块时一并换成引擎的，否则照旧。
-
-重要地域（唐宋、宋元的燕云十六州，base.regions）：范围线、分区之间的分界线与分区注记，连同地域条目的注记位置
-（lab / anc），换成引擎按地域起始年那个节点的分区描的（engine.json 的 regions）。
+区划界（汉末卷的州界，节点 ext 的 zb / zl）：引擎按 era.toml [engine] 的 zones 分块时出。
 
 春秋、战国：春秋共主着色的「周天下」就是政权层「周」（pu），同其他卷一并换；战国卷的秦郡界（ext j）取引擎按郡治
 细分秦的各块（[engine] sub，结果里的 zp）。以战国卷为准的秦汉卷前212 节点由秦汉卷自己的构建照搬
 （eras/qinhan/src/build.py 的 zg_engine_212）。
+
+重要地域（唐宋、宋元的燕云十六州，base.regions）：范围线、分区之间的分界线与分区注记，连同地域条目的注记位置
+（lab / anc），换成引擎按地域起始年那个节点的分区描的（engine.json 的 regions）。各键插在旧格式原来的位置，页面里的次序不变。
 """
 import json
 import sys
@@ -165,12 +166,15 @@ def merge_node(slug, b, mine, eng_mine, owner, theirs):
     ogid = {k: G.get(f"{owner}:{k}") for k in okeys.values()}
     PU = {p: shape_of(oe["geom"][g]) for p, g in on.get("pu", {}).items()}   # 对方多单位政权的合并疆域
 
+    keys_all = []
+
     def okey_all():
-        """对方 v1 的单位表（序号 → 键）；引擎结果只记了画出来的单位，多单位政权本身的键要从这里取"""
-        f = ROOT / "build" / "v1" / f"{owner}.json"
-        if not f.exists():
-            sys.exit(f"衔接节点：缺 build/v1/{owner}.json，先构建 {owner}")
-        return [p["key"] for p in json.loads(f.read_text(encoding="utf8"))["polities"]]
+        """对方的单位表（序号 → 键）；引擎结果只记了画出来的单位，多单位政权本身的键要从这里取。
+        由对方的 source.json 转出（与它 v1 的政权次序相同），不靠 build/v1：全新克隆第一次构建时那里还是空的"""
+        if not keys_all:
+            import legacy
+            keys_all.extend(p["key"] for p in legacy.bundle_of(owner)["polities"])
+        return keys_all
 
     def pol_of(u, a):
         """对方单位 u 所属的政权（取包含它最多的合并疆域），无则 None"""
@@ -211,8 +215,24 @@ def merge_node(slug, b, mine, eng_mine, owner, theirs):
 
 
 # ---------------- 换几何 ----------------
+def put_after(d, after, kv):
+    """把 kv 的各键写进 d、放在 after 键之后（after 不在 d 里就放在最后），其余键的次序不变：
+    source.json 里没有这些几何键，补上后与旧格式的次序一致，页面逐字节不变"""
+    out = {}
+    for k, v in d.items():
+        if k in kv:
+            continue
+        out[k] = v
+        if k == after:
+            out.update(kv)
+    if after not in d:
+        out.update(kv)
+    d.clear()
+    d.update(out)
+
+
 def apply(slug, b, strict=True, log=print):
-    """把 b（v1 数据包，已由 legacy.html 转出）的疆域换成引擎的。返回记进 meta.overlay 的一句话；本卷没换到引擎则 None"""
+    """把 b（v1 数据包，由 source.json 转出）的疆域填成引擎的。返回记进 meta.overlay 的一句话；本卷不由引擎出几何（秦汉卷）则 None"""
     if not migrated(slug):
         return None
     import data as DA
@@ -227,10 +247,10 @@ def apply(slug, b, strict=True, log=print):
     if why:
         if strict:
             sys.exit(f"{slug}：{why}，先运行 python run.py {slug} 重算疆域")
-        log(f"    {slug}：{why}；这一遍先用 legacy.html 的几何")
+        log(f"    {slug}：{why}；这一遍先不带疆域")
         return None
 
-    old_pool, pool, seen = b["geom"], [], {}
+    pool, seen = [], {}
 
     def put(rr):
         k = json.dumps(rr, separators=(",", ":"))
@@ -242,19 +262,15 @@ def apply(slug, b, strict=True, log=print):
     notes = []
     for i, (n, en) in enumerate(zip(b["nodes"], e["nodes"])):
         owner, theirs = J.get(i, (None, None))
-        keep = owner and (not migrated(owner) or not path_of(owner).exists())
-        ext = n.get("ext") or {}
-        if "zb" in ext:                                       # 区划界（汉末卷的州界）：引擎有就换，没有照旧（序号换到新的几何池）
-            if "zb" in en and not keep:
-                ext["zb"], ext["zl"] = put(e["geom"][en["zb"]]), en["zl"]
-            else:
-                ext["zb"] = put(old_pool[ext["zb"]])
-        if keep:                                              # 对方为准、还没换（或还没算出 engine.json）：整节点保留旧几何
-            n["u"] = {k: put(old_pool[g]) for k, g in n["u"].items()}
-            n["pu"] = {k: put(old_pool[g]) for k, g in n.get("pu", {}).items()}
-            notes.append(f"{n['t'] // 12} 年衔接节点保留旧几何（{owner} 为准，尚未换到引擎）")
-            continue
-        if owner:                                             # 对方为准、也已换：范围内照搬对方
+        if owner and not (migrated(owner) and path_of(owner).exists()):
+            if strict:
+                sys.exit(f"{slug}：{n['t'] // 12} 年衔接节点以{owner}为准，缺 eras/{owner}/engine.json，先运行 python run.py {owner}")
+            log(f"    {slug}：{n['t'] // 12} 年衔接节点以{owner}为准，{owner}还没有 engine.json，这一遍先用本卷的")
+            owner = None
+        if "zb" in en:                                        # 区划界（汉末卷的州界）
+            ext = n.setdefault("ext", {})
+            ext["zb"], ext["zl"] = put(e["geom"][en["zb"]]), en["zl"]
+        if owner:                                             # 对方为准：范围内照搬对方
             geoms, on, oe, ogid = merge_node(slug, b, i, e, owner, theirs)
             u, ul = {}, {}
             for k, (g, a_in, a_out) in geoms.items():
@@ -293,6 +309,7 @@ def apply(slug, b, strict=True, log=print):
         n["ul"] = dict(en["ul"])
         n["pu"] = {k: put(e["geom"][g]) for k, g in en["pu"].items()}
         n["pul"] = dict(en["pul"])
+        ext = n.get("ext") or {}
         if "j" in ext:                                        # 秦郡（战国卷）：引擎按郡治细分秦的各块（zp）；环直接写在节点里
             ext["j"] = {k: e["geom"][g] for k, g in en.get("zp", {}).items()}
     RB, RE = (b.get("base") or {}).get("regions", []), e.get("regions", [])
@@ -300,10 +317,9 @@ def apply(slug, b, strict=True, log=print):
         sys.exit(f"{slug}：engine.json 的重要地域与本卷对不上，先运行 python run.py {slug} 重算疆域")
     byi = {it["i"]: it for it in b["items"]}
     for R, E in zip(RB, RE):                                  # 重要地域（燕云十六州）：范围线、分界线与注记换成引擎的
-        R["rings"] = E["rings"]
+        put_after(R, "y1" if "y1" in R else "y0", {"rings": E["rings"]})
         for g, eg in zip(R["groups"], E["groups"]):
-            g["lab"], g["lines"] = eg["lab"], eg["lines"]
-        it = byi[R["it"]]
-        it["lab"], it["anc"] = E["lab"], E["lab"][:2]
+            put_after(g, "y0", {"lab": eg["lab"], "lines": eg["lines"]})
+        put_after(byi[R["it"]], "members", {"anc": E["lab"][:2], "lab": E["lab"]})
     b["geom"] = pool
     return "疆域：统一引擎（eras/" + slug + "/engine.json）" + ("；" + "；".join(notes) if notes else "")

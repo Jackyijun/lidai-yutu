@@ -3,7 +3,7 @@
 
   python src/basemap.py        生成 geodata/base.json（入库；底图不常改，平时构建不重跑）
 
-中国本部（东经 72—136°、北纬 14—55°）的河湖、山川条目沿用汉末卷（读 eras/hanmosanguo/legacy.html），
+中国本部（东经 72—136°、北纬 14—55°）的河湖、山川条目沿用汉末卷（读 eras/hanmosanguo/source.json），
 范围以外补 Natural Earth 1:10m。黄河下游分两道：西汉河道（取战国卷的「古黄河」）画到 11 年河决魏郡为止，
 此后是东汉河道（汉末卷的河道）；前132—前109 年另画瓠子决河南泛的一道。时间都是月序号（年 × 12 + 月 − 1）。
 """
@@ -56,7 +56,7 @@ def parts(g, kind):
 
 # ---------------- 汉末卷的底图与山川条目 ----------------
 def hanmo():
-    G, D, _ = legacy.extract((C.REPO / "eras" / "hanmosanguo" / "legacy.html").read_text(encoding="utf8"))
+    G, D, _ = legacy.load("hanmosanguo")
     return G, D
 
 
@@ -119,7 +119,7 @@ def rivers(G, remap, items):
             o["y0"] = 11 * 12
         out.append(o)
     # 西汉河道：战国卷的古黄河，到 11 年为止
-    G2, _, _ = legacy.extract((C.REPO / "eras" / "zhanguo" / "legacy.html").read_text(encoding="utf8"))
+    G2, _, _ = legacy.load("zhanguo")
     for r in G2["rivers"]:
         if (r.get("m") or "").startswith("古黄河"):
             out.append({"k": "major", "p": r["p"], "it": huang, "y1": 11 * 12 - 1})

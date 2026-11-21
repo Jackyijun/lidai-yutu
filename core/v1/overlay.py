@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """在新页面上改正的内容（规范第十九节第 3 步起）。
 
-各卷成品（eras/<短名>/legacy.html）保持原样，作为数据来源；build.py 转成 v1 后在这里套用改正，新页面由改正后的 v1 生成：
+各卷第 1 段的产物（eras/<短名>/source.json）保持原样，作为数据来源；build.py 转成 v1 后在这里套用改正，新页面由改正后的 v1 生成：
   · 坐标（apply_coords，build.py 在换引擎几何之前先套用）：条目点位（都城、关隘等）与归属点（州府等）按 global/places.jsonl 的城址。
     归属点是统一引擎的输入，疆域按改后的点重算；春秋、战国的归属点取自两卷共用的 content/seeds.txt，不进全局表，
     要改直接改那个文件，这里只改两卷的城邑条目；
@@ -217,8 +217,8 @@ def palette():
 
 
 def apply_palette(b, pal):
-    """按全局 ID 定政权配色；节点里逐年渐变的 col（两晋卷的高句丽、林邑）随之去掉。
-    每个政权都要在 palette.toml 里有颜色（第三批起各卷旧构建的贪心配色冻结进表、不再重算），缺了停下"""
+    """按全局 ID 定政权配色：各卷第 1 段不出颜色（架构整理第三批起；旧构建的贪心配色已冻结进表），
+    每个政权都要在 palette.toml 里有颜色，缺了停下。节点里逐年渐变的 col（两晋旧构建的高句丽、林邑）一并去掉"""
     import sys
     era = b.get("era", "")
     nogid = [p["key"] for p in b["polities"] if not p.get("gid")]
@@ -230,7 +230,7 @@ def apply_palette(b, pal):
     n, hit = 0, set()
     for i, p in enumerate(b["polities"]):
         c = pal[p["gid"]]
-        if list(p["color"]) != list(c):
+        if p["color"] is None or list(p["color"]) != list(c):
             p["color"] = list(c)
             n += 1
         hit.add(str(i))

@@ -8,9 +8,7 @@
 
 ## 一、直接看
 
-双击 **`docs/index.html`**，用任意现代浏览器（Chrome、Edge、Safari、Firefox）打开即可。
-
-这个文件约 1.5 MB，数据、样式、脚本全部内嵌：不联网、不需要服务器、不依赖任何外部库。可以直接拷到 U 盘、发给别人，或者放到自己的网站上。
+单仓根目录构建后打开 **`docs/tangsong/index.html`**：页面由单仓 `core/web/` 统一生成，数据、样式、脚本全部内嵌，不联网、不需要服务器。本目录自 2026-11 架构整理第三批起不再出页面。
 
 默认中文；点地图右上角的「EN」切到英文，网址末尾加 `#en` 可直接打开英文版。
 
@@ -18,101 +16,70 @@
 
 ## 二、线上地址
 
-https://jackyijun.github.io/tangsong-map/
+https://jackyijun.github.io/lidai-yutu/tangsong/
+
+旧版（原仓库 `Jackyijun/tangsong-map` 用本卷旧构建出的页面，保持原样）：https://jackyijun.github.io/tangsong-map/
 
 ---
 
 ## 三、本地构建
 
-改了史料内容（`content/`）或参数（`src/config.py`）之后才需要重新构建。需要 **Python 3.9 或更新版本**。
-
-**macOS / Linux**
+在单仓根目录构建（Python 版本与依赖见单仓 README）：
 
 ```bash
-cd tangsong-map
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python run.py --open
+python run.py tangsong  # 本卷第 1 段 → 统一引擎重算疆域（engine.json）→ v1 数据 → docs/tangsong/index.html
+python run.py --web     # 不重算，只由各卷的 source.json、engine.json 重建 v1 数据与新页面
 ```
 
-**Windows（PowerShell）**
+本目录的 `run.py` 是第 1 段：由 `content/` 的史料与 `geodata/` 的底图写出 **`source.json`**（节点归属、文字、条目与底图，不含疆域与配色，入库），单仓由它转成 v1 数据。疆域由统一疆域引擎（单仓 `core/engine/`）按各节点的归属推算，结果存在本目录的 `engine.json`（入库）；颜色由单仓 `global/palette.toml` 定；页面由单仓 `core/web/` 生成。本卷原来的疆域推算、配色与页面模板 2026-11 架构整理第三批起退役。
 
-```powershell
-cd tangsong-map
-py -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python run.py --open
-```
-
-完整构建约 1 分钟，完成后会用浏览器打开新生成的 `docs/index.html`。
-
-> 没有 Python？macOS 可用 `brew install python` 或到 python.org 下载；Windows 从 python.org 安装时勾选 “Add python.exe to PATH”。
-> PowerShell 若提示禁止运行脚本，先执行 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`，或者跳过虚拟环境，直接 `py -m pip install -r requirements.txt` 再 `py run.py --open`。
-
-| 命令 | 作用 |
+| 命令（本目录） | 作用 |
 |---|---|
-| `python run.py` | 底图缺失则下载 → 计算疆域 → 拼装 HTML |
-| `python run.py --html` | 只重新拼装 HTML（只改了 `src/template.html` 时用，不到 1 秒） |
-| `python run.py --draft` | 英文有缺译或过期时也照常生成（缺译处显示中文）；默认会报错停下，见“七、英文版” |
-| `python run.py --open` | 构建完后在浏览器中打开 |
-| `python run.py --preview 805,820` | 额外画出这几个节点的疆域草图到 `build/preview.png`，便于检查归属是否填错 |
-| `python tools/preview.py 895,907 100,125,20,42` | 只画草图，可指定经纬范围 |
+| `python run.py` | 底图缺失则下载 → 节点归属、底图与条目 → 汇编 `source.json` |
+| `python run.py --html` | 跳过前两步，只重新汇编（只改了英文译文时用） |
+| `python run.py --draft` | 英文有缺译或过期时也照常汇编（缺译处显示中文）；默认会报错停下，见“七、英文版” |
 | `python tools/snapcheck.py 903` | 不必跑完整构建，一秒列出某几个节点里每个单位领哪些州 |
 | `python tools/snapcheck.py --diff 存档.json` | 与先前用 `--dump` 存下的解析结果比对，补节点后确认原有节点没被带偏 |
 | `python tools/i18n.py status` | 查英文缺译、过期的条数 |
-| `python tools/screenshot.py` | （可选，需 playwright）无头浏览器截图并检查脚本错误 |
 
-压缩包里已经带了底图数据（`geodata/ne/`，约 31 MB），离线也能构建。如果删掉了，`run.py` 会自动从 GitHub 下载固定版本。
+改了 `content/` 以后，从单仓根目录 `python run.py tangsong` 重建这一卷（第 1 段、疆域、页面一次做完）。只在本目录跑 `run.py` 不会更新 `engine.json` 和页面；归属变了而疆域没重算时，单仓 `python run.py --web` 发现引擎输入的指纹对不上，会停下。
 
-同一环境下，同一份输入的构建结果逐字节一致，可以放心用 git 追踪改动。
+同一份输入，`source.json` 逐字节一致，可以用 git 追踪改动。
 
-想用本地服务器预览（可选，不是必需的）：
-
-```bash
-python -m http.server -d docs 8000
-# 浏览器打开 http://localhost:8000/
-```
-
-构建完成后，把 `docs/index.html` 一起提交并推送到 `main`，线上网页会自动更新。
+底图数据（`geodata/ne/`，指向单仓根目录 `geodata/ne/` 的符号链接）随仓库附带，离线也能构建；文件缺了，`run.py` 会从 GitHub 下载固定版本。
 
 ---
 
 ## 四、目录结构
 
 ```
-tangsong-map/
-├── run.py                 一键构建入口
-├── requirements.txt
-├── README.md              说明（中文，GitHub 首页默认显示）
+eras/tangsong/
+├── run.py                 第 1 段构建入口：→ source.json
+├── era.toml               卷的基本信息（卷次、首屏、统一引擎的设置、衔接、页面文字）
+├── source.json            ★ 第 1 段的产物（入库）：节点归属、文字、条目与底图，单仓的 v1 数据由它转出
+├── engine.json            统一疆域引擎算出的各节点疆域（入库；单仓 python run.py tangsong 时重算）
+├── short.tsv              时间轴短标题
+├── README.md              说明（中文）
 ├── README.en.md           英文说明
-├── docs/
-│   ├── index.html         ★ 成品，单文件（GitHub Pages 直接从 /docs 发布）
-│   └── .nojekyll          让 GitHub Pages 原样发布
 ├── content/               ★ 史料内容（手写，主要改这里）
 │   ├── seeds.txt          457 个点（312 州府、70 城邑、75 区域辅助点）：古名、经纬度、今地、名称沿革
 │   ├── snaps.txt          39 个时间节点：每个州在该年属哪个藩镇、哪个政权
 │   ├── units.py           143 个政权、藩镇、部族的名称与介绍
 │   ├── items.py           都城、战役、关隘、事件、诸族、山脉、水系、运河、荒漠、重要地域（燕云十六州）、行军路线
-│   ├── colors.lock.json   已发布单位的颜色锁（补节点、加单位不改动原有颜色）
 │   └── en/                英文译文（*.json）、中文指纹 zh.lock.json、译名体例 GLOSSARY.md
 ├── src/
-│   ├── config.py          ★ 全部可调参数（栅格、代价、平滑、配色……）
+│   ├── config.py          路径、底图来源与简化参数、首屏节点
 │   ├── fetch_data.py      下载 Natural Earth 底图
-│   ├── build.py           计算疆域，输出 build/geo.json、build/data.json
+│   ├── build.py           节点归属、底图与条目，输出 build/geo.json、build/data.json
 │   ├── snapdsl.py         解析 snaps.txt 的节点小语言（build.py 与 tools/snapcheck.py 共用）
 │   ├── i18n.py            并入英文、检查缺译与过期
-│   ├── assemble.py        把数据和英文注入模板，输出 docs/index.html
-│   └── template.html      前端：页面结构、样式、交互脚本
+│   └── assemble.py        并入英文、检查缺译，汇编成 source.json
 ├── geodata/
 │   ├── prov.json          今省界（简化）
 │   └── ne/                Natural Earth 1:10m GeoJSON
 ├── tools/
-│   ├── preview.py         matplotlib 疆域草图
 │   ├── i18n.py            英文维护：status / todo / lock / table
-│   ├── snapcheck.py       不构建也能查看、比对各节点的归属
-│   └── screenshot.py      playwright 截图检查
+│   └── snapcheck.py       不构建也能查看、比对各节点的归属
 └── build/                 中间产物（可随时删除）
 ```
 
@@ -120,13 +87,13 @@ tangsong-map/
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/tangsong/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py tangsong` 时自动重算）；归属、文字、条目仍出自本卷。外缘按可达代价定，推算范围同旧引擎的图幅（`era.toml` 的 `[engine]`）；979 年衔接节点在本卷范围内照搬宋元卷的引擎几何。阿里一线在 `content/seeds.txt` 里补了普兰、仲巴两个区域辅助点，朝鲜半岛以东补了郁陵岛一点（远洋小岛只认离有主地约 85 km 以内的，郁陵岛离岸约 130 km）。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+> 单仓新页面（`docs/tangsong/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py tangsong` 时自动重算）；归属、文字、条目仍出自本卷。外缘按可达代价定，推算范围同旧引擎的图幅（`era.toml` 的 `[engine]`）；979 年衔接节点在本卷范围内照搬宋元卷的引擎几何。阿里一线在 `content/seeds.txt` 里补了普兰、仲巴两个区域辅助点，朝鲜半岛以东补了郁陵岛一点（远洋小岛只认离有主地约 85 km 以内的，郁陵岛离岸约 130 km）。
 
 ```
 content/*.txt, *.py ─┐
-                     ├─► build.py ─► build/geo.json + data.json ─► assemble.py ─► docs/index.html
-geodata/ (底图) ─────┘                                              ▲    ▲
-                                              src/template.html ──┘    └── content/en/*.json
+                     ├─► build.py ─► build/geo.json + data.json ─► assemble.py ─► source.json ─► 单仓 core/：统一引擎疆域、v1、新页面
+geodata/ (底图) ─────┘                                              ▲
+                                                 content/en/*.json ─┘
 ```
 
 ### 1. 为什么疆域要“算”出来
@@ -136,7 +103,9 @@ geodata/ (底图) ─────┘                                            
 1. 只手写**州 → 藩镇 → 政权**的归属（`snaps.txt`）；
 2. 用一张“通行代价”地图让计算机推出州与州之间的分界，让分界尽量落在山脊和大河上。
 
-### 2. `build.py` 的步骤
+> 下面讲的疆域推算、配色与页面模板是本卷旧构建的做法，2026-11 架构整理第三批起已从本目录删去（第 1 段只出 `source.json`），留作说明旧版页面怎么来的。
+
+### 2. 旧构建 `build.py` 的步骤
 
 1. **读种子**：`seeds.txt` 里 457 个点。类型 `z` 是州府，`c` 是城邑或外域地名，`r` 是只用来占地、不在图上显示的区域辅助点（如“羌塘”“西伯利亚1”）。
 2. **解析时间节点**：`snaps.txt` 是一个小型声明式语言（语法见下文）。每个 `@年份` 块继承上一节点的全部归属，只写变化的部分。
@@ -167,7 +136,7 @@ geodata/ (底图) ─────┘                                            
    - 唐宋黄河故道、古济水、淮河古下游、运河是手绘折线，郑州以东的今黄河下游画成虚线。
    - 坐标 ×100 取整后差分编码。底图加 39 期疆域合计约 1 MB（原始底图 31 MB）。
 
-### 3. 前端（`src/template.html`）
+### 3. 旧版前端（`src/template.html`）
 
 - **零依赖**：原生 JavaScript + SVG，无框架、无地图库。
 - **投影**：Albers 等积圆锥投影，标准纬线 25°N、47°N，中心 104°E、35°N。
@@ -192,7 +161,7 @@ geodata/ (底图) ─────┘                                            
 - **中 / 英**：地图右上角切换，选择记在浏览器里；网址加 `#en` 直接打开英文。英文模式下地图只标英文，悬停说明、索引、年表、对照表在英文名后附小号汉字原名；英文注记按实际字宽避让，长国名在疆域内折成两行。
 - **主题**：颜色全部是 CSS 变量，跟随系统深浅色。每个单位的颜色是 `--u-<序号>`，由 `assemble.py` 注入。
 
-### 4. `assemble.py`
+### 4. 旧版 `assemble.py`
 
 先检查英文：有缺译或过期（中文改过而英文没跟着改）就报错停下，加 `--draft` 才放行。再把英文并入数据（政权 `ne`、州府 `ne`/`mode`、条目 `e{…}`、节点 `erae`/`te`/`de`），前端按当前语言取字。
 
@@ -212,7 +181,7 @@ geodata/ (底图) ─────┘                                            
 
 1. 在 `seeds.txt` 加一行：`宁州 107.92 35.50 甘肃宁县`
 2. 在 `snaps.txt` 的 `@755` 块里把它分给某个单位（第一个节点必须给每个种子定归属，否则构建时会打印 `unassigned` 警告）
-3. 运行 `python run.py --preview 755`，确认疆域没有异常
+3. 从单仓根目录 `python run.py tangsong`，打开 `docs/tangsong/index.html` 看 755 年的疆域有没有异常
 
 **州名改名**：在 `seeds.txt` 该行加 `N=0:旧名,年份:新名`，如 `N=0:汴州,907:开封府`。
 
@@ -233,9 +202,9 @@ geodata/ (底图) ─────┘                                            
 
 **边界不该翻过某座山**：在 `items.RANGES` 里加这条山脉的脊线坐标，并把最后一位设为 `1`（主干，代价更高）。
 
-**改颜色**：在 `content/colors.lock.json` 里改该单位的 OKLCH 三个数，或删掉那一行让它重新选色；`src/config.py` 里的 `PRESET_COLORS`、`PALETTE_LEVELS` 只影响不在锁里的单位。
+**改颜色**：在单仓 `global/palette.toml` 里改这个政权（按全局 ID，见 `global/polities.jsonl`）的浅、深两色，再在单仓根目录 `python run.py --web`；同一政权在各卷同色。
 
-**只改页面样式或交互**：编辑 `src/template.html`，然后运行 `python run.py --html`。
+**改页面样式或交互**：页面模板在单仓 `core/web/`（各卷共用，各卷不同的文字与开关写在 `era.toml` 的 `[web]`），改后在单仓根目录 `python run.py --web`。
 
 **改了中文以后**：对应的英文要一起改（见“七、英文版”），否则构建会报“过期”停下。
 
@@ -287,18 +256,11 @@ python run.py --html
 
 ---
 
-## 八、调参（`src/config.py`）
+## 八、调参
 
-| 参数 | 默认 | 作用 |
-|---|---|---|
-| `FIRST` | 820 | 打开网页时显示的时间节点 |
-| `RES` | 0.08 | 栅格分辨率（°）。调小更精细，计算时间约按平方增长 |
-| `COST_MAJOR_RANGE` | (9.0, 0.28) | 主干山脉的代价峰值与影响半径 |
-| `COST_YANGTZE` 等 | — | 大河的阻隔强度 |
-| `MAX_REACH` | 7.5 | 超过此代价距离的格子算无主地 |
-| `SMOOTH_SIGMA` | 1.15 | 边界平滑程度 |
-| `SIMPLIFY_TERR` | 0.025 | 边界折线简化（越大越粗略、文件越小） |
-| `PRESET_COLORS` | — | 固定色的政权（OKLCH） |
+疆域的推算参数不在本卷：统一引擎的通用参数在单仓 `core/engine/config.toml`，本卷的外缘、推算范围、简化容差等写在 `era.toml` 的 `[engine]`；颜色在单仓 `global/palette.toml`。本卷原来的栅格、代价、平滑与配色参数 2026-11 架构整理第三批起随旧构建一并退役。
+
+本卷 `src/config.py` 里只剩路径、底图来源与简化参数，以及首屏节点 `FIRST`（打开网页时显示的时间节点，默认 820）。
 
 ---
 

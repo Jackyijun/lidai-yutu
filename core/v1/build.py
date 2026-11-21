@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-"""v1 数据包：成品页面 → v1（附全局 ID）→ build/v1/<短名>.json（规范第十九节第 2 步）。
+"""v1 数据包：各卷第 1 段的产物 eras/<短名>/source.json → v1（附全局 ID）→ build/v1/<短名>.json（规范第十九节）。
 
   python core/v1/build.py              各卷全部
   python core/v1/build.py songyuan     只做这几卷
-  python core/v1/build.py --lenient    疆域已换到统一引擎的卷，eras/<短名>/engine.json 过期时先用旧几何、不停下（run.py 重算前用）
+  python core/v1/build.py --lenient    eras/<短名>/engine.json 过期或还没有时不停下，这一遍先不带疆域（run.py 重算疆域之前用：
+                                       引擎读的就是这一遍的归属）
 
 每一卷：
-  1. 往返校验：v1 转回旧格式，必须与成品里的 GEO、DATA、疆域色完全相同；
+  1. 往返校验：v1 转回旧格式，除疆域几何与配色外必须与 source.json 完全相同；
   2. 核对 eras/<短名>/era.toml（时间精度、节点数、首屏节点）与数据一致；
   3. 按 global/ 各表给政权、地点、山川条目附上全局 ID（字段 gid）；
   4. 坐标改正（core/v1/overlay.py 的 apply_coords：条目点位与归属点，按全局地点表的城址）；
-  5. 疆域已换到统一引擎的卷（era.toml [engine] geometry = "engine"，第 7 步）：几何换成 eras/<短名>/engine.json（core/v1/engine_geom.py），
-     它是按改后的归属点算的；
+  5. 疆域换成 eras/<短名>/engine.json（core/v1/engine_geom.py），它是按改后的归属点算的；秦汉卷的疆域在它自己的 source.json 里；
   6. 其余改正（core/v1/overlay.py：英文译名、山脉改画、标了 step = 3 的内容、时间轴短标题、全局配色、大漠），记在 meta.overlay。
 global/ 各表与 build/v1/fixes.json 须先由 core/v1/registry.py 生成；本脚本只读不写。build/ 不入库。
 """

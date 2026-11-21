@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-"""把 build/geo.json、build/data.json、content/en/ 的英文和每个单位的颜色注入 src/template.html，
-生成一个不依赖任何外部文件的 docs/index.html。
+"""把 build/geo.json、build/data.json 与 content/en/ 的英文汇编成本卷的 source.json（单仓第 1 段的产物）。
 
   python src/assemble.py           严格：有缺译或过期的英文就报错退出
   python src/assemble.py --draft   草稿：缺译、过期处临时显示中文，只给警告
+
+source.json 是旧版页面里内嵌的 GEO、DATA，不含疆域与配色：疆域由统一疆域引擎推算（本卷的 engine.json），
+颜色由单仓的 global/palette.toml 定，新页面由单仓 core/web/ 生成（架构整理第三批起本卷不再出页面）。
 """
 import json, sys
 from collections import Counter
@@ -11,14 +13,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config as C
 import i18n
-
-HEAD = """<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>[hidden]{display:none!important}</style>
-"""
+sys.path.insert(0, str(C.ROOT.parent.parent / "core" / "v1"))
+import legacy
 
 def check_english(geo, data, draft):
     missing, stale, unlocked = i18n.check(geo, data)
@@ -42,23 +38,8 @@ def main():
     data = json.loads((C.BUILD / "data.json").read_text(encoding="utf8"))
     check_english(geo, data, draft)
     geo, data = i18n.attach(geo, data)
-    geo = json.dumps(geo, ensure_ascii=False, separators=(",", ":"))
-    # 每个单位的浅色 / 深色主题颜色写成 CSS 变量 --u-<序号>
-    light = " ".join(f"--u-{i}:{u['cl']};" for i, u in enumerate(data["units"]))
-    dark = " ".join(f"--u-{i}:{u['cd']};" for i, u in enumerate(data["units"]))
-    for u in data["units"]:
-        u.pop("cl"); u.pop("cd")
-    t = C.TEMPLATE.read_text(encoding="utf8")
-    for key in ("__UCSS_LIGHT__", "__UCSS_DARK__", "__GEO__", "__DATA__"):
-        assert key in t, f"模板缺少占位符 {key}"
-    t = t.replace("__UCSS_LIGHT__", light).replace("__UCSS_DARK__", dark)
-    t = t.replace("__GEO__", geo).replace("__DATA__", json.dumps(data, ensure_ascii=False, separators=(",", ":")))
-    t = t.replace('\n<div class="app">', '\n</head>\n<body>\n<div class="app">', 1)
-    html = HEAD + t + "\n</body>\n</html>\n"
-    C.DIST.mkdir(exist_ok=True)
-    (C.DIST / ".nojekyll").write_text("", encoding="utf8")   # 让 GitHub Pages 原样发布，不经 Jekyll 处理
-    out = C.DIST / "index.html"
-    out.write_text(html, encoding="utf8")
+    out = C.ROOT / "source.json"
+    legacy.write_source(out, geo, data, inline=True)    # 旧版页面的疆域环直接写在节点里（不进几何池），新页面照旧
     print("wrote", out, out.stat().st_size // 1024, "KB")
 
 if __name__ == "__main__":

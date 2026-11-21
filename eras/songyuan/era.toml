@@ -36,7 +36,7 @@ parallels = [25, 47]
 origin_lat = 35
 central_lon = 105
 seam = -30                  # 接缝经度，小于它的经度加 360°
-legacy = [38, 95]           # 旧版页面（legacy.html）用的原点纬线、中央经线
+legacy = [38, 95]           # 旧版页面（原仓库的网页，见 [legacy]）用的原点纬线、中央经线
 
 [engine]                    # 第 5 步统一疆域引擎（core/engine/）的外缘设置；归属点与节点取 v1 数据包
 outer = "reach"             # 按可达代价定外缘（参数见 core/engine/config.toml 的 [outer]）

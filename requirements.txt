@@ -1,11 +1,8 @@
-# 构建疆域数据所需（只看成品不需要安装任何东西）；八卷共用
+# 构建所需（只看成品不需要安装任何东西）；九卷共用：各卷第 1 段、统一疆域引擎、core/ 的数据与页面
 numpy>=1.24
 scipy>=1.10
 shapely>=2.1          # 需要 GEOS 3.12+ 的 coverage_simplify
-scikit-image>=0.21
 pillow>=9.0
 tomli>=2.0; python_version < "3.11"   # core/v1 读 TOML；3.11 起标准库自带
-# 可选：各卷 tools/preview.py 画疆域草图
+# 可选：tools/damo.py 出大漠范围的对照图
 matplotlib>=3.7
-# 可选：截图检查（另需 python -m playwright install chromium）
-# playwright>=1.40

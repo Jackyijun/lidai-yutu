@@ -35,7 +35,7 @@ parallels = [25, 47]
 origin_lat = 35
 central_lon = 105
 seam = -30                  # 接缝经度，小于它的经度加 360°
-legacy = [36, 102]           # 旧版页面（legacy.html）用的原点纬线、中央经线
+legacy = [36, 102]           # 旧版页面（原仓库的网页，见 [legacy]）用的原点纬线、中央经线
 
 [engine]                    # 第 5 步统一疆域引擎（core/engine/）的外缘设置；归属点与节点取 v1 数据包
 outer = "frontier"          # 手绘外缘：content/frontier.py
@@ -44,12 +44,12 @@ geometry = "engine"         # 第 7 步起页面疆域由统一引擎出：eras/
 [junction.prev]
 era = "hanmosanguo"
 at = "280"
-note = "共用节点，以汉末卷为准（构建时读入 geodata/junction_hanmo280.json）"
+note = "共用节点，以汉末卷为准（归属按 geodata/junction_hanmo280.json 冻结的汉末卷疆域环，疆域取汉末卷的 engine.json）"
 
 [junction.next]
 era = "suitang"
 at = "581"
-note = "共用节点，以隋唐卷为准（构建时读入 geodata/junction_suitang581.json）"
+note = "共用节点，以隋唐卷为准（归属按 geodata/junction_suitang581.json 冻结的隋唐卷疆域环，疆域取隋唐卷的 engine.json）"
 
 [legacy]                    # 旧版：原仓库与原网址保持不变，总页上留「旧版 ↗」链接
 repo = "Jackyijun/liangjin-nanbeichao-map"

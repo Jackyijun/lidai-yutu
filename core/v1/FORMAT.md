@@ -2,18 +2,19 @@
 
 规范第十九节迁移第 2 步的产物：各卷共用的一套数据格式，以及跨卷的全局表。
 
-**现状（2026-11）**：各卷的史料仍写在各卷自己的源文件里，照旧用各卷的 `run.py` 构建，成品存为 `eras/<短名>/legacy.html`（入库，是数据来源）。v1 数据包由 legacy.html 转出，转回旧格式与原来逐字节相同（往返无损）。旧格式有战国式（春秋、战国）与唐宋系两套，v1 只有一种「点 → 单位 → 政权」的写法（2026-11-20 起；此前春秋、战国是另一种简单写法）。第 3 步起，`build.py` 在往返校验之后套用不牵动疆域的改正（`core/v1/overlay.py`），新页面 `docs/<短名>/` 由改正后的 v1 生成（`core/web/`）。之后各卷逐步改成直接写 v1，旧格式随之退役。
+**现状（2026-11）**：各卷的史料仍写在各卷自己的源文件里，用各卷的 `run.py`（第 1 段）写成 `eras/<短名>/source.json`（入库，是数据来源）：旧版页面里内嵌的 GEO、DATA 两块，不含疆域几何与疆域色（架构整理第三批起；此前是整张旧版页面 `legacy.html`）。秦汉卷例外，它的第 1 段自己拼合引擎的疆域，source.json 带几何。v1 数据包由 source.json 转出（`legacy.py` 的 `bundle_of`），疆域由 `engine_geom.py` 从各卷的 `engine.json` 填进来，颜色由 `overlay.py` 按 `global/palette.toml` 填；转回旧格式与 source.json 完全相同（往返无损：`roundtrip.py` 解析后逐项比，略去 source.json 里没有的几何与颜色）。旧格式有战国式（春秋、战国）与唐宋系两套，v1 只有一种「点 → 单位 → 政权」的写法（2026-11-20 起；此前春秋、战国是另一种简单写法）。第 3 步起，`build.py` 在往返校验之后套用不牵动疆域的改正（`core/v1/overlay.py`），新页面 `docs/<短名>/` 由改正后的 v1 生成（`core/web/`）。之后各卷逐步改成直接写 v1，旧格式随之退役。
 
 ## 文件
 
 | 路径 | 内容 | 入库 |
 | --- | --- | --- |
 | `core/v1/legacy.py` | 旧格式 ⇄ v1 转换（两套旧模型都支持） | 是 |
-| `core/v1/roundtrip.py` | 往返校验：成品 → v1 → 旧格式，必须与原来完全相同 | 是 |
+| `core/v1/roundtrip.py` | 往返校验：source.json → v1 → 旧格式，必须与原来完全相同 | 是 |
 | `core/v1/registry.py` | 由各卷归并出全局表，生成审定清单 | 是 |
 | `core/v1/build.py` | 生成各卷 v1 数据包，附全局 ID，套用第 3 步的改正 | 是 |
 | `core/v1/overlay.py` | 第 3 步先行的改正：条目点位、英文译名、标了 step = 3 的内容、时间轴短标题；全局配色 | 是 |
-| `eras/<短名>/legacy.html` | 各卷旧构建脚本的成品，v1 的数据来源 | 是（构建生成） |
+| `eras/<短名>/source.json` | 各卷第 1 段的产物，v1 的数据来源（键：`v` 版本、`inline` 唐宋系的几何写法、`geo`、`data`） | 是（构建生成） |
+| `eras/<短名>/engine.json` | 统一疆域引擎算出的各节点疆域，生成 v1 时换进去（秦汉卷没有） | 是（构建生成） |
 | `eras/<短名>/short.tsv` | 时间轴短标题（唐宋系；战国式写在各卷源文件里） | 是（手写） |
 | `global/places.jsonl` | 全局地点表 | 是 |
 | `global/polities.jsonl` | 全局政权表（含二级单位：藩镇、路、派系等） | 是 |
@@ -269,7 +270,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 
 ## 改正（overlay，第 3 步起）
 
-`build.py` 往返校验通过、附上全局 ID 之后，由 `core/v1/overlay.py` 在 v1 数据包上套用以下改正，记在 `meta.overlay`；`legacy.html` 与各卷源文件不动：
+`build.py` 往返校验通过、附上全局 ID 之后，由 `core/v1/overlay.py` 在 v1 数据包上套用以下改正，记在 `meta.overlay`；`source.json` 与各卷源文件不动：
 
 - **坐标**：`registry.py` 按 `decisions.toml` 的城址推出的坐标改正（`global/corrections.md`「坐标」一节，写在 `build/v1/fixes.json` 的 `coords`），条目点位与归属点都改；归属点连同它对应的条目一起挪。归属点是统一引擎的输入，所以坐标在换引擎几何（`engine_geom.py`）之前先套用（`overlay.apply_coords`，`registry.py` 生成全局表时同样先套用），`engine.json` 的指纹按改后的坐标算。一个点只有一个坐标：同一条有几段年代对不上城址的（治所迁城、改名），取最长的一段；最长的一段不到本条年代一半的不改；挪过去会与别的点重合之类的，写进 `decisions.toml` 的 `[places.keep]`（引用 = 原因），也不改；状态栏写「不改」与原因。春秋、战国的归属点取自两卷共用的 `content/seeds.txt`，不进全局表，也就不在这里改，要改直接改那个文件（第 3 步只改了唐宋系的都城、关隘等条目，两卷的归属点 2026-11-19 在 `seeds.txt` 里改完）。
 - **山川改画**：`decisions.toml` 的 `[physical.prefer]` 写了 `page = true` 的，各卷页面上都画成选定那一卷的线与注记点（`fixes.json` 的 `ranges`；武陵山、伏牛山）。

@@ -1,44 +1,67 @@
 # -*- coding: utf-8 -*-
 """旧格式 ↔ v1 的转换（规范第十九节第 2 步）。
 
-旧格式：各卷 docs/<短名>/index.html 里内嵌的 GEO、DATA 两块 JSON，加上注入 CSS 的疆域色。
+旧格式：各卷旧版页面里内嵌的 GEO、DATA 两块 JSON。架构整理第三批起各卷第 1 段不再出页面，只出
+eras/<短名>/source.json：同样的 GEO、DATA，但不含疆域几何（节点的 s / l / w / j / z / lz / p / lp / zb / zl、
+几何池 pool、重要地域的范围线与注记）与疆域色——疆域由统一引擎出（core/v1/engine_geom.py），颜色由
+global/palette.toml 定（core/v1/overlay.py）。秦汉卷例外：它的第 1 段自己拼合引擎的疆域与两端的衔接，source.json 带几何。
 v1：每卷一份 JSON（build/v1/<短名>.json），字段与写法各卷统一，格式见 core/v1/FORMAT.md。
 
-  extract(html)              从成品页面取出 GEO、DATA 与疆域色
-  to_v1(slug, G, D, colors)  旧格式 → v1（不含全局 ID；ID 由 core/v1/build.py 另行挂上）
-  from_v1(bundle)            v1 → 旧格式（GEO、DATA、疆域色），用来证明转换无损
+  load(slug)                 读 eras/<短名>/source.json：(GEO, DATA, 版式)
+  write_source(path, G, D, inline)  各卷第 1 段写 source.json（便于看差异的排版）
+  to_v1(slug, G, D, inline=None)  旧格式 → v1（不含全局 ID；ID 由 core/v1/build.py 另行挂上）
+  from_v1(bundle)            v1 → 旧格式（GEO、DATA、疆域色），新页面由它拼装；也用来证明转换无损
 
-v1 是从各卷成品派生出来的交换格式，不是手写的源文件。
+v1 是从各卷第 1 段的产物派生出来的交换格式，不是手写的源文件。
 
 旧格式有两套（战国式：春秋、战国；唐宋系：其余七卷），v1 只有一种「点 → 单位 → 政权」的分层写法（2026-11-20 起）。
 战国式的旧格式里没有分区用的归属点，转换时取两卷共用的 content/seeds.txt，奉周与否取 DATA.alleg（春秋）。
 """
 import json
-import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-DEC = json.JSONDecoder()
 BEGIN = -999999          # 「自始」：旧格式里的 0 / -9999 年
 MONTHLY = {"minguo-xinzhongguo", "qinhan"}   # 旧格式里整数时间就是月序号的卷（秦汉卷节点的 y 也是月序号，另记 tp）
 
 
 # ---------------------------------------------------------------- 取数
 
-def extract(html):
-    out = {}
-    for name in ("GEO", "DATA"):
-        i = html.index(f"const {name} = ") + len(f"const {name} = ")
-        out[name], _ = DEC.raw_decode(html, i)
-    colors = None
-    for var in ("u", "s"):
-        runs = re.findall(r"((?:--%s-\d+:#[0-9A-Fa-f]{3,8};\s?)+)" % var, html)
-        if runs:
-            light = re.findall(r"--%s-(\d+):(#[0-9A-Fa-f]{3,8});" % var, runs[0])
-            dark = re.findall(r"--%s-(\d+):(#[0-9A-Fa-f]{3,8});" % var, runs[1])
-            colors = [[l[1], d[1]] for l, d in zip(light, dark)]
-            break
-    return out["GEO"], out["DATA"], colors
+GEOM_KEYS = ("s", "l", "w", "j", "z", "lz", "p", "lp", "zb", "zl")   # 旧格式节点里的疆域几何与注记
+
+
+def load(slug):
+    """eras/<短名>/source.json → (GEO, DATA, 版式)。版式现在只有 inline：唐宋卷的疆域环直接写在节点里，
+    其余唐宋系各卷存在几何池 GEO.pool（source.json 里没有几何，看不出来，所以另记）"""
+    p = ROOT / "eras" / slug / "source.json"
+    if not p.exists():
+        raise SystemExit(f"缺 eras/{slug}/source.json：先在仓库根目录 python run.py {slug} 构建这一卷")
+    src = json.loads(p.read_text(encoding="utf8"))
+    return src["geo"], src["data"], {k: v for k, v in src.items() if k not in ("v", "geo", "data")}
+
+
+def bundle_of(slug):
+    """eras/<短名>/source.json → v1（未套改正、未换引擎几何）"""
+    G, D, form = load(slug)
+    return to_v1(slug, G, D, form.get("inline"))
+
+
+def write_source(path, G, D, inline=None):
+    """各卷第 1 段写 source.json。排版便于看差异：GEO、DATA 的每个键一行，对象数组（节点、条目、河流……）每个元素一行"""
+    js = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":"))
+
+    def block(d):
+        rows = []
+        for k, v in d.items():
+            if isinstance(v, list) and v and all(isinstance(x, dict) for x in v):
+                rows.append(js(k) + ":[\n" + ",\n".join(js(x) for x in v) + "]")
+            else:
+                rows.append(js(k) + ":" + js(v))
+        return "{\n" + ",\n".join(rows) + "}"
+    head = '{"v":1,\n' + ('' if inline is None else f'"inline":{js(inline)},\n')
+    text = head + '"geo":' + block(G) + ',\n"data":' + block(D) + "}\n"
+    assert json.loads(text) == {"v": 1, **({} if inline is None else {"inline": inline}), "geo": G, "data": D}
+    Path(path).write_text(text, encoding="utf8")
 
 
 # ---------------------------------------------------------------- 时间
@@ -250,8 +273,8 @@ def node_a_to_v1(sn, pool, keys, ix, seeds, alleg, kinds):
     y = sn["y"]
     n = {"t": year_end(y), "tp": "y", "title": sn["t"], "desc": sn["d"], "short": sn["sh"],
          "en": {"title": sn["te"], "desc": sn["de"], "short": sn["she"]}}
-    n["u"] = {str(ix[k]): pool.add(v) for k, v in sn["s"].items()}
-    n["ul"] = {str(ix[k]): v for k, v in sn["l"].items()}
+    n["u"] = {str(ix[k]): pool.add(v) for k, v in sn.get("s", {}).items()}     # source.json 里没有几何，由引擎补上
+    n["ul"] = {str(ix[k]): v for k, v in sn.get("l", {}).items()}
     n["pu"], n["pul"] = {}, {}
     if "w" in sn:
         n["pu"][str(ix["周"])] = pool.add(sn["w"])
@@ -280,14 +303,13 @@ def node_a_to_v1(sn, pool, keys, ix, seeds, alleg, kinds):
     if "lab" in sn:
         n["lab"] = {str(ix[k]): v for k, v in sn["lab"].items()}
         n["en"]["lab"] = {str(ix[k]): v for k, v in sn["labe"].items()}
-    if "j" in sn:
-        n["ext"] = {"j": sn["j"]}
+    n["ext"] = {"j": sn.get("j", {})}    # 秦郡界：旧格式每个节点都有（春秋卷一律是空的），由引擎的细分块 zp 补上
     return n
 
 
 def node_a_from_v1(n, pool, keys, zhou):
     """v1 分层写法 → 战国式节点。疆域与注记的键按国名的字数、字码排：引擎原来以国名为单位键，就是这个次序，
-    换到引擎以后的页面一直如此（legacy.html 里是 DATA.states 的次序），这样页面里的次序不变；
+    换到引擎以后的页面一直如此（旧版页面里是 DATA.states 的次序），这样页面里的次序不变；
     春秋（zhou 不为 None）另出周天下外缘 w：政权「周」的疆域，没有政权层时就是王畿本身"""
     key = lambda u: keys[int(u)]
     order = lambda d: dict(sorted(((key(u), v) for u, v in d.items()), key=lambda kv: (len(kv[0]), kv[0])))
@@ -323,12 +345,13 @@ def node_to_v1(sn, clock, pool, inline):
         n["era2"] = sn["era2"]
     if "era2e" in sn:
         en["era2"] = sn["era2e"]
+    z, p = sn.get("z", {}), sn.get("p", {})         # source.json 里没有几何（秦汉卷除外），由引擎补上
     if inline:
-        n["u"] = {k: pool.add(v) for k, v in sn["z"].items()}
-        n["pu"] = {k: pool.add(v) for k, v in sn["p"].items()}
+        n["u"] = {k: pool.add(v) for k, v in z.items()}
+        n["pu"] = {k: pool.add(v) for k, v in p.items()}
     else:
-        n["u"], n["pu"] = sn["z"], sn["p"]
-    n["ul"], n["pul"] = sn["lz"], sn["lp"]
+        n["u"], n["pu"] = z, p
+    n["ul"], n["pul"] = sn.get("lz", {}), sn.get("lp", {})
     for k in ("pol", "own", "seat", "h", "lab", "kd", "col", "jn"):
         if k in sn:
             n[k] = sn[k]
@@ -380,7 +403,8 @@ BASE_KEYS = ("land", "prov", "border", "rivers", "lakes", "canals", "deserts", "
 EXTENT_KEYS = ("ext", "base", "extpoly", "proj")
 
 
-def to_v1(slug, G, D, colors):
+def to_v1(slug, G, D, inline=None):
+    """inline 见 load()。source.json 不带疆域色，各政权的 color 先空着，由 core/v1/overlay.py 按 global/palette.toml 填"""
     fam = "A" if "states" in D else "B"
     clock = Clock(slug, fam)
     sn0 = G["snaps"][0]
@@ -392,9 +416,10 @@ def to_v1(slug, G, D, colors):
         ix = {k: i for i, k in enumerate(keys)}
         nodes = [node_a_to_v1(sn, pool, keys, ix, seeds, D.get("alleg"), D.get("kinds", {})) for sn in G["snaps"]]
     else:
-        z0 = next((v for sn in G["snaps"] for v in sn["z"].values()), 0)   # 秦汉卷第一遍构建时还没有疆域
-        inline = isinstance(z0, list)
-        pool = Pool(None if inline else G["pool"])
+        if inline is None:
+            z0 = next((v for sn in G["snaps"] for v in sn.get("z", {}).values()), 0)   # 秦汉卷第一遍构建时还没有疆域
+            inline = isinstance(z0, list)
+        pool = Pool(None if inline else G.get("pool"))
         form = "ymt" if "ti" in sn0 else ("ym" if "m" in sn0 else "y")
         nodes = [node_to_v1(sn, clock, pool, inline) for sn in G["snaps"]]
 
@@ -410,7 +435,7 @@ def to_v1(slug, G, D, colors):
         for k in D["states"]:
             si = state_items[k]
             polities.append({"key": k, "n": si["old"], "mod": si["mod"], "note": si["note"],
-                             "kind": D["kinds"].get(k, "state"), "color": D["colors"][k], "item": si["i"],
+                             "kind": D["kinds"].get(k, "state"), "color": D.get("colors", {}).get(k), "item": si["i"],
                              "en": {"n": si["eold"], "mod": si["emod"], "note": si["enote"]}})
         for it in D["items"]:
             if it["c"] == "state":
@@ -426,7 +451,7 @@ def to_v1(slug, G, D, colors):
         for i, u in enumerate(D["units"]):
             p = {"key": u["k"], "n": u["n"], "kind": u["kind"], "note": u["note"],
                  "en": {k2: u[k] for k, k2 in (("ne", "n"), ("se", "s"), ("notee", "note")) if k in u},
-                 "color": colors[i]}
+                 "color": None}
             for k in ("x", "waste"):
                 if k in u:
                     p[k] = u[k]
@@ -467,7 +492,7 @@ def to_v1(slug, G, D, colors):
         "polities": polities, "places": places, "nodes": nodes, "items": items, "ext": ext,
         "_legacy": {"fam": fam, "form": form, "inline": inline, "pool": "pool" in G,
                     "route1": "route" in G, "first": "G" if first is not None else "D",
-                    "colors": colors if fam == "B" else None},
+                    "colors": None},
     }
     return bundle
 

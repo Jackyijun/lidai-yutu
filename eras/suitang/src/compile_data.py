@@ -1,11 +1,9 @@
-# 汇编：各节点归属 → 疆域多边形（并合 build/cells.pkl 的势力格）→ GEO / DATA，输出 build/out_data.json
+# 汇编：各节点归属、底图（build/geo_base.json）、条目 → GEO / DATA，输出 build/out_data.json
 # python src/compile_data.py --report 可逐节点列出各单位所领州郡
-import json, pickle, colorsys, math, sys
-import numpy as np
-import shapely
-from shapely.geometry import Polygon, MultiPolygon, LineString, Point
-from shapely.ops import unary_union, polylabel
-from proj import proj, inv
+# 疆域由统一疆域引擎按各节点的归属推算（单仓 core/engine/，结果在本卷的 engine.json），颜色由单仓的 global/palette.toml 定；
+# 本卷原来的势力格（src/territory.py → build/cells.pkl）与按势力格并合疆域 2026-11 架构整理第三批起退役。
+import json, sys
+from shapely.geometry import Polygon
 from seeds import SEEDS, SID
 from units import U
 from snaps import NODES, FIRST, expand
@@ -13,18 +11,7 @@ import items as IT
 import config as C
 
 UK = {u['k']: i for i, u in enumerate(U)}
-D = pickle.load(open(C.BUILD / 'cells.pkl', 'rb'))
-CELLS = D['cells']; LAND = D['land_p']
 BASE = json.load(open(C.BUILD / 'geo_base.json', encoding='utf-8'))
-DEG = 17.453292519943295          # 1° ≈ 17.45 投影单位
-
-def polys_of(g):
-    if g is None or g.is_empty: return []
-    if g.geom_type == 'Polygon': return [g]
-    if g.geom_type == 'MultiPolygon': return list(g.geoms)
-    if g.geom_type == 'GeometryCollection': return [p for x in g.geoms for p in polys_of(x)]
-    return []
-CELLS = {k: MultiPolygon(polys_of(v)) for k, v in CELLS.items()}
 
 # ---------------- 归属 ----------------
 own = [None] * len(SEEDS)
@@ -74,72 +61,14 @@ def enc_ll(pts):
         lx, ly = x, y; px, py = x, y
     return out
 
-def enc_proj_ring(coords):
-    a = np.array(coords)
-    lon, lat = inv(a[:, 0], a[:, 1])
-    return enc_ll(zip(lon, lat))
-
-def rings_of(g):
-    out = []
-    for p in polys_of(g):
-        if p.area < 0.6: continue
-        for r in [p.exterior] + list(p.interiors):
-            if Polygon(r).area < 0.6: continue
-            e = enc_proj_ring(r.coords)
-            if len(e) >= 8: out.append(e)
-    return out
-
-def label_of(g):
-    gl = g.intersection(LAND)
-    ps = polys_of(gl)
-    if not ps: return None
-    big = max(ps, key=lambda p: p.area)
-    try:
-        c = polylabel(big, tolerance=0.5)
-    except Exception:
-        c = big.representative_point()
-    r = big.exterior.distance(c)
-    for ring in big.interiors: r = min(r, ring.distance(c))
-    lon, lat = inv(c.x, c.y)
-    return [round(float(lon), 2), round(float(lat), 2), round(sum(p.area for p in ps) / DEG ** 2, 2), round(r / DEG, 2)]
-
 def build():
     snaps_out = []
-    POOL, POOLK = [], {}
     for s in SN:
         n = s['n']
-        geo_u = {}
-        for u in s['present']:
-            idx = [i for i, x in enumerate(s['own']) if x == u and i in CELLS]
-            g = unary_union([CELLS[i] for i in idx]) if idx else None
-            if g is not None and not g.is_empty: geo_u[u] = g
-        z, lz = {}, {}
-        for u, g in geo_u.items():
-            rr = rings_of(g)
-            if not rr: continue
-            z[UK[u]] = rr
-            L = label_of(g)
-            if L: lz[UK[u]] = L
-        pmap = s['pol']
-        multi = {}
-        for u, p in pmap.items(): multi.setdefault(p, []).append(u)
-        P, LP = {}, {}
-        for p, us in multi.items():
-            if len(us) < 2: continue
-            g = unary_union([geo_u[u] for u in us if u in geo_u])
-            P[UK[p]] = rings_of(g)
-            L = label_of(g)
-            if L: LP[UK[p]] = L
-        for dct in (z, P):
-            for k in list(dct):
-                key = json.dumps(dct[k], separators=(',', ':'))
-                if key not in POOLK: POOLK[key] = len(POOL); POOL.append(dct[k])
-                dct[k] = POOLK[key]
         snaps_out.append({
             'y': n['y'], 'm': n['m'], 'era': n['era'], 't': n['t'], 'd': n['d'],
-            'z': z, 'lz': lz, 'p': P, 'lp': LP,
             'own': [UK[x] if x else -1 for x in s['own']],
-            'pol': {UK[u]: UK[p] for u, p in pmap.items()},
+            'pol': {UK[u]: UK[p] for u, p in s['pol'].items()},
             'lab': {UK[u]: t for u, t in s['lab'].items()},
             'seat': {UK[u]: SID[v] for u, v in s['seat'].items()},
             'h': [UK[u] for u in s['h']],
@@ -227,7 +156,7 @@ def build():
         'prov': [{'n': p['n'], 'c': p['c'], 'r': [enc_list(r) for r in p['r']]} for p in BASE['prov']],
         'border': [enc_list(b) for b in BASE['border']],
         'rivers': [], 'lakes': [], 'canals': [], 'deserts': [], 'regions': [],
-        'snaps': snaps_out, 'pool': POOL, 'route': {'it': route_it, 'pts': [[x, y, round(t, 4), n] for x, y, t, n in IT.ROUTE]}, 'ext': C.VIEW_EXT,
+        'snaps': snaps_out, 'route': {'it': route_it, 'pts': [[x, y, round(t, 4), n] for x, y, t, n in IT.ROUTE]}, 'ext': C.VIEW_EXT,
     }
     for r in BASE['rivers']:
         it = ts_map.get(r['ts_it']) if r.get('ts_it') is not None else key_item.get(r.get('key'))
@@ -242,21 +171,14 @@ def build():
         GEO['deserts'].append({'r': enc_list(d['r']), 'it': ts_map[d['ts_it']]})
 
     # ---------------- DATA ----------------
-    def dark(hexc):
-        r, g, b = (int(hexc[i:i + 2], 16) / 255 for i in (1, 3, 5))
-        hh, ll, ss = colorsys.rgb_to_hls(r, g, b)
-        r, g, b = colorsys.hls_to_rgb(hh, min(.82, ll + .07), min(1, ss * 1.25 + .04))
-        return '#%02X%02X%02X' % (round(r * 255), round(g * 255), round(b * 255))
     KIND = {'state': 'state', 'dh': 'zhen', 'tribe': 'tribe', 'misc': 'misc'}
     DATA = {
         'units': [{'k': u['k'], 'n': u['n'], 'kind': KIND[u['kind']], 'note': u['note']} for u in U],
         'seeds': [{k: v for k, v in dict(id=s['id'], n=s['n'], mod=s['mod'], lon=s['lon'], lat=s['lat'], t=s['t'], nm=s['nm']).items() if v is not None} for s in SEEDS],
         'items': ITEMS,
     }
-    css_l = ' '.join(f'--u-{i}:{u["col"]};' for i, u in enumerate(U))
-    css_d = ' '.join(f'--u-{i}:{dark(u["col"])};' for i, u in enumerate(U))
     DATA['first'] = FIRST
-    json.dump({'GEO': GEO, 'DATA': DATA, 'css_l': css_l, 'css_d': css_d}, open(C.BUILD / 'out_data.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    json.dump({'GEO': GEO, 'DATA': DATA}, open(C.BUILD / 'out_data.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     from collections import Counter
     print('  [汇编] 条目', len(ITEMS), dict(Counter(i['c'] for i in ITEMS)))
     print('  [汇编] GEO', len(json.dumps(GEO, separators=(',', ':'))) // 1024, 'KB · DATA', len(json.dumps(DATA, ensure_ascii=False, separators=(',', ':'))) // 1024, 'KB')

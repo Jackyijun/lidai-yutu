@@ -8,9 +8,7 @@
 
 ## 一、直接看
 
-双击 **`docs/index.html`**，用任意现代浏览器（Chrome、Edge、Safari、Firefox）打开即可。
-
-这个文件约 1.7 MB，数据、样式、脚本全部内嵌：不联网、不需要服务器、不依赖任何外部库。
+单仓根目录构建后打开 **`docs/hanmosanguo/index.html`**：页面由单仓 `core/web/` 统一生成，数据、样式、脚本全部内嵌，不联网、不需要服务器。本目录自 2026-11 架构整理第三批起不再出页面。
 
 - 语言：地图右上角「中 | EN」切换（年表、对照表视图里在内容区右上角），选择会记在浏览器里；网址末尾加 `#en` 直接打开英文版。英文界面里地图只标英文，悬停说明、索引、年表、对照表在英文名后附注汉字原名；检索中英文都可以，英文不必打变音符号。
 
@@ -18,84 +16,65 @@
 
 ## 二、线上地址
 
-https://jackyijun.github.io/hanmosanguo-map/
+https://jackyijun.github.io/lidai-yutu/hanmosanguo/
+
+旧版（原仓库 `Jackyijun/hanmosanguo-map` 用本卷旧构建出的页面，保持原样）：https://jackyijun.github.io/hanmosanguo-map/
 
 ---
 
 ## 三、本地构建
 
-改了史料内容（`content/`）或参数（`src/config.py`）之后才需要重新构建。需要 **Python 3.9 或更新版本**。
-
-**macOS / Linux**
+在单仓根目录构建（Python 版本与依赖见单仓 README）：
 
 ```bash
-cd hanmosanguo-map
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python run.py --open
+python run.py hanmosanguo  # 本卷第 1 段 → 统一引擎重算疆域（engine.json）→ v1 数据 → docs/hanmosanguo/index.html
+python run.py --web        # 不重算，只由各卷的 source.json、engine.json 重建 v1 数据与新页面
 ```
 
-**Windows（PowerShell）**
+本目录的 `run.py` 是第 1 段：由 `content/` 的史料与 `geodata/` 的底图写出 **`source.json`**（节点归属、文字、条目与底图，不含疆域与配色，入库），单仓由它转成 v1 数据。疆域由统一疆域引擎（单仓 `core/engine/`）按各节点的归属推算，结果存在本目录的 `engine.json`（入库）；颜色由单仓 `global/palette.toml` 定；页面由单仓 `core/web/` 生成。本卷原来的疆域推算、配色与页面模板 2026-11 架构整理第三批起退役。
 
-```powershell
-cd hanmosanguo-map
-py -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python run.py --open
-```
-
-完整构建约 30 秒，完成后会用浏览器打开新生成的 `docs/index.html`。
-
-| 命令 | 作用 |
+| 命令（本目录） | 作用 |
 |---|---|
-| `python run.py` | 检查底图 → 计算疆域 → 拼装 HTML |
-| `python run.py --html` | 只重新拼装 HTML（只改了 `src/template.html` 时用，不到 1 秒） |
-| `python run.py --open` | 构建完后在浏览器中打开 |
-| `python run.py --html --draft` | 英文有缺译或过期时也照常生成（缺译处临时显示中文）；不加 `--draft` 时会报错停下 |
+| `python run.py` | 检查底图 → 各节点归属、底图与条目，写出引擎用的可达倍数 `build/reach.txt` → 汇编 `source.json` |
+| `python run.py --html` | 跳过前两步，只重新汇编（只改了英文译文时用） |
+| `python run.py --draft` | 英文有缺译或过期时也照常汇编（缺译处临时显示中文）；不加时会报错停下 |
 | `python tools/i18n.py status` | 英文版状态：缺译、过期、未登记指纹各多少条（详见第七节） |
-| `python run.py --preview 190,229` | 额外画出这几个节点的疆域草图到 `build/preview.png`，便于检查归属是否填错 |
-| `python tools/preview.py 190 108,123,29,42` | 只画草图，可指定经纬范围（西,东,南,北） |
 
-底图（`geodata/`，约 2 MB）已随项目附带，离线也能构建。如果删掉了 ETOPO20 地形文件，`run.py` 会自动从 GitHub 下载固定版本。
+改了 `content/` 以后，从单仓根目录 `python run.py hanmosanguo` 重建这一卷（第 1 段、疆域、页面一次做完）。只在本目录跑 `run.py` 不会更新 `engine.json` 和页面；归属变了而疆域没重算时，单仓 `python run.py --web` 发现引擎输入的指纹对不上，会停下。
 
-同一份输入，构建结果逐字节一致，可以用 git 追踪改动。
+同一份输入，`source.json` 逐字节一致，可以用 git 追踪改动。
 
-构建完成后，把 `docs/index.html` 一起提交并推送到 `main`，线上网页会自动更新。
+底图（`geodata/base.json`）随项目附带，离线也能构建。
 
 ---
 
 ## 四、目录结构
 
 ```
-hanmosanguo-map/
-├── run.py                 一键构建入口
-├── requirements.txt
+eras/hanmosanguo/
+├── run.py                 第 1 段构建入口：→ source.json
+├── era.toml               卷的基本信息（卷次、首屏、统一引擎的设置、衔接、页面文字）
+├── source.json            ★ 第 1 段的产物（入库）：节点归属、文字、条目与底图，单仓的 v1 数据由它转出
+├── engine.json            统一疆域引擎算出的各节点疆域与州界（入库；单仓 python run.py hanmosanguo 时重算）
+├── short.tsv              时间轴短标题
 ├── README.md              说明（中文）
 ├── README.en.md           说明（英文）
-├── docs/
-│   ├── index.html         ★ 成品，单文件（GitHub Pages 从这里发布）
-│   └── .nojekyll          让 GitHub Pages 原样发布
 ├── content/               ★ 史料内容（手写，主要改这里）
 │   ├── seeds.py           320 个归属点：东汉郡国治所、城邑、只参与分区的辅助点、部族分区点
-│   ├── units.py           53 个政权、诸侯、部族与弃地：名称、配色、介绍
+│   ├── units.py           53 个政权、诸侯、部族与弃地：名称、介绍
 │   ├── nodes.py           35 个时间节点：年号、标题、概述，以及当年哪些郡国换了主人
 │   ├── items.py           都城、战役、关隘、事件、诸族、山脉与水系改名、运河、古道栈道
 │   └── en/                ★ 英文版：与上面各文件一一对应的译文（JSON）、zh.lock.json 中文指纹、GLOSSARY.md 译名体例
 ├── src/
-│   ├── config.py          ★ 全部路径与可调参数（栅格、代价、平滑……）
-│   ├── fetch_data.py      检查底图，缺 ETOPO20 时下载
-│   ├── terrain.py         疆域算法：代价栅格、多源最短路、平滑、覆盖拼接
-│   ├── build.py           按节点算归属与疆域，输出 build/geo.json、data.json、colors.json
-│   ├── assemble.py        并入英文、检查缺译，把数据注入模板，输出 docs/index.html
-│   ├── i18n.py            英文版：列出需要翻译的条目、检查缺译与过期、把译文并入数据
-│   └── template.html      前端：页面结构、样式、交互脚本
+│   ├── config.py          路径、可达倍数的折算系数、首屏节点
+│   ├── fetch_data.py      检查底图
+│   ├── zhou.py            各点归哪个州（统一引擎按「诸侯 × 州」分块描州界时用）
+│   ├── build.py           各节点归属、底图与条目，输出 build/geo.json、data.json、reach.txt
+│   ├── assemble.py        并入英文、检查缺译，汇编成 source.json
+│   └── i18n.py            英文版：列出需要翻译的条目、检查缺译与过期、把译文并入数据
 ├── geodata/
-│   ├── base.json          底图：陆地、湖泊、河流、今省界、今国界、荒漠、山脉脊线（已编码）
-│   └── etopo20/           ETOPO20 地形（1/3° 分辨率），算地形起伏用
+│   └── base.json          底图：陆地、湖泊、河流、今省界、今国界、荒漠、山脉脊线（已编码）
 ├── tools/
-│   ├── preview.py         matplotlib 疆域草图
 │   └── i18n.py            英文版维护：status / todo / lock / table
 └── build/                 中间产物（可随时删除）
 ```
@@ -104,13 +83,12 @@ hanmosanguo-map/
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/hanmosanguo/`）的疆域，第 7 步（2026-11-19）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py hanmosanguo` 时自动重算）；归属、文字、条目仍出自本卷。外缘按可达代价定，推算范围同旧引擎的栅格（`era.toml` 的 `[engine]`）；各点的可达倍数由 `content/seeds.py` 的分区半径折算，`src/build.py` 写出 `build/reach.txt`（系数见 `src/config.py` 的 `REACH_ENGINE_SCALE`、`REACH_ENGINE_ADJ`）。州界、州名也由引擎按「诸侯 × 州」分块描出，定州的规则在 `src/zhou.py`，旧构建与引擎共用。白马（东郡白马县）在河边，界线坐标按页面精度（0.01°）取整后正好穿过它，195—200 年由引擎补一个小圆圈回本方（2026-11-19 加）。下面说的是本卷自己的旧算法，只用于旧版页面与 `legacy.html`。
+> 单仓新页面（`docs/hanmosanguo/`）的疆域，第 7 步（2026-11-19）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py hanmosanguo` 时自动重算）；归属、文字、条目仍出自本卷。外缘按可达代价定，推算范围同旧引擎的栅格（`era.toml` 的 `[engine]`）；各点的可达倍数由 `content/seeds.py` 的分区半径折算，`src/build.py` 写出 `build/reach.txt`（系数见 `src/config.py` 的 `REACH_ENGINE_SCALE`、`REACH_ENGINE_ADJ`）。州界、州名也由引擎按「诸侯 × 州」分块描出，定州的规则在 `src/zhou.py`。白马（东郡白马县）在河边，界线坐标按页面精度（0.01°）取整后正好穿过它，195—200 年由引擎补一个小圆圈回本方（2026-11-19 加）。
 
 ```
 content/*.py ─────┐
-geodata/ (底图) ───┼─► build.py + terrain.py ─► build/*.json ─► assemble.py ─► docs/index.html
-                  │                                               ▲
-                  └───────────────────────────── src/template.html┘
+                  ├─► build.py ─► build/*.json ─► assemble.py ─► source.json ─► 单仓 core/：统一引擎疆域、v1、新页面
+geodata/ (底图) ───┘
 ```
 
 ### 1. 为什么疆域要“算”出来
@@ -120,7 +98,9 @@ geodata/ (底图) ───┼─► build.py + terrain.py ─► build/*.json �
 1. 只手写**郡国（城邑）→ 诸侯 → 政权**的归属及其变化年份（`nodes.py`）；
 2. 用一张“通行代价”地图让计算机推出郡与郡之间的分界，让分界尽量落在山脊和大河上。
 
-### 2. 疆域算法（`terrain.py`）
+> 下面讲的疆域推算、配色与页面模板是本卷旧构建的做法，2026-11 架构整理第三批起已从本目录删去（第 1 段只出 `source.json`），留作说明旧版页面怎么来的。
+
+### 2. 旧构建的疆域算法（原 `terrain.py`）
 
 1. **海陆栅格**：经度 72°—136°、纬度 14°—55°，0.05° 一格（约 5 km），共 1280 × 820 格。大湖不可通行。
 2. **代价栅格**：平地代价 1，再依次加上：
@@ -135,7 +115,7 @@ geodata/ (底图) ───┼─► build.py + terrain.py ─► build/*.json �
 7. **注记点**：每个诸侯、政权、州取最大一块陆地的“不可达极点”（距离变换最大值处）。
 8. **去重**：相邻节点里没变的疆域只存一份（`GEO.pool`），文件体积约减一半。
 
-### 3. 前端（`src/template.html`）
+### 3. 旧版前端（`src/template.html`）
 
 骨架、色板、符号、交互全部按《历史形势图统一规范》，与唐宋、战国、隋唐三张图同一套：
 
@@ -165,9 +145,13 @@ geodata/ (底图) ───┼─► build.py + terrain.py ─► build/*.json �
 
 **新增一场战役**：在 `content/items.py` 的 `BATTLES` 加一行（古名、今地、经纬度、年份、显示年代、胜负、主将、按语）。
 
-改完运行 `python run.py --preview 年份` 看草图，确认无误再看网页。
+改完在单仓根目录 `python run.py hanmosanguo`（疆域要重算），打开 `docs/hanmosanguo/index.html` 检查。
 
 **新增或改动了任何中文**（点、条目、单位、节点说明……）：同时补写或改写 `content/en/` 里的英文，否则严格构建会报缺译或过期，见第七节。
+
+**改颜色**：在单仓 `global/palette.toml` 里改这个政权（按全局 ID，见 `global/polities.jsonl`）的浅、深两色，再在单仓根目录 `python run.py --web`；同一政权在各卷同色。
+
+**改页面样式或交互**：页面模板在单仓 `core/web/`（各卷共用，各卷不同的文字与开关写在 `era.toml` 的 `[web]`），改后在单仓根目录 `python run.py --web`。
 
 ---
 
@@ -191,7 +175,7 @@ geodata/ (底图) ───┼─► build.py + terrain.py ─► build/*.json �
 1. `python tools/i18n.py status` 看有几条缺译、过期；
 2. `python tools/i18n.py todo` 列出这些条目的中文，到对应 JSON 里补写或改写英文；
 3. `python tools/i18n.py lock` 记下新的中文指纹；
-4. `python run.py --html` 重新拼装（严格模式，缺译会报错）。
+4. `python run.py --html` 重新汇编 `source.json`（严格模式，缺译会报错），再在单仓根目录 `python run.py --web`。
 
 `python tools/i18n.py table` 导出全部中英对照到 `build/i18n-review.tsv`，便于审校。
 
@@ -199,18 +183,9 @@ geodata/ (底图) ───┼─► build.py + terrain.py ─► build/*.json �
 
 ## 八、调参
 
-所有可调参数都在 `src/config.py`：
+疆域的推算参数不在本卷：统一引擎的通用参数在单仓 `core/engine/config.toml`，本卷的外缘、推算范围、简化容差等写在 `era.toml` 的 `[engine]`；颜色在单仓 `global/palette.toml`。本卷原来的栅格、代价、平滑与配色参数 2026-11 架构整理第三批起随旧构建一并退役。
 
-| 参数 | 作用 |
-|---|---|
-| `RES` | 栅格边长。改小更细，但计算更慢 |
-| `RELIEF_SCALE` · `PLATEAU` | 地形起伏、高原海拔的代价 |
-| `RANGE_PEAK` · `RANGE_WIDTH` · `RIDGE_*` | 山脊阻隔强度、宽度、摆动 |
-| `RIVER_PEAK` | 界河代价 |
-| `NOISE_*` · `WARP` · `WARP_RIVER_HOLD` | 界线弯曲的噪声与位移场；界河两侧不加位移的范围 |
-| `REACH_*` · `FRONTIER_*` · `MIN_WILD_CELLS` | 无主地范围、外缘平滑 |
-| `SMOOTH_SIGMA` · `SIMPLIFY` | 轮廓平滑程度与简化容差 |
-| `FIRST_YEAR` | 首屏节点 |
+本卷 `src/config.py` 里只剩路径、可达倍数的折算（`REACH_DEFAULT`、`REACH_MULT`、`REACH_ENGINE_SCALE`、`REACH_ENGINE_ADJ`，由 `build.py` 写成引擎读的 `build/reach.txt`）与首屏节点 `FIRST_YEAR`。
 
 ---
 
@@ -219,5 +194,5 @@ geodata/ (底图) ───┼─► build.py + terrain.py ─► build/*.json �
 - **疆域归属**：依据《后汉书》《三国志》《资治通鉴》《晋书》与谭其骧《中国历史地图集》第二、三册的大意推定，由 AI 协助编写，未逐条核对原文。大的格局和关键年份比较可靠；某郡某年的具体归属、边缘地区（西域、漠北、南中、辽东以东）的范围较粗略。
 - **边界线**：完全是推算的示意线，只表示“这一带属于这一方”，不代表史书里有这样一条界线。
 - **演义与正史**：《三国演义》的虚构情节（温酒斩华雄、三英战吕布、过五关、空城计、华容道义释等）不列为战役，只在相关条目按语里注明出入。
-- **底图**：陆地、湖泊、河流、今国界来自 Natural Earth 1:10m（公有领域）；今省界与山脉脊线为手绘简化，沿用自《唐宋之际形势图》；地形为 NOAA ETOPO20（经 matplotlib/basemap 仓库分发）。
+- **底图**：陆地、湖泊、河流、今国界来自 Natural Earth 1:10m（公有领域）；今省界与山脉脊线为手绘简化，沿用自《唐宋之际形势图》。
 - **英文版**：据中文翻译，名称体例见 `content/en/GLOSSARY.md`；月份是农历月序，不换算公历。

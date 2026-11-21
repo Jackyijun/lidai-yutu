@@ -34,12 +34,8 @@ ERA_ZH = {"chunqiu": "春秋", "zhanguo": "战国", "qinhan": "秦汉", "hanmosa
 
 
 def load_bundles():
-    """九卷 legacy.html → v1。疆域还是旧几何：换引擎几何要等坐标改正定下来（引擎的归属点用改后的坐标），见 engine_geometry"""
-    out = {}
-    for slug in ERAS:
-        html = (ROOT / "eras" / slug / "legacy.html").read_text(encoding="utf8")
-        out[slug] = legacy.to_v1(slug, *legacy.extract(html))
-    return out
+    """九卷 source.json → v1。还没有疆域几何（秦汉卷除外）：引擎几何要等坐标改正定下来（引擎的归属点用改后的坐标），见 engine_geometry"""
+    return {slug: legacy.bundle_of(slug) for slug in ERAS}
 
 
 def engine_geometry(B, coords):
@@ -414,7 +410,9 @@ def build_polities(B, dec):
         for i, p in enumerate(b["polities"]):
             key = p["key"]
             idx = str(i)                                     # 节点里单位以序号出现
-            ts = [n["t"] for n in b["nodes"] if idx in n.get("u", {}) or idx in n.get("pu", {})]
+            # 在哪些节点出现：按归属（本单位领有归属点，或是别的单位所属的政权），不按画出来的疆域——重算疆域之前的那一遍
+            # （run.py 的 --lenient）有的卷暂时没有疆域，按疆域算，同名政权就合不上、全局 ID 跟着变（架构整理第三批起）
+            ts = [n["t"] for n in b["nodes"] if idx in n.get("pol", {}) or idx in {str(v) for v in n.get("pol", {}).values()}]
             rng = (min(ts), max(ts)) if ts else None
             nn = len(ts)
             parent = next((b["polities"][int(n["pol"][idx])]["n"] for n in b["nodes"]
@@ -493,7 +491,8 @@ def build_polities(B, dec):
         if len({c["kind"] for c in cs}) > 1:
             rec["kinds"] = {c["era"]: c["kind"] for c in cs}
         out.append(rec)
-        if len({tuple(v) for v in rec["colors"].values()}) > 1:
+        # palette.toml 里没有的全局 ID 颜色是 None（各卷第 1 段不出颜色），这里跳过；生成 v1 时 core/v1/overlay.py 会停下报缺色
+        if len({tuple(v) for v in rec["colors"].values() if v}) > 1:
             colors_review.append((pid, cs))
         if len(ens) > 1:
             en_review.append((pid, cs))
@@ -869,7 +868,7 @@ def main():
     n3 = sum(r[-1] == S3 for r in rows)
     (GLOBAL / "corrections.md").write_text(
         "# 各卷改正清单\n\n第 2 步审定出来、各卷页面里要改的地方。全局表已经按改正后的写。"
-        "都由 `core/v1/overlay.py` 在生成 v1 数据时套用，各卷原始数据（legacy.html）不动。"
+        "都由 `core/v1/overlay.py` 在生成 v1 数据时套用，各卷第 1 段的产物（source.json）不动。"
         "条目点位、英文译名、标了 step = 3 的内容第 3 步先改；牵动疆域的（州府等归属点的坐标）"
         "第 7 步之后一并改了，疆域按改后的点由统一引擎重算（春秋、战国的归属点取自两卷共用的 content/seeds.txt，直接改在那里）。"
         "本文件由 `python core/v1/registry.py` 生成，内容改正手写在 `global/corrections.toml`。\n\n"

@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-"""秦汉形势图：史料 → 旧格式 GEO / DATA（build/geo.json、data.json、colors.json）。
+"""秦汉形势图：史料 → 旧格式 GEO / DATA（build/geo.json、data.json），再由 src/assemble.py 汇编成本卷的 source.json。
 
   python src/build.py          有 build/engine/qinhan.json（统一引擎的推算结果）就填入疆域，没有则只出归属、不出疆域
+  python src/build.py --first  两遍构建的第一遍（根目录 run.py 传）：只出归属给引擎读，不读邻卷的疆域、不填疆域
 
 疆域不在这里算。构建分两遍（见 run.py）：第一遍出归属 → 由 core/v1 转成 v1 数据包 → core/engine/build.py qinhan
-推算疆域 → 第二遍把疆域填进来。首尾两个节点照搬邻卷：前212 取战国卷末节点的秦疆与秦郡郡界，184 取汉末卷首节点的疆域，
-本卷推算出的郡国裁进照搬来的外廓里。时间一律是月序号 t = 年 × 12 + 月 − 1（年按夏正，见 README「纪年」）。
+推算疆域 → 第二遍把疆域填进来。首尾两个节点照搬邻卷：前212 取战国卷末节点的秦疆与秦郡郡界，184 取汉末卷首节点的疆域
+（都取邻卷统一引擎的 engine.json），本卷推算出的郡国裁进照搬来的外廓里。颜色由单仓的 global/palette.toml 定。
+时间一律是月序号 t = 年 × 12 + 月 − 1（年按夏正，见 README「纪年」）。
 """
 import json
-import math
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -25,6 +26,7 @@ sys.path.insert(0, str(C.CONTENT))
 import jun as J, seeds as SD, units as UN, nodes as ND, items as IT, en_names as EN, qinjun as QJ  # noqa: E402,E401
 
 INF = -10 ** 6
+FIRST = "--first" in sys.argv[1:]     # 第一遍：邻卷的 engine.json 这时可能还是上一次的，与刚出的 source.json 对不上，所以不读
 
 
 # ================================================================ 工具
@@ -117,64 +119,46 @@ def ytxt(y, en=False):
 
 
 # ================================================================ 邻卷
-def legacy_of(slug):
-    return legacy.extract((C.REPO / "eras" / slug / "legacy.html").read_text(encoding="utf8"))
-
-
-ZG = legacy_of("zhanguo")
-HM = legacy_of("hanmosanguo")
+# 归属、文字与条目取邻卷第 1 段的 source.json，疆域取邻卷统一引擎的 engine.json（两者都入库）
+ZG = legacy.load("zhanguo")
+HM = legacy.load("hanmosanguo")
 ZG_LAST = ZG[0]["snaps"][-1]
 ZG_JUN = {it["k"]: it for it in ZG[1]["items"] if it["c"] == "jun"}
 
 
+def engine_of(slug):
+    p = C.REPO / "eras" / slug / "engine.json"
+    if not p.exists():
+        sys.exit(f"缺 eras/{slug}/engine.json：先在仓库根目录 python run.py {slug} 算出这一卷的疆域")
+    return json.loads(p.read_text(encoding="utf8"))
+
+
 def zg_engine_212():
-    """战国卷已换到统一引擎（第 7 步）时，前212 节点的秦、卫外廓与秦郡郡界改取它的 eras/zhanguo/engine.json，与战国卷新页面一致；
-    文字仍取 legacy.html。引擎按郡治细分秦的各块（zp）就是秦郡，键与 legacy.html 的秦郡条目相同"""
-    try:
-        import tomllib
-    except ImportError:
-        import tomli as tomllib
-    zg = C.REPO / "eras" / "zhanguo"
-    if tomllib.loads((zg / "era.toml").read_text(encoding="utf8")).get("engine", {}).get("geometry") != "engine":
-        return
-    if not (zg / "engine.json").exists():                # 全新克隆、还没算出来：第一遍先用 legacy.html，第二遍再换
-        print("   战国卷还没有 engine.json，前212 这一遍先照搬 legacy.html")
-        return
-    e = json.loads((zg / "engine.json").read_text(encoding="utf8"))
+    """前212 节点的秦、卫外廓与秦郡郡界取战国卷统一引擎的 eras/zhanguo/engine.json，与战国卷新页面一致。
+    引擎按郡治细分秦的各块（zp）就是秦郡，键与战国卷的秦郡条目相同"""
+    e = engine_of("zhanguo")
     en = e["nodes"][-1]
     if en["t"] // 12 != ZG_LAST["y"]:
-        sys.exit(f"eras/zhanguo/engine.json 末节点是 {en['t'] // 12} 年，legacy.html 是 {ZG_LAST['y']} 年")
+        sys.exit(f"eras/zhanguo/engine.json 末节点是 {en['t'] // 12} 年，source.json 是 {ZG_LAST['y']} 年")
     key = e["meta"]["keys"]                              # 单位序号 → 战国卷的国名键；按国名的字数、字码排（引擎原来以国名为键的次序）
     ZG_LAST["s"] = dict(sorted(((key[u], e["geom"][g]) for u, g in en["u"].items()), key=lambda kv: (len(kv[0]), kv[0])))
     ZG_LAST["j"] = {k: e["geom"][g] for k, g in en["zp"].items()}
-    ZG_LAST["engine"] = True
 
 
-# 各点归哪个秦郡（Q 一套郡制，前212—前180）：冻结在 content/qinjun.py（原先按战国卷旧构建画的秦郡郡界定）
-# 配色的邻接照旧按 legacy.html 的几何算（见 junction 的 legacy）；各郡国的颜色已全部定在 global/palette.toml，这份邻接不再影响页面
-QIN_POLY_SEED = {J.qin_unit(k): geom_of(r) for k, r in ZG_LAST["j"].items()}
-ZG_LAST_LEGACY = {"s": dict(ZG_LAST["s"]), "poly": QIN_POLY_SEED}
-zg_engine_212()
+if not FIRST:
+    zg_engine_212()
 # 秦郡治所的坐标与战国卷同名城邑条目不符的，取城邑条目（同地同坐标）
 QIN_SEAT_LL = {"肤施": (109.8, 38.0)}     # 战国卷秦郡表记在米脂一带，城邑条目 zhanguo:i:161 在榆林东南
-QIN_POLY = {J.qin_unit(k): geom_of(r) for k, r in ZG_LAST["j"].items()}   # 前212 节点画的秦郡郡界
+# 前212 节点画的秦郡郡界（照搬战国卷引擎按郡治细分秦的各块）。各点归哪个秦郡（Q 一套郡制，前212—前180）不看它，
+# 冻结在 content/qinjun.py（原先按战国卷旧构建画的秦郡郡界定）
+QIN_POLY = {} if FIRST else {J.qin_unit(k): geom_of(r) for k, r in ZG_LAST["j"].items()}
 HM_184 = next(s for s in HM[0]["snaps"] if s["y"] == 184)
 
 
 def hm_engine_184():
-    """汉末卷已换到统一引擎（第 7 步）时，184 节点的疆域改取它的 eras/hanmosanguo/engine.json，与汉末卷新页面一致；
-    归属、文字仍取 legacy.html。engine.json 里的单位按单位键对回 legacy.html 的序号"""
-    try:
-        import tomllib
-    except ImportError:
-        import tomli as tomllib
-    hm = C.REPO / "eras" / "hanmosanguo"
-    if tomllib.loads((hm / "era.toml").read_text(encoding="utf8")).get("engine", {}).get("geometry") != "engine":
-        return
-    if not (hm / "engine.json").exists():                # 全新克隆、还没算出来：第一遍先用 legacy.html，第二遍再换
-        print("   汉末卷还没有 engine.json，184 这一遍先照搬 legacy.html")
-        return
-    e = json.loads((hm / "engine.json").read_text(encoding="utf8"))
+    """184 节点的疆域取汉末卷统一引擎的 eras/hanmosanguo/engine.json，与汉末卷新页面一致；归属、文字取它的 source.json。
+    engine.json 里的单位按单位键对回 source.json 的序号"""
+    e = engine_of("hanmosanguo")
     en = next(n for n in e["nodes"] if n["t"] // 12 == 184)
     idx = {u["k"]: str(i) for i, u in enumerate(HM[1]["units"])}
     key = e["meta"]["keys"]
@@ -182,11 +166,8 @@ def hm_engine_184():
     HM_184["p"] = {idx[key[k]]: e["geom"][g] for k, g in en["pu"].items()}
 
 
-hm_engine_184()
-
-
-def hm_rings(v):
-    return HM[0]["pool"][v] if isinstance(v, int) else v
+if not FIRST:
+    hm_engine_184()
 
 
 # ================================================================ 归属点
@@ -275,7 +256,7 @@ def add_unit(k, kind="zhen", **kw):
         return UK[k]
     UK[k] = len(UNITS)
     UNITS.append(dict(k=k, n=kw.get("n", k), kind=kind, note=kw.get("note", ""), ne=kw.get("ne", EN.name(k)),
-                      notee=kw.get("notee", ""), col=kw.get("col")))
+                      notee=kw.get("notee", "")))
     return UK[k]
 
 
@@ -344,6 +325,13 @@ def node_rows():
             pol[u] = p
         for u in dict.fromkeys(pol.values()):          # 保持先后次序（集合的次序随哈希种子变，成品就不可复现）
             pol.setdefault(u, u)
+        if nd.get("junction") == "hanmosanguo":       # 照搬汉末卷的单位（如乌桓）本卷此时可能没有归属点：归属照汉末卷写
+            for k, pk in HM_184["pol"].items():        # 按汉末卷的归属，不按它画出来的疆域：第一遍还不读邻卷的疆域
+                uk = HM[1]["units"][int(k)]["k"]
+                mine = ND.HM_UNIT.get(uk, uk)
+                if uk != "汉" and mine in UK:
+                    pk = HM[1]["units"][int(pk)]["k"]
+                    pol.setdefault(mine, ND.HM_UNIT.get(pk, pk))
         rows.append(dict(nd=nd, own=own, pol=pol))
     return rows
 
@@ -351,7 +339,7 @@ def node_rows():
 # ================================================================ 疆域（统一引擎的结果）
 def engine_geoms():
     p = C.REPO / "build" / "engine" / "qinhan.json"
-    if not p.exists():
+    if FIRST or not p.exists():
         return None
     e = json.loads(p.read_text(encoding="utf8"))
     return e
@@ -371,21 +359,15 @@ def fill_gaps(units, outline, others=()):
     return out
 
 
-def junction(i, row, z, lz, p, lp, legacy=False):
-    """首尾节点照搬邻卷：返回改过的 z / p（单位序号 → 多边形）。
-    legacy = True：前212 节点照搬 legacy.html 里战国卷旧构建的秦、卫与秦郡（只用来算配色的邻接，各单位颜色不随战国卷换引擎而变）"""
+def junction(i, row, z, lz, p, lp):
+    """首尾节点照搬邻卷：返回改过的 z / p（单位序号 → 多边形）"""
     nd = row["nd"]
     if nd.get("junction") == "zhanguo":
-        src_s = ZG_LAST_LEGACY["s"] if legacy else ZG_LAST["s"]
-        src_poly = ZG_LAST_LEGACY["poly"] if legacy else QIN_POLY
-        # 战国卷旧构建的秦疆外缘在海上画得很宽（那一卷的底图没有台湾、海南、济州岛），本卷底图有，这几个岛扣出去。
-        # 战国卷换到统一引擎后外缘贴着海岸，不再扣：几个矩形会切掉雷州半岛南端、平潭一带的陆地
-        isl = shapely.union_all([shapely.box(119.8, 21.8, 122.2, 25.5), shapely.box(108.4, 17.9, 111.3, 20.3), shapely.box(126.1, 33.1, 127.0, 33.6)])
-        if not legacy and ZG_LAST.get("engine"):
-            isl = shapely.Polygon()
-        qin = geom_of(src_s["秦"]).difference(isl)
-        wei = geom_of(src_s["卫"])
-        inner = {UK[k]: g for k, g in src_poly.items() if k in UK}
+        # 与空多边形求一次差集只为让 GEOS 重排环的起点，与此前的构建逐字节一致（这里原先扣掉战国卷旧构建画到海上的几个岛）；
+        # 下次允许秦汉卷页面变动时可以去掉
+        qin = geom_of(ZG_LAST["s"]["秦"]).difference(shapely.Polygon())
+        wei = geom_of(ZG_LAST["s"]["卫"])
+        inner = {UK[k]: g for k, g in QIN_POLY.items() if k in UK}
         zz = {u: g for u, g in z.items() if row["pol"].get(UNITS[u]["k"]) not in ("秦", "卫")}
         # 秦以外的单位：扣掉照搬来的秦、卫；秦本身的郡用战国卷的郡界
         for u in list(zz):
@@ -396,10 +378,10 @@ def junction(i, row, z, lz, p, lp, legacy=False):
         return zz, pp
     if nd.get("junction") == "hanmosanguo":
         hmu = {u["k"]: i for i, u in enumerate(HM[1]["units"])}
-        han = geom_of(hm_rings(HM_184["z"][str(hmu["汉"])]))
+        han = geom_of(HM_184["z"][str(hmu["汉"])])
         # 汉的外廓取汉末卷的政权外廓（含内属的南匈奴）；没有就用汉这个单位本身
         hp = HM_184.get("p", {}).get(str(hmu["汉"]))
-        han_outline = geom_of(hm_rings(hp)) if hp is not None else han
+        han_outline = geom_of(hp) if hp is not None else han
         zz = {}
         copied = {}
         for k, v in HM_184["z"].items():
@@ -407,10 +389,7 @@ def junction(i, row, z, lz, p, lp, legacy=False):
             mine = ND.HM_UNIT.get(uk, uk)
             if uk == "汉" or mine not in UK:
                 continue
-            copied[UK[mine]] = geom_of(hm_rings(v))
-            # 照搬来的单位（如乌桓）本卷此时可能没有归属点：归属照汉末卷写
-            pk = HM[1]["units"][int(HM_184["pol"][k])]["k"]
-            row["pol"].setdefault(mine, ND.HM_UNIT.get(pk, pk))
+            copied[UK[mine]] = geom_of(v)              # 这些单位的归属在 node_rows 里已照汉末卷写上
         cut = shapely.union_all(list(copied.values()) + [han])
         hanu = {u: g for u, g in z.items() if row["pol"].get(UNITS[u]["k"]) == "汉"}
         zz.update(fill_gaps(hanu, han))
@@ -486,7 +465,6 @@ def main():
         return where[k]
 
     snaps = []
-    adj = defaultdict(set)
     zl_en = {}                                     # 郡名注记的英文：zl 里用了本节点别名或非郡国单位名的，补进 GEO.zhoue
     for i, r in enumerate(rows):
         nd = r["nd"]
@@ -496,7 +474,6 @@ def main():
             zg0 = {int(k): geom_of(eng["geom"][v]) for k, v in en_["u"].items()}
             pg0 = {int(k): geom_of(eng["geom"][v]) for k, v in en_["pu"].items()}
             zg, pg = junction(i, r, zg0, None, pg0, None)
-            za = junction(i, r, zg0, None, pg0, None, legacy=True)[0] if nd.get("junction") == "zhanguo" else zg
             for u, g in zg.items():
                 rr = rings_of(g)
                 if rr:
@@ -530,11 +507,6 @@ def main():
                                     assert zl_en.get(name, name_en) == name_en, (name, zl_en[name], name_en)
                                     zl_en[name] = name_en
                                 zl.append([name] + lz[u])
-            ks = list(za)
-            for a in range(len(ks)):
-                for b in range(a + 1, len(ks)):
-                    if za[ks[a]].distance(za[ks[b]]) < 0.05:
-                        adj[ks[a]].add(ks[b]); adj[ks[b]].add(ks[a])
         sn = dict(y=nd["t"], tp=nd["tp"], era=nd["era"], era2=nd.get("era2", ""), t=nd["title"], d=nd["desc"],
                   z=z, lz=lz, p=p, lp=lp,
                   own=[UK[x] if x else -1 for x in r["own"]],
@@ -552,8 +524,6 @@ def main():
         print(f"   {nd['label']:>10}  {len(set(x for x in r['own'] if x)):>3} 单位  {len(p)} 政权层", flush=True)
 
     items, layers = IT.build(base, SEEDS, UK, ZG[1]["items"])
-    hm_col = {u["k"]: HM[2][i] for i, u in enumerate(HM[1]["units"])}
-    colors = UN.colors(UNITS, adj, ZG[1]["colors"], hm_col)
     first = next(s["y"] for s in snaps if s["y"] == label_t(*C.FIRST))
     bmap, regeo = layers.pop("base_map"), layers.pop("regeo")
 
@@ -588,7 +558,7 @@ def main():
     (C.BUILD / "reach.txt").write_text("# 由 src/build.py 从 content/seeds.py 写出：点 经 纬 - R=倍数\n" + "".join(
         f"{k} {SEEDS[SI[k]]['lon']} {SEEDS[SI[k]]['lat']} - R={v}\n" for k, v in SD.RM.items() if k in SI), encoding="utf8")
     dump = lambda o, q: q.write_text(json.dumps(o, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
-    dump(GEO, C.BUILD / "geo.json"); dump(DATA, C.BUILD / "data.json"); dump(colors, C.BUILD / "colors.json")
+    dump(GEO, C.BUILD / "geo.json"); dump(DATA, C.BUILD / "data.json")
     print(f"   {len(snaps)} 个节点 · {len(items)} 条目 · {len(SEEDS)} 个归属点 · {len(UNITS)} 个单位"
           + ("" if eng else "（还没有疆域：先跑统一引擎）"))
     print("   " + " ".join(f"{k} {v}" for k, v in Counter(i['c'] for i in items).most_common()))

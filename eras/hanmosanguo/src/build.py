@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
-"""汉末三国形势图 · 数据构建。
+"""汉末三国形势图 · 数据构建（单仓第 1 段）。
 
-读 content/ 的史料与 geodata/ 的底图，算出 36 个时间节点的疆域多边形，
-写出 build/geo.json（几何）、build/data.json（条目与说明）、build/colors.json（疆域色）。
+读 content/ 的史料与 geodata/ 的底图，写出 build/geo.json（底图、各节点归属）与 build/data.json（条目与说明），
+再由 src/assemble.py 汇编成本卷的 source.json；另写 build/reach.txt（统一疆域引擎用的各点可达倍数）。
+
+疆域与州界不在这里算：由统一疆域引擎按各节点的归属推算（单仓 core/engine/，结果在本卷的 engine.json；州的划法在
+src/zhou.py，引擎也读它）；颜色由单仓的 global/palette.toml 定。本卷原来的代价栅格、多源最短路、覆盖图描界
+（src/terrain.py）2026-11 架构整理第三批起退役。
 """
-import json, sys, time
+import json, sys
 from collections import Counter
-import numpy as np
 from shapely.geometry import Polygon
-from shapely.ops import unary_union
 
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
 import config as C
@@ -17,13 +19,12 @@ from seeds import SEEDS
 from units import UNITS
 from nodes import NODES
 import items as I
-import terrain as T
 
 UK = {u["k"]: i for i, u in enumerate(UNITS)}
 SI = {s["id"]: i for i, s in enumerate(SEEDS)}
 assert len(SI) == len(SEEDS), "种子 id 重复"
 HATCH = {"公孙氏", "士燮", "张鲁", "黑山"}       # 名义臣属、实则自立（斜线）
-from zhou import JUN, STATES, jun_of, zhou_han, zhou_of   # 郡、州的归属（统一引擎画州界也用，见 zhou.py）
+from zhou import jun_of, zhou_han, zhou_of   # 郡的归属与州（统一引擎画州界读 zhou.py 的 zone_of，划法相同）
 
 
 # ================================================================ 归属
@@ -66,110 +67,48 @@ def ownership():
     return out
 
 
-# ================================================================ 疆域几何
-def compute_snaps(base):
-    t0 = time.time()
-    G = T.Grid()
-    land, lake = T.load_land(G, base)
-    elev, relief = T.load_dem(G)
-    ranges = [it for it in base["items"].values() if it["c"] == "range"]
-    ranges += [dict(geo=g, major=mj) for (_, _, g, _, mj, _) in I.NEW_RANGES]
-    name_of = {int(k): it["old"] for k, it in base["items"].items()}
-    ren = {k: v[0] for k, v in I.RIVER_RENAME.items()}
-    by_river = {}
-    for r in base["rivers"]:
-        nm = ren.get(name_of.get(r.get("it"), ""), None)
-        if nm in C.RIVER_PEAK and r["k"] != "modern":
-            by_river.setdefault(nm, []).append(T.dec(r["p"]))
-    rivers = [(C.RIVER_PEAK[nm], lines) for nm, lines in sorted(by_river.items())]
-    cost, passable = T.cost_raster(G, land, lake, elev, relief, ranges, rivers)
-    print(f"   代价栅格 {G.W}×{G.H}，{time.time() - t0:.1f}s")
-    seedlab_land, dist = T.partition(G, cost, passable, SEEDS)
-    river_d = G.dist_deg(G.burn_lines([l for _, lines in rivers for l in lines]))
-    hold = np.clip((river_d - C.WARP_RIVER_HOLD[0]) / C.WARP_RIVER_HOLD[1], 0, 1)
-    seedlab = T.warp(G, T.extend_into_water(G, seedlab_land, land, passable), hold)
-    print(f"   多源最短路完成，{time.time() - t0:.1f}s")
+# ================================================================ 节点
+def dec(flat):
+    """差分编码（经纬度 ×100 取整）→ 点列"""
+    out = []; x = y = 0
+    for i in range(0, len(flat), 2):
+        x += flat[i]; y += flat[i + 1]; out.append((x / 100, y / 100))
+    return out
 
-    cache, cov_cache = {}, {}
-    def region(seed_ids):
-        """一组种子合起来的平滑多边形（未简化）与注记点。"""
-        key = tuple(sorted(seed_ids))
-        if key not in cache:
-            ids = np.array(key)
-            g = T.mask_geom(G, np.isin(seedlab, ids))
-            a = T.anchor(G, np.isin(seedlab_land, ids) & land)
-            cache[key] = (g, a)
-        return cache[key]
 
-    def tiled(groups, tol):
-        """groups: {标签: [种子]} → {标签: 覆盖多边形}，相同分组只算一次。"""
-        key = (tol, tuple(sorted((str(k), tuple(sorted(v))) for k, v in groups.items())))
-        if key not in cov_cache:
-            geoms = {k: region(v)[0] for k, v in groups.items()}
-            s2l = {i: k for k, v in groups.items() for i in v}
-            cov_cache[key] = T.coverage(G, geoms, seedlab, s2l, tol)
-        return cov_cache[key]
+def enc(pts):
+    """点列 → 差分编码"""
+    out = []; px = py = 0
+    for lo, la in pts:
+        X = int(round(lo * 100)); Y = int(round(la * 100))
+        out += [X - px, Y - py]; px, py = X, Y
+    return out
 
+
+def zhou_names():
+    """各节点有郡国落在其中的州（按 src/zhou.py 的划法；部族、弃地不算）：州名注记由统一引擎标，英文要先备齐"""
+    names = set()
+    for r in ownership():
+        y = r["nd"]["y"]
+        for i, k in enumerate(r["own"]):
+            if k and UNITS[UK[k]]["kind"] not in ("tribe", "waste"):
+                z = zhou_of(SEEDS[i], y, k)
+                if z: names.add(z)
+    return sorted(names)
+
+
+def node_rows():
+    """各节点的归属、所属政权、别名、治所、斜线（疆域由统一引擎按这些推算）"""
     snaps = []
     for r in ownership():
         nd = r["nd"]; y = nd["y"]; own = r["own"]
-        seeds_of = {}
-        for i, k in enumerate(own):
-            if k: seeds_of.setdefault(k, []).append(i)
-        # 每个种子的州（220 年前汉十三州，三国按魏蜀吴，晋按太康十九州）
-        zkey = {}
-        for i, s in enumerate(SEEDS):
-            k = own[i]
-            if not k or UNITS[UK[k]]["kind"] in ("tribe", "waste"): continue
-            zh = zhou_of(s, y, k)
-            if not zh: continue
-            polk = r["pol"][k]
-            if polk not in STATES: polk = "汉" if y < 220 else polk
-            zkey[i] = (zh, polk)
-        # 以“单位 × 州”为最小块拼一张覆盖图：单位界、政权界、州界都由同一批共享边合成，重合处严丝合缝
-        pieces = {}
-        for i, k in enumerate(own):
-            if k: pieces.setdefault((k, zkey.get(i)), []).append(i)
-        cov = tiled(pieces, C.SIMPLIFY)
-        by_unit, by_zhou = {}, {}
-        for (k, zk), g in cov.items():
-            by_unit.setdefault(k, []).append(g)
-            if zk: by_zhou.setdefault(zk, []).append(g)
-        z, lz = {}, {}
-        for k in seeds_of:
-            g = T.merge_outline(by_unit.get(k, []))
-            a = region(seeds_of[k])[1]
-            if g is None or a is None: continue
-            z[UK[k]] = T.rings_of(g); lz[UK[k]] = a
-        members = {}
-        for k, p in r["pol"].items(): members.setdefault(p, []).append(k)
-        p_out, lp = {}, {}
-        for p, ks in members.items():
-            if len(ks) > 1 or ks[0] != p:
-                g = T.merge_outline([x for k in ks for x in by_unit.get(k, [])])
-                a = region([i for k in ks for i in seeds_of.get(k, [])])[1]
-                if g is None or a is None: continue
-                p_out[UK[p]] = T.rings_of(g); lp[UK[p]] = a
-        zl, zpolys = [], []
-        for zk in sorted(by_zhou):
-            g = T.merge_outline(by_zhou[zk])
-            if g is None: continue
-            zpolys.append(g)
-            a = region([i for i, v in zkey.items() if v == zk])[1]
-            if a is not None and a[2] >= C.ZHOU_LABEL_MIN_AREA: zl.append([zk[0]] + a)
-        zb = T.boundary_lines(zpolys)
         snaps.append(dict(y=y, era=nd["era"], era2=nd["era2"], t=nd["t"], d=nd["d"],
-                          z=z, lz=lz, p=p_out, lp=lp,
                           own=[UK[x] if x else -1 for x in own],
                           pol={UK[k]: UK[p] for k, p in r["pol"].items()},
                           lab={UK[k]: v for k, v in r["lab"].items() if v != UNITS[UK[k]]["n"]},
                           seat={UK[k]: SI[v] for k, v in r["seat"].items()},
-                          h=[UK[k] for k in r["pol"] if k in HATCH or (k == "南匈奴" and r["pol"][k] == "汉")],   # 184 年南匈奴内属于汉
-                          zb=zb, zl=zl))
-        print(f"   {y:>4}  {len(z):>2} 单位  {len(p_out)} 政权", flush=True)
-    unowned = [SEEDS[i]["id"] for i in range(len(SEEDS)) if not np.any(seedlab_land == i)]
-    if unowned: print("   注意：这些种子没有分到任何格子：", "、".join(unowned))
-    print(f"   疆域计算完成，{time.time() - t0:.1f}s")
+                          h=[UK[k] for k in r["pol"] if k in HATCH or (k == "南匈奴" and r["pol"][k] == "汉")]))   # 184 年南匈奴内属于汉
+        print(f"   {y:>4}  {len(set(x for x in own if x)):>2} 单位", flush=True)
     return snaps
 
 
@@ -199,14 +138,14 @@ def build_items(base):
     JI = next(i for i in items if i.get("old") == "济水")["i"]
     for (o, m, line, k, anc, n) in I.NEW_RIVERS:
         if o == "济水（上游）":
-            new_river_lines.append(dict(k=k, p=T.enc(line), it=JI)); continue
+            new_river_lines.append(dict(k=k, p=enc(line), it=JI)); continue
         idx = add(dict(c="river", sub="river", old=o, mod=m, note=n, major=False, anc=anc))
-        new_river_lines.append(dict(k=k, p=T.enc(line), it=idx))
+        new_river_lines.append(dict(k=k, p=enc(line), it=idx))
 
     canals_geo = []
     for (o, m, line, y0, anc, n) in I.CANALS:
         idx = add(dict(c="canal", old=o, mod=m, note=n, anc=anc, y0=y0))
-        canals_geo.append(dict(p=T.enc(line), it=idx, y0=y0))
+        canals_geo.append(dict(p=enc(line), it=idx, y0=y0))
     for c in base["canals"]:
         old = TIT[c["it"]]["old"]
         if old in I.CANAL_KEEP:
@@ -259,7 +198,7 @@ def build_items(base):
     for l in base["lakes"]:
         it = l.get("it")
         if it is not None and river_map.get(it) is None: continue
-        c = Polygon(T.dec(l["r"])).centroid
+        c = Polygon(dec(l["r"])).centroid
         if any(abs(c.x - a) < 0.15 and abs(c.y - b) < 0.15 for a, b in I.DROP_LAKE_RINGS): continue
         if it is None and 108.6 < c.x < 109.1 and 40.8 < c.y < 41.1: continue   # 乌梁素海（近代形成）
         lakes.append(dict(l, it=river_map[it]) if it is not None else l)
@@ -288,12 +227,6 @@ def build_seeds():
     return out
 
 
-def dark(hx):
-    r, g, b = int(hx[1:3], 16), int(hx[3:5], 16), int(hx[5:7], 16)
-    f = lambda v, k: max(0, min(255, int(round(v * k))))
-    return "#%02X%02X%02X" % (f(r, 1.13), f(g, 1.11), f(b, 1.07))
-
-
 def write_reach():
     """统一疆域引擎（单仓第 7 步）用的各点可达倍数，写到 build/reach.txt（era.toml 的 [engine] seeds）。
     旧算法的可达距离是「分区半径（度）× REACH_MULT」个代价·度；引擎的是 [outer] reach 个代价·投影单位（1° 约 17.45 投影单位）。
@@ -318,24 +251,15 @@ def write_reach():
 def main():
     base = json.load(open(C.GEODATA / "base.json", encoding="utf8"))
     items, layers = build_items(base)
-    snaps = compute_snaps(base)
-    # 相邻节点里没变的疆域只存一份：z / p 的值和州界 zb 换成 pool 里的序号
-    pool, where = [], {}
-    def put(v):
-        k = json.dumps(v, separators=(",", ":"))
-        if k not in where: where[k] = len(pool); pool.append(v)
-        return where[k]
-    for sn in snaps:
-        for key in ("z", "p"): sn[key] = {u: put(r) for u, r in sn[key].items()}
-        sn["zb"] = put(sn["zb"])
+    snaps = node_rows()
     GEO = dict(land=base["land"], prov=base["prov"], border=base["border"], **layers,
-               snaps=snaps, pool=pool, regions=[], ext=[72.0, 136.0, 15.5, 55.0], first=C.FIRST_YEAR)
+               snaps=snaps, regions=[], ext=[72.0, 136.0, 15.5, 55.0], first=C.FIRST_YEAR)
+    GEO["zhou"] = zhou_names()                  # 给 i18n 配州名英文（GEO.zhoue）用，汇编 source.json 时去掉
     DATA = dict(units=[dict(k=u["k"], n=u["n"], kind=u["kind"], note=u["note"], **({"x": 1} if u.get("x") else {})) for u in UNITS],
                 seeds=build_seeds(), items=items)
-    colors = dict(light=[u["col"] for u in UNITS], dark=[dark(u["col"]) for u in UNITS])
     C.BUILD.mkdir(exist_ok=True)
     dump = lambda o, p: open(p, "w", encoding="utf8").write(json.dumps(o, ensure_ascii=False, separators=(",", ":")))
-    dump(GEO, C.BUILD / "geo.json"); dump(DATA, C.BUILD / "data.json"); dump(colors, C.BUILD / "colors.json")
+    dump(GEO, C.BUILD / "geo.json"); dump(DATA, C.BUILD / "data.json")
     write_reach()
     print(f"   {len(snaps)} 个节点 · {len(items)} 条目 · {len(SEEDS)} 个郡国城邑点 · {len(UNITS)} 个政权诸侯部族")
     print("   " + " ".join(f"{k} {v}" for k, v in Counter(i['c'] for i in items).most_common()))

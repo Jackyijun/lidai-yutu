@@ -263,7 +263,7 @@ def regions(b):
     out = []
     for R in (b.get("base") or {}).get("regions", []):
         if "m" not in R or any("m" not in g for g in R.get("groups", [])):
-            sys.exit(f"{b.get('era', '')}：v1 base.regions 第 {len(out) + 1} 个地域没写成员点 m（legacy.html 过期？先运行 python run.py {b.get('era', '<短名>')}）")
+            sys.exit(f"{b.get('era', '')}：v1 base.regions 第 {len(out) + 1} 个地域没写成员点 m（source.json 过期？先运行 python run.py {b.get('era', '<短名>')}）")
         out.append((R["y0"], list(R["m"]), [(list(g["m"]), bool(g.get("line"))) for g in R.get("groups", [])]))
     return out
 
