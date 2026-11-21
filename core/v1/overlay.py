@@ -216,20 +216,29 @@ def palette():
     return tomllib.loads((ROOT / "global" / "palette.toml").read_text(encoding="utf8")).get("color", {})
 
 
-def apply_palette(b, pal):
+MISSING_COLOR = ["#A3A3A3", "#6B6B6B"]   # 缺色时的占位灰（只在 missing_ok 的那一遍用，见 apply_palette）
+
+
+def apply_palette(b, pal, missing_ok=False):
     """按全局 ID 定政权配色：各卷第 1 段不出颜色（架构整理第三批起；旧构建的贪心配色已冻结进表），
-    每个政权都要在 palette.toml 里有颜色，缺了停下。节点里逐年渐变的 col（两晋旧构建的高句丽、林邑）一并去掉"""
+    每个政权都要在 palette.toml 里有颜色，缺了停下。missing_ok（core/v1/build.py 的 --lenient、--draft-colors：
+    重算疆域之前那一遍，和 tools/palette.py 选色用的一遍）时先用占位灰，缺的全局 ID 记在 meta.palette_missing。
+    节点里逐年渐变的 col（两晋旧构建的高句丽、林邑）一并去掉"""
     import sys
     era = b.get("era", "")
     nogid = [p["key"] for p in b["polities"] if not p.get("gid")]
     if nogid:
         sys.exit(f"{era}：这些政权在全局表里查不到（全局表过期？先运行 python core/v1/registry.py）：" + "、".join(nogid))
-    miss = [p["gid"] for p in b["polities"] if p["gid"] not in pal]
+    miss = sorted({p["gid"] for p in b["polities"] if p["gid"] not in pal})
+    if miss and not missing_ok:
+        sys.exit(f"{era}：global/palette.toml 里没有这些政权的颜色：" + "、".join(miss) +
+                 "\n  运行 python tools/palette.py 按疆域邻接选色（--write 写进 [color]），再运行 python run.py --web")
     if miss:
-        sys.exit(f"{era}：global/palette.toml 里没有这些政权的颜色，请在 [color] 里补上（浅色、深色两个）：" + "、".join(miss))
+        print(f"{era}：global/palette.toml 里还没有这些政权的颜色，暂用灰色：" + "、".join(miss))
+        b.setdefault("meta", {})["palette_missing"] = miss
     n, hit = 0, set()
     for i, p in enumerate(b["polities"]):
-        c = pal[p["gid"]]
+        c = pal.get(p["gid"], MISSING_COLOR)
         if p["color"] is None or list(p["color"]) != list(c):
             p["color"] = list(c)
             n += 1
@@ -278,8 +287,9 @@ def apply_damo(slug, b):
     return len(its)
 
 
-def apply(slug, b, fixes, content):
-    """fixes：registry.py 写出的 build/v1/fixes.json；content：corrections.toml 的 [[fix]]。坐标另由 apply_coords 先改"""
+def apply(slug, b, fixes, content, missing_ok=False):
+    """fixes：registry.py 写出的 build/v1/fixes.json；content：corrections.toml 的 [[fix]]。坐标另由 apply_coords 先改。
+    missing_ok：缺色时先用占位灰（见 apply_palette）"""
     done = []
     d = apply_damo(slug, b)
     if d:
@@ -299,7 +309,7 @@ def apply(slug, b, fixes, content):
     s = apply_shorts(slug, b)
     if s:
         done.append(f"时间轴短标题 {s} 个")
-    c = apply_palette(b, palette())
+    c = apply_palette(b, palette(), missing_ok)
     if c:
         done.append(f"全局配色 {c} 个政权")
     return done

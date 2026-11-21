@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """汉末三国形势图 · 数据构建（单仓第 1 段）。
 
-读 content/ 的史料与 geodata/ 的底图，写出 build/geo.json（底图、各节点归属）与 build/data.json（条目与说明），
-再由 src/assemble.py 汇编成本卷的 source.json；另写 build/reach.txt（统一疆域引擎用的各点可达倍数）。
+读 content/ 的史料与 geodata/ 的底图，写出 build/geo.json（底图、各节点归属与州块）与 build/data.json（条目与说明），
+再由 src/assemble.py 汇编成本卷的 source.json。
 
-疆域与州界不在这里算：由统一疆域引擎按各节点的归属推算（单仓 core/engine/，结果在本卷的 engine.json；州的划法在
-src/zhou.py，引擎也读它）；颜色由单仓的 global/palette.toml 定。本卷原来的代价栅格、多源最短路、覆盖图描界
-（src/terrain.py）2026-11 架构整理第三批起退役。
+疆域与州界不在这里算：由统一疆域引擎按各节点的归属推算（单仓 core/engine/，结果在本卷的 engine.json）；州界按这里
+逐节点写出的各点州块（节点的 zn）分块描出，州的划法见下面「郡与州」，各点的州写在 content/seeds.py；各点的可达倍数
+也写在 content/seeds.py，引擎直接读。颜色由单仓的 global/palette.toml 定。本卷原来的代价栅格、多源最短路、覆盖图描界
+（src/terrain.py）2026-11 架构整理第三批起退役，原 src/zhou.py 第五批并进这里。
 """
 import json, sys
 from collections import Counter
@@ -24,7 +25,48 @@ UK = {u["k"]: i for i, u in enumerate(UNITS)}
 SI = {s["id"]: i for i, s in enumerate(SEEDS)}
 assert len(SI) == len(SEEDS), "种子 id 重复"
 HATCH = {"公孙氏", "士燮", "张鲁", "黑山"}       # 名义臣属、实则自立（斜线）
-from zhou import jun_of, zhou_han, zhou_of   # 郡的归属与州（统一引擎画州界读 zhou.py 的 zone_of，划法相同）
+
+
+# ================================================================ 郡与州
+JUN = {s["id"]: s for s in SEEDS if s["t"] == "z"}
+ZHOU_STATES = ("汉", "曹", "刘备", "孙", "晋")   # 州界只在这几个政权内部画；220 年前别的政权的郡国并入汉的州块
+
+
+def jun_of(s):
+    """点所属的郡国：郡国点就是它自己，城邑、参考点取 j（部族点没有）"""
+    return s["id"] if s["t"] == "z" else (s["j"] if s["j"] in JUN else None)
+
+
+def zhou_han(s):
+    """东汉的州"""
+    j = jun_of(s)
+    return JUN[j]["j"] if j else None
+
+
+def zhou_of(s, y, owner_k):
+    """某年某地属哪个州：220 年前用东汉十三州；220—265 年蜀汉治下都算益州，吴治下按 wu，其余（魏）按 wei；
+    265 年以后吴治下按 wu，其余（晋，太康十九州）按 jin。点自己写了就用点的，否则用所属郡国的，都没写用东汉的州
+    （各点的 wei、jin、wu 见 content/seeds.py）"""
+    j = jun_of(s)
+    if not j: return None
+    J = JUN[j]; han = J["j"]
+    if y < 220: return han
+    if y < 265 and owner_k == "刘备": return "益州"
+    if owner_k == "孙":
+        return next((z for y0, z in sorted(s.get("wu") or J.get("wu") or [], reverse=True) if y >= y0), han)
+    k = "wei" if y < 265 else "jin"
+    return s.get(k) or J.get(k) or han
+
+
+def zone_of(s, y, unit, polity, kind):
+    """统一引擎按「诸侯 × 州」分块描州界：某年某点所在的州块「州|政权」；部族、弃地、不属郡国的点为 None。
+    写进各节点的 zn（source.json → v1 节点的 zone），引擎照它分块"""
+    if not unit or kind in ("tribe", "waste"):
+        return None
+    zh = zhou_of(s, y, unit)
+    if not zh:
+        return None
+    return zh + "|" + (polity if polity in ZHOU_STATES else ("汉" if y < 220 else polity))
 
 
 # ================================================================ 归属
@@ -86,7 +128,7 @@ def enc(pts):
 
 
 def zhou_names():
-    """各节点有郡国落在其中的州（按 src/zhou.py 的划法；部族、弃地不算）：州名注记由统一引擎标，英文要先备齐"""
+    """各节点有郡国落在其中的州（按上面 zhou_of 的划法；部族、弃地不算）：州名注记由统一引擎标，英文要先备齐"""
     names = set()
     for r in ownership():
         y = r["nd"]["y"]
@@ -107,7 +149,8 @@ def node_rows():
                           pol={UK[k]: UK[p] for k, p in r["pol"].items()},
                           lab={UK[k]: v for k, v in r["lab"].items() if v != UNITS[UK[k]]["n"]},
                           seat={UK[k]: SI[v] for k, v in r["seat"].items()},
-                          h=[UK[k] for k in r["pol"] if k in HATCH or (k == "南匈奴" and r["pol"][k] == "汉")]))   # 184 年南匈奴内属于汉
+                          h=[UK[k] for k in r["pol"] if k in HATCH or (k == "南匈奴" and r["pol"][k] == "汉")],   # 184 年南匈奴内属于汉
+                          zn=[zone_of(SEEDS[i], y, k, r["pol"][k], UNITS[UK[k]]["kind"]) if k else None for i, k in enumerate(own)]))
         print(f"   {y:>4}  {len(set(x for x in own if x)):>2} 单位", flush=True)
     return snaps
 
@@ -227,26 +270,6 @@ def build_seeds():
     return out
 
 
-def write_reach():
-    """统一疆域引擎（单仓第 7 步）用的各点可达倍数，写到 build/reach.txt（era.toml 的 [engine] seeds）。
-    旧算法的可达距离是「分区半径（度）× REACH_MULT」个代价·度；引擎的是 [outer] reach 个代价·投影单位（1° 约 17.45 投影单位）。
-    两套代价的尺度不同（引擎的地形项更重），照字面折算外缘会缩进去一成多，所以再乘 REACH_ENGINE_SCALE（1.5：试过 1、1.5、2，
-    1.5 时全卷有主陆地面积与旧版最接近、归属变化最小）。单独构建本卷（不在单仓里）时没有引擎设置，不写。"""
-    import math
-    eng = C.ROOT.parent.parent / "core" / "engine" / "config.toml"
-    if not eng.exists(): return
-    try:
-        import tomllib
-    except ImportError:
-        import tomli as tomllib
-    base = tomllib.loads(eng.read_text(encoding="utf8"))["outer"]["reach"]
-    deg = 1000 * math.pi / 180
-    k = C.REACH_MULT * deg / base * C.REACH_ENGINE_SCALE
-    rows = [f"{s['id']} {s['lon']} {s['lat']} - R={(s.get('R') or C.REACH_DEFAULT[s['t']]) * k * C.REACH_ENGINE_ADJ.get(s['id'], 1):.3f}\n"
-            for s in SEEDS]
-    (C.BUILD / "reach.txt").write_text("# 由 src/build.py 从 content/seeds.py 写出：点 经 纬 - R=可达倍数（分区半径折算，见 write_reach）\n"
-                                       + "".join(rows), encoding="utf8")
-
 
 def main():
     base = json.load(open(C.GEODATA / "base.json", encoding="utf8"))
@@ -260,7 +283,6 @@ def main():
     C.BUILD.mkdir(exist_ok=True)
     dump = lambda o, p: open(p, "w", encoding="utf8").write(json.dumps(o, ensure_ascii=False, separators=(",", ":")))
     dump(GEO, C.BUILD / "geo.json"); dump(DATA, C.BUILD / "data.json")
-    write_reach()
     print(f"   {len(snaps)} 个节点 · {len(items)} 条目 · {len(SEEDS)} 个郡国城邑点 · {len(UNITS)} 个政权诸侯部族")
     print("   " + " ".join(f"{k} {v}" for k, v in Counter(i['c'] for i in items).most_common()))
 

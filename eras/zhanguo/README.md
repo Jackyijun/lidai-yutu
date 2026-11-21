@@ -78,7 +78,6 @@ eras/zhanguo/
 │   ├── config.py          路径、底图来源与范围
 │   ├── fetch_data.py      下载 Natural Earth 底图
 │   ├── build.py           底图与点要素归属，输出 build/geo.json
-│   ├── jun.py             秦郡：统一引擎按郡治就近细分秦的格子时读（era.toml [engine] 的 sub）
 │   ├── assemble.py        并入英文、检查缺译，汇编成 source.json
 │   └── i18n.py            英文版的公共部分：待译字段清单、指纹
 ├── geodata/
@@ -93,7 +92,7 @@ eras/zhanguo/
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/zhanguo/`）的疆域，第 7 步（2026-11-19）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py zhanguo` 时自动重算）；归属、文字、条目仍出自本卷，归属点仍是与春秋卷共用的 `content/seeds.txt`。外缘照旧构建的办法（`era.toml` 的 `[engine]` 写 `outer = "box"`）：推算范围同下面的栅格（97°—128.5°E、18°—44.5°N），范围内的陆地都分给最近的点（陆路够不着、离岸较远的岛留白，如台湾），不属任何一方的点占位之处留白；与旧构建不同的是代价按统一引擎的地形算，海不可通行，疆域不再画到海上。秦郡也由引擎出：秦的格子按郡治就近再分一层（`src/jun.py`，郡治表仍取 `content/features.py` 的 `JUN`；郡治离秦、卫境不到 4 格也算，洞庭郡因此不致消失）。2026-11-19 在 `seeds.txt` 西北补了武威、张掖、阿拉善、居延 4 个无主点，前212 年秦的西北界因此在贺兰山—黄河一线。
+> 单仓新页面（`docs/zhanguo/`）的疆域，第 7 步（2026-11-19）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py zhanguo` 时自动重算）；归属、文字、条目仍出自本卷，归属点仍是与春秋卷共用的 `content/seeds.txt`。外缘照旧构建的办法（`era.toml` 的 `[engine]` 写 `outer = "box"`）：推算范围同下面的栅格（97°—128.5°E、18°—44.5°N），范围内的陆地都分给最近的点（陆路够不着、离岸较远的岛留白，如台湾），不属任何一方的点占位之处留白；与旧构建不同的是代价按统一引擎的地形算，海不可通行，疆域不再画到海上。秦郡也由引擎出：秦的格子按郡治就近再分一层（`era.toml` 的 `[engine]` 写 `sub.unit`、`sub.hosts`、`sub.near`、`sub.seats`；郡治取本卷的秦郡条目，即 `content/features.py` 的 `JUN`；郡治离秦、卫境不到 4 格也算，洞庭郡因此不致消失。原在 `src/jun.py`，2026-11-21 架构整理第五批写进 `era.toml`）。2026-11-19 在 `seeds.txt` 西北补了武威、张掖、阿拉善、居延 4 个无主点，前212 年秦的西北界因此在贺兰山—黄河一线。
 
 ```
 content/seeds.txt ──┐

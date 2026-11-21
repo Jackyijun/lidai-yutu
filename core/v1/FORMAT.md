@@ -21,7 +21,8 @@
 | `global/physical.jsonl` | 全局山川表（山脉、河流、运河、沙漠、长城、道路） | 是 |
 | `global/glossary.jsonl` | 全局译名表 | 是 |
 | `global/decisions.toml` | 人工决定：地点定组与城址、治所迁城、政权合并与 ID、山川画法、译名 | 是（手写） |
-| `global/palette.toml` | 全局配色：按政权全局 ID 定浅、深两色，五德主色（规范第三节）；`core/v1/overlay.py` 套用 | 是 |
+| `global/palette.toml` | 全局配色：按政权全局 ID 定浅、深两色，五德主色（规范第三节）；`core/v1/overlay.py` 套用；新政权用 `tools/palette.py` 选色 | 是（手写） |
+| `global/walls.toml` | 国界墙：统一疆域引擎烧进代价栅格的今国界与手画的历史界线（规范第十三节「混合疆域法」，民国卷用） | 是（手写） |
 | `global/corrections.toml` | 各卷页面里要改的内容（坐标以外） | 是（手写） |
 | `global/corrections.md` | 各卷改正清单：坐标、内容、英文 | 是 |
 | `global/junctions.toml` | 相邻两卷的衔接与空档 | 是（手写） |
@@ -125,6 +126,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 | `pol` | 单位所属政权：`{单位: 政权}` |
 | `own` | 各归属点（`places` 顺序）这一节点归哪个单位，`-1` 为不属任何单位 |
 | `own_src` | 只在对方为准、对齐改了点的衔接节点上有：本卷自己记的归属。这种节点的疆域在对方的推算范围以内是照搬来的，`own` 在那里改按照搬来的疆域对齐（`core/v1/engine_geom.py` 的 `align_own`）；统一引擎读的是 `own_src` |
+| `zone` | 汉末卷：各归属点（与 `own` 一一对应；有 `own_src` 的节点与 `own_src` 对应）这一节点所在的州块（一个字符串：州名、政权键两段，中间隔一道竖线），`null` 为不分块；统一引擎按它分「诸侯 × 州」描州界（era.toml `[engine]` 写 `zones = true`）。由本卷第 1 段逐节点写出（source.json 节点的 `zn`），页面不用 |
 | `seat` | 唐宋系：治所 |
 | `h` | 本节点突出显示的单位 |
 | `lab` `kd` `col` | 本节点改用的标注名、单位类别、配色（与 `polities` 里不同时才写；`global/palette.toml` 定了色的政权不再逐节点改色） |
@@ -237,7 +239,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 4. 各卷页面里要改的内容（名称、归属、画错的山川等），写进 `global/corrections.toml`。
 5. 再运行 `registry.py`，看清单、`global/corrections.md` 和 `git diff global/` 是否如愿。
 
-配色不同的政权这一步只列出；统一时改按五德主色、邻接避让重定，写在 `global/palette.toml`（2026-11-17 定，见规范第三节）。
+配色不同的政权这一步只列出；统一时改按五德主色、邻接避让重定，写在 `global/palette.toml`（2026-11-17 定，见规范第三节）。每个政权都要在表里有颜色，缺了生成 v1 时停下；新政权运行 `python tools/palette.py`，按统一引擎算出的疆域邻接选色（`--write` 写进表），再 `python run.py --web`。
 
 **第 2 步的审定已于 2026-11-15 完成**：68 处地点、16 处山川、168 处译名、979 年衔接都已定下，写在 `decisions.toml` 与 `corrections.toml` 里；各卷要改的坐标、内容、英文见 `global/corrections.md`。
 

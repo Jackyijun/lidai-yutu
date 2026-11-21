@@ -4,7 +4,8 @@
   python core/v1/build.py              各卷全部
   python core/v1/build.py songyuan     只做这几卷
   python core/v1/build.py --lenient    eras/<短名>/engine.json 过期或还没有时不停下，这一遍先不带疆域（run.py 重算疆域之前用：
-                                       引擎读的就是这一遍的归属）
+                                       引擎读的就是这一遍的归属）；global/palette.toml 里缺色的政权先用占位灰
+  python core/v1/build.py --draft-colors   疆域照常，缺色的政权先用占位灰、记在 meta.palette_missing（tools/palette.py 选色用）
 
 每一卷：
   1. 往返校验：v1 转回旧格式，除疆域几何与配色外必须与 source.json 完全相同；
@@ -91,6 +92,7 @@ def attach(slug, b, pl, po, ph, seats):
 
 def main():
     lenient = "--lenient" in sys.argv
+    draft_colors = lenient or "--draft-colors" in sys.argv     # 缺色时先用占位灰（tools/palette.py 选色前要这一遍）
     slugs = [a for a in sys.argv[1:] if not a.startswith("--")] or ERAS
     bad = [s for s in slugs if s not in ERAS]
     if bad:
@@ -119,7 +121,7 @@ def main():
         c = overlay.apply_coords(slug, b, fixes.get("coords", []))
         eg = engine_geom.apply(slug, b, strict=not lenient)
         al = engine_geom.align_own(slug, b)
-        b["meta"]["overlay"] = ([f"坐标 {c} 处"] if c else []) + ([eg] if eg else []) + ([al] if al else []) + overlay.apply(slug, b, fixes, content)
+        b["meta"]["overlay"] = ([f"坐标 {c} 处"] if c else []) + ([eg] if eg else []) + ([al] if al else []) + overlay.apply(slug, b, fixes, content, draft_colors)
         path = OUT / f"{slug}.json"
         path.write_text(json.dumps(b, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
         size = path.stat().st_size / 1e6

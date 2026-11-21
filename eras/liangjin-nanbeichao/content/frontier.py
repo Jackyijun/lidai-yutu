@@ -6,7 +6,6 @@
 #   西北收入黑海、里海以北的草原（匈人、阿瓦尔人往来之地），
 #   南收入狮子国（锡兰）、马来半岛、苏门答腊、爪哇与巴厘（南朝史书所记的海南诸国）。
 import numpy as np
-from shapely.geometry import Polygon
 
 WEST_NORTH = [
     (22.5, 35.5), (22.5, 41.0), (23.5, 44.2), (27.0, 47.4), (31.0, 49.6), (36.0, 51.0), (42.0, 52.0), (48.0, 52.5),
@@ -59,9 +58,3 @@ def densify(p, step=0.15):
 def outer_lonlat():
     ring = chaikin(WEST_NORTH + NORTH + EAST + SOUTH + INDIA + ARABIA, 3)
     return densify(ring)
-
-
-def outer_proj(proj):
-    ll = outer_lonlat()
-    x, y = proj(ll[:, 0], ll[:, 1])
-    return Polygon(list(zip(x, y))).buffer(0)

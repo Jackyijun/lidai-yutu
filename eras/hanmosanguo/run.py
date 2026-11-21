@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """汉末三国形势图 · 一键构建本卷的第 1 段：python run.py → source.json（单仓的 core/ 再由它出 v1 与新页面）。
 
-  python run.py               检查底图 → 底图与归属（build/geo.json、data.json、reach.txt）→ 汇编 source.json
+  python run.py               检查底图 → 底图、归属与各点的州块（build/geo.json、data.json）→ 汇编 source.json
   python run.py --html        跳过底图与归属，只重新汇编（只改了英文译文时用）
   python run.py --draft       英文有缺译或过期时也照常汇编（缺译处临时显示中文），只给警告
 

@@ -141,6 +141,8 @@ def shorts(b, G):
 
 def render(slug, b, new=True):
     G, D, colors = legacy.from_v1(b)
+    for sn in G["snaps"]:
+        sn.pop("zn", None)                          # 汉末：各点的州块只给统一引擎分块用，页面不用
     unified = web_config(slug) is not None
     t = web_template(slug) if unified and new else template_for(slug)
     if new:

@@ -72,7 +72,7 @@ python run.py --base        # 先重新生成底图 geodata/base.json（改了 s
 
 ### 推算与衔接
 
-- 统一引擎按归属点在全球格网上推算各单位的疆域（外缘按可达代价，`era.toml` 的 `[engine]`；各点的可达倍数 `R=` 写在 `seeds.py`，构建时写成 `build/reach.txt`）。
+- 统一引擎按归属点在全球格网上推算各单位的疆域（外缘按可达代价，`era.toml` 的 `[engine]`；各点的可达倍数 `R=` 写在 `content/seeds.py`，引擎直接读其中的 `RM`）。
 - 前212 节点照搬战国卷末节点：秦、卫的外廓与 51 个秦郡的郡界，文字也照搬。战国卷已换到统一引擎（2026-11-19），外廓与郡界取 `eras/zhanguo/engine.json`（引擎按郡治细分秦的各块），与战国卷新页面一致；旧构建的秦疆画到了海上，原先扣去台湾、海南、济州，引擎的外缘贴着海岸，不再扣。各点归哪个秦郡（Q 一套郡制）原按战国卷旧构建画的秦郡郡界定，架构整理第三批（2026-11-20）起冻结在 `content/qinjun.py`（表里没有的点照旧取最近的有归属的点所属的郡）；各郡国的颜色都已定在 `global/palette.toml`。两者都不随战国卷的疆域改变。战国卷重算疆域后，本卷要跟着重新构建（根目录 `python run.py zhanguo qinhan` 一次即可）。
 - 184 节点照搬汉末卷首节点：各政权的外廓照搬，汉的郡国由引擎算出后裁进汉末卷的汉的外廓、补上缝隙。汉末卷已换到统一引擎（2026-11-19），外廓取 `eras/hanmosanguo/engine.json`，与汉末卷新页面一致；汉末卷重算疆域后，本卷要跟着重新构建。
 - 页面上前212、184 两个节点显示的归属，由单仓生成 v1 时按照搬来的疆域对齐（架构整理第四批，`core/v1/engine_geom.py` 的 `align_own`）：点落在画出来的哪个郡国或政权里就归哪个，所以前212 年页面上有二十多个点与 `content/qinjun.py` 定的秦郡不同，184 年广平、襄国归黄巾。本卷自己的归属不变，引擎照旧按它推算。
@@ -98,7 +98,7 @@ eras/qinhan/
 ├── src/
 │   ├── config.py          路径与常量（范围、太初、首屏）
 │   ├── basemap.py         底图：汉末卷范围内的河湖、山川条目沿用汉末卷，范围外补 Natural Earth
-│   ├── build.py           史料 → 旧格式 GEO / DATA（build/geo.json、data.json，另写引擎读的 build/reach.txt）
+│   ├── build.py           史料 → 旧格式 GEO / DATA（build/geo.json、data.json）
 │   └── assemble.py        汇编成 source.json
 ├── geodata/base.json      底图（由 src/basemap.py 生成，入库）
 └── tools/en_names.py      生成 content/en_names_data.py

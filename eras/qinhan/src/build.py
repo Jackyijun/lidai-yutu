@@ -554,9 +554,6 @@ def main():
                             **({"x": 1} if u.get("x") else {})) for u in UNITS],
                 seeds=seeds_out, items=items)
     C.BUILD.mkdir(exist_ok=True)
-    # 统一引擎的可达倍数（era.toml [engine] seeds）
-    (C.BUILD / "reach.txt").write_text("# 由 src/build.py 从 content/seeds.py 写出：点 经 纬 - R=倍数\n" + "".join(
-        f"{k} {SEEDS[SI[k]]['lon']} {SEEDS[SI[k]]['lat']} - R={v}\n" for k, v in SD.RM.items() if k in SI), encoding="utf8")
     dump = lambda o, q: q.write_text(json.dumps(o, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
     dump(GEO, C.BUILD / "geo.json"); dump(DATA, C.BUILD / "data.json")
     print(f"   {len(snaps)} 个节点 · {len(items)} 条目 · {len(SEEDS)} 个归属点 · {len(UNITS)} 个单位"

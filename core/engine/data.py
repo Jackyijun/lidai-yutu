@@ -8,12 +8,11 @@
   land(bbox)              Natural Earth 1:10m 陆地与小岛（经纬度多边形）
   ne_ranges()             Natural Earth 山地多边形
   frontier(slug)          手绘外缘（隋唐、两晋），没有则 None
-  fingerprint(slug, b)    引擎输入的指纹（归属点、节点归属、引擎参数、外缘设置、重要地域）：eras/<短名>/engine.json 过期没有，靠它判断
-  spec / region / reach_mult / walls    各卷的外缘设置、推算范围、各点可达倍数、国界墙
-  zones / sub             二级区划：按归属点分块（汉末卷的州）/ 按治所就近细分一个单位的格子（战国卷的秦郡）
+  fingerprint(slug, b)    引擎输入的指纹（归属点、节点归属、引擎参数、外缘、可达倍数、国界墙、区划、重要地域）：eras/<短名>/engine.json 过期没有，靠它判断
+  spec / region / reach_mult / walls    各卷的外缘设置、推算范围、各点可达倍数、国界墙（global/walls.toml）
+  zones / sub             二级区划：按 v1 节点的 zone 分块（汉末卷的州）/ 按治所就近细分一个单位的格子（战国卷的秦郡）
   regions(b)              重要地域（唐宋、宋元的燕云十六州）：成员点与分区
 """
-import importlib.util
 import json
 import sys
 from collections import Counter, defaultdict
@@ -172,27 +171,26 @@ def frontier(slug):
     p = ROOT / "eras" / slug / "content" / "frontier.py"
     if not p.exists():
         return None
-    spec = importlib.util.spec_from_file_location(f"frontier_{slug.replace('-', '_')}", p)
-    m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
-    return m.outer_lonlat()
+    return load_source(p, f"frontier_{slug.replace('-', '_')}").outer_lonlat()
 
 
 # ---------------- 各卷的引擎设置（era.toml 的 [engine]） ----------------
 def spec(slug):
     """era.toml 的 [engine]：
-      outer = "frontier"   手绘外缘（content/frontier.py）
-      outer = "reach"      按可达代价定外缘；box = 推算范围 [西, 东, 南, 北]，seeds = 写 R=倍数 的归属点文件
+      outer = "frontier"   手绘外缘（content/frontier.py 的 outer_lonlat()）
+      outer = "reach"      按可达代价定外缘；box = 推算范围 [西, 东, 南, 北]，exclude = 推算范围里剔除的多边形（民国卷的欧洲、非洲），
+                           seeds = 写各点可达倍数的史料文件（文本里的 R=倍数，或 Python 文件里的 RM，见 reach_mult）
       outer = "box"        box 以内的陆地全部分给代价最近的点，不按可达代价截断；外缘由不属任何一方的点（·）定（春秋、战国）
-      config = "src/config.py"   这一卷自己的设置文件，读其中的 EXCLUDE（推算范围里剔除的多边形）与国界墙
-      walls = true / prov_walls = true   烧国界墙 / 今中国省界弱墙（民国）
+      walls = true / prov_walls = true   烧国界墙（全局表 global/walls.toml）/ 今中国省界弱墙（民国）
       simplify = 0.25      覆盖简化容差（格），不写取 config.toml 的 [trace] simplify（0.06）；视野大、节点多的卷放宽，免得页面过大
       far_islands = true   远洋小岛也并入最近的一方（民国卷：殖民地、委任统治地的群岛多没有归属点）；缺省只认离有主地闭运算半径以内的
-      zones = "src/zhou.py" 二级区划（汉末卷的州）：这个文件的 zone_of(点键, 年, 单位键, 政权键, 单位种类) 给出各点所在的区划块，
+      zones = true         二级区划（汉末卷的州）：各点所在的区划块取 v1 节点的 zone（本卷第 1 段逐节点写出），
                            按「单位 × 区划」分块描界，另出区划界 zb 与区划名 zl（zone_label_min：标名的最小面积，平方度）
       labels = "zhanguo"   单位注记按战国式页面的写法（春秋、战国）：陆上最大的一块另加飞地，最多 3 处，面积按旧页面的格数
-      sub = "src/jun.py"   一个单位的格子再按治所就近细分（战国卷的秦郡）：这个文件的 UNIT 是被细分的单位，HOSTS 是治所须落在
-                           其疆域里的单位（NEAR：离其疆域不到这么多格的也算），seats() 给出 [(块键, 经, 纬, 始置年)]；
-                           另出各块的多边形 zp 与注记 zpl"""
+      sub.unit / sub.hosts / sub.near / sub.seats   一个单位的格子再按治所就近细分（战国卷的秦郡）：unit 是被细分的单位，
+                           hosts 是治所须落在其疆域里的单位（near：离其疆域不到这么多格的也算），治所取 v1 里 seats 那一类条目
+                           （键 k、经纬度、始置年）；另出各块的多边形 zp 与注记 zpl
+    引擎只读这里、v1 数据包、全局表（山川、国界墙）与各卷的两样史料：手绘外缘 content/frontier.py、写可达倍数的 seeds 文件"""
     t = tomllib.loads((ROOT / "eras" / slug / "era.toml").read_text(encoding="utf8"))
     s = t.get("engine")
     if not s:
@@ -200,20 +198,34 @@ def spec(slug):
     return s
 
 
-def era_module(slug, rel):
-    """载入一卷自己的 Python 设置文件（如 src/config.py），只读其中的常量"""
-    p = ROOT / "eras" / slug / rel
-    spec_ = importlib.util.spec_from_file_location(f"cfg_{slug.replace('-', '_')}_{p.stem}", p)
-    m = importlib.util.module_from_spec(spec_); spec_.loader.exec_module(m)
+def load_source(p, name):
+    """按源文件载入一个 Python 文件（不读 __pycache__：改了又改回、同一秒内大小不变时，按时间戳判断的字节码缓存会用错）"""
+    import types
+    m = types.ModuleType(name)
+    m.__file__ = str(p)
+    exec(compile(Path(p).read_text(encoding="utf8"), str(p), "exec"), m.__dict__)
     return m
 
 
+def era_module(slug, rel):
+    """载入一卷自己的 Python 史料文件（seeds 指向的 content/seeds.py），只读其中的常量"""
+    p = ROOT / "eras" / slug / rel
+    return load_source(p, f"cfg_{slug.replace('-', '_')}_{p.stem}")
+
+
 def reach_mult(slug, s):
-    """各点可达代价倍数：seeds 文件里的 R=倍数，{点 ID: 倍数}；不写 seeds、也没有 content/seeds.txt 的卷一律取 1"""
+    """各点可达代价倍数，{点 ID: 倍数}，没列的点取 1。seeds 指向本卷的史料：文本文件（或文件夹里的各个 .txt）里每行
+    「点 经 纬 归属 …」后面的 R=倍数（唐宋、宋元、民国），或 Python 文件里的 RM 字典（汉末、秦汉）；
+    不写 seeds、也没有 content/seeds.txt 的卷一律取 1"""
     out = {}
     p = ROOT / "eras" / slug / s.get("seeds", "content/seeds.txt")
     if "seeds" not in s and not p.exists():
         return out
+    if p.suffix == ".py":
+        rm = getattr(era_module(slug, s["seeds"]), "RM", None)
+        if not isinstance(rm, dict):
+            sys.exit(f"eras/{slug}/{s['seeds']}：era.toml [engine] 的 seeds 指向的 Python 文件里要有字典 RM（点 ID → 可达倍数）")
+        return {str(k): float(v) for k, v in rm.items()}
     files = sorted(p.glob("*.txt")) if p.is_dir() else [p]
     for f in files:
         for line in f.read_text(encoding="utf8").splitlines():
@@ -228,33 +240,38 @@ def reach_mult(slug, s):
 
 def sub(slug, s, b=None):
     """[engine] sub：(被细分的单位, 治所须落在其中的单位, 容差格数, [(块键, 经, 纬, 始置年)])；没写 sub 的卷返回 None。
-    设置文件里的单位写单位键（如「秦」），这里换成节点里的单位序号"""
+    era.toml 里 sub.unit、sub.hosts 写单位键（如「秦」），这里换成节点里的单位序号；治所取 v1 里 sub.seats 那一类条目
+    （战国卷的 jun：块键是条目的 k，始置年取条目的 t）"""
     if not s.get("sub"):
         return None
-    m = era_module(slug, s["sub"])
-    ix = {p["key"]: str(i) for i, p in enumerate((b or bundle(slug))["polities"])}
-    if m.UNIT not in ix:
-        sys.exit(f"{s['sub']}：被细分的单位「{m.UNIT}」不在本卷的政权表里")
-    return (ix[m.UNIT], tuple(ix[h] for h in m.HOSTS if h in ix), float(getattr(m, "NEAR", 0)),
-            [(str(k), float(lo), float(la), int(y0)) for k, lo, la, y0 in m.seats()])
+    c = s["sub"]
+    miss = [k for k in ("unit", "hosts", "seats") if k not in c] if isinstance(c, dict) else ["unit", "hosts", "seats"]
+    if miss:
+        sys.exit(f"eras/{slug}/era.toml [engine]：sub 要写 sub.unit、sub.hosts、sub.seats（缺 {'、'.join(miss)}；sub.near 可不写）")
+    b = b or bundle(slug)
+    ix = {p["key"]: str(i) for i, p in enumerate(b["polities"])}
+    if c["unit"] not in ix:
+        sys.exit(f"eras/{slug}/era.toml [engine] sub.unit：被细分的单位「{c['unit']}」不在本卷的政权表里")
+    seats = [(str(it["k"]), float(it["lon"]), float(it["lat"]), it["t"] // 12) for it in b["items"] if it.get("c") == c["seats"]]
+    if not seats:
+        sys.exit(f"eras/{slug}/era.toml [engine] sub.seats：本卷没有「{c['seats']}」类条目")
+    return (ix[c["unit"]], tuple(ix[h] for h in c["hosts"] if h in ix), float(c.get("near", 0)), seats)
 
 
 def zones(slug, s, b, N):
-    """[engine] zones：各节点各点所在的区划块（与 N 等长，每项是各点的块键字符串，None 为不分块）；没写 zones 的卷返回 None"""
+    """[engine] zones = true：各节点各点所在的区划块（与 N 等长，每项是各点的块键字符串，None 为不分块），取 v1 节点的 zone
+    （汉末卷的州块「州|政权」，由本卷第 1 段逐节点写出）；没写 zones 的卷返回 None"""
     if not s.get("zones"):
         return None
-    m = era_module(slug, s["zones"])
-    P = b["polities"]
+    nodes = b["nodes"]
+    if len(nodes) != len(N):
+        sys.exit(f"{slug}：v1 节点数与引擎读入的节点数不同")
     out = []
-    for t, own, pol, act in N:
-        y = t // 12
-        row = []
-        for (_, _, key), u in zip(view_seeds(b), own):
-            if u is None:
-                row.append(None); continue
-            z = m.zone_of(key, y, P[int(u)]["key"], P[int(pol[u])]["key"], P[int(u)]["kind"])
-            row.append(None if z is None else "|".join(z) if isinstance(z, tuple) else str(z))
-        out.append(row)
+    for n, (t, own, pol, act) in zip(nodes, N):
+        z = n.get("zone")
+        if z is None or len(z) != len(own):
+            sys.exit(f"{slug}：era.toml [engine] 写了 zones，v1 节点 {t // 12} 年却没有（或长度不对的）zone；先运行 python run.py {slug}")
+        out.append([None if u is None else z[i] for i, u in enumerate(own)])
     return out
 
 
@@ -274,10 +291,10 @@ def view_seeds(b):
 
 
 def region(slug, s):
-    """reach 卷的推算范围（经纬度多边形）：box 减去设置文件里的 EXCLUDE"""
+    """reach 卷的推算范围（经纬度多边形）：box 减去 era.toml [engine] 的 exclude"""
     W, E, S, N = s["box"]
     g = box(W, S, E, N)
-    ex = getattr(era_module(slug, s["config"]), "EXCLUDE", []) if s.get("config") else []
+    ex = s.get("exclude", [])
     if ex:
         g = g.difference(shapely.union_all([shapely.Polygon(p) for p in ex]))
     return g
@@ -287,12 +304,34 @@ def _month(s_):
     y, m = s_.split("."); return int(y) * 12 + int(m) - 1
 
 
+def wall_table():
+    """全局国界墙表 global/walls.toml：ne_skip（今国界里不用的框）、ne_var（有时效的今国界段）、manual（手画的历史界线）"""
+    t = tomllib.loads((ROOT / "global" / "walls.toml").read_text(encoding="utf8"))
+    bad = lambda msg: sys.exit("global/walls.toml：" + msg)
+    names = [w["name"] for w in t.get("ne_skip", [])]
+    if len(set(names)) != len(names):
+        bad("ne_skip 里有重名的框")
+    for k, need in (("ne_skip", ("name", "poly")), ("ne_var", ("name", "skip")), ("manual", ("name", "line"))):
+        for w in t.get(k, []):
+            miss = [f for f in need if f not in w]
+            if miss:
+                bad(f"{k}「{w.get('name', '?')}」缺 {'、'.join(miss)}")
+            for f in ("from", "to"):
+                if f in w and not (isinstance(w[f], str) and len(w[f].split(".")) == 2 and all(x.lstrip("-").isdigit() for x in w[f].split("."))):
+                    bad(f"{k}「{w['name']}」的 {f} 要写成带引号的「年.月」，如 \"1953.07\"")
+    for w in t.get("ne_var", []):
+        if w["skip"] not in names:
+            bad(f"ne_var「{w['name']}」的 skip「{w['skip']}」不在 ne_skip 里")
+    return t
+
+
 def walls(slug, s):
-    """国界墙（民国式）。返回 dict：fixed = 常设墙折线、prov = 今中国省界（弱墙）、var = [(名称, 折线, 起月, 止月)]；
-    折线都是经纬度点列。没有墙的卷返回 None"""
+    """国界墙（民国式），取全局表 global/walls.toml。返回 dict：fixed = 常设墙折线、prov = 今中国省界（弱墙）、
+    var = [(名称, 折线, 起月, 止月)]；折线都是经纬度点列。没有墙的卷返回 None"""
     if not s.get("walls"):
         return None
-    m = era_module(slug, s["config"])
+    T = wall_table()
+    skips = {w["name"]: w["poly"] for w in T.get("ne_skip", [])}
     W, E, S, N = s["box"]
     BB = box(W - 1, S - 1, E + 1, N + 1)
     reg = region(slug, s)
@@ -305,7 +344,7 @@ def walls(slug, s):
     landu = shapely.union_all(land((W - 1, E + 1, S - 1, N + 1)))
     coast = landu.boundary.buffer(0.04)
     bl = shapely.union_all([g.boundary for g in ctry]).difference(coast)
-    skip = shapely.union_all([shapely.Polygon(p) for p in m.WALL_SKIP])
+    skip = shapely.union_all([shapely.Polygon(p) for p in skips.values()])
     fixed_g = bl.difference(skip).intersection(reg.buffer(0.5))
 
     def lines(g):
@@ -314,13 +353,11 @@ def walls(slug, s):
     def seg(pts):
         return list(shapely.segmentize(shapely.LineString(pts), 0.05).coords)
 
-    fixed = lines(fixed_g) + [seg(w[1]) for w in m.MANUAL_WALLS if len(w) == 2]
-    var = []
-    for w in m.MANUAL_WALLS:
-        if len(w) > 2:
-            var.append((w[0], [seg(w[1])], _month(w[2]) if w[2] else -10 ** 9, _month(w[3]) if w[3] else 10 ** 9))
-    for nm, ib, a, b_ in m.VAR_NE_WALLS:
-        var.append((nm, lines(bl.intersection(shapely.Polygon(m.WALL_SKIP[ib]))), _month(a) if a else -10 ** 9, _month(b_) if b_ else 10 ** 9))
+    timed = lambda w: "from" in w or "to" in w
+    span = lambda w: (_month(w["from"]) if "from" in w else -10 ** 9, _month(w["to"]) if "to" in w else 10 ** 9)
+    fixed = lines(fixed_g) + [seg(w["line"]) for w in T.get("manual", []) if not timed(w)]
+    var = [(w["name"], [seg(w["line"])], *span(w)) for w in T.get("manual", []) if timed(w)]
+    var += [(w["name"], lines(bl.intersection(shapely.Polygon(skips[w["skip"]]))), *span(w)) for w in T.get("ne_var", [])]
     prov = []
     if s.get("prov_walls"):
         P = json.loads((ROOT / "geodata" / "prov" / "tangsong.json").read_text(encoding="utf8"))
@@ -333,25 +370,32 @@ def walls(slug, s):
 # ---------------- 引擎输入的指纹（第 7 步） ----------------
 def fingerprint(slug, b=None):
     """由引擎读入的东西算一个指纹：归属点与各节点的「点 → 单位 → 政权」（view）、core/engine/config.toml、
-    era.toml 的 [engine]、手绘外缘文件、重要地域的成员点。各卷页面疆域取 eras/<短名>/engine.json 时，拿它判断那份结果是不是按当前归属算的。
+    era.toml 的 [engine]（含推算范围 box、exclude）、手绘外缘的点列、各点可达倍数、国界墙表、区划块与细分治所、重要地域的成员点。
+    各卷页面疆域取 eras/<短名>/engine.json 时，拿它判断那份结果是不是按当前输入算的。外缘、可达倍数、墙都按读出来的数据算，
+    改注释不必重算（架构整理第五批起；此前可达倍数与国界墙漏算，外缘按文件字节算）。
     山脉、界河、陆地等全局底图不计在内（改了要手动重算：python run.py <短名>）。"""
     import hashlib
+    b = b or bundle(slug)
+    js = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":"), sort_keys=True).encode("utf8")
     S, N = view(slug, b)
-    h = hashlib.sha1()
-    h.update(json.dumps([[list(x) for x in S], [[t, own, sorted(pol.items()), act] for t, own, pol, act in N]],
-                        ensure_ascii=False, separators=(",", ":")).encode("utf8"))
-    h.update((ROOT / "core" / "engine" / "config.toml").read_bytes())
-    h.update(json.dumps({k: v for k, v in spec(slug).items() if k != "geometry"}, sort_keys=True, ensure_ascii=False).encode("utf8"))
-    fr = ROOT / "eras" / slug / "content" / "frontier.py"
-    if fr.exists():
-        h.update(fr.read_bytes())
     sp = spec(slug)
-    if sp.get("zones"):                               # 区划块：规则文件与它读的归属点文件
-        h.update((ROOT / "eras" / slug / sp["zones"]).read_bytes())
-        h.update(json.dumps(zones(slug, sp, b or bundle(slug), N), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
+    h = hashlib.sha1()
+    h.update(js([[list(x) for x in S], [[t, own, sorted(pol.items()), act] for t, own, pol, act in N]]))
+    h.update((ROOT / "core" / "engine" / "config.toml").read_bytes())
+    h.update(js({k: v for k, v in sp.items() if k != "geometry"}))
+    fr = frontier(slug)
+    if fr is not None:                                # 手绘外缘
+        h.update(js(fr.tolist()))
+    if sp.get("outer") == "reach":                    # 各点可达倍数
+        h.update(js(sorted(reach_mult(slug, sp).items())))
+    if sp.get("walls"):                               # 国界墙表（不算说明文字）
+        T = wall_table()
+        h.update(js({k: [{f: v for f, v in w.items() if f != "note"} for w in T.get(k, [])] for k in ("ne_skip", "ne_var", "manual")}))
+    if sp.get("zones"):                               # 区划块
+        h.update(js(zones(slug, sp, b, N)))
     if sp.get("sub"):                                 # 细分：治所表
-        h.update(json.dumps(sub(slug, sp, b), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
-    reg = regions(b or bundle(slug))
+        h.update(js(sub(slug, sp, b)))
+    reg = regions(b)
     if reg:                                           # 重要地域：成员点与分区
-        h.update(json.dumps(reg, separators=(",", ":")).encode("utf8"))
+        h.update(js(reg))
     return h.hexdigest()[:16]

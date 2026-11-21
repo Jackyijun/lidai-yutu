@@ -27,7 +27,7 @@ seam = -30
 [engine]                     # 统一疆域引擎：本卷直接由它出图（第 6 步起）
 outer = "reach"              # 外缘按可达代价定
 box = [55, 145, 8, 58]       # 推算范围 [西, 东, 南, 北]
-seeds = "build/reach.txt"    # 可达倍数 R=（由 src/build.py 从 content/seeds.py 写出）
+seeds = "content/seeds.py"   # 各点可达倍数：S() 的 R=，引擎读其中的 RM（缺省 1）
 walls = false
 production = true            # 疆域由引擎推算后填回本卷（两遍构建，见 run.py）
 

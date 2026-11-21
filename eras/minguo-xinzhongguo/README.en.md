@@ -82,7 +82,7 @@ eras/minguo-xinzhongguo/
 │   ├── geo.py             mountain ranges, rivers, lakes, canals, deserts, sea names, the Yellow River flooded area
 │   └── en/                ★ English version: translations matching the files above (JSON), zh.lock.json Chinese fingerprints, GLOSSARY.md naming conventions
 ├── src/
-│   ├── config.py          paths, base-map source, extent and projection, border walls (read by the unified engine), base-map simplification
+│   ├── config.py          paths, base-map source, base-map extent and projection, base-map simplification (the computation extent is read from era.toml)
 │   ├── content.py         reads and validates content/ (shared by build.py and tools/check.py)
 │   ├── fetch_data.py      downloads pinned base data if missing
 │   ├── build.py           allegiances at each snapshot, base map and entries; writes build/geo.json and build/data.json
@@ -102,7 +102,7 @@ eras/minguo-xinzhongguo/
 
 ## 5. How it works
 
-> From migration step 7 (18 November 2026) the territory on the new page in the monorepo (`docs/minguo-xinzhongguo/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py minguo-xinzhongguo` at the monorepo root). Ownership, text and entries still come from this volume. The border simplification tolerance is relaxed to 0.25 cells (`[engine]` in `era.toml`), keeping the page about as large as before; the national-border walls and the weak provincial walls are burned into the cost grid by the engine as before.
+> From migration step 7 (18 November 2026) the territory on the new page in the monorepo (`docs/minguo-xinzhongguo/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py minguo-xinzhongguo` at the monorepo root). Ownership, text and entries still come from this volume. The border simplification tolerance is relaxed to 0.25 cells (`[engine]` in `era.toml`), keeping the page about as large as before; the national-border walls and the weak provincial walls are burned into the cost grid by the engine as before. The walls are in the monorepo's global table `global/walls.toml`, and the computation extent (the outer box `box`, and `exclude`, which cuts out Europe and Africa) is under `[engine]` in `era.toml`; both moved out of `src/config.py` in the fifth batch of the architecture cleanup (21 November 2026).
 
 ```
 content/ ──────┐
@@ -216,12 +216,11 @@ The names were translated first and approved by the author, then the notes, snap
 
 The territory parameters no longer live in this volume: the unified engine's general parameters are in the monorepo's `core/engine/config.toml`, and this volume's outer edge, computation extent, simplification tolerance and so on are under `[engine]` in `era.toml`; colors are in the monorepo's `global/palette.toml`. This volume's former grid, cost, smoothing and color parameters were retired with the old build in the third batch of the architecture cleanup (November 2026).
 
-The strength of the border walls (peak, half-width, the weak modern provincial walls, and the distance around places where no wall is burned) is also in `[walls]` in `core/engine/config.toml`. What remains in this volume's `src/config.py`:
+The border walls are in the monorepo's global table `global/walls.toml`: modern border stretches not used as permanent walls (Kashmir, the McMahon Line, the area around the Korean Military Demarcation Line), time-limited modern borders (the Korean Military Demarcation Line from 1953.07), and hand-drawn historical lines (the 38th parallel, the 17th parallel in Vietnam, the 50th parallel on Sakhalin, the northern limit of the Kwantung Leased Territory and the old border between North and South Yemen, optionally with start and end months); the strength of the walls (peak, half-width, the weak modern provincial walls, and the distance around places where no wall is burned) is in `[walls]` in `core/engine/config.toml`. The computation extent is under `[engine]` in `era.toml`: the outer box `box` (26°E–180°E, 11°S–72°N) and `exclude`, which cuts out Europe and Africa; both are read by the unified engine and by this volume's stage 1 (which veils the area outside it on the page). What remains in this volume's `src/config.py`:
 
 | Parameter | Default | Effect |
 |---|---|---|
-| `EXTENT` / `EXCLUDE` / `BASE_EXTENT` | 26°E–180°E, 11°S–72°N minus Europe and Africa / 5°E–215°E, 30°S–82°N | extent of the territory computation (the unified engine reads `EXCLUDE`; the outer box matches `box` in `era.toml`) / of the base map |
-| `WALL_SKIP` / `MANUAL_WALLS` / `VAR_NE_WALLS` | — | read by the unified engine: modern border stretches not used as permanent walls (Kashmir, the McMahon Line, the Korean Military Demarcation Line) / hand-drawn historical lines (optionally with start and end months) / time-limited modern borders (the Korean Military Demarcation Line from 1953.07) |
+| `BASE_EXTENT` | 5°E–215°E, 30°S–82°N | extent of the base map |
 | `FIRST` | 1937.12 | the snapshot shown first |
 
 ---

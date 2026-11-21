@@ -82,7 +82,7 @@ eras/minguo-xinzhongguo/
 │   ├── geo.py             山脉、水系、湖泽、运河、荒漠、海名、黄泛区
 │   └── en/                ★ 英文版：与上面各文件一一对应的译文（JSON）、zh.lock.json 中文指纹、GLOSSARY.md 译名体例
 ├── src/
-│   ├── config.py          路径、底图来源、范围与投影、国界墙（统一引擎读）、底图简化参数
+│   ├── config.py          路径、底图来源、底图范围与投影、底图简化参数（推算范围读 era.toml）
 │   ├── content.py         读入并校验 content/（build.py 与 tools/check.py 共用）
 │   ├── fetch_data.py      底图缺失时下载固定版本
 │   ├── build.py           节点归属、底图与条目，输出 build/geo.json、build/data.json
@@ -102,7 +102,7 @@ eras/minguo-xinzhongguo/
 
 ## 五、工作原理
 
-> 单仓新页面（`docs/minguo-xinzhongguo/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py minguo-xinzhongguo` 时自动重算）；归属、文字、条目仍出自本卷。疆域简化容差放宽到 0.25 格（`era.toml` 的 `[engine]`），页面体积与旧版相当；国界墙与省界弱墙照旧，由引擎烧进代价栅格。
+> 单仓新页面（`docs/minguo-xinzhongguo/`）的疆域，第 7 步（2026-11-18）起改由统一疆域引擎推算（`core/engine/`，结果在本目录的 `engine.json`，根目录 `python run.py minguo-xinzhongguo` 时自动重算）；归属、文字、条目仍出自本卷。疆域简化容差放宽到 0.25 格（`era.toml` 的 `[engine]`），页面体积与旧版相当；国界墙与省界弱墙照旧，由引擎烧进代价栅格：国界墙在单仓的全局表 `global/walls.toml`，推算范围（外框 `box`、剔除的欧洲与非洲 `exclude`）在 `era.toml` 的 `[engine]`（2026-11-21 架构整理第五批由 `src/config.py` 搬去）。
 
 ```
 content/ ──────┐
@@ -216,12 +216,11 @@ geodata/ ──────┘
 
 疆域的推算参数不在本卷：统一引擎的通用参数在单仓 `core/engine/config.toml`，本卷的外缘、推算范围、简化容差等写在 `era.toml` 的 `[engine]`；颜色在单仓 `global/palette.toml`。本卷原来的栅格、代价、平滑与配色参数 2026-11 架构整理第三批起随旧构建一并退役。
 
-国界墙的强度（峰值、半宽、今省界弱墙、归属点周围不烧墙的范围）也在 `core/engine/config.toml` 的 `[walls]`。本卷 `src/config.py` 里留下的：
+国界墙在单仓的全局表 `global/walls.toml`：不当作常设国界墙的今国界段落（克什米尔、麦克马洪线、朝鲜军事分界线一带）、有时效的今国界段（朝鲜军事分界线自 1953.07）、手画的历史界线（三八线、北纬十七度线、库页岛北纬 50° 线、关东州北界、南北也门旧界，可带起止月）；墙的强度（峰值、半宽、今省界弱墙、归属点周围不烧墙的范围）在 `core/engine/config.toml` 的 `[walls]`。推算范围在 `era.toml` 的 `[engine]`：外框 `box`（26°E—180°E、11°S—72°N）与剔除的欧洲、非洲 `exclude`，统一引擎与本卷第 1 段（给推算范围外罩一层薄纸色）读同一份。本卷 `src/config.py` 里留下的：
 
 | 参数 | 默认 | 作用 |
 |---|---|---|
-| `EXTENT` / `EXCLUDE` / `BASE_EXTENT` | 26°E—180°E、11°S—72°N，去掉欧洲、非洲 / 5°E—215°E、30°S—82°N | 疆域推算范围（统一引擎读 `EXCLUDE`；外框同 `era.toml` 的 `box`）/ 底图范围 |
-| `WALL_SKIP` / `MANUAL_WALLS` / `VAR_NE_WALLS` | — | 统一引擎读：不当作常设国界墙的今国界段落（克什米尔、麦克马洪线、朝鲜军事分界线）/ 手画的历史界线（可带起止月）/ 有时效的今国界段（朝鲜军事分界线自 1953.07） |
+| `BASE_EXTENT` | 5°E—215°E、30°S—82°N | 底图范围 |
 | `FIRST` | 1937.12 | 首屏节点 |
 
 ---

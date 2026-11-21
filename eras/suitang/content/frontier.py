@@ -5,7 +5,6 @@
 # 其余各边在海上或沿主要地物：日本取本州约北纬 38 度以南（虾夷之地不计），马来半岛取克拉地峡以北，
 # 南亚止于印度半岛与锡兰之间，西缘止于里海东南、伊朗高原东部（图框以外不画）。
 import numpy as np
-from shapely.geometry import Polygon
 
 NORTH = [
     (58.2, 44.6), (59.0, 46.6), (61.0, 47.2), (63.5, 47.9), (66.5, 48.5), (69.5, 48.9), (72.5, 49.3), (75.5, 49.6),
@@ -42,8 +41,3 @@ def densify(p, step=0.15):
 def outer_lonlat():
     ring = chaikin(NORTH + EAST_SOUTH, 3)
     return densify(ring)
-
-def outer_proj(proj):
-    ll = outer_lonlat()
-    x, y = proj(ll[:, 0], ll[:, 1])
-    return Polygon(list(zip(x, y))).buffer(0)

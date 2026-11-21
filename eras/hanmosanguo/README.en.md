@@ -35,7 +35,7 @@ This directory's `run.py` is stage 1: from the historical content in `content/` 
 
 | Command (in this directory) | What it does |
 |---|---|
-| `python run.py` | Check the base map → assignments at each snapshot, base map and entries, plus the reach multipliers for the engine in `build/reach.txt` → assemble `source.json` |
+| `python run.py` | Check the base map → assignments at each snapshot (with each point's province block), base map and entries → assemble `source.json` |
 | `python run.py --html` | Skip the first two steps and only reassemble (when only English translations changed) |
 | `python run.py --draft` | Assemble even if English translations are missing or stale (missing ones temporarily show the Chinese); without it the build stops with an error |
 | `python tools/i18n.py status` | State of the English version: how many items are missing, stale or have unregistered fingerprints (see section 7) |
@@ -60,16 +60,15 @@ eras/hanmosanguo/
 ├── README.md              documentation (Chinese)
 ├── README.en.md           documentation (English)
 ├── content/               ★ historical content (hand-written; most edits go here)
-│   ├── seeds.py           320 assignment points: Eastern Han commandery and kingdom seats, towns, helper points used only for partitioning, tribal points
+│   ├── seeds.py           320 assignment points: Eastern Han commandery and kingdom seats, towns, helper points used only for partitioning, tribal points; each point's reach multiplier and its province under the Three Kingdoms and Jin
 │   ├── units.py           53 states, warlords, tribes and abandoned lands: names, descriptions
 │   ├── nodes.py           35 snapshots: reign era, title, summary, and which commanderies changed hands that year
 │   ├── items.py           capitals, battles, passes, events, peoples, historical names of mountains and rivers, canals, ancient and plank roads
 │   └── en/                ★ English version: translations matching the files above (JSON), zh.lock.json Chinese fingerprints, GLOSSARY.md naming conventions
 ├── src/
-│   ├── config.py          paths, the factors for converting reach multipliers, opening snapshot
+│   ├── config.py          paths, opening snapshot
 │   ├── fetch_data.py      checks the base map
-│   ├── zhou.py            which province each point belongs to (used by the unified engine when it partitions by warlord × province)
-│   ├── build.py           assignments at each snapshot, base map and entries; writes build/geo.json, data.json, reach.txt
+│   ├── build.py           assignments and each point's province block at each snapshot, base map and entries; writes build/geo.json, data.json
 │   ├── assemble.py        merges the English, checks for missing translations, assembles source.json
 │   └── i18n.py            English version: lists what needs translating, checks for missing and stale translations, merges them into the data
 ├── geodata/
@@ -83,7 +82,7 @@ eras/hanmosanguo/
 
 ## 5. How it works
 
-> From migration step 7 (19 November 2026) the territory on the new page in the monorepo (`docs/hanmosanguo/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py hanmosanguo` at the monorepo root). Ownership, text and entries still come from this volume. The outer edge is set by travel cost, and the engine computes over the same grid extent as the old engine (`[engine]` in `era.toml`). Each seed's reach multiplier is converted from its partition radius in `content/seeds.py`, and `src/build.py` writes the results to `build/reach.txt` (the factors are `REACH_ENGINE_SCALE` and `REACH_ENGINE_ADJ` in `src/config.py`). Province borders and names also come from the engine, which partitions by warlord × province; the rules that assign each place to a province are in `src/zhou.py`. Baima (Baima County, Dong Commandery) lies on the river, and once border coordinates are rounded to 0.01° on the page, the border runs exactly through it, so from 195 to 200 the engine adds a small disc that pulls it back into its own territory (added 19 November 2026).
+> From migration step 7 (19 November 2026) the territory on the new page in the monorepo (`docs/hanmosanguo/`) is computed by the unified territory engine (`core/engine/`; the result is `engine.json` in this folder, recomputed automatically by `python run.py hanmosanguo` at the monorepo root). Ownership, text and entries still come from this volume. The outer edge is set by travel cost, and the engine computes over the same grid extent as the old engine (`[engine]` in `era.toml`). Each seed's reach multiplier is written in `content/seeds.py` (`R=`, with defaults by type in `REACH`) and read by the engine directly; the values were converted from the old build's partition radii when the volume moved to the engine, and since 21 November 2026 (fifth batch of the architecture cleanup) the file holds the multipliers themselves rather than radii. Province borders and names also come from the engine, which partitions by warlord × province: the province of each point under the Three Kingdoms and Jin is written in `content/seeds.py` (`wei`, `jin`, `wu`), `src/build.py` works out each point's province block at every snapshot and writes it into `source.json` (the snapshot's `zn`), and the engine partitions by it (the province blocks used to be worked out in `src/zhou.py`, which the fifth batch folded into `build.py`). Baima (Baima County, Dong Commandery) lies on the river, and once border coordinates are rounded to 0.01° on the page, the border runs exactly through it, so from 195 to 200 the engine adds a small disc that pulls it back into its own territory (added 19 November 2026).
 
 ```
 content/*.py ─────┐
@@ -109,7 +108,7 @@ There is no ready-made boundary data for the late Han warlords. What the histori
    - **border rivers**: Yangtze +3.5, Yellow River +2.5, Huai +2, Han +1.2;
    - finally multiplied by three-scale smooth noise (±42%) so that boundaries bend naturally.
 3. **Multi-source shortest paths**: with all 320 points as sources, one run of `scipy.sparse.csgraph.dijkstra(min_only=True)` on a 16-neighbour grid graph assigns each cell to the point with the smallest cost distance. This is a **weighted Voronoi** diagram: boundaries are drawn onto ridges and rivers. The 16-neighbour stencil (including "knight's moves") is closer to isotropic than 8 neighbours, so boundaries on plains do not follow the grid axes.
-4. **Unclaimed land and outer edges**: cells beyond a point's reach (`R` in `seeds.py` × 1.45) are unclaimed (the far side of the Gobi, the heart of the Tibetan Plateau). Each point's reach is an iso-cost line, so the outer edge would be a string of arcs; a morphological closing (radius 0.7°) fills the notches and Gaussian smoothing shaves off small bumps. Small gaps enclosed by territories are merged into a neighbour.
+4. **Unclaimed land and outer edges**: cells beyond a point's reach (the partition radius `R` then in `seeds.py` × 1.45; since 21 November 2026 `R` holds the unified engine's reach multiplier instead) are unclaimed (the far side of the Gobi, the heart of the Tibetan Plateau). Each point's reach is an iso-cost line, so the outer edge would be a string of arcs; a morphological closing (radius 0.7°) fills the notches and Gaussian smoothing shaves off small bumps. Small gaps enclosed by territories are merged into a neighbour.
 5. **Wiggly boundaries**: on a plain the boundary between two points is a straight perpendicular bisector, so the whole assignment grid is shifted by a smooth displacement field that gives every boundary small river-like bends. Within about 0.3° of the Yangtze, Yellow River, Huai and Han the displacement tapers to zero, so boundaries along border rivers stay on the river and riverside towns (such as Jingkou) are not pushed to the other bank.
 6. **Polygons per snapshot**: for each snapshot, cells are merged by "point → warlord × province", Gaussian-smoothed (σ = 1.25 cells) and traced with marching squares at the 0.5 level. The contours of adjacent blocks already coincide except for small gaps at three-way junctions; all contours are split into faces, each face is assigned to its block (faces in the gaps go by the raster assignment), and the whole set is simplified together with GEOS **coverage simplify**. Warlord, state and provincial boundaries are all built from this one set of shared edges, so two neighbours always share exactly the same line, with no gaps or overlaps.
 7. **Label points**: each warlord, state and province is labelled at the "pole of inaccessibility" (the maximum of the distance transform) of its largest land piece.
@@ -142,6 +141,10 @@ The skeleton, palette, symbols and interactions all follow the unified specifica
 ```
 
 **Add a town**: add a line `C("name", "commandery", lon, lat, "modern location", "note")` to `content/seeds.py`. It follows its commandery automatically; write it into `nodes.py` only if it changes hands separately.
+
+**Change the province of a commandery under the Three Kingdoms or Jin** (the province borders are drawn from it): on that commandery's line in `content/seeds.py`, write `wei="…"` (Wei), `jin="…"` (Jin, the nineteen provinces of the Taikang era) or `wu=[(from year, "…")]` (Wu); towns and helper points without one of their own follow their commandery, and a commandery without one keeps its Eastern Han province (`j`); everything held by Shu Han counts as Yi Province.
+
+**Change how far a point reaches**: write `R=multiplier` on its line in `content/seeds.py` (the defaults for each type are in `REACH` at the top of the file); the smaller the multiplier, the shorter the point's reach, and the land beyond it is left unclaimed.
 
 **Add a battle**: add a line to `BATTLES` in `content/items.py` (name, modern location, longitude and latitude, year, displayed date, outcome, commanders, note).
 
@@ -185,7 +188,7 @@ Chinese is the source text. The English is written in `content/en/` under the sa
 
 The territory parameters no longer live in this volume: the unified engine's general parameters are in the monorepo's `core/engine/config.toml`, and this volume's outer edge, computation extent, simplification tolerance and so on are under `[engine]` in `era.toml`; colours are in the monorepo's `global/palette.toml`. This volume's former grid, cost, smoothing and colour parameters were retired with the old build in the third batch of the architecture cleanup (November 2026).
 
-All that is left in this volume's `src/config.py` is paths, the conversion of reach multipliers (`REACH_DEFAULT`, `REACH_MULT`, `REACH_ENGINE_SCALE`, `REACH_ENGINE_ADJ`, written by `build.py` into `build/reach.txt` for the engine) and the opening snapshot `FIRST_YEAR`.
+All that is left in this volume's `src/config.py` is paths and the opening snapshot `FIRST_YEAR`. Each point's reach multiplier (which the engine uses to set the outer edge) is in `content/seeds.py`: `R=` on the point, otherwise the default for its type in `REACH` (commanderies 0.759, towns 0.467, helper points 0.642).
 
 ---
 

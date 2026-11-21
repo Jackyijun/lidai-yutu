@@ -9,8 +9,8 @@
   2. 各节点“点 → 二级单位 → 政权”的归属
   3. 整理底图（海岸、河湖、运河、山脉、荒漠、今国界，东端跨过日期变更线）与点、线条目
 
-疆域不在这里算：由统一疆域引擎按各节点的归属推算（单仓 core/engine/，结果在本卷的 engine.json；推算范围的 EXCLUDE
-与国界墙仍写在 src/config.py，由引擎读取）；颜色由单仓的 global/palette.toml 定。本卷原来的投影平面栅格、通行代价、
+疆域不在这里算：由统一疆域引擎按各节点的归属推算（单仓 core/engine/，结果在本卷的 engine.json；推算范围 box、exclude
+在本卷 era.toml 的 [engine]，这里也读它来画推算范围外的薄罩；国界墙在单仓的 global/walls.toml）；颜色由单仓的 global/palette.toml 定。本卷原来的投影平面栅格、通行代价、
 多源最短路、覆盖图描界与贪心配色 2026-11 架构整理第三批起退役。
 """
 import json, sys

@@ -12,7 +12,7 @@ engine.json 记着引擎输入的指纹（core/engine/data.py 的 fingerprint）
 
 衔接节点（global/junctions.toml 里 shared 的一年）：
   - 本卷是准的一方：照用本卷引擎的结果；
-  - 对方是准：在对方的推算范围（手绘外缘，或可达代价卷的 box 减 EXCLUDE）以内照搬对方引擎的几何，
+  - 对方是准：在对方的推算范围（手绘外缘，或可达代价卷的 box 减 exclude）以内照搬对方引擎的几何，
     范围以外用本卷的，跨线的同一单位两部分合并；对方的几何先裁到本卷自己的推算范围，
     本卷范围以外对方才有的单位不照搬。对方的单位依次按同键、同全局 ID（global/polities.jsonl）、
     所属政权（对方政权层几何过半落在哪个本卷单位）对上本卷的单位，对不上的那块用本卷自己的几何；
@@ -150,7 +150,7 @@ def gid_of():
 
 
 def region_of(slug):
-    """一卷的推算范围（经纬度多边形）：手绘外缘（outer = "frontier"），或按可达代价定外缘的卷的 box 减去 EXCLUDE（outer = "reach"）"""
+    """一卷的推算范围（经纬度多边形）：手绘外缘（outer = "frontier"），或按可达代价定外缘的卷的 box 减去 exclude（outer = "reach"）"""
     import shapely
     import data as DA
     sp = DA.spec(slug)

@@ -359,6 +359,8 @@ def node_to_v1(sn, clock, pool, inline):
     if "she" in sn and clock.monthly:
         en["short"] = sn["she"]
     n["en"] = en
+    if "zn" in sn:                       # 汉末：各点所在的州块（统一引擎按「诸侯 × 州」分块描州界），页面不用
+        n["zone"] = sn["zn"]
     ext = {k: sn[k] for k in ("zb", "zl") if k in sn}
     if ext:
         n["ext"] = ext
@@ -393,6 +395,8 @@ def node_from_v1(n, form, pool, inline, monthly=False):
         sn.update(sh=n["short"], she=en["short"])
     if "era2" in en:
         sn["era2e"] = en["era2"]
+    if "zone" in n:
+        sn["zn"] = n["zone"]
     sn.update(n.get("ext", {}))
     return sn
 

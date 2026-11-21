@@ -3,6 +3,6 @@ numpy>=1.24
 scipy>=1.10
 shapely>=2.1          # 需要 GEOS 3.12+ 的 coverage_simplify
 pillow>=9.0
-tomli>=2.0; python_version < "3.11"   # core/v1 读 TOML；3.11 起标准库自带
+tomli>=2.0; python_version < "3.11"   # core/ 与民国卷第 1 段读 TOML；3.11 起标准库自带
 # 可选：tools/damo.py 出大漠范围的对照图
 matplotlib>=3.7
