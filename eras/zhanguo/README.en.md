@@ -79,6 +79,7 @@ zhanguo-map/
 │   └── .nojekyll          tells GitHub Pages to publish the files as they are
 ├── content/               ★ historical content (hand-written; this is what you edit)
 │   ├── seeds.txt          474 ownership points: name, coordinates, which state held it when (shared with the Spring and Autumn map; identical in both repositories)
+│   ├── links.txt          which ownership point each place entry (capital, city, pass, battle, commandery seat…) falls under; its ownership history follows from that
 │   ├── features.py        state profiles, colours and tribal peoples, 49 time nodes and their timeline labels,
 │   │                      capitals, battles, passes, major cities, towns, events and works,
 │   │                      mountains, rivers, lakes and marshes, long walls, peoples,
@@ -114,6 +115,7 @@ zhanguo-map/
 
 ```
 content/seeds.txt ──┐
+content/links.txt ──┤
 content/features.py ┼─► build.py ─► build/geo.json ─► assemble.py ─► docs/index.html
 geodata/ (base map) ┘                                    ▲
                           content/features.py + content/en/ + src/template.html
@@ -134,7 +136,7 @@ There is no ready-made boundary data for the Warring States. What the sources us
 4. **Colouring each node**: for every time node, look up which state each point belonged to that year (from `seeds.txt`), merge the cells into each state's area, smooth with a Gaussian, trace and simplify the outlines. Labels are placed at the point of each state's largest land area farthest from its edge.
 5. **Qin commanderies**: for every node, take the commanderies already established whose seats lie inside Qin, run another multi-source shortest-path search from the seats on the same cost map, divide Qin's territory among them, and trace the commandery boundaries. These boundaries are therefore inferred by "nearest seat", not recorded in the sources.
 6. **Rivers and lakes**: Natural Earth rivers are matched to ancient names by their English names; the Warring States course of the Yellow River, the Ji, Beiluo, Yi, Luo, Ru, Ying, Si, Hutuo and Yi rivers and others are drawn by hand. The modern lower Yellow River is drawn as a dashed line to show the change of course.
-7. **Place ownership**: each city, pass and battle looks up whose cell it falls in and takes that point's ownership history, so the tooltip can say "held by such a state in such a year".
+7. **Place ownership**: each city, pass and battle (and each commandery seat) takes the ownership history of the ownership point it falls under, as listed in `content/links.txt`, so the tooltip can say "held by such a state in such a year". Previously this was found by checking whose cell the place fell in. Since the third batch of the architecture cleanup (20 November 2026) the old partition grid is no longer used: the point each place falls under is frozen in that file as that lookup last found it. A newly added place must be listed there (the build checks).
 
 ### 3. `seeds.txt` syntax
 

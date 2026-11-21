@@ -810,7 +810,8 @@ for R in getattr(IM, "ROUTES", []):
                        yt=R.get("yt", f"{pts[0][2]}—{pts[-1][2]}"), anc=pts[len(pts) // 2][:2]))
     ROUTES.append(dict(it=it, pts=pts))
 
-# 重要地域（燕云十六州）：由成员州的栅格并集描出范围线，分区之间画分界线
+# 重要地域（燕云十六州）：由成员州的栅格并集描出范围线，分区之间画分界线。
+# 页面上的范围线、分界线与注记换成统一引擎按分区描的（core/v1/engine_geom.py）；m 是成员点（含 extra），line 表示画分界线
 from scipy.ndimage import map_coordinates
 def contours_ll(field, level=0.5):
     out = []
@@ -856,10 +857,11 @@ for R in getattr(IM, "REGIONS", []):
                 l = np.array(l); lo, la = rc_to_ll(l[:, 0], l[:, 1])
                 enc.append(enc_ring(list(LineString(np.column_stack([lo, la])).simplify(C.SIMPLIFY_TERR).coords)))
             lines = enc
-        groups.append(dict(n=g["name"], y0=g.get("y0", R["y0"]), lab=glab, lines=lines))
+        groups.append(dict(n=g["name"], y0=g.get("y0", R["y0"]), lab=glab, lines=lines,
+                           m=ids(g["members"] + g.get("extra", [])), **({"line": True} if g.get("line") else {})))
     it = add_item(dict(c="region", old=R["name"], mod=R["mod"], note=R["note"], tag=R.get("tag", ""), y0=R["y0"], y1=R.get("y1", 9999),
                        members=ids(R["members"]), anc=rlab[:2], lab=rlab))
-    REG_OUT.append(dict(it=it, y0=R["y0"], y1=R.get("y1", 9999), rings=rings, groups=groups))
+    REG_OUT.append(dict(it=it, y0=R["y0"], y1=R.get("y1", 9999), rings=rings, groups=groups, m=ids(R["members"] + R.get("extra", []))))
 print("regions", [(ITEMS[r["it"]]["old"], len(r["rings"])) for r in REG_OUT])
 
 # ======================================================================

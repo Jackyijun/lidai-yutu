@@ -19,6 +19,9 @@ engine.json 记着引擎输入的指纹（core/engine/data.py 的 fingerprint）
 
 区划界（汉末卷的州界，节点 ext 的 zb / zl）：引擎按 era.toml [engine] 的 zones 分块时一并换成引擎的，否则照旧。
 
+重要地域（唐宋、宋元的燕云十六州，base.regions）：范围线、分区之间的分界线与分区注记，连同地域条目的注记位置
+（lab / anc），换成引擎按地域起始年那个节点的分区描的（engine.json 的 regions）。
+
 春秋、战国：春秋共主着色的「周天下」就是政权层「周」（pu），同其他卷一并换；战国卷的秦郡界（ext j）取引擎按郡治
 细分秦的各块（[engine] sub，结果里的 zp）。以战国卷为准的秦汉卷前212 节点由秦汉卷自己的构建照搬
 （eras/qinhan/src/build.py 的 zg_engine_212）。
@@ -292,5 +295,15 @@ def apply(slug, b, strict=True, log=print):
         n["pul"] = dict(en["pul"])
         if "j" in ext:                                        # 秦郡（战国卷）：引擎按郡治细分秦的各块（zp）；环直接写在节点里
             ext["j"] = {k: e["geom"][g] for k, g in en.get("zp", {}).items()}
+    RB, RE = (b.get("base") or {}).get("regions", []), e.get("regions", [])
+    if len(RB) != len(RE) or any(len(R["groups"]) != len(E["groups"]) for R, E in zip(RB, RE)):
+        sys.exit(f"{slug}：engine.json 的重要地域与本卷对不上，先运行 python run.py {slug} 重算疆域")
+    byi = {it["i"]: it for it in b["items"]}
+    for R, E in zip(RB, RE):                                  # 重要地域（燕云十六州）：范围线、分界线与注记换成引擎的
+        R["rings"] = E["rings"]
+        for g, eg in zip(R["groups"], E["groups"]):
+            g["lab"], g["lines"] = eg["lab"], eg["lines"]
+        it = byi[R["it"]]
+        it["lab"], it["anc"] = E["lab"], E["lab"][:2]
     b["geom"] = pool
     return "疆域：统一引擎（eras/" + slug + "/engine.json）" + ("；" + "；".join(notes) if notes else "")

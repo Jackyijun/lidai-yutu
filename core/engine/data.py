@@ -8,9 +8,10 @@
   land(bbox)              Natural Earth 1:10m 陆地与小岛（经纬度多边形）
   ne_ranges()             Natural Earth 山地多边形
   frontier(slug)          手绘外缘（隋唐、两晋），没有则 None
-  fingerprint(slug, b)    引擎输入的指纹（归属点、节点归属、引擎参数、外缘设置）：eras/<短名>/engine.json 过期没有，靠它判断
+  fingerprint(slug, b)    引擎输入的指纹（归属点、节点归属、引擎参数、外缘设置、重要地域）：eras/<短名>/engine.json 过期没有，靠它判断
   spec / region / reach_mult / walls    各卷的外缘设置、推算范围、各点可达倍数、国界墙
   zones / sub             二级区划：按归属点分块（汉末卷的州）/ 按治所就近细分一个单位的格子（战国卷的秦郡）
+  regions(b)              重要地域（唐宋、宋元的燕云十六州）：成员点与分区
 """
 import importlib.util
 import json
@@ -256,6 +257,17 @@ def zones(slug, s, b, N):
     return out
 
 
+def regions(b):
+    """重要地域（v1 base.regions，唐宋、宋元的燕云十六州）：[(起年, 成员点序号, [(分区成员点序号, 画不画分界线)])]。
+    成员点含 extra（雄州、霸州），由第 1 段构建（eras/<短名>/src/build.py）写进 m"""
+    out = []
+    for R in (b.get("base") or {}).get("regions", []):
+        if "m" not in R or any("m" not in g for g in R.get("groups", [])):
+            sys.exit(f"{b.get('era', '')}：v1 base.regions 第 {len(out) + 1} 个地域没写成员点 m（legacy.html 过期？先运行 python run.py {b.get('era', '<短名>')}）")
+        out.append((R["y0"], list(R["m"]), [(list(g["m"]), bool(g.get("line"))) for g in R.get("groups", [])]))
+    return out
+
+
 def view_seeds(b):
     return [(p["lon"], p["lat"], p["key"]) for p in b["places"]]
 
@@ -320,7 +332,7 @@ def walls(slug, s):
 # ---------------- 引擎输入的指纹（第 7 步） ----------------
 def fingerprint(slug, b=None):
     """由引擎读入的东西算一个指纹：归属点与各节点的「点 → 单位 → 政权」（view）、core/engine/config.toml、
-    era.toml 的 [engine]、手绘外缘文件。各卷页面疆域取 eras/<短名>/engine.json 时，拿它判断那份结果是不是按当前归属算的。
+    era.toml 的 [engine]、手绘外缘文件、重要地域的成员点。各卷页面疆域取 eras/<短名>/engine.json 时，拿它判断那份结果是不是按当前归属算的。
     山脉、界河、陆地等全局底图不计在内（改了要手动重算：python run.py <短名>）。"""
     import hashlib
     S, N = view(slug, b)
@@ -338,4 +350,7 @@ def fingerprint(slug, b=None):
         h.update(json.dumps(zones(slug, sp, b or bundle(slug), N), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
     if sp.get("sub"):                                 # 细分：治所表
         h.update(json.dumps(sub(slug, sp, b), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
+    reg = regions(b or bundle(slug))
+    if reg:                                           # 重要地域：成员点与分区
+        h.update(json.dumps(reg, separators=(",", ":")).encode("utf8"))
     return h.hexdigest()[:16]

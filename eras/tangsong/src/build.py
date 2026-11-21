@@ -481,7 +481,8 @@ for R in getattr(IM, "ROUTES", []):
                        yt=R.get("yt", f"{pts[0][2]}—{pts[-1][2]}"), anc=pts[len(pts) // 2][:2]))
     ROUTES.append(dict(it=it, pts=pts))
 
-# 重要地域（如燕云十六州）：由成员州的栅格并集描出范围线，分区之间画分界线
+# 重要地域（如燕云十六州）：由成员州的栅格并集描出范围线，分区之间画分界线。
+# 页面上的范围线、分界线与注记换成统一引擎按分区描的（core/v1/engine_geom.py）；m 是成员点（含 extra），line 表示画分界线
 from scipy.ndimage import map_coordinates
 REG_OUT = []
 for R in getattr(IM, "REGIONS", []):
@@ -519,10 +520,11 @@ for R in getattr(IM, "REGIONS", []):
                         run = []
                 if len(run) > 3: lines.append(run)
             lines = [enc_ring(list(LineString(l).simplify(C.SIMPLIFY_TERR).coords)) for l in lines]
-        groups.append(dict(n=g["name"], y0=g.get("y0", R["y0"]), lab=glab.get(1), lines=lines))
+        groups.append(dict(n=g["name"], y0=g.get("y0", R["y0"]), lab=glab.get(1), lines=lines,
+                           m=ids(g["members"] + g.get("extra", [])), **({"line": True} if g.get("line") else {})))
     it = add_item(dict(c="region", old=R["name"], mod=R["mod"], note=R["note"], y0=R["y0"],
                        members=ids(R["members"]), anc=rlab[1][:2], lab=rlab[1]))
-    REG_OUT.append(dict(it=it, y0=R["y0"], rings=rsh[1], groups=groups))
+    REG_OUT.append(dict(it=it, y0=R["y0"], rings=rsh[1], groups=groups, m=ids(R["members"] + R.get("extra", []))))
 print("regions", [(ITEMS[r["it"]]["old"], len(r["rings"]), [(g["n"], len(g["lines"])) for g in r["groups"]]) for r in REG_OUT])
 
 # ======================================================================

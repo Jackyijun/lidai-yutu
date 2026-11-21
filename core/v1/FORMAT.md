@@ -68,7 +68,7 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 | `first` | 打开页面时停在哪个节点（月序号） |
 | `meta` | 取自 `era.toml`：卷次、图名、短名、起止年 |
 | `geom` | 几何池，见下 |
-| `base` | 底图图层：`land` `prov` `border` `rivers` `lakes` `canals` `deserts` `seas` `regions` `routes`（各卷有多有少）。`routes` 是行军路线（隋唐、民国、秦汉）：每条 `{it: 条目序号, pts: [[经, 纬, 到达月序号, 地名, …]], pe: [英文地名]}`，地名空着的是折点；页面每个节点只画本期走过的一段 |
+| `base` | 底图图层：`land` `prov` `border` `rivers` `lakes` `canals` `deserts` `seas` `regions` `routes`（各卷有多有少）。`routes` 是行军路线（隋唐、民国、秦汉）：每条 `{it: 条目序号, pts: [[经, 纬, 到达月序号, 地名, …]], pe: [英文地名]}`，地名空着的是折点；页面每个节点只画本期走过的一段。`regions` 是重要地域（唐宋、宋元的燕云十六州）：每处 `{it: 条目序号, y0, y1（宋元卷才有）, m: [成员点序号], rings, groups: [{n, ne, y0, m: [成员点序号], line, lab, lines}]}`，`y0`、`y1` 是年份（不是月序号）；成员点含 `extra`（雄州、霸州），`line` 为真的分区与地域其余部分之间画分界线；`rings`（范围线）、分区的 `lab`（注记）与 `lines`（分界线）连同地域条目的 `lab` / `anc`，生成 v1 时换成统一引擎按分区描的（engine.json 的 `regions`，见 `core/engine/README.md`） |
 | `extent` | 视野：`ext`（经纬度范围）`base`（底图范围）`extpoly` `proj`（投影参数） |
 | `polities` | 政权与二级单位 |
 | `places` | 归属点：州府、城邑、参考点（春秋、战国是两卷共用的分区点，见下） |

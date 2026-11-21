@@ -78,6 +78,7 @@ chunqiu-map/
 ├── content/               ★ historical content (hand-written; this is what you edit)
 │   ├── seeds.txt          474 ownership points: name, coordinates, which state held it when
 │   │                      (shared with the Warring States map; identical in both repositories)
+│   ├── links.txt          which ownership point each place entry (capital, city, pass, battle…) falls under; its ownership history follows from that
 │   ├── features.py        state profiles, colours, tribal peoples and aliases; 46 time nodes and their
 │   │                      timeline labels; capitals, battles, passes, major cities, towns, events and
 │   │                      covenants, the Fangcheng and the Qi Long Wall, mountains, rivers, lakes and
@@ -114,6 +115,7 @@ The files in `src/` derive from those of the same name in the Warring States rep
 
 ```
 content/seeds.txt ──┐
+content/links.txt ──┤
 content/features.py ┼─► build.py ─► build/geo.json ─► assemble.py ─► docs/index.html
 geodata/ (base map) ┘                                    ▲
                           content/features.py + content/en/ + src/template.html
@@ -130,7 +132,7 @@ There are no boundary data for the Spring and Autumn period; what the sources do
 3. **Multi-source shortest paths**: a Dijkstra search runs from the ownership points active that year, and each cell goes to the point that is "nearest to walk to". Nodes with the same set of points share one search.
 4. **Colouring each node**: look up which state each point belonged to that year, merge the cells into each state's area, smooth with a Gaussian, trace and simplify the outlines. Labels go at the point of each state's largest land area farthest from its edge.
 5. **Rivers and lakes**: Natural Earth rivers are matched to ancient names by their English names; the old course of the Yellow River, the Ji, Beiluo, Yi, Luo, Ru, Ying, Si and other rivers are drawn by hand.
-6. **Place ownership**: each city, pass and battle looks up whose cell it falls in and takes that point's ownership history, so the tooltip can say "held by such a state in such a year".
+6. **Place ownership**: each city, pass and battle takes the ownership history of the ownership point it falls under, as listed in `content/links.txt`, so the tooltip can say "held by such a state in such a year". Previously this was found by checking whose cell the place fell in. Since the third batch of the architecture cleanup (20 November 2026) the old partition grid is no longer used: the point each place falls under is frozen in that file as that lookup last found it. A newly added place must be listed there (the build checks).
 
 ### 3. `seeds.txt` syntax
 

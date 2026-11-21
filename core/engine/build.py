@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """统一疆域引擎（第 5 步）：由 v1 数据包推算各节点疆域。
 
-  python core/engine/build.py suitang        输出 build/engine/<短名>.json（几何池 + 各节点 u / ul / pu / pul）
+  python core/engine/build.py suitang        输出 build/engine/<短名>.json（几何池 + 各节点 u / ul / pu / pul；
+                                             有重要地域的卷另有 regions：燕云十六州的范围线、分界线与注记）
 
 数据包里每个归属点（州府、城邑、参考点）先分得一块「势力格」（全卷一次）；每个节点按「点 → 单位」归属
 把格子分类，描出共享界线的覆盖图，单位之并即政权（有两个以上单位的政权另出一层）。
@@ -120,6 +121,68 @@ def zone_lines(polys):
         e = enc_ll(*geo.inv(a[:, 0], a[:, 1]))
         if len(e) >= 4:
             out.append(e)
+    return out
+
+
+AVOID = 1.2      # 重要地域的分区注记离地域总名不足 1.2°（地面距离）的地方不选，同旧构建
+
+
+def far_label(g, land, avoid, step=0.04):
+    """g 的陆上最大一块里离边界最远、又不落在 avoid 内的点（按 step° 见方的格点找）；格式同 label_of，找不到为 None"""
+    ps = [p for p in shapely.get_parts(g.intersection(land)) if p.geom_type == "Polygon"]
+    if not ps:
+        return None
+    big = max(ps, key=lambda p: p.area)
+    x0, y0, x1, y1 = big.bounds
+    xs, ys = np.meshgrid(np.arange(x0, x1, step * GR.DEG), np.arange(y0, y1, step * GR.DEG))
+    P = shapely.points(xs.ravel(), ys.ravel())
+    P = P[shapely.contains(big, P) & ~shapely.contains(avoid, P)]
+    if not len(P):
+        return None
+    d = shapely.distance(big.boundary, P)
+    k = int(np.argmax(d))
+    lon, lat = geo.inv(shapely.get_x(P[k]), shapely.get_y(P[k]))
+    return [round(float(lon), 2), round(float(lat), 2), round(sum(p.area for p in ps) / GR.DEG ** 2, 2), round(float(d[k]) / GR.DEG, 2)]
+
+
+def trace_regions(REG, N, lab_at, win, warp, clip, pins, sp, C, keys):
+    """重要地域（燕云十六州）：按地域起始年那个节点的分区，成员点的格子之并描出范围线；各分区再与地域其余部分
+    描一次，得分区注记，标了 line 的另出两者之间的分界线。注记取法同疆域（label_of）；分区注记离总名不足 AVOID 的，
+    改取避开总名的那一点。分区一律按地域起始年的分区描（分区自己的 y0 只管页面上从哪年起显示，如瀛莫 959 归周）。
+    返回与 REG 等长的 [{rings, lab, groups: [{lab, lines}]}]"""
+    land = shapely.union_all(C["land_xy"])
+    out = []
+    for y0, mem, groups in REG:
+        n0 = next((n for n in N if n[0] >= y0 * 12), None)
+        if n0 is None:
+            sys.exit(f"重要地域（{y0} 年起）之后没有节点")
+        lab = lab_at(n0)
+        allm = np.isin(lab, mem)
+        U = np.where(allm, 0, -1).astype(np.int32)
+        g, _ = TR.polygons(win, U, warp, clip=clip, pins=pins, log=lambda *a: None, simplify=sp.get("simplify"))
+        if 0 not in g:
+            sys.exit(f"重要地域（{y0} 年起）的成员点在 {n0[0] // 12} 年节点都没有格子：" + "、".join(keys[i] for i in mem))
+        rg = g[0]
+        L = label_of(rg, C["land_xy"])
+        if L is None:
+            sys.exit(f"重要地域（{y0} 年起）不在陆上")
+        mx, my = geo.proj(np.array([L[0]]), np.array([L[1]]))
+        avoid = shapely.Point(mx[0], my[0]).buffer(AVOID * GR.DEG)
+        gs = []
+        for gm, line in groups:
+            Ug = np.where(np.isin(lab, gm), 0, np.where(allm, 1, -1)).astype(np.int32)
+            gg, _ = TR.polygons(win, Ug, warp, clip=clip, pins=pins, log=lambda *a: None, simplify=sp.get("simplify"))
+            if 0 not in gg:
+                sys.exit(f"重要地域（{y0} 年起）的分区在 {n0[0] // 12} 年节点没有格子：" + "、".join(keys[i] for i in gm))
+            gl = label_of(gg[0], C["land_xy"])
+            if gl:
+                x, y = geo.proj(np.array([gl[0]]), np.array([gl[1]]))
+                if avoid.contains(shapely.Point(x[0], y[0])):
+                    f = far_label(gg[0], land, avoid)
+                    if f:
+                        gl = [f[0], f[1], gl[2], f[3]]
+            gs.append({"lab": gl, "lines": zone_lines([gg[0], gg[1]]) if line and 1 in gg else []})
+        out.append({"rings": rings_of(rg), "lab": L, "groups": gs})
     return out
 
 
@@ -359,6 +422,12 @@ def run(slug, log=None):
         out_nodes.append(nd)
         log(f"节点 {t // 12}.{t % 12 + 1:02d}", len(u), "单位", len(pu), "政权层")
 
+    REG = DA.regions(b)
+    regions = trace_regions(REG, N, lambda n: labs[group(n[0], n[3])], win, warp, clip, pins, sp, C,
+                            [s[2] for s in S]) if REG else None
+    if regions:
+        log("重要地域", len(regions), "处")
+
     OUT.mkdir(parents=True, exist_ok=True)
     meta = {"window": [win.i0, win.j0, win.ni, win.nj], "cell": win.cell, "outer": sp["outer"],
             "seeds": {str(i): [int(r), int(c)] for i, (r, c) in where.items()},
@@ -367,6 +436,8 @@ def run(slug, log=None):
     if SUB is not None:
         meta["sub"] = s_unit
     res = {"era": slug, "geom": pool, "nodes": out_nodes, "meta": meta}
+    if regions:
+        res["regions"] = regions
     (OUT / f"{slug}.json").write_text(json.dumps(res, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
     np.savez_compressed(OUT / f"{slug}.npz", lab=labs[group(N[-1][0], N[-1][3])], land=C["land"])
     log("完成", len(pool), "块几何 →", f"build/engine/{slug}.json")

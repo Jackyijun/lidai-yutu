@@ -161,7 +161,7 @@ def partition(y):
         print("   分区", len(act), "点")
     return _parts[act]
 LATE = max([s["end"] for s in seeds if s["end"] is not None], default=-9999)
-label = partition(max(LATE, F.SNAPS[-1][0]))     # 秦郡与点要素归属沿用最后一期的分区
+label = partition(max(LATE, F.SNAPS[-1][0]))     # 秦郡沿用最后一期的分区（战国卷用；春秋卷没有秦郡）
 print("labelled")
 
 # ---------- 快照 ----------
@@ -321,17 +321,38 @@ for f in json.load(open(NE + "ne_10m_lakes.geojson"))["features"]:
 # ---------- 今省界（简化，已预先编码） ----------
 PROV = json.load(open(C.GEODATA / "prov.json", encoding="utf8"))
 
-# ---------- 点要素所在种子 ----------
-# 分区随年代可能不同（前350 起部分点退出），点要素的归属沿革按各段分区拼接
+# ---------- 点要素所落的归属点 ----------
+# 分区随年代可能不同（前350 起部分点退出），点要素的归属沿革按各段拼接。各点在各段落在哪个归属点写在
+# content/links.txt（架构整理第三批起冻结，不再按旧构建的分区格子查），沿革取那个归属点在 seeds.txt 里的归属沿革
 _starts = [-9999] + sorted({s["end"] for s in seeds if s["end"] is not None})
-def seed_at(lon, lat):
-    r, c = to_rc(lon, lat)
-    r = min(max(int(round(r)), 0), NY - 1); c = min(max(int(round(c)), 0), NX - 1)
+SIDX = {s["n"]: i for i, s in enumerate(seeds)}
+assert len(SIDX) == len(seeds), "seeds.txt 里有重名的归属点"
+LINKS = {}
+for line in open(C.CONTENT / "links.txt", encoding="utf8"):
+    line = line.strip()
+    if not line or line.startswith("#"): continue
+    parts = line.split()
+    try:
+        segs = [[-9999, parts[1]]] + [[int(y), n] for y, n in (tok.split(":", 1) for tok in parts[2:])]
+    except (IndexError, ValueError):
+        sys.exit(f"content/links.txt 这一行写得不对（应为「键 归属点 [年份:归属点 …]」）：{line}")
+    if parts[0] in LINKS: sys.exit(f"content/links.txt：{parts[0]} 写了两遍")
+    ys = [y for y, _ in segs[1:]]
+    if ys != sorted(set(ys)) or any(y not in _starts[1:] for y in ys):
+        sys.exit(f"content/links.txt：{parts[0]} 的年份只能是分区换段的年份 {_starts[1:]}，且从早到晚")
+    for y, n in segs:
+        if n not in SIDX: sys.exit(f"content/links.txt：{parts[0]} 写的归属点「{n}」不在 seeds.txt 里")
+    LINKS[parts[0]] = segs
+def seed_at(key):
+    if key not in LINKS:
+        sys.exit(f"content/links.txt 里没有「{key}」：新加的点要写明落在哪个归属点")
     out = []
     for i, y0 in enumerate(_starts):
         y1 = _starts[i + 1] if i + 1 < len(_starts) else 10 ** 6
-        k = partition(y0)[r, c]
-        tl = seeds[k]["tl"] if k >= 0 else [[-9999, None]]
+        s = seeds[SIDX[owner(LINKS[key], y0)]]
+        if s["end"] is not None and y0 >= s["end"]:
+            sys.exit(f"content/links.txt：{key} 在 {y0} 年起落在「{s['n']}」，这个归属点那时已不参与分区（~{s['end']}）")
+        tl = s["tl"]
         for t, o in [[y0, owner(tl, y0)]] + [[t, o] for t, o in tl if y0 < t < y1]:
             if not out or out[-1][1] != o: out.append([t, o])
     return out
@@ -343,9 +364,11 @@ if getattr(F, "FIRST", None) is not None: OUT["first"] = F.FIRST     # 首屏节
 pts_owner = {}
 for grp in (F.CAPITALS, F.CITIES, F.PASSES, F.BATTLES, F.CULTURE, F.TOWNS):
     for it in grp:
-        pts_owner[it[0] + "@" + str(it[2])] = tl_str(seed_at(it[2], it[3]))
+        pts_owner[it[0] + "@" + str(it[2])] = tl_str(seed_at(it[0] + "@" + str(it[2])))
 for it in JUN:
-    pts_owner["郡:" + it[0]] = tl_str(seed_at(it[3], it[4]))
+    pts_owner["郡:" + it[0]] = tl_str(seed_at("郡:" + it[0]))
+stale = sorted(set(LINKS) - set(pts_owner))
+if stale: sys.exit("content/links.txt 里这些点已不在 features.py：" + "、".join(stale))
 OUT["own"] = pts_owner
 C.BUILD.mkdir(exist_ok=True)
 json.dump(OUT, open(C.BUILD / "geo.json", "w", encoding="utf8"), ensure_ascii=False, separators=(",", ":"))

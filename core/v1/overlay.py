@@ -217,15 +217,23 @@ def palette():
 
 
 def apply_palette(b, pal):
-    """按全局 ID 改政权配色；改过色的政权，节点里逐年渐变的 col（两晋卷的高句丽、林邑）随之去掉"""
+    """按全局 ID 定政权配色；节点里逐年渐变的 col（两晋卷的高句丽、林邑）随之去掉。
+    每个政权都要在 palette.toml 里有颜色（第三批起各卷旧构建的贪心配色冻结进表、不再重算），缺了停下"""
+    import sys
+    era = b.get("era", "")
+    nogid = [p["key"] for p in b["polities"] if not p.get("gid")]
+    if nogid:
+        sys.exit(f"{era}：这些政权在全局表里查不到（全局表过期？先运行 python core/v1/registry.py）：" + "、".join(nogid))
+    miss = [p["gid"] for p in b["polities"] if p["gid"] not in pal]
+    if miss:
+        sys.exit(f"{era}：global/palette.toml 里没有这些政权的颜色，请在 [color] 里补上（浅色、深色两个）：" + "、".join(miss))
     n, hit = 0, set()
     for i, p in enumerate(b["polities"]):
-        c = pal.get(p.get("gid"))
-        if c and list(p["color"]) != list(c):
+        c = pal[p["gid"]]
+        if list(p["color"]) != list(c):
             p["color"] = list(c)
             n += 1
-        if c:
-            hit.add(str(i))
+        hit.add(str(i))
     for nd in b["nodes"]:
         col = nd.get("col")
         if col:

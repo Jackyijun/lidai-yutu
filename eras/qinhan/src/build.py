@@ -14,7 +14,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import shapely
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Polygon
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config as C  # noqa: E402
@@ -22,7 +22,7 @@ sys.path.insert(0, str(C.REPO / "core" / "v1"))
 import legacy  # noqa: E402
 sys.path.insert(0, str(C.ROOT))
 sys.path.insert(0, str(C.CONTENT))
-import jun as J, seeds as SD, units as UN, nodes as ND, items as IT, en_names as EN  # noqa: E402,E401
+import jun as J, seeds as SD, units as UN, nodes as ND, items as IT, en_names as EN, qinjun as QJ  # noqa: E402,E401
 
 INF = -10 ** 6
 
@@ -150,9 +150,10 @@ def zg_engine_212():
     ZG_LAST["engine"] = True
 
 
-# 各点归哪个秦郡（Q 一套郡制，前212—前180）照旧按 legacy.html 的秦郡郡界定：这是本卷的归属数据，不随战国卷换引擎而变
+# 各点归哪个秦郡（Q 一套郡制，前212—前180）：冻结在 content/qinjun.py（原先按战国卷旧构建画的秦郡郡界定）
+# 配色的邻接照旧按 legacy.html 的几何算（见 junction 的 legacy）；各郡国的颜色已全部定在 global/palette.toml，这份邻接不再影响页面
 QIN_POLY_SEED = {J.qin_unit(k): geom_of(r) for k, r in ZG_LAST["j"].items()}
-ZG_LAST_LEGACY = {"s": dict(ZG_LAST["s"]), "poly": QIN_POLY_SEED}   # 配色的邻接也照旧按 legacy.html 的几何算（见 junction 的 legacy）
+ZG_LAST_LEGACY = {"s": dict(ZG_LAST["s"]), "poly": QIN_POLY_SEED}
 zg_engine_212()
 # 秦郡治所的坐标与战国卷同名城邑条目不符的，取城邑条目（同地同坐标）
 QIN_SEAT_LL = {"肤施": (109.8, 38.0)}     # 战国卷秦郡表记在米脂一带，城邑条目 zhanguo:i:161 在榆林东南
@@ -222,9 +223,12 @@ def load_seeds():
         if any(abs(s["lon"] - lon) < .12 and abs(s["lat"] - lat) < .12 for s in out):
             continue
         out.append(dict(id=f"秦·{it['zhi']}", n=it["zhi"], t="r", lon=lon, lat=lat, mod="", note="", dj=None, qj=J.qin_unit(k)))
-    unknown = [k for k in list(SD.TL) + list(SD.XO) + list(SD.DO) + list(SD.QO) if k not in {s["id"] for s in out}]
+    unknown = [k for k in list(SD.TL) + list(SD.XO) + list(SD.DO) + list(SD.QO) + list(QJ.QJ) if k not in {s["id"] for s in out}]
     if unknown:
-        sys.exit("沿革里写了不存在的点：" + "、".join(unknown))
+        sys.exit("沿革或 content/qinjun.py 里写了不存在的点：" + "、".join(unknown))
+    badq = sorted(set(QJ.QJ.values()) - {J.qin_unit(k) for k in ZG_JUN})
+    if badq:
+        sys.exit("content/qinjun.py 里写了不存在的秦郡：" + "、".join(badq))
     for s in out:
         s["tl"] = SD.TL.get(s["id"], [(INF, "@")])
         if s["id"] in SD.DO:
@@ -236,8 +240,7 @@ def load_seeds():
         if s["id"] in SD.QO:
             s["qj"] = SD.QO[s["id"]]
         elif "qj" not in s:
-            P = Point(s["lon"], s["lat"])
-            s["qj"] = next((k for k, g in QIN_POLY_SEED.items() if g.contains(P)), None)
+            s["qj"] = QJ.QJ.get(s["id"])
     # 某套郡制下没有归属的点，取最近的有归属的点
     for key in ("qj", "xj", "dj"):
         have = [s for s in out if s[key]]
