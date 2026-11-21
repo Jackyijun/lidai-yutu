@@ -12,6 +12,7 @@
   3. 按 global/ 各表给政权、地点、山川条目附上全局 ID（字段 gid）；
   4. 坐标改正（core/v1/overlay.py 的 apply_coords：条目点位与归属点，按全局地点表的城址）；
   5. 疆域换成 eras/<短名>/engine.json（core/v1/engine_geom.py），它是按改后的归属点算的；秦汉卷的疆域在它自己的 source.json 里；
+     对方为准的衔接节点上，对方推算范围以内各点的归属按照搬来的疆域对齐（engine_geom.align_own，原归属存在 own_src）；
   6. 其余改正（core/v1/overlay.py：英文译名、山脉改画、标了 step = 3 的内容、时间轴短标题、全局配色、大漠），记在 meta.overlay。
 global/ 各表与 build/v1/fixes.json 须先由 core/v1/registry.py 生成；本脚本只读不写。build/ 不入库。
 """
@@ -117,7 +118,8 @@ def main():
         b["meta"] = {k: meta[k] for k in ("volume", "title", "title_en", "short", "short_en", "years")}
         c = overlay.apply_coords(slug, b, fixes.get("coords", []))
         eg = engine_geom.apply(slug, b, strict=not lenient)
-        b["meta"]["overlay"] = ([f"坐标 {c} 处"] if c else []) + ([eg] if eg else []) + overlay.apply(slug, b, fixes, content)
+        al = engine_geom.align_own(slug, b)
+        b["meta"]["overlay"] = ([f"坐标 {c} 处"] if c else []) + ([eg] if eg else []) + ([al] if al else []) + overlay.apply(slug, b, fixes, content)
         path = OUT / f"{slug}.json"
         path.write_text(json.dumps(b, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
         size = path.stat().st_size / 1e6

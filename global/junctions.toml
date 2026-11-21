@@ -1,7 +1,8 @@
 # 相邻两卷的衔接与空档。
 #
 # 衔接年份上两卷各画了一次疆域：
-#   shared   两卷共用同一年的节点。owner 是以哪一卷为准，另一卷在这一年应当与它一致。
+#   shared   两卷共用同一年的节点。owner 是以哪一卷为准，另一卷在这一年应当与它一致：另一卷在 owner 的推算范围以内照搬它的疆域，
+#            各点在页面上显示的归属也按照搬来的疆域对齐（core/v1/engine_geom.py 的 align_own，本卷原来的归属另存为 own_src）。
 #   adjacent 前一卷最后一年、后一卷第一年，相邻两年各画一次，不共用节点。
 # compare = "unit" 衔接审定逐个单位比（缺省把各单位并到所属政权再比）。
 # 两卷实际画得一样不一样，见 global/review/junctions.md（python core/v1/registry.py 生成）。
@@ -38,7 +39,7 @@ to = "liangjin-nanbeichao"
 year = 280
 kind = "shared"
 owner = "hanmosanguo"
-note = "两晋卷第 1 段按 eras/liangjin-nanbeichao/geodata/junction_hanmo280.json（冻结的汉末卷疆域环）定这一年的归属；新页面在汉末卷的推算范围内照搬它的引擎几何（core/v1/engine_geom.py），汉末卷留白处照两晋卷画"
+note = "两晋卷第 1 段按 eras/liangjin-nanbeichao/content/junction.py（原由冻结的汉末卷疆域环推出，逐点写明）定汉末卷范围以内这一年的归属；新页面在汉末卷的推算范围内照搬它的引擎几何（core/v1/engine_geom.py），汉末卷留白处照两晋卷画"
 
 [[junction]]
 from = "liangjin-nanbeichao"
@@ -46,7 +47,7 @@ to = "suitang"
 year = 581
 kind = "shared"
 owner = "suitang"
-note = "两晋卷第 1 段按 eras/liangjin-nanbeichao/geodata/junction_suitang581.json（冻结的隋唐卷疆域环）定这一年的归属；新页面照搬隋唐卷的引擎几何"
+note = "两晋卷第 1 段按 eras/liangjin-nanbeichao/content/junction.py（原由冻结的隋唐卷疆域环推出，逐点写明）定隋唐卷外缘以内这一年的归属；新页面照搬隋唐卷的引擎几何"
 
 [[junction]]
 from = "tangsong"

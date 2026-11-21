@@ -44,12 +44,12 @@ geometry = "engine"         # 第 7 步起页面疆域由统一引擎出：eras/
 [junction.prev]
 era = "hanmosanguo"
 at = "280"
-note = "共用节点，以汉末卷为准（归属按 geodata/junction_hanmo280.json 冻结的汉末卷疆域环，疆域取汉末卷的 engine.json）"
+note = "共用节点，以汉末卷为准（汉末卷范围以内各点的归属写在 content/junction.py；疆域取汉末卷的 engine.json，页面上显示的归属按它对齐）"
 
 [junction.next]
 era = "suitang"
 at = "581"
-note = "共用节点，以隋唐卷为准（归属按 geodata/junction_suitang581.json 冻结的隋唐卷疆域环，疆域取隋唐卷的 engine.json）"
+note = "共用节点，以隋唐卷为准（隋唐卷外缘以内各点的归属写在 content/junction.py；疆域取隋唐卷的 engine.json，页面上显示的归属按它对齐）"
 
 [legacy]                    # 旧版：原仓库与原网址保持不变，总页上留「旧版 ↗」链接
 repo = "Jackyijun/liangjin-nanbeichao-map"

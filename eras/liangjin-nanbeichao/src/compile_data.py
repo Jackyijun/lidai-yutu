@@ -1,44 +1,25 @@
 # 汇编：各节点归属、底图（build/geo_base.json）、条目 → GEO / DATA，输出 build/out_data.json
 #   python src/compile_data.py --report         逐节点列出各单位所领归属点
 #   python src/compile_data.py --report 383     只列这一年
-# 衔接节点（规范第十八节）：280 年在汉末三国图范围内、581 年在隋及唐初图外缘内，归属照搬邻卷（geodata/junction_*.json 冻结的邻卷疆域环）。
+# 衔接节点（规范第十八节）：280 年在汉末三国图范围内、581 年在隋及唐初图外缘内，归属照邻卷定，逐点写在 content/junction.py。
 # 疆域由统一疆域引擎按各节点的归属推算（单仓 core/engine/，结果在本卷的 engine.json；衔接节点的疆域取邻卷的 engine.json），
 # 颜色由单仓的 global/palette.toml 定；本卷原来的势力格（src/territory.py → build/cells.pkl）、按势力格并合疆域与贪心配色
 # 2026-11 架构整理第三批起退役。
 import json, sys
-from shapely.geometry import Polygon, Point
-from shapely.ops import unary_union
 from seeds import SEEDS, SID
 from units import U
 from snaps import NODES, FIRST, expand
+import junction as JN
 import config as C
 
 UK = {u['k']: i for i, u in enumerate(U)}
 
-
-def dec(flat):
-    x = y = 0; out = []
-    for i in range(0, len(flat), 2):
-        x += flat[i]; y += flat[i + 1]; out.append((x / 100, y / 100))
-    return out
-
-
 # ---------------- 衔接数据 ----------------
-JUN = {}
-for key, path in (('hanmo', C.JUNCTION_HANMO), ('suitang', C.JUNCTION_SUITANG)):
-    J = json.load(open(path, encoding='utf-8'))
-    if J['frame'] == 'box':
-        W, S_, E, N_ = C.HANMO_FRAME
-        n = 400
-        ring = [(W + (E - W) * i / n, S_) for i in range(n)] + [(E, S_ + (N_ - S_) * i / n) for i in range(n)] + \
-               [(E - (E - W) * i / n, N_) for i in range(n)] + [(W, N_ - (N_ - S_) * i / n) for i in range(n)]
-    else:
-        ring = J['frame']
-    J['frame_ll'] = Polygon(ring).buffer(0)
-    for k, u in J['units'].items():
-        assert k in UK, f'衔接政权 {k} 未在 units.py 中定义'
-        u['ll'] = unary_union([Polygon(dec(r)).buffer(0) for r in u['rings']])
-    JUN[key] = J
+for key in ('hanmo', 'suitang'):
+    for k in list(JN.OWN[key]) + JN.UNITS[key]:
+        assert k in UK, f'content/junction.py：衔接政权 {k} 未在 units.py 中定义'
+    for sid in [s for lst in JN.OWN[key].values() for s in lst] + JN.DROP[key]:
+        assert sid in SID, f'content/junction.py：没有归属点 {sid}'
 
 # ---------------- 归属 ----------------
 own = [None] * len(SEEDS)
@@ -54,19 +35,15 @@ for n in NODES:
         for sid in expand(lst):
             own[SID[sid]] = uk
     for sid in expand(n['drop']): own[SID[sid]] = None
-    if n['junction']:
-        J = JUN[n['junction']]
-        for i, s in enumerate(SEEDS):
-            p = Point(s['lon'], s['lat'])
-            if not J['frame_ll'].contains(p): continue
-            k = next((k for k, u in J['units'].items() if u['ll'].contains(p)), None)
-            if k: own[i] = k
-            elif own[i] in J['units']: own[i] = None      # 邻卷政权在其范围内只取邻卷疆域
+    if n['junction']:                                     # 邻卷范围以内的点照邻卷定（content/junction.py）
+        for uk, lst in JN.OWN[n['junction']].items():
+            for sid in lst: own[SID[sid]] = uk
+        for sid in JN.DROP[n['junction']]: own[SID[sid]] = None
     pol.update(n['pol']); lab.update(n['lab']); kd.update(n['kd'])
     if n['h'] is not None: h = n['h']
     present = sorted(set(x for x in own if x))
     if n['junction']:
-        present = sorted(set(present) | set(JUN[n['junction']]['units']))
+        present = sorted(set(present) | set(JN.UNITS[n['junction']]))
     for u in present:
         p = pol.get(u, u)
         assert p in present or p == u, (n['y'], u, p)

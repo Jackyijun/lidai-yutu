@@ -62,14 +62,15 @@ def view(slug, b=None):
       nodes  [(t, own, pol, active)]：own = 各点归哪个单位（polities 的序号，字符串；不属任何单位为 None），
              pol = {单位: 政权}，active = 各点这一节点是否参与分区（None 为全部参与）
 
-    归属点写了 t1 的（春秋、战国为早期小国、戎狄补的点，seeds.txt 的 ~年份），t1 以后的节点不参与分区。"""
+    归属点写了 t1 的（春秋、战国为早期小国、戎狄补的点，seeds.txt 的 ~年份），t1 以后的节点不参与分区。
+    衔接节点上 v1 的 own 已按照搬来的疆域对齐过的（core/v1/engine_geom.py 的 align_own），取本卷原来的归属 own_src。"""
     b = b or bundle(slug)
     S = [(p["lon"], p["lat"], p["key"]) for p in b["places"]]
     ends = [p.get("t1") for p in b["places"]]
     some = any(e is not None for e in ends)
     N = []
     for n in b["nodes"]:
-        own = [None if v is None or v < 0 else str(v) for v in n["own"]]
+        own = [None if v is None or v < 0 else str(v) for v in n.get("own_src", n["own"])]
         act = [e is None or n["t"] <= e for e in ends] if some else None
         N.append((n["t"], own, {k: str(v) for k, v in n["pol"].items()}, act))
     return S, N

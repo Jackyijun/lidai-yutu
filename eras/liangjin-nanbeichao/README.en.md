@@ -65,19 +65,18 @@ eras/liangjin-nanbeichao/
 │   ├── items.py        notes for passes, mountains, rivers and lakes, canals and deserts (geometry from the Tang–Song map, text rewritten for this period)
 │   ├── items_hist.py   87 capitals, 108 battles, 65 events, 24 peoples, 15 campaign and journey routes
 │   ├── frontier.py     the outer edge of the map (east and north as in the Sui–Tang map, widened to the west and south; the unified engine takes its computation extent from it)
+│   ├── junction.py     the allegiance of each point inside the neighboring volume's area at the two joining snapshots, 280 and 581 (set from the neighbor, listed point by point)
 │   └── en/             English: six json files (units, labels, seeds, items, snaps, misc), the zh.lock.json fingerprints and the GLOSSARY.md naming conventions
 ├── src/
-│   ├── config.py       paths, base-map extent and the location of the joining data
+│   ├── config.py       paths and base-map extent
 │   ├── fetch_data.py   checks geodata/ and downloads pinned versions from GitHub if anything is missing
 │   ├── build.py        base map and assembly, writes build/*.json
 │   ├── basemap.py      base map: land, lakes, rivers, canals, deserts, modern national and provincial borders
-│   ├── compile_data.py allegiance per snapshot (the joining snapshots take the neighbors' allegiances), base map, entries → GEO / DATA
+│   ├── compile_data.py allegiance per snapshot (inside the neighbors' areas the joining snapshots use content/junction.py), base map, entries → GEO / DATA
 │   ├── items_build.py  compiles the entries: capitals, battles, events, landforms, routes, peoples
 │   ├── i18n.py         English: checks for missing and stale translations and merges them into the data
 │   └── assemble.py     merges the English, checks for gaps and assembles source.json
-├── geodata/            base map and joining data, shipped with the repository so it builds offline
-│   ├── junction_hanmo280.json    territory rings of the old 280 snapshot of the Late Han and Three Kingdoms map (frozen; sets the allegiances in 280)
-│   └── junction_suitang581.json  territory rings of the old 581 snapshot of the Sui and Early Tang map (frozen; sets the allegiances in 581)
+├── geodata/            base map, shipped with the repository so it builds offline
 ├── tools/
 │   └── i18n.py         English maintenance: status / todo / lock / table
 └── build/              intermediate files
@@ -103,11 +102,11 @@ eras/liangjin-nanbeichao/
 
 **The old page**: the former `template.html` was adapted from the front end of the Sui and Early Tang map and, following the series style guide (历史形势图统一规范), added the regional-command coloring, northern eras, multiple campaign routes, the promotion of tribes to states within a snapshot (Goguryeo, the Rouran and the Gaoche are drawn as states rather than tribes from a certain snapshot), per-snapshot colors and speed control; the old `assemble.py` replaced the four placeholders `__GEO__`, `__DATA__`, `__UCSS_LIGHT__` and `__UCSS_DARK__` with the data and wrote a single file.
 
-**Joining the neighboring maps** (section 18 of the style guide): on the new page the territories of the two joining snapshots are copied from the neighbors' `engine.json` by the monorepo's `core/v1/engine_geom.py` (see the start of this section); this volume's stage 1 only uses two frozen sets of the neighbors' territory rings to set the allegiances in those two years. The first two points below describe the old build.
+**Joining the neighboring maps** (section 18 of the style guide): on the new page the territories of the two joining snapshots are copied from the neighbors' `engine.json` by the monorepo's `core/v1/engine_geom.py` (see the start of this section); this volume's stage 1 sets the allegiances of the points inside the neighbors' areas in those two years from the list in `content/junction.py`. The allegiances shown on the page at these two snapshots are then aligned by the monorepo with the copied territory (`align_own` in `core/v1/engine_geom.py`: each point belongs to the drawn unit it lies in, a point on a border to the nearest unit, and a point on blank land to none). The first two points below describe the old build.
 
 - **280**: inside the area where the Late Han and Three Kingdoms map computes territory (72°–136°E, 14.75°–55°N), the territory rings, label points, colors and names of Jin, the Xianbei, Buyeo, Goguryeo, the Qiang, the states of the Western Regions, Linyi and the "abandoned lands" are copied from that map's 280 snapshot; gaps that map leaves blank are filled by this map's states, and the area outside it is computed by this map. Between 280 and the next snapshot (289), the northwestern and northeastern borders switch to this map's own points, so there is one small jump.
 - **581**: inside the outer edge of the Sui and Early Tang map, 41 units — Sui, Chen, the Later Liang, the Turks, the Tuyuhun, Goguryeo, Baekje, Silla, Wa and others — are copied from that map's 581 snapshot; the commandery names switch in 581 to that map's Kaihuang prefecture names, and the capital names of Sui, Goguryeo, Wa, Gaochang, the Tibetan Empire and Yangtong match it. The snapshot summary is also taken from that map; the English names of states and places shared with the two maps follow their English.
-- The two sets of joining data (`geodata/junction_*.json`) were extracted from the old pages of the two neighboring maps by `tools/junction.py` before November 2026. In the third batch of the architecture cleanup (November 2026) that script, and the check that the copied territory rings, label points and colors match the neighboring map, were retired with the old build; the two files are frozen, and stage 1 reads only their extent (`frame`) and each state's territory rings, to set the allegiances of the points inside them in 280 and 581. If a neighboring volume changes its joining snapshot, these files do not follow; rebuilding the junctions is left for later.
+- The two sets of joining data (`geodata/junction_hanmo280.json` and `junction_suitang581.json`) were territory rings extracted from the old pages of the two neighboring maps by `tools/junction.py` before November 2026. In the third batch of the architecture cleanup (November 2026) that script, and the check that the copied territory rings, label points and colors match the neighboring map, were retired with the old build; the two files were frozen, and stage 1 read only their extent and each state's territory rings, to set the allegiances of the points inside them in 280 and 581. The fourth batch (21 November 2026) writes the allegiances obtained this way into `content/junction.py` point by point and deletes the two files; the result is the same. If a neighboring volume changes its joining snapshot, these allegiances do not follow; the allegiances shown on the page are aligned separately by the monorepo (see above).
 
 ## 6. Common changes
 
@@ -132,7 +131,7 @@ The 中 | EN switch at the top right changes the language; Chinese is the defaul
 
 The territory parameters no longer live in this volume: the unified engine's general parameters are in the monorepo's `core/engine/config.toml`, and this volume's outer edge, computation extent, simplification tolerance and so on are under `[engine]` in `era.toml`; colors are in the monorepo's `global/palette.toml`. This volume's former grid, cost, smoothing and color parameters were retired with the old build in the third batch of the architecture cleanup (November 2026).
 
-All that is left in this volume's `src/config.py` is paths, the base-map extent and the location of the joining data; the outer edge of the map is still `content/frontier.py`.
+All that is left in this volume's `src/config.py` is paths and the base-map extent; the outer edge of the map is still `content/frontier.py`.
 
 ## 9. Sources and reliability
 

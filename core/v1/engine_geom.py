@@ -18,6 +18,13 @@ engine.json 记着引擎输入的指纹（core/engine/data.py 的 fingerprint）
     所属政权（对方政权层几何过半落在哪个本卷单位）对上本卷的单位，对不上的那块用本卷自己的几何；
     对方的 engine.json 缺了时（engine.json 入库，一般不会缺）：strict 停下，否则这一遍先用本卷自己的。
 
+衔接节点的归属对齐（align_own，架构整理第四批）：对方为准的衔接节点上，疆域在对方的推算范围以内是照搬来的，
+  本卷各点自己记的归属可能与画出来的对不上。生成 v1 时，范围以内（含边上）的点一律改归画出来包含它的单位；不在任何
+  一块里、离某块不到 0.01° 的（压在界线上）取最近的一块，本卷原来的单位也是最近的就不改；落在两块重叠的碎片里也先取
+  原来的单位；离各块都超过 0.01° 的（落在空白处）不归任何单位。本卷原来的归属另存在节点的 own_src（对齐改了点才有），
+  统一引擎读的是 own_src（core/engine/data.py 的 view），所以引擎的输入与指纹不变。秦汉卷的两头衔接疆域由它自己的构建
+  照搬，同样在这里对齐。衔接节点是本卷的首节点或末节点，年份须与 global/junctions.toml 记的一致，否则停下。
+
 区划界（汉末卷的州界，节点 ext 的 zb / zl）：引擎按 era.toml [engine] 的 zones 分块时出。
 
 春秋、战国：春秋共主着色的「周天下」就是政权层「周」（pu），同其他卷一并换；战国卷的秦郡界（ext j）取引擎按郡治
@@ -124,6 +131,9 @@ def junction_nodes(slug, b):
             continue
         mine = len(b["nodes"]) - 1 if slug == j["from"] else 0
         theirs = 0 if slug == j["from"] else -1
+        if b["nodes"][mine]["t"] // 12 != j["year"]:
+            sys.exit(f"{slug}：global/junctions.toml 记着与{j['owner']}在 {j['year']} 年共用节点，本卷{'末' if mine else '首'}节点却是 "
+                     f"{b['nodes'][mine]['t'] // 12} 年")
         out.append((mine, j["owner"], theirs))
     return out
 
@@ -212,6 +222,52 @@ def merge_node(slug, b, mine, eng_mine, owner, theirs):
         if not g.is_empty:
             out[u] = (g, inside.area, outside.area)
     return out, on, oe, ogid
+
+
+SNAP = 0.01           # 归属对齐：不在任何单位里、离某块不到 0.01°（页面的坐标精度）的点归最近的一块（原来的单位也最近就不改）
+
+
+def align_own(slug, b):
+    """对方为准的衔接节点：对方推算范围以内的点，归属改成画出来包含它的单位（见文首）。
+    节点还没有疆域（--lenient 那一遍引擎结果过期、秦汉卷第一遍）就不动。返回记进 meta.overlay 的一句话，没改则 None"""
+    import shapely
+    notes = []
+    for mine, owner, _ in junction_nodes(slug, b):
+        n = b["nodes"][mine]
+        if not n.get("u"):
+            continue
+        R = region_of(owner)
+        keys = sorted(n["u"], key=lambda k: (len(k), k))
+        shapes = [shape_of(b["geom"][n["u"][k]]) for k in keys]
+        tree = shapely.STRtree(shapes)
+        src = n.get("own_src", n["own"])                 # 再对齐一遍（已有 own_src）时从本卷原来的归属算起
+        src_n = [-1 if v is None else v for v in src]    # v1 的 own 不归任何单位记 -1
+        new = list(src_n)
+        both = []
+        for i, p in enumerate(b["places"]):
+            pt = shapely.Point(p["lon"], p["lat"])
+            if not R.covers(pt):                         # 压在推算范围边上的也算在内
+                continue
+            hit = sorted(tree.query(pt, predicate="within"))
+            if not hit:                                  # 压在界线上或贴着界线：本卷原来的单位在最近的几块里就不改，否则取最近的
+                near = sorted((shapes[j].distance(pt), j) for j in tree.query(pt.buffer(SNAP)) if shapes[j].distance(pt) <= SNAP)
+                hit = [j for d, j in near if d <= near[0][0] + 1e-9] if near else []
+            elif len(hit) > 1:                           # 落在两块重叠的碎片里（环按 0.01° 取整后偶有）：同样先取原来的单位
+                both.append(p["key"])
+            hit = [j for j in hit if keys[j] == str(src_n[i])] or hit[:1]
+            new[i] = int(keys[hit[0]]) if hit else -1
+        changed = sum(a != c for a, c in zip(src_n, new))
+        miss = sorted({b["polities"][v]["key"] for v in new if v >= 0 and str(v) not in n["pol"]})
+        if miss:
+            sys.exit(f"{slug}：{n['t'] // 12} 年衔接节点对齐后有点归到节点政权表里没有的单位：" + "、".join(miss))
+        if changed:
+            n["own_src"] = list(src)
+            n["own"] = new
+            notes.append(f"{n['t'] // 12} 年衔接节点 {changed} 个点的归属按{era_toml(owner)['short']}卷照搬来的疆域对齐"
+                         + (f"（{'、'.join(both)} 落在两块重叠处）" if both else ""))
+        elif "own_src" in n:
+            n["own"] = n.pop("own_src")
+    return "；".join(notes) or None
 
 
 # ---------------- 换几何 ----------------
