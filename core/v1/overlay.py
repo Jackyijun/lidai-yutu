@@ -3,8 +3,8 @@
 
 各卷成品（eras/<短名>/legacy.html）保持原样，作为数据来源；build.py 转成 v1 后在这里套用改正，新页面由改正后的 v1 生成：
   · 坐标（apply_coords，build.py 在换引擎几何之前先套用）：条目点位（都城、关隘等）与归属点（州府等）按 global/places.jsonl 的城址。
-    归属点是统一引擎的输入，疆域按改后的点重算；春秋、战国的归属点不在 v1 里，直接改在两卷共用的 content/seeds.txt，
-    这里只改两卷的城邑条目；
+    归属点是统一引擎的输入，疆域按改后的点重算；春秋、战国的归属点取自两卷共用的 content/seeds.txt，不进全局表，
+    要改直接改那个文件，这里只改两卷的城邑条目；
   · 山川改画（apply_ranges）：decisions.toml [physical.prefer] 写了 page = true 的，各卷都画成选定那一卷的线（武陵山、伏牛山）；
   · 英文译名统一（global/corrections.md「英文」一节）；
   · global/corrections.toml 里标了 step = 3 的内容改正；
@@ -225,7 +225,7 @@ def apply_palette(b, pal):
             p["color"] = list(c)
             n += 1
         if c:
-            hit.add(str(i) if b["model"] == "layered" else p["key"])
+            hit.add(str(i))
     for nd in b["nodes"]:
         col = nd.get("col")
         if col:

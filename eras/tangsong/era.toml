@@ -10,7 +10,6 @@ short_en = "Late Tang"
 
 years = [755, 979]          # 起止年（含），公元前记负数，与总页一致
 time = "year"             # 节点的时间精度：year 按年，month 按月
-model = "layered"          # 数据模型：simple（战国式）或 layered（唐宋系）
 first = 820                 # 打开页面时停在哪一年的节点
 nodes = 39                 # 节点数（构建时核对）
 

@@ -3,6 +3,7 @@
 # 衔接年份上两卷各画了一次疆域：
 #   shared   两卷共用同一年的节点。owner 是以哪一卷为准，另一卷在这一年应当与它一致。
 #   adjacent 前一卷最后一年、后一卷第一年，相邻两年各画一次，不共用节点。
+# compare = "unit" 衔接审定逐个单位比（缺省把各单位并到所属政权再比）。
 # 两卷实际画得一样不一样，见 global/review/junctions.md（python core/v1/registry.py 生成）。
 #
 # 空档是还没有卷覆盖的年代，plan 写准备由哪一卷补上。
@@ -12,6 +13,7 @@ from = "chunqiu"
 to = "zhanguo"
 year = [-476, -475]
 kind = "adjacent"
+compare = "unit"            # 衔接审定比各诸侯国本身：春秋的政权层是共主（奉周的诸侯归周），战国卷没有这一层
 note = "两卷衔接节点上共有的政权疆域完全一致"
 
 [[junction]]

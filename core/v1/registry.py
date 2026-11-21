@@ -144,6 +144,8 @@ def place_candidates(B):
         b = B[slug]
         seen_items = set()
         for p in b["places"]:
+            if p.get("global") is False:                 # 春秋、战国的分区点不进全局表
+                continue
             names = {p["n"]} | {nm for _, nm in p.get("names", [])}
             if "jn" in p:
                 names.add(p["jn"])
@@ -152,6 +154,12 @@ def place_candidates(B):
                           "ll": (p["lon"], p["lat"]), "kind": p["kind"], "en": en, "main": p["n"]})
             if "item" in p:
                 seen_items.add(p["item"])
+        for it in b["items"]:                           # 春秋、战国的城邑：带归属沿革的条目（国都、名城、一般城邑、关隘）
+            if "owners" in it and it["c"] in ("capital", "city", "town", "pass"):
+                cands.append({"ref": f"{slug}:i:{it['i']}", "era": slug, "names": {it["old"]}, "mod": it.get("mod", ""),
+                              "ll": (it["lon"], it["lat"]), "kind": it["c"], "en": it.get("en", {}).get("old"),
+                              "main": it["old"]})
+                seen_items.add(it["i"])
         for it in b["items"]:
             if it["c"] in ("capital", "pass") and "lon" in it and it["i"] not in seen_items:
                 cands.append({"ref": f"{slug}:i:{it['i']}", "era": slug, "names": {it["old"]}, "mod": it.get("mod", ""),
@@ -398,30 +406,19 @@ def build_places(B, dec):
 
 # ---------------------------------------------------------------- 政权
 
-def active_range(b, key):
-    ts = [n["t"] for n in b["nodes"] if key in n.get("u", {}) or key in n.get("pu", {})]
-    return (min(ts), max(ts)) if ts else None
-
-
 def build_polities(B, dec):
     cands = []
     for slug in ERAS:
         b = B[slug]
         t0, t1 = b["nodes"][0]["t"], b["nodes"][-1]["t"]
-        for p in b["polities"]:
+        for i, p in enumerate(b["polities"]):
             key = p["key"]
-            # 分层模型的节点里，单位以序号出现
-            if b["model"] == "layered":
-                idx = str(b["polities"].index(p))
-                ts = [n["t"] for n in b["nodes"] if idx in n.get("u", {}) or idx in n.get("pu", {})]
-                rng = (min(ts), max(ts)) if ts else None
-                nn = len(ts)
-                parent = next((b["polities"][int(n["pol"][idx])]["n"] for n in b["nodes"]
-                               if str(n.get("pol", {}).get(idx, idx)) != idx), None)
-            else:
-                rng = active_range(b, key)
-                nn = sum(1 for n in b["nodes"] if key in n.get("u", {}))
-                parent = None
+            idx = str(i)                                     # 节点里单位以序号出现
+            ts = [n["t"] for n in b["nodes"] if idx in n.get("u", {}) or idx in n.get("pu", {})]
+            rng = (min(ts), max(ts)) if ts else None
+            nn = len(ts)
+            parent = next((b["polities"][int(n["pol"][idx])]["n"] for n in b["nodes"]
+                           if str(n.get("pol", {}).get(idx, idx)) != idx), None)
             cands.append({"ref": f"{slug}:{key}", "era": slug, "key": key, "n": p["n"], "en": p.get("en", {}).get("n"),
                           "kind": p["kind"], "color": p["color"], "rng": rng, "edge": (t0, t1), "nn": nn, "parent": parent})
     uf = UF(len(cands))
@@ -641,10 +638,11 @@ def shape_of(b, g):
     return out
 
 
-def node_shapes(b, node):
-    """节点上各政权（顶层）的疆域：有政权层几何（pu）用它，否则把归属该政权的各单位合起来。"""
+def node_shapes(b, node, units=False):
+    """节点上各政权（顶层）的疆域：有政权层几何（pu）用它，否则把归属该政权的各单位合起来。
+    units = True 时不合，取各单位本身的疆域（global/junctions.toml 里写 compare = "unit" 的衔接）"""
     from shapely.ops import unary_union
-    pol = node.get("pol", {})
+    pol = {} if units else node.get("pol", {})
     parts = collections.defaultdict(list)
     for k, g in node.get("u", {}).items():
         top = str(pol.get(k, k))
@@ -652,19 +650,19 @@ def node_shapes(b, node):
     out = {}
     for top, shs in parts.items():
         out[top] = unary_union([x for x in shs if x is not None and not x.is_empty])
-    for k, g in node.get("pu", {}).items():
+    for k, g in ({} if units else node.get("pu", {})).items():
         out[k] = shape_of(b, g)
-    if b["model"] == "layered":
-        out = {b["polities"][int(k)]["key"]: v for k, v in out.items()}
-    return out
+    return {b["polities"][int(k)]["key"]: v for k, v in out.items()}
 
 
 def build_junctions(B, polities):
     ref2id = {r: p["id"] for p in polities for r in p["refs"]}
+    unit_level = {(j["from"], j["to"]) for j in load_toml(GLOBAL / "junctions.toml").get("junction", []) if j.get("compare") == "unit"}
     rows, report = [], []
     for a, z in JUNCTIONS:
         na, nz = B[a]["nodes"][-1], B[z]["nodes"][0]
-        sa, sz = node_shapes(B[a], na), node_shapes(B[z], nz)
+        u = (a, z) in unit_level
+        sa, sz = node_shapes(B[a], na, u), node_shapes(B[z], nz, u)
         ia = {ref2id[f"{a}:{k}"]: v for k, v in sa.items()}
         iz = {ref2id[f"{z}:{k}"]: v for k, v in sz.items()}
         common = sorted(set(ia) & set(iz))
@@ -872,8 +870,8 @@ def main():
     (GLOBAL / "corrections.md").write_text(
         "# 各卷改正清单\n\n第 2 步审定出来、各卷页面里要改的地方。全局表已经按改正后的写。"
         "都由 `core/v1/overlay.py` 在生成 v1 数据时套用，各卷原始数据（legacy.html）不动。"
-        "条目点位、英文译名、标了 step = 3 的内容第 3 步先改；牵动疆域的（州府与春秋、战国城邑这些归属点的坐标）"
-        "第 7 步之后一并改了，疆域按改后的点由统一引擎重算（春秋、战国的归属点直接改在两卷共用的 content/seeds.txt）。"
+        "条目点位、英文译名、标了 step = 3 的内容第 3 步先改；牵动疆域的（州府等归属点的坐标）"
+        "第 7 步之后一并改了，疆域按改后的点由统一引擎重算（春秋、战国的归属点取自两卷共用的 content/seeds.txt，直接改在那里）。"
         "本文件由 `python core/v1/registry.py` 生成，内容改正手写在 `global/corrections.toml`。\n\n"
         f"## 坐标（{len(rows)} 处，新页面已改 {n3} 处）\n\n与全局地点表里那个年代的城址相距 2 km 以上的（坐标精度约 1 km）。"
         "一条只有一个坐标：同一条有几段年代各不相符的（治所迁城），取年代最长的一段；那一段不到本条年代一半的不改。\n\n"

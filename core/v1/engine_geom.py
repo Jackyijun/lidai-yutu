@@ -19,9 +19,9 @@ engine.json 记着引擎输入的指纹（core/engine/data.py 的 fingerprint）
 
 区划界（汉末卷的州界，节点 ext 的 zb / zl）：引擎按 era.toml [engine] 的 zones 分块时一并换成引擎的，否则照旧。
 
-简单卷（春秋、战国）：各国疆域 u 与注记 ul 换成引擎的；共主着色的「周天下」外缘（ext w）取引擎的政权层「周」，
-秦郡界（ext j）取引擎按郡治细分秦的各块（[engine] sub，结果里的 zp）。以战国卷为准的秦汉卷前212 节点
-由秦汉卷自己的构建照搬（eras/qinhan/src/build.py 的 zg_engine_212）。
+春秋、战国：春秋共主着色的「周天下」就是政权层「周」（pu），同其他卷一并换；战国卷的秦郡界（ext j）取引擎按郡治
+细分秦的各块（[engine] sub，结果里的 zp）。以战国卷为准的秦汉卷前212 节点由秦汉卷自己的构建照搬
+（eras/qinhan/src/build.py 的 zg_engine_212）。
 """
 import json
 import sys
@@ -208,34 +208,6 @@ def merge_node(slug, b, mine, eng_mine, owner, theirs):
 
 
 # ---------------- 换几何 ----------------
-def apply_simple(slug, b, e):
-    """简单卷：各国疆域与注记、周天下外缘（ext w）、秦郡界（ext j）换成引擎的"""
-    pool, seen = [], {}
-
-    def put(rr):
-        k = json.dumps(rr, separators=(",", ":"))
-        if k not in seen:
-            seen[k] = len(pool); pool.append(rr)
-        return seen[k]
-
-    for n, en in zip(b["nodes"], e["nodes"]):
-        n["u"] = {k: put(e["geom"][g]) for k, g in en["u"].items()}
-        n["ul"] = dict(en["ul"])
-        ext = n.get("ext")
-        if not ext:
-            continue
-        if "w" in ext:                                        # 周天下：王畿与奉周诸侯（引擎的政权层「周」；只剩王畿时就是它）
-            g = en["pu"].get("周", en["u"].get("周"))
-            if g is None:
-                ext.pop("w")
-            else:
-                ext["w"] = e["geom"][g]
-        if "j" in ext:                                        # 秦郡：引擎按郡治细分秦的各块
-            ext["j"] = {k: e["geom"][g] for k, g in en.get("zp", {}).items()}
-    b["geom"] = pool
-    return "疆域：统一引擎（eras/" + slug + "/engine.json）"
-
-
 def apply(slug, b, strict=True, log=print):
     """把 b（v1 数据包，已由 legacy.html 转出）的疆域换成引擎的。返回记进 meta.overlay 的一句话；本卷没换到引擎则 None"""
     if not migrated(slug):
@@ -254,8 +226,6 @@ def apply(slug, b, strict=True, log=print):
             sys.exit(f"{slug}：{why}，先运行 python run.py {slug} 重算疆域")
         log(f"    {slug}：{why}；这一遍先用 legacy.html 的几何")
         return None
-    if b["model"] == "simple":
-        return apply_simple(slug, b, e)
 
     old_pool, pool, seen = b["geom"], [], {}
 
@@ -320,5 +290,7 @@ def apply(slug, b, strict=True, log=print):
         n["ul"] = dict(en["ul"])
         n["pu"] = {k: put(e["geom"][g]) for k, g in en["pu"].items()}
         n["pul"] = dict(en["pul"])
+        if "j" in ext:                                        # 秦郡（战国卷）：引擎按郡治细分秦的各块（zp）；环直接写在节点里
+            ext["j"] = {k: e["geom"][g] for k, g in en.get("zp", {}).items()}
     b["geom"] = pool
     return "疆域：统一引擎（eras/" + slug + "/engine.json）" + ("；" + "；".join(notes) if notes else "")

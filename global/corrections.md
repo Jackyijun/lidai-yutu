@@ -1,6 +1,6 @@
 # 各卷改正清单
 
-第 2 步审定出来、各卷页面里要改的地方。全局表已经按改正后的写。都由 `core/v1/overlay.py` 在生成 v1 数据时套用，各卷原始数据（legacy.html）不动。条目点位、英文译名、标了 step = 3 的内容第 3 步先改；牵动疆域的（州府与春秋、战国城邑这些归属点的坐标）第 7 步之后一并改了，疆域按改后的点由统一引擎重算（春秋、战国的归属点直接改在两卷共用的 content/seeds.txt）。本文件由 `python core/v1/registry.py` 生成，内容改正手写在 `global/corrections.toml`。
+第 2 步审定出来、各卷页面里要改的地方。全局表已经按改正后的写。都由 `core/v1/overlay.py` 在生成 v1 数据时套用，各卷原始数据（legacy.html）不动。条目点位、英文译名、标了 step = 3 的内容第 3 步先改；牵动疆域的（州府等归属点的坐标）第 7 步之后一并改了，疆域按改后的点由统一引擎重算（春秋、战国的归属点取自两卷共用的 content/seeds.txt，直接改在那里）。本文件由 `python core/v1/registry.py` 生成，内容改正手写在 `global/corrections.toml`。
 
 ## 坐标（130 处，新页面已改 119 处）
 

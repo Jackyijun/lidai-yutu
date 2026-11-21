@@ -3,8 +3,8 @@
 
   python3 tools/colorcheck.py [短名...] [--zhen] [--dark] [--json]
 
-读 build/v1/<短名>.json（先跑 python run.py --v1 或 --web）。缺省按政权着色、浅色底；
---zhen 按郡国、方镇、路、派系着色，--dark 深色底。列出：相邻且色差小于 10、相距 3° 以内且色差小于 4、同色的政权对。
+读 build/v1/<短名>.json（先跑 python run.py --v1 或 --web）。缺省按政权着色（春秋即共主着色：奉周的诸侯并入周）、浅色底；
+--zhen 按单位着色（郡国、方镇、路、派系；春秋、战国是各诸侯国，即两卷页面缺省的着色），--dark 深色底。列出：相邻且色差小于 10、相距 3° 以内且色差小于 4、同色的政权对。
 --json 把明细写到 build/colorcheck.json。改 global/palette.toml 后用它复查（规范第三节）。
 """
 import json, math, sys
@@ -93,8 +93,6 @@ def geom(d, gi, cache={}):
 def regions(d, n, zhen=False):
     """节点 n 在页面上画出来的填色块：[(键, 政权序号/键, 几何)]"""
     P = d["polities"]
-    if d["model"] == "simple":
-        return [(k, k, geom(d, g)) for k, g in n["u"].items()]
     pol = {u: str(p) for u, p in n.get("pol", {}).items()}
     multi = set(n.get("pu", {}))
     out = []
@@ -111,8 +109,7 @@ def regions(d, n, zhen=False):
 def run(era, zhen=False, mode="light"):
     d = json.load(open(f"{ROOT}/build/v1/{era}.json"))
     P = d["polities"]
-    idx = {p["key"]: i for i, p in enumerate(P)}
-    pinfo = lambda k: P[int(k)] if d["model"] == "layered" else P[idx[k]]
+    pinfo = lambda k: P[int(k)]
     issues = []
     for ni, n in enumerate(d["nodes"]):
         R = regions(d, n, zhen)

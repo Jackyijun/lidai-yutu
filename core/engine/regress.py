@@ -94,7 +94,7 @@ def run(slug):
     keep = land & CO.mask_of(win, [reg])
     far = CO.mask_of(win, [reg.buffer(-2 * win.cell)])
     S, V = DA.view(slug)
-    names = {(p["key"] if b["model"] == "simple" else str(i)): p["n"] for i, p in enumerate(b["polities"])}
+    names = {str(i): p["n"] for i, p in enumerate(b["polities"])}
 
     rep = {"era": slug, "nodes": []}
     tot_ch = tot_land = 0

@@ -144,7 +144,8 @@ def zg_engine_212():
     en = e["nodes"][-1]
     if en["t"] // 12 != ZG_LAST["y"]:
         sys.exit(f"eras/zhanguo/engine.json 末节点是 {en['t'] // 12} 年，legacy.html 是 {ZG_LAST['y']} 年")
-    ZG_LAST["s"] = {k: e["geom"][g] for k, g in en["u"].items()}
+    key = e["meta"]["keys"]                              # 单位序号 → 战国卷的国名键；按国名的字数、字码排（引擎原来以国名为键的次序）
+    ZG_LAST["s"] = dict(sorted(((key[u], e["geom"][g]) for u, g in en["u"].items()), key=lambda kv: (len(kv[0]), kv[0])))
     ZG_LAST["j"] = {k: e["geom"][g] for k, g in en["zp"].items()}
     ZG_LAST["engine"] = True
 

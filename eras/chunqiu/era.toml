@@ -10,7 +10,6 @@ short_en = "Spring & Autumn"
 
 years = [-770, -476]          # 起止年（含），公元前记负数，与总页一致
 time = "year"             # 节点的时间精度：year 按年，month 按月
-model = "simple"          # 数据模型：simple（战国式）或 layered（唐宋系）
 first = -632                 # 打开页面时停在哪一年的节点
 nodes = 46                 # 节点数（构建时核对）
 
@@ -49,6 +48,7 @@ outer = "box"               # box 以内的陆地全部分给最近的点，外�
 geometry = "engine"         # 第 7 步起页面疆域由统一引擎出：eras/chunqiu/engine.json（构建时重算，入库），生成 v1 时换进去
 box = [97.0, 128.5, 18.0, 44.5]   # 推算范围 [西, 东, 南, 北]，同旧构建的栅格范围（src/config.py 的 LON0、LON1、LAT0、LAT1），两卷相同
 simplify = 0.25             # 覆盖简化容差（格，约 1.8 km），与旧构建（0.018°）相当；默认 0.06 格时页面大七成
+labels = "zhanguo"          # 单位注记按战国式页面的写法：陆上最大的一块另加飞地，最多 3 处
 
 [legacy]                    # 旧版：原仓库与原网址保持不变，总页上留「旧版 ↗」链接
 repo = "Jackyijun/chunqiu-map"

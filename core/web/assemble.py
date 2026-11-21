@@ -82,12 +82,11 @@ def item_year(o):
     return None
 
 
-def tokens(b):
+def tokens(b, simple=False):
     """深链接用的标识：政权 polity:<全局 ID>，地点 place:<全局 ID>，条目 <类别>:<全局 ID 或古名>；同卷重名再加 @所属政权 或 @年份"""
     from collections import Counter, defaultdict
     pols = b["polities"]
     first = lambda g: g[0][1] if isinstance(g, list) else g
-    simple = b["model"] == "simple"
     alias = {}
     base = []
     for o in b["items"]:
@@ -113,7 +112,7 @@ def tokens(b):
             arr[o["i"]] = t
         for p in pols:
             arr[p["item"]] = "polity:" + p["gid"]
-        places = {first(p["gid"]) for p in b["places"]}
+        places = {first(o["gid"]) for o in b["items"] if "owners" in o and o["c"] in ("capital", "city", "town", "pass") and o.get("gid")}
         for o in b["items"]:
             g = o.get("gid")
             if g and not isinstance(g, list) and g in places:
@@ -145,7 +144,7 @@ def render(slug, b, new=True):
     t = web_template(slug) if unified and new else template_for(slug)
     if new:
         shorts(b, G)
-        gids, alias = tokens(b)
+        gids, alias = tokens(b, simple=not unified)         # 春秋、战国：页面还是战国式模板，按旧格式的条目序号
         if not unified:                                         # 春秋、战国：各卷旧模板换外壳
             t = patch.patch_simple(t, slug)
             t = patch.patch_geo(t, geo.load(), True)            # 第 4 步：统一投影、全球底图、地形晕渲

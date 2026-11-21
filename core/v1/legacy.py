@@ -9,10 +9,15 @@ v1：每卷一份 JSON（build/v1/<短名>.json），字段与写法各卷统一
   from_v1(bundle)            v1 → 旧格式（GEO、DATA、疆域色），用来证明转换无损
 
 v1 是从各卷成品派生出来的交换格式，不是手写的源文件。
+
+旧格式有两套（战国式：春秋、战国；唐宋系：其余七卷），v1 只有一种「点 → 单位 → 政权」的分层写法（2026-11-20 起）。
+战国式的旧格式里没有分区用的归属点，转换时取两卷共用的 content/seeds.txt，奉周与否取 DATA.alleg（春秋）。
 """
 import json
 import re
+from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[2]
 DEC = json.JSONDecoder()
 BEGIN = -999999          # 「自始」：旧格式里的 0 / -9999 年
 MONTHLY = {"minguo-xinzhongguo", "qinhan"}   # 旧格式里整数时间就是月序号的卷（秦汉卷节点的 y 也是月序号，另记 tp）
@@ -216,22 +221,92 @@ def _order(d, ref):
 
 # ---------------------------------------------------------------- 节点
 
-def node_to_v1(sn, clock, pool, inline, fam):
+def seeds_txt(slug):
+    """春秋、战国两卷共用的归属点 content/seeds.txt：[(名称, 经, 纬, [(起年, 归属键或 None)], 退出年或 None)]。
+    写法见文件开头：「名称 经度 纬度 初始归属 [年份归属 …] [~年份]」，· 为不属任何诸侯国，~年份 起不再参与分区"""
+    out = []
+    for line in (ROOT / "eras" / slug / "content" / "seeds.txt").read_text(encoding="utf8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        t = line.split()
+        tl = [(-10 ** 9, None if t[3] == "·" else t[3])]
+        end = None
+        for tok in t[4:]:
+            if tok.startswith("~"):
+                end = int(tok[1:])
+                continue
+            i = 1 if tok[0] == "-" else 0
+            while tok[i].isdigit():
+                i += 1
+            tl.append((int(tok[:i]), None if tok[i:] == "·" else tok[i:]))
+        out.append((t[0], float(t[1]), float(t[2]), tl, end))
+    return out
+
+
+def node_a_to_v1(sn, pool, keys, ix, seeds, alleg, kinds):
+    """战国式节点 → v1 分层写法。单位是诸侯国（polities 的序号）；各点归属按 seeds.txt 推到本节点的年份；
+    春秋的政权层是共主：奉周的诸侯归「周」（DATA.alleg，缺省奉周；部族与周自己不算），周天下外缘就是政权「周」的疆域 pu"""
+    y = sn["y"]
+    n = {"t": year_end(y), "tp": "y", "title": sn["t"], "desc": sn["d"], "short": sn["sh"],
+         "en": {"title": sn["te"], "desc": sn["de"], "short": sn["she"]}}
+    n["u"] = {str(ix[k]): pool.add(v) for k, v in sn["s"].items()}
+    n["ul"] = {str(ix[k]): v for k, v in sn["l"].items()}
+    n["pu"], n["pul"] = {}, {}
+    if "w" in sn:
+        n["pu"][str(ix["周"])] = pool.add(sn["w"])
+    own, live = [], set()
+    for _, _, _, tl, end in seeds:
+        o = None
+        for t0, k in tl:
+            if y >= t0:
+                o = k
+        u = ix.get(o, -1) if o is not None else -1
+        own.append(u)
+        if u >= 0 and (end is None or y < end):
+            live.add(u)
+    pol = {}
+    for u in sorted(live):
+        k, p = keys[u], u
+        if alleg is not None and k != "周" and kinds.get(k) != "tribe":
+            st = "f"
+            for y0, s_, *_ in alleg.get(k, []):
+                if y >= y0:
+                    st = s_
+            if st == "f":
+                p = ix["周"]
+        pol[str(u)] = p
+    n["pol"], n["own"] = pol, own
+    if "lab" in sn:
+        n["lab"] = {str(ix[k]): v for k, v in sn["lab"].items()}
+        n["en"]["lab"] = {str(ix[k]): v for k, v in sn["labe"].items()}
+    if "j" in sn:
+        n["ext"] = {"j": sn["j"]}
+    return n
+
+
+def node_a_from_v1(n, pool, keys, zhou):
+    """v1 分层写法 → 战国式节点。疆域与注记的键按国名的字数、字码排：引擎原来以国名为单位键，就是这个次序，
+    换到引擎以后的页面一直如此（legacy.html 里是 DATA.states 的次序），这样页面里的次序不变；
+    春秋（zhou 不为 None）另出周天下外缘 w：政权「周」的疆域，没有政权层时就是王畿本身"""
+    key = lambda u: keys[int(u)]
+    order = lambda d: dict(sorted(((key(u), v) for u, v in d.items()), key=lambda kv: (len(kv[0]), kv[0])))
+    sn = {"y": (n["t"] - 11) // 12, "t": n["title"], "d": n["desc"],
+          "s": order({u: pool[i] for u, i in n["u"].items()}), "l": order(n["ul"]),
+          "sh": n["short"], "te": n["en"]["title"], "she": n["en"]["short"], "de": n["en"]["desc"]}
+    sn.update(n.get("ext", {}))
+    if zhou is not None:
+        g = n["pu"].get(zhou, n["u"].get(zhou))
+        if g is not None:
+            sn["w"] = pool[g]
+    if "lab" in n:
+        sn["lab"] = {key(u): v for u, v in n["lab"].items()}
+        sn["labe"] = {key(u): v for u, v in n["en"]["lab"].items()}
+    return sn
+
+
+def node_to_v1(sn, clock, pool, inline):
     n = {}
-    if fam == "A":
-        n["t"], n["tp"] = year_end(sn["y"]), "y"
-        n["title"], n["desc"] = sn["t"], sn["d"]
-        n["en"] = {"title": sn["te"], "desc": sn["de"]}
-        n["short"] = sn["sh"]
-        n["en"]["short"] = sn["she"]
-        n["u"] = {k: pool.add(v) for k, v in sn["s"].items()}
-        n["ul"] = sn["l"]
-        n["pol"] = {k: k for k in sn["s"]}
-        if "lab" in sn:
-            n["lab"] = sn["lab"]
-            n["en"]["lab"] = sn["labe"]
-        n["ext"] = {k: sn[k] for k in ("j", "w") if k in sn}
-        return n
     if "ti" in sn:                       # 民国：t 是月序号，标题在 ti
         n["t"], n["tp"], n["title"] = sn["t"], "m", sn["ti"]
     elif "m" in sn:
@@ -267,15 +342,7 @@ def node_to_v1(sn, clock, pool, inline, fam):
     return n
 
 
-def node_from_v1(n, form, pool, inline, fam, monthly=False):
-    if fam == "A":
-        sn = {"y": (n["t"] - 11) // 12, "t": n["title"], "d": n["desc"],
-              "s": {k: pool[i] for k, i in n["u"].items()}, "l": n["ul"],
-              "sh": n["short"], "te": n["en"]["title"], "she": n["en"]["short"], "de": n["en"]["desc"]}
-        sn.update(n.get("ext", {}))
-        if "lab" in n:
-            sn["lab"], sn["labe"] = n["lab"], n["en"]["lab"]
-        return sn
+def node_from_v1(n, form, pool, inline, monthly=False):
     sn = {}
     if form == "ymt":
         sn.update(y=n["t"] // 12, m=n["t"] % 12 + 1, t=n["t"], ti=n["title"])
@@ -321,12 +388,15 @@ def to_v1(slug, G, D, colors):
         inline = True
         pool = Pool()
         form = "y"
+        seeds, keys = seeds_txt(slug), list(D["states"])
+        ix = {k: i for i, k in enumerate(keys)}
+        nodes = [node_a_to_v1(sn, pool, keys, ix, seeds, D.get("alleg"), D.get("kinds", {})) for sn in G["snaps"]]
     else:
         z0 = next((v for sn in G["snaps"] for v in sn["z"].values()), 0)   # 秦汉卷第一遍构建时还没有疆域
         inline = isinstance(z0, list)
         pool = Pool(None if inline else G["pool"])
         form = "ymt" if "ti" in sn0 else ("ym" if "m" in sn0 else "y")
-    nodes = [node_to_v1(sn, clock, pool, inline, fam) for sn in G["snaps"]]
+        nodes = [node_to_v1(sn, clock, pool, inline) for sn in G["snaps"]]
 
     # 底图与图层：v1.0 沿用旧结构，只把隋唐的单条 route 并进 routes
     base = {k: G[k] for k in BASE_KEYS if k in G}
@@ -345,12 +415,13 @@ def to_v1(slug, G, D, colors):
         for it in D["items"]:
             if it["c"] == "state":
                 continue
-            o = item_to_v1(it, clock, slug)
-            items.append(o)
-            if it["c"] in ("capital", "city", "town", "pass") and "tl" in it:
-                places.append({"key": f"i:{it['i']}", "n": it["old"], "mod": it["mod"], "lon": it["lon"],
-                               "lat": it["lat"], "kind": it["c"], "owners": o["owners"], "item": it["i"],
-                               "en": {"n": it.get("eold"), "mod": it.get("emod")}})
+            items.append(item_to_v1(it, clock, slug))
+        # 归属点：分区用，页面上不画（kind r），暂不进全局地点表（global = false；两卷的城邑照旧以条目进全局表）
+        for nm, lo, la, _, end in seeds:
+            p = {"key": nm, "n": nm, "lon": lo, "lat": la, "kind": "r", "global": False}
+            if end is not None:
+                p["t1"] = end * 12 - 1          # 最后一个参与分区的月份（~年份 起退出）
+            places.append(p)
     else:
         for i, u in enumerate(D["units"]):
             p = {"key": u["k"], "n": u["n"], "kind": u["kind"], "note": u["note"],
@@ -390,7 +461,7 @@ def to_v1(slug, G, D, colors):
     if "en" in D:
         ext["en"] = D["en"]
     bundle = {
-        "v": 1, "era": slug, "model": "simple" if fam == "A" else "layered",
+        "v": 2, "era": slug,
         "time": "month" if form in ("ym", "ymt") or clock.monthly else "year",
         "first": first_t, "geom": pool.items, "base": base, "extent": extent,
         "polities": polities, "places": places, "nodes": nodes, "items": items, "ext": ext,
@@ -414,7 +485,12 @@ def from_v1(b):
     G.update(b["extent"])
     if "zhoue" in b["ext"]:
         G["zhoue"] = b["ext"]["zhoue"]
-    G["snaps"] = [node_from_v1(n, form, pool, inline, fam, clock.monthly) for n in b["nodes"]]
+    if fam == "A":
+        keys = [p["key"] for p in b["polities"]]
+        zhou = str(keys.index("周")) if "alleg" in b["ext"] else None
+        G["snaps"] = [node_a_from_v1(n, pool, keys, zhou) for n in b["nodes"]]
+    else:
+        G["snaps"] = [node_from_v1(n, form, pool, inline, clock.monthly) for n in b["nodes"]]
     if fam == "B" and not inline:
         G["pool"] = pool
     if lg["first"] == "G":

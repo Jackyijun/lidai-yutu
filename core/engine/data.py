@@ -2,7 +2,7 @@
 """引擎的输入：一卷的 v1 数据包（归属点、节点）加上全局的山川、陆地，以及各卷 era.toml 的 [engine]。
 
   bundle(slug)            build/v1/<短名>.json
-  view(slug)              统一格式的归属点与节点（两种政权模型合成一种「点 → 单位 → 政权」）
+  view(slug)              归属点与各节点的「点 → 单位 → 政权」
   ranges()                全局山脉：每条取一种画法（global/decisions.toml 的 [physical.prefer]，其余取多数卷）
   rivers(b) / lakes(b)    界河与湖：取本卷画的（黄河、淮河等历代改道，各卷画的是本时代的河道）
   land(bbox)              Natural Earth 1:10m 陆地与小岛（经纬度多边形）
@@ -39,7 +39,10 @@ def bundle(slug):
         p = V1 / f"{slug}.json"
         if not p.exists():
             sys.exit(f"缺 build/v1/{slug}.json，先运行 python run.py --v1")
-        _B[slug] = json.loads(p.read_text(encoding="utf8"))
+        b = json.loads(p.read_text(encoding="utf8"))
+        if b.get("v") != 2:
+            sys.exit(f"build/v1/{slug}.json 是旧版格式（v {b.get('v')}），先运行 python run.py --v1")
+        _B[slug] = b
     return _B[slug]
 
 
@@ -52,67 +55,23 @@ def dec(a):
 
 
 def view(slug, b=None):
-    """引擎读入的统一格式：两种政权模型合成一种「点 → 单位 → 政权」（规范第十九节）。
+    """引擎读入的「点 → 单位 → 政权」（规范第十九节），取 v1 的 places 与各节点的 own / pol：
 
       seeds  [(经, 纬, 键)]
-      nodes  [(t, own, pol, active)]：own = 各点归哪个单位（单位键或 None），pol = {单位键: 政权键}，
-             active = 各点这一节点是否参与分区（None 为全部参与）
+      nodes  [(t, own, pol, active)]：own = 各点归哪个单位（polities 的序号，字符串；不属任何单位为 None），
+             pol = {单位: 政权}，active = 各点这一节点是否参与分区（None 为全部参与）
 
-    单位键就是 v1 节点 u 的键。分层卷（唐宋系六卷）取 v1 的 places 与节点 own / pol。
-    简单卷（春秋、战国）的 v1 里没有分区用的归属点，取两卷共用的 content/seeds.txt（归属沿革、~年份退出）：
-    单位是诸侯国，政权是它自己；春秋另按 ALLEGIANCE 把奉周的诸侯归到「周」，政权层的外缘就是共主着色的「周天下」。"""
+    归属点写了 t1 的（春秋、战国为早期小国、戎狄补的点，seeds.txt 的 ~年份），t1 以后的节点不参与分区。"""
     b = b or bundle(slug)
-    if b["model"] == "layered":
-        S = [(p["lon"], p["lat"], p["key"]) for p in b["places"]]
-        N = []
-        for n in b["nodes"]:
-            own = [None if v is None or v < 0 else str(v) for v in n["own"]]
-            N.append((n["t"], own, {k: str(v) for k, v in n["pol"].items()}, None))
-        return S, N
-    seeds_ = []
-    for line in (ROOT / "eras" / slug / "content" / "seeds.txt").read_text(encoding="utf8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#"):
-            continue
-        t = line.split()
-        tl = [(-10 ** 9, None if t[3] == "·" else t[3])]
-        end = None
-        for tok in t[4:]:
-            if tok.startswith("~"):
-                end = int(tok[1:]); continue
-            i = 1 if tok[0] == "-" else 0
-            while tok[i].isdigit():
-                i += 1
-            tl.append((int(tok[:i]), None if tok[i:] == "·" else tok[i:]))
-        seeds_.append((float(t[1]), float(t[2]), t[0], tl, end))
-    feats = era_module(slug, "content/features.py") if (ROOT / "eras" / slug / "content" / "features.py").exists() else None
-    alleg = getattr(feats, "ALLEGIANCE", None)
-    kind = getattr(feats, "STATE_KIND", {}) if feats else {}
-    keys = {p["key"] for p in b["polities"]}
+    S = [(p["lon"], p["lat"], p["key"]) for p in b["places"]]
+    ends = [p.get("t1") for p in b["places"]]
+    some = any(e is not None for e in ends)
     N = []
     for n in b["nodes"]:
-        y = n["t"] // 12
-        own, act = [], []
-        for _, _, _, tl, end in seeds_:
-            o = None
-            for t0, k in tl:
-                if y >= t0:
-                    o = k
-            own.append(o if o in keys else None)
-            act.append(end is None or y < end)
-        units = sorted({o for o, a in zip(own, act) if o and a})
-        pol = {}
-        for k in units:
-            p = k
-            if alleg is not None and k != "周" and kind.get(k) != "tribe":
-                st = "奉周"
-                for y0, s_, *_ in alleg.get(k, []):
-                    if y >= y0:
-                        st = s_
-                p = "周" if st == "奉周" else k
-            pol[k] = p
-        N.append((n["t"], own, pol, act))
-    return [(lo, la, nm) for lo, la, nm, _, _ in seeds_], N
+        own = [None if v is None or v < 0 else str(v) for v in n["own"]]
+        act = [e is None or n["t"] <= e for e in ends] if some else None
+        N.append((n["t"], own, {k: str(v) for k, v in n["pol"].items()}, act))
+    return S, N
 
 
 # ---------------- 全局山脉 ----------------
@@ -228,6 +187,7 @@ def spec(slug):
       far_islands = true   远洋小岛也并入最近的一方（民国卷：殖民地、委任统治地的群岛多没有归属点）；缺省只认离有主地闭运算半径以内的
       zones = "src/zhou.py" 二级区划（汉末卷的州）：这个文件的 zone_of(点键, 年, 单位键, 政权键, 单位种类) 给出各点所在的区划块，
                            按「单位 × 区划」分块描界，另出区划界 zb 与区划名 zl（zone_label_min：标名的最小面积，平方度）
+      labels = "zhanguo"   单位注记按战国式页面的写法（春秋、战国）：陆上最大的一块另加飞地，最多 3 处，面积按旧页面的格数
       sub = "src/jun.py"   一个单位的格子再按治所就近细分（战国卷的秦郡）：这个文件的 UNIT 是被细分的单位，HOSTS 是治所须落在
                            其疆域里的单位（NEAR：离其疆域不到这么多格的也算），seats() 给出 [(块键, 经, 纬, 始置年)]；
                            另出各块的多边形 zp 与注记 zpl"""
@@ -264,12 +224,17 @@ def reach_mult(slug, s):
     return out
 
 
-def sub(slug, s):
-    """[engine] sub：(被细分的单位, 治所须落在其中的单位, 容差格数, [(块键, 经, 纬, 始置年)])；没写 sub 的卷返回 None"""
+def sub(slug, s, b=None):
+    """[engine] sub：(被细分的单位, 治所须落在其中的单位, 容差格数, [(块键, 经, 纬, 始置年)])；没写 sub 的卷返回 None。
+    设置文件里的单位写单位键（如「秦」），这里换成节点里的单位序号"""
     if not s.get("sub"):
         return None
     m = era_module(slug, s["sub"])
-    return m.UNIT, tuple(m.HOSTS), float(getattr(m, "NEAR", 0)), [(str(k), float(lo), float(la), int(y0)) for k, lo, la, y0 in m.seats()]
+    ix = {p["key"]: str(i) for i, p in enumerate((b or bundle(slug))["polities"])}
+    if m.UNIT not in ix:
+        sys.exit(f"{s['sub']}：被细分的单位「{m.UNIT}」不在本卷的政权表里")
+    return (ix[m.UNIT], tuple(ix[h] for h in m.HOSTS if h in ix), float(getattr(m, "NEAR", 0)),
+            [(str(k), float(lo), float(la), int(y0)) for k, lo, la, y0 in m.seats()])
 
 
 def zones(slug, s, b, N):
@@ -372,5 +337,5 @@ def fingerprint(slug, b=None):
         h.update((ROOT / "eras" / slug / sp["zones"]).read_bytes())
         h.update(json.dumps(zones(slug, sp, b or bundle(slug), N), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
     if sp.get("sub"):                                 # 细分：治所表
-        h.update(json.dumps(sub(slug, sp), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
+        h.update(json.dumps(sub(slug, sp, b), ensure_ascii=False, separators=(",", ":")).encode("utf8"))
     return h.hexdigest()[:16]

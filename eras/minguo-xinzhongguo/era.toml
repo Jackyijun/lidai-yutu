@@ -10,7 +10,6 @@ short_en = "ROC–PRC"
 
 years = [1911, 1954]          # 起止年（含），公元前记负数，与总页一致
 time = "month"             # 节点的时间精度：year 按年，month 按月
-model = "layered"          # 数据模型：simple（战国式）或 layered（唐宋系）
 first = [1937, 12]         # 打开页面时停在哪个节点（年、月）
 nodes = 115                 # 节点数（构建时核对）
 

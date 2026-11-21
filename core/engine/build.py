@@ -6,8 +6,8 @@
 数据包里每个归属点（州府、城邑、参考点）先分得一块「势力格」（全卷一次）；每个节点按「点 → 单位」归属
 把格子分类，描出共享界线的覆盖图，单位之并即政权（有两个以上单位的政权另出一层）。
 
-简单卷（春秋、战国）的单位注记 ul 照旧页面的写法：每个单位一组 [[经, 纬, 面积, 半径], …]（最大的一块，另加不小于它 30% 的
-飞地，最多 3 处），面积按 0.05° 见方的格数计——页面按它定国名字号。
+春秋、战国（era.toml [engine] labels = "zhanguo"）的单位注记 ul 照旧页面的写法：每个单位一组 [[经, 纬, 面积, 半径], …]
+（最大的一块，另加不小于它 30% 的飞地，最多 3 处），面积按 0.05° 见方的格数计——页面按它定国名字号。
 """
 import hashlib
 import json
@@ -78,11 +78,11 @@ def label_of(g, land):
     return [round(float(lon), 2), round(float(lat), 2), round(sum(p.area for p in ps) / GR.DEG ** 2, 2), round(r / GR.DEG, 2)]
 
 
-OLD_CELL = 0.05 ** 2    # 简单卷旧页面的注记面积单位：0.05° 见方的格
+OLD_CELL = 0.05 ** 2    # 战国式页面的注记面积单位：0.05° 见方的格
 
 
-def labels_simple(g, land):
-    """简单卷的单位注记：陆上最大的一块，另加不小于 max(40 格, 最大块 30%) 的飞地，最多 3 处；面积换成旧页面的格数"""
+def labels_zhanguo(g, land):
+    """战国式页面的单位注记：陆上最大的一块，另加不小于 max(40 格, 最大块 30%) 的飞地，最多 3 处；面积换成旧页面的格数"""
     gl = g.intersection(land)
     ps = sorted((p for p in shapely.get_parts(gl) if p.geom_type == "Polygon"), key=lambda p: -p.area)
     out = []
@@ -242,7 +242,7 @@ def run(slug, log=None):
     warp = TR.Warp(win, C["river"] | wallm, pins)
 
     Z = DA.zones(slug, sp, b, N)                    # 二级区划块（汉末卷的州）：按「单位 × 区划块」分类，描完再按单位合并
-    SUB = DA.sub(slug, sp)                          # 按治所细分一个单位的格子（战国卷的秦郡）：同样按「单位 × 块」分类
+    SUB = DA.sub(slug, sp, b)                          # 按治所细分一个单位的格子（战国卷的秦郡）：同样按「单位 × 块」分类
     if Z is not None and SUB is not None:
         sys.exit(f"{slug}：[engine] 的 zones 与 sub 只能写一个")
     SEP = "\x1f"
@@ -263,8 +263,8 @@ def run(slug, log=None):
     code = {u: i for i, u in enumerate(units)}
     ukeys = sorted({u for _, own, _, _ in N for u in own if u is not None}, key=lambda u: (len(u), u))
     pool, poolk = [], {}
-    simple = b["model"] == "simple"
-    land_u = shapely.union_all(C["land_xy"]) if simple else None
+    zg_labels = sp.get("labels") == "zhanguo"        # 战国式页面的单位注记（春秋、战国）
+    land_u = shapely.union_all(C["land_xy"]) if zg_labels else None
 
     def put(rr):
         k = json.dumps(rr, separators=(",", ":"))
@@ -320,7 +320,7 @@ def run(slug, log=None):
                 continue
             g_u[key] = merged[key]
             u[key] = put(rr)
-            L = labels_simple(merged[key], land_u) if simple else label_of(merged[key], C["land_xy"])
+            L = labels_zhanguo(merged[key], land_u) if zg_labels else label_of(merged[key], C["land_xy"])
             if L:
                 ul[key] = L
         # 政权层：有两个以上单位，或唯一的单位不是政权自己（宋元先例）
@@ -363,10 +363,7 @@ def run(slug, log=None):
     meta = {"window": [win.i0, win.j0, win.ni, win.nj], "cell": win.cell, "outer": sp["outer"],
             "seeds": {str(i): [int(r), int(c)] for i, (r, c) in where.items()},
             "input": DA.fingerprint(slug, b)}                                  # 第 7 步：eras/<短名>/engine.json 是否过期
-    if b["model"] == "layered":
-        meta["keys"] = {u: b["polities"][int(u)]["key"] for u in ukeys}      # 单位序号 → 单位键（衔接节点按键对上邻卷）
-    else:
-        meta["keys"] = {u: u for u in ukeys}                                 # 简单卷的单位就以键为名
+    meta["keys"] = {u: b["polities"][int(u)]["key"] for u in ukeys}          # 单位序号 → 单位键（衔接节点按键对上邻卷）
     if SUB is not None:
         meta["sub"] = s_unit
     res = {"era": slug, "geom": pool, "nodes": out_nodes, "meta": meta}

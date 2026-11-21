@@ -7,7 +7,7 @@
 
 每一卷：
   1. 往返校验：v1 转回旧格式，必须与成品里的 GEO、DATA、疆域色完全相同；
-  2. 核对 eras/<短名>/era.toml（时间精度、数据模型、节点数、首屏节点）与数据一致；
+  2. 核对 eras/<短名>/era.toml（时间精度、节点数、首屏节点）与数据一致；
   3. 按 global/ 各表给政权、地点、山川条目附上全局 ID（字段 gid）；
   4. 坐标改正（core/v1/overlay.py 的 apply_coords：条目点位与归属点，按全局地点表的城址）；
   5. 疆域已换到统一引擎的卷（era.toml [engine] geometry = "engine"，第 7 步）：几何换成 eras/<短名>/engine.json（core/v1/engine_geom.py），
@@ -53,8 +53,6 @@ def check_era_toml(slug, b):
         probs.append(f"era.toml 的 slug 是 {meta['slug']}")
     if meta["time"] != b["time"]:
         probs.append(f"era.toml 时间精度 {meta['time']}，数据是 {b['time']}")
-    if meta["model"] != b["model"]:
-        probs.append(f"era.toml 数据模型 {meta['model']}，数据是 {b['model']}")
     if meta["nodes"] != len(b["nodes"]):
         probs.append(f"era.toml 节点数 {meta['nodes']}，数据有 {len(b['nodes'])}")
     f = meta["first"]
@@ -74,6 +72,8 @@ def attach(slug, b, pl, po, ph, seats):
         ref = f"{slug}:{p['key']}"
         p["gid"] = po.get(ref) or missing.append(ref)
     for p in b["places"]:
+        if p.get("global") is False:               # 春秋、战国的分区点不进全局表，没有全局 ID
+            continue
         ref = f"{slug}:{p['key']}"
         # 治所迁城的：gid 是按年代分段的列表 [[起始月序号, 全局 ID], …]
         p["gid"] = pl.get(ref) or seats.get(ref) or missing.append(ref)
