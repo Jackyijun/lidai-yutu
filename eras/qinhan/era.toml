@@ -17,6 +17,19 @@ nodes = 57
 modes = [{ label = "郡国", key = "zhen" }, { label = "政权", key = "pol" }]
 default = "政权"
 
+[layers]                     # 本卷用到的条目类别及条数（核对用）
+river = 125
+battle = 50
+range = 50
+event = 37
+pass = 32
+route = 31
+capital = 26
+road = 17
+people = 16
+canal = 6
+desert = 2
+
 [projection]                 # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准
 kind = "albers"
 parallels = [25, 47]

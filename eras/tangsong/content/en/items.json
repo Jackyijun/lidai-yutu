@@ -2103,12 +2103,12 @@
  "capital:耶输陀罗补罗（吴哥）": {
   "old": "Yasodharapura (Angkor)",
   "mod": "Angkor, Siem Reap, Cambodia",
-  "note": "Built by Yasovarman I (who came to the throne in 889) around the temple on Phnom Bakheng; the capital moved here around 900. It was the forerunner of the city of Angkor. Jayavarman IV moved the capital to Koh Ker in 928, and Rajendravarman II moved it back in 944."
+  "note": "Built by Yasovarman I (who came to the throne in 889) around the temple on Phnom Bakheng; the capital moved here around 900. It was the forerunner of the city of Angkor. From 928 the capital was at Koh Ker, Jayavarman IV's seat, until Rajendravarman II moved it back in 944."
  },
  "capital:贡开（林伽补罗）": {
   "old": "Koh Ker (Lingapura)",
   "mod": "Koh Ker, Preah Vihear, Cambodia",
-  "note": "The capital built by Jayavarman IV, about 80 km northeast of Angkor."
+  "note": "The capital built by Jayavarman IV, about 80 km northeast of Angkor. From about 921 he ruled here as a rival to the kings at Angkor; he became sole king in 928, and the capital returned to Angkor in 944."
  },
  "event:阇耶跋摩二世即位": {
   "old": "Consecration of Jayavarman II",

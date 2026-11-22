@@ -21,12 +21,12 @@ default = "政权"
 river = 124
 event = 60
 battle = 56
-capital = 50
+capital = 51
 range = 45
 pass = 23
 people = 16
 canal = 6
-desert = 3
+desert = 2
 route = 1
 
 [projection]                # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准

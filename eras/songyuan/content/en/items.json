@@ -1849,7 +1849,7 @@
  "river:洞里萨湖": {
   "old": "Tonlé Sap",
   "mod": "Tonlé Sap",
-  "note": "Angkor lies on its north shore."
+  "note": "Angkor lies north of the lake."
  },
  "river:普斯科夫湖": {
   "old": "Lake Pskov",
@@ -3343,7 +3343,7 @@
  "capital:吴哥": {
   "old": "Angkor",
   "mod": "Angkor, Siem Reap, Cambodia",
-  "note": "The capital of the Khmer Empire; Suryavarman II built Angkor Wat (first half of the 12th century) and Jayavarman VII built Angkor Thom."
+  "note": "The capital of the Khmer Empire (except in 928–944, when the court was at Koh Ker); Suryavarman II built Angkor Wat (first half of the 12th century) and Jayavarman VII built Angkor Thom."
  },
  "capital:蒲甘": {
   "old": "Pagan",

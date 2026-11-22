@@ -26,7 +26,7 @@ range = 50
 pass = 27
 people = 24
 route = 15
-desert = 11
+desert = 10
 canal = 2
 
 [projection]                # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准

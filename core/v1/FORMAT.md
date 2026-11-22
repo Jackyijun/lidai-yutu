@@ -257,14 +257,14 @@ v1 里所有时间都是**月序号** `t = 年 × 12 + (月 − 1)`。
 | `first` | 首屏节点：按年的卷写年，按月的卷写 `[年, 月]` |
 | `nodes` | 节点数 |
 | `[coloring]` | 着色切换：`modes`（按钮文字与代号）、`default` |
-| `[layers]` | 用到的条目类别及条数 |
+| `[layers]` | 用到的条目类别及条数；生成 v1 时与套用改正之后的条目逐类核对，对不上或没写都停下（2026-11-22 起；与 `[web]` 里的图例开关 `layers` 是两回事） |
 | `[projection]` | 新页面的投影参数（第 4 步起各卷统一，以 `core/geo/config.toml` 为准）；`legacy` 记旧版页面的原点纬线、中央经线 |
 | `[engine]` | 统一疆域引擎的设置（九卷都有）。秦汉写 `production = true`，疆域直接由引擎出，见根目录 `run.py` 的两遍构建；其余八卷写 `geometry = "engine"`（第 7 步换到引擎），页面疆域取 `eras/<短名>/engine.json`，生成 v1 时换进去，见 `core/v1/engine_geom.py`。`outer` 为 `frontier`（手绘外缘）、`reach`（按可达代价，另写推算范围 `box`、写 `R=` 倍数的 `seeds` 文件、设置文件 `config`、国界墙 `walls` 与省界 `prov_walls`）或 `box`（推算范围内的陆地都分给最近的点，春秋、战国）；另有 `simplify`、`zones`、`sub`、`labels` 等，逐项见 `core/engine/data.py` 的 `spec()` 与 `core/engine/README.md` |
 | `[junction.prev]` `[junction.next]` | 与前后两卷的衔接 |
 | `[legacy]` | 旧仓库、旧网址、新网址 |
 | `[web]` | 新页面各卷不同的文字与开关（统一模板 `core/web/template.html` 读；春秋、战国两卷还没有）：标题、视野、图例、索引分组名、对照表与年表的导语等中英文字，以及时间单位 `time`、斜线画法 `hatch` 等少数开关。每项的含义写在该项上面的注释，总的说明见 `core/web/README.md` |
 
-`build.py` 会核对 `time` `nodes` `first` 与数据一致。
+`build.py` 会核对 `time` `nodes` `first` 与数据一致，套用改正之后再核对 `[layers]`。
 
 ## junctions.toml
 

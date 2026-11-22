@@ -9,14 +9,15 @@
 
 每一卷：
   1. 往返校验：v1 转回旧格式，除疆域几何与配色外必须与 source.json 完全相同；
-  2. 核对 eras/<短名>/era.toml（时间精度、节点数、首屏节点）与数据一致；
+  2. 核对 eras/<短名>/era.toml（时间精度、节点数、首屏节点）与数据一致（[layers] 的条数在第 6 步之后核对）；
   3. 按 global/ 各表给政权、地点、山川条目附上全局 ID（字段 gid）；
   4. 坐标改正（core/v1/overlay.py 的 apply_coords：条目点位与归属点，按全局地点表的城址）；
   5. 疆域换成 eras/<短名>/engine.json（core/v1/engine_geom.py），它是按改后的归属点算的；秦汉卷的疆域在它自己的 source.json 里；
      对方为准的衔接节点上，对方推算范围以内各点的归属按照搬来的疆域对齐（engine_geom.align_own，原归属存在 own_src）；
-  6. 其余改正（core/v1/overlay.py：英文译名、山脉改画、标了 step = 3 的内容、时间轴短标题、全局配色、大漠），记在 meta.overlay。
+  6. 其余改正（core/v1/overlay.py：英文译名、山脉改画、标了 step = 3 的内容、时间轴短标题、全局配色、大漠、沙地），记在 meta.overlay。
 global/ 各表与 build/v1/fixes.json 须先由 core/v1/registry.py 生成；本脚本只读不写。build/ 不入库。
 """
+import collections
 import json
 import sys
 from pathlib import Path
@@ -66,6 +67,16 @@ def check_era_toml(slug, b):
     if min(ts) // 12 < y0 - 200 or max(ts) // 12 > y1:     # 首个节点可以是前代背景（如汉末卷的东汉鼎盛）
         probs.append(f"节点时间 {min(ts) // 12}—{max(ts) // 12} 超出 era.toml 起止 {y0}—{y1}")
     return meta, probs
+
+
+def check_layers(meta, b):
+    """era.toml 的 [layers] 与套用改正之后的条目逐类核对（2026-11-22 起；原先只是记录，会悄悄过期）"""
+    want = meta.get("layers")
+    if not want:
+        return ["era.toml 没有 [layers]（本卷用到的条目类别及条数）"]
+    have = collections.Counter(it["c"] for it in b["items"])
+    return [f"era.toml [layers] {k} = {want.get(k, 0)}，数据是 {have.get(k, 0)}"
+            for k in sorted(set(have) | set(want)) if have.get(k, 0) != want.get(k, 0)]
 
 
 def attach(slug, b, pl, po, ph, seats):
@@ -122,6 +133,7 @@ def main():
         eg = engine_geom.apply(slug, b, strict=not lenient)
         al = engine_geom.align_own(slug, b)
         b["meta"]["overlay"] = ([f"坐标 {c} 处"] if c else []) + ([eg] if eg else []) + ([al] if al else []) + overlay.apply(slug, b, fixes, content, draft_colors)
+        probs += check_layers(meta, b)
         path = OUT / f"{slug}.json"
         path.write_text(json.dumps(b, ensure_ascii=False, separators=(",", ":")), encoding="utf8")
         size = path.stat().st_size / 1e6

@@ -19,7 +19,7 @@ default = "诸侯"
 
 [layers]                    # 本卷用到的条目类别及条数（核对用）
 town = 94
-capital = 91
+capital = 92
 battle = 64
 river = 53
 culture = 48

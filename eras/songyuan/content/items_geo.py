@@ -345,7 +345,7 @@ NE_LAKES = {
  "Lake Beloye": ("白湖", "白湖", ""),
  "Lake Balaton": ("巴拉顿湖", "巴拉顿湖", ""),
  "Lake Tana": ("塔纳湖", "塔纳湖", "青尼罗河的源头。"),
- "Tonlé Sap": ("洞里萨湖", "洞里萨湖", "吴哥城在其北岸。"),
+ "Tonlé Sap": ("洞里萨湖", "洞里萨湖", "吴哥城在湖以北。"),
  "Biwa Ko": ("琵琶湖", "琵琶湖", ""),
 }
 SKIP_LAKES_EXTRA = {"Aydar Ko‘l", "Barsakelmes Lake", "Sarygamysh Köli", "Lake Razazah",   # 近代形成的湖

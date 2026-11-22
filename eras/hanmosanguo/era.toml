@@ -27,7 +27,7 @@ people = 26
 canal = 12
 capital = 12
 road = 9
-desert = 3
+desert = 2
 
 [projection]                # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准
 kind = "albers"
