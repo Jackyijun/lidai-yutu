@@ -1582,7 +1582,6 @@
 {"id":"隰州","kind":"place","zh":"蒲子","en":"Puzi"}
 {"id":"隰州","kind":"place","zh":"隰县","en":"Xixian"}
 {"id":"隰州","kind":"place","zh":"隰州","en":"Xizhou"}
-{"id":"焦","kind":"place","zh":"焦","en":"Jiao"}
 {"id":"秭归","kind":"place","zh":"夔","en":"Kui"}
 {"id":"秭归","kind":"place","zh":"秭归","en":"Zigui"}
 {"id":"稷","kind":"place","zh":"稷","en":"Ji"}
@@ -1620,6 +1619,7 @@
 {"id":"绛州","kind":"place","zh":"绛州","en":"Jiangzhou"}
 {"id":"云中","kind":"place","zh":"云中","en":"Yunzhong"}
 {"id":"净州","kind":"place","zh":"净州","en":"Jingzhou"}
+{"id":"焦","kind":"place","zh":"焦","en":"Jiao"}
 {"id":"平陆","kind":"place","zh":"平陆","en":"Pinglu"}
 {"id":"左国城","kind":"place","zh":"左国城","en":"Zuoguo City"}
 {"id":"茅津","kind":"place","zh":"茅津","en":"Maojin Ford"}

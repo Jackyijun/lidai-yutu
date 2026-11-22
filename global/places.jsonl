@@ -1501,7 +1501,6 @@
 {"id":"函谷关","n":"函谷关","names":["函谷关"],"mod":"河南灵宝王垛村","lon":110.91,"lat":34.63,"eras":["zhanguo","qinhan","minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:864","qinhan:i:340","zhanguo:i:128"],"en":"Hangu Pass"}
 {"id":"茂名","n":"茂名","names":["茂名"],"mod":"广东茂名","lon":110.92,"lat":21.66,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:茂名"],"en":"Maoming"}
 {"id":"隰州","n":"隰州","names":["蒲子","隰县","隰州","龙泉郡"],"mod":"山西隰县","lon":110.93,"lat":36.7,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:i:12","liangjin-nanbeichao:隰州","minguo-xinzhongguo:隰县","songyuan:隰州","suitang:隰州","tangsong:隰州"],"en":"Xizhou","en_variants":["Puzi","Xixian","Xizhou"]}
-{"id":"焦","n":"焦","names":["焦"],"mod":"河南三门峡西","lon":110.95,"lat":34.72,"eras":["chunqiu","zhanguo"],"refs":["chunqiu:i:275","zhanguo:i:196"],"en":"Jiao"}
 {"id":"秭归","n":"秭归","names":["夔","秭归"],"mod":"湖北秭归","lon":110.98,"lat":30.83,"eras":["chunqiu","zhanguo","qinhan","hanmosanguo"],"refs":["chunqiu:i:342","hanmosanguo:秭归","qinhan:秭归","zhanguo:i:296"],"en":"Zigui","en_variants":["Kui","Zigui"]}
 {"id":"稷","n":"稷","names":["稷"],"mod":"山西稷山","lon":110.98,"lat":35.6,"eras":["chunqiu"],"refs":["chunqiu:i:286"],"en":"Ji"}
 {"id":"临沅","n":"临沅","names":["临沅（一说）"],"mod":"","lon":111.0,"lat":28.8,"eras":["qinhan"],"refs":["qinhan:秦·临沅（一说）"],"en":"Linyuan"}
@@ -1528,6 +1527,7 @@
 {"id":"绛州","n":"绛州","names":["正平","绛州","绛邑","绛郡"],"mod":"山西新绛","lon":111.2,"lat":35.6,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:绛州","songyuan:绛州","suitang:绛州","tangsong:绛州"],"en":"Jiangzhou","en_variants":["Jiangzhou","Zhengping"]}
 {"id":"云中","n":"云中","names":["云中"],"mod":"内蒙古托克托东北","lon":111.2,"lat":40.27,"eras":["zhanguo"],"refs":["zhanguo:i:162"],"en":"Yunzhong"}
 {"id":"净州","n":"净州","names":["净州","黑水新城"],"mod":"内蒙古四子王旗（汪古）","lon":111.2,"lat":41.7,"eras":["songyuan"],"refs":["songyuan:净州"],"en":"Jingzhou"}
+{"id":"焦","n":"焦","names":["焦"],"mod":"河南三门峡陕州故城","lon":111.21,"lat":34.78,"eras":["chunqiu","zhanguo"],"refs":["chunqiu:i:275","zhanguo:i:196"],"en":"Jiao"}
 {"id":"平陆","n":"平陆","names":["平陆"],"mod":"山西平陆","lon":111.21,"lat":34.84,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:平陆"],"en":"Pinglu"}
 {"id":"左国城","n":"左国城","names":["左国城"],"mod":"山西吕梁方山县南村","lon":111.25,"lat":37.68,"eras":["liangjin-nanbeichao"],"refs":["liangjin-nanbeichao:i:11"],"en":"Zuoguo City","sites":[{"lon":111.25,"lat":37.68,"note":"304 年刘渊于此称汉王"}]}
 {"id":"茅津","n":"茅津","names":["茅津"],"mod":"山西平陆茅津渡","lon":111.27,"lat":34.84,"eras":["chunqiu"],"refs":["chunqiu:i:232"],"en":"Maojin Ford"}

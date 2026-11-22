@@ -52,7 +52,7 @@ print("land polys", len(LAND), sum(len(r) for p in LAND for r in p) // 2, "pts")
 # ---------- 种子 ----------
 # 语法：名称 经度 纬度 初始归属 [年份归属 ...] [^年份] [~年份]
 #   “~-350” 表示该点从前350 起不再参与分区（为前350 以前的小国、戎狄补的点）；
-#   “^-280” 表示该点从前280 起才参与分区（下辨）。
+#   “^-280” 表示该点从前280 起才参与分区（下辨；另有 ^-473 的雍氏）。
 seeds = []
 for line in open(C.CONTENT / "seeds.txt", encoding="utf8"):
     line = line.strip()
@@ -130,7 +130,7 @@ for f in json.load(open(NE + "ne_10m_lakes.geojson"))["features"]:
 PROV = json.load(open(C.GEODATA / "prov.json", encoding="utf8"))
 
 # ---------- 点要素所落的归属点 ----------
-# 分区随年代可能不同（前350 起部分点退出，前280 起下辨加入），点要素的归属沿革按各段拼接。各点在各段落在哪个归属点写在
+# 分区随年代可能不同（前350 起部分点退出，前473 起雍氏、前280 起下辨加入），点要素的归属沿革按各段拼接。各点在各段落在哪个归属点写在
 # content/links.txt（架构整理第三批起冻结，不再按旧构建的分区格子查），沿革取那个归属点在 seeds.txt 里的归属沿革
 _starts = [-9999] + sorted({s["end"] for s in seeds if s["end"] is not None} | {s["start"] for s in seeds if s["start"] is not None})
 SIDX = {s["n"]: i for i, s in enumerate(seeds)}

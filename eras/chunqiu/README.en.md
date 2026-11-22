@@ -61,7 +61,7 @@ eras/chunqiu/
 ├── short.tsv              short timeline labels
 ├── README.md · README.en.md   Chinese · English documentation
 ├── content/               ★ historical content (hand-written; this is what you edit)
-│   ├── seeds.txt          475 ownership points: name, coordinates, which state held it when
+│   ├── seeds.txt          484 ownership points: name, coordinates, which state held it when
 │   │                      (shared with the Warring States volume; each keeps an identical copy)
 │   ├── links.txt          which ownership point each place entry (capital, city, pass, battle…) falls under; its ownership history follows from that (frozen)
 │   ├── features.py        state profiles, tribal peoples and aliases; 46 time nodes and their
@@ -129,8 +129,9 @@ name longitude latitude initial-owner [year+owner ...] [^year] [~year]
 
 - `·` means not held by any of the Zhou states (land of the Rong, Di, Man and Yi, or blank); tribal peoples have their own keys (e.g. `赤狄`, `白狄`).
 - Years BC are negative: `-655晋` means held by Jin from 655 BC.
-- `~-350` means the point stops taking part in the partition from 350 BC. Every point added for the Spring and Autumn states, the Rong and Di and the early Warring States carries it. From 350 BC on, the partition uses the original Warring States points plus five points added in November 2026: four unowned points in the northwest and, from 280 BC, Xiabian. The retired points still anchor the borders when they are traced, so the Warring States borders after 350 BC differ slightly (about 0.1% of the area) from what they would be without them.
-- `^-280` means the point takes part in the partition only from 280 BC. Only one point uses it: Xiabian, added on 21 November 2026, a county of Qin's Longxi Commandery, counted as Qin's from the year the commandery was founded. When it was added, the territories before 280 BC were checked and are byte-for-byte unchanged.
+- `~-350` means the point stops taking part in the partition from 350 BC. Every point added for the Spring and Autumn states, the Rong and Di and the early Warring States carries it. From 350 BC on, the partition uses the original Warring States points plus six points added in November 2026: four unowned points in the northwest, Xiabian from 280 BC and Yongshi from 473 BC. The retired points still anchor the borders when they are traced, so the Warring States borders after 350 BC differ slightly (about 0.1% of the area) from what they would be without them.
+- `^year` means the point takes part in the partition only from that year. Two points use it. `^-280` is Xiabian, added on 21 November 2026, a county of Qin's Longxi Commandery, counted as Qin's from the year the commandery was founded; when it was added, the territories before 280 BC were checked and are byte-for-byte unchanged. `^-473` is Yongshi (see the next item); it starts in 473 BC so that the Spring and Autumn volume and the 475 BC junction node are not touched.
+- The last section of the file holds nine points added on 21 November 2026 so that tooltips and the map agree (Bulang, Qisi, Taolin, Hequ, Ying, Xi, Nanwucheng, Qinqiu and Yongshi). The owners these towns and passes show in their tooltips fit the sources, but the map drew them inside a neighbouring state, because of how the borders are smoothed or because of nearby points. Each new point sits at the entry with the same owners as the tooltip, so the map now draws them right (the Taolin point is moved to the south bank of the Yellow River, and Hequ is added on the north bank so that the Guo–Jin border follows the river). For Taolin Pass and Qinqiu the tooltip owners were corrected as well; the territory around them changed by anything from a few dozen to more than a thousand square kilometres.
 
 Examples:
 

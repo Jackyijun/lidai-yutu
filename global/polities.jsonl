@@ -237,7 +237,7 @@
 {"id":"清河郡","n":"清河郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:清河郡"],"colors":{"qinhan":["#CEB0E5","#E3C1FE"]},"en":"Qinghe Commandery"}
 {"id":"渔阳郡","n":"渔阳郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:渔阳郡"],"colors":{"qinhan":["#A16D8F","#BA7BA4"]},"en":"Yuyang Commandery"}
 {"id":"滇","n":"滇","kind":"state","eras":["qinhan"],"refs":["qinhan:滇"],"colors":{"qinhan":["#DEB39C","#FAC3A6"]},"en":"Dian"}
-{"id":"濊貊","n":"濊貊","kind":"tribe","eras":["qinhan"],"refs":["qinhan:濊貊"],"colors":{"qinhan":["#4989A7","#4D9DC1"]},"en":"Ye-Maek"}
+{"id":"濊貊","n":"濊貊","kind":"tribe","eras":["qinhan","liangjin-nanbeichao"],"refs":["qinhan:濊貊","liangjin-nanbeichao:濊貊"],"colors":{"qinhan":["#4989A7","#4D9DC1"],"liangjin-nanbeichao":["#4989A7","#4D9DC1"]},"en":"Ye-Maek"}
 {"id":"燕国","n":"燕国","kind":"zhen","eras":["qinhan"],"refs":["qinhan:燕国"],"colors":{"qinhan":["#B4845C","#CE9463"]},"en":"Kingdom of Yan"}
 {"id":"牂柯郡","n":"牂柯郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:牂柯郡"],"colors":{"qinhan":["#529F91","#54B5A4"]},"en":"Zangke Commandery"}
 {"id":"牂牁郡","n":"牂牁郡","kind":"zhen","eras":["qinhan"],"refs":["qinhan:牂牁郡"],"colors":{"qinhan":["#A4754E","#BD8454"]},"en":"Zangke Commandery"}

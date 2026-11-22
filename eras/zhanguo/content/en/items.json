@@ -1147,7 +1147,7 @@
  },
  "jun:洞庭郡": {
   "mod": "Seat: Linyuan (one view); around Changde, Hunan (seat disputed)",
-  "note": "A commandery name attested in the Liye and Yuelu Academy Qin slips; Qianling County belonged to Dongting Commandery. Whether the Qianzhong Commandery the Shiji records as set up in 277 BC existed, and how it related to Dongting, is disputed among scholars.",
+  "note": "A commandery name attested in the Liye and Yuelu Academy Qin slips; Qianling County belonged to Dongting Commandery. The dates in the Liye Qin slips begin in the 25th year of King Zheng of Qin (222 BC), the year Wang Jian pacified Chu's lands south of the Yangtze; from Liye Qin slip 7-1 and others Chen Wei dates the founding of the commandery to around the 11th month of that year or a little earlier (with Changsha as its first seat), and the map shows it from that year. Qin took Qianzhong in 277 BC, and the Shiji says it made it Qianzhong Commandery; but Chu retook fifteen towns along the Yangtze the next year, and Liye Qin slip 8-757 records that Qianling only became a county in year 25, so the map still shows the Yuan and You valleys as Chu's from 276 to 223 BC. How Qianzhong Commandery related to Dongting is disputed among scholars.",
   "old": "Dongting Commandery",
   "zhi": "Linyuan (one view)"
  },
@@ -2372,8 +2372,9 @@
   "old": "Qi"
  },
  "town:焦": {
-  "mod": "W of Sanmenxia, Henan",
-  "old": "Jiao"
+  "mod": "Shanzhou ruins, Sanmenxia, Henan",
+  "old": "Jiao",
+  "note": "The town of Jiao lay in the northeast corner of the city of Shan. The Basic Annals of Qin in the Shiji say Jiao surrendered to Qin in 329 BC, was returned to Wei in 327 and was taken again in 314, which does not fit Zhang Yi's capture of Shan (325 or 324 BC). The Suoyin commentary on the biography of Chuli Ji, citing Wang Shao of the Sui, notes that the Basic Annals, the Tables and the biography all differ and do not fit the Bamboo Annals, so the matter \"can now hardly be checked\". The map gives Jiao the same owners as Shan."
  },
  "town:番": {
   "mod": "Poyang, Jiangxi",

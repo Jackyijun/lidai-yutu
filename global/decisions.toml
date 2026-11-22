@@ -19,9 +19,12 @@ split = [
   "qinhan:广平",          # 西汉广平县在鸡泽东南，与北朝以后的广平郡、洺州（永年广府）不是一城
   "qinhan:单于庭（漠南）",  # 秦汉卷漠南单于庭（2026-11-18 加），与隋唐以后各卷的「漠南」分区点不是一地
   "qinhan:i:225",         # 同上，都城条目
+  "chunqiu:i:275",        # 焦城在陕城东北隅（2026-11-21 坐标改到陕州故城），是陕城中的小城，仍单列
+  "zhanguo:i:196",        # 同上
 ]
 merge = [
   ["qinhan:单于庭（漠南）", "qinhan:i:225"],   # 拆出后两者仍是一处
+  ["chunqiu:i:275", "zhanguo:i:196"],         # 春秋、战国两卷的焦
 ]
 
 [places.keep]
@@ -38,6 +41,7 @@ merge = [
 "hanmosanguo:巴郡" = "渝州"                                             # 自动取名为「江州（重庆渝中）」
 "hanmosanguo:豫章郡" = "洪州"                                           # 自动取名为「南昌」
 "hanmosanguo:鲁国" = "曲阜"                                             # 自动取名为「鲁」
+"chunqiu:i:275" = "焦"                                                   # 坐标挪进陕城后会并入陕州，钉回原 ID（2026-11-21）
 "liangjin-nanbeichao:陈州" = "陈州"                                     # 秦汉卷把原来的「陈」（春秋、战国、汉末）与「陈州」（两晋以后）连成一处，沿用后者
 "songyuan:扎兰季" = "扎兰季"                                            # 自动取名为「锡斯坦」
 "liangjin-nanbeichao:哈烈" = "哈烈"                                   # 自动取名为「赫拉特」
@@ -810,6 +814,7 @@ merge = [
   ["qinhan:乌孙", "liangjin-nanbeichao:乌孙"],
   ["qinhan:康居", "liangjin-nanbeichao:康居"],
   ["qinhan:贵霜", "liangjin-nanbeichao:贵霜"],
+  ["qinhan:濊貊", "liangjin-nanbeichao:濊貊"],                        # 朝鲜半岛东部的濊、貊诸部；两晋卷 280—369 年的春川一带
 ]
 
 # 全局 ID。同名政权的取名原则：统一王朝与南北朝诸朝用本名，同名的先秦诸侯国、十国政权加卷名
