@@ -3,7 +3,11 @@
 # 然后运行 python core/v1/registry.py 重建 global/ 下的各表与 global/review/ 下的审定清单。
 #
 # 引用一律写成「卷短名:键」：
-#   地点   chunqiu:i:303（条目序号）  songyuan:相州（州府的 id）
+#   地点   chunqiu:i:下邳（都城、城邑、关隘等条目：卷:i:条目名）  songyuan:相州（州府的 id）
+#   山川   [physical] 一节同样写 卷:i:条目名，只在山川里查同名（如春秋卷都城「江」与长江「江」各写 chunqiu:i:江）
+#          同卷同一类里有同名的，再加条目在本卷的起始年（早于本卷起年的记本卷起年）：liangjin-nanbeichao:i:邺@335（后赵）、
+#          liangjin-nanbeichao:i:邺@534（东魏）。审定清单、改正清单里印的就是这种写法，照抄即可
+#          不写条目序号（chunqiu:i:303 这种）：序号随条目增删而变，会悄悄指到别的条目上，registry.py 读到序号会停下来
 #   政权   tangsong:契丹  songyuan:辽（单位的键）
 # 审定清单里每一条都附了引用，直接复制即可。年份公元前记负数。
 #
@@ -18,13 +22,13 @@
 split = [
   "qinhan:广平",          # 西汉广平县在鸡泽东南，与北朝以后的广平郡、洺州（永年广府）不是一城
   "qinhan:单于庭（漠南）",  # 秦汉卷漠南单于庭（2026-11-18 加），与隋唐以后各卷的「漠南」分区点不是一地
-  "qinhan:i:225",         # 同上，都城条目
-  "chunqiu:i:275",        # 焦城在陕城东北隅（2026-11-21 坐标改到陕州故城），是陕城中的小城，仍单列
-  "zhanguo:i:196",        # 同上
+  "qinhan:i:单于庭（漠南）",         # 同上，都城条目
+  "chunqiu:i:焦",        # 焦城在陕城东北隅（2026-11-21 坐标改到陕州故城），是陕城中的小城，仍单列
+  "zhanguo:i:焦",        # 同上
 ]
 merge = [
-  ["qinhan:单于庭（漠南）", "qinhan:i:225"],   # 拆出后两者仍是一处
-  ["chunqiu:i:275", "zhanguo:i:196"],         # 春秋、战国两卷的焦
+  ["qinhan:单于庭（漠南）", "qinhan:i:单于庭（漠南）"],   # 拆出后两者仍是一处
+  ["chunqiu:i:焦", "zhanguo:i:焦"],         # 春秋、战国两卷的焦
 ]
 
 [places.keep]
@@ -34,21 +38,21 @@ merge = [
 [places.id]
 # 已发布的全局 ID 不改（深链接 sel=place:… 跨卷通用）。秦汉卷并入后自动取名会变的，在这里钉住原 ID（2026-11-16）
 "qinhan:单于庭（漠南）" = "单于庭（漠南）"                                # 自动取名为「漠南（…）」
-"qinhan:i:226" = "茏城"                                                 # 匈奴漠南大会之所（2026-11-18 加），与前燕龙城（辽宁朝阳）不是一地
+"qinhan:i:茏城（龙城）" = "茏城"                                                 # 匈奴漠南大会之所（2026-11-18 加），与前燕龙城（辽宁朝阳）不是一地
 "qinhan:邾" = "邾（湖北黄冈西北）"                                       # 衡山国都，与春秋邾国不是一地
 "qinhan:嫩江" = "嫩江（123.50,47.50）"                                  # 秦汉卷草原分区点，与民国嫩江县不是一地
 "qinhan:阿尔泰" = "阿尔泰（89.50,47.50）"                                 # 秦汉卷草原分区点
 "hanmosanguo:巴郡" = "渝州"                                             # 自动取名为「江州（重庆渝中）」
 "hanmosanguo:豫章郡" = "洪州"                                           # 自动取名为「南昌」
 "hanmosanguo:鲁国" = "曲阜"                                             # 自动取名为「鲁」
-"chunqiu:i:275" = "焦"                                                   # 坐标挪进陕城后会并入陕州，钉回原 ID（2026-11-21）
+"chunqiu:i:焦" = "焦"                                                   # 坐标挪进陕城后会并入陕州，钉回原 ID（2026-11-21）
 "liangjin-nanbeichao:陈州" = "陈州"                                     # 秦汉卷把原来的「陈」（春秋、战国、汉末）与「陈州」（两晋以后）连成一处，沿用后者
 "songyuan:扎兰季" = "扎兰季"                                            # 自动取名为「锡斯坦」
 "liangjin-nanbeichao:哈烈" = "哈烈"                                   # 自动取名为「赫拉特」
 "liangjin-nanbeichao:葱岭" = "葱岭守捉"                                 # 自动取名为「蒲犁」
 "minguo-xinzhongguo:阿尔泰" = "阿尔泰"                                  # 自动取名为「阿尔泰（新疆阿勒泰东部）」
-"hanmosanguo:i:340" = "玉门关（甘肃敦煌西北（小方盘城））"                         # 自动取名为「玉门关」
-"songyuan:i:557" = "玉门关"                                          # 自动取名为「玉门关（甘肃瓜州东）」
+"hanmosanguo:i:玉门关" = "玉门关（甘肃敦煌西北（小方盘城））"                         # 自动取名为「玉门关」
+"songyuan:i:玉门关" = "玉门关"                                          # 自动取名为「玉门关（甘肃瓜州东）」
 "minguo-xinzhongguo:巴东·苏" = "巴东"                                  # 自动取名为「巴东（印度尼西亚巴东）」
 "hanmosanguo:越巂郡" = "嶲州"                                          # 自动取名为「越巂郡」
 "hanmosanguo:南安" = "嘉州"                                           # 自动取名为「南安」
@@ -62,22 +66,22 @@ merge = [
 "hanmosanguo:蒲坂" = "蒲州"                                           # 自动取名为「蒲坂」
 "hanmosanguo:夏阳" = "韩城"                                           # 自动取名为「夏阳」
 "hanmosanguo:房陵" = "房州"                                           # 自动取名为「房陵」
-"minguo-xinzhongguo:i:864" = "函谷关"                                # 自动取名为「函谷关（河南灵宝王垛村）」
+"minguo-xinzhongguo:i:函谷关" = "函谷关"                                # 自动取名为「函谷关（河南灵宝王垛村）」
 "hanmosanguo:襄阳" = "襄州"                                           # 自动取名为「襄阳」
-"hanmosanguo:i:319" = "函谷关（河南新安东（汉函谷关遗址））"                        # 自动取名为「函谷关」
-"chunqiu:i:225" = "阙塞"                                            # 自动取名为「伊阙关」
+"hanmosanguo:i:函谷关" = "函谷关（河南新安东（汉函谷关遗址））"                        # 自动取名为「函谷关」
+"chunqiu:i:阙塞" = "阙塞"                                            # 自动取名为「伊阙关」
 "hanmosanguo:野王" = "怀州"                                           # 自动取名为「野王」
 "hanmosanguo:安陆" = "安州"                                           # 自动取名为「安陆」
 "hanmosanguo:宜春" = "袁州"                                           # 自动取名为「宜春」
 "liangjin-nanbeichao:邢州" = "邢州"                                   # 自动取名为「襄国」
 "liangjin-nanbeichao:代" = "蔚州"                                    # 自动取名为「代」
 "hanmosanguo:下曲阳" = "鼓"                                           # 自动取名为「下曲阳」
-"chunqiu:i:138" = "黄（河南潢川西北（黄国故城））"                               # 自动取名为「黄」
+"chunqiu:i:黄" = "黄（河南潢川西北（黄国故城））"                               # 自动取名为「黄」
 "hanmosanguo:谯" = "亳州"                                            # 自动取名为「谯」
 "hanmosanguo:山阳郡" = "昌邑"                                          # 自动取名为「山阳郡」
 "hanmosanguo:六安" = "六"                                            # 自动取名为「六安」
 "hanmosanguo:任城国" = "任"                                           # 自动取名为「任城国」
-"chunqiu:i:115" = "邾"                                             # 自动取名为「邾（山东曲阜东南（一说））」
+"chunqiu:i:邾" = "邾"                                             # 自动取名为「邾（山东曲阜东南（一说））」
 "hanmosanguo:彭城国" = "徐州"                                          # 自动取名为「彭城」
 "hanmosanguo:无终" = "渔阳"                                           # 自动取名为「无终」
 "hanmosanguo:九江郡" = "阴陵"                                          # 自动取名为「九江郡」
@@ -100,16 +104,16 @@ merge = [
 
 [[place]]
 id = "邺"
-refs = ["chunqiu:i:303", "zhanguo:i:148", "hanmosanguo:i:198", "hanmosanguo:魏郡", "qinhan:魏郡",
-        "liangjin-nanbeichao:i:17", "liangjin-nanbeichao:i:19", "liangjin-nanbeichao:i:27",
-        "liangjin-nanbeichao:i:60", "liangjin-nanbeichao:i:61"]
+refs = ["chunqiu:i:邺", "zhanguo:i:邺", "hanmosanguo:i:邺", "hanmosanguo:魏郡", "qinhan:魏郡",
+        "liangjin-nanbeichao:i:邺@335", "liangjin-nanbeichao:i:邺@350", "liangjin-nanbeichao:i:邺@357",
+        "liangjin-nanbeichao:i:邺@534", "liangjin-nanbeichao:i:邺@550"]
 mod = "河北临漳邺城遗址"
 sites = [{lon = 114.34, lat = 36.32, to = 580, note = "邺北城（三台）一带，临漳县城西南，南距安阳约 18 km"}]
 note = "春秋齐桓公始筑；曹魏、后赵、冉魏、前燕、东魏、北齐六朝都城。580 年杨坚平尉迟迥，焚邺，居民南迁安阳，相州移治安阳。"
 
 [[place]]
 id = "安阳"
-refs = ["zhanguo:i:203", "suitang:相州", "tangsong:i:176", "tangsong:相州", "songyuan:相州", "minguo-xinzhongguo:安阳"]
+refs = ["zhanguo:i:宁新中", "suitang:相州", "tangsong:i:邺城（安庆绪）", "tangsong:相州", "songyuan:相州", "minguo-xinzhongguo:安阳"]
 mod = "河南安阳"
 sites = [{lon = 114.35, lat = 36.10, note = "安阳老城"}]
 note = "战国宁新中，秦改名安阳。580 年起为相州治所，宋为彰德府。隋唐以后诗文所称邺、邺城（如安庆绪据守的邺城）都指这里。"
@@ -120,7 +124,7 @@ by = [[-9999, "邺"], [580, "安阳"]]
 
 [[place]]
 id = "上都"
-refs = ["songyuan:i:317"]
+refs = ["songyuan:i:开平（上都）"]
 mod = "内蒙古正蓝旗上都镇"
 sites = [{lon = 116.18, lat = 42.36, note = "元上都遗址"}]
 note = "1256 年忽必烈于金莲川筑开平城，1263 年称上都。"
@@ -150,7 +154,7 @@ sites = [{lon = 112.95, lat = 39.07, note = "广武，晋以后雁门郡、代�
 
 [[place]]
 id = "令支"
-refs = ["chunqiu:i:308", "zhanguo:i:251", "hanmosanguo:令支", "qinhan:令支"]
+refs = ["chunqiu:i:令支", "zhanguo:i:令支", "hanmosanguo:令支", "qinhan:令支"]
 mod = "河北迁安西"
 sites = [{lon = 118.70, lat = 40.00, note = "令支故城"}]
 
@@ -172,7 +176,7 @@ sites = [{lon = 75.20, lat = 42.80, note = "阿克·贝希姆遗址"}]
 
 [[place]]
 id = "八剌沙衮"
-refs = ["tangsong:i:225", "songyuan:i:313", "songyuan:i:340", "songyuan:八剌沙衮"]
+refs = ["tangsong:i:八剌沙衮", "songyuan:i:虎思斡耳朵", "songyuan:i:八剌沙衮", "songyuan:八剌沙衮"]
 mod = "吉尔吉斯斯坦托克马克布拉纳"
 sites = [{lon = 75.25, lat = 42.75, note = "布拉纳遗址（一说）"}]
 note = "喀喇汗都城，西辽称虎思斡耳朵。与碎叶相距约 8 km，是两座城。"
@@ -189,7 +193,7 @@ sites = [{lon = 104.00, lat = 35.90, note = "西晋金城郡治榆中"}]
 
 [[place]]
 id = "兰州"
-refs = ["liangjin-nanbeichao:i:37", "suitang:i:17", "suitang:兰州", "tangsong:兰州", "songyuan:兰州", "minguo-xinzhongguo:兰州"]
+refs = ["liangjin-nanbeichao:i:金城@388", "suitang:i:金城@617", "suitang:兰州", "tangsong:兰州", "songyuan:兰州", "minguo-xinzhongguo:兰州"]
 mod = "甘肃兰州"
 sites = [{lon = 103.83, lat = 36.06}]
 note = "西秦 388 年迁都的金城即此；隋置兰州。"
@@ -200,7 +204,7 @@ by = [[-9999, "榆中"], [581, "兰州"]]
 
 [[place]]
 id = "剑门关"
-refs = ["hanmosanguo:i:327"]
+refs = ["hanmosanguo:i:剑阁"]
 mod = "四川剑阁北（剑门关）"
 sites = [{lon = 105.55, lat = 32.21}]
 
@@ -242,7 +246,7 @@ note = "大梁、浚仪、汴州、开封府、汴梁。北魏陈留郡治浚仪
 
 [[place]]
 id = "平原"
-refs = ["zhanguo:i:169", "hanmosanguo:平原郡", "qinhan:平原郡"]
+refs = ["zhanguo:i:平原", "hanmosanguo:平原郡", "qinhan:平原郡"]
 mod = "山东平原南"
 sites = [{lon = 116.43, lat = 37.17}]
 
@@ -264,7 +268,7 @@ by = [[-9999, "平原"], [581, "德州（陵城）"]]
 
 [[place]]
 id = "仇池"
-refs = ["liangjin-nanbeichao:i:55"]
+refs = ["liangjin-nanbeichao:i:仇池"]
 mod = "甘肃西和仇池山"
 sites = [{lon = 105.55, lat = 33.80}]
 
@@ -305,7 +309,7 @@ sites = [{lon = 115.48, lat = 35.24, note = "明代曹州移治于此"}]
 
 [[place]]
 id = "慰礼城"
-refs = ["liangjin-nanbeichao:i:74"]
+refs = ["liangjin-nanbeichao:i:汉城（慰礼城）"]
 mod = "韩国首尔松坡区（风纳土城）"
 sites = [{lon = 127.12, lat = 37.53, note = "百济前期都城，475 年陷于高句丽"}]
 
@@ -317,7 +321,7 @@ sites = [{lon = 127.18, lat = 37.48, note = "新罗汉山州、汉州治所（�
 
 [[place]]
 id = "汉城"
-refs = ["songyuan:汉州·新罗", "minguo-xinzhongguo:i:288", "minguo-xinzhongguo:i:297", "minguo-xinzhongguo:i:299", "minguo-xinzhongguo:汉城"]
+refs = ["songyuan:汉州·新罗", "minguo-xinzhongguo:i:京城（朝鲜总督府）", "minguo-xinzhongguo:i:汉城（美军政厅）", "minguo-xinzhongguo:i:汉城（大韩民国）", "minguo-xinzhongguo:汉城"]
 mod = "韩国首尔"
 sites = [{lon = 126.98, lat = 37.57, note = "高丽杨州、南京，朝鲜汉阳、汉城，今首尔"}]
 
@@ -365,19 +369,19 @@ by = [[-9999, "南皮"], [581, "沧州（旧州）"]]
 
 [[place]]
 id = "熊津"
-refs = ["liangjin-nanbeichao:i:75", "liangjin-nanbeichao:熊津", "suitang:熊津"]
+refs = ["liangjin-nanbeichao:i:熊津", "liangjin-nanbeichao:熊津", "suitang:熊津"]
 mod = "韩国忠清南道公州"
 sites = [{lon = 127.12, lat = 36.46}]
 
 [[place]]
 id = "泗沘"
-refs = ["liangjin-nanbeichao:i:76", "liangjin-nanbeichao:泗沘", "suitang:i:43", "suitang:泗沘"]
+refs = ["liangjin-nanbeichao:i:泗沘", "liangjin-nanbeichao:泗沘", "suitang:i:泗沘", "suitang:泗沘"]
 mod = "韩国忠清南道扶余"
 sites = [{lon = 126.91, lat = 36.28}]
 
 [[place]]
 id = "淮阴"
-refs = ["zhanguo:i:282", "hanmosanguo:淮阴", "qinhan:淮阴", "minguo-xinzhongguo:淮阴"]
+refs = ["zhanguo:i:淮阴", "hanmosanguo:淮阴", "qinhan:淮阴", "minguo-xinzhongguo:淮阴"]
 mod = "江苏淮安淮阴区"
 sites = [{lon = 119.02, lat = 33.60}]
 
@@ -405,7 +409,7 @@ sites = [{lon = 115.55, lat = 38.00}]
 
 [[place]]
 id = "长子"
-refs = ["zhanguo:i:156", "hanmosanguo:上党郡", "qinhan:上党郡", "liangjin-nanbeichao:长子", "liangjin-nanbeichao:i:33"]
+refs = ["zhanguo:i:上党", "hanmosanguo:上党郡", "qinhan:上党郡", "liangjin-nanbeichao:长子", "liangjin-nanbeichao:i:长子"]
 mod = "山西长子"
 sites = [{lon = 112.87, lat = 36.12, note = "秦汉上党郡治；西燕都城"}]
 
@@ -417,7 +421,7 @@ sites = [{lon = 113.12, lat = 36.20}]
 
 [[place]]
 id = "濮阳"
-refs = ["chunqiu:i:101", "zhanguo:i:56", "zhanguo:i:175", "hanmosanguo:东郡", "qinhan:东郡", "songyuan:澶州", "minguo-xinzhongguo:濮阳"]
+refs = ["chunqiu:i:濮阳", "zhanguo:i:濮阳", "zhanguo:i:东郡", "hanmosanguo:东郡", "qinhan:东郡", "songyuan:澶州", "minguo-xinzhongguo:濮阳"]
 mod = "河南濮阳"
 sites = [{lon = 115.03, lat = 35.72, to = 937, note = "濮阳故城（卫都、秦汉东郡治）"},
          {lon = 115.03, lat = 35.76, from = 938, note = "德胜寨，后晋起澶州治所"}]
@@ -434,13 +438,13 @@ by = [[-9999, "顿丘"], [938, "濮阳"]]
 
 [[place]]
 id = "乐成（河间国治）"
-refs = ["zhanguo:i:237"]
+refs = ["zhanguo:i:河间"]
 mod = "河北献县东南（位置约）"
 sites = [{lon = 116.12, lat = 38.20}]
 
 [[place]]
 id = "乐寿"
-refs = ["liangjin-nanbeichao:乐寿", "suitang:乐寿", "suitang:i:21", "minguo-xinzhongguo:献县"]
+refs = ["liangjin-nanbeichao:乐寿", "suitang:乐寿", "suitang:i:乐寿", "minguo-xinzhongguo:献县"]
 mod = "河北献县"
 sites = [{lon = 116.12, lat = 38.18}]
 
@@ -456,7 +460,7 @@ by = [[-9999, "乐成（河间国治）"], [487, "瀛州"]]
 
 [[place]]
 id = "左国城"
-refs = ["liangjin-nanbeichao:i:11"]
+refs = ["liangjin-nanbeichao:i:左国城"]
 mod = "山西吕梁方山县南村"
 sites = [{lon = 111.25, lat = 37.68, note = "304 年刘渊于此称汉王"}]
 
@@ -468,26 +472,26 @@ sites = [{lon = 111.13, lat = 37.51, note = "离石"}]
 
 [[place]]
 id = "平舆"
-refs = ["zhanguo:i:226", "hanmosanguo:汝南郡", "qinhan:汝南郡"]
+refs = ["zhanguo:i:平舆", "hanmosanguo:汝南郡", "qinhan:汝南郡"]
 mod = "河南平舆北"
 sites = [{lon = 114.62, lat = 32.96, note = "汉汝南郡治"}]
 
 [[place]]
 id = "蔡州"
-refs = ["liangjin-nanbeichao:豫州", "suitang:豫州", "tangsong:蔡州", "tangsong:i:178", "songyuan:蔡州", "songyuan:i:309"]
+refs = ["liangjin-nanbeichao:豫州", "suitang:豫州", "tangsong:蔡州", "tangsong:i:蔡州（秦宗权）", "songyuan:蔡州", "songyuan:i:蔡州"]
 mod = "河南汝南"
 sites = [{lon = 114.36, lat = 33.00, note = "悬瓠城"}]
 
 [[place]]
 id = "虎牢关"
-anchor = "hanmosanguo:i:331"
-add = ["chunqiu:i:223", "zhanguo:i:142"]
+anchor = "hanmosanguo:i:虎牢关"
+add = ["chunqiu:i:虎牢", "zhanguo:i:成皋"]
 mod = "河南荥阳汜水镇"
 sites = [{lon = 113.22, lat = 34.85, note = "虎牢、成皋"}]
 
 [[place]]
 id = "洛口仓"
-refs = ["suitang:i:20", "suitang:洛口仓"]
+refs = ["suitang:i:洛口（兴洛仓）", "suitang:洛口仓"]
 mod = "河南巩义东北"
 sites = [{lon = 113.05, lat = 34.78, note = "兴洛仓，605 年置"}]
 
@@ -513,13 +517,13 @@ by = [[-9999, "弘农"], [581, "虢州"]]
 
 [[place]]
 id = "郑州"
-refs = ["chunqiu:i:293", "suitang:郑州", "tangsong:郑州", "songyuan:郑州", "minguo-xinzhongguo:郑州"]
+refs = ["chunqiu:i:管", "suitang:郑州", "tangsong:郑州", "songyuan:郑州", "minguo-xinzhongguo:郑州"]
 mod = "河南郑州"
 sites = [{lon = 113.65, lat = 34.76, note = "管、管城"}]
 
 [[place]]
 id = "荥阳"
-refs = ["zhanguo:i:157", "hanmosanguo:荥阳", "qinhan:荥阳"]
+refs = ["zhanguo:i:荥阳", "hanmosanguo:荥阳", "qinhan:荥阳"]
 mod = "河南荥阳东北（古荥镇）"
 sites = [{lon = 113.40, lat = 34.82, note = "荥阳故城"}]
 
@@ -529,7 +533,7 @@ by = [[-9999, "荥阳"], [581, "郑州"]]
 
 [[place]]
 id = "严道"
-refs = ["zhanguo:i:316"]
+refs = ["zhanguo:i:严道"]
 mod = "四川荥经"
 sites = [{lon = 102.85, lat = 29.80, note = "秦汉严道"}]
 
@@ -622,7 +626,7 @@ sites = [{lon = 96.85, lat = 47.73}]
 
 [[place]]
 id = "井陉"
-anchor = "hanmosanguo:i:336"
+anchor = "hanmosanguo:i:井陉"
 mod = "河北石家庄鹿泉区西（土门关）"
 sites = [{lon = 114.25, lat = 38.05, note = "井陉口（土门关）"}]
 
@@ -638,7 +642,7 @@ sites = [{lon = 86.00, lat = 45.50}]
 
 [[place]]
 id = "卢龙塞"
-anchor = "hanmosanguo:i:339"
+anchor = "hanmosanguo:i:卢龙塞"
 mod = "河北迁西喜峰口一带"
 sites = [{lon = 118.40, lat = 40.42}]
 
@@ -662,7 +666,7 @@ sites = [{lon = 108.26, lat = 15.72, note = "东阳（Đồng Dương）佛寺�
 
 [[place]]
 id = "孟津"
-anchor = "hanmosanguo:i:334"
+anchor = "hanmosanguo:i:孟津"
 mod = "河南洛阳孟津区会盟镇一带"
 sites = [{lon = 112.62, lat = 34.84}]
 
@@ -686,12 +690,12 @@ sites = [{lon = 113.33, lat = 35.07, note = "怀城故址"}]
 
 [[place]]
 id = "昆仑关"
-anchor = "songyuan:i:554"
+anchor = "songyuan:i:昆仑关"
 sites = [{lon = 108.62, lat = 23.12}]
 
 [[place]]
 id = "武关"
-anchor = "hanmosanguo:i:321"
+anchor = "hanmosanguo:i:武关"
 mod = "陕西丹凤武关镇"
 sites = [{lon = 110.65, lat = 33.68}]
 
@@ -715,7 +719,7 @@ sites = [{lon = 119.90, lat = 32.48}]
 
 [[place]]
 id = "潼关"
-anchor = "hanmosanguo:i:320"
+anchor = "hanmosanguo:i:潼关"
 mod = "陕西潼关港口镇（潼关故城）"
 sites = [{lon = 110.33, lat = 34.60, note = "潼关故城；今潼关县城吴村是 1958 年后迁的"}]
 
@@ -744,7 +748,7 @@ sites = [{lon = 117.30, lat = 31.25}]
 
 [[place]]
 id = "萧关"
-anchor = "hanmosanguo:i:324"
+anchor = "hanmosanguo:i:萧关"
 mod = "宁夏固原东南"
 sites = [{lon = 106.40, lat = 35.90}]
 
@@ -762,13 +766,13 @@ sites = [{lon = 111.67, lat = 24.47, note = "临贺故城"}]
 
 [[place]]
 id = "酸枣"
-anchor = "chunqiu:i:300"
+anchor = "chunqiu:i:酸枣"
 mod = "河南延津西南"
 sites = [{lon = 114.20, lat = 35.20}]
 
 [[place]]
 id = "铁门"
-anchor = "suitang:i:127"
+anchor = "suitang:i:铁门"
 mod = "乌兹别克斯坦苏尔汉河州拜孙山口（约）"
 sites = [{lon = 66.95, lat = 38.35}]
 
@@ -785,7 +789,7 @@ sites = [{lon = 57.50, lat = 22.90}]
 
 [[place]]
 id = "陇关"
-anchor = "hanmosanguo:i:323"
+anchor = "hanmosanguo:i:陇关"
 mod = "陕西陇县西"
 sites = [{lon = 106.55, lat = 34.88}]
 
@@ -840,11 +844,11 @@ merge = [
 [physical]
 # 春秋、战国的「泰山·沂山」把泰山和沂山连成一条，与其余各卷单画的泰山不是同一个对象；
 # 春秋卷的菏水（吴王夫差所开，连济、泗）与战国卷的鸿沟是两条运河，原先因今名相同被并在一起
-split = ["chunqiu:i:427", "zhanguo:i:432", "chunqiu:i:473"]
+split = ["chunqiu:i:泰山·沂山", "zhanguo:i:泰山·沂山", "chunqiu:i:菏水"]
 
 [physical.id]
 # 已发布的全局 ID 不改：秦汉卷并入后自动取名会变的，钉住原 ID
-"hanmosanguo:i:183" = "desert:大碛"           # 自动取名为「desert:大漠」
+"hanmosanguo:i:大漠（瀚海）" = "desert:大碛"           # 自动取名为「desert:大漠」
 
 [physical.prefer]
 "range:武陵山" = {era = "chunqiu", page = true, note = "武陵山东北—西南走向（贵州梵净山至湘鄂西）。春秋、战国两卷画对了；秦汉至民国七卷画成西北—东南走向，画反了，页面上照春秋卷改画"}

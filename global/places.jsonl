@@ -1871,7 +1871,6 @@
 {"id":"野狐岭","n":"野狐岭","names":["野狐岭"],"mod":"河北张家口万全西北","lon":114.7,"lat":41.0,"eras":["songyuan"],"refs":["songyuan:i:552"],"en":"Yehuling"}
 {"id":"张北","n":"张北","names":["张北","怀荒镇"],"mod":"河北张北","lon":114.7,"lat":41.15,"eras":["liangjin-nanbeichao","minguo-xinzhongguo"],"refs":["liangjin-nanbeichao:怀荒镇","minguo-xinzhongguo:张北"],"en":"Huaihuang Garrison","en_variants":["Huaihuang Garrison","Zhangbei"]}
 {"id":"息","n":"息","names":["息"],"mod":"河南息县西南","lon":114.73,"lat":32.34,"eras":["chunqiu","zhanguo"],"refs":["chunqiu:i:134","zhanguo:i:228"],"en":"Xi"}
-{"id":"顿","n":"顿","names":["顿"],"mod":"河南项城西（南顿故城）","lon":114.73,"lat":33.42,"eras":["chunqiu"],"refs":["chunqiu:i:142"],"en":"Dun"}
 {"id":"滑州","n":"滑州","names":["东郡","滑台","滑州"],"mod":"河南滑县东","lon":114.73,"lat":35.55,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:i:46","liangjin-nanbeichao:i:52","liangjin-nanbeichao:滑州","songyuan:滑州","suitang:滑州","tangsong:滑州"],"en":"Huatai","en_variants":["Huatai","Huazhou"]}
 {"id":"洺州","n":"洺州","names":["广平","武安郡","洺州"],"mod":"河北永年广府","lon":114.73,"lat":36.68,"eras":["liangjin-nanbeichao","suitang","tangsong","songyuan"],"refs":["liangjin-nanbeichao:洺州","songyuan:洺州","suitang:i:22","suitang:i:23","suitang:洺州","tangsong:洺州"],"en":"Mingzhou","en_variants":["Guangping","Mingzhou"]}
 {"id":"江夏郡","n":"江夏郡","names":["江夏郡"],"mod":"湖北武汉新洲区西","lon":114.75,"lat":30.75,"eras":["qinhan","hanmosanguo"],"refs":["hanmosanguo:江夏郡","qinhan:江夏郡"],"en":"Jiangxia Commandery"}
@@ -1880,6 +1879,7 @@
 {"id":"雍丘","n":"雍丘","names":["雍丘"],"mod":"河南杞县","lon":114.78,"lat":34.55,"eras":["chunqiu","zhanguo"],"refs":["chunqiu:i:110","zhanguo:i:207"],"en":"Yongqiu"}
 {"id":"肥","n":"肥","names":["肥"],"mod":"河北藁城西南","lon":114.78,"lat":37.98,"eras":["chunqiu"],"refs":["chunqiu:i:93"],"en":"Fei"}
 {"id":"万安（江西万安）","n":"万安","names":["万安"],"mod":"江西万安","lon":114.79,"lat":26.46,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:万安"],"en":"Wan'an"}
+{"id":"顿","n":"顿","names":["顿"],"mod":"河南项城西（南顿故城）","lon":114.82,"lat":33.43,"eras":["chunqiu"],"refs":["chunqiu:i:142"],"en":"Dun"}
 {"id":"兰封","n":"兰封","names":["兰封"],"mod":"河南兰考","lon":114.82,"lat":34.82,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:兰封"],"en":"Lanfeng"}
 {"id":"鄂","n":"鄂","names":["鄂"],"mod":"湖北鄂州","lon":114.85,"lat":30.4,"eras":["chunqiu"],"refs":["chunqiu:i:347"],"en":"E"}
 {"id":"弦","n":"弦","names":["弦"],"mod":"河南光山西北","lon":114.85,"lat":32.05,"eras":["chunqiu"],"refs":["chunqiu:i:334"],"en":"Xian"}

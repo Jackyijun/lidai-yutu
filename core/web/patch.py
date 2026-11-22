@@ -173,14 +173,18 @@ def patch_simple(t, slug):
     t = sub1(t, "    buildAxis(); setSnap(si, false);\n", "    TL.relabel(); setSnap(si, false);\n", "切换语言重排时间轴")
     # 视图
     t = sub1(t, "  function setView(cx, cy, k, animate) {\n",
-             "  let FLIGHT = null;     // 正在飞的视图动画 { target, fit, aid }：fit 为飞回当前视野的整幅（见 resize）\n  function setView(cx, cy, k, animate, fit) {\n", "setView 参数")
+             "  let FLIGHT = null;     // 正在飞的视图动画 { target, refit, aid, instant }：refit 按当前地图区尺寸重算落点、倍数已夹好（见 resize）\n  function setView(cx, cy, k, animate, refit) {\n", "setView 参数")
     t = sub1(t, "    if (!animate || reduce()) { Object.assign(view, target); render(); return; }\n    const from = { ...view }, t0 = performance.now(), dur = 480;\n",
-             "    const aid = ++ANIM;\n    FLIGHT = null;\n    if (!animate || reduce()) { Object.assign(view, target); render(); return; }\n"
-             "    const from = { ...view }, t0 = performance.now(), dur = 480;\n    FLIGHT = { target, fit: !!fit, aid };\n", "setView")
+             "    const aid = ++ANIM;\n    FLIGHT = null;\n    if (!animate || reduce()) {\n      Object.assign(view, target); render();\n"
+             "      if (refit) { FLIGHT = { target, refit, aid, instant: true }; setTimeout(() => { if (FLIGHT && FLIGHT.aid === aid) FLIGHT = null; }, 300); }\n      return;\n    }\n"
+             "    const from = { ...view }, t0 = performance.now(), dur = 480;\n    FLIGHT = { target, refit: refit || null, aid };\n", "setView")
     t = sub1(t, "    (function step(t) {\n      const u = Math.min(1, (t - t0) / dur)",
              "    (function step(t) {\n      if (aid !== ANIM) return;\n      const u = Math.min(1, (t - t0) / dur)", "setView 动画")
-    t = sub1(t, "      render(); if (u < 1) requestAnimationFrame(step);\n    })(t0);\n",
-             "      render(); if (u < 1) requestAnimationFrame(step); else if (FLIGHT && FLIGHT.aid === aid) FLIGHT = null;\n    })(t0);\n", "setView 收尾")
+    t = sub1(t, "      render(); if (u < 1) requestAnimationFrame(step);\n    })(t0);\n  }\n",
+             "      try { render(); } catch (err) { if (FLIGHT && FLIGHT.aid === aid) FLIGHT = null; throw err; }\n"
+             "      if (u < 1) requestAnimationFrame(step); else if (FLIGHT && FLIGHT.aid === aid) FLIGHT = null;\n    })(t0);\n  }\n"
+             "  // 用户自己动了地图（滚轮、按下拖动或捏合）：正在飞的视图动画就此停下，落点也不再按尺寸重算\n"
+             "  const stopFlight = () => { if (FLIGHT) { ANIM++; FLIGHT = null; } };\n", "setView 收尾")
     i, j = block_after(t, "  function fitTo(key, animate) {", "fitTo")
     fit = t[i:j]
     m = re.search(r"\n    setView\((.*), animate\);\n  \}\n$", fit)
@@ -190,8 +194,10 @@ def patch_simple(t, slug):
     if tgt.count("(!legBody.hidden && W > ") != 1:
         raise PatchError("fitTarget：图例让位的写法变了")
     tgt = tgt.replace("(!legBody.hidden && W > ", "(leg && W > ")
-    t = t[:i] + fit.replace(m.group(0), m.group(0).replace(", animate);", ", animate, true);")) + tgt + t[j:]
-    # 地图区尺寸变了：整幅的重新收进，放大过的保持倍数与中心，飞行中的照飞（与 core/web/template.html 的 resize 相同）
+    t = t[:i] + fit.replace(m.group(0), m.group(0).replace(", animate);", ", animate, () => fitTarget(key));")) + tgt + t[j:]
+    t = sub1(t, '  svg.addEventListener("pointerdown", e => {\n', '  svg.addEventListener("pointerdown", e => {\n    stopFlight();\n', "按下停飞")
+    t = sub1(t, '  svg.addEventListener("wheel", e => {\n    e.preventDefault();\n', '  svg.addEventListener("wheel", e => {\n    e.preventDefault(); stopFlight();\n', "滚轮停飞")
+    # 地图区尺寸变了：整幅的重新收进，放大过的保持倍数与中心，飞行中的照飞、飞回整幅的按新尺寸重算落点（与 core/web/template.html 的 resize 相同）
     t = sub1(t, RESIZE_OLD, resize_js(), "resize")
     t = sub1(t, '    if (m === "map") requestAnimationFrame(() => { const keep = { ...view }; resize(); if (keep.k !== 1) { Object.assign(view, keep); render(); } });\n',
              '    if (m === "map") requestAnimationFrame(resize);\n', "切回地图")

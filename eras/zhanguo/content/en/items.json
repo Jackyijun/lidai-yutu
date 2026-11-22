@@ -58,10 +58,10 @@
  "battle:取高阙·北假": {
   "cmd": "Meng Tian",
   "mod": "Urad Front Banner – Lang Mountains, Inner Mongolia",
-  "note": "Meng Tian crossed the He and took Gaoque, the Yang Mountains and Beijia, building watchtowers and stockades to drive out the Rong, and moved banished convicts there to fill the new counties.",
+  "note": "Meng Tian crossed the He and took Gaoque, the Tao Mountains (written Yang Mountains in the Account of the Xiongnu) and Beijia, building watchtowers and stockades to drive out the Rong, and moved banished convicts there to fill the new counties.",
   "old": "Capture of Gaoque and Beijia",
   "sides": "Qin defeated the Xiongnu",
-  "yt": "213 BC"
+  "yt": "214 BC"
  },
  "battle:吴起拔河西": {
   "cmd": "Wu Qi",
@@ -2613,7 +2613,7 @@
   "old": "Yangjia"
  },
  "town:陕": {
-  "mod": "Shanzhou District, Sanmenxia, Henan",
+  "mod": "Hubin District, Sanmenxia, Henan",
   "note": "Taken by Qin (324 BC), commanding the eastern mouth of the Xiao–Hangu route.",
   "old": "Shan"
  },

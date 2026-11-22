@@ -148,7 +148,7 @@ def zg_engine_212():
 if not FIRST:
     zg_engine_212()
 # 秦郡治所的坐标与战国卷同名城邑条目不符的，取城邑条目（同地同坐标）
-QIN_SEAT_LL = {"肤施": (109.8, 38.0)}     # 战国卷秦郡表记在米脂一带，城邑条目 zhanguo:i:161 在榆林东南
+QIN_SEAT_LL = {"肤施": (109.8, 38.0)}     # 战国卷秦郡表记在米脂一带，城邑条目「肤施」（zhanguo:i:肤施）在榆林东南
 # 前212 节点画的秦郡郡界（照搬战国卷引擎按郡治细分秦的各块）。各点归哪个秦郡（Q 一套郡制，前212—前180）不看它，
 # 冻结在 content/qinjun.py（原先按战国卷旧构建画的秦郡郡界定）
 QIN_POLY = {} if FIRST else {J.qin_unit(k): geom_of(r) for k, r in ZG_LAST["j"].items()}
@@ -363,9 +363,7 @@ def junction(i, row, z, lz, p, lp):
     """首尾节点照搬邻卷：返回改过的 z / p（单位序号 → 多边形）"""
     nd = row["nd"]
     if nd.get("junction") == "zhanguo":
-        # 与空多边形求一次差集只为让 GEOS 重排环的起点，与此前的构建逐字节一致（这里原先扣掉战国卷旧构建画到海上的几个岛）；
-        # 下次允许秦汉卷页面变动时可以去掉
-        qin = geom_of(ZG_LAST["s"]["秦"]).difference(shapely.Polygon())
+        qin = geom_of(ZG_LAST["s"]["秦"])
         wei = geom_of(ZG_LAST["s"]["卫"])
         inner = {UK[k]: g for k, g in QIN_POLY.items() if k in UK}
         zz = {u: g for u, g in z.items() if row["pol"].get(UNITS[u]["k"]) not in ("秦", "卫")}

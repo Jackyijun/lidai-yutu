@@ -2103,7 +2103,6 @@
 {"id":"张北","kind":"place","zh":"怀荒镇","en":"Huaihuang Garrison"}
 {"id":"张北","kind":"place","zh":"张北","en":"Zhangbei"}
 {"id":"息","kind":"place","zh":"息","en":"Xi"}
-{"id":"顿","kind":"place","zh":"顿","en":"Dun"}
 {"id":"滑州","kind":"place","zh":"滑台","en":"Huatai"}
 {"id":"滑州","kind":"place","zh":"滑州","en":"Huazhou"}
 {"id":"洺州","kind":"place","zh":"广平","en":"Guangping"}
@@ -2115,6 +2114,7 @@
 {"id":"雍丘","kind":"place","zh":"雍丘","en":"Yongqiu"}
 {"id":"肥","kind":"place","zh":"肥","en":"Fei"}
 {"id":"万安（江西万安）","kind":"place","zh":"万安","en":"Wan'an"}
+{"id":"顿","kind":"place","zh":"顿","en":"Dun"}
 {"id":"兰封","kind":"place","zh":"兰封","en":"Lanfeng"}
 {"id":"鄂","kind":"place","zh":"鄂","en":"E"}
 {"id":"弦","kind":"place","zh":"弦","en":"Xian"}
@@ -3387,7 +3387,7 @@
 {"id":"清河郡","kind":"polity","zh":"清河郡","en":"Qinghe Commandery"}
 {"id":"渔阳郡","kind":"polity","zh":"渔阳郡","en":"Yuyang Commandery"}
 {"id":"滇","kind":"polity","zh":"滇","en":"Dian"}
-{"id":"濊貊","kind":"polity","zh":"濊貊","en":"Ye-Maek"}
+{"id":"濊貊","kind":"polity","zh":"濊貊","en":"Yemaek"}
 {"id":"燕国","kind":"polity","zh":"燕国","en":"Kingdom of Yan"}
 {"id":"牂柯郡","kind":"polity","zh":"牂柯郡","en":"Zangke Commandery"}
 {"id":"牂牁郡","kind":"polity","zh":"牂牁郡","en":"Zangke Commandery"}

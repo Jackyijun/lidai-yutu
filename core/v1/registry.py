@@ -63,7 +63,7 @@ def coord_fixes(B, p_fix, dec):
     rows, coords = [], []
     for pid, c, y0, y1, st in sorted(p_fix, key=lambda x: (ERAS.index(x[1]["era"]), x[0], x[1]["ref"])):
         ok = best.get(c["ref"]) == (y1 - y0 + 1, y0)
-        rows.append((ERA_ZH[c["era"]], f"{c['main']} `{c['ref']}`", pid, f"{yy(y0)}—{yy(y1)}",
+        rows.append((ERA_ZH[c["era"]], f"{c['main']} `{show_ref(B, c['ref'])}`", pid, f"{yy(y0)}—{yy(y1)}",
                      f"{c['ll'][0]:.2f},{c['ll'][1]:.2f}", f"{st['lon']:.2f},{st['lat']:.2f}", st.get("note", ""),
                      "新页面已改" if ok else f"不改：{keep[c['ref']]}" if c["ref"] in keep else "不改：本条按年代长的一段定点"))
         if ok:
@@ -251,6 +251,102 @@ def ref_years(B, ref):
     return y0, y1
 
 
+# ---------------------------------------------------------------- decisions.toml 里的条目引用
+# 条目序号（卷:i:303）随条目增删而变，序号写进 decisions.toml，条目一增删就会悄悄指到别的条目上。
+# 所以 decisions.toml 里条目写成「卷:i:名」；同卷同一类（地点或山川，见下）里有同名的，再加本卷里的起始年「卷:i:名@年」
+# （即 ref_years 的首年：条目在本卷出现的第一年，早于本卷起年的记作本卷起年）。审定清单、改正清单里印的就是这种写法，照抄即可。
+# 读入时换回序号（resolve_decisions）；对不上的、仍写序号的，都停下来报错。
+# 同名只在同一类里比：[physical] 一节的引用查山川（PHYS），其余各节查地点类条目（PLACE_KINDS），
+# 所以春秋卷的江国都城「江」和长江「江」各自写 chunqiu:i:江 就分得开。
+ITEM_REF = re.compile(r"^([a-z-]+):i:(.+)$")
+PLACE_KINDS = ("capital", "city", "town", "pass")   # 能进全局地点表的条目类别（见 place_candidates）
+REF_TEXT = {}                                        # 换回的序号 → decisions.toml 里的原写法（报错时照原写法说）
+
+
+def ref_kinds(physical):
+    return PHYS if physical else PLACE_KINDS
+
+
+def same_name(B, slug, name, kinds):
+    return [x for x in B[slug]["items"] if x["old"] == name and x["c"] in kinds]
+
+
+def stable_ref(B, ref, physical=False):
+    """卷:i:序号 → decisions.toml 的写法。同名同起始年分不开的、不属这一类的，返回 None"""
+    m = ITEM_REF.match(ref)
+    if not m or m.group(1) not in B or not re.fullmatch(r"[0-9]+", m.group(2)):
+        return ref
+    slug, kinds = m.group(1), ref_kinds(physical)
+    it = next(x for x in B[slug]["items"] if x["i"] == int(m.group(2)))
+    if it["c"] not in kinds:
+        return None
+    same = same_name(B, slug, it["old"], kinds)
+    if len(same) <= 1:
+        return f"{slug}:i:{it['old']}"
+    y = int(ref_years(B, ref)[0])
+    if sum(int(ref_years(B, f"{slug}:i:{x['i']}")[0]) == y for x in same) > 1:
+        return None
+    return f"{slug}:i:{it['old']}@{y}"
+
+
+def show_ref(B, ref, physical=False):
+    """清单里印的引用：能写进 decisions.toml 的写法；分不开的注明"""
+    s = stable_ref(B, ref, physical)
+    return s if s else f"{ref}（本卷同一类里有同名、同起始年的条目，decisions.toml 里分不开）"
+
+
+def resolve_ref(B, ref, physical=False):
+    slug, key = ITEM_REF.match(ref).groups()
+    kinds = ref_kinds(physical)
+    what = "山川" if physical else "城邑、关隘、都城"
+    if re.fullmatch(r"[0-9]+", key):
+        it = next((x for x in B[slug]["items"] if x["i"] == int(key)), None)
+        s = stable_ref(B, ref, physical) if it else None
+        sys.exit(f"global/decisions.toml：{ref} 写的是条目序号，条目一增删就会指错。"
+                 + (f"现在这个序号是「{it['old']}」，改写成 {s}（核对是不是想要的那一条）" if s
+                    else f"现在这个序号是「{it['old']}」，但它在本卷同一类里与别的条目同名、同起始年，或不是{what}，分不开" if it
+                    else "改写成「卷:i:名」"))
+    name, y = key, None
+    if "@" in key:
+        name, ys = key.rsplit("@", 1)
+        if not re.fullmatch(r"-?[0-9]+", ys):
+            sys.exit(f"global/decisions.toml：{ref}：@ 后面应是条目在本卷的起始年（公元前记负数）")
+        y = int(ys)
+    same = same_name(B, slug, name, kinds)
+    hit = [x for x in same if y is None or int(ref_years(B, f"{slug}:i:{x['i']}")[0]) == y]
+    if len(hit) != 1:
+        have = "、".join(show_ref(B, f"{slug}:i:{x['i']}", physical) for x in same)
+        sys.exit(f"global/decisions.toml：{ref} 对不上。"
+                 + (f"本卷叫「{name}」的{what}有：{have}" if same else f"本卷没有叫「{name}」的{what}（改名了？）"))
+    out = f"{slug}:i:{hit[0]['i']}"
+    REF_TEXT[out] = ref
+    return out
+
+
+def ref_text(ref):
+    """报错时用：decisions.toml 里的原写法"""
+    return REF_TEXT.get(ref, ref)
+
+
+def resolve_decisions(dec, B):
+    """decisions.toml 里所有「卷:i:名」（键和值）换成本次构建的条目序号。[physical] 一节查山川，其余查地点类条目"""
+    def walk(x, physical):
+        if isinstance(x, dict):
+            out, src = {}, {}
+            for k, v in x.items():
+                k2 = walk(k, physical)
+                if k2 in out:
+                    sys.exit(f"global/decisions.toml：键 {src[k2]} 与 {k} 指的是同一条，只留一个")
+                out[k2], src[k2] = walk(v, physical), k
+            return out
+        if isinstance(x, list):
+            return [walk(v, physical) for v in x]
+        if isinstance(x, str) and (m := ITEM_REF.match(x)) and m.group(1) in B:
+            return resolve_ref(B, x, physical)
+        return x
+    return {k: walk(v, k == "physical") for k, v in dec.items()}
+
+
 def site_for(sites, y0, y1):
     """与年代 [y0, y1] 有交集的城址"""
     out = []
@@ -276,7 +372,7 @@ def build_places(B, dec):
             members = [by_ref[r] for r in pl["refs"] if r in by_ref]
             missing = [r for r in pl["refs"] if r not in by_ref]
             if missing:
-                sys.exit(f"[[place]] {pl['id']}：查不到 {'、'.join(missing)}")
+                sys.exit(f"[[place]] {pl['id']}：查不到 {'、'.join(ref_text(r) for r in missing)}")
             for i in members:             # 人工定组的成员各自是单独一组，挪到第一个成员那一组
                 groups[gi_of[i]] = [x for x in groups[gi_of[i]] if x != i]
             k = gi_of[members[0]] if members else len(groups)
@@ -285,14 +381,18 @@ def build_places(B, dec):
             groups[k] = members
         else:
             if pl["anchor"] not in by_ref:
-                sys.exit(f"[[place]] {pl['id']}：查不到 anchor {pl['anchor']}")
+                sys.exit(f"[[place]] {pl['id']}：查不到 anchor {ref_text(pl['anchor'])}（只能是参与全局地点表的条目，如春秋、战国卷带归属沿革的城邑）")
             k = gi_of[by_ref[pl["anchor"]]]
             for r in pl.get("add", []):
+                if r not in by_ref:
+                    sys.exit(f"[[place]] {pl['id']}：查不到 add 里的 {ref_text(r)}（只能是参与全局地点表的条目）")
                 i = by_ref[r]
                 groups[gi_of[i]] = [x for x in groups[gi_of[i]] if x != i]
                 groups[k].append(i)
         decided[k] = pl
     for r in seat_refs:                   # 治所迁城的条目不单独成地点，按年代挂到别的地点上
+        if r not in by_ref:
+            sys.exit(f"[[seat]] 查不到 {ref_text(r)}（只能是参与全局地点表的条目）")
         i = by_ref[r]
         groups[gi_of[i]] = [x for x in groups[gi_of[i]] if x != i]
     keep = [(k, g) for k, g in enumerate(groups) if g or k in decided]
@@ -385,7 +485,7 @@ def build_places(B, dec):
             if a > b:
                 continue
             if pid not in by_id:
-                sys.exit(f"[[seat]] {st['ref']}：没有地点 {pid}")
+                sys.exit(f"[[seat]] {ref_text(st['ref'])}：没有地点 {pid}")
             rec = by_id[pid]
             rec.setdefault("seats", []).append({"ref": st["ref"], "from": a, "to": b})
             if st["ref"].split(":")[0] not in rec["eras"]:
@@ -654,13 +754,26 @@ def node_shapes(b, node, units=False):
     return {b["polities"][int(k)]["key"]: v for k, v in out.items()}
 
 
+JUNCTION_MIN = 0.98          # 衔接节点上同一政权两卷疆域的重合度（交集 ÷ 并集）至少这么多
+JUNCTION_EXACT = 0.999999    # junctions.toml 写 exact = true 的衔接（春秋 → 战国，两卷用同一组点、同一张代价栅格）：须完全一致
+
+
+def junction_low(r):
+    return [x for x in r["ious"] if x[1] < r["min_iou"]]
+
+
 def build_junctions(B, polities):
     ref2id = {r: p["id"] for p in polities for r in p["refs"]}
-    unit_level = {(j["from"], j["to"]) for j in load_toml(GLOBAL / "junctions.toml").get("junction", []) if j.get("compare") == "unit"}
+    J = load_toml(GLOBAL / "junctions.toml").get("junction", [])
+    unit_level = {(j["from"], j["to"]) for j in J if j.get("compare") == "unit"}
+    exact = {(j["from"], j["to"]) for j in J if j.get("exact")}
     rows, report = [], []
     for a, z in JUNCTIONS:
         na, nz = B[a]["nodes"][-1], B[z]["nodes"][0]
         u = (a, z) in unit_level
+        ex = (a, z) in exact
+        # 两遍构建的第一遍，换到引擎的卷还没有疆域（逐个单位比的只看单位层）
+        has_geom = all(n.get("u") or (not u and n.get("pu")) for n in (na, nz))
         sa, sz = node_shapes(B[a], na, u), node_shapes(B[z], nz, u)
         ia = {ref2id[f"{a}:{k}"]: v for k, v in sa.items()}
         iz = {ref2id[f"{z}:{k}"]: v for k, v in sz.items()}
@@ -673,10 +786,12 @@ def build_junctions(B, polities):
         for pid in common:
             A, Z = ia[pid], iz[pid]
             if A is None or Z is None or A.is_empty or Z.is_empty:
+                if ex and (A is None or A.is_empty) != (Z is None or Z.is_empty):
+                    ious.append((pid, 0.0, 0 if A is None else A.area, 0 if Z is None else Z.area))
                 continue
-            A2, Z2 = A.intersection(both), Z.intersection(both)
-            u = A2.union(Z2).area
-            ious.append((pid, A2.intersection(Z2).area / u if u else 1.0, A.area, Z.area))
+            A2, Z2 = (A, Z) if ex else (A.intersection(both), Z.intersection(both))   # 须完全一致的不截
+            un = A2.union(Z2).area
+            ious.append((pid, A2.intersection(Z2).area / un if un else 1.0, A.area, Z.area))
         # 只在一边出现的政权，两两比对疆域：重合度高的多半是同一政权在两卷里名字不同
         id2ref = {}
         for k in sa:
@@ -695,7 +810,8 @@ def build_junctions(B, polities):
                 if iou >= 0.25 or cover >= 0.6:
                     rename.append((pa, pz, iou, cover, A.area, Z.area, id2ref[pa], id2ref[pz]))
         rows.append({"from": a, "to": z, "t_from": na["t"], "t_to": nz["t"], "same_time": na["t"] // 12 == nz["t"] // 12, "rename": rename,
-                     "only_from": sorted(set(ia) - set(iz)), "only_to": sorted(set(iz) - set(ia)), "ious": ious})
+                     "only_from": sorted(set(ia) - set(iz)), "only_to": sorted(set(iz) - set(ia)), "ious": ious,
+                     "has_geom": has_geom, "exact": ex, "min_iou": JUNCTION_EXACT if ex else JUNCTION_MIN})
     return rows
 
 
@@ -717,7 +833,7 @@ def md_table(head, rows):
 
 def main():
     B = load_bundles()
-    dec = load_decisions()
+    dec = resolve_decisions(load_decisions(), B)
     places, p_review, cands, p_fix = build_places(B, dec)
     coords, c_rows = coord_fixes(B, p_fix, dec)
     engine_geometry(B, coords)
@@ -731,7 +847,7 @@ def main():
     # 地点审定清单
     rows = []
     for pid, cs, spread, diam, mods in sorted(p_review, key=lambda x: -x[3]):
-        detail = "；".join(f"{ERA_ZH[c['era']]} {c['main']} {c['ll'][0]:.2f},{c['ll'][1]:.2f}（{c['mod']}）`{c['ref']}`"
+        detail = "；".join(f"{ERA_ZH[c['era']]} {c['main']} {c['ll'][0]:.2f},{c['ll'][1]:.2f}（{c['mod']}）`{show_ref(B, c['ref'])}`"
                           for c in sorted(cs, key=lambda c: (ERAS.index(c["era"]), c["ref"])))
         kind = "范围过大，可能误合" if diam > 40 else "城址相距超过 5 km"
         rows.append((pid, kind, f"{diam:.0f}", detail))
@@ -818,17 +934,23 @@ def main():
     # 衔接年份：前一卷最后一个节点与后一卷第一个节点
     jrows = build_junctions(B, polities)
     parts = ["# 衔接审定清单\n\n相邻两卷在衔接年份各画了一次疆域。`global/junctions.toml` 里记着每个衔接年份以哪一卷为准；"
-             "这里列出两卷在衔接节点上的差别，供核对。重合度 = 交集面积 ÷ 并集面积，1 表示完全一样；"
-             "只在两卷都画到的范围内比（图幅边缘被一卷截掉的部分不算），面积栏仍是各卷画出的全部面积。\n"]
+             "这里列出两卷在衔接节点上的差别。重合度 = 交集面积 ÷ 并集面积，1 表示完全一样；"
+             "只在两卷都画到的范围内比（图幅边缘被一卷截掉的部分不算；junctions.toml 写 exact = true 的不截），面积栏仍是各卷画出的全部面积。"
+             f"共有的政权重合度须 ≥ {JUNCTION_MIN:g}，exact = true 的须完全一致（≥ {JUNCTION_EXACT:g}，且两边的政权一样），"
+             "达不到时 core/v1/registry.py 写完本清单后停下来报错。\n"]
     for r in jrows:
         yy = lambda t: f"前{-(t // 12)}" if t < 0 else str(t // 12)
         same = "同一年" if r["same_time"] else f"相邻两年（{yy(r['t_from'])} / {yy(r['t_to'])}）"
-        low = [x for x in r["ious"] if x[1] < 0.98]
-        parts.append(f"\n## {ERA_ZH[r['from']]} → {ERA_ZH[r['to']]}（{same}）\n\n"
-                     f"共有政权 {len(r['ious'])} 个，其中疆域完全一致（重合度 ≥ 0.98）{len(r['ious']) - len(low)} 个。\n")
+        low = junction_low(r)
+        parts.append(f"\n## {ERA_ZH[r['from']]} → {ERA_ZH[r['to']]}（{same}）\n\n")
+        if not r["has_geom"]:
+            parts.append("未比：这一遍有一卷还没有疆域（两遍构建的第一遍），下一遍再比。\n")
+            continue
+        fmt = ".6f" if r["exact"] else ".2f"
+        parts.append(f"共有政权 {len(r['ious'])} 个，其中疆域一致（重合度 ≥ {r['min_iou']:g}）{len(r['ious']) - len(low)} 个。\n")
         if low:
             parts.append(md_table(["全局 ID", "重合度", f"{ERA_ZH[r['from']]}面积", f"{ERA_ZH[r['to']]}面积"],
-                                  [(pid, f"{iou:.2f}", f"{aa:.1f}", f"{zz:.1f}") for pid, iou, aa, zz in sorted(low, key=lambda x: x[1])]) + "\n")
+                                  [(pid, f"{iou:{fmt}}", f"{aa:.1f}", f"{zz:.1f}") for pid, iou, aa, zz in sorted(low, key=lambda x: x[1])]) + "\n")
         if r["rename"]:
             parts.append(f"\n两卷名字不同、疆域相交的政权。重合度高的多半是同一政权换了名字（若是，把末栏抄进 `global/decisions.toml` 的 `[polities] merge`）；"
                          f"重合度低而「小者落入」高的，是一卷单列、另一卷并入了别的政权（如一卷单列的部族，另一卷画在宗主政权的范围里），这类不要合并，属于衔接年份画法不一致。\n\n"
@@ -888,12 +1010,35 @@ def main():
         "配色不同": len(colors_review), "同名未合并": len(flagged), "英文名不同的政权": len(en_review),
         "山川": len(physical), "跨卷山川": sum(1 for p in physical if len(p["eras"]) > 1), "山川待审": len(phys_review),
         "译名待审": len(gl_rows), "英文改正": len(en_fix),
-        "衔接不一致": {f"{r['from']}→{r['to']}": sum(1 for x in r["ious"] if x[1] < 0.98) for r in jrows},
+        "衔接不一致": {f"{r['from']}→{r['to']}": len(junction_low(r)) if r["has_geom"] else "未比" for r in jrows},
     }
     (GLOBAL / "stats.json").write_text(json.dumps(stats, ensure_ascii=False, indent=1) + "\n", encoding="utf8")
     for k, v in stats.items():
         print(f"{k:12s} {v}")
-
+    # 衔接节点画得不一致就停下（清单、全局表照常写完，供核对）。
+    # 两遍构建的第一遍（run.py 传 --lenient）：有的卷还没有疆域，不比；画得不一致只提示，留到最后一遍再停
+    lenient = "--lenient" in sys.argv[1:]
+    bad = []
+    for r in jrows:
+        name, pair = f"{ERA_ZH[r['from']]} → {ERA_ZH[r['to']]}", f"{r['from']} {r['to']}"
+        if not r["has_geom"]:
+            if lenient:
+                print(f"衔接 {name}：这一遍有一卷还没有疆域，不比")
+            else:
+                bad.append(f"{name}：有一卷没有疆域（engine.json 过期？），比不了。重建这两卷：python run.py {pair}")
+        elif not r["ious"]:
+            bad.append(f"{name}：两卷没有可比的政权（全局 ID 对不上？）")
+        elif (low := junction_low(r)) or (r["exact"] and (r["only_from"] or r["only_to"])):
+            fmt = ".6f" if r["exact"] else ".4f"
+            what = "、".join(f"{pid} {iou:{fmt}}" for pid, iou, _, _ in sorted(low, key=lambda x: x[1]))
+            if r["exact"] and (r["only_from"] or r["only_to"]):
+                what += ("；" if what else "") + "只在一边有：" + "、".join(r["only_from"] + r["only_to"])
+            bad.append(f"{name}：{what}。两卷先后改过、另一卷还没重建的，一起重建：python run.py {pair}"
+                       "（秦汉卷构建时照搬战国卷前212、汉末三国卷184 年的疆域，那两卷改了要连秦汉卷一起重建）")
+    if bad and lenient:
+        print("衔接节点上两卷画得不一致（这一遍先不停，最后一遍仍不一致会报错）：\n  " + "\n  ".join(bad))
+    elif bad:
+        sys.exit("衔接节点上两卷画得不一致，见 global/review/junctions.md：\n  " + "\n  ".join(bad))
 
 if __name__ == "__main__":
     main()

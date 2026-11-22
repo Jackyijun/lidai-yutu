@@ -5,7 +5,9 @@
 #            各点在页面上显示的归属也按照搬来的疆域对齐（core/v1/engine_geom.py 的 align_own，本卷原来的归属另存为 own_src）。
 #   adjacent 前一卷最后一年、后一卷第一年，相邻两年各画一次，不共用节点。
 # compare = "unit" 衔接审定逐个单位比（缺省把各单位并到所属政权再比）。
-# 两卷实际画得一样不一样，见 global/review/junctions.md（python core/v1/registry.py 生成）。
+# 两卷实际画得一样不一样，见 global/review/junctions.md（python core/v1/registry.py 生成）。共有的政权（compare = "unit" 的为各单位），
+# 两卷疆域的重合度（交集 ÷ 并集，只在两卷都画到的范围内比）须 ≥ 0.98；写 exact = true 的不截范围、须 ≥ 0.999999，两边的单位也须一样。
+# 达不到，registry.py 写完清单后停下来报错（两遍构建的第一遍有的卷还没有疆域，不比，只在最后一遍查）。
 #
 # 空档是还没有卷覆盖的年代，plan 写准备由哪一卷补上。
 
@@ -15,6 +17,7 @@ to = "zhanguo"
 year = [-476, -475]
 kind = "adjacent"
 compare = "unit"            # 衔接审定比各诸侯国本身：春秋的政权层是共主（奉周的诸侯归周），战国卷没有这一层
+exact = true                # 两卷用同一组归属点、同一张代价栅格，衔接节点逐像素一致（加 ^ 点后尤其要看这一项）
 note = "两卷衔接节点上共有的政权疆域完全一致"
 
 [[junction]]

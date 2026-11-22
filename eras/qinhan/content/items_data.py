@@ -732,7 +732,7 @@ PHYS_MAJOR = {"狼居胥山", "燕然山"}       # 缩小时也标出来
 
 # 底图（汉末卷）条目的改动：古名 → None（本卷不画）或要改的字段
 BASE_EDIT = {
-    "毛乌素沙地": None,          # 大片流沙唐中后期（822 年首见记载）才出现，本卷不画
+    # 毛乌素沙地：大片流沙唐中后期（822 年首见记载）才出现，本卷不画；汉末卷 2026-11-16 起也不画，底图里已没有这一条
     "燕然山": dict(old="杭爱山", eold="Khangai Mountains",
                 note="蒙古高原西部的主脉。汉代的燕然山一般认为是其东南的余脉：2017 年在蒙古国中戈壁省德勒格尔杭爱找到了《封燕然山铭》摩崖（见「燕然山」）。",
                 enote="The main range of the western Mongolian plateau. The Han dynasty's Mount Yanran is generally taken to be an outlier to its "

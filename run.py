@@ -66,7 +66,7 @@ def build_era(slug, html=False, draft=False, first=False):
 def run_core(eras, web=True, geo=False, lenient=False):
     """第 2、3 段：全局表 → v1 数据 →（地形晕渲与全球底图）→ 新页面。
     lenient：已换到引擎的卷 engine.json 过期或缺了，这一遍先不带疆域（重算疆域之前出 v1、供引擎读归属用）"""
-    steps = [("v1/registry.py", []), ("v1/build.py", eras + (["--lenient"] if lenient else []))]
+    steps = [("v1/registry.py", ["--lenient"] if lenient else []), ("v1/build.py", eras + (["--lenient"] if lenient else []))]
     if geo: steps += [("geo/relief.py", eras), ("geo/world.py", eras)]
     if web: steps += [("web/assemble.py", eras)]
     for script, extra in steps:

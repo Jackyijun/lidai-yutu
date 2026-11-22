@@ -1953,7 +1953,7 @@
 {"id":"开封","n":"开封","mod":"河南开封","lon":114.35,"lat":34.79,"t":"z","ne":"Kaifeng","mode":"Kaifeng, Henan"},
 {"id":"郑州","n":"郑州","mod":"河南郑州","lon":113.65,"lat":34.76,"t":"z","nm":[[22920,"郑州"],[22956,"郑县"],[23385,"郑州"]],"ne":"Zhengzhou","nme":["Zhengzhou","Zhengxian","Zhengzhou"],"mode":"Zhengzhou, Henan"},
 {"id":"洛阳","n":"洛阳","mod":"河南洛阳","lon":112.45,"lat":34.62,"t":"z","ne":"Luoyang","mode":"Luoyang, Henan"},
-{"id":"陕县","n":"陕县","mod":"河南三门峡陕州区","lon":111.19,"lat":34.77,"t":"c","ne":"Shanxian","mode":"Shanzhou District, Sanmenxia, Henan"},
+{"id":"陕县","n":"陕县","mod":"河南三门峡湖滨区","lon":111.19,"lat":34.77,"t":"c","ne":"Shanxian","mode":"Hubin District, Sanmenxia, Henan"},
 {"id":"灵宝","n":"灵宝","mod":"河南灵宝","lon":110.89,"lat":34.52,"t":"c","ne":"Lingbao","mode":"Lingbao, Henan"},
 {"id":"卢氏","n":"卢氏","mod":"河南卢氏","lon":111.05,"lat":34.05,"t":"c","ne":"Lushi","mode":"Lushi, Henan"},
 {"id":"西峡口","n":"西峡口","mod":"河南西峡","lon":111.47,"lat":33.3,"t":"c","ne":"Xixiakou","mode":"Xixia, Henan"},
