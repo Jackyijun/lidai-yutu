@@ -634,6 +634,7 @@
 {"id":"武宁","n":"武宁","kind":"zhen","eras":["tangsong"],"refs":["tangsong:武宁"],"colors":{"tangsong":["#DEB39C","#FAC3A6"]},"en":"Wuning"}
 {"id":"武平","n":"武平","kind":"state","eras":["tangsong"],"refs":["tangsong:武平"],"colors":{"tangsong":["#CDB5CA","#E6C5E2"]},"en":"Wuping"}
 {"id":"武贞（雷氏）","n":"武贞（雷氏）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:武贞"],"colors":{"tangsong":["#8DBFDA","#95D4F6"]},"en":"Wuzhen (Lei family)"}
+{"id":"水真腊","n":"水真腊","kind":"state","eras":["tangsong"],"refs":["tangsong:水真腊"],"colors":{"tangsong":["#5B84AE","#6497CA"]},"en":"Water Chenla"}
 {"id":"江南东道","n":"江南东道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:江南东道"],"colors":{"tangsong":["#76976B","#83AC75"]},"en":"Jiangnan East Circuit"}
 {"id":"江南西道","n":"江南西道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:江南西道"],"colors":{"tangsong":["#A1C6C8","#A7DCDF"]},"en":"Jiangnan West Circuit"}
 {"id":"江西（唐）","n":"江西","kind":"zhen","eras":["tangsong"],"refs":["tangsong:江西"],"colors":{"tangsong":["#689A77","#71AF84"]},"en":"Jiangxi"}

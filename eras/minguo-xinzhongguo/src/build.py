@@ -236,6 +236,9 @@ for nm, mod, pts, note, major in GM.RANGES:
     add_item(dict(c="range", old=nm, mod=mod if mod != nm else "", note=note, geo=pts, anc=[round(a.x, 3), round(a.y, 3)], major=bool(major)))
 DES = []
 for nm, mod, nename, note in GM.DESERTS:
+    if isinstance(nename, tuple):     # 范围手绘：这里只出条目与注记点，几何由单仓 core/v1/overlay.py 换进（geodata/derived/sands.json）
+        add_item(dict(c="desert", old=nm, mod=mod if mod != nm else "", note=note, anc=list(nename)))
+        continue
     g = DESERTPOLY.get(nename)
     if g is None: print("  没找到荒漠", nename); continue
     g = g.intersection(EXT_BOX)

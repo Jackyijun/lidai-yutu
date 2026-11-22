@@ -4734,7 +4734,7 @@
  },
  "desert:毛乌素沙地": {
   "old": "Mu Us Sandy Land",
-  "note": "Drifting sand spread here on a large scale twice, in the later Tang and the late Ming; the late-Ming episode produced the sandy land seen today."
+  "note": "Drifting sand spread on a large scale twice, in the later Tang and the late Ming; in the late Ming it reached south to the line of the Great Wall, broadly fixing the southern edge of today's sandy land."
  },
  "desert:鲁卜哈利沙漠": {
   "old": "Rub' al Khali"
@@ -10655,5 +10655,13 @@
    "陕县": "Shanxian"
   },
   "yt": "August–September 1947"
+ },
+ "desert:科尔沁沙地": {
+  "old": "Horqin Sandy Land",
+  "note": "Sandy land along the West Liao and Xinkai rivers. In the late Qing, Mongol lands were opened to settlers and farming pushed north to both banks of the West Liao; the land turned to sand faster, and by the mid-20th century the “Horqin grassland” had gradually become the “Horqin Sandy Land”."
+ },
+ "desert:库布齐沙漠": {
+  "old": "Kubuqi Desert",
+  "note": "The desert on the south bank of the Yellow River in the northern Ordos, from Hanggin Banner in the west to Jungar Banner in the east."
  }
 }

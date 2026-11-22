@@ -2334,5 +2334,29 @@
   "n": {
    "平安京": "Heian-kyō"
   }
+ },
+ "瓦普": {
+  "mod": "Wat Phu, Champasak, Laos (Lingaparvata)",
+  "n": {
+   "瓦普": "Wat Phu"
+  }
+ },
+ "伊奢那城": {
+  "mod": "Sambor Prei Kuk, Kampong Thom, Cambodia",
+  "n": {
+   "伊奢那城": "Ishanapura"
+  }
+ },
+ "古笪罗": {
+  "mod": "Nha Trang, Khánh Hòa, Vietnam (Po Nagar)",
+  "n": {
+   "古笪罗": "Kauthara"
+  }
+ },
+ "毗罗补罗": {
+  "mod": "south of Phan Rang, Khánh Hòa (formerly Ninh Thuận province), Vietnam (Panduranga; exact site uncertain)",
+  "n": {
+   "毗罗补罗": "Virapura"
+  }
  }
 }

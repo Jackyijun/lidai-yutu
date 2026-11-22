@@ -10,7 +10,8 @@
   · global/corrections.toml 里标了 step = 3 的内容改正；
   · 时间轴短标题（eras/<短名>/short.tsv）；
   · 全局配色（global/palette.toml，按政权全局 ID；规范第三节）；
-  · 大漠的范围（geodata/derived/damo.json，由 tools/damo.py 从生态区改绘，七卷共用；规范第十九节「大漠范围」）。
+  · 大漠的范围（geodata/derived/damo.json，由 tools/damo.py 从生态区改绘，七卷共用；规范第十九节「大漠范围」）；
+  · 毛乌素、科尔沁、库布齐三处沙地的范围（geodata/derived/sands.json，由 tools/sands.py 手绘，按卷分档）。
 """
 import csv
 import json
@@ -52,7 +53,8 @@ def fix_tangsong_zhancheng(b):
 
 
 def fix_tangsong_chenla(b):
-    # 802 年阇耶跋摩二世统一陆、水真腊，建吴哥王朝。疆域不另改：本卷图幅南到 15.5°N，吴哥与湄公河三角洲都在图外
+    # 802 年阇耶跋摩二世统一陆、水真腊，建吴哥王朝。本卷的「文单」此后包括原水真腊之地（2026-11-22 图幅南扩到 10°N 后补上，
+    # 见 eras/tangsong/content/snaps.txt 的 805 年节点），这里只改名
     k, p = polity(b, "文单")
     p["n"], p["en"]["n"] = "真腊（吴哥）", "Chenla (Angkor)"
     set_lab(b, k, "文单（陆真腊）", "Wendan (Land Chenla)", range(0, node_index(b, 802)))
@@ -253,12 +255,28 @@ def apply_palette(b, pal, missing_ok=False):
     return n
 
 
-DAMO_NOTE = ("范围据 RESOLVE 生态区（2017）的戈壁三区改绘，扣去漠南草原与河西、居延绿洲。",
+DAMO_NOTE = ("范围据 RESOLVE 生态区（2017）的戈壁三区改绘，扣去漠南草原与河西、居延绿洲（居延扣去汉至元的古绿洲即黑城一带，"
+             "连同弱水下游河道与今额济纳绿洲）。",
              "Extent redrawn from the three Gobi ecoregions of RESOLVE Ecoregions 2017, leaving out the steppe south of the desert "
-             "and the Hexi and Juyan oases.")
-DAMO_NOTE_QINHAN = ("乌兰布和沙漠北部是汉代朔方郡的垦区，东汉以后弃垦才沙化，本卷不画。",
-                    "The northern Ulan Buh Desert was farmland in the Han-dynasty Shuofang Commandery and turned to sand only after "
-                    "it was abandoned from the Eastern Han onward, so it is left out here.")
+             "and the Hexi and Juyan oases (for Juyan, both the ancient oasis of Han to Yuan times around Khara-Khoto and the lower "
+             "Ruoshui with today's Ejin oasis).")
+DAMO_NOTE_MODERN = ("范围据 RESOLVE 生态区（2017）的戈壁三区改绘，扣去漠南草原与河西走廊、额济纳绿洲。汉至元的古居延绿洲（黑城一带）"
+                    "随弱水下游河道西北移而干涸，元末明初废弃（1372 年明军至亦集乃路），本卷画作荒漠。",
+                    "Extent redrawn from the three Gobi ecoregions of RESOLVE Ecoregions 2017, leaving out the steppe south of the desert, "
+                    "the Hexi Corridor and the Ejin oasis. The ancient Juyan oasis of Han to Yuan times, around Khara-Khoto, dried up as the "
+                    "lower Ruoshui shifted northwest; it was abandoned in the late Yuan and early Ming (Ming troops reached Ejina Circuit "
+                    "in 1372), so it is drawn as desert here.")
+DAMO_NOTE_QINHAN = ("乌兰布和沙漠北部是汉代朔方郡的垦区，东汉中期以后渐废弃垦，此后才沙化，本卷不画。",
+                    "The northern Ulan Buh Desert was farmland in the Han-dynasty Shuofang Commandery; it was gradually abandoned from "
+                    "the middle of the Eastern Han onward and only then turned to sand, so it is left out here.")
+DAMO_NOTE_HANMO = ("乌兰布和沙漠北部是汉代朔方郡的垦区，东汉中期以后人口锐减，永和五年（140）朔方郡内徙五原，建安二十年（215）省郡，"
+                   "垦区先后荒废，此后才渐沙化（北魏刁雍已称薄骨律至沃野「道多深沙」），本卷不画。",
+                   "The northern Ulan Buh Desert was farmland in the Han-dynasty Shuofang Commandery. From the middle of the Eastern Han "
+                   "the commandery's population fell sharply; it was moved inland to Wuyuan in Yonghe 5 (140) and abolished in Jian'an 20 "
+                   "(215), the farmland was abandoned in stages, and only then did the area gradually turn to sand (the Northern Wei "
+                   "official Diao Yong already wrote that the road from Bogulü to Woye had \"much deep sand\"), so it is left out here.")
+# 大漠按卷分档：秦汉、汉末两卷扣乌兰布和北部的汉代垦区；民国卷只扣今额济纳绿洲
+DAMO_VARIANT = {"qinhan": ("han", DAMO_NOTE_QINHAN), "hanmosanguo": ("han", DAMO_NOTE_HANMO), "minguo-xinzhongguo": ("modern", None)}
 
 
 def apply_damo(slug, b):
@@ -269,7 +287,8 @@ def apply_damo(slug, b):
     if not its:
         return 0
     dm = json.loads((ROOT / "geodata" / "derived" / "damo.json").read_text(encoding="utf8"))
-    rings = dm["qinhan" if slug == "qinhan" else "all"]
+    variant, extra = DAMO_VARIANT.get(slug, ("all", None))
+    rings = dm[variant]
     ids = {it["i"] for it in its}
     base = b["base"]["deserts"]
     at = next(n for n, d in enumerate(base) if d.get("it") in ids)
@@ -278,13 +297,58 @@ def apply_damo(slug, b):
     b["base"]["deserts"] = keep[:at] + new + keep[at:]
     for it in its:
         it["anc"] = list(dm["label"])
-        zh, en = DAMO_NOTE
-        if slug == "qinhan":
-            zh, en = zh + DAMO_NOTE_QINHAN[0], en + " " + DAMO_NOTE_QINHAN[1]
+        zh, en = DAMO_NOTE_MODERN if variant == "modern" else DAMO_NOTE
+        if extra:
+            zh, en = zh + extra[0], en + " " + extra[1]
         it["note"] = (it.get("note") or "") + zh
         e = it.setdefault("en", {})
         e["note"] = ((e.get("note") or "") + " " + en).strip()
     return len(its)
+
+
+SANDS_NOTE = {
+    "desert:毛乌素沙地": ("范围示意：今毛乌素沙地约 4 万 km²。统万城下本即有沙，本图只按史料所见的流沙画，范围较小。",
+                         "The extent is schematic: today the Mu Us covers about 40,000 km². There was sand around Tongwan City "
+                         "from the start; this map draws only the drifting sand recorded in the sources, so the area shown is smaller."),
+}
+SANDS_NOTE_MODERN = {
+    "desert:毛乌素沙地": ("范围示意，约当今毛乌素沙地（约 4 万 km²）。",
+                         "The extent is schematic and roughly matches today's Mu Us (about 40,000 km²)."),
+    "desert:科尔沁沙地": ("范围示意，按今沙地的主体画，比 20 世纪中叶偏大。",
+                         "The extent is schematic, drawn from the main body of today's sandy land, so it is somewhat larger than it was in the mid-20th century."),
+}
+SANDS_NOTE_DEFAULT = ("范围示意。", "The extent is schematic.")
+
+
+def apply_sands(slug, b):
+    """随时代变化的沙地（毛乌素、科尔沁、库布齐）：几何换成 tools/sands.py 手绘的本卷那一档（geodata/derived/sands.json）。
+    原来毛乌素取 Natural Earth 的「Mu Us Desert」，其实是整个鄂尔多斯高原；科尔沁、库布齐在各卷史料里只写注记点"""
+    import engine_geom
+    sd = json.loads((ROOT / "geodata" / "derived" / "sands.json").read_text(encoding="utf8"))
+    n = 0
+    for gid, eras in sd.items():
+        its = [it for it in b["items"] if it.get("gid") == gid]
+        if not its:
+            if slug in eras:
+                raise SystemExit(f"{slug}：geodata/derived/sands.json 有 {gid} 的范围，本卷却没有这个全局 ID 的条目"
+                                 "（全局 ID 变了？在 global/decisions.toml 的 [physical.id] 钉住）")
+            continue
+        if slug not in eras:
+            raise SystemExit(f"{slug}：{gid} 在 geodata/derived/sands.json 里没有本卷的范围（tools/sands.py）")
+        ids = {it["i"] for it in its}
+        base = b["base"]["deserts"]
+        at = next((k for k, d in enumerate(base) if d.get("it") in ids), len(base))
+        keep = [d for d in base if d.get("it") not in ids]
+        new = [{"r": engine_geom.enc_ring(r), "it": its[0]["i"]} for r in eras[slug]]
+        b["base"]["deserts"] = keep[:at] + new + keep[at:]
+        zh, en = (SANDS_NOTE_MODERN if slug == "minguo-xinzhongguo" else {}).get(gid) or SANDS_NOTE.get(gid, SANDS_NOTE_DEFAULT)
+        for it in its:
+            it["anc"] = list(eras["label"][slug])
+            it["note"] = (it.get("note") or "") + zh
+            e = it.setdefault("en", {})
+            e["note"] = ((e.get("note") or "") + " " + en).strip()
+        n += 1
+    return n
 
 
 def apply(slug, b, fixes, content, missing_ok=False):
@@ -294,6 +358,9 @@ def apply(slug, b, fixes, content, missing_ok=False):
     d = apply_damo(slug, b)
     if d:
         done.append("大漠范围（生态区改绘）")
+    d = apply_sands(slug, b)
+    if d:
+        done.append(f"沙地范围 {d} 处（手绘，按时代）")
     r = apply_ranges(b, fixes.get("ranges", []))
     if r:
         done.append(f"山脉改画 {r} 条")

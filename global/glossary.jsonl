@@ -964,6 +964,7 @@
 {"id":"狄道","kind":"place","zh":"熙州","en":"Xizhou"}
 {"id":"狄道","kind":"place","zh":"临州","en":"Linzhou"}
 {"id":"吴哥","kind":"place","zh":"吴哥","en":"Angkor"}
+{"id":"吴哥","kind":"place","zh":"耶输陀罗补罗（吴哥）","en":"Yasodharapura (Angkor)"}
 {"id":"犍为郡","kind":"place","zh":"犍为郡","en":"Qianwei Commandery"}
 {"id":"郫","kind":"place","zh":"郫","en":"Pi"}
 {"id":"可敦城","kind":"place","zh":"可敦城","en":"Kedun City"}
@@ -972,6 +973,7 @@
 {"id":"河口","kind":"place","zh":"河口","en":"Hekou"}
 {"id":"彭州","kind":"place","zh":"彭州","en":"Pengzhou"}
 {"id":"沓中","kind":"place","zh":"沓中","en":"Tazhong"}
+{"id":"诃里诃罗洛耶","kind":"place","zh":"诃里诃罗洛耶","en":"Hariharalaya"}
 {"id":"老街","kind":"place","zh":"老街","en":"Lào Cai"}
 {"id":"榆中","kind":"place","zh":"金城（榆中）","en":"Jincheng (Yuzhong)"}
 {"id":"戈壁中","kind":"place","zh":"戈壁中","en":"Gobi (central)"}
@@ -1011,6 +1013,7 @@
 {"id":"义路","kind":"place","zh":"义路","en":"Nghĩa Lộ"}
 {"id":"龙州","kind":"place","zh":"平武","en":"Pingwu"}
 {"id":"龙州","kind":"place","zh":"龙州","en":"Longzhou"}
+{"id":"贡开","kind":"place","zh":"贡开（林伽补罗）","en":"Koh Ker (Lingapura)"}
 {"id":"简州","kind":"place","zh":"简州","en":"Jianzhou"}
 {"id":"戎州","kind":"place","zh":"僰道","en":"Bodao"}
 {"id":"戎州","kind":"place","zh":"宜宾","en":"Yibin"}
@@ -1051,6 +1054,7 @@
 {"id":"受降城","kind":"place","zh":"受降城","en":"Shouxiang City"}
 {"id":"真腊","kind":"place","zh":"真腊故地","en":"Chenla homeland"}
 {"id":"真腊","kind":"place","zh":"真腊","en":"Chenla"}
+{"id":"真腊","kind":"place","zh":"伊奢那城","en":"Ishanapura"}
 {"id":"扎西","kind":"place","zh":"扎西","en":"Zhaxi"}
 {"id":"会宁","kind":"place","zh":"会宁","en":"Huining"}
 {"id":"内江","kind":"place","zh":"内江","en":"Neijiang"}
@@ -1115,6 +1119,7 @@
 {"id":"芹苴","kind":"place","zh":"芹苴","en":"Cần Thơ"}
 {"id":"巴色","kind":"place","zh":"巴色","en":"Pakse"}
 {"id":"古蔺","kind":"place","zh":"古蔺","en":"Gulin"}
+{"id":"瓦普","kind":"place","zh":"瓦普","en":"Wat Phu"}
 {"id":"太原","kind":"place","zh":"太原","en":"Thái Nguyên"}
 {"id":"利州","kind":"place","zh":"晋寿","en":"Jinshou"}
 {"id":"利州","kind":"place","zh":"广元","en":"Guangyuan"}
@@ -1374,6 +1379,7 @@
 {"id":"夏州","kind":"place","zh":"朔方（统万城）","en":"Shuofang (Tongwan City)"}
 {"id":"照金","kind":"place","zh":"照金","en":"Zhaojin"}
 {"id":"钦州","kind":"place","zh":"钦州","en":"Qinzhou"}
+{"id":"毗罗补罗","kind":"place","zh":"毗罗补罗","en":"Virapura"}
 {"id":"长安","kind":"place","zh":"长安","en":"Chang'an"}
 {"id":"长安","kind":"place","zh":"大兴城（长安）","en":"Daxing City (Chang'an)"}
 {"id":"长安","kind":"place","zh":"西安","en":"Xi'an"}
@@ -1399,6 +1405,7 @@
 {"id":"振州","kind":"place","zh":"振州","en":"Zhenzhou"}
 {"id":"频阳","kind":"place","zh":"频阳","en":"Pinyang"}
 {"id":"芽庄","kind":"place","zh":"芽庄","en":"Nha Trang"}
+{"id":"古笪罗","kind":"place","zh":"古笪罗","en":"Kauthara"}
 {"id":"铜仁","kind":"place","zh":"铜仁","en":"Tongren"}
 {"id":"廉州","kind":"place","zh":"合浦郡","en":"Hepu Commandery"}
 {"id":"廉州","kind":"place","zh":"合浦","en":"Hepu"}
@@ -3797,6 +3804,7 @@
 {"id":"武宁","kind":"polity","zh":"武宁","en":"Wuning"}
 {"id":"武平","kind":"polity","zh":"武平","en":"Wuping"}
 {"id":"武贞（雷氏）","kind":"polity","zh":"武贞（雷氏）","en":"Wuzhen (Lei family)"}
+{"id":"水真腊","kind":"polity","zh":"水真腊","en":"Water Chenla"}
 {"id":"江南东道","kind":"polity","zh":"江南东道","en":"Jiangnan East Circuit"}
 {"id":"江南西道","kind":"polity","zh":"江南西道","en":"Jiangnan West Circuit"}
 {"id":"江西（唐）","kind":"polity","zh":"江西","en":"Jiangxi"}
@@ -4379,9 +4387,11 @@
 {"id":"desert:大碛","kind":"physical","zh":"大漠（瀚海）","en":"Great Desert (Hanhai)"}
 {"id":"desert:大碛","kind":"physical","zh":"大碛","en":"Great Gobi","variants":{"Great Desert":["唐宋"],"Great Gobi":["两晋","隋唐"]}}
 {"id":"desert:大碛","kind":"physical","zh":"戈壁","en":"Gobi"}
+{"id":"desert:库布齐沙漠","kind":"physical","zh":"库布齐沙漠","en":"Kubuqi Desert"}
 {"id":"desert:毛乌素沙地","kind":"physical","zh":"普纳沙","en":"Puna Sands"}
 {"id":"desert:毛乌素沙地","kind":"physical","zh":"平夏沙地","en":"Pingxia Sands"}
 {"id":"desert:毛乌素沙地","kind":"physical","zh":"毛乌素沙地","en":"Mu Us Sandy Land"}
+{"id":"desert:科尔沁沙地","kind":"physical","zh":"科尔沁沙地","en":"Horqin Sandy Land"}
 {"id":"desert:鲁卜哈利沙漠","kind":"physical","zh":"鲁卜哈利沙漠","en":"Rub' al Khali"}
 {"id":"desert:鲁卜哈利沙漠","kind":"physical","zh":"空旷之地","en":"Empty Quarter"}
 {"id":"range:东黑海山脉","kind":"physical","zh":"本都山","en":"Pontic Mountains"}
@@ -4719,6 +4729,7 @@
 {"id":"river:洛东江","kind":"physical","zh":"洛东江","en":"Nakdong River"}
 {"id":"river:洞庭湖","kind":"physical","zh":"洞庭","en":"Dongting"}
 {"id":"river:洞庭湖","kind":"physical","zh":"洞庭湖","en":"Dongting Lake"}
+{"id":"river:洞里萨河","kind":"physical","zh":"洞里萨河","en":"Tonlé Sap River"}
 {"id":"river:洞里萨湖","kind":"physical","zh":"洞里萨湖","en":"Tonlé Sap"}
 {"id":"river:洪泽湖","kind":"physical","zh":"洪泽湖","en":"Hongze Lake"}
 {"id":"river:洮河","kind":"physical","zh":"洮水","en":"Tao River"}

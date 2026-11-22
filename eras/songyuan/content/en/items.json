@@ -3914,5 +3914,10 @@
   "sides": "Song defeated Gusiluo",
   "cmd": "Wang Hou and Tong Guan vs. Xisheluosa",
   "note": "Wang Hou brought his left, center and right armies together on the Zongge Plain and crushed Xisheluosa, taking 4,300 heads and more than 3,000 prisoners. Xisheluosa fled on a single horse; his mother, the Kucha princess, and the chiefs opened the gates of Shanzhou and surrendered, and Kuozhou submitted soon after."
+ },
+ "desert:科尔沁沙地": {
+  "old": "Horqin Sandy Land",
+  "mod": "Horqin Sandy Land",
+  "note": "Sandy land on the middle reaches of the West Liao River. Before the Liao it was open woodland and grassland; from the late 10th century it turned rapidly to sand; this is put down either to a drier climate or to farming around Liao prefectural towns, or to both. Under the Yuan it was mostly grazed and the vegetation slowly recovered. The name is modern."
  }
 }

@@ -2075,5 +2075,51 @@
   "old": "Western Shouxiang City",
   "mod": "south-west of Wujiahe, Urad Middle Banner, Inner Mongolia (another view: Gaoyoufang site, Linhe)",
   "note": "The western of the three Shouxiang cities built by Zhang Renyuan in 708 (for why they were built, see the Central Shouxiang City), south of the pass through the Lang Mountains, on the north bank of the Yellow River, about four hundred li west of the central one. It held 7,000 men and 1,700 horses. It stood at the mouth of the desert road: beyond the Lang Mountains lay the Great Gobi. In the Kaiyuan years the Tang and the Turks traded here, silk for horses. In the Yuanhe years the Yellow River washed it away; when the court debated moving the garrison to the old Tiande city, Lu Tan and others argued that this city 'stands at the mouth of the desert, on the enemy's main road, with good water and rich grass', and should not be lightly given up. Its site is disputed; one view is that it first stood at the Gaoyoufang site in Linhe and after the flood moved to the Fendou site in today's Urad Middle Banner."
+ },
+ "river:洞里萨河": {
+  "old": "Tonlé Sap River",
+  "mod": "Tonlé Sap River",
+  "note": "The channel between the Tonlé Sap lake and the Mekong; in the rainy season it flows back into the lake."
+ },
+ "river:湄南河": {
+  "old": "Menam",
+  "mod": "Menam (Chao Phraya)"
+ },
+ "river:洞里萨湖": {
+  "old": "Tonlé Sap",
+  "mod": "Tonlé Sap",
+  "note": "The heartland of Chenla; Angkor lies north of the lake."
+ },
+ "capital:毗罗补罗": {
+  "old": "Virapura",
+  "mod": "south of Phan Rang, Khánh Hòa (formerly Ninh Thuận province), Vietnam (exact site uncertain)",
+  "note": "Capital of the southern Panduranga line of kings, who led Champa from the mid-8th century. In 787 \"Javanese\" forces came by sea and burned the temple of Bhadradhipatisvara west of the city. Its exact site is uncertain; one view places it at Palai Bachong, south of today's Phan Rang."
+ },
+ "capital:诃里诃罗洛耶": {
+  "old": "Hariharalaya",
+  "mod": "Roluos, Siem Reap, Cambodia",
+  "note": "Jayavarman II was consecrated king on Phnom Kulen (Mahendraparvata) in 802, later made his capital here and died here in 835 (another view: 850). Between 877 and 889 Indravarman I built the Bakong here."
+ },
+ "capital:耶输陀罗补罗（吴哥）": {
+  "old": "Yasodharapura (Angkor)",
+  "mod": "Angkor, Siem Reap, Cambodia",
+  "note": "Built by Yasovarman I (who came to the throne in 889) around the temple on Phnom Bakheng; the capital moved here around 900. It was the forerunner of the city of Angkor. Jayavarman IV moved the capital to Koh Ker in 928, and Rajendravarman II moved it back in 944."
+ },
+ "capital:贡开（林伽补罗）": {
+  "old": "Koh Ker (Lingapura)",
+  "mod": "Koh Ker, Preah Vihear, Cambodia",
+  "note": "The capital built by Jayavarman IV, about 80 km northeast of Angkor."
+ },
+ "event:阇耶跋摩二世即位": {
+  "old": "Consecration of Jayavarman II",
+  "mod": "Phnom Kulen, Siem Reap, Cambodia",
+  "yt": "802",
+  "note": "On Phnom Kulen (Mahendraparvata) Jayavarman II held a consecration rite, declared that Cambodia was no longer subject to \"Java\" (variously taken to mean the island of Java, the Malay Peninsula, Champa and other places) and proclaimed himself universal monarch. He united Land and Water Chenla, and historians date the Angkor kingdom from this event."
+ },
+ "event:海寇袭古笪罗": {
+  "old": "Sea raid on Kauthara",
+  "mod": "Po Nagar, Nha Trang, Khánh Hòa, Vietnam",
+  "yt": "774",
+  "note": "Raiders from overseas (the inscription calls them only \"men born in other countries\"; scholars usually think they came from Java or the Malay Archipelago) attacked Kauthara in southern Champa, burned the temple of the goddess Po Nagar and carried off its linga. In 787 another seaborne force, this one named as \"Javanese\", burned the temple of Bhadradhipatisvara west of the capital, Virapura."
  }
 }

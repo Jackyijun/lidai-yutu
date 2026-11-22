@@ -18,12 +18,12 @@ modes = [{ label = "藩镇", key = "zhen" }, { label = "政权", key = "pol" }]
 default = "藩镇"
 
 [layers]                    # 本卷用到的条目类别及条数（核对用）
-river = 116
-capital = 64
+river = 119
+capital = 68
 battle = 63
 range = 44
-event = 34
-pass = 26
+event = 36
+pass = 29
 people = 18
 canal = 6
 desert = 3
@@ -41,7 +41,7 @@ legacy = [35, 104]           # 旧版页面（原仓库的网页，见 [legacy]�
 [engine]                    # 第 5 步统一疆域引擎（core/engine/）的外缘设置；归属点与节点取 v1 数据包
 outer = "reach"             # 按可达代价定外缘（参数见 core/engine/config.toml 的 [outer]）
 geometry = "engine"         # 第 7 步起页面疆域由统一引擎出：eras/tangsong/engine.json（构建时重算，入库），生成 v1 时换进去
-box = [72.0, 136.0, 15.5, 55.0]   # 推算范围 [西, 东, 南, 北]，同旧引擎的 EXTENT（src/config.py）
+box = [72.0, 136.0, 10.0, 55.0]   # 推算范围 [西, 东, 南, 北]，同 src/config.py 的 EXTENT（2026-11-22 南边由 15.5°N 扩到 10°N）
 seeds = "content/seeds.txt" # 各点可达倍数（R=）写在这里
 
 [junction.prev]
@@ -75,7 +75,7 @@ map_label = ["唐宋之际形势图", "Map of China between the Tang and the Son
 # 视野：[代号, 中文名, 英文名, [西, 东, 南, 北]]，第一项为默认
 fits = [
   ["cn", "中国", "China", [96, 127, 18.5, 45.5]],
-  ["all", "全图", "Whole map", [72, 136, 15.5, 55]],
+  ["all", "全图", "Whole map", [72, 136, 10, 55]],
   ["zy", "中原", "Central Plains", [110, 118.6, 32.2, 37.6]],
   ["gz", "关中·河陇", "Guanzhong & Hexi-Longyou", [101.5, 112, 32.2, 39.5]],
   ["hb", "河北·河东", "Hebei & Hedong", [110.5, 120.2, 34.6, 41.6]],
@@ -119,9 +119,9 @@ foot = ["疆域据两《唐书》《资治通鉴》《新五代史》及谭其�
 # 索引图高度（宽 140）
 inset_h = 100
 # 索引图范围 [西, 东, 南, 北]
-inset_box = [72, 136, 15.5, 55]
+inset_box = [72, 136, 10, 55]
 # 经纬网（缺省按底图范围）：[经线起, 止, 纬度起, 止, 步长, 纬线起, 止, 经度起, 止, 步长]
-grat = [75, 135, 15, 56, 1, 20, 55, 70, 138, 1]
+grat = [75, 135, 10, 56, 1, 10, 55, 70, 138, 1]
 # 旧都处照画州府点（缺省都城与旧都处都不画）
 oldcap_pref = true
 # 斜线画法：zhen 只在二级单位着色下画；all 两种着色都画；缺省两种着色都画，政权着色下并入宗主国的单位另补斜线
