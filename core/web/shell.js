@@ -64,7 +64,7 @@
       start() {
         const st = parse();
         hadHash = Object.keys(st).some(k => k !== "lang");
-        // apply 只设时间、着色、视野；它返回的 post（选中、缩放）等版面随之变动、尺寸观察回调把地图按视野重置之后再做
+        // apply 只设时间、着色、视野；它返回的 post（先按视野收进整幅，再选中、缩放）等版面随之变动、尺寸观察回调跑过之后再做
         const after = f => requestAnimationFrame(() => requestAnimationFrame(f));
         after(() => {
           const post = hadHash ? o.apply(st) : null;

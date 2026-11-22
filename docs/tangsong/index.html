@@ -485,7 +485,7 @@
       start() {
         const st = parse();
         hadHash = Object.keys(st).some(k => k !== "lang");
-        // apply 只设时间、着色、视野；它返回的 post（选中、缩放）等版面随之变动、尺寸观察回调把地图按视野重置之后再做
+        // apply 只设时间、着色、视野；它返回的 post（先按视野收进整幅，再选中、缩放）等版面随之变动、尺寸观察回调跑过之后再做
         const after = f => requestAnimationFrame(() => requestAnimationFrame(f));
         after(() => {
           const post = hadHash ? o.apply(st) : null;
@@ -1052,28 +1052,31 @@
     const bb = bboxOf(bboxPath(b[0], b[1], b[2], b[3]));
     const padL = (!legBody.hidden && W > 820) ? 262 : 0;
     const k = Math.min((W - padL) / (bb[2] - bb[0]), H / (bb[3] - bb[1])) * 0.95;
-    setView((bb[0] + bb[2]) / 2 - padL / 2 / k, (bb[1] + bb[3]) / 2, k, animate);
+    setView((bb[0] + bb[2]) / 2 - padL / 2 / k, (bb[1] + bb[3]) / 2, k, animate, true);
   }
-  function fitTarget(key) {
+  function fitTarget(key, leg = !legBody.hidden) {
     const b = FITS[key] || FITS.cn;
     const bb = bboxOf(bboxPath(b[0], b[1], b[2], b[3]));
-    const padL = (!legBody.hidden && W > 820) ? 262 : 0;
+    const padL = (leg && W > 820) ? 262 : 0;
     const k = Math.min((W - padL) / (bb[2] - bb[0]), H / (bb[3] - bb[1])) * 0.95;
     return { cx: (bb[0] + bb[2]) / 2 - padL / 2 / k, cy: (bb[1] + bb[3]) / 2, k: Math.max(KMIN, Math.min(KMAX, k)) };
   }
   const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
   const KMIN = 0.25, KMAX = 60;
-  function setView(cx, cy, k, animate) {
+  let FLIGHT = null;     // 正在飞的视图动画 { target, fit, aid }：fit 为飞回当前视野的整幅；地图区尺寸在飞行中变了，resize 据此决定怎么办
+  function setView(cx, cy, k, animate, fit) {
     const target = { cx, cy, k: Math.max(KMIN, Math.min(KMAX, k)) };
     const aid = ++ANIM;
+    FLIGHT = null;
     if (!animate || reduce()) { Object.assign(view, target); render(); return; }
     const from = { ...view }, t0 = performance.now(), dur = 480;
+    FLIGHT = { target, fit: !!fit, aid };
     (function step(t) {
       if (aid !== ANIM) return;
       const u = Math.min(1, (t - t0) / dur), e = u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
       view.cx = from.cx + (target.cx - from.cx) * e; view.cy = from.cy + (target.cy - from.cy) * e;
       view.k = Math.exp(Math.log(from.k) + (Math.log(target.k) - Math.log(from.k)) * e);
-      render(); if (u < 1) requestAnimationFrame(step);
+      render(); if (u < 1) requestAnimationFrame(step); else if (FLIGHT && FLIGHT.aid === aid) FLIGHT = null;
     })(t0);
   }
   const sx = p => (p[0] - view.cx) * view.k + W / 2;
@@ -1650,11 +1653,25 @@
 
   /* ---------------- 交互 ---------------- */
   const stage = document.getElementById("stage");
+  // 视图是不是当前视野的整幅（深链接不写 z 也按这个判据）；图例展开、收起不动地图，两种让位都算整幅
+  function atFit() {
+    return [true, false].some(leg => {
+      const f = fitTarget(activeFit, leg);
+      return Math.abs(view.k / f.k - 1) < .02 && Math.hypot(view.cx - f.cx, view.cy - f.cy) * view.k < 4;
+    });
+  }
+  // 地图区尺寸变了（换节点后说明栏行数不同、拉窗口、转屏）：还是整幅的，按新尺寸重新收进；放大、拖动过的，
+  // 保持倍数与画面中心；正在飞的照飞（从索引点他期条目时跳节点、飞过去），飞回整幅的改按新尺寸
+  let sized = false;
   function resize() {
     const box = document.getElementById("mapwrap").getBoundingClientRect();
-    W = Math.max(300, box.width); H = Math.max(240, box.height);
+    const w = Math.max(300, box.width), h = Math.max(240, box.height);
+    if (sized && w === W && h === H) return;
+    const flying = FLIGHT && FLIGHT.aid === ANIM, whole = !flying && (!sized || atFit());
+    W = w; H = h; sized = true;
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    fitTo(activeFit, false);
+    if (flying && FLIGHT.fit) Object.assign(FLIGHT.target, fitTarget(activeFit));
+    if (whole) fitTo(activeFit, false); else render();
   }
   new ResizeObserver(() => { if (stage.dataset.view === "map") resize(); }).observe(document.getElementById("mapwrap"));
 
@@ -2113,7 +2130,7 @@
     stage.dataset.view = m;
     document.querySelectorAll(".maponly").forEach(x => x.hidden = (m !== "map"));
     document.getElementById("timebar").hidden = m !== "map";
-    if (m === "map") requestAnimationFrame(() => { const keep = { ...view }; resize(); if (keep.k !== 1) { Object.assign(view, keep); render(); } });
+    if (m === "map") requestAnimationFrame(resize);
   }
   document.querySelectorAll("[data-mode]").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
   document.addEventListener("keydown", e => {
@@ -2195,9 +2212,8 @@
     return j < 0 ? SNAPS.length - 1 : j;
   }
   function viewTok() {
-    const f = fitTarget(activeFit);
-    if (Math.abs(view.k / f.k - 1) < .02 && Math.hypot(view.cx - f.cx, view.cy - f.cy) * view.k < 4) return null;
-    const c = inv(W / 2, H / 2);
+    if (atFit()) return null;
+    const f = fitTarget(activeFit), c = inv(W / 2, H / 2);
     return `${+(view.k / f.k).toFixed(2)}/${c[0].toFixed(2)}/${c[1].toFixed(2)}`;
   }
   const FIT0 = activeFit, CM0 = cmode;

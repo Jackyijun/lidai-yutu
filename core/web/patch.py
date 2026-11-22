@@ -89,9 +89,8 @@ LINK_SIMPLE = r"""
     return j < 0 ? SNAPS.length - 1 : j;
   }
   function viewTok() {
-    const f = fitTarget(activeFit);
-    if (Math.abs(view.k / f.k - 1) < .02 && Math.hypot(view.cx - f.cx, view.cy - f.cy) * view.k < 4) return null;
-    const c = inv(W / 2, H / 2);
+    if (atFit()) return null;
+    const f = fitTarget(activeFit), c = inv(W / 2, H / 2);
     return `${+(view.k / f.k).toFixed(2)}/${c[0].toFixed(2)}/${c[1].toFixed(2)}`;
   }
   const FIT0 = activeFit__C0__;
@@ -122,6 +121,23 @@ LINK_SIMPLE = r"""
   });
   LINK.start();
 """
+
+RESIZE_OLD = """  function resize() {
+    const box = document.getElementById("mapwrap").getBoundingClientRect();
+    W = Math.max(300, box.width); H = Math.max(240, box.height);
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    fitTo(activeFit, false);
+  }
+"""
+
+
+def resize_js():
+    # 地图区尺寸变了怎么办（atFit、resize 两个函数）：与七卷合用的 template.html 逐字相同，从那里取
+    t = (HERE / "template.html").read_text(encoding="utf8")
+    a = t.index("  // 视图是不是当前视野的整幅")
+    b = t.index("\n  }\n", t.index("  function resize() {", a)) + len("\n  }\n")
+    return t[a:b]
+
 
 TL_SIMPLE = r"""  // 时间轴（core/web/shell.js）：上为按真实年代比例的细条，下为等宽刻度：年份 / 短标题
   const TL = LIDAI.timeline({
@@ -156,17 +172,29 @@ def patch_simple(t, slug):
             "    LIDAI.saveLang(l);\n", "语言保存")
     t = sub1(t, "    buildAxis(); setSnap(si, false);\n", "    TL.relabel(); setSnap(si, false);\n", "切换语言重排时间轴")
     # 视图
+    t = sub1(t, "  function setView(cx, cy, k, animate) {\n",
+             "  let FLIGHT = null;     // 正在飞的视图动画 { target, fit, aid }：fit 为飞回当前视野的整幅（见 resize）\n  function setView(cx, cy, k, animate, fit) {\n", "setView 参数")
     t = sub1(t, "    if (!animate || reduce()) { Object.assign(view, target); render(); return; }\n    const from = { ...view }, t0 = performance.now(), dur = 480;\n",
-             "    const aid = ++ANIM;\n    if (!animate || reduce()) { Object.assign(view, target); render(); return; }\n    const from = { ...view }, t0 = performance.now(), dur = 480;\n", "setView")
+             "    const aid = ++ANIM;\n    FLIGHT = null;\n    if (!animate || reduce()) { Object.assign(view, target); render(); return; }\n"
+             "    const from = { ...view }, t0 = performance.now(), dur = 480;\n    FLIGHT = { target, fit: !!fit, aid };\n", "setView")
     t = sub1(t, "    (function step(t) {\n      const u = Math.min(1, (t - t0) / dur)",
              "    (function step(t) {\n      if (aid !== ANIM) return;\n      const u = Math.min(1, (t - t0) / dur)", "setView 动画")
+    t = sub1(t, "      render(); if (u < 1) requestAnimationFrame(step);\n    })(t0);\n",
+             "      render(); if (u < 1) requestAnimationFrame(step); else if (FLIGHT && FLIGHT.aid === aid) FLIGHT = null;\n    })(t0);\n", "setView 收尾")
     i, j = block_after(t, "  function fitTo(key, animate) {", "fitTo")
     fit = t[i:j]
     m = re.search(r"\n    setView\((.*), animate\);\n  \}\n$", fit)
     cxy, k = m.group(1).rsplit(", ", 1)
     cx, cy = cxy.rsplit(", ", 1)
-    tgt = fit.replace("  function fitTo(key, animate) {", "  function fitTarget(key) {").replace(m.group(0), f"\n    return {{ cx: {cx}, cy: {cy}, k: Math.max(0.6, Math.min(60, {k})) }};\n  }}\n")
-    t = t[:j] + tgt + t[j:]
+    tgt = fit.replace("  function fitTo(key, animate) {", "  function fitTarget(key, leg = !legBody.hidden) {").replace(m.group(0), f"\n    return {{ cx: {cx}, cy: {cy}, k: Math.max(0.6, Math.min(60, {k})) }};\n  }}\n")
+    if tgt.count("(!legBody.hidden && W > ") != 1:
+        raise PatchError("fitTarget：图例让位的写法变了")
+    tgt = tgt.replace("(!legBody.hidden && W > ", "(leg && W > ")
+    t = t[:i] + fit.replace(m.group(0), m.group(0).replace(", animate);", ", animate, true);")) + tgt + t[j:]
+    # 地图区尺寸变了：整幅的重新收进，放大过的保持倍数与中心，飞行中的照飞（与 core/web/template.html 的 resize 相同）
+    t = sub1(t, RESIZE_OLD, resize_js(), "resize")
+    t = sub1(t, '    if (m === "map") requestAnimationFrame(() => { const keep = { ...view }; resize(); if (keep.k !== 1) { Object.assign(view, keep); render(); } });\n',
+             '    if (m === "map") requestAnimationFrame(resize);\n', "切回地图")
     t = sub1(t, "  function render() {\n", "  function render() {\n    touch();\n", "render")
     t = sub1(t, "  function markRows() { ", "  function markRows() { touch(); ", "markRows")
     # 时间轴：换掉旧轴（保留 ST/SD_/SS）
