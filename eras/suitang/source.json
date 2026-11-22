@@ -1046,7 +1046,7 @@
 {"id":"康居草原","n":"康居草原","mod":"哈萨克斯坦锡尔河下游以北","lon":66.5,"lat":45.6,"t":"r"},
 {"id":"楚河下游","n":"楚河下游","mod":"哈萨克斯坦楚河下游草原","lon":70.5,"lat":45.8,"t":"r"},
 {"id":"萨利","n":"萨利","mod":"哈萨克斯坦中部草原","lon":73.5,"lat":47.8,"t":"r"},
-{"id":"鄂毕上游","n":"鄂毕上游","mod":"俄罗斯阿尔泰边疆区","lon":83.0,"lat":52.3,"t":"r"},
+{"id":"鄂毕上游","n":"鄂毕上游","mod":"俄罗斯阿尔泰边疆区","lon":83.0,"lat":51.6,"t":"r"},
 {"id":"石国","n":"石国","mod":"乌兹别克斯坦塔什干","lon":69.24,"lat":41.3,"t":"c","nm":[[0,"柘支城（石国）"],[658,"大宛都督府"]],"ne":"Chach","nme":["Chach","Dawan Area Command"],"mode":"Tashkent, Uzbekistan"},
 {"id":"拔汗那","n":"拔汗那","mod":"乌兹别克斯坦费尔干纳盆地","lon":71.6,"lat":40.7,"t":"c","nm":[[0,"拔汗那（渴塞城）"],[658,"休循州都督府"]],"ne":"Ferghana","nme":["Ferghana (Kasan)","Xiuxun Zhou Area Command"],"mode":"Ferghana Valley, Uzbekistan"},
 {"id":"康国","n":"康国","mod":"乌兹别克斯坦撒马尔罕","lon":66.97,"lat":39.65,"t":"c","nm":[[0,"康国（萨末建城）"],[658,"康居都督府"]],"ne":"Samarkand","nme":["Samarkand","Kangju Area Command"],"mode":"Samarkand, Uzbekistan"},

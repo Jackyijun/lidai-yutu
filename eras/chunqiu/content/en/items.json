@@ -565,6 +565,11 @@
   "note": "The Yan-surnamed state of Lu, descended from Gaoyao. Destroyed by Cheng Daxin of Chu in 622 BC.",
   "old": "Lu"
  },
+ "capital:南顿": {
+  "mod": "W of Xiangcheng (Zhoukou), Henan (Nandun ruins)",
+  "note": "Pressed by Chen, Dun moved south, hence the name Nandun (Ying Shao's note to the Hanshu treatise on geography). Chu destroyed Dun in 496 BC.",
+  "old": "Nandun"
+ },
  "capital:古魏城": {
   "mod": "N of Ruicheng, Shanxi",
   "note": "The Ji-surnamed state of Wei, enfeoffed under the Western Zhou. In 661 BC Duke Xian of Jin destroyed Wei and gave it to Bi Wan: the origin of the Warring States Wei lineage.",
@@ -951,8 +956,8 @@
   "old": "Huo"
  },
  "capital:顿": {
-  "mod": "W of Xiangcheng (Zhoukou), Henan (Nandun ruins)",
-  "note": "The Ji-surnamed state of Dun, at first north of modern Shangshui; pressed by Chen, it moved south and was called Nandun. Chu destroyed Dun in 496 BC.",
+  "mod": "N of Shangshui, Henan",
+  "note": "First capital of the Ji-surnamed state of Dun. Pressed by Chen, Dun moved to Nandun c. 635 BC: Chu walled Dun in 637 BC and installed the viscount of Dun there in 635 BC.",
   "old": "Dun"
  },
  "capital:黄": {
@@ -2250,7 +2255,7 @@
  },
  "state:顿": {
   "mod": "Ji surname",
-  "note": "Capital: Dun (W of modern Xiangcheng, Henan; one view: Shangshui). Repeatedly pressed by Chen, it relied on Chu. Chu destroyed Dun in 496 BC.",
+  "note": "Capital: Dun (N of modern Shangshui, Henan), moved c. 635 BC to Nandun (W of modern Xiangcheng, Henan). Repeatedly pressed by Chen, it relied on Chu. Chu destroyed Dun in 496 BC.",
   "old": "Dun"
  },
  "state:鲁": {

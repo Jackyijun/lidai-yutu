@@ -1379,7 +1379,7 @@
 {"id":"康居草原","n":"康居草原","mod":"哈萨克斯坦锡尔河下游以北","lon":66.5,"lat":45.6,"t":"r"},
 {"id":"楚河下游","n":"楚河下游","mod":"哈萨克斯坦楚河下游草原","lon":70.5,"lat":45.8,"t":"r"},
 {"id":"萨利","n":"萨利","mod":"哈萨克斯坦中部草原","lon":73.5,"lat":47.8,"t":"r"},
-{"id":"鄂毕上游","n":"鄂毕上游","mod":"俄罗斯阿尔泰边疆区","lon":83.0,"lat":52.3,"t":"r"},
+{"id":"鄂毕上游","n":"鄂毕上游","mod":"俄罗斯阿尔泰边疆区","lon":83.0,"lat":51.6,"t":"r"},
 {"id":"石国","n":"赭时（石国）","mod":"乌兹别克斯坦塔什干","lon":69.24,"lat":41.3,"t":"c","nm":[[0,"赭时（石国）"],[581,"柘支城（石国）"]],"ne":"Chach (Shi)","nme":["Chach (Shi)","Chach"],"mode":"Tashkent, Uzbekistan"},
 {"id":"拔汗那","n":"破洛那（大宛）","mod":"乌兹别克斯坦费尔干纳盆地","lon":71.6,"lat":40.7,"t":"c","nm":[[0,"破洛那（大宛）"],[581,"拔汗那（渴塞城）"]],"ne":"Ferghana (Dayuan)","nme":["Ferghana (Dayuan)","Ferghana (Kasan)"],"mode":"Ferghana Valley, Uzbekistan"},
 {"id":"康国","n":"萨末建（康国）","mod":"乌兹别克斯坦撒马尔罕","lon":66.97,"lat":39.65,"t":"c","nm":[[0,"萨末建（康国）"],[581,"康国（萨末建城）"]],"ne":"Samarkand (Kang)","nme":["Samarkand (Kang)","Samarkand"],"mode":"Samarkand, Uzbekistan"},

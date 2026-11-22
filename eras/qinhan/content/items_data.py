@@ -386,7 +386,7 @@ PASSES = [
      "Hangu Pass at Xin'an), and the county of Hongnong was set up at the old pass."),
     ("峣关", "Yao Pass", 109.42, 34.07, "陕西蓝田东南", "southeast of Lantian, Shaanxi", "武关通关中的要隘，刘邦入关曾袭破之。", "The key pass on the road from the Wu Pass into Guanzhong, taken by Liu Bang on his way in."),
     ("临晋关", "Linjin Pass", 110.25, 34.8, "陕西大荔东", "east of Dali, Shaanxi", "黄河蒲津渡口西岸，关中东北门户。", "The west bank of the Pujin ferry over the Yellow River, Guanzhong's north-eastern gate."),
-    ("高阙", "Gaoque", 107.35, 41.15, "内蒙古阴山西段狼山", "Langshan, western Yin Mountains, Inner Mongolia", "阴山缺口，赵武灵王置塞，卫青由此出击。", "A gap in the Yin Mountains fortified by King Wuling of Zhao; Wei Qing struck out from here."),
+    ("高阙", "Gaoque", 107.35, 41.15, "内蒙古阴山西段狼山", "Lang Mountains (western Yin Mountains), Inner Mongolia", "阴山缺口，赵武灵王置塞，卫青由此出击。", "A gap in the Yin Mountains fortified by King Wuling of Zhao; Wei Qing struck out from here."),
     ("鸡鹿塞", "Jilu frontier post", 106.6, 41.25, "内蒙古磴口西北", "northwest of Dengkou, Inner Mongolia",
      "朔方郡西北塞口，在今磴口西北哈隆格乃峡谷口，存石筑障城。始筑年代史无明文，当在前127 年置朔方郡以后；"
      "前51 年汉以骑兵一万六千护送呼韩邪单于由此出塞，是其首见；89 年窦宪出征北匈奴也由此出塞。",
