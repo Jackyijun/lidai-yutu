@@ -61,16 +61,18 @@ def view(slug, b=None):
       nodes  [(t, own, pol, active)]：own = 各点归哪个单位（polities 的序号，字符串；不属任何单位为 None），
              pol = {单位: 政权}，active = 各点这一节点是否参与分区（None 为全部参与）
 
-    归属点写了 t1 的（春秋、战国为早期小国、戎狄补的点，seeds.txt 的 ~年份），t1 以后的节点不参与分区。
+    归属点写了 t1 的（春秋、战国为早期小国、戎狄补的点，seeds.txt 的 ~年份），t1 以后的节点不参与分区；
+    写了 t0 的（seeds.txt 的 ^年份，如战国卷前280 起的下辨），t0 以前的节点不参与分区。
     衔接节点上 v1 的 own 已按照搬来的疆域对齐过的（core/v1/engine_geom.py 的 align_own），取本卷原来的归属 own_src。"""
     b = b or bundle(slug)
     S = [(p["lon"], p["lat"], p["key"]) for p in b["places"]]
     ends = [p.get("t1") for p in b["places"]]
-    some = any(e is not None for e in ends)
+    starts = [p.get("t0") for p in b["places"]]
+    some = any(e is not None for e in ends) or any(s is not None for s in starts)
     N = []
     for n in b["nodes"]:
         own = [None if v is None or v < 0 else str(v) for v in n.get("own_src", n["own"])]
-        act = [e is None or n["t"] <= e for e in ends] if some else None
+        act = [(e is None or n["t"] <= e) and (s is None or n["t"] >= s) for e, s in zip(ends, starts)] if some else None
         N.append((n["t"], own, {k: str(v) for k, v in n["pol"].items()}, act))
     return S, N
 
@@ -190,6 +192,7 @@ def spec(slug):
       sub.unit / sub.hosts / sub.near / sub.seats   一个单位的格子再按治所就近细分（战国卷的秦郡）：unit 是被细分的单位，
                            hosts 是治所须落在其疆域里的单位（near：离其疆域不到这么多格的也算），治所取 v1 里 seats 那一类条目
                            （键 k、经纬度、始置年）；另出各块的多边形 zp 与注记 zpl
+      sub.fixed            [[归属点, 块], …]：这些归属点的势力格整块归某块，不按治所远近分（战国卷的下辨归陇西郡）
     引擎只读这里、v1 数据包、全局表（山川、国界墙）与各卷的两样史料：手绘外缘 content/frontier.py、写可达倍数的 seeds 文件"""
     t = tomllib.loads((ROOT / "eras" / slug / "era.toml").read_text(encoding="utf8"))
     s = t.get("engine")
@@ -239,9 +242,11 @@ def reach_mult(slug, s):
 
 
 def sub(slug, s, b=None):
-    """[engine] sub：(被细分的单位, 治所须落在其中的单位, 容差格数, [(块键, 经, 纬, 始置年)])；没写 sub 的卷返回 None。
-    era.toml 里 sub.unit、sub.hosts 写单位键（如「秦」），这里换成节点里的单位序号；治所取 v1 里 sub.seats 那一类条目
-    （战国卷的 jun：块键是条目的 k，始置年取条目的 t）"""
+    """[engine] sub：(被细分的单位, 治所须落在其中的单位, 容差格数, [(块键, 经, 纬, 始置年)], [(归属点键, 块键)])；
+    没写 sub 的卷返回 None。era.toml 里 sub.unit、sub.hosts 写单位键（如「秦」），这里换成节点里的单位序号；治所取 v1 里
+    sub.seats 那一类条目（战国卷的 jun：块键是条目的 k，始置年取条目的 t）。sub.fixed 写 [[归属点键, 块键], …]：
+    那个归属点的势力格整块归这一块，不按治所远近分（战国卷的下辨归陇西郡，单按郡治远近会分给汉中郡）；
+    归属点那年不参与分区、不属被细分的单位，或那一块的治所还没参与时，照常按治所分"""
     if not s.get("sub"):
         return None
     c = s["sub"]
@@ -255,7 +260,16 @@ def sub(slug, s, b=None):
     seats = [(str(it["k"]), float(it["lon"]), float(it["lat"]), it["t"] // 12) for it in b["items"] if it.get("c") == c["seats"]]
     if not seats:
         sys.exit(f"eras/{slug}/era.toml [engine] sub.seats：本卷没有「{c['seats']}」类条目")
-    return (ix[c["unit"]], tuple(ix[h] for h in c["hosts"] if h in ix), float(c.get("near", 0)), seats)
+    keys = {k for k, _, _, _ in seats}
+    places = {p["key"] for p in b["places"]}
+    fixed = []
+    for e in c.get("fixed", []):
+        if not (isinstance(e, list) and len(e) == 2 and all(isinstance(v, str) for v in e) and e[0] in places and e[1] in keys):
+            sys.exit(f"eras/{slug}/era.toml [engine] sub.fixed：每项写 [归属点键, 块键]，归属点须在本卷、块键须是已有的治所（{e}）")
+        fixed.append((e[0], e[1]))
+    if len({p for p, _ in fixed}) != len(fixed):
+        sys.exit(f"eras/{slug}/era.toml [engine] sub.fixed：同一个归属点写了两遍")
+    return (ix[c["unit"]], tuple(ix[h] for h in c["hosts"] if h in ix), float(c.get("near", 0)), seats, fixed)
 
 
 def zones(slug, s, b, N):

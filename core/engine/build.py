@@ -125,6 +125,7 @@ def zone_lines(polys):
 
 
 AVOID = 1.2      # 重要地域的分区注记离地域总名不足 1.2°（地面距离）的地方不选，同旧构建
+ROOM = 0.2       # 分区注记另取位置时，离分区边界至少这么远（度），不够就把 AVOID 减半再找
 
 
 def far_label(g, land, avoid, step=0.04):
@@ -145,10 +146,16 @@ def far_label(g, land, avoid, step=0.04):
     return [round(float(lon), 2), round(float(lat), 2), round(sum(p.area for p in ps) / GR.DEG ** 2, 2), round(float(d[k]) / GR.DEG, 2)]
 
 
+def _inside(L, g):
+    """注记点 L（[经, 纬, …]）是否落在投影坐标的多边形 g 里"""
+    x, y = geo.proj(np.array([L[0]]), np.array([L[1]]))
+    return bool(g.contains(shapely.Point(x[0], y[0])))
+
+
 def trace_regions(REG, N, lab_at, win, warp, clip, pins, sp, C, keys):
     """重要地域（燕云十六州）：按地域起始年那个节点的分区，成员点的格子之并描出范围线；各分区再与地域其余部分
     描一次，得分区注记，标了 line 的另出两者之间的分界线。注记取法同疆域（label_of）；分区注记离总名不足 AVOID 的，
-    改取避开总名的那一点。分区一律按地域起始年的分区描（分区自己的 y0 只管页面上从哪年起显示，如瀛莫 959 归周）。
+    改取避开总名的那一点；分区注记落进它所包含的另一个分区的（宋元卷的山前七州与瀛莫），改在除去那块的部分里取。分区一律按地域起始年的分区描（分区自己的 y0 只管页面上从哪年起显示，如瀛莫 959 归周）。
     返回与 REG 等长的 [{rings, lab, groups: [{lab, lines}]}]"""
     land = shapely.union_all(C["land_xy"])
     out = []
@@ -168,20 +175,35 @@ def trace_regions(REG, N, lab_at, win, warp, clip, pins, sp, C, keys):
             sys.exit(f"重要地域（{y0} 年起）不在陆上")
         mx, my = geo.proj(np.array([L[0]]), np.array([L[1]]))
         avoid = shapely.Point(mx[0], my[0]).buffer(AVOID * GR.DEG)
-        gs = []
+        gs, gp = [], []
         for gm, line in groups:
             Ug = np.where(np.isin(lab, gm), 0, np.where(allm, 1, -1)).astype(np.int32)
             gg, _ = TR.polygons(win, Ug, warp, clip=clip, pins=pins, log=lambda *a: None, simplify=sp.get("simplify"))
             if 0 not in gg:
                 sys.exit(f"重要地域（{y0} 年起）的分区在 {n0[0] // 12} 年节点没有格子：" + "、".join(keys[i] for i in gm))
             gl = label_of(gg[0], C["land_xy"])
-            if gl:
-                x, y = geo.proj(np.array([gl[0]]), np.array([gl[1]]))
-                if avoid.contains(shapely.Point(x[0], y[0])):
-                    f = far_label(gg[0], land, avoid)
-                    if f:
-                        gl = [f[0], f[1], gl[2], f[3]]
+            if gl and _inside(gl, avoid):
+                f = far_label(gg[0], land, avoid)
+                if f:
+                    gl = [f[0], f[1], gl[2], f[3]]
+            gp.append(gg[0])
             gs.append({"lab": gl, "lines": zone_lines([gg[0], gg[1]]) if line and 1 in gg else []})
+        # 分区注记落进它所包含的另一个分区（宋元卷「山前七州」落在「瀛莫二州属宋」里）：改在除去那些分区的部分里取，
+        # 仍避开总名，避开后离边界不到 ROOM 的把避让半径减半再找；字号仍按整个分区的面积
+        half = shapely.Point(mx[0], my[0]).buffer(AVOID / 2 * GR.DEG)
+        for i, (gm, _) in enumerate(groups):
+            gl = gs[i]["lab"]
+            inner = [gp[j] for j, (gm2, _) in enumerate(groups) if j != i and set(gm2) < set(gm)]
+            if not gl or not inner or not any(_inside(gl, g) for g in inner):
+                continue
+            rest = gp[i].difference(shapely.union_all(inner))
+            f = label_of(rest, C["land_xy"])
+            if f is None or _inside(f, avoid):
+                f = far_label(rest, land, avoid)
+                if f is None or f[3] < ROOM:             # 避开总名后只剩贴边的一条：避让半径减半
+                    f = far_label(rest, land, half) or f
+            if f:
+                gs[i]["lab"] = [f[0], f[1], gl[2], f[3]]
         out.append({"rings": rings_of(rg), "lab": L, "groups": gs})
     return out
 
@@ -315,7 +337,10 @@ def run(slug, log=None):
            for ni, (_, own, _, _) in enumerate(N)]
     units = {u for own in cls for u in own if u is not None}
     if SUB is not None:
-        s_unit, s_hosts, s_near, seats = SUB
+        s_unit, s_hosts, s_near, seats, s_fixed = SUB
+        sidx = {s[2]: i for i, s in enumerate(S)}
+        s_fixed = [(sidx[p], k) for p, k in s_fixed]     # (归属点序号, 块键)：这个点的势力格整块归这一块
+        s_fired = set()
         units |= {s_unit + SEP + k for k, _, _, _ in seats}
         qx, qy = geo.proj(np.array([q[1] for q in seats]), np.array([q[2] for q in seats]))
         s_pts = list(zip(qx, qy))
@@ -357,8 +382,19 @@ def run(slug, log=None):
                 zc = np.array([code[s_unit + SEP + q[0]] for q in seats], np.int32)
                 hit = m & (sl >= 0)
                 U = U.copy(); U[hit] = zc[sl[hit]]
+                own_u = own
                 own = [s_unit + SEP + seats[sl[where[i]]][0] if u == s_unit and i in where and sl[where[i]] >= 0 else u
                        for i, u in enumerate(own)]
+                live = {seats[q][0] for q in on}
+                for pi, bk in s_fixed:                   # sub.fixed：这个点参与分区、属被细分的单位、那一块已有治所时，势力格整块归它
+                    if bk in live and own_u[pi] == s_unit and (act is None or act[pi]):
+                        fm = m & (lab == pi)
+                        if fm.any():
+                            U[fm] = code[s_unit + SEP + bk]
+                            own = [s_unit + SEP + bk if own_u[i] == s_unit and i in where and fm[where[i]] else o
+                                   for i, o in enumerate(own)]
+                            own[pi] = s_unit + SEP + bk          # 点自己的格子总在 fm 里，不靠 where（各节点共用一张）
+                            s_fired.add(pi)
         h = hashlib.sha1(U.tobytes()).hexdigest()
         if h not in cache:
             g0, _ = TR.polygons(win, U, warp, clip=clip, pins=pins, log=log, simplify=sp.get("simplify"))
@@ -422,6 +458,8 @@ def run(slug, log=None):
         out_nodes.append(nd)
         log(f"节点 {t // 12}.{t % 12 + 1:02d}", len(u), "单位", len(pu), "政权层")
 
+    if SUB is not None and len(s_fired) < len(s_fixed):
+        log("sub.fixed 从未生效（归属点不属被细分的单位、不参与分区，或那一郡还没有治所）：", "、".join(S[p][2] for p, _ in s_fixed if p not in s_fired))
     REG = DA.regions(b)
     regions = trace_regions(REG, N, lambda n: labs[group(n[0], n[3])], win, warp, clip, pins, sp, C,
                             [s[2] for s in S]) if REG else None

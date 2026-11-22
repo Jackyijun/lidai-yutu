@@ -245,8 +245,9 @@ def _order(d, ref):
 # ---------------------------------------------------------------- 节点
 
 def seeds_txt(slug):
-    """春秋、战国两卷共用的归属点 content/seeds.txt：[(名称, 经, 纬, [(起年, 归属键或 None)], 退出年或 None)]。
-    写法见文件开头：「名称 经度 纬度 初始归属 [年份归属 …] [~年份]」，· 为不属任何诸侯国，~年份 起不再参与分区"""
+    """春秋、战国两卷共用的归属点 content/seeds.txt：[(名称, 经, 纬, [(起年, 归属键或 None)], 退出年或 None, 加入年或 None)]。
+    写法见文件开头：「名称 经度 纬度 初始归属 [年份归属 …] [^年份] [~年份]」，· 为不属任何诸侯国，
+    ^年份 起才参与分区，~年份 起不再参与分区"""
     out = []
     for line in (ROOT / "eras" / slug / "content" / "seeds.txt").read_text(encoding="utf8").splitlines():
         line = line.strip()
@@ -254,16 +255,23 @@ def seeds_txt(slug):
             continue
         t = line.split()
         tl = [(-10 ** 9, None if t[3] == "·" else t[3])]
-        end = None
+        end = start = None
         for tok in t[4:]:
-            if tok.startswith("~"):
-                end = int(tok[1:])
+            if tok[0] in "~^":
+                if (end if tok[0] == "~" else start) is not None:
+                    raise ValueError(f"{slug} seeds.txt：{t[0]} 的 {tok[0]}年份 写了两遍")
+                if tok[0] == "~":
+                    end = int(tok[1:])
+                else:
+                    start = int(tok[1:])
                 continue
             i = 1 if tok[0] == "-" else 0
             while tok[i].isdigit():
                 i += 1
             tl.append((int(tok[:i]), None if tok[i:] == "·" else tok[i:]))
-        out.append((t[0], float(t[1]), float(t[2]), tl, end))
+        if start is not None and end is not None and start >= end:
+            raise ValueError(f"{slug} seeds.txt：{t[0]} 的 ^{start} 不早于 ~{end}，这个点永远不参与分区")
+        out.append((t[0], float(t[1]), float(t[2]), tl, end, start))
     return out
 
 
@@ -279,14 +287,14 @@ def node_a_to_v1(sn, pool, keys, ix, seeds, alleg, kinds):
     if "w" in sn:
         n["pu"][str(ix["周"])] = pool.add(sn["w"])
     own, live = [], set()
-    for _, _, _, tl, end in seeds:
+    for _, _, _, tl, end, start in seeds:
         o = None
         for t0, k in tl:
             if y >= t0:
                 o = k
         u = ix.get(o, -1) if o is not None else -1
         own.append(u)
-        if u >= 0 and (end is None or y < end):
+        if u >= 0 and (end is None or y < end) and (start is None or y >= start):
             live.add(u)
     pol = {}
     for u in sorted(live):
@@ -446,8 +454,10 @@ def to_v1(slug, G, D, inline=None):
                 continue
             items.append(item_to_v1(it, clock, slug))
         # 归属点：分区用，页面上不画（kind r），暂不进全局地点表（global = false；两卷的城邑照旧以条目进全局表）
-        for nm, lo, la, _, end in seeds:
+        for nm, lo, la, _, end, start in seeds:
             p = {"key": nm, "n": nm, "lon": lo, "lat": la, "kind": "r", "global": False}
+            if start is not None:
+                p["t0"] = start * 12            # 第一个参与分区的月份（^年份 起加入）
             if end is not None:
                 p["t1"] = end * 12 - 1          # 最后一个参与分区的月份（~年份 起退出）
             places.append(p)

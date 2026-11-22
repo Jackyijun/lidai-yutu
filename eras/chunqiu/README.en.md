@@ -61,7 +61,7 @@ eras/chunqiu/
 ├── short.tsv              short timeline labels
 ├── README.md · README.en.md   Chinese · English documentation
 ├── content/               ★ historical content (hand-written; this is what you edit)
-│   ├── seeds.txt          474 ownership points: name, coordinates, which state held it when
+│   ├── seeds.txt          475 ownership points: name, coordinates, which state held it when
 │   │                      (shared with the Warring States volume; each keeps an identical copy)
 │   ├── links.txt          which ownership point each place entry (capital, city, pass, battle…) falls under; its ownership history follows from that (frozen)
 │   ├── features.py        state profiles, tribal peoples and aliases; 46 time nodes and their
@@ -117,19 +117,20 @@ There are no boundary data for the Spring and Autumn period; what the sources do
 3. **Multi-source shortest paths**: a Dijkstra search runs from the ownership points active that year, and each cell goes to the point that is "nearest to walk to". Nodes with the same set of points share one search.
 4. **Colouring each node**: look up which state each point belonged to that year, merge the cells into each state's area, smooth with a Gaussian, trace and simplify the outlines. Labels go at the point of each state's largest land area farthest from its edge.
 5. **Rivers and lakes**: Natural Earth rivers are matched to ancient names by their English names; the old course of the Yellow River, the Ji, Beiluo, Yi, Luo, Ru, Ying, Si and other rivers are drawn by hand.
-6. **Place ownership**: each city, pass and battle takes the ownership history of the ownership point it falls under, as listed in `content/links.txt`, so the tooltip can say "held by such a state in such a year". Previously this was found by checking whose cell the place fell in. Since the third batch of the architecture cleanup (20 November 2026) the old partition grid is no longer used: the point each place falls under is frozen in that file as that lookup last found it. A newly added place must be listed there (the build checks).
+6. **Place ownership**: each city, pass and battle takes the ownership history of the ownership point it falls under, as listed in `content/links.txt`, so the tooltip can say "held by such a state in such a year". Previously this was found by checking whose cell the place fell in. Since the third batch of the architecture cleanup (20 November 2026) the old partition grid is no longer used: the point each place falls under is frozen in that file as that lookup last found it. A newly added place must be listed there (the build checks). On 21 November 2026 the 17 places that the unified engine's partition would put under a different ownership point were checked one by one against the sources, and 7 of them were relinked (Yu's capital, for example, used to fall under Xiayang and so was counted as Guo's). Zhongmou was also relinked, following the Warring States volume. The notes are at the top of the file.
 
 ### 3. `seeds.txt` syntax
 
 One point per line:
 
 ```
-name longitude latitude initial-owner [year+owner ...] [~year]
+name longitude latitude initial-owner [year+owner ...] [^year] [~year]
 ```
 
 - `·` means not held by any of the Zhou states (land of the Rong, Di, Man and Yi, or blank); tribal peoples have their own keys (e.g. `赤狄`, `白狄`).
 - Years BC are negative: `-655晋` means held by Jin from 655 BC.
-- `~-350` means the point stops taking part in the partition from 350 BC. Every point added for the Spring and Autumn states, the Rong and Di and the early Warring States carries it; from 350 BC only the original Warring States points are used, so the Warring States map's territories from 350 BC on are exactly what they were before these points were added.
+- `~-350` means the point stops taking part in the partition from 350 BC. Every point added for the Spring and Autumn states, the Rong and Di and the early Warring States carries it. From 350 BC on, the partition uses the original Warring States points plus five points added in November 2026: four unowned points in the northwest and, from 280 BC, Xiabian. The retired points still anchor the borders when they are traced, so the Warring States borders after 350 BC differ slightly (about 0.1% of the area) from what they would be without them.
+- `^-280` means the point takes part in the partition only from 280 BC. Only one point uses it: Xiabian, added on 21 November 2026, a county of Qin's Longxi Commandery, counted as Qin's from the year the commandery was founded. When it was added, the territories before 280 BC were checked and are byte-for-byte unchanged.
 
 Examples:
 
