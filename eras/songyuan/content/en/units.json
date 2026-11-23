@@ -283,7 +283,7 @@
  },
  "上京路": {
   "n": "Shangjing Circuit",
-  "note": "The land where the Jurchens rose, with its seat at Huining Fu (Acheng, Harbin). Huining was made the Supreme Capital in 1138; it lost the title when Wanyan Liang moved the capital to Yanjing, and Emperor Shizong restored it in 1173. Under it were the Puyu, Huligai, Helan and Xupin circuits, among others."
+  "note": "The land where the Jurchens rose, with its seat at Huining Fu (Acheng, Harbin). Early in the Jin it was called the Heartland (before 1138 the map labels it the Jinyuan Heartland). Huining was made the Supreme Capital in 1138; it lost the title when Wanyan Liang moved the capital to Yanjing, and Emperor Shizong restored it in 1173. Under it were the Puyu, Huligai, Helan and Xupin circuits, among others."
  },
  "咸平路": {
   "n": "Xianping Circuit",
@@ -295,7 +295,7 @@
  },
  "北京路": {
   "n": "Beijing Circuit",
-  "note": "With its seat at Dading Fu (the former Liao Central Capital), renamed the Northern Capital in 1153; it governed Linhuang Fu and the prefectures of the former Liao Central Capital Circuit."
+  "note": "Early in the Jin, Linhuang Fu was still called the Supreme Capital (before 1138 the map labels this circuit Linhuang Fu); it became the Northern Capital in 1138, and in 1150 the circuit was renamed the Linhuang Fu Circuit. In 1153 Dading Fu (the former Liao Central Capital) was made the Northern Capital instead, and from then on the circuit had its seat there, governing Linhuang Fu and the prefectures of the former Liao Central Capital Circuit."
  },
  "西京路": {
   "n": "Xijing Circuit",
@@ -304,11 +304,11 @@
  "中都路": {
   "n": "Zhongdu Circuit (Yanjing Circuit)",
   "s": "Zhongdu Circuit",
-  "note": "At first called the Yanjing Circuit; renamed the Zhongdu Circuit when Wanyan Liang moved the capital to Yanjing in 1153, with its seat at Daxing Fu."
+  "note": "At first called the Yanjing Circuit (from 1123 to 1126 the Jin made Pingzhou their Southern Capital, and in 1125, when the circuit held only Pingzhou, the map labels it the Nanjing Circuit (Pingzhou)); renamed the Zhongdu Circuit when Wanyan Liang moved the capital to Yanjing in 1153, with its seat at Daxing Fu."
  },
  "南京路": {
   "n": "Nanjing Circuit",
-  "note": "With its seat at Kaifeng Fu. Kaifeng was renamed the Southern Capital in 1153, and Emperor Xuanzong of Jin moved the capital there in 1214."
+  "note": "With its seat at Kaifeng Fu. It was at first called the Bianjing Circuit; Kaifeng was renamed the Southern Capital in 1153, and Emperor Xuanzong of Jin moved the capital there in 1214."
  },
  "金河北东路": {
   "n": "Hebei East Circuit",
