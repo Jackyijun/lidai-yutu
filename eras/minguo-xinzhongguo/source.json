@@ -2521,7 +2521,7 @@
 {"id":"楠榜","n":"楠榜","mod":"印度尼西亚班达楠榜","lon":105.26,"lat":-5.43,"t":"c","ne":"Lampung","mode":"Bandar Lampung, Indonesia"},
 {"id":"邦加","n":"邦加","mod":"印度尼西亚邦加槟港","lon":106.11,"lat":-2.13,"t":"c","ne":"Bangka","mode":"Pangkalpinang, Bangka, Indonesia"},
 {"id":"丹戎槟榔","n":"丹戎槟榔","mod":"印度尼西亚廖内丹戎槟榔","lon":104.45,"lat":0.92,"t":"c","ne":"Tanjung Pinang","mode":"Tanjung Pinang, Riau Islands, Indonesia"},
-{"id":"巴达维亚","n":"巴达维亚","mod":"印度尼西亚雅加达","lon":106.85,"lat":-6.21,"t":"z","nm":[[22920,"巴达维亚"],[23306,"雅加达"],[23349,"巴达维亚"],[23399,"雅加达"]],"ne":"Batavia","nme":["Batavia","Djakarta","Batavia","Djakarta"],"mode":"Jakarta, Indonesia"},
+{"id":"巴达维亚","n":"巴达维亚","mod":"印度尼西亚雅加达","lon":106.85,"lat":-6.21,"t":"z","nm":[[22920,"巴达维亚"],[23315,"雅加达"],[23349,"巴达维亚"],[23399,"雅加达"]],"ne":"Batavia","nme":["Batavia","Djakarta","Batavia","Djakarta"],"mode":"Jakarta, Indonesia"},
 {"id":"万丹","n":"万丹","mod":"印度尼西亚万丹西冷","lon":106.15,"lat":-6.12,"t":"c","ne":"Banten","mode":"Serang, Banten, Indonesia"},
 {"id":"茂物","n":"茂物","mod":"印度尼西亚茂物","lon":106.8,"lat":-6.6,"t":"c","ne":"Bogor","mode":"Bogor, Indonesia"},
 {"id":"万隆","n":"万隆","mod":"印度尼西亚万隆","lon":107.61,"lat":-6.91,"t":"z","ne":"Bandung","mode":"Bandung, Indonesia"},

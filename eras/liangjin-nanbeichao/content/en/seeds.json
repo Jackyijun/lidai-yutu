@@ -127,8 +127,8 @@
  "石州": {
   "mod": "Lishi, Lüliang, Shanxi",
   "n": {
-   "离石（左国城）": "Lishi (Zuoguo City)",
-   "石州": "Shizhou"
+   "石州": "Shizhou",
+   "离石": "Lishi"
   }
  },
  "忻州": {
@@ -229,7 +229,7 @@
   "mod": "old town of Huailai, Hebei",
   "n": {
    "沮阳（上谷）": "Juyang (Shanggu)",
-   "怀戎县": "Huairong County"
+   "燕州": "Yanzhou"
   }
  },
  "平州": {
@@ -245,7 +245,8 @@
    "龙城": "Longcheng",
    "柳城": "Liucheng",
    "营州（龙城）": "Yingzhou (Longcheng)",
-   "营州": "Yingzhou"
+   "营州": "Yingzhou",
+   "和龙镇": "Helong Garrison"
   }
  },
  "定州": {
@@ -301,7 +302,7 @@
   "mod": "Xingtai, Hebei",
   "n": {
    "襄国": "Xiangguo",
-   "邢州": "Xingzhou"
+   "襄国郡": "Xiangguo Commandery"
   }
  },
  "洺州": {
@@ -433,8 +434,7 @@
  "滑州": {
   "mod": "east of Hua County, Henan",
   "n": {
-   "滑台": "Huatai",
-   "滑州": "Huazhou"
+   "滑台": "Huatai"
   }
  },
  "宋州": {
@@ -1403,8 +1403,7 @@
  "肃州": {
   "mod": "Jiuquan, Gansu",
   "n": {
-   "酒泉": "Jiuquan",
-   "肃州": "Suzhou"
+   "酒泉": "Jiuquan"
   }
  },
  "瓜州": {
@@ -1832,8 +1831,7 @@
   "mod": "Sambor Prei Kuk, Kampong Thom, Cambodia",
   "n": {
    "真腊故地": "Chenla homeland",
-   "伊奢那城（真腊）": "Ishanapura (Chenla)",
-   "特牧城（扶南都）": "Vyadhapura (Funan capital)"
+   "真腊": "Chenla"
   }
  },
  "扶南": {

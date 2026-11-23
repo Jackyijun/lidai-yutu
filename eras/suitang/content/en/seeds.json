@@ -347,7 +347,8 @@
    "怀戎": "Huairong",
    "怀戎县": "Huairong County",
    "北燕州": "Beiyan Zhou",
-   "妫州": "Guizhou"
+   "妫州": "Guizhou",
+   "燕州": "Yanzhou"
   }
  },
  "平州": {
@@ -436,7 +437,9 @@
   "mod": "Xingtai, Hebei",
   "n": {
    "邢州": "Xingzhou",
-   "襄国郡": "Xiangguo Commandery"
+   "襄国郡": "Xiangguo Commandery",
+   "龙冈县": "Longgang County",
+   "襄国县": "Xiangguo County"
   }
  },
  "洺州": {
@@ -577,7 +580,9 @@
   "mod": "east of Hua County, Henan",
   "n": {
    "滑州": "Huazhou",
-   "东郡": "Dong Commandery"
+   "东郡": "Dong Commandery",
+   "滑台": "Huatai",
+   "杞州": "Qizhou"
   }
  },
  "瓦岗": {
@@ -1252,7 +1257,8 @@
    "蒋州": "Jiangzhou",
    "丹阳郡": "Danyang Commandery",
    "扬州": "Yangzhou",
-   "江宁县": "Jiangning County"
+   "江宁县": "Jiangning County",
+   "白下县": "Baixia County"
   }
  },
  "润州": {
@@ -1845,7 +1851,8 @@
   "mod": "Jiuquan, Gansu",
   "n": {
    "肃州": "Suzhou",
-   "张掖郡福禄县": "Fulu County, Zhangye Commandery"
+   "张掖郡福禄县": "Fulu County, Zhangye Commandery",
+   "酒泉": "Jiuquan"
   }
  },
  "瓜州": {
@@ -2342,7 +2349,6 @@
   "mod": "Sambor Prei Kuk, Kampong Thom, Cambodia",
   "n": {
    "真腊": "Chenla",
-   "特牧城（扶南都）": "Vyadhapura (Funan capital)",
    "伊奢那城（真腊都）": "Ishanapura (Chenla capital)"
   }
  },

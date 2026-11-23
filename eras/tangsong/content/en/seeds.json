@@ -1092,7 +1092,8 @@
  "太原府": {
   "mod": "Jinyuan District, Taiyuan, Shanxi",
   "n": {
-   "太原府": "Taiyuan Fu"
+   "太原府": "Taiyuan Fu",
+   "并州": "Bingzhou"
   }
  },
  "汾州": {
@@ -2194,7 +2195,9 @@
  "上京龙泉府": {
   "mod": "Bohai Town, Ning'an, Heilongjiang",
   "n": {
-   "上京龙泉府": "Longquan Fu (Supreme Capital)"
+   "上京龙泉府": "Longquan Fu (Supreme Capital)",
+   "忽汗城（天福城）": "Huhan City (Tianfu City)",
+   "渤海故都": "Old Balhae capital"
   }
  },
  "中京显德府": {

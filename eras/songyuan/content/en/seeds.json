@@ -984,7 +984,8 @@
   "mod": "Luoyang, Henan",
   "n": {
    "河南府": "Henan Fu",
-   "河南府（西京）": "Henan Fu (Western Capital)"
+   "河南府（西京）": "Henan Fu (Western Capital)",
+   "中京金昌府": "Jinchang Fu (Central Capital)"
   }
  },
  "汝州": {
@@ -1030,7 +1031,7 @@
    "开封府（东京）": "Kaifeng Fu (Eastern Capital)",
    "开封府（南京）": "Kaifeng Fu (Southern Capital)",
    "汴京（南京）": "Bianjing (Southern Capital)",
-   "汴梁": "Bianliang"
+   "汴京": "Bianjing"
   }
  },
  "宋州": {
@@ -2528,9 +2529,7 @@
  "桓州": {
   "mod": "northwest of Zhenglan Banner, Inner Mongolia",
   "n": {
-   "桓州": "Huanzhou",
-   "开平府": "Kaiping Fu",
-   "上都": "Shangdu"
+   "桓州": "Huanzhou"
   }
  },
  "抚州·金": {
@@ -2559,7 +2558,8 @@
    "奚王牙帐": "Xi royal camp",
    "奚王府": "Xi king's headquarters",
    "中京大定府": "Dading Fu (Central Capital)",
-   "北京大定府": "Dading Fu (Northern Capital)"
+   "北京大定府": "Dading Fu (Northern Capital)",
+   "大宁": "Daning"
   }
  },
  "长春州": {
