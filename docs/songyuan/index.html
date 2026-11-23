@@ -702,6 +702,16 @@
     return n;
   };
   const capActive = (it, Y) => it.yrs.some(([a, b]) => a <= Y && Y < b);
+  const capBegun = (it, Y) => it.yrs.some(([a]) => a <= Y);
+  // 都城所在的州府点（at）：当期都城处不另画这个点。与它相距 5 km 以内的（同全局地名表合并的规矩，r 点除外）算同一处：
+  // 旧都并入这个点，选中、检索、信息框都归在一起；更远的（如两晋广固与 410 年后的东阳）旧都照画旧都框
+  const kmLL = (a, b) => { const r = Math.PI / 180, h = Math.sin((b.lat - a.lat) * r / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin((b.lon - a.lon) * r / 2) ** 2; return 12742 * Math.asin(Math.min(1, Math.sqrt(h))); };
+  const CAP_SEED = new Map();
+  for (const it of ITEMS) if (it.c === "capital" && it.at != null && SEEDS[it.at] && SEEDS[it.at].t !== "r" && kmLL(it, SEEDS[it.at]) <= 5) CAP_SEED.set(it.i, it.at);
+  const capSeedOf = it => CAP_SEED.get(it.i) ?? null;
+  const CAPS_AT = new Map();
+  for (const it of ITEMS) { const s = capSeedOf(it); if (s != null) { if (!CAPS_AT.has(s)) CAPS_AT.set(s, []); CAPS_AT.get(s).push(it); } }
+  for (const L of CAPS_AT.values()) L.sort((a, b) => a.yrs[0][0] - b.yrs[0][0] || a.i - b.i);
   const yrsText = { year: yrs => yrs.map(([a, b]) => b >= 9999 ? `${a}${DASH()}` : `${a}${DASH()}${b}`).join(LZ("，", ", ")), ym: yrs => yrs.map(([a, b]) => { a = Math.floor(a); if (b >= 9999) return `${a}${DASH()}`; b = Math.floor(b); return a === b ? `${a}` : `${a}${DASH()}${b}`; }).join(LZ("，", ", ")), t: yrs => yrs.map(([a, b]) => b >= OPEN ? `${tShort(a)}${DASH()}` : `${tShort(a)}${DASH()}${tShort(b)}`).join(LZ("，", ", ")), qinhan: yrs => yrs.map(([a, b]) => `${yLab(a)}${DASH()}${yLab(b)}`).join(LZ("，", ", ")) }[TIME];
 
   /* ---------------- 条目 ---------------- */
@@ -1133,10 +1143,12 @@
 
   /* ---------------- 检索 ---------------- */
   function unitText(u) { const U = UNITS[u], parts = [U.k, U.n, U.ne, U.se]; for (const sn of SNAPS) { if (sn.lab[u]) parts.push(sn.lab[u]); if (sn.labe && sn.labe[u]) parts.push(sn.labe[u]); } return fold(parts.join(" ")); }
-  function seedText(s) { const S = SEEDS[s]; return fold([S.id, S.n, S.mod, S.ne, S.mode, S.jn, S.jne, ...(S.nm || []).map(x => x[1]), ...(S.nme || []), ...(S.jnm || []).map(x => x[1]), ...(S.jnme || [])].join(" ")); }
+  function seedText(s) { const S = SEEDS[s]; return fold([S.id, S.n, S.mod, S.ne, S.mode, S.jn, S.jne, ...(S.nm || []).map(x => x[1]), ...(S.nme || []), ...(S.jnm || []).map(x => x[1]), ...(S.jnme || []),
+    ...(CAPS_AT.get(s) || []).flatMap(it => [it.old, it.mod, (it.e || {}).old, (it.e || {}).mod])].join(" ")); }
   function itemText(it) { const e = it.e || {}; return fold([it.old, it.mod, it.sides, it.cmd, e.old, e.mod, e.sides, e.cmd].join(" ")); }
   const UTXT = UNITS.map((u, i) => unitText(i)), STXT = SEEDS.map((s, i) => seedText(i)), ITXT = ITEMS.map(itemText);
-  const match = (k) => { if (!query) return true; const [t, i] = parseKey(k); return (t === "u" ? UTXT : t === "s" ? STXT : ITXT)[i].includes(query); };
+  const match = (k) => { if (!query) return true; const [t, i] = parseKey(k); if ((t === "u" ? UTXT : t === "s" ? STXT : ITXT)[i].includes(query)) return true;
+    const s = t === "i" ? capSeedOf(ITEMS[i]) : null; return s != null && STXT[s].includes(query); };   // 都城条目按同处的州府点（含同处各都城名）也算检索到
 
   /* ---------------- 符号 ---------------- */
   function drawMarker(g, kind, x, y, on, opt = {}) {
@@ -1150,11 +1162,12 @@
       g.append(el("rect", { x: x - 4, y: y - 4, width: 8, height: 8, fill: "var(--land)", stroke: "var(--ink-3)", "stroke-width": 1.2, "stroke-dasharray": on ? "none" : "2 1.4" }));
       return 5;
     }
+    if (opt.oc) { const h = kind === "seat" ? 9 : 6.5; g.append(el("rect", { x: x - h, y: y - h, width: h * 2, height: h * 2, fill: "none", stroke: "var(--ink-3)", "stroke-width": 1.1, "stroke-dasharray": on ? "none" : "2 1.4" })); }
     if (kind === "seat") {
       const r = on ? 5.6 : 4.6;
       g.append(el("circle", { cx: x, cy: y, r: r + 1.8, fill: "var(--paper)", style: `stroke:color-mix(in srgb, ${uVar(opt.u)} 55%, var(--ink))`, "stroke-width": 1.3 }));
       g.append(el("circle", { cx: x, cy: y, r: r - 1.6, style: `fill:color-mix(in srgb, ${uVar(opt.u)} 70%, var(--ink))` }));
-      return r + 2.5;
+      return opt.oc ? 10 : r + 2.5;
     }
     if (kind === "battle") {
       const s = on ? 6.5 : 5, op = opt.fut ? .38 : 1;
@@ -1184,7 +1197,7 @@
     // 州府
     const r = on ? 4.6 : opt.c ? 3 : 2.8;
     g.append(el("circle", { cx: x, cy: y, r, fill: opt.c ? "var(--land)" : "var(--paper)", stroke: "var(--c-city)", "stroke-width": opt.c ? 1.1 : 1.4 }));
-    return r + 1;
+    return opt.oc ? 7.5 : r + 1;
   }
 
   /* ---------------- 渲染 ---------------- */
@@ -1247,23 +1260,26 @@
       const prev = capAt.get(key);
       if (!prev || (act && !prev.act) || (!act && !prev.act && end > prev.end)) capAt.set(key, { it, act, end });
     }
-    const capSeed = new Set();
-    for (const { it, act } of capAt.values()) if ((!WEB.oldcap_pref || act) && it.at != null) capSeed.add(it.at);   // 都城处不再另画州府点；旧都处照画（oldcap_pref：唐宋、隋唐、两晋，州府当时的名字常与旧都名不同）
+    // 当期都城处不另画所在的州府点；旧都与所在州府点同处的，并入那个点（州府点外加虚线框，标州府当时的名字），其余照画旧都框
+    const capSeed = new Set(), actNear = new Set(), ocSeed = new Set();
+    if (layerOn.capital) for (const { it, act } of capAt.values()) if (act && it.at != null) { capSeed.add(it.at); if (capSeedOf(it) != null) actNear.add(it.at); }
+    for (const { it, act } of capAt.values()) { const s = capSeedOf(it); if (!act && s != null && !capSeed.has(s)) ocSeed.add(s); }
+    const capOn = s => (actNear.has(s) || ocSeed.has(s)) && (CAPS_AT.get(s) || []).some(it => isOn(keyOf("i", it.i)));   // 选中、悬停同处的都城条目，也算这一处（这一处由合成的点或当期都城代表时）
     const seatSeed = new Map();
     for (const [u, s] of Object.entries(sn.seat)) if (!capSeed.has(s)) seatSeed.set(s, +u);
 
     const pts = [];
-    if (layerOn.pref) for (let s = 0; s < SEEDS.length; s++) {
-      const S = SEEDS[s];
-      if (S.t === "r" || capSeed.has(s) || seatSeed.has(s)) continue;
+    if (layerOn.pref || layerOn.capital) for (let s = 0; s < SEEDS.length; s++) {
+      const S = SEEDS[s], oc = layerOn.capital && ocSeed.has(s);
+      if (S.t === "r" || capSeed.has(s) || (seatSeed.has(s) && (layerOn.seat || !oc)) || (!layerOn.pref && !oc)) continue;
       const k = keyOf("s", s);
       if (!match(k)) continue;
-      pts.push({ kind: "pref", k, xy: S.xy, ord: 0, s, c: S.t === "c" });
+      pts.push({ kind: "pref", k, xy: S.xy, ord: oc ? 1 : 0, s, c: S.t === "c", oc });
     }
     if (layerOn.seat) for (const [s, u] of seatSeed) {
       const k = keyOf("s", s);
       if (!match(k) && !match(keyOf("u", u))) continue;
-      pts.push({ kind: "seat", k, xy: SEEDS[s].xy, ord: 3, s, u });
+      pts.push({ kind: "seat", k, xy: SEEDS[s].xy, ord: 3, s, u, oc: layerOn.capital && ocSeed.has(s) });
     }
     for (const it of ITEMS) {
       if (it.lon == null || !["capital", "battle", "pass", "event", "conc"].includes(it.c)) continue;
@@ -1272,7 +1288,8 @@
       if (!match(k)) continue;
       if (it.c === "conc") { const act = lineOn(it, TT); if (!act && !isOn(k)) continue; pts.push({ kind: "conc", k, xy: it.xy, ord: 2.5, it, u: it.st, fut: !act }); continue; }
       if (it.c === "capital") {
-        const c = capAt.get(it.lon + "," + it.lat);
+        const c = capAt.get(it.lon + "," + it.lat), s = capSeedOf(it);
+        if (s != null && (actNear.has(s) || ocSeed.has(s)) && !(c && c.it === it && c.act)) continue;   // 已画成同处的州府点或当期都城
         if (!c || c.it !== it) { if (!isOn(k)) continue; pts.push({ kind: "capital", k, xy: it.xy, ord: 1, it, act: false, u: it.st, fut: true }); continue; }
         pts.push({ kind: "capital", k, xy: it.xy, ord: c.act ? 6 : 1, it, act: c.act, u: it.st }); continue;
       }
@@ -1285,12 +1302,12 @@
     const forced = new Set();
     for (const R of REGIONS) if (regionOn(R, TT) && isOn(R.k)) for (const s of R.item.members) forced.add(s);
     for (const p of pts) {
-      const on = isOn(p.k) || (p.s != null && forced.has(p.s));
+      const on = isOn(p.k) || (p.s != null && (forced.has(p.s) || capOn(p.s))) || (p.kind === "capital" && p.act && p.it.at != null && (isOn(keyOf("s", p.it.at)) || forced.has(p.it.at) || (capSeedOf(p.it) != null && capOn(p.it.at))));
       const x = sx(p.xy), y = sy(p.xy);
       if (!inView(x, y)) continue;
       // 按缩放分级显示
       if (!on && !query) {
-        if (p.kind === "pref" && K < (p.c ? 2.2 : 2.6)) continue;
+        if (p.kind === "pref" && K < (p.c ? 2.2 : p.oc ? 2.4 : 2.6)) continue;   // 并入旧都的照旧都框 2.4 倍起
         if (p.kind === "seat" && K < 1.05) continue;
         if (p.kind === "pass" && K < 1.4) continue;
         if (p.kind === "event" && K < 1.3) continue;
@@ -1299,7 +1316,7 @@
       }
       nShown++;
       const g = el("g", { class: "marker", "data-k": p.k, style: "cursor:pointer" });
-      const r = drawMarker(g, p.kind, x, y, on, { act: p.act, u: p.u, fut: p.fut, recent: p.recent, c: p.c });
+      const r = drawMarker(g, p.kind, x, y, on, { act: p.act, u: p.u, fut: p.fut, recent: p.recent, c: p.c, oc: p.oc && (on || query || K >= 2.4) });   // 治所 1.05 倍起就画，外框照旧都框 2.4 倍起
       g.append(el("circle", { cx: x, cy: y, r: 11, fill: "transparent" }));
       gMark.append(g);
       obstacles.push({ x: x - r - 1, y: y - r - 1, w: (r + 1) * 2, h: (r + 1) * 2, mk: true });
@@ -1307,7 +1324,7 @@
       let text, sub, size, base;
       if (p.kind === "pref" || p.kind === "seat") { text = seedName(p.s, YY); sub = sMod(SEEDS[p.s]); }
       else { text = iF(p.it, "old"); sub = iF(p.it, "mod"); }
-      if (p.kind === "pref") { if (!on && K < (p.c ? 3.4 : 3.8)) continue; size = on ? 13.5 : 11.5; base = p.c ? 66 : 70; }
+      if (p.kind === "pref") { if (!on && K < (p.c || p.oc ? 3.4 : 3.8)) continue; size = on ? 13.5 : 11.5; base = p.c ? 66 : p.oc ? 68 : 70; }
       else if (p.kind === "seat") { if (!on && K < 1.9) continue; size = on ? 14 : 12.5; base = 30; }
       else if (p.kind === "capital") { if (!on && !p.act && K < 3.4) continue; size = on ? 14.5 : p.act ? 14 : 12; base = p.act ? 10 : 68; }
       else if (p.kind === "battle") { size = on ? 14 : 12.5; base = 25; }
@@ -1620,6 +1637,10 @@
       if (S.jn) meta += `<br><span class="mono">${LZ("郡治", "Seat of")}</span>` + LZ(`${esc(S.jn)}治所`, esc(jnName(S))) + (S.jnm ? LZ(`（${jnNamesHTML(S)}）`, ` (${jnNamesHTML(S)})`) : "");
       const nm = namesHTML(S);
       if (nm) meta += `<br><span class="mono">${LZ("沿革", "Names")}</span>${nm}`;
+      const caps = CAPS_AT.get(i);
+      if (caps) {   // 为都城：政权、年代，都城名与州府此刻的名字不同的写「称……」（名字末尾括注的政权名不重复）
+        const here = seedName(i, YY), capNm = it => { const n = iF(it, "old"), tail = LZ(`（${uShort(it.st)}）`, ` (${uShort(it.st)})`); return n.endsWith(tail) && n.length > tail.length ? n.slice(0, -tail.length) : n; };
+        meta += `<br><span class="mono">${LZ("为都城", "Capital of")}</span>` + caps.map(it => { const n = capNm(it); return `${esc(uShort(it.st))} ${yrsText(it.yrs)}` + (n !== here ? LZ(`，称${esc(n)}`, `, as ${esc(n)}`) : ""); }).join(LZ("；", "; ")); }
       return { old: seedName(i, YY), zh: seedZh(i, YY), mod: sMod(S), meta, note: sNote(S), chain: chainHTML(i), k: u >= 0 ? uVar(u) : "var(--ink-3)" };
     }
     const it = ITEMS[i];
@@ -1764,7 +1785,8 @@
       if (lab) return proj(lab[0], lab[1]);
       return null;
     }
-    const it = ITEMS[i];
+    const it = ITEMS[i], s = capSeedOf(it);
+    if (s != null && !capActive(it, NT(sn))) return SEEDS[s].xy;   // 旧都画在同城的州府点上
     return it.xy || it.axy || null;
   }
   function select(k, fromMap, ev) {
@@ -1779,7 +1801,7 @@
     }
     if (t === "i") {
       const it = ITEMS[i];
-      if (it.c === "capital" && !capActive(it, NT(SNAPS[si]))) { const j = SNAPS.findIndex(sn => capActive(it, NT(sn))); if (j >= 0) { setSnap(j, false); buildIndex(); } }
+      if (it.c === "capital" && !capBegun(it, NT(SNAPS[si]))) { let j = SNAPS.findIndex(sn => capActive(it, NT(sn))); if (j < 0) j = SNAPS.findIndex(sn => capBegun(it, NT(sn))); if (j >= 0) { setSnap(j, false); buildIndex(); } }   // 还没当上都城的跳到第一次当都城的节点（为都年代落在两个节点之间的，跳到其后第一个节点）；已当过的不跳
       if (timed(it) && !inPeriod(it, si)) { setSnap(snapOfItem(it), false); buildIndex(); }
       if (it.c === "region" && !regionOn(it, NT(SNAPS[si]))) { setSnap(snapOfYear(it.y0), false); buildIndex(); }
       if (it.c === "canal" && it.y0 > SNAPS[si].y) { const j = SNAPS.findIndex(sn => sn.y >= it.y0); if (j >= 0) { setSnap(j, false); buildIndex(); } }

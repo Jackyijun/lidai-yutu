@@ -6,6 +6,7 @@ from items_hist import CAP, BAT, EV, PEOPLE, ROUTES
 from units import U
 
 UK = {u['k']: i for i, u in enumerate(U)}
+CAP_AT = {'长安': '雍州', '邺': '相州', '蓟': '幽州', '广固': '青州'}   # 都城名 → 州府点 id
 CN = {'正': 1, '一': 1, '二': 2, '三': 3, '四': 4, '五': 5, '六': 6, '七': 7, '八': 8, '九': 9, '十': 10, '十一': 11, '十二': 12, '冬': 11, '腊': 12}
 
 
@@ -44,9 +45,13 @@ def build(BASE, SEEDS):
             if d < bd: best, bd = i, d
         return best
 
+    # 都城取故城（汉长安城、邺城遗址、广固城）、州府点取今城，3 km 内找不到的：按州府点 id 连。
+    # 广固：州府点 410 年前名广固，坐标却是其后的东阳城（相距 8 km）；连上只为当期都城处不重画，成了旧都后页面上照画旧都框
+    sid = {s['id']: i for i, s in enumerate(SEEDS)}
     for c in CAP:
         assert c['st'] in UK, ('都城政权', c['st'])
-        d = dict(c); d['st'] = UK[d['st']]; d['at'] = near_seed(d['lon'], d['lat']); add(d)
+        d = dict(c); d['st'] = UK[d['st']]
+        d['at'] = sid[CAP_AT[d['old']]] if d['old'] in CAP_AT else near_seed(d['lon'], d['lat']); add(d)
     for b in BAT:
         d = dict(b); y = int(d['y']); d['y'] = y; d['m'] = month_of(y, d['yt']); add(d)
     for e in EV:

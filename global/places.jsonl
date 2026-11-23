@@ -121,7 +121,8 @@
 {"id":"加沙","n":"加沙","names":["加沙"],"mod":"巴勒斯坦加沙","lon":34.45,"lat":31.5,"eras":["songyuan","minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:加沙","songyuan:加沙"],"en":"Gaza"}
 {"id":"马吉达勒","n":"马吉达勒","names":["阿斯卡隆","马吉达勒"],"mod":"以色列阿什凯隆","lon":34.55,"lat":31.67,"eras":["songyuan","minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:马吉达勒","songyuan:阿斯卡隆"],"en":"Ascalon","en_variants":["Ascalon","Majdal"]}
 {"id":"梅尔辛","n":"梅尔辛","names":["梅尔辛"],"mod":"土耳其梅尔辛","lon":34.64,"lat":36.81,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:梅尔辛"],"en":"Mersin"}
-{"id":"雅法","n":"雅法","names":["特拉维夫","雅法"],"mod":"以色列雅法","lon":34.75,"lat":32.05,"eras":["songyuan","minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:371","minguo-xinzhongguo:雅法","songyuan:雅法"],"en":"Jaffa","en_variants":["Jaffa","Tel Aviv"],"sites":[{"lon":34.75,"lat":32.05,"eras":["songyuan","minguo-xinzhongguo"]},{"lon":34.78,"lat":32.08,"eras":["minguo-xinzhongguo"]}]}
+{"id":"雅法","n":"雅法","names":["雅法"],"mod":"以色列雅法","lon":34.75,"lat":32.05,"eras":["songyuan","minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:雅法","songyuan:雅法"],"en":"Jaffa"}
+{"id":"特拉维夫","n":"特拉维夫","names":["特拉维夫"],"mod":"以色列特拉维夫","lon":34.78,"lat":32.08,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:371"],"en":"Tel Aviv"}
 {"id":"贝尔谢巴","n":"贝尔谢巴","names":["贝尔谢巴"],"mod":"以色列贝尔谢巴","lon":34.79,"lat":31.25,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:贝尔谢巴"],"en":"Beersheba"}
 {"id":"奇里乞亚门","n":"奇里乞亚门","names":["奇里乞亚门"],"mod":"土耳其托罗斯山居莱克山口","lon":34.8,"lat":37.3,"eras":["songyuan"],"refs":["songyuan:i:563"],"en":"Cilician Gates"}
 {"id":"西里西亚门","n":"西里西亚门","names":["西里西亚门"],"mod":"土耳其梅尔辛居莱克山口","lon":34.8,"lat":37.3,"eras":["minguo-xinzhongguo"],"refs":["minguo-xinzhongguo:i:886"],"en":"Cilician Gates"}
