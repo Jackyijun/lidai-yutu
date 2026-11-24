@@ -23,10 +23,12 @@
 | 州（多音节专名） | 分写 Zhou | 西会州 Xihui Zhou、北燕州 Beiyan Zhou |
 | 郡（隋大业） | X Commandery | 京兆郡 Jingzhao Commandery、涿郡 Zhuo Commandery |
 | 郡下县 | Y County, X Commandery | 京兆郡郑县 Zheng County, Jingzhao Commandery |
+| 州下县 | Y County, X州名 | 益州九陇县 Jiulong County, Yizhou、瀛州饶阳县 Raoyang County, Yingzhou |
 | 县 | X County | 魏县 Wei County |
 | 镇 | X Garrison | 恒安镇 Heng'an Garrison、龟兹镇 Kucha Garrison |
 | 防 | X Post | 周武防 Zhouwu Post |
 | 城（城名的一部分） | City；朝鲜半岛的山城作 Fortress | 统万城 Tongwan City、伏俟城 Fuqi City；安市城 Ansi Fortress |
+| 故城 / 城址 / 遗址 | 作点名的故城：Old city of X；今地括注里的故城、城址、遗址：X city site / X ruins | 岚州故城 Old city of Lanzhou；（珠崖岭城址）(Zhuyaling city site) |
 | 关 / 口 / 岭 | Pass；已成专名者照拼 | 蒲津关 Pujin Pass、飞狐口 Feihu Pass、古北口 Gubeikou |
 | 水 / 河 / 江 | X River；外域河流用当地通行名，不把中文译音转回拼音 | 汾水 Fen River；乌浒水 Oxus、药杀水 Jaxartes、曳咥河 Irtysh、嗢昆水 Orkhon、娑陵水 Selenga、剑河 Kem、胪朐河 Kherlen、臧河 Tsangpo、雷翥海 Aral Sea；朝鲜半岛按韩语读音：萨水 Salsu River、浿水 Paesu River、蛇水 Sasu River、黄山江 Hwangsan River；越南的沱江 Đà River |
 | 山 | 山脉 X Mountains；单峰 Mount X | 燕然山 Yanran Mountains、邙山 Mount Mang |

@@ -1627,9 +1627,10 @@
   }
  },
  "崖州": {
-  "mod": "Qiongshan, Haikou, Hainan",
+  "mod": "Longtang, Qiongshan, Haikou, Hainan (Zhuyaling city site)",
   "n": {
-   "崖州": "Yazhou"
+   "崖州": "Yazhou",
+   "舍城县（属琼州）": "Shecheng County (under Qiongzhou)"
   }
  },
  "琼州": {
@@ -1647,7 +1648,8 @@
  "振州": {
   "mod": "Yacheng, Sanya, Hainan",
   "n": {
-   "振州": "Zhenzhou"
+   "振州": "Zhenzhou",
+   "崖州": "Yazhou"
   }
  },
  "万安州": {

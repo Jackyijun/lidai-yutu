@@ -21,7 +21,9 @@
 | 州（多音节专名） | 分写 Zhou | 安乐州 Anle Zhou、万安州 Wan'an Zhou |
 | 府 / 军 | 分写，不意译 | 京兆府 Jingzhao Fu、兴王府 Xingwang Fu、天雄军 Tianxiong Jun |
 | 县 / 郡 | County / Commandery | 马邑县 Mayi County、东平郡 Dongping Commandery |
+| 州下县（「Y县（属X州）」） | Y County (under X州名) | 上元县（属润州）Shangyuan County (under Runzhou)、舍城县（属琼州）Shecheng County (under Qiongzhou) |
 | 城 | City；英文已有定名的从定名 | 太和城 Taihe City、中受降城 Central Shouxiang City、石堡城 Shibao Fortress |
+| 城址 / 遗址（今地括注） | X city site / X ruins | （珠崖岭城址）(Zhuyaling city site) |
 | 镇（军镇）/ 守捉 | Garrison | 播仙镇 Boxian Garrison、葱岭守捉 Congling Garrison、清海镇 Cheonghae Garrison |
 | 都护府 | Protectorate | 单于都护府 Chanyu Protectorate、安东都护府 Andong Protectorate |
 | 京（陪都） | 府名在前，京名意译加括注 | 上京龙泉府 Longquan Fu (Supreme Capital)、中京显德府 Xiande Fu (Central Capital) |

@@ -27,6 +27,7 @@
 | 镇 | X Garrison | 统万镇 Tongwan Garrison、怀朔镇 Huaishuo Garrison；六镇 Six Garrisons |
 | 城（城名的一部分） | City；朝鲜半岛高句丽的城作 Fortress | 统万城 Tongwan City、宁平城 Ningping City；国内城 Gungnae Fortress |
 | 故地 | former X lands | 朔方故地 former Shuofang lands；真腊故地 Chenla homeland |
+| 故城 / 城址 / 遗址（今地括注） | X city site / X ruins | （汉魏洛阳故城）(Han–Wei Luoyang city site)、（统万城遗址）(Tongwan City ruins)、（珠崖岭城址）(Zhuyaling city site) |
 | 关 / 塞 / 陉 / 口 | Pass / Fort / Defile / Pass；已成专名者照拼 | 潼关 Tong Pass、卢龙塞 Lulong Fort、句注陉 Gouzhu Defile、井陉口 Jingxing Pass、古北口 Gubeikou、濡须口 Ruxukou |
 | 水 / 河 / 江 | X River | 淝水 Fei River、湨水 Ju River、汾水 Fen River；江 Yangtze、河 Yellow River |
 | 山 | 山脉 X Mountains；单峰、小山 Mount X | 太行山 Taihang Mountains；邙山 Mount Mang、钟山 Mount Zhong、蒜山 Mount Suan、覆舟山 Mount Fuzhou |

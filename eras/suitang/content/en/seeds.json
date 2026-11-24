@@ -443,11 +443,12 @@
   }
  },
  "深州": {
-  "mod": "Shenzhou, Hebei",
+  "mod": "Raoyang, Hebei",
   "n": {
    "深州": "Shenzhou",
    "饶阳县": "Raoyang County",
-   "河间郡饶阳县": "Raoyang County, Hejian Commandery"
+   "河间郡饶阳县": "Raoyang County, Hejian Commandery",
+   "瀛州饶阳县": "Raoyang County, Yingzhou"
   }
  },
  "冀州": {
@@ -1733,9 +1734,11 @@
   "mod": "Liuzhou, Guangxi",
   "n": {
    "柳州": "Liuzhou",
-   "马平县": "Maping County",
-   "昆州": "Kunzhou",
-   "马平郡": "Maping Commandery"
+   "马平郡": "Maping Commandery",
+   "象州": "Xiangzhou",
+   "始安郡马平县": "Maping County, Shi'an Commandery",
+   "南昆州": "Nankun Zhou",
+   "马平县": "Maping County"
   }
  },
  "象州": {
@@ -1743,7 +1746,9 @@
   "n": {
    "象州": "Xiangzhou",
    "始安郡阳寿县": "Yangshou County, Shi'an Commandery",
-   "桂林郡": "Guilin Commandery"
+   "韶阳郡": "Shaoyang Commandery",
+   "象州阳寿县": "Yangshou County, Xiangzhou",
+   "阳寿县": "Yangshou County"
   }
  },
  "藤州": {
@@ -1804,7 +1809,7 @@
   }
  },
  "崖州": {
-  "mod": "Qiongshan, Haikou, Hainan",
+  "mod": "Longtang, Qiongshan, Haikou, Hainan (Zhuyaling city site)",
   "n": {
    "崖州": "Yazhou",
    "珠崖故地": "former Zhuya lands",
