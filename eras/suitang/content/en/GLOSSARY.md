@@ -57,7 +57,7 @@
 - 汉人名：姓在前、拼音（Li Shimin、Dou Jiande、Wang Shichong）；复姓连写（Yuwen Huaji、Zhangsun Wuji、Yuchi Jingde、Qutu Tong、Heruo Bi）；帝王用 “Emperor + 庙号/谥号 + of + 朝”（Emperor Yang of Sui、Emperor Taizong of Tang）。
 - 突厥可汗用英文通行写法：沙钵略 Ishbara、达头 Tardu、启民 Qimin、始毕 Shibi、处罗 Chuluo、颉利 Illig、突利 Tuli、统叶护 Tong Yabghu、射匮 Shekui、乙毗咄陆 Yipi Duolu；阿史那 Ashina；“设” Shad（大度设 Dadu Shad）。
 - 朝鲜半岛用新罗马字：Goguryeo、Baekje、Silla、Eulji Mundeok、Yeon Gaesomun、Kim Yu-sin、Gyebaek、King Uija、Buyeo Pung、Ungjin、Sabi；泉男生、泉男建即渊氏，作 Yeon Namsaeng、Yeon Namgeon。
-- 日本用平文式：Asuka、Naniwa、Tsukushi、Ōmi-Ōtsu。越南保留声调符号：Lý Phật Tử、Trà Kiệu、Quảng Nam；但隋唐在今越南设的州郡是中国建置，用拼音（交州 Jiaozhou、爱州 Aizhou、驩州 Huanzhou、日南郡 Rinan Commandery），今地才写越南名。
+- 日本用平文式：Asuka、Naniwa、Tsukushi、Ōmi-Ōtsu、Nanotsu no Miyake（那津官家，与两晋卷一致）。越南保留声调符号：Lý Phật Tử、Trà Kiệu、Quảng Nam；但隋唐在今越南设的州郡是中国建置，用拼音（交州 Jiaozhou、爱州 Aizhou、驩州 Huanzhou、日南郡 Rinan Commandery），今地才写越南名。
 - 高句丽的城用新罗马字加 Fortress（辽东城 Yodong Fortress、建安城 Geonan Fortress、安市城 Ansi Fortress），隋唐所设州郡仍用拼音。
 - 吐蕃：Songtsen Gampo、Gar Tongtsen（禄东赞）、Pugyal（悉补野）、Yarlung、Rasa（逻些）；象雄 Zhangzhung、苏毗 Sumpa。
 - 西域与葱岭以西：焉耆 Karasahr、龟兹 Kucha、于阗 Khotan、疏勒 Kashgar、康国 Samarkand、安国 Bukhara、石国 Chach、史国 Kesh、拔汗那 Ferghana、吐火罗 Tokharistan、缚喝 Balkh、帆延 Bamiyan、迦毕试 Kapisa、木鹿 Merv、疾陵城 Zaranj。

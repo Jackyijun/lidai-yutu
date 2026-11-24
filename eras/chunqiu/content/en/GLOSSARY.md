@@ -6,6 +6,7 @@
 
 - 汉语拼音，不标声调；音节界限有歧义时加撇号：Xi'an、Chang'an。
 - 多音字按地名旧读：乾时 Ganshi、乾溪 Ganxi、大原 Taiyuan（大读太）、不羹 Bulang、费 Bi、须句 Xuqu、华不注 Huafuzhu、栎 Li（郑之栎邑）、叶 She、六 Lu、番 Po、召陵 Shaoling、城父 Chengfu、句吴 Gouwu、会稽 Kuaiji、令支 Lingzhi、蓼 Liao、鄢 Yan、郪 Qi、繻葛 Xuge、鞌 An、邲 Bi、檇李 Zuili、柏举 Baiju、虢 Guo、郐 Kuai、鄫 Zeng、郯 Tan、莒 Ju、邾 Zhu。
+- 晋邑中牟（在今鹤壁一带）作 Zhongmou，英文著作多这样写。它与今河南中牟县不是一地；今县读 Zhongmu（汉末、民国卷的今地用），两者不要统一。
 - 人名多音字：管仲 Guan Zhong、伍员 Wu Yun（伍子胥 Wu Zixu）、子产 Zichan、叔向 Shuxiang、先轸 Xian Zhen、郤克 Xi Ke、栾书 Luan Shu。
 
 ## 二、国名

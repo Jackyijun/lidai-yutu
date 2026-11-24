@@ -3220,10 +3220,15 @@
   "mod": "Yinchuan, Ningxia",
   "note": "Li Deming built up Xingzhou at Huaiyuan Town from 1020; Li Yuanhao raised it to Xingqing Fu in 1033 and made it his capital when he proclaimed himself emperor in 1038; it was later renamed Zhongxing Fu. The Western Xia imperial tombs lie at the foot of the Helan Mountains in its western outskirts."
  },
+ "capital:会宁": {
+  "old": "Huining",
+  "mod": "Baicheng, Acheng, Harbin, Heilongjiang",
+  "note": "The Emperor's Camp of the Wanyan clan on the Anchuhu River, and the capital of the early Jin. Originally Huining Zhou, it was later raised to Huining Fu (under Emperor Taizong of Jin by one account, in 1138 by another); in 1138 it became the Supreme Capital (see \"Huining Fu (Supreme Capital)\")."
+ },
  "capital:上京会宁府": {
   "old": "Huining Fu (Supreme Capital)",
   "mod": "Baicheng, Acheng, Harbin, Heilongjiang",
-  "note": "The Emperor's Camp of the Wanyan clan on the Anchuhu River, made the Supreme Capital in 1138. After Wanyan Liang moved the capital to Yanjing in 1153 it lost the title of capital, and its palaces were destroyed in 1157."
+  "note": "In 1138 Emperor Xizong of Jin made Huining Fu the Supreme Capital. After Wanyan Liang moved the capital to Yanjing in 1153 it lost the title and was called simply Huining Fu (the office of custodian of the Supreme Capital was abolished only in 1157), and its palaces were destroyed in 1157; Emperor Shizong restored it as the Supreme Capital in 1173."
  },
  "capital:中都大兴府": {
   "old": "Daxing Fu (Zhongdu)",

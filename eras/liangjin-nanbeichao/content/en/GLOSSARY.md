@@ -82,7 +82,7 @@
 - 与隋唐卷 581 年节点共有的政权、州名照隋唐卷英文，即使与本图第二、三节的写法不同：交州（李佛子）Jiaozhou (Lý Phật Tử)、高宝宁（营州）Gao Baoning (Yingzhou)、杨坚代周·隋朝建立 Yang Jian supplants the Zhou · Sui founded。
 - 汉末卷与隋唐卷写法不一的：濡水取汉末卷 Nuan River；今地 “一带” 取隋唐卷 around X。
 - 沿用隋唐卷的按语按本卷体例统一：“（今名）” 写 The name is modern.，“中原” 写 Central Plain（隋唐卷作 Central Plains）；作行政区的幽州在按语里写 You Province（隋唐卷作 Youzhou）。
-- 本图改正了隋唐卷两处写法：筑紫（那津官家）Nanotsu no Miyake（隋唐卷作 Natsu）、特拉布宗用当时名称 Trapezus。
+- 本图改正了隋唐卷一处写法：特拉布宗用当时名称 Trapezus。筑紫（那津官家）原先隋唐卷作 Natsu，2026-11-23 已改作 Nanotsu no Miyake，两卷一致。
 
 ## 八、维护
 

@@ -116,7 +116,7 @@
   "mod": "Fenyang, Shanxi",
   "n": {
    "隰城（西河）": "Xicheng (Xihe)",
-   "汾州": "Fenzhou"
+   "介州": "Jiezhou"
   }
  },
  "介休": {
@@ -176,7 +176,7 @@
   "mod": "Jincheng, Shanxi",
   "n": {
    "高都": "Gaodu",
-   "泽州": "Zezhou"
+   "建州": "Jianzhou"
   }
  },
  "晋州": {
@@ -271,7 +271,7 @@
   "mod": "Zhao County, Hebei",
   "n": {
    "平棘（赵郡）": "Pingji (Zhao Commandery)",
-   "赵州": "Zhaozhou"
+   "赵郡": "Zhao Commandery"
   }
  },
  "瀛州": {
@@ -285,8 +285,7 @@
   "mod": "Shenzhou, Hebei",
   "n": {
    "博陵（安平）": "Boling (Anping)",
-   "深州": "Shenzhou",
-   "饶阳县": "Raoyang County"
+   "深州": "Shenzhou"
   }
  },
  "冀州": {
@@ -348,11 +347,11 @@
   }
  },
  "德州": {
-  "mod": "Lingcheng, Dezhou, Shandong",
+  "mod": "south of Pingyuan, Shandong",
   "n": {
    "平原": "Pingyuan",
    "德州": "Dezhou",
-   "安德郡": "Ande Commandery"
+   "平原县": "Pingyuan County"
   }
  },
  "棣州": {
@@ -396,7 +395,7 @@
   "n": {
    "虎牢": "Hulao",
    "洛口仓": "Luokou Granary",
-   "洛口": "Luokou"
+   "荥州": "Xingzhou"
   }
  },
  "陕州": {
@@ -425,8 +424,7 @@
   "mod": "northeast of Xingyang, Henan (Guxing Town)",
   "n": {
    "荥阳": "Xingyang",
-   "郑州": "Zhengzhou",
-   "广武郡": "Guangwu Commandery"
+   "郑州": "Zhengzhou"
   }
  },
  "许州": {
@@ -631,8 +629,7 @@
   "mod": "Huaiyin District, Huai'an, Jiangsu",
   "n": {
    "淮阴": "Huaiyin",
-   "楚州": "Chuzhou",
-   "山阳郡": "Shanyang Commandery"
+   "楚州": "Chuzhou"
   }
  },
  "滁州": {
@@ -908,7 +905,7 @@
   "mod": "Mao County, Sichuan",
   "n": {
    "汶山": "Wenshan",
-   "会州": "Huizhou"
+   "汶州": "Wenzhou"
   }
  },
  "剑州": {
@@ -1311,9 +1308,7 @@
   "mod": "Qiongshan, Haikou, Hainan",
   "n": {
    "珠崖": "Zhuya",
-   "珠崖故地": "former Zhuya lands",
-   "崖州（珠崖）": "Yazhou (Zhuya)",
-   "珠崖郡": "Zhuya Commandery"
+   "珠崖故地": "former Zhuya lands"
   }
  },
  "交州": {
@@ -2286,6 +2281,14 @@
   "mod": "Sana'a, Yemen",
   "n": {
    "萨那（希木叶尔）": "Sana'a (Himyar)"
+  }
+ },
+ "儋州": {
+  "mod": "Zhonghe, Danzhou, Hainan",
+  "n": {
+   "义伦": "Yilun",
+   "儋耳故地": "former Dan'er lands",
+   "崖州": "Yazhou"
   }
  }
 }

@@ -7,6 +7,7 @@
 - 汉语拼音，不标声调；音节界限有歧义时加撇号：Xi'an、Wu'an、Rao'an、Nan'an、Ming'e。
 - 多音字按地名旧读：栎阳 Yueyang、阿 E、叶 She、六 Lu、番 Po、阳夏 Yangjia、召陵 Shaoling、城父 Chengfu、番吾 Powu、阏与 Yuyu、鄚 Mao、句注 Gouzhu、句章 Gouzhang、令支 Lingzhi、会稽 Kuaiji、濡水（今滦河）Nan River。
 - 地名多音字另有：商於 Shang and Wu、黾塞 Mengsai。
+- 赵都中牟（在今鹤壁一带）作 Zhongmou，英文著作多这样写；按语里《汉志》比附的汉河南郡中牟县也写 Zhongmou，以见是按同名比附。今河南中牟县读 Zhongmu（汉末、民国卷的今地用），两者不要统一。
 - 人名多音字：庞煖 Pang Nuan（英文文献通行读法）、召滑 Shao Hua、樗里疾 Chuli Ji、韩釐王 King Xi of Han、范蜎 Fan Yuan、寺区 Si'ou。
 - 吕梁、医巫闾、离石所在的吕梁市用 ü：Lüliang、Yiwulü。
 

@@ -20,7 +20,7 @@ default = "政权"
 [layers]                    # 本卷用到的条目类别及条数（核对用）
 river = 197
 battle = 147
-capital = 99
+capital = 100
 range = 70
 event = 58
 pass = 30

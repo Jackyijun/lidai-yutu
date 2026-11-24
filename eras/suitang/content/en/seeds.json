@@ -184,7 +184,8 @@
   "n": {
    "汾州": "Fenzhou",
    "西河郡": "Xihe Commandery",
-   "浩州": "Haozhou"
+   "浩州": "Haozhou",
+   "介州": "Jiezhou"
   }
  },
  "介休": {
@@ -208,7 +209,9 @@
   "mod": "Lan County, Shanxi",
   "n": {
    "岚州": "Lanzhou",
-   "楼烦郡": "Loufan Commandery"
+   "楼烦郡岚城县": "Lancheng County, Loufan Commandery",
+   "东会州": "Donghui Zhou",
+   "岚州故城": "Old city of Lanzhou"
   }
  },
  "忻州": {
@@ -253,7 +256,9 @@
   "mod": "Jincheng, Shanxi",
   "n": {
    "泽州": "Zezhou",
-   "长平郡": "Changping Commandery"
+   "长平郡": "Changping Commandery",
+   "建州": "Jianzhou",
+   "盖州": "Gaizhou"
   }
  },
  "沁州": {
@@ -270,9 +275,9 @@
   "n": {
    "辽州": "Liaozhou",
    "太原郡辽山县": "Liaoshan County, Taiyuan Commandery",
-   "辽阳": "Liaoyang",
    "辽山县": "Liaoshan County",
-   "箕州": "Jizhou"
+   "箕州": "Jizhou",
+   "辽阳故城": "Old city of Liaoyang"
   }
  },
  "晋州": {
@@ -418,7 +423,8 @@
   "mod": "Zhao County, Hebei",
   "n": {
    "赵州": "Zhaozhou",
-   "赵郡": "Zhao Commandery"
+   "赵郡": "Zhao Commandery",
+   "平棘县": "Pingji County"
   }
  },
  "瀛州": {
@@ -523,7 +529,6 @@
   "n": {
    "德州": "Dezhou",
    "平原郡": "Pingyuan Commandery",
-   "安德郡": "Ande Commandery",
    "安德县": "Ande County"
   }
  },
@@ -1099,7 +1104,9 @@
   "n": {
    "彭州": "Pengzhou",
    "濛州": "Mengzhou",
-   "蜀郡九陇县": "Jiulong County, Shu Commandery"
+   "蜀郡九陇县": "Jiulong County, Shu Commandery",
+   "九陇郡": "Jiulong Commandery",
+   "益州九陇县": "Jiulong County, Yizhou"
   }
  },
  "汉州": {
@@ -1199,7 +1206,9 @@
   "n": {
    "茂州": "Maozhou",
    "会州": "Huizhou",
-   "汶山郡": "Wenshan Commandery"
+   "汶山郡": "Wenshan Commandery",
+   "汶州": "Wenzhou",
+   "南会州": "Nanhui Zhou"
   }
  },
  "松州": {
@@ -1798,6 +1807,7 @@
   "mod": "Qiongshan, Haikou, Hainan",
   "n": {
    "崖州": "Yazhou",
+   "珠崖故地": "former Zhuya lands",
    "珠崖郡": "Zhuya Commandery"
   }
  },
@@ -1805,15 +1815,17 @@
   "mod": "Zhonghe, Danzhou, Hainan",
   "n": {
    "儋州": "Danzhou",
-   "珠崖郡义伦县": "Yilun County, Zhuya Commandery"
+   "珠崖郡": "Zhuya Commandery",
+   "崖州": "Yazhou",
+   "儋耳郡": "Dan'er Commandery"
   }
  },
  "振州": {
   "mod": "Yacheng, Sanya, Hainan",
   "n": {
    "振州": "Zhenzhou",
-   "崖州": "Yazhou",
-   "临振郡": "Linzhen Commandery"
+   "临振郡": "Linzhen Commandery",
+   "临振县": "Linzhen County"
   }
  },
  "交州": {
@@ -2273,7 +2285,7 @@
   "mod": "Dazaifu, Fukuoka, Japan",
   "n": {
    "筑紫": "Tsukushi",
-   "筑紫（那津官家）": "Tsukushi (Natsu no Miyake)"
+   "筑紫（那津官家）": "Tsukushi (Nanotsu no Miyake)"
   }
  },
  "飞鸟": {
@@ -2457,7 +2469,7 @@
   "mod": "Patna, India (Pataliputra)",
   "n": {
    "摩揭陀": "Magadha",
-   "摩揭陀（那烂陀寺所在）": "Magadha (seat of Nalanda)"
+   "摩揭陀（那烂陀寺所在）": "Magadha (site of Nalanda Monastery)"
   }
  },
  "泥婆罗": {
