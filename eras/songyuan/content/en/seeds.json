@@ -1378,7 +1378,7 @@
   }
  },
  "深州": {
-  "mod": "Shenzhou, Hebei",
+  "mod": "around Jiachengxi Village, Shenzhou, Hebei",
   "n": {
    "深州": "Shenzhou"
   }
@@ -1973,18 +1973,10 @@
    "化州": "Huazhou"
   }
  },
- "崖州": {
-  "mod": "Qiongshan, Haikou, Hainan",
-  "n": {
-   "崖州": "Yazhou",
-   "琼州": "Qiongzhou"
-  }
- },
  "琼州": {
-  "mod": "around Ding'an, Hainan",
+  "mod": "Fucheng, Qiongshan, Haikou, Hainan",
   "n": {
-   "琼州": "Qiongzhou",
-   "琼州（定安）": "Qiongzhou (Ding'an)"
+   "琼州": "Qiongzhou"
   }
  },
  "儋州": {

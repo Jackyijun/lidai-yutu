@@ -1521,13 +1521,11 @@
 {"id":"蒲州","kind":"place","zh":"蒲坂","en":"Puban"}
 {"id":"蒲州","kind":"place","zh":"河中府","en":"Hezhong Fu"}
 {"id":"蒲州","kind":"place","zh":"蒲州","en":"Puzhou"}
-{"id":"琼州","kind":"place","zh":"琼州","en":"Qiongzhou"}
 {"id":"海口","kind":"place","zh":"海口","en":"Haikou"}
 {"id":"潼关","kind":"place","zh":"潼关","en":"Tongguan","by_era":{"Tong Pass":["汉末","两晋","隋唐","唐宋","宋元","民国"],"Tongguan":["民国"]}}
 {"id":"巴东（湖北巴东）","kind":"place","zh":"巴东","en":"Badong"}
 {"id":"古晋","kind":"place","zh":"古晋","en":"Kuching"}
-{"id":"崖州","kind":"place","zh":"珠崖","en":"Zhuya"}
-{"id":"崖州","kind":"place","zh":"崖州","en":"Yazhou"}
+{"id":"琼州","kind":"place","zh":"琼州","en":"Qiongzhou"}
 {"id":"广州湾","kind":"place","zh":"广州湾","en":"Guangzhouwan"}
 {"id":"日惹","kind":"place","zh":"日惹","en":"Yogyakarta"}
 {"id":"万安","kind":"place","zh":"万安州","en":"Wan'an Zhou"}
@@ -1537,7 +1535,10 @@
 {"id":"沅陵","kind":"place","zh":"辰州","en":"Chenzhou"}
 {"id":"诃罗单","kind":"place","zh":"诃罗单","en":"Heluodan"}
 {"id":"龚州","kind":"place","zh":"龚州","en":"Gongzhou"}
+{"id":"琼州（旧州）","kind":"place","zh":"琼州","en":"Qiongzhou"}
 {"id":"三宝垄","kind":"place","zh":"三宝垄","en":"Semarang"}
+{"id":"崖州","kind":"place","zh":"珠崖","en":"Zhuya"}
+{"id":"崖州","kind":"place","zh":"崖州","en":"Yazhou"}
 {"id":"百灵庙","kind":"place","zh":"百灵庙","en":"Bailingmiao"}
 {"id":"韩城","kind":"place","zh":"夏阳","en":"Xiayang"}
 {"id":"韩城","kind":"place","zh":"韩城","en":"Hancheng"}
@@ -2219,7 +2220,6 @@
 {"id":"濮州","kind":"place","zh":"濮州","en":"Puzhou"}
 {"id":"濮州","kind":"place","zh":"鄄","en":"Juan"}
 {"id":"安平","kind":"place","zh":"博陵（安平）","en":"Boling (Anping)"}
-{"id":"深州","kind":"place","zh":"深州","en":"Shenzhou"}
 {"id":"妫州","kind":"place","zh":"沮阳（上谷）","en":"Juyang (Shanggu)"}
 {"id":"妫州","kind":"place","zh":"怀来","en":"Huailai"}
 {"id":"妫州","kind":"place","zh":"妫州","en":"Guizhou"}
@@ -2230,6 +2230,7 @@
 {"id":"定陶","kind":"place","zh":"定陶（济阴）","en":"Dingtao (Jiyin)"}
 {"id":"定陶","kind":"place","zh":"曹州","en":"Caozhou"}
 {"id":"定陶","kind":"place","zh":"周桥（曹州）","en":"Zhouqiao (Caozhou)"}
+{"id":"深州","kind":"place","zh":"深州","en":"Shenzhou"}
 {"id":"陶","kind":"place","zh":"陶","en":"Tao"}
 {"id":"冀州","kind":"place","zh":"信都","en":"Xindu"}
 {"id":"冀州","kind":"place","zh":"冀州","en":"Jizhou"}
@@ -2252,6 +2253,7 @@
 {"id":"扶柳","kind":"place","zh":"扶柳","en":"Fuliu"}
 {"id":"临清","kind":"place","zh":"临清","en":"Linqing"}
 {"id":"巨阳","kind":"place","zh":"巨阳","en":"Juyang"}
+{"id":"饶阳","kind":"place","zh":"深州","en":"Shenzhou"}
 {"id":"德安","kind":"place","zh":"德安","en":"De'an"}
 {"id":"亳州","kind":"place","zh":"谯","en":"Qiao"}
 {"id":"亳州","kind":"place","zh":"亳县","en":"Boxian"}
