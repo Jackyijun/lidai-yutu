@@ -10,7 +10,7 @@
   长城、驰道直道          → 线状地物 road（sub = wall / road），长城的废弃年记 gone
   水系里的运河            → 运河 canal
   秦郡（jun）、秦郡界 j   → 原样保留，统一模板另画（有数据就画）
-  灭国 falls              → 年表另收
+  （灭国表不在这里：九卷都由 content/falls.tsv 经 falls.py 读入）
 
 疆域、注记点、归属点都不动：页面上的疆域与 engine.json 逐字相同，只是换一种写法交给模板。
 """
@@ -186,11 +186,9 @@ def layered(b):
         o.pop("tl", None)
 
     D = {"units": units, "seeds": seeds, "items": out}
-    for k in ("falls", "alleg", "p0"):
+    for k in ("alleg", "p0"):
         if k in D0:
             D[k] = D0[k]
-    if "falls" in D:
-        D["falls"] = [dict(f, u=ix[f["k"]]) if f.get("k") in ix else f for f in D["falls"]]
 
     # 深链接：政权、地点用全局 ID，条目用「类别:全局 ID 或古名」；战国式旧链接（city: / town: / culture: / place:）另作别名
     first = lambda g: g[0][1] if isinstance(g, list) else g

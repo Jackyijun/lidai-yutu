@@ -162,6 +162,8 @@ pref_kind = ["郡国", "Commandery"]
 other_group = ["其他时期的政权与郡国", "States, commanderies and kingdoms of other periods"]
 # 索引里二级单位一组的名称
 zhen_group = ["郡国", "Commanderies & kingdoms"]
+# 索引里长城、道路一组的名称（与图例开关「长城·道路」同名；组内依次为长城和塞、驰道直道、古道栈道）
+road_group = ["长城 · 道路", "Walls & roads"]
 # 英文检索框的提示
 q_en = "Search names"
 # 英文对照表、年表里关于日期的说明
@@ -169,7 +171,7 @@ date_note_en = "Dates give the lunar months of the Chinese sources (“12th mont
 # 对照表导语（{n} 为节点数，{date_note} 为上一项）
 table_intro = ["<p>图中全部郡国、城邑与地物，一名一行。郡国与城邑的“归属沿革”取自地图上 {n} 个时间节点，连续相同的归属合并显示。经纬度取今日遗址或所在城市，可在任意地图应用中定位；点击任一行回到地图并定位。</p>", "<p>Every commandery, town and feature on the map, one name per row. The allegiance of commanderies and towns is taken from the map’s {n} snapshots, with consecutive identical entries merged. Coordinates are those of the modern site or city and work in any map app; click a row to return to the map.</p><p>{date_note}</p>"]
 # 年表导语
-chron_intro = ["<p>把战役、行军、事件、都城迁移与地图上的 {n} 个时间节点排成一条线，自秦并天下至黄巾起事。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>", "<p>Battles, campaigns, events, capital moves and the map’s {n} snapshots on a single line, from the Qin empire to the Yellow Turbans. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
+chron_intro = ["<p>把战役、行军、事件、都城迁移、灭国、归附与地图上的 {n} 个时间节点排成一条线，自秦并天下至黄巾起事。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>", "<p>Battles, campaigns, events, capital moves, the fall or submission of states and the map’s {n} snapshots on a single line, from the Qin empire to the Yellow Turbans. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
 # 年表收哪些年份的都城迁移 [起, 止, 起是否不含]（起为 false 取首节点，止为 false 不设上限）
 chron_cap = [false, false, true]
 

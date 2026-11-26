@@ -121,9 +121,9 @@ def make():
 
 
 def merge(GEO, I, draft):
-    """并入英文：条目 e{字段}，节点 te / she / de（短名中文为 sh），今省 ne，灭国 nme / pe。"""
+    """并入英文：条目 e{字段}，节点 te / she / de（短名中文为 sh），今省 ne。灭国表另在 content/falls.tsv（core/web/falls.py 读）。"""
     en, lock = i18n.load()
-    us = i18n.units(I, GEO["snaps"], [p["n"] for p in GEO["prov"]], F.FALLS, F.SNAP_SHORT, getattr(F, "ALLEGIANCE", {}))
+    us = i18n.units(I, GEO["snaps"], [p["n"] for p in GEO["prov"]], F.SNAP_SHORT, getattr(F, "ALLEGIANCE", {}))
     miss, stale, unreg = i18n.check(us, en, lock)
     if miss or stale or unreg:
         print(f"   英文：缺译 {len(miss)} · 过期 {len(stale)} · 未登记指纹 {len(unreg)}（python tools/i18n.py status 查看）")
@@ -149,25 +149,18 @@ def merge(GEO, I, draft):
         le = {k: ok("misc", f"alias:{k}:{nm}", "n") for k, nm in s.get("lab", {}).items()}
         le = {k: v for k, v in le.items() if v}
         if le: s["labe"] = le
-    falls = []
-    for y, nm, p, k in F.FALLS:
-        f = {"y": y, "nm": nm, "p": p, "k": k}
-        for fld in ("nm", "p"):
-            v = ok("misc", f"fall:{y}", fld)
-            if v: f[fld + "e"] = v
-        falls.append(f)
     # 共主着色：[[起年, "f" 奉周 / "z" 自立, 依据, 英文依据]]
     alleg = {}
     for k, segs in getattr(F, "ALLEGIANCE", {}).items():
         alleg[k] = [[y, "f" if st == "奉周" else "z", why, ok("misc", f"alleg:{k}:{y}", "n") or ""] for y, st, why in segs]
-    return falls, alleg
+    return alleg
 
 
 if __name__ == "__main__":
     draft = "--draft" in sys.argv
     GEO, I = make()
-    falls, alleg = merge(GEO, I, draft)
-    DATA = dict(items=I, states=[s[0] for s in F.STATES], falls=falls,
+    alleg = merge(GEO, I, draft)
+    DATA = dict(items=I, states=[s[0] for s in F.STATES],
                 kinds=getattr(F, "STATE_KIND", {}), p0=getattr(F, "PERIOD0", F.SNAPS[0][0] - 5), playms=getattr(F, "PLAY_MS", 1700), alleg=alleg)
     legacy.write_source(C.ROOT / "source.json", GEO, DATA)
     print(len(I), "items;", (C.ROOT / "source.json").stat().st_size // 1024, "KB → source.json")

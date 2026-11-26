@@ -20,7 +20,7 @@ import assemble as A
 
 def all_units():
     GEO, I = A.make()
-    return i18n.units(I, GEO["snaps"], [p["n"] for p in GEO["prov"]], A.F.FALLS, A.F.SNAP_SHORT, getattr(A.F, "ALLEGIANCE", {}))
+    return i18n.units(I, GEO["snaps"], [p["n"] for p in GEO["prov"]], A.F.SNAP_SHORT, getattr(A.F, "ALLEGIANCE", {}))
 
 
 def layer(u, which):

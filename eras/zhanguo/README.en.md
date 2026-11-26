@@ -68,11 +68,12 @@ eras/zhanguo/
 │   ├── features.py        state profiles and tribal peoples, 49 time nodes and their timeline labels,
 │   │                      capitals, battles, passes, major cities, towns, events and works,
 │   │                      mountains, rivers, lakes and marshes, long walls, peoples,
-│   │                      Qin commanderies, highways, and the falls of states for the chronology
+│   │                      Qin commanderies and highways
+│   ├── falls.tsv          falls of states: year, the fallen state (its name on the map), what happened, and English; the same format in all nine volumes (see "Falls of states" in core/web/README.md)
 │   └── en/                English translations
 │       ├── items.json     entries (states, capitals, battles, places, mountains, rivers…)
 │       ├── snaps.json     titles, timeline labels and summaries of the time nodes
-│       ├── misc.json      modern province names, falls of states
+│       ├── misc.json      modern province names
 │       ├── zh.lock.json   fingerprint of the Chinese each English string was translated from
 │       └── GLOSSARY.md    translation conventions
 ├── src/
@@ -172,7 +173,6 @@ After changing `seeds.txt`, or the time nodes, mountains or hand-drawn rivers in
 | `PEOPLES` | 18 labels for neighbouring peoples, shown during the years they existed |
 | `JUN` · `JUN_ALIAS` | 51 Qin commanderies (incl. Neishi): seat, modern location, year established, notes, and alternative names for searching (e.g. Linzi Commandery = Qi Commandery) |
 | `ROADS` | Courses (schematic) and dates of the imperial highways, the Straight Road and the Five-Foot Road |
-| `FALLS` | The falls of states for the chronology: year, state, what happened |
 
 ### 6. Display rules (the monorepo's unified template `core/web/template.html`; this volume's settings are in `[web]` in `era.toml`)
 
@@ -206,7 +206,7 @@ After changing `seeds.txt`, or the time nodes, mountains or hand-drawn rivers in
 
 The page holds both a Chinese and an English interface, Chinese by default; switch with "中 | EN" at the top right of the map. The choice is remembered in the browser, and adding `#en` to the address opens the English directly. In English mode the map is labelled in English only, while tooltips, the index, the chronology and the gazetteer add the original Chinese in small type after each English name; search accepts both languages, and English search ignores case.
 
-- **Chinese is the source text.** The English is stored separately in `content/en/` by "file · key · field": entry keys are `category:ancient name` (the second entry of the same category and name gets `#2`), node keys are years, modern provinces are `prov:name`, and falls of states are `fall:year`.
+- **Chinese is the source text.** The English is stored separately in `content/en/` by "file · key · field": entry keys are `category:ancient name` (the second entry of the same category and name gets `#2`), node keys are years, and modern provinces are `prov:name`.
 - **Fingerprints.** `zh.lock.json` records the first 10 hex digits of the sha1 of the Chinese each English string was based on. Once the Chinese changes, the English counts as out of date; `assemble.py` is strict by default and stops on missing or out-of-date translations, and only `--draft` lets them through.
 - **Tools.** `python tools/i18n.py status` counts missing and out-of-date translations; `todo` exports the Chinese still to be translated to `build/i18n_todo.json`; `table` exports a Chinese–English table to `build/i18n_table.csv` (opens directly in Excel) for review; `lock` records fingerprints. The `names` / `notes` argument limits a command to names or to notes.
 - **Translation conventions** are in `content/en/GLOSSARY.md`: pinyin, Wey for 卫, generic terms (Pass, Ford, Commandery, Long Wall…), modern locations, dates and more.

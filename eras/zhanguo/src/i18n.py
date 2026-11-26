@@ -29,7 +29,7 @@ def item_keys(items):
     return keys
 
 
-def units(items, snaps, prov, falls, short):
+def units(items, snaps, prov, short):
     """全部待译单元：(文件, 键, 字段, 中文)。空字段不算。"""
     out = []
     for k, it in zip(item_keys(items), items):
@@ -49,9 +49,6 @@ def units(items, snaps, prov, falls, short):
         for k, nm in s.get("lab", {}).items():
             if (k, nm) in seen: continue
             seen.add((k, nm)); out.append(("misc", f"alias:{k}:{nm}", "n", nm))
-    for y, nm, p, _ in falls:
-        out.append(("misc", f"fall:{y}", "nm", nm))
-        out.append(("misc", f"fall:{y}", "p", p))
     return out
 
 

@@ -184,7 +184,7 @@ date_note_en = "All dates are Gregorian; the Republic of China adopted the Weste
 # 对照表导语（{n} 为节点数，{date_note} 为上一项）
 table_intro = ["<p>图中全部城市、城镇与地物，一名一行。城市的“归属沿革”取自地图上 {n} 个时间节点（按月），连续相同的归属合并显示。经纬度取今日城市或遗址，可在任意地图应用中定位；点击任一行回到地图并定位。日期一律为公历。</p>", "<p>Every city, town and feature on the map, one name per row. A city’s allegiance is taken from the map’s {n} monthly snapshots, with consecutive identical entries merged. Coordinates are those of the modern city or site and work in any map app; click a row to return to the map.</p><p>{date_note}</p>"]
 # 年表导语
-chron_intro = ["<p>把战役、事件、行军、都城迁移与地图上的 {n} 个时间节点（按月）排成一条线，日期一律为公历。灰底为地图节点；点击任一事件，地图会跳到该事件所在时段的节点并定位。</p>", "<p>Battles, events, campaigns, capital moves and the map’s {n} snapshots on a single line. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
+chron_intro = ["<p>把战役、事件、行军、都城迁移、灭国、归附与地图上的 {n} 个时间节点（按月）排成一条线，日期一律为公历。灰底为地图节点；点击任一事件，地图会跳到该事件所在时段的节点并定位。</p>", "<p>Battles, events, campaigns, capital moves, the fall or submission of states and the map’s {n} snapshots on a single line. Shaded entries are map snapshots; click any entry to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
 # 年表里都城迁移的写法（{st} 政权，{old} 都城）
 cap_text = "{st}以{old}为都"
 # 本卷专属样式

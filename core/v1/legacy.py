@@ -492,7 +492,7 @@ def to_v1(slug, G, D, inline=None):
     else:
         first_t = first
     ext = {}
-    for k in ("falls", "alleg", "playms", "p0"):
+    for k in ("alleg", "playms", "p0"):                # 灭国表不经 v1：页面直接读 content/falls.tsv
         if k in D:
             ext[k] = D[k]
     if "zhoue" in G:
@@ -575,7 +575,7 @@ def from_v1(b):
             seeds.append(s)
         D["seeds"] = seeds
         D["items"] = [item_from_v1(o, clock, slug) for o in b["items"]]
-    for k in ("falls", "alleg", "playms", "p0"):
+    for k in ("alleg", "playms", "p0"):                # 灭国表不经 v1：页面直接读 content/falls.tsv
         if k in b["ext"]:
             D[k] = b["ext"][k]
     if "en" in b["ext"]:

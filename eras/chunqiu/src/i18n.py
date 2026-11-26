@@ -29,7 +29,7 @@ def item_keys(items):
     return keys
 
 
-def units(items, snaps, prov, falls, short, alleg=None):
+def units(items, snaps, prov, short, alleg=None):
     """全部待译单元：(文件, 键, 字段, 中文)。空字段不算。"""
     out = []
     for k, it in zip(item_keys(items), items):
@@ -52,9 +52,6 @@ def units(items, snaps, prov, falls, short, alleg=None):
     for k, segs in (alleg or {}).items():   # 共主着色的依据
         for y, _, why in segs:
             out.append(("misc", f"alleg:{k}:{y}", "n", why))
-    for y, nm, p, _ in falls:
-        out.append(("misc", f"fall:{y}", "nm", nm))
-        out.append(("misc", f"fall:{y}", "p", p))
     return out
 
 

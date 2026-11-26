@@ -67,11 +67,12 @@ eras/chunqiu/
 │   ├── features.py        state profiles, tribal peoples and aliases; 46 time nodes and their
 │   │                      timeline labels; capitals, battles, passes, major cities, towns, events and
 │   │                      covenants, the Fangcheng and the Qi Long Wall, mountains, rivers, lakes and
-│   │                      marshes, canals, peoples, and the fall of each state
+│   │                      marshes, canals and peoples
+│   ├── falls.tsv          falls of states: year, the fallen state (its name on the map), what happened, and English; the same format in all nine volumes (see "Falls of states" in core/web/README.md)
 │   └── en/                English translations
 │       ├── items.json     entries (states, capitals, battles, towns, mountains, rivers…)
 │       ├── snaps.json     titles, short labels and summaries of the time nodes
-│       ├── misc.json      modern provinces, fall-of-state entries, period aliases
+│       ├── misc.json      modern provinces, period aliases
 │       ├── zh.lock.json   fingerprint of the Chinese each English string was translated from
 │       └── GLOSSARY.md    translation conventions
 ├── src/
@@ -166,7 +167,6 @@ Examples:
 | `WALLS` · `RANGES` | The Fangcheng of Chu and the Long Wall of Qi; 24 mountain ranges |
 | `NE_RIVERS` · `MANUAL_RIVERS` · `CANALS` · `MARSHES` · `NE_LAKES` · `LAKE_NOTES` · `RIV_OVERRIDE` | Ancient river names, hand-drawn rivers, canals (the Hangou and Heshui, shown from the year they were dug), ancient marshes, lakes |
 | `PEOPLES` | 20 labels for neighbouring peoples, shown in the years they existed |
-| `FALLS` | The fall of each state in the chronology: year, state, what happened |
 
 ### 6. Display rules (the monorepo's unified template `core/web/template.html`; this volume's settings are in `[web]` in `era.toml`)
 
@@ -200,7 +200,7 @@ Examples:
 
 The page has both a Chinese and an English interface, Chinese by default; switch with "中 | EN" at the top right of the map. The choice is remembered in the browser, and adding `#en` to the address opens the English directly. In English mode the map is labelled in English only; tooltips, the index, the chronology and the gazetteer add the Chinese name in small type after the English. Search matches both Chinese and English, case-insensitively.
 
-- **The Chinese is the source text.** The English is stored separately in `content/en/` by file, key and field: entries use the key `category:ancient-name` (a second entry of the same category and name gets `#2`), nodes use the year, modern provinces `prov:name`, fall-of-state entries `fall:year`, period aliases `alias:key:name`.
+- **The Chinese is the source text.** The English is stored separately in `content/en/` by file, key and field: entries use the key `category:ancient-name` (a second entry of the same category and name gets `#2`), nodes use the year, modern provinces `prov:name`, period aliases `alias:key:name`.
 - **Fingerprints.** `zh.lock.json` records the first 10 hex digits of the SHA-1 of the Chinese each English string was translated from. When the Chinese changes, the English counts as out of date; `assemble.py` is strict by default and stops on anything missing or out of date, and only `--draft` lets it through.
 - **Tools.** `python tools/i18n.py status` shows counts of missing and out-of-date strings; `todo` exports the Chinese still to translate; `table` exports a Chinese–English table `build/i18n_table.csv`; `lock` records fingerprints.
 - **Conventions** are in `content/en/GLOSSARY.md`; they match the Warring States map's, and names shared by the two maps are translated identically.

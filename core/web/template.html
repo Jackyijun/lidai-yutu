@@ -87,7 +87,7 @@
   /* 时间轴 */
   .timebar { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:stretch; background:var(--paper); border-bottom:1px solid var(--rule); }
   .timebar[hidden] { display:none; }
-  .pcol { width:44px; display:grid; grid-template-rows:minmax(0,1fr) auto; border-right:1px solid var(--rule-soft); }
+  .pcol { width:44px; display:grid; grid-template-rows:minmax(0,1.15fr) minmax(0,1fr) auto; border-right:1px solid var(--rule-soft); }   /* ▶、‹ ›、1×（同 shell.css） */
   .play { border:0; background:none; cursor:pointer; color:var(--ink-2); display:grid; place-items:center; min-height:34px; }
   .play:hover, .speed:hover { background:var(--paper-2); color:var(--ink); }
   .speed { border:0; border-top:1px solid var(--rule-soft); background:none; cursor:pointer; color:var(--ink-3); font-family:var(--f-mono); font-size:10.5px; letter-spacing:.02em; padding:3px 0 4px; }
@@ -149,6 +149,10 @@
   .legend .states button { display:flex; align-items:center; gap:5px; background:none; border:0; padding:1px 2px; cursor:pointer; font-size:12px; color:var(--ink); text-align:left; border-radius:2px; font-family:var(--f-display); min-width:0; }
   .legend .states button span.t { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .legend .states button:hover { background:var(--paper-2); }
+  /* 本期新亡：灰字划掉、色块变淡，仍可点 */
+  .legend .states button[data-gone="1"] { color:var(--ink-3); }
+  .legend .states button[data-gone="1"] .t { text-decoration:line-through; text-decoration-color:var(--ink-3); }
+  .legend .states button[data-gone="1"] .sq { opacity:.25; }
   .legend .sub { font-size:10px; letter-spacing:.16em; color:var(--ink-3); margin:2px 0 4px; }
   .sq { width:11px; height:11px; border-radius:2px; flex:none; background:var(--k); opacity:.85; }
   .sq.tribe { background:repeating-linear-gradient(135deg, var(--k) 0 2px, transparent 2px 4px); outline:1px solid var(--k); outline-offset:-1px; }
@@ -312,6 +316,7 @@
       <button class="play" id="play" aria-label="播放时间轴" title="播放">
         <svg id="playicon" width="14" height="14" viewBox="0 0 14 14"><path d="M3 2 12 7 3 12Z" fill="currentColor"/></svg>
       </button>
+      <div class="steps"><button class="step" id="prev" aria-label="上一个节点" aria-keyshortcuts="ArrowLeft" title="上一个节点（←）">‹</button><button class="step" id="next" aria-label="下一个节点" aria-keyshortcuts="ArrowRight" title="下一个节点（→）">›</button></div>
       <button class="speed" id="speed" aria-pressed="false" title="播放速度：1×（点击切换 2×）">1×</button>
     </div>
     <div class="tb-main">
@@ -1577,7 +1582,7 @@ __SHELL_JS__
     const [t, i] = parseKey(k), sn = SNAPS[si];
     if (t === "s") return SEEDS[i].xy;
     if (t === "u") {
-      const lab = sn.lz[i] || sn.lp[i];
+      const pv = si > 0 ? SNAPS[si - 1] : null, lab = sn.lz[i] || sn.lp[i] || (pv && (pv.lz[i] || pv.lp[i]));
       if (lab) return proj(lab[0], lab[1]);
       return null;
     }
@@ -1585,10 +1590,10 @@ __SHELL_JS__
     if (s != null && !capActive(it, NT(sn))) return SEEDS[s].xy;   // 旧都画在同城的州府点上
     return it.xy || it.axy || null;
   }
-  function select(k, fromMap, ev) {
+  function select(k, fromMap, ev, stay) {
     selected = k;
     const [t, i] = parseKey(k);
-    if (t === "u") {
+    if (t === "u" && !stay) {   // stay：年表的灭国条、图例里划掉的国，留在它消失的节点
       const sn = SNAPS[si];
       if (!(sn.pol.hasOwnProperty(i) || sn.pols.includes(i))) {
         const pr = presentIn(i);
@@ -1660,10 +1665,14 @@ __SHELL_JS__
     for (const u in c) { L.push(`--u-${u}:${c[u][0]};`); D.push(`--u-${u}:${c[u][1]};`); }
     spanStyle.textContent = L.length ? `:root{${L.join("")}}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){${D.join("")}}}:root[data-theme="dark"]{${D.join("")}}` : "";
   }
+  const prevBtn = document.getElementById("prev"), nextBtn = document.getElementById("next");
   function setSnap(j, rebuild = true) {
     si = j;
     applyNodeColors(SNAPS[j]);
     TL.set(j);
+    const fa = document.activeElement;
+    prevBtn.disabled = j <= 0; nextBtn.disabled = j >= SNAPS.length - 1;
+    if (fa === nextBtn && nextBtn.disabled && !prevBtn.disabled) prevBtn.focus(); else if (fa === prevBtn && prevBtn.disabled && !nextBtn.disabled) nextBtn.focus();   // 到头变灰时焦点移到另一个，不丢
     const s = SNAPS[j];
     const bs = ITEMS.filter(it => it.c === "battle" && inPeriod(it, j)).sort((a, b) => IT0(a) - IT0(b));
     document.getElementById("caption").innerHTML = `<span class="y">${TIME === "t" ? tLong(s.t) : TIME === "qinhan" ? sLab(s) : yTxt(s.y)}${snEra(s) ? " · " + esc(snEra(s)) : ""}</span>${s.era2 ? `<span class="y2">${esc(snEra2(s))}</span>` : ""}${s.jn && WEB.jn ? `<span class="jn">${pick(WEB.jn[s.jn])}</span>` : ""}<b>${esc(snT(s))}</b>${esc(snD(s))}` +
@@ -1702,6 +1711,10 @@ __SHELL_JS__
   });
   speedTitle();
 
+  // 步进：‹ › 与键盘 ← → 同效，停止播放
+  prevBtn.addEventListener("click", () => { if (si > 0) { stopPlay(); setSnap(si - 1); } });
+  nextBtn.addEventListener("click", () => { if (si < SNAPS.length - 1) { stopPlay(); setSnap(si + 1); } });
+
   /* ---------------- 图例 ---------------- */
   const legStates = document.getElementById("legstates");
   function polOrder(sn) {
@@ -1727,7 +1740,51 @@ __SHELL_JS__
       b.addEventListener("mouseleave", () => { hovered = null; buildTerr(); render(); });
       legStates.append(b);
     }
+    // 本期新亡：上一节点在图例里、这一节点不在，且灭国表里有它（规范八）；名字取上一节点的叫法
+    const pv = si > 0 ? SNAPS[si - 1] : null;
+    for (const [p, f] of fellAt(si)) {
+      const b = document.createElement("button");
+      b.dataset.gone = "1";
+      b.innerHTML = `<span class="sq${soft(p) ? " tribe" : ""}" style="--k:${uVar(p)}"></span><span class="t">${esc(pv.labOf(p))}</span>`;
+      b.title = `${LZ(f.ti, f.tie || f.ti)}${LZ("（", " (")}${fallYT(f)}${LZ("）", ")")}`;
+      b.setAttribute("aria-label", `${pv.labOf(p)}${LZ("，本期新亡：", ", fell this period: ")}${b.title}`);
+      b.addEventListener("click", () => select(keyOf("u", p), false, undefined, true));
+      b.addEventListener("mouseenter", () => { hovered = keyOf("u", p); buildTerr(); render(); });
+      b.addEventListener("mouseleave", () => { hovered = null; buildTerr(); render(); });
+      legStates.append(b);
+    }
   }
+  /* ---------------- 本期新亡（灭国表，规范八） ---------------- */
+  // 每条：yr 年、mo 月（可无）、ca 约数、t 时间值（单位同节点）、ks 所涉单位、how 方式、ti/tie 年表标题、p/pe 经过、chron 为 false 时年表里已有同一件事（只用来划图例）
+  const FALLS = DATA.falls || [];
+  const fallYT = f => (f.ca ? LZ("约", "c. ") : "") + (!f.mo ? (TIME === "t" || TIME === "ym" ? LZ(`${f.yr} 年`, `${f.yr}`) : yTxt(f.yr))
+    : TIME === "t" ? tLong(f.t) : TIME === "qinhan" ? yLab(f.t, "m") : LZ(`${yTxt(f.yr)} 年${MN[f.mo]}月`, `${ORD(f.mo)} month, ${yTxt(f.yr)}`));
+  // 年表类别：归附（降、内属、臣服、并，标题不以「亡」收尾）／败亡（方式为「亡」：割据者败死、为部下所杀等）／灭国（其余）
+  const fallKD = f => ["降", "内属", "臣服", "并"].includes(f.how) && !f.ti.endsWith("亡") ? LZ("归附", "Submission") : f.how === "亡" ? LZ("败亡", "Defeat") : LZ("灭国", "Fall of a state");
+  // 每条灭国表配到「地图上这一国消失」的节点：上一节点在、这一节点不在，取与亡年最近的一次；图例按着色方式分两套（政权／二级单位）。
+  // 相差 15 年以上的不配：多半是同一单位别的时候从图上消失（如汉末朝廷直辖之地 190 年已为群雄所据，而东汉亡于 220 年）
+  const FALL_GAP = TIME === "t" || TIME === "qinhan" ? 180 : 15;
+  const FELL = {};
+  function fellMap(mode) {
+    if (FELL[mode]) return FELL[mode];
+    const mem = SNAPS.map(sn => new Set(mode === "u" ? sn.units : sn.pols)), best = new Map();
+    const lo = j => NT(SNAPS[j - 1]), hi = j => NT(SNAPS[j]);
+    for (const f of FALLS) for (const u of f.ks) {
+      let bj = -1, bd = Infinity;
+      for (let j = 1; j < SNAPS.length; j++) if (mem[j - 1].has(u) && !mem[j].has(u)) {
+        const d = f.t > hi(j) ? f.t - hi(j) : f.t <= lo(j) ? lo(j) - f.t + 1e-6 : 0;   // 一期是 (上一节点, 本节点]
+        if (d < bd) { bd = d; bj = j; }
+      }
+      if (bj < 0 || bd > FALL_GAP) continue;
+      const o = best.get(u + "|" + bj);
+      if (!o || bd < o[0] || bd === o[0] && f.t > o[1].t) best.set(u + "|" + bj, [bd, f, u, bj]);
+    }
+    const M = new Map(), J = "j" + mode;
+    for (const [, f, u, j] of best.values()) { if (!M.has(j)) M.set(j, []); M.get(j).push([u, f]); if (u === f.ks[0]) f[J] = j; }
+    for (const [, f, , j] of best.values()) if (f[J] == null) f[J] = j;
+    return FELL[mode] = M;
+  }
+  const fellAt = j => fellMap(cmode === "zhen" && WEB.legend_units ? "u" : "p").get(j) || [];
   const SYM = {
     terr: '<rect x="1" y="2" width="12" height="10" rx="1.5" fill="var(--u-0)" opacity=".7"/>',
     region: '<rect x="1.5" y="2.5" width="11" height="9" fill="none" stroke="var(--c-yanyun)" stroke-width="1.8" stroke-dasharray="4 1.6"/>',
@@ -1870,7 +1927,8 @@ __SHELL_JS__
     total += group("town", pick(WEB.town_group || ["一般城邑", "Towns"]), pick(WEB.town_sub || ["放大后显示", "shown when zoomed in"]), "var(--ink-3)", towns.map(s => { const k = keyOf("s", s), f = info(k, "row"); return rowEl(k, f.k, f.old, f.mod, f.meta, "", f.chain, false, null, f.zh); }));
     total += group("pref", pick(WEB.pref_group || ["州府 · 城邑", "Prefectures & towns"]), pick(WEB.pref_sub || ["古名 → 今地", "historical → modern"]), "var(--c-city)", prefs.map(s => { const k = keyOf("s", s), f = info(k, "row"); return rowEl(k, f.k, f.old, f.mod, f.meta, "", f.chain, false, null, f.zh); }));
     simple("range", "range", LZ("山脉", "Mountains"), "");
-    { const rl = ITEMS.filter(it => it.c === "road" && it.t0 == null && match(keyOf("i", it.i)));    // 古道、栈道、长城（汉末、秦汉）；民国的公路在上面的线状地物里
+    { const subOrd = it => ({ wall: 0, road: 1 })[it.sub] ?? 2;                                   // 组内依次为长城和塞、驰道直道、古道栈道
+      const rl = ITEMS.filter(it => it.c === "road" && it.t0 == null && match(keyOf("i", it.i))).sort((a, b) => subOrd(a) - subOrd(b));    // 长城、驰道、古道栈道（春秋至汉末）；民国的公路在上面的线状地物里
       total += group("road", pick(WEB.road_group || ["古道 · 栈道", "Ancient roads & plank roads"]), "", K_OF.road, rl.map(it => { const k = keyOf("i", it.i), f = info(k, "row"); return rowEl(k, K_OF.road, f.old, f.mod, f.meta, f.note, null, false, null, f.zh); })); }
     let wl = ITEMS.filter(it => (it.c === "river" || it.c === "canal" || it.c === "desert") && match(keyOf("i", it.i)));
     total += group("river", LZ("水系 · 湖泽 · 运河 · 荒漠", "Rivers · lakes · canals · deserts"), LZ("古名 → 今名", "historical → modern"), "var(--water)", wl.map(it => { const k = keyOf("i", it.i), f = info(k, "row"); return rowEl(k, K_OF[it.c], f.old, f.mod, it.c === "canal" ? f.meta : "", f.note, null, it.c === "canal" && it.y0 > YY, null, f.zh); }));
@@ -1941,11 +1999,14 @@ __SHELL_JS__
       if (it.c === "route") ev.push({ y: IT0(it), yt: WEB.route_when_mod ? iF(it, "mod") : yt, t: t0, zh: it.old, kd: pick(WEB.route_kd || ["行军", "Campaign"]), p: note, col: "var(--c-route)", k, end: IT1(it) });
       if (it.c === "canal" && WEB.canal_chron && it.y0 > 0) ev.push({ y: it.y0 + .5, yt: String(it.y0), t: LZ(`开凿${it.old}`, `${t0} dug`), zh: it.old, kd: LZ("运河", "Canal"), p: note, col: "var(--water)", k });
       if (it.c === "road" && WEB.road_chron && it.y != null && it.y > (DATA.p0 ?? -Infinity)) ev.push({ y: it.y, yt, t: t0, zh: it.old, kd: pick(CATNAME.road), p: note, col: K_OF.road, k });
-      if (it.c === "capital") for (const [a] of it.yrs) if (capIn(a)) ev.push({ y: a, yt: TIME === "t" ? tLong(a) : TIME === "qinhan" ? yLab(a) : yTxt(Math.floor(a)), t: LZ((WEB.cap_text || "{st}都{old}").replace("{st}", UNITS[it.st].n).replace("{old}", it.old), t0), zh: it.old, kd: LZ("都城", `Capital · ${uShort(it.st)}`), p: note, col: uVar(it.st), k });
+      // 都城一行的政权名可在 era.toml [web] cap_st 按都城另写（宋元：忽必烈 1271 年才建号大元，此前的开平、中都仍记在大蒙古国名下）
+      const cs = WEB.cap_st && WEB.cap_st[it.old];
+      if (it.c === "capital") for (const [a] of it.yrs) if (capIn(a)) ev.push({ y: a, yt: TIME === "t" ? tLong(a) : TIME === "qinhan" ? yLab(a) : yTxt(Math.floor(a)), t: LZ((WEB.cap_text || "{st}都{old}").replace("{st}", cs ? cs[0] : UNITS[it.st].n).replace("{old}", it.old), t0), zh: it.old, kd: LZ("都城", `Capital · ${cs ? cs[1] : uShort(it.st)}`), p: note, col: uVar(it.st), k });
     }
-    // 灭国（春秋、战国）
-    for (const f of DATA.falls || []) if (!query || fold(`${f.nm} ${f.nme || ""}`).includes(query))
-      ev.push({ y: f.y, yt: yTxt(f.y), t: LZ(`${f.nm}亡`, `Fall of ${f.nme || f.nm}`), zh: f.nm + "亡", kd: LZ("灭国", "Fall of a state"), p: LZ(f.p, f.pe || f.p), col: f.u != null ? uVar(f.u) : "var(--ink-2)", k: f.u != null ? keyOf("u", f.u) : null });
+    // 灭国与归附（灭国表）：年表里已有同一件事的（chron 为 false）只用来划图例；点击跳到地图上这一国消失的节点
+    fellMap("p"); if (WEB.legend_units) fellMap("u");
+    for (const f of FALLS) if (f.chron !== false && (!query || fold(`${f.ti} ${f.tie || ""}`).includes(query)))
+      ev.push({ y: f.t, yt: fallYT(f), t: LZ(f.ti, f.tie || f.ti), zh: f.ti, kd: fallKD(f), p: LZ(f.p, f.pe || f.p), col: f.ks.length ? uVar(f.ks[0]) : "var(--ink-2)", k: f.ks.length ? keyOf("u", f.ks[0]) : null, fall: f });
     if (!query) for (const s of SNAPS) ev.push({ y: NT(s) - (TIME === "ym" ? 1e-4 : 0), yt: TIME === "t" ? tShort(s.t) : TIME === "qinhan" ? sLab(s) : TIME === "ym" ? ymText(s) : yTxt(s.y), t: snT(s),
       kd: LZ(s.era ? `地图节点 · ${s.era}${s.era2 ? "（" + s.era2 + "）" : ""}` : "地图节点", snEra(s) ? `Map snapshot · ${snEra(s)}${s.era2 ? " (" + snEra2(s) + ")" : ""}` : "Map snapshot"), p: snD(s), col: "var(--ink)", snap: true });
     ev.sort((a, b) => a.y - b.y || (a.snap ? 1 : 0) - (b.snap ? 1 : 0));
@@ -1955,9 +2016,11 @@ __SHELL_JS__
       d.className = "ev" + (e.snap ? " snap" : ""); d.style.setProperty("--k", e.col);
       d.innerHTML = `<div class="yr">${esc(e.yt)}</div><div class="ln"><i></i></div><div class="evb"><b>${esc(e.t)}</b>${e.zh ? zhTag(e.zh) + (isEN() ? " " : "") : ""}<span class="k">${esc(e.kd)}</span><p>${esc(e.p)}</p></div>`;
       d.addEventListener("click", () => {
-        let j = SNAPS.findIndex(s => NT(s) >= (e.end ?? e.y) - (TIME === "ym" ? 1e-3 : 0)); if (j < 0) j = SNAPS.length - 1;
+        // 灭国条：跳到地图上这一国消失的节点（按当前着色配的），选中它而不换节点
+        const fj = e.fall ? e.fall[cmode === "zhen" && WEB.legend_units ? "ju" : "jp"] ?? e.fall.jp ?? e.fall.ju : null;
+        let j = fj ?? SNAPS.findIndex(s => NT(s) >= (e.end ?? e.y) - (TIME === "ym" ? 1e-3 : 0)); if (j < 0) j = SNAPS.length - 1;
         setMode("map"); setSnap(j);
-        if (e.k) requestAnimationFrame(() => select(e.k, false));
+        if (e.k) requestAnimationFrame(() => select(e.k, false, undefined, fj != null));
       });
       box.append(d);
     }
@@ -2017,6 +2080,8 @@ __SHELL_JS__
     document.querySelectorAll("[data-mode]").forEach(b => { b.textContent = pick(MODES[b.dataset.mode]); });
     at($("play"), "aria-label", "播放时间轴", "Play timeline"); $("play").title = playT ? LZ("暂停", "Pause") : LZ("播放", "Play");
     speedTitle();
+    at($("prev"), "title", "上一个节点（←）", "Previous snapshot (←)"); at($("prev"), "aria-label", "上一个节点", "Previous snapshot");
+    at($("next"), "title", "下一个节点（→）", "Next snapshot (→)"); at($("next"), "aria-label", "下一个节点", "Next snapshot");
     at($("map"), "aria-label", ...WEB.map_label);
     for (const [id, zh, en] of [["zin", "放大", "Zoom in"], ["zout", "缩小", "Zoom out"], ["zreset", "复位", "Reset view"]]) { at($(id), "title", zh, en); at($(id), "aria-label", zh, en); }
     txt("zreset", "复位", "Reset");

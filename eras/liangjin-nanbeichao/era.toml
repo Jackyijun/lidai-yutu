@@ -187,7 +187,7 @@ date_note_en = "Dates give the lunar month without conversion to the Western cal
 # 对照表导语（{n} 为节点数，{date_note} 为上一项）
 table_intro = ["<p>图中全部郡县、城邑与地物，一名一行。郡县的“名称沿革”记晋、南北朝时的郡名与北朝、南朝后期所设州名，括号内为始用之年；“归属沿革”取自地图上各时间节点，连续相同的归属合并显示。经纬度取今日遗址或所在城市，可在任意地图应用中定位；点击任一行回到地图并定位。</p>", "<p>Every commandery or county seat, town and feature on the map, one name per row. For commanderies and counties, “Names” gives the commandery names of the Jin and the Northern and Southern Dynasties and the names of the zhou (provinces) set up in the later Northern and Southern Dynasties, with the year each came into use in brackets; “Allegiance” is taken from the map’s {n} snapshots, with consecutive identical entries merged. Coordinates are those of the modern site or city and work in any map app; click a row to return to the map and locate it.</p><p>{date_note}</p>"]
 # 年表导语
-chron_intro = ["<p>把战役、事件、行军与行程、都城迁移与地图上的全部 {n} 个时间节点排成一条线，月份照旧史记农历月，不折算公历。灰底为地图节点；点击任一事件，地图会跳到该事件所在时段的节点并定位。</p>", "<p>Battles, events, campaigns and journeys, capital moves and all {n} snapshots of the map on a single line. Shaded entries are map snapshots; click any entry to jump to the snapshot covering it and locate it on the map.</p><p>{date_note}</p>"]
+chron_intro = ["<p>把战役、事件、行军与行程、都城迁移、灭国、归附与地图上的全部 {n} 个时间节点排成一条线，月份照旧史记农历月，不折算公历。灰底为地图节点；点击任一事件，地图会跳到该事件所在时段的节点并定位。</p>", "<p>Battles, events, campaigns and journeys, capital moves, the fall or submission of states and all {n} snapshots of the map on a single line. Shaded entries are map snapshots; click any entry to jump to the snapshot covering it and locate it on the map.</p><p>{date_note}</p>"]
 # 年表收哪些年份的都城迁移 [起, 止, 起是否不含]（起为 false 取首节点，止为 false 不设上限）
 chron_cap = [280, 581, true]
 # 本卷专属样式

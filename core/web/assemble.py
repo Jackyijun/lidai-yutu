@@ -6,7 +6,7 @@
 
 数据来源是 core/v1/build.py 生成的 build/v1/<短名>.json（已附全局 ID）。九卷都套统一模板 core/web/template.html，
 各卷不同的文字与开关取 era.toml 的 [web]。春秋、战国两卷的 v1 由 legacy.from_v1 转回的是战国式写法，先经 simple.py 转成
-统一模板读的唐宋系写法。
+统一模板读的唐宋系写法。各卷的灭国表 eras/<短名>/content/falls.tsv 由 falls.py 读入。
 """
 import json
 import sys
@@ -19,6 +19,7 @@ import legacy
 from registry import ERAS
 import geo
 import simple
+import falls
 
 HERE = Path(__file__).resolve().parent
 
@@ -155,6 +156,9 @@ def render(slug, b):
         gids, alias = tokens(b)
     for sn in G["snaps"]:
         sn.pop("zn", None)                          # 汉末：各点的州块只给统一引擎分块用，页面不用
+    F = falls.load(slug, D["units"], web_config(slug).get("time", "year"))   # 灭国表 content/falls.tsv（core/web/falls.py）
+    if F:
+        D["falls"] = F
     t = web_template(slug)
     shorts(b, G)
     geo.apply(slug, G)

@@ -3,12 +3,18 @@
   /* 刘海屏：上下左右留出安全区 */
   .app { box-sizing:border-box; padding-top:env(safe-area-inset-top, 0px); padding-bottom:env(safe-area-inset-bottom, 0px); }
   .timebar { padding-left:env(safe-area-inset-left, 0px); padding-right:env(safe-area-inset-right, 0px); }
-  /* 播放与倍速 */
-  .pcol { width:44px; display:grid; grid-template-rows:minmax(0,1fr) auto; border-right:1px solid var(--rule-soft); }
+  /* 播放、步进与倍速：▶ 在上，‹ › 并排在中，1× 在底 */
+  .pcol { width:44px; display:grid; grid-template-rows:minmax(0,1.15fr) minmax(0,1fr) auto; border-right:1px solid var(--rule-soft); }
   .pcol .play { width:auto; border:0; background:none; cursor:pointer; color:var(--ink-2); display:grid; place-items:center; min-height:34px; }
   .pcol .play:hover, .pcol .speed:hover { background:var(--paper-2); color:var(--ink); }
   .pcol .speed { border:0; border-top:1px solid var(--rule-soft); background:none; cursor:pointer; color:var(--ink-3); font-family:var(--f-mono); font-size:10.5px; letter-spacing:.02em; padding:3px 0 4px; }
   .pcol .speed[aria-pressed="true"] { color:var(--ink); font-weight:600; }
+  /* 步进键：到头变灰；与键盘 ← → 同效 */
+  .pcol .steps { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--rule-soft); min-height:24px; }
+  .pcol .step { border:0; background:none; cursor:pointer; color:var(--ink-2); font-size:18px; line-height:1; padding:0; }
+  .pcol .step + .step { border-left:1px solid var(--rule-soft); }
+  .pcol .step:hover { background:var(--paper-2); color:var(--ink); }
+  .pcol .step:disabled { color:var(--rule); cursor:default; background:none; }
   /* 时间轴：上为按真实年代比例的细条，下为等宽刻度 */
   .tl { min-width:0; display:grid; grid-template-rows:auto auto; }
   .tl-strip { position:relative; height:19px; margin:0 22px 0 20px; cursor:pointer; }
