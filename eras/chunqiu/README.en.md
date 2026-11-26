@@ -46,7 +46,7 @@ The same input always gives a byte-identical `source.json`, so changes can be tr
 
 The base map data (`geodata/ne/`) ships with the repository, so it builds offline; if files are missing, `run.py` downloads the pinned version (Natural Earth v5.1.2) from GitHub.
 
-The Warring-States-style old template the page uses is in the monorepo's `core/web/old/chunqiu.html` (formerly this volume's `src/template.html`, moved there in the third batch of the architecture cleanup, November 2026), and `core/web/patch.py` gives it the shared shell; moving the two volumes to the unified template is left for a later batch.
+The page is built from the unified template all nine volumes share, the monorepo's `core/web/template.html` (since 25 November 2026; before that it used the Warring-States-style old template): this volume's v1 is first converted by `core/web/simple.py` into the layout the template reads, and the text and switches that differ for this volume are set in `[web]` in `era.toml`.
 
 ---
 
@@ -55,7 +55,7 @@ The Warring-States-style old template the page uses is in the monorepo's `core/w
 ```
 eras/chunqiu/
 ├── run.py                 stage-1 build entry point: → source.json
-├── era.toml               basic facts about the volume (volume number, opening node, unified-engine settings, junctions)
+├── era.toml               basic facts about the volume (volume number, opening node, unified-engine settings, junctions) and the page's text and switches ([web])
 ├── source.json            ★ the stage-1 output (checked in): ownership at each node, texts, entries and base map; the monorepo's v1 data is converted from it
 ├── engine.json            territories at each node computed by the unified territory engine (checked in; recomputed by python run.py chunqiu in the monorepo)
 ├── short.tsv              short timeline labels
@@ -168,14 +168,15 @@ Examples:
 | `PEOPLES` | 20 labels for neighbouring peoples, shown in the years they existed |
 | `FALLS` | The fall of each state in the chronology: year, state, what happened |
 
-### 6. Display rules (`core/web/old/chunqiu.html`)
+### 6. Display rules (the monorepo's unified template `core/web/template.html`; this volume's settings are in `[web]` in `era.toml`)
 
-- Battles are shown only for the **current period**, i.e. after the previous node (exclusive) up to this node (inclusive); the caption bar lists "Battles this period", and clicking one locates it.
-- Events, walls and canals appear only once they have happened; capitals show only the current capitals and former ones.
-- Tribal peoples have pale, dash-edged territories and italic labels and are not counted in the header.
-- The legend lists only the states alive in this period and those that fell in it (struck through), tribal peoples last.
-- Zoom levels: the full view shows only state names, capitals and battles; passes, major cities, towns and modern names appear as you zoom in.
-- Two colourings, switched in the header: **States** (each state in its own colour, the default) and **Suzerain**. In Suzerain colouring the Zhou royal domain takes the Zhou colour; states enfeoffed by Zhou that have not claimed kingship acknowledge Zhou and take a paler Zhou colour with hatching (nominally under Zhou, self-governing in practice); states that claim kingship or stand outside the Zhou feudal order are independent and keep their own colours; Chu, after claiming kingship, sent tribute to the Zhou king and received his gifts, so it also counts as acknowledging Zhou from 671 to 607 BC; tribal peoples are unchanged. A heavy line traces the outline of the Zhou realm formed by the royal domain and the states that acknowledge Zhou.
+- Battles and events are shown only for the **current period**, i.e. after the previous node (exclusive) up to this node (inclusive); the caption bar lists this period's battles, and clicking one locates it.
+- Long walls and canals appear from the year they were built or dug; capitals show the current capitals, and former capitals as small grey dashed boxes.
+- Tribal peoples have pale, dash-edged territories and are not counted in the header.
+- The legend lists the states of this period: every state in States colouring; Zhou and the independent states in Suzerain colouring (the states that acknowledge Zhou are merged into Zhou).
+- Zoom levels: the full view shows only state names, capitals and battles; zooming in brings in events, passes, major cities (dots from 1.8×, names from 3.4×), towns (small grey dots from 2.6×, names from 4.4×) and modern names.
+- Two colourings, switched in the header: **States** (the default) gives every state its own colour, without hatching or the heavy Zhou-realm line; in **Suzerain** colouring the Zhou royal domain and the states enfeoffed by Zhou that have not claimed kingship (they acknowledge Zhou) are merged into Zhou and share the Zhou colour, the states that acknowledge Zhou are hatched and keep thin dashed borders and their own names (nominally under Zhou, self-governing in practice); states that claim kingship or stand outside the Zhou feudal order are independent and keep their own colours; Chu, after claiming kingship, sent tribute to the Zhou king and received his gifts, so it also counts as acknowledging Zhou from 671 to 607 BC; tribal peoples are unchanged; a heavy line traces the outline of the Zhou realm (the royal domain and the states that acknowledge Zhou). Whether each state acknowledges Zhou or is independent, and why, is given in the state's notes in both colourings.
+- The header count reads "632 BC · 11 states · 31 states acknowledge Zhou · N in view" in both colourings: the first number is the Zhou royal domain and the independent states, the second the states that acknowledge Zhou (tribal peoples not counted).
 - Views are chosen from a drop-down (All, Central Plains, Jin & Qin, Qi & Lu, Jiang–Han, Wu & Yue).
 
 ---
@@ -191,7 +192,7 @@ Examples:
 | Change the English | `content/en/*.json` | `python tools/i18n.py lock` → `python run.py --html` here → `python run.py --web` at the monorepo root |
 | Change colours | the monorepo's `global/palette.toml` (by global polity ID; states on both maps share a colour) | `python run.py --web` at the monorepo root |
 | Change allegiances in Suzerain colouring | `ALLEGIANCE` (add the English if you change the grounds) | `python run.py chunqiu` at the monorepo root |
-| Change interface text | `U` in the monorepo's `core/web/old/chunqiu.html` (`zh` and `en` sets) | `python run.py --web` at the monorepo root |
+| Change interface text | `[web]` in this volume's `era.toml` (title, views, legend, footnote, the wording of the count and the index, in Chinese and English); button labels shared by all nine volumes are in the monorepo's `core/web/template.html` | `python run.py --web` at the monorepo root |
 
 ---
 

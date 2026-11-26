@@ -4,8 +4,9 @@
   python core/web/assemble.py              各卷全部
   python core/web/assemble.py songyuan     只做这几卷
 
-数据来源是 core/v1/build.py 生成的 build/v1/<短名>.json（已附全局 ID）。秦汉至民国七卷套统一模板
-core/web/template.html，各卷不同的文字与开关取 era.toml 的 [web]；春秋、战国两卷还用战国式旧模板（core/web/old/），由 patch.py 换外壳。
+数据来源是 core/v1/build.py 生成的 build/v1/<短名>.json（已附全局 ID）。九卷都套统一模板 core/web/template.html，
+各卷不同的文字与开关取 era.toml 的 [web]。春秋、战国两卷的 v1 由 legacy.from_v1 转回的是战国式写法，先经 simple.py 转成
+统一模板读的唐宋系写法。
 """
 import json
 import sys
@@ -16,8 +17,10 @@ sys.path.insert(0, str(ROOT / "core" / "v1"))
 sys.path.insert(0, str(ROOT / "core" / "geo"))
 import legacy
 from registry import ERAS
-import patch
 import geo
+import simple
+
+HERE = Path(__file__).resolve().parent
 
 HEAD = """<!doctype html>
 <html lang="zh-CN">
@@ -32,15 +35,32 @@ def dumps(o):
     return json.dumps(o, ensure_ascii=False, separators=(",", ":"))
 
 
-def template_for(slug):
-    """春秋、战国两卷暂用的战国式旧模板 core/web/old/<短名>.html（原是两卷的 src/template.html，2026-11 架构整理第三批移来）"""
-    return (ROOT / "core" / "web" / "old" / f"{slug}.html").read_text(encoding="utf8")
-
-
 def web_config(slug):
-    """era.toml [web]：各卷页面的文字与开关（见 core/web/README.md）；没有这一节的卷（春秋、战国）用 core/web/old/ 里的旧模板"""
+    """era.toml [web]：各卷页面的文字与开关（见 core/web/README.md）"""
     from registry import load_toml
-    return load_toml(ROOT / "eras" / slug / "era.toml").get("web")
+    w = load_toml(ROOT / "eras" / slug / "era.toml").get("web")
+    assert w, f"eras/{slug}/era.toml 缺 [web] 一节"
+    return w
+
+
+def shell_css():
+    """共用样式：时间轴、播放倍速、刘海屏安全区"""
+    return (HERE / "shell.css").read_text(encoding="utf8")
+
+
+def shell_js():
+    """共用脚本：时间轴、深链接、界面语言"""
+    return (HERE / "shell.js").read_text(encoding="utf8")
+
+
+def geo_css(cfg):
+    """第 4 步：地形晕渲浓淡（core/geo/config.toml）"""
+    r = cfg["relief"]
+    return (f"  /* 第 4 步：地形晕渲浓淡（core/geo/config.toml） */\n"
+            f"  :root {{ --hill-op:{r['opacity_light']:g}; }}\n"
+            f"  @media (prefers-color-scheme: dark) {{ :root:not([data-theme=\"light\"]) {{ --hill-op:{r['opacity_dark']:g}; }} }}\n"
+            f"  :root[data-theme=\"dark\"] {{ --hill-op:{r['opacity_dark']:g}; }}\n"
+            f"  .hill {{ mix-blend-mode:hard-light; opacity:var(--hill-op); pointer-events:none; }}\n")
 
 
 ROUTE_KEY = ('<span><svg width="16" height="12"><path d="M1 9 L8 5 L15 3" stroke="var(--c-route)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>'
@@ -50,18 +70,20 @@ ROUTE_KEY = ('<span><svg width="16" height="12"><path d="M1 9 L8 5 L15 3" stroke
 def web_template(slug):
     """统一模板 core/web/template.html，按 era.toml [web] 填各卷的文字与开关"""
     from html import escape
-    t = (ROOT / "core" / "web" / "template.html").read_text(encoding="utf8")
+    t = (HERE / "template.html").read_text(encoding="utf8")
     cfg = geo.load()
     w = web_config(slug)
     p = cfg["projection"]
-    t = t.replace("  /*__SHELL_CSS__*/\n", patch.shell_css()).replace("__SHELL_JS__\n", patch.shell_js()).replace("  /*__GEO_CSS__*/\n", patch.geo_css(cfg))
+    t = t.replace("  /*__SHELL_CSS__*/\n", shell_css()).replace("__SHELL_JS__\n", shell_js()).replace("  /*__GEO_CSS__*/\n", geo_css(cfg))
     t = (t.replace("__P1__", str(p["parallels"][0])).replace("__P2__", str(p["parallels"][1])).replace("__P0__", str(p["center"][1]))
          .replace("__L0__", str(p["center"][0])).replace("__SEAM__", str(p["seam"])))
     fit0 = w.get("fit0") or w["fits"][0][0]
     opts = "".join(f'        <option value="{v}"{" selected" if v == fit0 else ""}>{escape(zh)}</option>\n' for v, zh, en, box in w["fits"])
     cm = w["cm"]
     btn = lambda key, pressed, title, label: f'        <button data-cm="{key}" aria-pressed="{"true" if pressed else "false"}" title="{escape(title)}">{escape(label)}</button>\n'
-    cms = btn("zhen", w["cmode"] == "zhen", cm["zhen_title"][0], cm["zhen"][0]) + btn("pol", w["cmode"] == "pol", cm["pol_title"][0], "政权")
+    cms = btn("zhen", w["cmode"] == "zhen", cm["zhen_title"][0], cm["zhen"][0]) + btn("pol", w["cmode"] == "pol", cm["pol_title"][0], cm.get("pol", ["政权"])[0])
+    if w.get("cmodes") is False:                        # 只有一种着色（战国）：不出按钮
+        cms = ""
     for k, v in (("doc_title", escape(w["doc_title"][0])), ("h1", escape(w["h1"][0])), ("sub", escape(w["sub"][0])), ("map_label", escape(w["map_label"][0])),
                  ("key2", escape(w["key2"][0])), ("foot", escape(w["foot"][0], quote=False)), ("inset_h", str(w["inset_h"])),
                  ("key_route", ROUTE_KEY if w.get("key_route") else ""), ("fit_options", opts), ("cmode_buttons", cms)):
@@ -83,7 +105,7 @@ def item_year(o):
     return None
 
 
-def tokens(b, simple=False):
+def tokens(b):
     """深链接用的标识：政权 polity:<全局 ID>，地点 place:<全局 ID>，条目 <类别>:<全局 ID 或古名>；同卷重名再加 @所属政权 或 @年份"""
     from collections import Counter, defaultdict
     pols = b["polities"]
@@ -105,20 +127,6 @@ def tokens(b, simple=False):
             t = t + "@" + (sg if o["c"] == "capital" and sg else str(y) if y is not None else "")
         seen[t] += 1
         out.append(t if seen[t] == 1 else f"{t}.{seen[t]}")
-    if simple:
-        # 战国式：政权也是条目（按 item 序号）；城邑类条目兼认 place:<全局 ID>
-        n = len(b["items"]) + len(pols)
-        arr = [None] * n
-        for o, t in zip(b["items"], out):
-            arr[o["i"]] = t
-        for p in pols:
-            arr[p["item"]] = "polity:" + p["gid"]
-        places = {first(o["gid"]) for o in b["items"] if "owners" in o and o["c"] in ("capital", "city", "town", "pass") and o.get("gid")}
-        for o in b["items"]:
-            g = o.get("gid")
-            if g and not isinstance(g, list) and g in places:
-                alias.setdefault("place:" + g, o["i"])
-        return {"i": arr}, alias
     u = ["polity:" + p["gid"] for p in pols]
     s = []
     for k, p in enumerate(b["places"]):
@@ -139,32 +147,24 @@ def shorts(b, G):
                 s["she"] = n["en"]["short"]
 
 
-def render(slug, b, new=True):
-    G, D, colors = legacy.from_v1(b)
+def render(slug, b):
+    if b["_legacy"]["fam"] == "A":                  # 春秋、战国：战国式写法先转成唐宋系写法（core/web/simple.py）
+        G, D, colors, gids, alias = simple.layered(b)
+    else:
+        G, D, colors = legacy.from_v1(b)
+        gids, alias = tokens(b)
     for sn in G["snaps"]:
         sn.pop("zn", None)                          # 汉末：各点的州块只给统一引擎分块用，页面不用
-    unified = web_config(slug) is not None
-    t = web_template(slug) if unified and new else template_for(slug)
-    if new:
-        shorts(b, G)
-        gids, alias = tokens(b, simple=not unified)         # 春秋、战国：页面还是战国式模板，按旧格式的条目序号
-        if not unified:                                         # 春秋、战国：各卷旧模板换外壳
-            t = patch.patch_simple(t, slug)
-            t = patch.patch_geo(t, geo.load(), True)            # 第 4 步：统一投影、全球底图、地形晕渲
-        geo.apply(slug, G)
-        t = t.replace("__GIDS__", dumps(gids)).replace("__ALIAS__", dumps(alias))
-    if "__UCSS_LIGHT__" in t:                       # 唐宋系：疆域色写成 --u-<序号>
-        light = " ".join(f"--u-{i}:{c[0]};" for i, c in enumerate(colors))
-        dark = " ".join(f"--u-{i}:{c[1]};" for i, c in enumerate(colors))
-        t = t.replace("__UCSS_LIGHT__", light).replace("__UCSS_DARK__", dark)
-        t = t.replace("__GEO__", dumps(G)).replace("__DATA__", dumps(D))
-        t = t.replace('\n<div class="app">', '\n</head>\n<body>\n<div class="app">', 1)
-        return HEAD + t + "\n</body>\n</html>\n"
-    # 战国式：疆域色写成 --s-<序号>，模板自带文档外壳
-    lt = "".join(f"--s-{i}:{D['colors'][k][0]};" for i, k in enumerate(D["states"]))
-    dk = "".join(f"--s-{i}:{D['colors'][k][1]};" for i, k in enumerate(D["states"]))
+    t = web_template(slug)
+    shorts(b, G)
+    geo.apply(slug, G)
+    light = " ".join(f"--u-{i}:{c[0]};" for i, c in enumerate(colors))     # 疆域色写成 --u-<序号>
+    dark = " ".join(f"--u-{i}:{c[1]};" for i, c in enumerate(colors))
+    t = t.replace("__GIDS__", dumps(gids)).replace("__ALIAS__", dumps(alias))
+    t = t.replace("__UCSS_LIGHT__", light).replace("__UCSS_DARK__", dark)
     t = t.replace("__GEO__", dumps(G)).replace("__DATA__", dumps(D))
-    return t.replace("/*__SLIGHT__*/", lt).replace("/*__SDARK__*/", dk)
+    t = t.replace('\n<div class="app">', '\n</head>\n<body>\n<div class="app">', 1)
+    return HEAD + t + "\n</body>\n</html>\n"
 
 
 def main():

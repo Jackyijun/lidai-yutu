@@ -54,3 +54,144 @@ labels = "zhanguo"          # 单位注记按战国式页面的写法：陆上�
 repo = "Jackyijun/chunqiu-map"
 url = "https://jackyijun.github.io/chunqiu-map/"
 new_url = "https://jackyijun.github.io/lidai-yutu/chunqiu/"
+
+[web]                       # 新页面（core/web/template.html）各卷不同的文字与开关，说明见 core/web/README.md；数据由 core/web/simple.py 转成统一模板的写法
+# 时间单位：year 年（公元前写「前770」）
+time = "year"
+# 旧版页面记界面语言用的键（读一次，兼容旧访客）
+lang_key = "chunqiu-lang"
+# 标签页标题 [中, 英]
+doc_title = ["春秋列国形势图", "The Spring and Autumn Period, 770–476 BC"]
+# 顶栏标题
+h1 = ["春秋列国形势图", "The Spring and Autumn Period"]
+# 顶栏副题
+sub = ["前770 — 前476 · 古今地名对照", "770–476 BC · historical and modern place names"]
+# 地图的无障碍名称
+map_label = ["春秋列国形势图", "Map of the Spring and Autumn Period"]
+# 视野：[代号, 中文名, 英文名, [西, 东, 南, 北]]，第一项为默认
+fits = [
+  ["all", "全域", "All", [103.5, 123.2, 27.6, 41.6]],
+  ["zy", "中原", "Central Plains", [111.6, 117.6, 32.9, 36.7]],
+  ["js", "晋秦", "Jin & Qin", [104.8, 114.9, 33.3, 39.9]],
+  ["ql", "齐鲁", "Qi & Lu", [114.4, 122.6, 33.9, 38.3]],
+  ["jh", "江汉", "Jiang–Han", [108.6, 117.4, 28.6, 34.1]],
+  ["wy", "吴越", "Wu & Yue", [115.6, 122.4, 28.9, 34.4]],
+]
+# 打开页面时的视野
+fit0 = "all"
+# 打开页面时的着色：zhen = 诸侯（各国本色），pol = 共主（奉周的诸侯并入周，周色加斜线）
+cmode = "zhen"
+# 图例里的图层开关：[代号, 中文名, 英文名]，按显示次序
+layers = [
+  ["terr", "疆域", "Territory"],
+  ["relief", "地形", "Relief"],
+  ["capital", "国都", "Capitals"],
+  ["battle", "本期战役", "Battles"],
+  ["pass", "关隘津渡", "Passes and fords"],
+  ["pref", "城邑", "Cities and towns"],
+  ["event", "事件·会盟·文化", "Events · covenants · culture"],
+  ["road", "长城", "Walls"],
+  ["range", "山脉", "Mountains"],
+  ["river", "水系", "Rivers and lakes"],
+  ["canal", "运河", "Canals"],
+  ["people", "周边诸族", "Neighbouring peoples"],
+  ["prov", "今省界", "Mod. provinces"],
+]
+# 图例的斜线说明
+key2 = ["奉周：名义属周，实各自治", "Acknowledges Zhou: nominally under Zhou, self-governing in practice"]
+# 图例是否列「行军路线」
+key_route = false
+# 图例脚注 [中, 英]
+foot = ["疆域据《左传》《史记》与谭其骧《中国历史地图集》第一册春秋图大意推定，边界为示意；淡色虚线为戎狄部族；不单独画出的小国并入邻近大国；战役、事件只显示本期（上一节点之后至本节点）。「共主」着色：受周封爵、未称王者为奉周（周色加斜线），称王或不在周的封建之内者为自立（本色）；楚称王后曾向周王进贡受赐，前671—前607 也算奉周。点击国名、地名、河流、山脉均可查看说明。", "Territories are reconstructed from the Zuozhuan, the Shiji and the general outline of the Spring and Autumn maps in Tan Qixiang's Historical Atlas of China, vol. 1; boundaries are schematic. Pale dashed areas are Rong and Di tribal peoples; small states not drawn separately are merged into a larger neighbour. Battles and events are shown for the current period only (after the previous snapshot, up to this one). In Suzerain colouring, states enfeoffed by Zhou that have not claimed kingship acknowledge Zhou (Zhou colour, hatched); states that claim kingship or stand outside the Zhou feudal order are independent (own colour). Chu, after claiming kingship, sent tribute to the Zhou king and received his gifts, so it also counts as acknowledging Zhou from 671 to 607 BC. Click any state, place, river or mountain range for notes."]
+# 索引图高度（宽 140）
+inset_h = 112
+# 索引图范围 [西, 东, 南, 北]
+inset_box = [97, 129, 20, 45.5]
+# 经纬网：[经线起, 止, 纬度起, 止, 步长, 纬线起, 止, 经度起, 止, 步长]
+grat = [95, 130, 18, 46, 1, 20, 45, 95, 130, 1]
+# 斜线单位当藩属另画细虚线轮廓与国名
+vassal = true
+# 斜线画法：pol 只在政权（共主）着色下画，奉周的诸侯并入周、加斜线
+hatch = "pol"
+# 旧版链接的着色代号：st 诸侯、gz 共主
+cm_alias = { st = "zhen", gz = "pol" }
+# 诸侯着色下各国一律按政权画：奉周的诸侯不另作二级单位，不画周天下粗线
+zhen_flat = true
+# 诸侯着色下，图例列各国
+legend_units = true
+# 斜线单位（奉周的诸侯）在国的说明里的种类标签与「共主 周」的说法；奉周还是自立另起一行写依据，不再加 htag
+vassal_tag = ["国", "State"]
+overlord_word = ["共主", "Suzerain:"]
+# 顶栏计数里二级单位的说法 [中, 英单数, 英复数]
+count_zhen = ["国奉周", "state acknowledges Zhou", "states acknowledge Zhou"]
+# 政权说明里「领 N 处」的说法 [中（{n} 为数）, 英单数, 英复数]
+holds = ["领 {n} 处城邑", "city or town", "cities and towns"]
+# 所领地点一行的标题
+holds_label = ["城邑", "Holds"]
+# 不属任何政权的地点
+unowned = ["诸夏以外", "outside the Zhou states"]
+# 诸族年代：[起界, 起界文字, 止界, 止界文字, 「约」放最前]
+people = [-770, ["春秋以前", "before the Spring and Autumn period"], -476, ["战国以后", "after the Warring States began"], false]
+# 运河开凿年份：[此年以前不写年份, 那时的说法, 「本期尚未开凿」加括号]
+canal = [-9999, false, false]
+# 播放每节点毫秒数
+play_ms = 2400
+# 图例政权一栏的小标题：[诸侯着色, 共主着色]
+legsub = [["本期诸侯", "States"], ["本期政权（按共主）", "States (by suzerain)"]]
+# 索引里默认收起的组
+closed = ["pref", "town", "people", "other", "range", "road"]
+# 「政权」的说法：顶栏计数、索引分组
+pol_word = ["国"]
+pol_group = ["列国", "States"]
+# 名城要邑与一般城邑：名城 1.8 倍起画点、3.4 倍起标名（沿用两卷原来的倍数）；一般城邑为灰色小点，另列一组
+pref_zoom = [1.8, 3.4]
+# 都城一组的名称；国的信息里「都 某地」与城邑的「某都」：[中, 英, 英「某国都城」]
+cap_group = ["国都", "Capitals"]
+seat_word = ["都", "capital:", "capital of"]
+# 索引分组名与对照表的类别：名城要邑、一般城邑、其他时期的国；奉周的诸侯归斜线一组（vassal_group），没有二级单位一组；事件、长城各组
+pref_group = ["名城要邑", "Major cities"]
+pref_sub = ["古名 → 今地", "historical → modern"]
+town_group = ["一般城邑", "Towns"]
+pref_kind = ["名城", "Major city"]
+town_kind = ["城邑", "Town"]
+other_group = ["其他时期的诸侯", "States of other periods"]
+zhen_group = ["", ""]
+vassal_group = ["奉周诸侯", "States acknowledging Zhou"]
+event_group = ["事件 · 会盟 · 文化", "Events, covenants & culture"]
+road_group = ["长城", "Walls"]
+# 英文检索框提示
+q_en = "Search names"
+# 英文对照表、年表导语里的年代说明
+date_note_en = "Years are BC and given to the year only."
+# 对照表导语（{n} 为节点数）
+table_intro = ["<p>地图所标全部条目，一名一行。城邑的“归属沿革”取自地图上 {n} 个时间节点，连续相同的归属合并显示。经纬度取今日遗址或所在城市，可在任何地图应用中直接定位；线状要素（山脉、河流、长城）给出注记点。点击任一行回到地图并定位。</p>", "<p>Every entry on the map, one name per row. The allegiance of cities and towns is taken from the map’s {n} snapshots, with consecutive identical entries merged. Coordinates are those of today’s site or town and can be found in any map app; linear features (mountains, rivers, walls) give their label point. Click a row to return to the map and locate it.</p><p>{date_note}</p>"]
+# 年表导语
+chron_intro = ["<p>把地图上的战役、会盟、迁都、工程与诸国灭亡按时间排成一条线，与地图上的 {n} 个时间节点并列。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>", "<p>Battles, covenants, capital moves, works and the fall of each state, in order of time, together with the map’s {n} snapshots. Grey rows are map snapshots; click any event to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
+# 年表收哪些年份的都城迁移 [起, 止, 起是否不含]（起为 false 取首节点，止为 false 不设上限）
+chron_cap = [false, false, true]
+# 修长城、驰道进年表
+road_chron = true
+
+[web.kind_txt]  # 单位种类的称呼
+state = ["国", "State"]
+zhen = ["奉周诸侯", "Acknowledges Zhou"]
+tribe = ["部族", "Tribe"]
+waste = ["弃地", "Abandoned land"]
+sub = ["属部", "Subordinate"]
+
+[web.cm]  # 着色按钮：zhen 名称与提示、pol 提示（pol 按钮名照模板写「政权」，春秋另写「共主」）
+zhen = ["诸侯", "States"]
+pol = ["共主", "Suzerain"]
+zhen_title = ["按诸侯着色：各国本色", "Colour by state: each state in its own colour"]
+pol_title = ["按共主着色：奉周王为共主的诸侯同用周色", "Colour by suzerain: states that acknowledge the Zhou king as suzerain share the Zhou colour"]
+
+[web.catname]  # 对照表的类别名
+capital = ["国都", "Capital"]
+battle = ["战役", "Battle"]
+pass = ["关隘津渡", "Pass or ford"]
+event = ["事件", "Event"]
+range = ["山脉", "Mountains"]
+river = ["水系", "Water"]
+canal = ["运河", "Canal"]
+road = ["长城", "Wall"]
+people = ["诸族", "People"]

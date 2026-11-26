@@ -20,7 +20,7 @@
 | `relief.py` | 下载并校验晕渲原图，按档生成各卷的晕渲图 → `geodata/relief/<短名>/` |
 | `world.py` | 全球陆地与大湖 → `geodata/world/<短名>.json` |
 
-前端的改动（投影参数、接缝、全球陆地与海岸线的画法、晕渲图层、图例里的「地形」开关、浓淡）由 [`core/web/patch.py`](../web/patch.py) 的 `patch_geo` 注入各卷模板。
+前端的改动（投影参数、接缝、全球陆地与海岸线的画法、晕渲图层、图例里的「地形」开关、浓淡）写在九卷共用的统一模板 [`core/web/template.html`](../web/template.html) 里，投影参数与浓淡由 `core/web/assemble.py` 按本目录的 `config.toml` 填入（2026-11-25 以前，春秋、战国两卷的旧模板由 `core/web/patch.py` 的 `patch_geo` 注入）。
 
 ## 投影
 

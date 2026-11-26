@@ -48,7 +48,7 @@ The same input always gives a byte-identical `source.json`, so changes can be tr
 
 The base map data (`geodata/ne/`) ships with the repository, so it builds offline; if files are missing, `run.py` downloads the pinned version (Natural Earth v5.1.2) from GitHub.
 
-The Warring-States-style old template the page uses is in the monorepo's `core/web/old/zhanguo.html` (formerly this volume's `src/template.html`, moved there in the third batch of the architecture cleanup, November 2026), and `core/web/patch.py` gives it the shared shell; moving the two volumes to the unified template is left for a later batch.
+The page is built from the unified template all nine volumes share, the monorepo's `core/web/template.html` (since 25 November 2026; before that it used the Warring-States-style old template): this volume's v1 is first converted by `core/web/simple.py` into the layout the template reads, and the text and switches that differ for this volume are set in `[web]` in `era.toml`.
 
 ---
 
@@ -57,7 +57,7 @@ The Warring-States-style old template the page uses is in the monorepo's `core/w
 ```
 eras/zhanguo/
 ├── run.py                 stage-1 build entry point: → source.json
-├── era.toml               basic facts about the volume (volume number, opening node, unified-engine settings, junctions)
+├── era.toml               basic facts about the volume (volume number, opening node, unified-engine settings, junctions) and the page's text and switches ([web])
 ├── source.json            ★ the stage-1 output (checked in): ownership at each node, texts, entries and base map; the monorepo's v1 data is converted from it
 ├── engine.json            territories at each node computed by the unified territory engine (checked in; recomputed by python run.py zhanguo in the monorepo)
 ├── short.tsv              short timeline labels
@@ -174,16 +174,17 @@ After changing `seeds.txt`, or the time nodes, mountains or hand-drawn rivers in
 | `ROADS` | Courses (schematic) and dates of the imperial highways, the Straight Road and the Five-Foot Road |
 | `FALLS` | The falls of states for the chronology: year, state, what happened |
 
-### 6. Display rules (`core/web/old/zhanguo.html`)
+### 6. Display rules (the monorepo's unified template `core/web/template.html`; this volume's settings are in `[web]` in `era.toml`)
 
-- Battles are shown only for the **current period**, i.e. after the previous node (exclusive) up to this node (inclusive); the caption bar lists "Battles this period", and clicking one locates it. In the side list, this period's battles come first and the rest are greyed out; hovering shows them faintly on the map.
-- Events and works, long walls, highways and canals appear only once they have happened; capitals show only the current capitals and former ones.
-- Tribal peoples have pale, dash-edged territories and italic labels and are not counted in the header. The legend lists only the states alive in this period and those that fell in it (struck through).
-- The timeline widens with the number of nodes (at least about 26 px each); the button under Play toggles 1× / 2× speed. The map opens at the 350 BC node.
+- Battles and events are shown only for the **current period**, i.e. after the previous node (exclusive) up to this node (inclusive); the caption bar lists this period's battles, and clicking one locates it. In the side list, this period's battles come first and the rest are greyed out; hovering shows them faintly on the map.
+- Long walls, highways and canals appear from the year they were built or dug; capitals show the current capitals, and former capitals as small grey dashed boxes.
+- Tribal peoples have pale, dash-edged territories and are not counted in the header. The legend lists the states of this period.
+- The timeline has a thin bar drawn to scale by year, with evenly spaced ticks below it; the button under Play toggles 1× / 2× speed. The map opens at the 350 BC node.
 - The interior long walls abandoned after the Qin unification (Wei, Zhao Southern, Yan Southern, Qi and Chu Fangcheng) are faded from the 212 BC node on and marked "(abandoned)".
-- Qin commanderies are shown only once established and only when their seat is inside Qin: dashed boundaries, double-ring seat symbols. They can be switched off separately in the legend.
-- Opening a battle from another period in the index, chronology or gazetteer jumps the timeline to its period; opening a "future" event jumps to the nearest node after it.
-- Zoom levels: the full view shows only state names, capitals, battles and passes; major cities, towns and modern names appear as you zoom in.
+- Qin commanderies are shown only once established and only when their seat is inside Qin (or Wey): dashed boundaries, and a circle with a centre dot for the seat (drawn from 1.6× zoom, labelled from 2.3× with "seat: X"). They can be switched off separately in the legend, and have their own group in the index and the gazetteer.
+- Opening a battle or event from another period in the index, chronology or gazetteer jumps the timeline to its period.
+- Zoom levels: the full view shows only state names, capitals and battles; zooming in brings in events, passes, commandery seats, major cities (dots from 1.8×, names from 3.4×), towns (small grey dots from 2.6×, names from 4.4×) and modern names.
+- There is only one colouring, by state; views are chosen from a drop-down (All; Central Plains; Guanzhong & Jin; Qi & Yan; Chu, Wu & Yue; Ba & Shu).
 
 ---
 
@@ -197,7 +198,7 @@ After changing `seeds.txt`, or the time nodes, mountains or hand-drawn rivers in
 | Change descriptive text | the notes and node summaries in `features.py` | `python run.py --html` here (it will report the matching English as out of date; see the next section), `python run.py --web` at the monorepo root |
 | Change the English | `content/en/*.json` | `python tools/i18n.py lock` → `python run.py --html` here → `python run.py --web` at the monorepo root |
 | Change colours | the monorepo's `global/palette.toml` (by global polity ID; states on both maps share a colour) | `python run.py --web` at the monorepo root |
-| Change interface text | `U` in the monorepo's `core/web/old/zhanguo.html` (`zh` and `en` sets) | `python run.py --web` at the monorepo root |
+| Change interface text | `[web]` in this volume's `era.toml` (title, views, legend, footnote, the wording of the count and the index, in Chinese and English); button labels shared by all nine volumes are in the monorepo's `core/web/template.html` | `python run.py --web` at the monorepo root |
 
 ---
 

@@ -3,19 +3,20 @@
 
 从某张形势图自己的 index.html 里读出内嵌的 GEO / DATA，按该图自己的投影和色板，
 把某一个时间节点的疆域重绘成一幅 360×270 的小图（SVG），供总览页的目录卡片使用。
-简单模型（战国式，节点里有 s/l）与分层模型（唐宋式，节点里有 z/p/pol）都能处理，
-疆域几何放在共享池 GEO.pool 里的也能处理；民国式（按月分节点，t 为月序号、标题存 ti，投影在 GEO.proj）也能处理。
+九张图都由统一模板出页面，数据是分层写法（节点里有 z/p/pol）；疆域几何放在共享池 GEO.pool 里的也能处理，
+民国式（按月分节点，t 为月序号、标题存 ti，投影在 GEO.proj）也能处理。
+春秋、战国两图加 --flat：按国平涂，不画政权外框，同这两图原来的缩略图。
 
 注记中英两套都画：<g class="t-lab zh"> 用中文名，<g class="t-lab en"> 用该图数据里的英文名
-（简单模型依次取当年别名 labe、政权条目的 eold；分层模型依次取当年别名 labe、地图短名 se、全称 ne，去掉括注），
-简单模型的中文注记依次取当年别名 lab、政权条目的古名（去括注）；DATA.kinds 标为 tribe 的部族画淡色虚线。
-分层模型的节点若带 kd（本节点改单位种类，如两晋图的高句丽 313 年起由部族改按政权画）、
+（依次取当年别名 labe、地图短名 se、全称 ne，去掉括注；--flat 依次取 labe、ne），
+中文注记取当年别名 lab 或单位名（去括注）；单位种类为 tribe 的部族画淡色虚线。
+节点若带 kd（本节点改单位种类，如两晋图的高句丽 313 年起由部族改按政权画）、
 col（本节点覆盖单位的浅、深两色），按节点所记的画。
 由总览页按当前语言显示其一。英文按估算字宽避让，长名在空格处折两行，放不下就不标。
 图还没有英文时，用 --en 临时补英文注记；图出英文后去掉 --en 重生成。
 
 用法
-  python3 tools/thumbs.py 图的index.html --id zg --year -300
+  python3 tools/thumbs.py 图的index.html --id zg --year -300 --flat
   python3 tools/thumbs.py 图的index.html --id ts --year 820 --mode zhen --box 95 127.5 19 46.5
   python3 tools/thumbs.py 图的index.html --id st --blank --box 99 125 21.5 43.5   # 编修中：只画底图
 
@@ -26,9 +27,10 @@ col（本节点覆盖单位的浅、深两色），按节点所记的画。
 参数
   --year / --node       取哪一年 / 第几个节点；都不填取该图打开时的节点
   --month 年.月         按月分节点的图（民国）按年月取节点，如 1937.12；秦汉卷楚汉之际的按月节点写纪年年.月，如 -206.2
-  --box 西 东 南 北     缩略图取景的经纬框；缺省取该图源码里 FITS 的 cn 或 all
-  --mode zhen|pol       分层模型的着色：二级单位（缺省）或政权
-  --en "编号=英文名;…"   补或改英文注记，优先于图里的英文名；编号即单位编号（简单模型为政权键名）
+  --box 西 东 南 北     缩略图取景的经纬框；缺省取该图视野（WEB.fits）里的 cn 或 all
+  --mode zhen|pol       着色：二级单位（缺省）或政权
+  --flat                按国平涂，不画政权外框（春秋、战国）
+  --en "编号=英文名;…"   补或改英文注记，优先于图里的英文名；编号即单位编号（--flat 也可写国名）
 """
 import argparse, json, math, os, re, sys
 
@@ -37,7 +39,7 @@ RAD = math.pi / 180
 EN = {}  # --en 补的英文注记：编号 → 英文名
 ZH = {}  # --zh 改的中文注记（如短名）：编号 → 中文名
 FS = {}  # --fs 指定的中文注记字号：编号 → 字号（英文随之按 0.82 倍）
-INFRAME = set()  # --inframe 注记点在取景框外时改标在框内那部分疆域里的单位（编号；简单模型写国名）
+INFRAME = set()  # --inframe 注记点在取景框外时改标在框内那部分疆域里的单位（编号；--flat 也可写国名）
 
 
 # ---------------------------------------------------------------- 读源码
@@ -65,13 +67,15 @@ def source_center(src, geo=None):
 
 
 def source_box(src):
-    m = re.search(r"const FITS\s*=\s*\{(.*?)\};", src, re.S)
+    """缺省取景：该图视野里的 cn（中国），没有就取 all（全域）。视野写在 WEB.fits（统一模板）"""
+    m = re.search(r"const WEB\s*=\s*", src)
     if m:
+        web, _ = json.JSONDecoder().raw_decode(src, m.end())
+        fits = {f[0]: f[3] for f in web.get("fits", [])}
         for key in ("cn", "all"):
-            k = re.search(key + r"\s*:\s*\[([^\]]+)\]", m.group(1))
-            if k:
-                return [float(v) for v in k.group(1).split(",")]
-    sys.exit("源码里找不到 FITS，请用 --box 指定取景")
+            if key in fits:
+                return [float(v) for v in fits[key]]
+    sys.exit("源码里找不到视野 cn 或 all（WEB.fits），请用 --box 指定取景")
 
 
 def css_colors(src, prefix):
@@ -355,29 +359,33 @@ def base(view, geo, box):
     return land, graticule(view, box), rivers
 
 
-def simple_model(mid, geo, data, sn, view):
-    states = data["states"]
+def flat_model(mid, src, data, sn, view):
+    """按国平涂（--flat，春秋、战国两图）：每国各用本色（部族淡色虚线），不画政权外框；奉周的诸侯也照本国画。
+    注记一国可有几处（节点的 lz 是一串 [经, 纬, 面积, 半径]），取面积最大的一处；字号按注记点的半径定。"""
+    units = data["units"]
+    lc, dc = css_colors(src, "u")
     terr, cands, light, dark = "", [], [], []
-    for st, rings in sn["s"].items():
-        var = f"--{mid}-{states.index(st)}"
+    names = lambda u: (str(u), units[u].get("k"))          # 编号或国名（--fs、--en、--zh、--inframe 两样都认）
+    pick = lambda opt, u: next((opt[k] for k in names(u) if k in opt), None)
+    for k, rings in sn["z"].items():
+        u = int(k)
+        var = f"--{mid}-{u}"
         d = rings_d(view, rings)
         if not d: continue
-        tribe = (any(i.get("c") == "state" and i.get("k") == st and i.get("tribe") for i in data["items"])
-                 or data.get("kinds", {}).get(st) == "tribe" or st == "义渠")
+        tribe = units[u]["kind"] == "tribe" or units[u].get("k") == "义渠"     # 义渠：缩略图向来画作部族（图里按国画）
         terr += terr_path(d, var, tribe=tribe)
-        lc, dc = data["colors"][st]
-        light.append(f"{var}:{lc}"); dark.append(f"{var}:{dc}")
-        anc = max(sn.get("l", {}).get(st, []), key=lambda a: a[2], default=None)
+        light.append(f"{var}:{lc[k]}"); dark.append(f"{var}:{dc[k]}")
+        anc = max(sn.get("lz", {}).get(k, []), key=lambda a: a[2], default=None)
         if anc:
             x, y = view.ll(anc[0], anc[1])
             r = anc[3] * view.ppd
-            if st in INFRAME and out_of_frame(x, y) and (fa := frame_anchor(view, rings)):
+            if any(n in INFRAME for n in names(u)) and out_of_frame(x, y) and (fa := frame_anchor(view, rings)):
                 x, y, r = fa
-            fs = FS[st] if st in FS else max(7.5, min(17, r * .62))
-            it = next((i for i in data["items"] if i.get("c") == "state" and i.get("k") == st), {})
-            # 中文用当年别名或国名（去括注），英文用当年别名或 eold
-            zh = sn.get("lab", {}).get(st) or re.sub(r"（.*?）", "", it.get("old") or st) or st
-            en = EN.get(str(st)) or short_en(sn.get("labe", {}).get(st) or it.get("eold"))
+            fs = pick(FS, u)
+            fs = fs if fs is not None else max(7.5, min(17, r * .62))
+            # 中文用当年别名或国名（去括注），英文用当年别名或国名的英文
+            zh = pick(ZH, u) or sn.get("lab", {}).get(k) or re.sub(r"（.*?）", "", units[u]["n"])
+            en = pick(EN, u) or short_en(sn.get("labe", {}).get(k) or units[u].get("ne"))
             if fs >= 8: cands.append((x, y, zh, fs, var, en, r))
     return terr, "", label_groups(cands), light, dark
 
@@ -445,7 +453,7 @@ def tongjian(t):
     return yr, m
 
 
-def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None, month=None):
+def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None, month=None, flat=False):
     src, geo, data = extract(path)
     box = box or source_box(src)
     view = View(Albers(*source_center(src, geo)), box)
@@ -490,9 +498,11 @@ def build(path, mid, year=None, box=None, mode="zhen", blank=False, node=None, m
     if pool:  # 汉末三国式：疆域几何存于共享池，节点里只记编号
         for key in ("z", "p"):
             sn[key] = {u: pool[v] if isinstance(v, int) else v for u, v in sn.get(key, {}).items()}
-    if "s" in sn:
-        terr, extra, labels, light, dark = simple_model(mid, geo, data, sn, view)
+    if flat:
+        terr, extra, labels, light, dark = flat_model(mid, src, data, sn, view)
     else:
+        if any(v and isinstance(v[0], list) for v in sn.get("lz", {}).values()):   # 一国几处注记（春秋、战国）
+            sys.exit("这张图的国名注记一国可有几处（春秋、战国），请加 --flat")
         terr, extra, labels, light, dark = layered_model(mid, src, data, sn, view, mode)
     y = sn["_yr"] if mindex else sn["y"]
     yz, ye = (f"前{-y}", f"{-y} BC") if y < 0 else (str(y), str(y))
@@ -514,17 +524,18 @@ if __name__ == "__main__":
     ap.add_argument("--box", type=float, nargs=4, metavar=("W", "E", "S", "N"))
     ap.add_argument("--mode", default="zhen", choices=["zhen", "pol"])
     ap.add_argument("--blank", action="store_true")
+    ap.add_argument("--flat", action="store_true", help="按国平涂，不画政权外框（春秋、战国）")
     ap.add_argument("--en", default="", help='补或改英文注记，如 "0=Eastern Jin;73=Northern Wei"')
     ap.add_argument("--zh", default="", help='改中文注记（如用短名），如 "88=伪蒙疆;80=陕甘宁边区"')
-    ap.add_argument("--fs", default="", help='指定中文注记字号，如 "88=10;80=9"（简单模型写国名，如 "淮夷=8"）；0 为不标')
-    ap.add_argument("--inframe", default="", help='注记点在框外时改标在框内的单位，如 "4;12"（简单模型写国名）')
+    ap.add_argument("--fs", default="", help='指定中文注记字号，如 "88=10;80=9"（--flat 也可写国名，如 "淮夷=8"）；0 为不标')
+    ap.add_argument("--inframe", default="", help='注记点在框外时改标在框内的单位，如 "4;12"（--flat 也可写国名）')
     ap.add_argument("--out", default=".")
     a = ap.parse_args()
     EN.update((k.strip(), v.strip()) for k, v in (kv.split("=", 1) for kv in a.en.split(";") if "=" in kv))
     ZH.update((k.strip(), v.strip()) for k, v in (kv.split("=", 1) for kv in a.zh.split(";") if "=" in kv))
     FS.update((k.strip(), float(v)) for k, v in (kv.split("=", 1) for kv in a.fs.split(";") if "=" in kv))
     INFRAME.update(k.strip() for k in a.inframe.split(";") if k.strip())
-    svg, light, dark, cap = build(a.html, a.id, a.year, a.box, a.mode, a.blank, a.node, a.month)
+    svg, light, dark, cap = build(a.html, a.id, a.year, a.box, a.mode, a.blank, a.node, a.month, a.flat)
     os.makedirs(a.out, exist_ok=True)
     open(os.path.join(a.out, f"thumb-{a.id}.svg"), "w", encoding="utf8").write(svg)
     open(os.path.join(a.out, f"thumb-{a.id}.css.txt"), "w", encoding="utf8").write(f"/* light */ {light}\n/* dark */ {dark}\n")

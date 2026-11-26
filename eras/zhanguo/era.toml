@@ -67,3 +67,130 @@ sub.fixed = [["下辨", "陇西"]]   # 这些归属点的势力格整块归某�
 repo = "Jackyijun/zhanguo-map"
 url = "https://jackyijun.github.io/zhanguo-map/"
 new_url = "https://jackyijun.github.io/lidai-yutu/zhanguo/"
+
+[web]                       # 新页面（core/web/template.html）各卷不同的文字与开关，说明见 core/web/README.md；数据由 core/web/simple.py 转成统一模板的写法
+# 时间单位：year 年（公元前写「前475」）
+time = "year"
+# 旧版页面记界面语言用的键（读一次，兼容旧访客）
+lang_key = "zhanguo-lang"
+# 标签页标题 [中, 英]
+doc_title = ["战国列国形势图", "The Warring States, 475–212 BC"]
+# 顶栏标题
+h1 = ["战国列国形势图", "The Warring States"]
+# 顶栏副题
+sub = ["前475 — 前212 · 古今地名对照", "475–212 BC · historical and modern place names"]
+# 地图的无障碍名称
+map_label = ["战国列国形势图", "Map of the Warring States"]
+# 视野：[代号, 中文名, 英文名, [西, 东, 南, 北]]，第一项为默认
+fits = [
+  ["all", "全域", "All", [101.5, 125.5, 24.8, 43]],
+  ["zy", "中原", "Central Plains", [110.8, 118.2, 32.6, 37.6]],
+  ["gz", "关中三晋", "Guanzhong & Jin", [105.5, 115.5, 33.2, 41.2]],
+  ["qy", "齐燕", "Qi & Yan", [113.5, 125, 34.6, 42.6]],
+  ["cy", "楚吴越", "Chu, Wu & Yue", [108.5, 122.2, 25.5, 34.2]],
+  ["bs", "巴蜀", "Ba & Shu", [102.3, 111.2, 27.6, 34.6]],
+]
+# 打开页面时的视野
+fit0 = "all"
+# 着色：本卷只有按国一种，不出着色按钮
+cmode = "zhen"
+cmodes = false
+# 图例里的图层开关：[代号, 中文名, 英文名]，按显示次序
+layers = [
+  ["terr", "疆域", "Territory"],
+  ["relief", "地形", "Relief"],
+  ["capital", "国都", "Capitals"],
+  ["battle", "本期战役", "Battles"],
+  ["pass", "关隘津渡", "Passes and fords"],
+  ["pref", "城邑", "Cities and towns"],
+  ["event", "事件·变法·工程", "Events · reforms · works"],
+  ["jun", "秦郡", "Qin commanderies"],
+  ["road", "长城·驰道", "Walls · highways"],
+  ["range", "山脉", "Mountains"],
+  ["river", "水系", "Rivers and lakes"],
+  ["canal", "运河", "Canals"],
+  ["people", "周边诸族", "Neighbouring peoples"],
+  ["prov", "今省界", "Mod. provinces"],
+]
+# 图例的斜线说明（本卷没有斜线）
+key2 = ["", ""]
+# 图例是否列「行军路线」
+key_route = false
+# 图例脚注 [中, 英]
+foot = ["疆域据文献与谭其骧《中国历史地图集》战国图大意推定，边界为示意；战役、事件只显示本期（上一节点之后至本节点）。秦郡依后晓荣五十四郡说，郡界由郡治就近推算，仅示意。点击国名、地名、河流、山脉均可查看说明。", "Territories are reconstructed from the sources and the general outline of the Warring States maps in Tan Qixiang's Historical Atlas of China; boundaries are schematic. Battles and events are shown for the current period only (after the previous snapshot, up to this one). Qin commanderies follow Hou Xiaorong's 54-commandery reconstruction; their boundaries are inferred from the seats and are schematic. Click any state, place, river or mountain range for notes."]
+# 索引图高度（宽 140）
+inset_h = 112
+# 索引图范围 [西, 东, 南, 北]
+inset_box = [97, 129, 20, 45.5]
+# 经纬网：[经线起, 止, 纬度起, 止, 步长, 纬线起, 止, 经度起, 止, 步长]
+grat = [95, 130, 18, 46, 1, 20, 45, 95, 130, 1]
+# 顶栏计数里二级单位的说法（本卷没有二级单位）
+count_zhen = ["", "", ""]
+# 政权说明里「领 N 处」的说法 [中（{n} 为数）, 英单数, 英复数]
+holds = ["领 {n} 处城邑", "city or town", "cities and towns"]
+# 所领地点一行的标题
+holds_label = ["城邑", "Holds"]
+# 不属任何政权的地点
+unowned = ["诸夏以外", "outside the Zhou states"]
+# 诸族年代：[起界, 起界文字, 止界, 止界文字, 「约」放最前]
+people = [-475, ["战国以前", "before the Warring States"], -212, ["秦以后", "after Qin"], false]
+# 运河开凿年份：[此年以前不写年份, 那时的说法, 「本期尚未开凿」加括号]
+canal = [-9999, false, false]
+# 播放每节点毫秒数
+play_ms = 1700
+# 索引里默认收起的组
+closed = ["pref", "town", "people", "other", "range", "road"]
+# 「政权」的说法：顶栏计数、索引分组
+pol_word = ["国"]
+pol_group = ["列国", "States"]
+# 名城要邑与一般城邑：名城 1.8 倍起画点、3.4 倍起标名（沿用两卷原来的倍数）；一般城邑为灰色小点，另列一组
+pref_zoom = [1.8, 3.4]
+# 都城一组的名称；国的信息里「都 某地」与城邑的「某都」：[中, 英, 英「某国都城」]
+cap_group = ["国都", "Capitals"]
+seat_word = ["都", "capital:", "capital of"]
+# 索引分组名与对照表的类别：名城要邑、一般城邑、其他时期的国（本卷没有二级单位一组）；事件、长城·驰道各组
+pref_group = ["名城要邑", "Major cities"]
+pref_sub = ["古名 → 今地", "historical → modern"]
+town_group = ["一般城邑", "Towns"]
+pref_kind = ["名城", "Major city"]
+town_kind = ["城邑", "Town"]
+other_group = ["其他时期的诸侯", "States of other periods"]
+zhen_group = ["", ""]
+event_group = ["事件 · 变法 · 工程", "Events, reforms & works"]
+road_group = ["长城 · 驰道", "Walls & highways"]
+# 英文检索框提示
+q_en = "Search names"
+# 英文对照表、年表导语里的年代说明
+date_note_en = "Years are BC and given to the year only."
+# 对照表导语（{n} 为节点数）
+table_intro = ["<p>地图所标全部条目，一名一行。城邑的“归属沿革”取自地图上 {n} 个时间节点，连续相同的归属合并显示。经纬度取今日遗址或所在城市，可在任何地图应用中直接定位；线状要素（山脉、河流、长城）给出注记点。点击任一行回到地图并定位。</p>", "<p>Every entry on the map, one name per row. The allegiance of cities and towns is taken from the map’s {n} snapshots, with consecutive identical entries merged. Coordinates are those of today’s site or town and can be found in any map app; linear features (mountains, rivers, walls) give their label point. Click a row to return to the map and locate it.</p><p>{date_note}</p>"]
+# 年表导语
+chron_intro = ["<p>把地图上的战役、变法、迁都、筑城与诸国灭亡按时间排成一条线，与地图上的 {n} 个时间节点并列。灰底为地图节点；点击任一事件，地图会跳到该事件之后最近的节点并定位。</p>", "<p>Battles, reforms, capital moves, building works and the fall of each state, in order of time, together with the map’s {n} snapshots. Grey rows are map snapshots; click any event to jump to the nearest snapshot after it and locate it on the map.</p><p>{date_note}</p>"]
+# 年表收哪些年份的都城迁移 [起, 止, 起是否不含]（起为 false 取首节点，止为 false 不设上限）
+chron_cap = [false, false, true]
+# 修长城、驰道进年表
+road_chron = true
+
+[web.kind_txt]  # 单位种类的称呼
+state = ["国", "State"]
+zhen = ["诸侯国", "State"]
+tribe = ["部族", "Tribe"]
+waste = ["弃地", "Abandoned land"]
+sub = ["属部", "Subordinate"]
+
+[web.cm]  # 着色按钮（本卷不出）
+zhen = ["列国", "States"]
+zhen_title = ["按国着色", "Colour by state"]
+pol_title = ["按国着色", "Colour by state"]
+
+[web.catname]  # 对照表的类别名
+capital = ["国都", "Capital"]
+battle = ["战役", "Battle"]
+pass = ["关隘津渡", "Pass or ford"]
+event = ["事件", "Event"]
+jun = ["秦郡", "Qin commandery"]
+range = ["山脉", "Mountains"]
+river = ["水系", "Water"]
+canal = ["运河", "Canal"]
+road = ["长城·驰道", "Wall or highway"]
+people = ["诸族", "People"]
