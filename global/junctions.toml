@@ -60,11 +60,13 @@ kind = "shared"
 owner = "songyuan"
 note = "2026-11-15 定：以宋元卷为准。宋元卷 979 年的女真要改为不属辽；唐宋卷 979 年节点照宋元卷对齐（见 global/corrections.md）"
 
-[[gap]]
-after = "suitang"
-before = "tangsong"
-years = [669, 755]
-plan = "隋唐卷延长到 755 年（第 8 步）"
+[[junction]]
+from = "suitang"
+to = "tangsong"
+year = 755
+kind = "shared"
+owner = "tangsong"
+note = "第 8 步隋唐卷延到 755 年：以唐宋卷为准，隋唐卷 755 年节点在唐宋卷的推算范围内照搬它的引擎几何；670 年起两卷用同一组归属点（eras/suitang/content/seeds_late.py），755 年各点的归属照唐宋卷（eras/suitang/content/snaps_tables.py）"
 
 [[gap]]
 after = "songyuan"

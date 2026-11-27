@@ -63,7 +63,8 @@ def view(slug, b=None):
 
     归属点写了 t1 的（春秋、战国为早期小国、戎狄补的点，seeds.txt 的 ~年份），t1 以后的节点不参与分区；
     写了 t0 的（seeds.txt 的 ^年份，如战国卷前280 起的下辨），t0 以前的节点不参与分区。
-    衔接节点上 v1 的 own 已按照搬来的疆域对齐过的（core/v1/engine_geom.py 的 align_own），取本卷原来的归属 own_src。"""
+    衔接节点上 v1 的 own 已按照搬来的疆域对齐过的（core/v1/engine_geom.py 的 align_own），取本卷原来的归属 own_src；
+    退出分区的点对齐后去掉了有名无地的单位的（align_retired），取原来的政权表 pol_src。"""
     b = b or bundle(slug)
     S = [(p["lon"], p["lat"], p["key"]) for p in b["places"]]
     ends = [p.get("t1") for p in b["places"]]
@@ -73,7 +74,7 @@ def view(slug, b=None):
     for n in b["nodes"]:
         own = [None if v is None or v < 0 else str(v) for v in n.get("own_src", n["own"])]
         act = [(e is None or n["t"] <= e) and (s is None or n["t"] >= s) for e, s in zip(ends, starts)] if some else None
-        N.append((n["t"], own, {k: str(v) for k, v in n["pol"].items()}, act))
+        N.append((n["t"], own, {k: str(v) for k, v in n.get("pol_src", n["pol"]).items()}, act))
     return S, N
 
 
@@ -193,6 +194,9 @@ def spec(slug):
                            hosts 是治所须落在其疆域里的单位（near：离其疆域不到这么多格的也算），治所取 v1 里 seats 那一类条目
                            （键 k、经纬度、始置年）；另出各块的多边形 zp 与注记 zpl
       sub.fixed            [[归属点, 块], …]：这些归属点的势力格整块归某块，不按治所远近分（战国卷的下辨归陇西郡）
+      pins = "active"      每个节点只护本节点参与分区的点（缺省 "all"：全卷参与过分区的点都当护点）；卷中改换一批归属点时用，
+                           保此前节点的几何不变（隋唐卷 670 年起改用唐宋卷的点）。不能与重要地域同用
+      align_retired = true 不归引擎：生成 v1 时，退出分区的点按画出来的疆域对齐归属，有名无地的单位从节点里去掉（core/v1/engine_geom）
     引擎只读这里、v1 数据包、全局表（山川、国界墙）与各卷的两样史料：手绘外缘 content/frontier.py、写可达倍数的 seeds 文件"""
     t = tomllib.loads((ROOT / "eras" / slug / "era.toml").read_text(encoding="utf8"))
     s = t.get("engine")

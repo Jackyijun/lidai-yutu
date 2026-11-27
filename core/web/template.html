@@ -454,6 +454,7 @@ __SHELL_JS__
     sn.lzs = {};
     for (const u in sn.lz) if (Array.isArray(sn.lz[u][0])) { sn.lzs[u] = sn.lz[u]; sn.lz[u] = sn.lz[u][0]; }
   }
+  const seedLive = (s, Y) => { const S = SEEDS[s], a = S.a; return (!a || a[0] == null || Y >= a[0]) && (S.v == null || Y >= S.v); };   // 隋唐卷：670 年起补的点、州未置以前的点，此前的节点不画、不列沿革（Y 为节点的年份；按 t 计时的卷 YOF 给的是月序，将来那些卷要用 a、v 时须先换算）
   const seedZh = (s, Y) => { const S = SEEDS[s]; if (!S.nm) return S.n; let n = S.n; for (const [y, nm] of S.nm) if (Y >= y) n = nm; return n; };
   const seedName = (s, Y) => {
     if (LANG !== "en") return seedZh(s, Y);
@@ -1057,7 +1058,7 @@ __SHELL_JS__
     const pts = [];
     if (layerOn.pref || layerOn.capital) for (let s = 0; s < SEEDS.length; s++) {
       const S = SEEDS[s], oc = layerOn.capital && ocSeed.has(s);
-      if (S.t === "r" || capSeed.has(s) || (seatSeed.has(s) && (layerOn.seat || !oc)) || (!layerOn.pref && !oc)) continue;
+      if (S.t === "r" || !seedLive(s, YY) || capSeed.has(s) || (seatSeed.has(s) && (layerOn.seat || !oc)) || (!layerOn.pref && !oc)) continue;
       const k = keyOf("s", s);
       if (!match(k)) continue;
       pts.push({ kind: "pref", k, xy: S.xy, ord: S.t === "t" ? -.5 : oc ? 1 : 0, s, c: S.t === "c", tw: S.t === "t", oc });
@@ -1369,7 +1370,7 @@ __SHELL_JS__
   const subKind = (u, sn) => { const p = sn.pol[u] ?? presentIn(u).map(j => SNAPS[j].pol[u]).find(x => x != null && x !== u); return p != null && UNITS[p] && SUBKIND[UNITS[p].k] ? pick(SUBKIND[UNITS[p].k]) : pick(KIND_TXT.zhen); };
   function unitKindAt(u, sn) { if (!sn.pol.hasOwnProperty(u)) return UNITS[u].kind; return sn.pol[u] !== u ? (UNITS[u].x ? "sub" : "zhen") : soft(u, sn) || WEB.kind_own ? kindOf(u, sn) : "state"; }
   function presentIn(u) { return SNAPS.map((sn, j) => (sn.pol.hasOwnProperty(u) || sn.pols.includes(u)) ? j : -1).filter(j => j >= 0); }
-  function unitSeeds(u, sn) { return (sn.multi.has(u) && !(WEB.zhen_flat && cmode === "zhen") ? sn.polSeeds(u) : (sn.seedsOf[u] || [])).filter(s => SEEDS[s].t !== "r"); }   // zhen_flat 的二级单位着色下各国只算本国（春秋诸侯着色下的周王畿）
+  function unitSeeds(u, sn) { return (sn.multi.has(u) && !(WEB.zhen_flat && cmode === "zhen") ? sn.polSeeds(u) : (sn.seedsOf[u] || [])).filter(s => SEEDS[s].t !== "r" && seedLive(s, YOF(sn))); }   // zhen_flat 的二级单位着色下各国只算本国（春秋诸侯着色下的周王畿）
   function seatName(u, sn) {
     const capIt = ITEMS.find(it => it.c === "capital" && it.st === u && capActive(it, NT(sn)));
     if (capIt) return iF(capIt, "old");
@@ -1378,6 +1379,7 @@ __SHELL_JS__
   function chainHTML(s) {
     const out = []; let last = null;
     for (const sn of SNAPS) {
+      if (!seedLive(s, YOF(sn))) continue;
       const u = sn.own[s];
       let t = "—";
       if (u >= 0) { const p = sn.pol[u]; t = WEB.chain_static ? uShort(u) + (p !== u ? LZ("（" + UNITS[p].n + "）", " (" + uShort(p) + ")") : "") : sn.labOf(u) + (p !== u ? LZ("（" + sn.labOf(p) + "）", " (" + sn.labOf(p) + ")") : ""); }
@@ -1600,6 +1602,7 @@ __SHELL_JS__
         if (pr.length) { let best = pr[0]; for (const j of pr) if (Math.abs(j - si) < Math.abs(best - si)) best = j; setSnap(best, false); buildIndex(); }
       }
     }
+    if (t === "s" && !seedLive(i, YOF(SNAPS[si]))) { const j = SNAPS.findIndex(sn => seedLive(i, YOF(sn))); if (j >= 0) { setSnap(j, false); buildIndex(); } }   // 隋唐卷：还没画出来的点跳到它出现的节点
     if (t === "i") {
       const it = ITEMS[i];
       if (it.c === "capital" && !capBegun(it, NT(SNAPS[si]))) { let j = SNAPS.findIndex(sn => capActive(it, NT(sn))); if (j < 0) j = SNAPS.findIndex(sn => capBegun(it, NT(sn))); if (j >= 0) { setSnap(j, false); buildIndex(); } }   // 还没当上都城的跳到第一次当都城的节点（为都年代落在两个节点之间的，跳到其后第一个节点）；已当过的不跳
@@ -1925,7 +1928,7 @@ __SHELL_JS__
     const prefs = SEEDS.map((S, s) => s).filter(s => SEEDS[s].t !== "r" && SEEDS[s].t !== "t" && match(keyOf("s", s)));
     const towns = SEEDS.map((S, s) => s).filter(s => SEEDS[s].t === "t" && match(keyOf("s", s)));   // 一般城邑（春秋、战国）另列一组
     total += group("town", pick(WEB.town_group || ["一般城邑", "Towns"]), pick(WEB.town_sub || ["放大后显示", "shown when zoomed in"]), "var(--ink-3)", towns.map(s => { const k = keyOf("s", s), f = info(k, "row"); return rowEl(k, f.k, f.old, f.mod, f.meta, "", f.chain, false, null, f.zh); }));
-    total += group("pref", pick(WEB.pref_group || ["州府 · 城邑", "Prefectures & towns"]), pick(WEB.pref_sub || ["古名 → 今地", "historical → modern"]), "var(--c-city)", prefs.map(s => { const k = keyOf("s", s), f = info(k, "row"); return rowEl(k, f.k, f.old, f.mod, f.meta, "", f.chain, false, null, f.zh); }));
+    total += group("pref", pick(WEB.pref_group || ["州府 · 城邑", "Prefectures & towns"]), pick(WEB.pref_sub || ["古名 → 今地", "historical → modern"]), "var(--c-city)", prefs.map(s => { const k = keyOf("s", s), f = info(k, "row"); return rowEl(k, f.k, f.old, f.mod, f.meta, "", f.chain, !seedLive(s, YY), null, f.zh); }));
     simple("range", "range", LZ("山脉", "Mountains"), "");
     { const subOrd = it => ({ wall: 0, road: 1 })[it.sub] ?? 2;                                   // 组内依次为长城和塞、驰道直道、古道栈道
       const rl = ITEMS.filter(it => it.c === "road" && it.t0 == null && match(keyOf("i", it.i))).sort((a, b) => subOrd(a) - subOrd(b));    // 长城、驰道、古道栈道（春秋至汉末）；民国的公路在上面的线状地物里

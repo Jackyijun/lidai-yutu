@@ -79,8 +79,7 @@ def required(geo, data):
     for it, k in zip(data['items'], IK):
         for f in ITEM_FIELDS:
             if it.get(f): req.append(('items', (k, f), it[f]))
-    R = geo.get('route')
-    if R:
+    for R in geo.get('routes', []):
         k = IK[R['it']]
         for p in dict.fromkeys(p[3] for p in R['pts']): req.append(('items', (k, 'p', p), p))
     for s in geo['snaps']:
@@ -132,8 +131,7 @@ def attach(geo, data, en=None):
     IK = item_keys(data)
     for it, k in zip(data['items'], IK):
         it['e'] = {f: (g('items', k, f) or it[f]) for f in ITEM_FIELDS if it.get(f)}
-    R = geo.get('route')
-    if R:
+    for R in geo.get('routes', []):
         k = IK[R['it']]
         R['pe'] = [g('items', k, 'p', p[3]) or p[3] for p in R['pts']]
     for s in geo['snaps']:

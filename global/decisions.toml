@@ -867,6 +867,7 @@ merge = [
 
 # 全局 ID。同名政权的取名原则：统一王朝与南北朝诸朝用本名，同名的先秦诸侯国、十国政权加卷名
 [polities.id]
+"tangsong:安西" = "安西"            # 第 8 步隋唐卷延到 755 年后，隋唐卷的「安西都护府」节点更多，钉回原 ID
 "songyuan:宋" = "宋"
 "chunqiu:宋" = "宋·春秋"
 "liangjin-nanbeichao:陈" = "陈"
@@ -937,6 +938,7 @@ by_era = [
   "建安城|建安城",          # 隋唐时为高句丽城，用朝鲜语读音 Geonan；此后用汉语读音
   "韩|韩",                  # 战国 Han；秦汉卷与汉并存，作 Han (韓) 以示区别
   "襄平|辽东城",            # 同上：Yodong Fortress / Liaodong City
+  "北庭|北庭",              # 隋唐卷为都护府 Beiting Protectorate（745 年起兼节度）；唐宋卷为节度 Beiting
   "river:长江|江",          # 春秋、战国作 Jiang（先秦专名「江」），此后作 Yangtze
   "river:黄河|河",          # 同上：He / Yellow River
 ]

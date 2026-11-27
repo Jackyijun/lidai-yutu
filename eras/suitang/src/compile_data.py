@@ -72,6 +72,7 @@ def build():
             'lab': {UK[u]: t for u, t in s['lab'].items()},
             'seat': {UK[u]: SID[v] for u, v in s['seat'].items()},
             'h': [UK[u] for u in s['h']],
+            **({'jn': 'tangsong'} if (n['y'], n['m']) == (755, 12) else {}),   # 衔接节点：疆域照搬唐宋卷 755 年节点
         })
 
     # ---------------- 条目 ----------------
@@ -94,7 +95,8 @@ def build():
         d = {k: it[k] for k in ('c', 'old', 'mod', 'lon', 'lat')}
         d['note'] = IT.PASS.get(it['old'], it.get('note', ''))
         add(d)
-    for o, m, lon, lat, note in IT.NEWPASS: add(dict(c='pass', old=o, mod=m, lon=lon, lat=lat, note=note))
+    for o, m, lon, lat, note, *yrs in IT.NEWPASS:
+        add(dict(c='pass', old=o, mod=m, lon=lon, lat=lat, note=note, **({'yrs': yrs[0]} if yrs else {})))
     for e in IT.EV: add(dict(e))
     # 山脉
     ts_map = {}
@@ -143,8 +145,13 @@ def build():
         if it['c'] == 'desert' and it['old'] not in DESERT_DROP:
             d = dict(it); d.pop('i'); d['note'] = DESERT_NOTE.get(it['old'], it.get('note', ''))
             ts_map[it['i']] = add(d)
-    # 秦王征战路线
-    route_it = add(dict(c='route', old='秦王李世民征战路线', mod='617—649 年', note=IT.ROUTE_NOTE, anc=[111.3, 35.9]))
+    # 行军·行程路线：秦王征战在前（条目号同前），第 8 步补的接在后面
+    routes = [{'it': add(dict(c='route', old='秦王李世民征战路线', mod='617—649 年', note=IT.ROUTE_NOTE, anc=[111.3, 35.9])),
+               'pts': [[x, y, round(t, 4), n] for x, y, t, n in IT.ROUTE]}]
+    for R in IT.ROUTES:
+        mid = R['pts'][len(R['pts']) // 2]
+        routes.append({'it': add(dict(c='route', old=R['old'], mod=R['mod'], note=R['note'], anc=[mid[0], mid[1]])),
+                       'pts': [[x, y, round(t, 4), n] for x, y, t, n in R['pts']]})
     # 诸族
     for o, m, lon, lat, y0, y1, note in IT.PEOPLE:
         add(dict(c='people', old=o, mod=m, lon=lon, lat=lat, y0=y0, y1=y1, note=note))
@@ -156,7 +163,7 @@ def build():
         'prov': [{'n': p['n'], 'c': p['c'], 'r': [enc_list(r) for r in p['r']]} for p in BASE['prov']],
         'border': [enc_list(b) for b in BASE['border']],
         'rivers': [], 'lakes': [], 'canals': [], 'deserts': [], 'regions': [],
-        'snaps': snaps_out, 'route': {'it': route_it, 'pts': [[x, y, round(t, 4), n] for x, y, t, n in IT.ROUTE]}, 'ext': C.VIEW_EXT,
+        'snaps': snaps_out, 'routes': routes, 'ext': C.VIEW_EXT,
     }
     for r in BASE['rivers']:
         it = ts_map.get(r['ts_it']) if r.get('ts_it') is not None else key_item.get(r.get('key'))
@@ -174,7 +181,7 @@ def build():
     KIND = {'state': 'state', 'dh': 'zhen', 'tribe': 'tribe', 'misc': 'misc'}
     DATA = {
         'units': [{'k': u['k'], 'n': u['n'], 'kind': KIND[u['kind']], 'note': u['note']} for u in U],
-        'seeds': [{k: v for k, v in dict(id=s['id'], n=s['n'], mod=s['mod'], lon=s['lon'], lat=s['lat'], t=s['t'], nm=s['nm']).items() if v is not None} for s in SEEDS],
+        'seeds': [{k: v for k, v in dict(id=s['id'], n=s['n'], mod=s['mod'], lon=s['lon'], lat=s['lat'], t=s['t'], nm=s['nm'], a=s.get('a'), v=s.get('v')).items() if v is not None} for s in SEEDS],
         'items': ITEMS,
     }
     DATA['first'] = FIRST

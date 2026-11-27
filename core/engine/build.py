@@ -308,7 +308,7 @@ def run(slug, log=None):
         return (tuple(i for i, v in enumerate(C["var"]) if v[3] <= t < v[4]),
                 None if act is None else tuple(i for i, a in enumerate(act) if a))
 
-    labs, where, costs = {}, {}, {}
+    labs, where, costs, wh = {}, {}, {}, {}
     for t, _, _, act in N:
         k = group(t, act)
         if k in labs:
@@ -319,12 +319,27 @@ def run(slug, log=None):
         costs[k] = cost
         labs[k], dist, w = PA.run(win, C, pts, inner, cost, reach, act, log, far_islands=sp.get("far_islands", False))
         where.update(w)
+        wh[k] = w
         log("最短路完成", "墙", [C["var"][i][0] for i in k[0]] or "常设", "" if act is None else f"参与分区 {sum(act)} 点")
     pins = sorted(set(where.values()))
     wallm = C["wall"].copy()
     for v in C["var"]:
         wallm |= v[2]
     warp = TR.Warp(win, C["river"] | wallm, pins)
+    # 护点：缺省取本卷任一节点参与过分区的点（各节点共用一组）；[engine] 写 pins = "active" 的卷，每个节点只护本节点参与分区的点，
+    # 位移场也按这组点另算。给已发布的卷补「^年份」才加入的点时用它，补点以前的节点逐字节不变（隋唐卷 670 年起补的点）。
+    pin_mode = sp.get("pins", "all")
+    if pin_mode not in ("all", "active"):
+        sys.exit(f"{slug}：era.toml [engine] pins 只能是 all 或 active")
+    warps = {}
+
+    def pins_of(t, act):
+        if pin_mode == "all":
+            return pins, warp
+        pk = tuple(sorted(set(wh[group(t, act)].values())))
+        if pk not in warps:
+            warps[pk] = (list(pk), TR.Warp(win, C["river"] | wallm, list(pk)))
+        return warps[pk]
 
     Z = DA.zones(slug, sp, b, N)                    # 二级区划块（汉末卷的州）：按「单位 × 区划块」分类，描完再按单位合并
     SUB = DA.sub(slug, sp, b)                          # 按治所细分一个单位的格子（战国卷的秦郡）：同样按「单位 × 块」分类
@@ -395,9 +410,10 @@ def run(slug, log=None):
                                    for i, o in enumerate(own)]
                             own[pi] = s_unit + SEP + bk          # 点自己的格子总在 fm 里，不靠 where（各节点共用一张）
                             s_fired.add(pi)
-        h = hashlib.sha1(U.tobytes()).hexdigest()
+        npins, nwarp = pins_of(t, act)
+        h = hashlib.sha1(U.tobytes() + (b"" if pin_mode == "all" else repr(npins).encode())).hexdigest()
         if h not in cache:
-            g0, _ = TR.polygons(win, U, warp, clip=clip, pins=pins, log=log, simplify=sp.get("simplify"))
+            g0, _ = TR.polygons(win, U, nwarp, clip=clip, pins=npins, log=log, simplify=sp.get("simplify"))
             cache[h] = (g0, keep_points(g0, own if act is None else [u if a else None for u, a in zip(own, act)], code, pts, clip, win, units))
             if cache[h][1]:
                 log("护点", "、".join(S[i][2] for i in cache[h][1]))
@@ -461,6 +477,8 @@ def run(slug, log=None):
     if SUB is not None and len(s_fired) < len(s_fixed):
         log("sub.fixed 从未生效（归属点不属被细分的单位、不参与分区，或那一郡还没有治所）：", "、".join(S[p][2] for p, _ in s_fixed if p not in s_fired))
     REG = DA.regions(b)
+    if REG and pin_mode != "all":               # 重要地域用全卷共用的位移场与护点，和逐节点护点的疆域对不上：两者不能同用
+        sys.exit(f"{slug}：[engine] pins = \"{pin_mode}\" 暂不支持重要地域（regions）")
     regions = trace_regions(REG, N, lambda n: labs[group(n[0], n[3])], win, warp, clip, pins, sp, C,
                             [s[2] for s in S]) if REG else None
     if regions:

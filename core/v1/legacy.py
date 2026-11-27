@@ -472,6 +472,13 @@ def to_v1(slug, G, D, inline=None):
             polities.append(p)
         for s in D["seeds"]:
             p = {"key": s["id"], "n": s["n"], "mod": s["mod"], "lon": s["lon"], "lat": s["lat"], "kind": s["t"]}
+            if "a" in s:                         # 参与分区的年段 [加入年, 退出年]（隋唐卷 670 年起补的点）：同春秋、战国的 ^年份、~年份
+                if s["a"][0] is not None:
+                    p["t0"] = s["a"][0] * 12
+                if s["a"][1] is not None:
+                    p["t1"] = s["a"][1] * 12 - 1
+            if "v" in s:                         # 从这一年起才在页面上显示（州未置以前不画；隋唐卷）
+                p["v0"] = s["v"] * 12
             if "nm" in s:
                 p["names"] = [[clock.since(t), nm] for t, nm in s["nm"]]
             for k in ("jn", "jnm", "note"):
@@ -569,6 +576,10 @@ def from_v1(b):
                     s[k] = p[k]
             if "jnm" in p:
                 s["jnm"] = [[clock.since_back(t), v] for t, v in p["jnm"]]
+            if "t0" in p or "t1" in p:
+                s["a"] = [p["t0"] // 12 if "t0" in p else None, (p["t1"] + 1) // 12 if "t1" in p else None]
+            if "v0" in p:
+                s["v"] = p["v0"] // 12
             for k, k2 in (("ne", "n"), ("nme", "names"), ("mode", "mod"), ("notee", "note"), ("jne", "jn"), ("jnme", "jnm")):
                 if k2 in p.get("en", {}):
                     s[k] = p["en"][k2]

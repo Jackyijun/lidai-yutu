@@ -46,8 +46,8 @@ seeds = "content/seeds.txt" # 各点可达倍数（R=）写在这里
 
 [junction.prev]
 era = "suitang"
-at = "空档 669 — 755"
-note = "隋唐卷延长到 755 年时补上"
+at = "755"
+note = "共用节点，以本卷为准（global/junctions.toml）：隋唐卷 755 年节点在本卷推算范围内照搬本卷疆域；隋唐卷 670 年起与本卷用同一组归属点"
 
 [junction.next]
 era = "songyuan"

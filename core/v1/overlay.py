@@ -48,8 +48,10 @@ def fix_tangsong_zhancheng(b):
     # 林邑 → 环王（8 世纪中叶）→ 占城（9 世纪后期）：本名改作「占城」，此前的节点标「环王」
     k, p = polity(b, "环王")
     p["n"], p["en"]["n"] = "占城", "Champa"
-    set_lab(b, k, "环王", "Huanwang", range(0, node_index(b, 877)))
-    return "唐宋卷「环王（占城）」：877 年以后标「占城」，此前标「环王」"
+    # 「至德后更号环王」（《新唐书·环王传》）：至德以后的第一个节点（759）起标「环王」，此前 755—757 各节点仍标「林邑」
+    set_lab(b, k, "林邑", "Linyi", range(0, node_index(b, 758)))
+    set_lab(b, k, "环王", "Huanwang", range(node_index(b, 758), node_index(b, 877)))
+    return "唐宋卷「环王（占城）」：877 年以后标「占城」，758—876 年标「环王」，此前标「林邑」"
 
 
 def fix_tangsong_chenla(b):

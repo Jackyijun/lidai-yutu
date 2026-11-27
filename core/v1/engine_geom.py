@@ -270,6 +270,64 @@ def align_own(slug, b):
     return "；".join(notes) or None
 
 
+def align_retired(slug, b):
+    """era.toml [engine] 写 align_retired = true 的卷（隋唐卷 670 年起改用唐宋卷的归属点）：已退出分区的点（v1 地点的 t1 已过）
+    不再决定疆域，它们在各节点的归属改成画出来包含它的单位（规则同 align_own）；对齐以后不再领有任何点、也没有疆域的单位
+    （670 年起的附国，745 年起的单于、安北、安东等）从节点的政权表里去掉，免得图例里有名无地。
+    对方为准的衔接节点上的点已由 align_own 对齐，这里只去掉有名无地的单位。原归属存在 own_src，引擎的输入与指纹不变。
+    返回记进 meta.overlay 的一句话，没改则 None"""
+    if not era_toml(slug).get("engine", {}).get("align_retired"):
+        return None
+    import shapely
+    shared = {m for m, _, _ in junction_nodes(slug, b)}
+    moved, dropped = 0, set()
+    for j, n in enumerate(b["nodes"]):
+        if not n.get("u"):
+            continue
+        idle = [i for i, p in enumerate(b["places"]) if p.get("t1") is not None and n["t"] > p["t1"]]
+        if not idle:
+            continue
+        if j not in shared:
+            keys = sorted(n["u"], key=lambda k: (len(k), k))
+            shapes = [shape_of(b["geom"][n["u"][k]]) for k in keys]
+            tree = shapely.STRtree(shapes)
+            src = n.get("own_src", n["own"])
+            src_n = [-1 if v is None else v for v in src]
+            new = list(src_n)
+            for i in idle:
+                p = b["places"][i]
+                pt = shapely.Point(p["lon"], p["lat"])
+                hit = sorted(tree.query(pt, predicate="within"))
+                if not hit:
+                    near = sorted((shapes[q].distance(pt), q) for q in tree.query(pt.buffer(SNAP)) if shapes[q].distance(pt) <= SNAP)
+                    hit = [q for d, q in near if d <= near[0][0] + 1e-9] if near else []
+                hit = [q for q in hit if keys[q] == str(src_n[i])] or hit[:1]
+                new[i] = int(keys[hit[0]]) if hit else -1
+            ch = sum(a != c for a, c in zip(src_n, new))
+            if ch:
+                n["own_src"] = list(src)
+                n["own"] = new
+                moved += ch
+        live = {v for v in n["own"] if v is not None and v >= 0}
+        parents = {str(v) for k, v in n["pol"].items() if k != str(v)}
+        gone = [k for k in n["pol"] if int(k) not in live and k not in n["u"] and k not in n.get("pu", {}) and k not in parents]
+        if gone and "pol_src" not in n:
+            n["pol_src"] = dict(n["pol"])                # 引擎读原来的政权表（core/engine/data.py 的 view），指纹不变
+        for k in gone:
+            n["pol"].pop(k, None)
+            n.get("lab", {}).pop(k, None)
+            n.get("seat", {}).pop(k, None)
+            if "h" in n:
+                n["h"] = [u for u in n["h"] if str(u) != k]
+            for d in (n.get("en", {}).get("lab", {}),):
+                d.pop(k, None)
+            dropped.add(b["polities"][int(k)]["key"])
+    if not moved and not dropped:
+        return None
+    return (f"670 年起退出分区的点按各节点画出来的疆域对齐归属（共 {moved} 个点次）" +
+            (f"；有名无地的单位从节点里去掉：{'、'.join(sorted(dropped))}" if dropped else ""))
+
+
 # ---------------- 换几何 ----------------
 def put_after(d, after, kv):
     """把 kv 的各键写进 d、放在 after 键之后（after 不在 d 里就放在最后），其余键的次序不变：

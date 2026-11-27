@@ -132,7 +132,8 @@ def main():
         c = overlay.apply_coords(slug, b, fixes.get("coords", []))
         eg = engine_geom.apply(slug, b, strict=not lenient)
         al = engine_geom.align_own(slug, b)
-        b["meta"]["overlay"] = ([f"坐标 {c} 处"] if c else []) + ([eg] if eg else []) + ([al] if al else []) + overlay.apply(slug, b, fixes, content, draft_colors)
+        ar = engine_geom.align_retired(slug, b)
+        b["meta"]["overlay"] = ([f"坐标 {c} 处"] if c else []) + ([eg] if eg else []) + ([al] if al else []) + ([ar] if ar else []) + overlay.apply(slug, b, fixes, content, draft_colors)
         probs += check_layers(meta, b)
         path = OUT / f"{slug}.json"
         path.write_text(json.dumps(b, ensure_ascii=False, separators=(",", ":")), encoding="utf8")

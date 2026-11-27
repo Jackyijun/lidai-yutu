@@ -205,7 +205,7 @@ misc = ["未定", "Unsettled"]
 
 [web.jn]  # 衔接节点的说明（节点数据里的 jn 指向这里）
 hanmo = ["疆域与《汉末三国形势图》280 年节点相同", "Borders as in the 280 snapshot of the Late Han and Three Kingdoms map"]
-suitang = ["疆域与《隋及唐初形势图》581 年节点相同", "Borders as in the 581 snapshot of the Sui and Early Tang map"]
+suitang = ["疆域与《隋至盛唐形势图》581 年节点相同", "Borders as in the 581 snapshot of the Sui to the High Tang map"]
 
 [web.cm]  # 着色按钮：zhen 名称与提示、pol 提示
 zhen = ["方镇", "Commands"]

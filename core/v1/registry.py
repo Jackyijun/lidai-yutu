@@ -713,7 +713,7 @@ def build_physical(B, dec):
 # ---------------------------------------------------------------- 衔接
 
 JUNCTIONS = [("chunqiu", "zhanguo"), ("zhanguo", "qinhan"), ("qinhan", "hanmosanguo"), ("hanmosanguo", "liangjin-nanbeichao"),
-             ("liangjin-nanbeichao", "suitang"), ("tangsong", "songyuan")]
+             ("liangjin-nanbeichao", "suitang"), ("suitang", "tangsong"), ("tangsong", "songyuan")]
 
 
 def shape_of(b, g):

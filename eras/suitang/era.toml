@@ -1,33 +1,33 @@
-# 第六卷 隋及唐初：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
+# 第六卷 隋至盛唐：卷的基本信息。统一前端、总页时间轴和全局表都从这里读。
 # 字段说明见 core/v1/FORMAT.md「era.toml」一节。
 
 slug = "suitang"
 volume = 6
-title = "隋及唐初形势图"
-title_en = "Sui and Early Tang"
-short = "隋及唐初"            # 总页与时间轴上的短名
+title = "隋至盛唐形势图"
+title_en = "Sui to the High Tang"
+short = "隋至盛唐"            # 总页与时间轴上的短名
 short_en = "Sui–Tang"
 
-years = [581, 669]          # 起止年（含），公元前记负数，与总页一致
+years = [581, 755]          # 起止年（含），公元前记负数，与总页一致
 time = "month"             # 节点的时间精度：year 按年，month 按月
 first = [619, 12]         # 打开页面时停在哪个节点（年、月）
-nodes = 26                 # 节点数（构建时核对）
+nodes = 42                 # 节点数（构建时核对）
 
 [coloring]                  # 着色切换：按钮文字与内部代号；没有切换的卷为空
-modes = [{ label = "都护", key = "zhen" }, { label = "政权", key = "pol" }]
+modes = [{ label = "都护·节度", key = "zhen" }, { label = "政权", key = "pol" }]
 default = "政权"
 
 [layers]                    # 本卷用到的条目类别及条数（核对用）
 river = 124
-event = 60
-battle = 56
-capital = 51
+event = 105
+battle = 103
+capital = 62
 range = 45
-pass = 23
-people = 16
+pass = 27
+people = 18
 canal = 6
 desert = 2
-route = 1
+route = 16
 
 [projection]                # 新页面的投影：第 4 步起各卷统一，参数以 core/geo/config.toml 为准
 kind = "albers"
@@ -40,6 +40,8 @@ legacy = [36, 102]           # 旧版页面（原仓库的网页，见 [legacy]�
 [engine]                    # 第 5 步统一疆域引擎（core/engine/）的外缘设置；归属点与节点取 v1 数据包
 outer = "frontier"          # 手绘外缘：content/frontier.py（北疆按主流唐极盛图）
 geometry = "engine"         # 第 7 步起页面疆域由统一引擎出：eras/suitang/engine.json（构建时重算，入库），生成 v1 时换进去
+pins = "active"             # 每个节点只护本节点参与分区的点（670 年起补的唐宋卷归属点不改动此前的节点，第 8 步）
+align_retired = true        # 670 年起退出分区的点按画出来的疆域对齐归属，有名无地的单位从节点里去掉（core/v1/engine_geom.align_retired）
 
 [junction.prev]
 era = "liangjin-nanbeichao"
@@ -48,8 +50,8 @@ note = "共用节点，以本卷为准"
 
 [junction.next]
 era = "tangsong"
-at = "空档 669 — 755"
-note = "隋唐卷延长到 755 年时补上"
+at = "755"
+note = "共用节点，以唐宋卷为准（global/junctions.toml）：本卷 755 年节点在唐宋卷的推算范围内照搬它的疆域；670 年起本卷与唐宋卷用同一组归属点（content/seeds_late.py）"
 
 [legacy]                    # 旧版：原仓库与原网址保持不变，总页上留「旧版 ↗」链接
 repo = "Jackyijun/suitang-map"
@@ -62,13 +64,13 @@ time = "ym"
 # 旧版页面记界面语言用的键（读一次，兼容旧访客）
 lang_key = "suitang-map:lang"
 # 标签页标题 [中, 英]
-doc_title = ["隋及唐初形势图", "Sui and Early Tang, 581–669"]
+doc_title = ["隋至盛唐形势图", "Sui to the High Tang, 581–755"]
 # 顶栏标题
-h1 = ["隋及唐初形势图", "Sui and Early Tang"]
+h1 = ["隋至盛唐形势图", "Sui to the High Tang"]
 # 顶栏副题
-sub = ["581 — 669 · 隋统一至唐初极盛 · 古今地名对照", "581–669 · from the Sui unification to the early Tang at its height · historical and modern place names"]
+sub = ["581 — 755 · 隋统一至安史之乱前夕 · 古今地名对照", "581–755 · from the Sui unification to the eve of the An Lushan Rebellion · historical and modern place names"]
 # 地图的无障碍名称
-map_label = ["隋及唐初形势图", "Map of the Sui and early Tang"]
+map_label = ["隋至盛唐形势图", "Map of the Sui to the High Tang"]
 # 视野：[代号, 中文名, 英文名, [西, 东, 南, 北]]，第一项为默认
 fits = [
   ["qx", "隋末群雄", "Sui collapse", [103.5, 121.5, 28.5, 41.5]],
@@ -86,6 +88,7 @@ fits = [
   ["xy", "西域", "Western Regions", [73, 101, 35, 47]],
   ["zw", "葱岭以西", "Beyond the Pamirs", [56, 80, 29, 46]],
   ["tb", "吐蕃·吐谷浑", "Tibet & Tuyuhun", [77, 106, 25, 39]],
+  ["yn", "云南·南诏", "Yunnan & Nanzhao", [97, 106, 21, 28.5]],
 ]
 # 打开页面时的视野
 fit0 = "qx"
@@ -99,7 +102,7 @@ layers = [
   ["seat", "都护府治所", "Protectorate seats"],
   ["pref", "州郡城邑", "Prefectures & towns"],
   ["battle", "本期战役", "Battles"],
-  ["route", "秦王征战", "Campaigns of the Prince of Qin"],
+  ["route", "行军·行程", "Campaigns & journeys"],
   ["pass", "关隘", "Passes"],
   ["event", "本期事件", "Events"],
   ["people", "诸族", "Peoples"],
@@ -115,7 +118,7 @@ key2 = ["羁縻都护·都督府", "Loose-rein protectorate"]
 # 图例是否列「行军路线」
 key_route = false
 # 图例脚注 [中, 英]
-foot = ["疆域据《隋书》、两《唐书》、《资治通鉴》及谭其骧《中国历史地图集》第五册大意推定，以州郡为单位、沿山川划界，仅为示意。北方外缘参照该图集总章二年图及通行唐极盛图描画：西起咸海北岸，循哈萨克丘陵北缘、额尔齐斯河、阿尔泰山、叶尼塞河中游，绕贝加尔湖北端（骨利干），经石勒喀河、黑龙江至入海口；斜线为羁縻都护、都督府，多为名义统属，草原诸部并无确切界线。战役与事件只显示当前节点所涵盖的时段（上一节点之后至本节点），运河自开凿之年起显示。点击疆域、城邑、战役、山川均可查看说明。", "Borders are reconstructed from the Sui shu, the two Tang histories and the Zizhi tongjian, following in outline vol. 5 of Tan Qixiang’s Historical Atlas of China. Territory is assigned prefecture by prefecture and bounded along mountains and rivers, so it is only indicative. The northern limit follows the atlas’s map for 669 and the usual maps of the Tang at its height: from the north shore of the Aral Sea along the northern edge of the Kazakh uplands, the Irtysh, the Altai and the middle Yenisei, round the northern end of Lake Baikal (the Kurykans), then along the Shilka and the Amur to its mouth. Hatching marks loose-rein protectorates and area commands, mostly nominal; the steppe peoples had no fixed borders. Battles and events are shown only for the period covered by the current snapshot (after the previous snapshot, up to this one); canals appear from the year they were dug. Click any territory, town, battle, mountain or river for a note."]
+foot = ["疆域据《隋书》、两《唐书》、《资治通鉴》及谭其骧《中国历史地图集》第五册大意推定，以州郡为单位、沿山川划界，仅为示意。北方外缘参照该图集总章二年图及通行唐极盛图描画：西起咸海北岸，循哈萨克丘陵北缘、额尔齐斯河、阿尔泰山、叶尼塞河中游，绕贝加尔湖北端（骨利干），经石勒喀河、黑龙江至入海口；670 年以后外缘以内的荒漠与远北之地留白，各点与《唐宋之际形势图》用同一组，755 年节点与该图首节点相同。斜线为羁縻都护、都督府，多为名义统属，草原诸部并无确切界线。战役与事件只显示当前节点所涵盖的时段（上一节点之后至本节点），运河自开凿之年起显示。点击疆域、城邑、战役、山川均可查看说明。", "Borders are reconstructed from the Sui shu, the two Tang histories and the Zizhi tongjian, following in outline vol. 5 of Tan Qixiang’s Historical Atlas of China. Territory is assigned prefecture by prefecture and bounded along mountains and rivers, so it is only indicative. The northern limit follows the atlas’s map for 669 and the usual maps of the Tang at its height: from the north shore of the Aral Sea along the northern edge of the Kazakh uplands, the Irtysh, the Altai and the middle Yenisei, round the northern end of Lake Baikal (the Kurykans), then along the Shilka and the Amur to its mouth. Hatching marks loose-rein protectorates and area commands, mostly nominal; the steppe peoples had no fixed borders. Battles and events are shown only for the period covered by the current snapshot (after the previous snapshot, up to this one); canals appear from the year they were dug. Click any territory, town, battle, mountain or river for a note."]
 # 索引图高度（宽 140）
 inset_h = 92
 # 索引图范围 [西, 东, 南, 北]
@@ -131,7 +134,7 @@ soft_label = true
 # 独立的二级单位、杂项按本来的种类称呼
 kind_own = true
 # 顶栏计数里二级单位的说法 [中, 英单数, 英复数]
-count_zhen = ["个都护府", "protectorate", "protectorates"]
+count_zhen = ["个都护·节度", "protectorate or command", "protectorates and commands"]
 # 政权说明里「领 N 州」的说法 [中（{n} 为数）, 英单数, 英复数]
 holds = ["领 {n} 州（处）", "prefecture", "prefectures"]
 # 所领地点一行的标题
@@ -141,7 +144,7 @@ chain_static = true
 # 名称沿革每项不折行
 nm1 = true
 # 诸族年代：[起界, 起界文字, 止界, 止界文字, 「约」放最前]
-people = [false, false, 670, ["", ""], true]
+people = [false, false, 756, ["", ""], true]
 # 对照表里诸族止于卷末的不写止年
 people_open = true
 # 运河开凿年份：[此年以前不写年份, 那时的说法, 「本期尚未开凿」加括号]
@@ -151,11 +154,15 @@ canal_when = "qin"
 # 年表收运河开凿
 canal_chron = true
 # 时间轴刻度的样式：[字段, 比较, 值, 样式名]，取第一条符合的
-era_cls = [["y", "<", 618, "era5"]]
+era_cls = [["y", "<", 618, "era5"], ["y", ">=", 705, "tang"], ["y", ">=", 690, "era-y"]]   # 隋：虚线圆点；武周（690—705）：点线圆点
 # 时间轴提示里加节点标题
 tl_t = true
 # 索引里路线一组的名称
-route_group = ["秦王征战", "Campaigns of the Prince of Qin"]
+# 节点说明里路线一组的名称
+route_chip = ["行军 · 行程", "Routes"]
+route_group = ["行军 · 行程", "Campaigns & journeys"]
+# 年表里路线的类别名
+route_kd = ["行军 · 行程", "Route"]
 # 对照表里路线的年代一栏写今名一栏的内容
 route_when_mod = true
 # 索引里默认收起的组
@@ -167,15 +174,15 @@ pref_kind = ["州郡", "Prefecture"]
 # 索引里其他时期一组的名称
 other_group = ["其他时期的政权", "States of other periods"]
 # 索引里二级单位一组的名称
-zhen_group = ["都护·都督府", "Protectorates"]
+zhen_group = ["都护·节度", "Protectorates & commands"]
 # 英文对照表、年表里关于日期的说明
 date_note_en = "Dates give the lunar month without conversion to the Western calendar (“5th month, 618”); the year is the Western year in which most of that lunar year falls, so a 12th month can reach into January of the next year. Reign years are given as era name plus year (“Wude 1”)."
 # 对照表导语（{n} 为节点数，{date_note} 为上一项）
-table_intro = ["<p>图中全部州郡、城邑与地物，一名一行。州郡的“名称沿革”记开皇州名、大业郡名与唐初州名；“归属沿革”取自地图上各时间节点，连续相同的归属合并显示。经纬度取今日遗址或所在城市，可在任意地图应用中定位；点击任一行回到地图并定位。</p>", "<p>Every prefecture, town and feature on the map, one name per row. “Names” lists the Kaihuang prefecture, the Daye commandery and the early Tang prefecture; a prefecture’s allegiance is taken from the map’s {n} snapshots, with consecutive identical entries merged. Coordinates are those of the modern site or city and work in any map app; click a row to return to the map.</p><p>{date_note}</p>"]
+table_intro = ["<p>图中全部州郡、城邑与地物，一名一行。州郡的“名称沿革”记开皇州名、大业郡名、唐代州名与天宝郡名；“归属沿革”取自地图上各时间节点，连续相同的归属合并显示。经纬度取今日遗址或所在城市，可在任意地图应用中定位；点击任一行回到地图并定位。</p>", "<p>Every prefecture, town and feature on the map, one name per row. “Names” gives the Kaihuang prefecture name, the Daye commandery name, the Tang prefecture name and the Tianbao commandery name; a prefecture’s allegiance is taken from the map’s {n} snapshots, with consecutive identical entries merged. Coordinates are those of the modern site or city and work in any map app; click a row to return to the map.</p><p>{date_note}</p>"]
 # 年表导语
 chron_intro = ["<p>把战役、事件、运河开凿、都城迁移、灭国、归附与地图上的全部时间节点排成一条线，隋末唐初的几年按月排列。灰底为地图节点；点击任一事件，地图会跳到该事件所在时段的节点并定位。</p>", "<p>Battles, events, canal works, capital moves, the fall or submission of states and the map’s {n} snapshots on a single line; the years from the fall of the Sui to the Tang reunification are arranged by month. Shaded entries are map snapshots; click any entry to jump to the snapshot covering it and locate it on the map.</p><p>{date_note}</p>"]
 # 年表收哪些年份的都城迁移 [起, 止, 起是否不含]（起为 false 取首节点，止为 false 不设上限）
-chron_cap = [581, 669, true]
+chron_cap = [581, 755, true]
 # 本卷专属样式
 css = """
 html[lang="en"] td.when { white-space:normal; min-width:18ch; max-width:46ch; }
@@ -183,15 +190,18 @@ html[lang="en"] td.cat { white-space:normal; min-width:12ch; max-width:24ch; }
 html[lang="en"] .row { grid-template-columns:minmax(0,auto) minmax(9ch,1fr); }
 """
 
+[web.jn]  # 衔接节点的说明（节点数据里的 jn 指向这里）
+tangsong = ["疆域与《唐宋之际形势图》755 年节点相同", "Borders as in the 755 snapshot of the Late Tang and Five Dynasties map"]
+
 [web.kind_txt]  # 单位种类的称呼
 state = ["政权", "State"]
-zhen = ["都护·都督府", "Protectorate"]
+zhen = ["都护·节度", "Protectorate or command"]
 tribe = ["部族", "Tribe"]
 misc = ["未定", "Unsettled"]
 
 [web.cm]  # 着色按钮：zhen 名称与提示、pol 提示
-zhen = ["都护", "Protectorates"]
-zhen_title = ["唐的都护府、羁縻都督府单独着色", "Color the Tang protectorates and loose-rein area commands separately"]
+zhen = ["都护·节度", "Protectorates & commands"]
+zhen_title = ["唐的都护府、羁縻都督府单独着色，745 年起内地再按节度使与采访使道分色", "Color the Tang protectorates and loose-rein area commands separately; from 745 the interior is also colored by military command and inspection circuit"]
 pol_title = ["按政权分色", "Color by state"]
 
 [web.catname]  # 对照表的类别名

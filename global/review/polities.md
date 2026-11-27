@@ -35,14 +35,15 @@
 | 全局 ID | 各卷英文名 |
 | --- | --- |
 | 占城 | 汉末 Linyi (Champa)；两晋 Linyi (Champa)；隋唐 Linyi (Champa)；唐宋 Huanwang (Champa)；宋元 Champa |
-| 于阗 | 两晋 Khotan；隋唐 Khotan；唐宋 Kingdom of Khotan；宋元 Kingdom of Khotan |
 | 辽 | 两晋 Khitan；隋唐 Khitan；唐宋 Khitan；宋元 Liao |
+| 于阗 | 两晋 Khotan；隋唐 Khotan；唐宋 Kingdom of Khotan；宋元 Kingdom of Khotan |
 | 真腊 | 两晋 Chenla；隋唐 Chenla；唐宋 Wendan (Land Chenla)；宋元 Khmer Empire (Angkor) |
 | 大越 | 唐宋 Annan；宋元 Đại Việt (Jiaozhi) |
 | 晋（西晋·东晋） | 汉末 Western Jin；两晋 Jin (Western and Eastern Jin) |
 | 东汉 | 秦汉 Han；汉末 Eastern Han |
 | 西夏 | 唐宋 Dingnan Jun；宋元 Western Xia |
 | 韩 | 战国 Han；秦汉 Han (韓) |
+| 安西 | 隋唐 Anxi Protectorate；唐宋 Anxi |
 | 凉州六谷部 | 唐宋 Liangzhou Tibetan tribes；宋元 Six Valleys tribes of Liangzhou |
 | 韩遂·马腾 | 秦汉 Liang Province rebels；汉末 Han Sui & Ma Teng |
-| 安西 | 隋唐 Anxi Protectorate；唐宋 Anxi |
+| 北庭 | 隋唐 Beiting Protectorate；唐宋 Beiting |

@@ -462,6 +462,7 @@
 {"id":"阿姆利则","kind":"place","zh":"阿姆利则","en":"Amritsar"}
 {"id":"达尔瓦尔","kind":"place","zh":"达尔瓦尔","en":"Dharwar"}
 {"id":"碎叶","kind":"place","zh":"碎叶","en":"Suyab"}
+{"id":"碎叶（吉尔吉斯斯坦托克马克）","kind":"place","zh":"碎叶（突骑施牙帐）","en":"Suyab (Türgesh royal camp)"}
 {"id":"葱岭守捉","kind":"place","zh":"朅盘陀","en":"Kabandha"}
 {"id":"葱岭守捉","kind":"place","zh":"蒲犁","en":"Puli"}
 {"id":"葱岭守捉","kind":"place","zh":"葱岭守捉","en":"Congling Garrison"}
@@ -624,6 +625,7 @@
 {"id":"科布多","kind":"place","zh":"科布多","en":"Kobdo"}
 {"id":"坚昆","kind":"place","zh":"米努辛斯克","en":"Minusinsk"}
 {"id":"坚昆","kind":"place","zh":"黠戛斯牙帐","en":"Kyrgyz khan's camp","by_era":{"Kyrgyz khagan's camp":["唐宋"],"Kyrgyz khan's camp":["宋元"]}}
+{"id":"坚昆","kind":"place","zh":"坚昆","en":"Jiankun (Kyrgyz)"}
 {"id":"雅隆","kind":"place","zh":"雅隆（琼结）","en":"Yarlung (Chongye)"}
 {"id":"雅隆","kind":"place","zh":"雅隆（悉补野）","en":"Yarlung (Pugyal)"}
 {"id":"雅隆","kind":"place","zh":"泽当","en":"Zetang"}
@@ -763,6 +765,7 @@
 {"id":"阳苴咩城","kind":"place","zh":"大理","en":"Dali"}
 {"id":"阳苴咩城","kind":"place","zh":"羊苴咩城","en":"Yangjumie City"}
 {"id":"阳苴咩城","kind":"place","zh":"阳苴咩城","en":"Yangjumie City"}
+{"id":"阳苴咩城","kind":"place","zh":"阳苴咩","en":"Yangjumie"}
 {"id":"加央","kind":"place","zh":"加央","en":"Kangar"}
 {"id":"叶榆","kind":"place","zh":"叶榆（云南）","en":"Yeyu (Yunnan)"}
 {"id":"叶榆","kind":"place","zh":"叶榆","en":"Yeyu"}
@@ -823,6 +826,7 @@
 {"id":"于都斤山","kind":"place","zh":"于都斤山（突厥牙帐）","en":"Ötüken (Turkic royal camp)"}
 {"id":"于都斤山","kind":"place","zh":"于都斤山","en":"Ötüken"}
 {"id":"于都斤山","kind":"place","zh":"郁督军山（薛延陀牙帐）","en":"Ötüken (Xueyantuo royal camp)"}
+{"id":"于都斤山","kind":"place","zh":"于都斤山（后突厥牙帐）","en":"Ötüken (Second Turkic royal camp)"}
 {"id":"丁零","kind":"place","zh":"丁零","en":"Dingling"}
 {"id":"盐源","kind":"place","zh":"盐源","en":"Yanyuan"}
 {"id":"楚雄","kind":"place","zh":"楚雄","en":"Chuxiong"}
@@ -858,6 +862,7 @@
 {"id":"马六甲","kind":"place","zh":"马六甲","en":"Malacca"}
 {"id":"会川","kind":"place","zh":"会理","en":"Huili"}
 {"id":"会川","kind":"place","zh":"会川","en":"Huichuan"}
+{"id":"会川","kind":"place","zh":"会无故城","en":"Old city of Huiwu"}
 {"id":"明古鲁","kind":"place","zh":"明古鲁","en":"Bengkulu"}
 {"id":"嶲州","kind":"place","zh":"越巂郡","en":"Yuexi Commandery"}
 {"id":"嶲州","kind":"place","zh":"邛都（越巂）","en":"Qiongdu (Yuexi)"}
@@ -884,10 +889,14 @@
 {"id":"姑臧","kind":"place","zh":"凉州","en":"Liangzhou"}
 {"id":"黎州","kind":"place","zh":"汉源","en":"Hanyuan"}
 {"id":"黎州","kind":"place","zh":"黎州","en":"Lizhou"}
-{"id":"回鹘牙帐","kind":"place","zh":"斡耳朵八里","en":"Ordu-Baliq"}
-{"id":"回鹘牙帐","kind":"place","zh":"回鹘牙帐","en":"Uyghur khagan's camp"}
+{"id":"黎州","kind":"place","zh":"雅州汉源县","en":"Hanyuan County, Yazhou"}
+{"id":"回纥牙帐","kind":"place","zh":"斡耳朵八里（回纥牙帐）","en":"Ordu-Baliq (Uyghur khagan's camp)"}
+{"id":"回纥牙帐","kind":"place","zh":"回纥牙帐","en":"Uyghur khagan's camp"}
+{"id":"回纥牙帐","kind":"place","zh":"斡耳朵八里","en":"Ordu-Baliq"}
+{"id":"回纥牙帐","kind":"place","zh":"回鹘牙帐","en":"Uyghur khagan's camp"}
 {"id":"滇池","kind":"place","zh":"昆明","en":"Kunming"}
 {"id":"滇池","kind":"place","zh":"拓东城","en":"Tuodong City"}
+{"id":"滇池","kind":"place","zh":"滇池","en":"Lake Dian"}
 {"id":"夹金山","kind":"place","zh":"夹金山","en":"Jiajin Mountain"}
 {"id":"通海","kind":"place","zh":"通海","en":"Tonghai"}
 {"id":"天全","kind":"place","zh":"天全","en":"Tianquan"}
@@ -910,7 +919,7 @@
 {"id":"莱州（越南奠边省孟莱（旧莱州））","kind":"place","zh":"莱州","en":"Lai Châu"}
 {"id":"理县","kind":"place","zh":"理县","en":"Lixian"}
 {"id":"婆皇","kind":"place","zh":"婆皇","en":"Pohuang"}
-{"id":"马德望","kind":"place","zh":"马德望","en":"Battambang"}
+{"id":"洞里萨西","kind":"place","zh":"马德望","en":"Battambang"}
 {"id":"川圹","kind":"place","zh":"川圹","en":"Xieng Khouang"}
 {"id":"河州","kind":"place","zh":"枹罕","en":"Fuhan"}
 {"id":"河州","kind":"place","zh":"临夏","en":"Linxia"}
@@ -953,6 +962,7 @@
 {"id":"兰州","kind":"place","zh":"金城（榆中）","en":"Jincheng (Yuzhong)"}
 {"id":"新加坡","kind":"place","zh":"新加坡","en":"Singapore"}
 {"id":"蜀州","kind":"place","zh":"蜀州","en":"Shuzhou"}
+{"id":"蜀州","kind":"place","zh":"益州晋原县","en":"Jinyuan County, Yizhou"}
 {"id":"汶江","kind":"place","zh":"汶江","en":"Wenjiang"}
 {"id":"茂州","kind":"place","zh":"汶山","en":"Wenshan"}
 {"id":"茂州","kind":"place","zh":"茂县","en":"Maoxian"}
@@ -962,6 +972,7 @@
 {"id":"狄道","kind":"place","zh":"狄道","en":"Didao"}
 {"id":"狄道","kind":"place","zh":"临洮","en":"Lintao"}
 {"id":"狄道","kind":"place","zh":"熙州","en":"Xizhou"}
+{"id":"狄道","kind":"place","zh":"兰州狄道县","en":"Didao County, Lanzhou"}
 {"id":"狄道","kind":"place","zh":"临州","en":"Linzhou"}
 {"id":"吴哥","kind":"place","zh":"吴哥","en":"Angkor"}
 {"id":"吴哥","kind":"place","zh":"耶输陀罗补罗（吴哥）","en":"Yasodharapura (Angkor)"}
@@ -1103,6 +1114,7 @@
 {"id":"下辨","kind":"place","zh":"下辨","en":"Xiabian"}
 {"id":"赤水","kind":"place","zh":"赤水","en":"Chishui"}
 {"id":"昌州","kind":"place","zh":"昌州","en":"Changzhou"}
+{"id":"昌州","kind":"place","zh":"合州地","en":"part of Hezhou"}
 {"id":"成州","kind":"place","zh":"成州","en":"Chengzhou"}
 {"id":"成州","kind":"place","zh":"仇池","en":"Chouchi"}
 {"id":"秦州","kind":"place","zh":"上邽","en":"Shanggui"}
@@ -1119,7 +1131,8 @@
 {"id":"芹苴","kind":"place","zh":"芹苴","en":"Cần Thơ"}
 {"id":"巴色","kind":"place","zh":"巴色","en":"Pakse"}
 {"id":"古蔺","kind":"place","zh":"古蔺","en":"Gulin"}
-{"id":"瓦普","kind":"place","zh":"瓦普","en":"Wat Phu"}
+{"id":"陵伽钵婆山","kind":"place","zh":"陵伽钵婆山","en":"Lingaparvata"}
+{"id":"陵伽钵婆山","kind":"place","zh":"瓦普","en":"Wat Phu"}
 {"id":"太原","kind":"place","zh":"太原","en":"Thái Nguyên"}
 {"id":"利州","kind":"place","zh":"晋寿","en":"Jinshou"}
 {"id":"利州","kind":"place","zh":"广元","en":"Guangyuan"}
@@ -1165,6 +1178,7 @@
 {"id":"固原","kind":"place","zh":"固原","en":"Guyuan"}
 {"id":"广源州","kind":"place","zh":"高平","en":"Cao Bằng"}
 {"id":"广源州","kind":"place","zh":"广源州","en":"Quảng Nguyên Châu"}
+{"id":"广源州","kind":"place","zh":"蛮洞","en":"tribal settlements"}
 {"id":"六盘关","kind":"place","zh":"六盘关","en":"Liupan Pass"}
 {"id":"宁羌","kind":"place","zh":"宁羌","en":"Ningqiang"}
 {"id":"合州","kind":"place","zh":"垫江","en":"Dianjiang"}
@@ -1176,6 +1190,7 @@
 {"id":"原州","kind":"place","zh":"原州","en":"Yuanzhou"}
 {"id":"钓鱼城","kind":"place","zh":"钓鱼城","en":"Diaoyu Fortress"}
 {"id":"威州","kind":"place","zh":"韦州","en":"Weizhou"}
+{"id":"威州","kind":"place","zh":"安乐州","en":"Anle Zhou"}
 {"id":"威州","kind":"place","zh":"威州","en":"Weizhou"}
 {"id":"海阳","kind":"place","zh":"海阳","en":"Hải Dương"}
 {"id":"美萩","kind":"place","zh":"美萩","en":"Mỹ Tho"}
@@ -1194,8 +1209,8 @@
 {"id":"陇关","kind":"place","zh":"陇关","en":"Long Pass"}
 {"id":"营山","kind":"place","zh":"营山","en":"Yingshan"}
 {"id":"朱吾","kind":"place","zh":"朱吾","en":"Zhuwu"}
-{"id":"占城北境","kind":"place","zh":"西卷（日南）","en":"Xijuan (Rinan)"}
-{"id":"占城北境","kind":"place","zh":"比景","en":"Bijing"}
+{"id":"比景","kind":"place","zh":"西卷（日南）","en":"Xijuan (Rinan)"}
+{"id":"比景","kind":"place","zh":"比景","en":"Bijing"}
 {"id":"田州","kind":"place","zh":"田州","en":"Tianzhou"}
 {"id":"鸡鹿塞","kind":"place","zh":"鸡鹿塞","en":"Jilu frontier post"}
 {"id":"洞海","kind":"place","zh":"洞海","en":"Đồng Hới"}
@@ -1204,8 +1219,10 @@
 {"id":"南州","kind":"place","zh":"南州","en":"Nanzhou"}
 {"id":"綦江","kind":"place","zh":"綦江","en":"Qijiang"}
 {"id":"蓬州","kind":"place","zh":"蓬州","en":"Pengzhou"}
+{"id":"蓬州","kind":"place","zh":"蓬州大寅县","en":"Dayin County, Pengzhou"}
 {"id":"平凉","kind":"place","zh":"平凉","en":"Pingliang"}
 {"id":"平凉","kind":"place","zh":"渭州","en":"Weizhou"}
+{"id":"平凉","kind":"place","zh":"平凉县","en":"Pingliang County"}
 {"id":"海防","kind":"place","zh":"海防","en":"Hải Phòng"}
 {"id":"凤州","kind":"place","zh":"凤州","en":"Fengzhou"}
 {"id":"西贡","kind":"place","zh":"西贡","en":"Sài Gòn"}
@@ -1318,11 +1335,11 @@
 {"id":"忠州","kind":"place","zh":"忠州","en":"Zhongzhou"}
 {"id":"邦美蜀","kind":"place","zh":"邦美蜀","en":"Ban Mê Thuột"}
 {"id":"河池","kind":"place","zh":"河池","en":"Hechi"}
-{"id":"豳","kind":"place","zh":"豳","en":"Bin"}
-{"id":"豳","kind":"place","zh":"新平（漆县）","en":"Xinping (Qi County)"}
-{"id":"豳","kind":"place","zh":"邠县","en":"Binxian"}
-{"id":"豳","kind":"place","zh":"邠州","en":"Binzhou"}
-{"id":"豳","kind":"place","zh":"豳州","en":"Binzhou"}
+{"id":"邠州","kind":"place","zh":"豳","en":"Bin"}
+{"id":"邠州","kind":"place","zh":"新平（漆县）","en":"Xinping (Qi County)"}
+{"id":"邠州","kind":"place","zh":"邠县","en":"Binxian"}
+{"id":"邠州","kind":"place","zh":"邠州","en":"Binzhou"}
+{"id":"邠州","kind":"place","zh":"豳州","en":"Binzhou"}
 {"id":"潘切","kind":"place","zh":"潘切","en":"Phan Thiết"}
 {"id":"基廉斯克","kind":"place","zh":"基廉斯克","en":"Kirensk"}
 {"id":"涪陵","kind":"place","zh":"涪陵","en":"Fuling"}
@@ -1342,6 +1359,7 @@
 {"id":"邕州","kind":"place","zh":"晋兴","en":"Jinxing"}
 {"id":"邕州","kind":"place","zh":"邕州","en":"Yongzhou"}
 {"id":"宥州","kind":"place","zh":"宥州","en":"Youzhou"}
+{"id":"宥州","kind":"place","zh":"夏州长泽县","en":"Changze County, Xiazhou"}
 {"id":"南宁","kind":"place","zh":"南宁","en":"Nanning"}
 {"id":"开县","kind":"place","zh":"开县","en":"Kaixian"}
 {"id":"巴东（108.40,30.80）","kind":"place","zh":"巴东","en":"Badong"}
@@ -1374,11 +1392,13 @@
 {"id":"宾州","kind":"place","zh":"宾州","en":"Binzhou"}
 {"id":"靖边","kind":"place","zh":"靖边","en":"Jingbian"}
 {"id":"奖州","kind":"place","zh":"奖州","en":"Jiangzhou"}
+{"id":"奖州","kind":"place","zh":"巫州夜郎县","en":"Yelang County, Wuzhou"}
 {"id":"夏州","kind":"place","zh":"统万城","en":"Tongwan City"}
 {"id":"夏州","kind":"place","zh":"夏州","en":"Xiazhou"}
 {"id":"夏州","kind":"place","zh":"朔方（统万城）","en":"Shuofang (Tongwan City)"}
 {"id":"照金","kind":"place","zh":"照金","en":"Zhaojin"}
 {"id":"钦州","kind":"place","zh":"钦州","en":"Qinzhou"}
+{"id":"毗罗补罗","kind":"place","zh":"奔陀浪","en":"Panduranga"}
 {"id":"毗罗补罗","kind":"place","zh":"毗罗补罗","en":"Virapura"}
 {"id":"长安","kind":"place","zh":"长安","en":"Chang'an"}
 {"id":"长安","kind":"place","zh":"大兴城（长安）","en":"Daxing City (Chang'an)"}
@@ -1407,9 +1427,9 @@
 {"id":"芽庄","kind":"place","zh":"芽庄","en":"Nha Trang"}
 {"id":"古笪罗","kind":"place","zh":"古笪罗","en":"Kauthara"}
 {"id":"铜仁","kind":"place","zh":"铜仁","en":"Tongren"}
-{"id":"廉州","kind":"place","zh":"合浦郡","en":"Hepu Commandery"}
-{"id":"廉州","kind":"place","zh":"合浦","en":"Hepu"}
-{"id":"廉州","kind":"place","zh":"廉州","en":"Lianzhou"}
+{"id":"合浦郡","kind":"place","zh":"合浦郡","en":"Hepu Commandery"}
+{"id":"合浦郡","kind":"place","zh":"合浦","en":"Hepu"}
+{"id":"合浦郡","kind":"place","zh":"廉州","en":"Lianzhou"}
 {"id":"归仁","kind":"place","zh":"归仁","en":"Quy Nhơn"}
 {"id":"栎阳","kind":"place","zh":"栎阳","en":"Yueyang"}
 {"id":"普禾加多","kind":"place","zh":"普禾加多","en":"Purwokerto"}
@@ -1485,6 +1505,7 @@
 {"id":"同州","kind":"place","zh":"大荔","en":"Dali"}
 {"id":"同州","kind":"place","zh":"同州","en":"Tongzhou"}
 {"id":"溪州","kind":"place","zh":"溪州","en":"Xizhou"}
+{"id":"溪州","kind":"place","zh":"辰州大乡县","en":"Daxiang County, Chenzhou"}
 {"id":"白州","kind":"place","zh":"白州","en":"Baizhou"}
 {"id":"中受降城","kind":"place","zh":"中受降城","en":"Central Shouxiang City"}
 {"id":"大荔王城","kind":"place","zh":"大荔王城","en":"Dali Wangcheng"}
@@ -1528,7 +1549,8 @@
 {"id":"琼州","kind":"place","zh":"琼州","en":"Qiongzhou"}
 {"id":"广州湾","kind":"place","zh":"广州湾","en":"Guangzhouwan"}
 {"id":"日惹","kind":"place","zh":"日惹","en":"Yogyakarta"}
-{"id":"万安","kind":"place","zh":"万安州","en":"Wan'an Zhou"}
+{"id":"万安州","kind":"place","zh":"万安州","en":"Wan'an Zhou"}
+{"id":"万安州","kind":"place","zh":"万安","en":"Wan'an"}
 {"id":"蒲津关","kind":"place","zh":"蒲津关","en":"Pujin Pass"}
 {"id":"万宁","kind":"place","zh":"万宁","en":"Wanning"}
 {"id":"沅陵","kind":"place","zh":"沅陵","en":"Yuanling"}
@@ -1536,6 +1558,7 @@
 {"id":"诃罗单","kind":"place","zh":"诃罗单","en":"Heluodan"}
 {"id":"龚州","kind":"place","zh":"龚州","en":"Gongzhou"}
 {"id":"琼州（旧州）","kind":"place","zh":"琼州","en":"Qiongzhou"}
+{"id":"琼州（海南海口琼山旧州镇）","kind":"place","zh":"琼州","en":"Qiongzhou"}
 {"id":"三宝垄","kind":"place","zh":"三宝垄","en":"Semarang"}
 {"id":"崖州","kind":"place","zh":"珠崖","en":"Zhuya"}
 {"id":"崖州","kind":"place","zh":"崖州","en":"Yazhou"}
@@ -1600,6 +1623,7 @@
 {"id":"胜州","kind":"place","zh":"榆林","en":"Yulin"}
 {"id":"胜州","kind":"place","zh":"胜州","en":"Shengzhou"}
 {"id":"全州","kind":"place","zh":"全州","en":"Quanzhou"}
+{"id":"全州","kind":"place","zh":"永州湘源县","en":"Xiangyuan County, Yongzhou"}
 {"id":"府谷","kind":"place","zh":"府谷","en":"Fugu"}
 {"id":"府谷","kind":"place","zh":"府州","en":"Fuzhou"}
 {"id":"零陵西汉","kind":"place","zh":"零陵西汉","en":"Lingling (Western Han)"}
@@ -1626,6 +1650,7 @@
 {"id":"绛州","kind":"place","zh":"正平","en":"Zhengping"}
 {"id":"绛州","kind":"place","zh":"绛州","en":"Jiangzhou"}
 {"id":"云中","kind":"place","zh":"云中","en":"Yunzhong"}
+{"id":"黑沙城","kind":"place","zh":"黑沙城（后突厥牙帐）","en":"Heisha City (Second Turkic royal camp)"}
 {"id":"净州","kind":"place","zh":"净州","en":"Jingzhou"}
 {"id":"焦","kind":"place","zh":"焦","en":"Jiao"}
 {"id":"平陆","kind":"place","zh":"平陆","en":"Pinglu"}
@@ -1683,11 +1708,11 @@
 {"id":"厚和","kind":"place","zh":"厚和","en":"Houhe"}
 {"id":"厚和","kind":"place","zh":"归绥","en":"Guisui"}
 {"id":"杨","kind":"place","zh":"杨","en":"Yang"}
-{"id":"朗州","kind":"place","zh":"武陵郡","en":"Wuling Commandery"}
-{"id":"朗州","kind":"place","zh":"临沅（武陵）","en":"Linyuan (Wuling)"}
-{"id":"朗州","kind":"place","zh":"常德","en":"Changde"}
-{"id":"朗州","kind":"place","zh":"朗州","en":"Langzhou"}
-{"id":"朗州","kind":"place","zh":"临沅","en":"Linyuan"}
+{"id":"武陵郡","kind":"place","zh":"武陵郡","en":"Wuling Commandery"}
+{"id":"武陵郡","kind":"place","zh":"临沅（武陵）","en":"Linyuan (Wuling)"}
+{"id":"武陵郡","kind":"place","zh":"常德","en":"Changde"}
+{"id":"武陵郡","kind":"place","zh":"朗州","en":"Langzhou"}
+{"id":"武陵郡","kind":"place","zh":"临沅","en":"Linyuan"}
 {"id":"霍","kind":"place","zh":"霍","en":"Huo"}
 {"id":"翼","kind":"place","zh":"翼","en":"Yi"}
 {"id":"翼城","kind":"place","zh":"翼城","en":"Yicheng"}
@@ -1717,6 +1742,7 @@
 {"id":"武遂","kind":"place","zh":"武遂","en":"Wusui"}
 {"id":"介休","kind":"place","zh":"介休","en":"Jiexiu"}
 {"id":"宪州","kind":"place","zh":"宪州","en":"Xianzhou"}
+{"id":"宪州","kind":"place","zh":"岚州静乐县","en":"Jingle County, Lanzhou"}
 {"id":"恩州（广东阳江）","kind":"place","zh":"恩州","en":"Enzhou"}
 {"id":"阳江","kind":"place","zh":"阳江","en":"Yangjiang"}
 {"id":"谏义里","kind":"place","zh":"谏义里","en":"Kediri"}
@@ -1803,6 +1829,7 @@
 {"id":"玛琅","kind":"place","zh":"玛琅","en":"Malang"}
 {"id":"阳樊","kind":"place","zh":"阳樊","en":"Yangfan"}
 {"id":"寰州","kind":"place","zh":"寰州","en":"Huanzhou"}
+{"id":"寰州","kind":"place","zh":"神武军","en":"Shenwu Jun"}
 {"id":"四会","kind":"place","zh":"四会","en":"Sihui"}
 {"id":"沁州（山西沁县）","kind":"place","zh":"沁县","en":"Qinxian"}
 {"id":"沁州（山西沁县）","kind":"place","zh":"沁州","en":"Qinzhou"}
@@ -1819,6 +1846,7 @@
 {"id":"枣阳","kind":"place","zh":"枣阳","en":"Zaoyang"}
 {"id":"忻口","kind":"place","zh":"忻口","en":"Xinkou"}
 {"id":"孟州","kind":"place","zh":"孟州","en":"Mengzhou"}
+{"id":"孟州","kind":"place","zh":"洛州河阳县","en":"Heyang County, Luozhou"}
 {"id":"涅县","kind":"place","zh":"涅县","en":"Nie County"}
 {"id":"唐州（河南唐河）","kind":"place","zh":"唐州","en":"Tangzhou"}
 {"id":"汝州","kind":"place","zh":"梁县","en":"Liang County"}
@@ -1862,9 +1890,9 @@
 {"id":"长沙","kind":"place","zh":"潭州","en":"Tanzhou"}
 {"id":"南海西","kind":"place","zh":"南海西","en":"Nanhai (west)"}
 {"id":"郴","kind":"place","zh":"郴","en":"Chen"}
-{"id":"郴州","kind":"place","zh":"桂阳郡","en":"Guiyang Commandery"}
-{"id":"郴州","kind":"place","zh":"郴县（桂阳）","en":"Chen County (Guiyang)"}
-{"id":"郴州","kind":"place","zh":"郴州","en":"Chenzhou"}
+{"id":"桂阳郡","kind":"place","zh":"桂阳郡","en":"Guiyang Commandery"}
+{"id":"桂阳郡","kind":"place","zh":"郴县（桂阳）","en":"Chen County (Guiyang)"}
+{"id":"桂阳郡","kind":"place","zh":"郴州","en":"Chenzhou"}
 {"id":"清远","kind":"place","zh":"清远","en":"Qingyuan"}
 {"id":"容城","kind":"place","zh":"容城","en":"Rongcheng"}
 {"id":"阳城","kind":"place","zh":"阳城","en":"Yangcheng"}
@@ -2055,6 +2083,7 @@
 {"id":"外南梦","kind":"place","zh":"外南梦","en":"Banyuwangi"}
 {"id":"铜鼓","kind":"place","zh":"铜鼓","en":"Tonggu"}
 {"id":"磁州","kind":"place","zh":"磁州","en":"Cizhou"}
+{"id":"磁州","kind":"place","zh":"相州滏阳县","en":"Fuyang County, Xiangzhou"}
 {"id":"袁州","kind":"place","zh":"宜春","en":"Yichun"}
 {"id":"袁州","kind":"place","zh":"袁州","en":"Yuanzhou"}
 {"id":"赞皇","kind":"place","zh":"赞皇","en":"Zanhuang"}
@@ -2088,6 +2117,7 @@
 {"id":"蔚州","kind":"place","zh":"蔚县","en":"Yuxian"}
 {"id":"蔚州","kind":"place","zh":"代","en":"Dai"}
 {"id":"蔚州","kind":"place","zh":"蔚州","en":"Yuzhou"}
+{"id":"蔚州","kind":"place","zh":"横野军","en":"Hengye Jun"}
 {"id":"马辰","kind":"place","zh":"马辰","en":"Banjarmasin"}
 {"id":"沈","kind":"place","zh":"沈","en":"Shen"}
 {"id":"匡","kind":"place","zh":"匡","en":"Kuang"}
@@ -2120,7 +2150,7 @@
 {"id":"赵州","kind":"place","zh":"赵州","en":"Zhaozhou"}
 {"id":"雍丘","kind":"place","zh":"雍丘","en":"Yongqiu"}
 {"id":"肥","kind":"place","zh":"肥","en":"Fei"}
-{"id":"万安（江西万安）","kind":"place","zh":"万安","en":"Wan'an"}
+{"id":"万安","kind":"place","zh":"万安","en":"Wan'an"}
 {"id":"南顿","kind":"place","zh":"南顿","en":"Nandun"}
 {"id":"兰封","kind":"place","zh":"兰封","en":"Lanfeng"}
 {"id":"鄂","kind":"place","zh":"鄂","en":"E"}
@@ -2154,6 +2184,7 @@
 {"id":"广平","kind":"place","zh":"广平","en":"Guangping"}
 {"id":"文莱","kind":"place","zh":"文莱","en":"Brunei Town"}
 {"id":"大冶","kind":"place","zh":"大冶","en":"Daye"}
+{"id":"祁州","kind":"place","zh":"定州毋极县","en":"Wuji County, Dingzhou"}
 {"id":"祁州","kind":"place","zh":"祁州","en":"Qizhou"}
 {"id":"吉州","kind":"place","zh":"庐陵","en":"Luling"}
 {"id":"吉州","kind":"place","zh":"吉安","en":"Ji'an"}
@@ -2180,6 +2211,7 @@
 {"id":"光州","kind":"place","zh":"潢川","en":"Huangchuan"}
 {"id":"光州","kind":"place","zh":"光州","en":"Guangzhou"}
 {"id":"广宗","kind":"place","zh":"广宗","en":"Guangzong"}
+{"id":"冀州顿丘县","kind":"place","zh":"冀州顿丘县","en":"Dunqiu County, Jizhou"}
 {"id":"顿丘","kind":"place","zh":"澶州","en":"Chanzhou"}
 {"id":"大名","kind":"place","zh":"大名","en":"Daming"}
 {"id":"紫荆关","kind":"place","zh":"紫荆关","en":"Zijing Pass"}
@@ -2203,6 +2235,7 @@
 {"id":"蕲州","kind":"place","zh":"蕲州","en":"Qizhou"}
 {"id":"兴国","kind":"place","zh":"兴国","en":"Xingguo"}
 {"id":"筠州","kind":"place","zh":"筠州","en":"Yunzhou"}
+{"id":"筠州","kind":"place","zh":"洪州高安县","en":"Gao'an County, Hongzhou"}
 {"id":"南宫","kind":"place","zh":"南宫","en":"Nangong"}
 {"id":"雩都","kind":"place","zh":"雩都","en":"Yudu"}
 {"id":"商城","kind":"place","zh":"商城","en":"Shangcheng"}
@@ -2220,6 +2253,7 @@
 {"id":"濮州","kind":"place","zh":"濮州","en":"Puzhou"}
 {"id":"濮州","kind":"place","zh":"鄄","en":"Juan"}
 {"id":"安平","kind":"place","zh":"博陵（安平）","en":"Boling (Anping)"}
+{"id":"深州（河北深州）","kind":"place","zh":"深州","en":"Shenzhou"}
 {"id":"妫州","kind":"place","zh":"沮阳（上谷）","en":"Juyang (Shanggu)"}
 {"id":"妫州","kind":"place","zh":"怀来","en":"Huailai"}
 {"id":"妫州","kind":"place","zh":"妫州","en":"Guizhou"}
@@ -2281,6 +2315,7 @@
 {"id":"涿","kind":"place","zh":"涿（范阳）","en":"Zhuo (Fanyang)"}
 {"id":"涿","kind":"place","zh":"涿县","en":"Zhuoxian"}
 {"id":"涿","kind":"place","zh":"涿州","en":"Zhuozhou"}
+{"id":"涿","kind":"place","zh":"幽州范阳县","en":"Fanyang County, Youzhou"}
 {"id":"儒州","kind":"place","zh":"儒州","en":"Ruzhou"}
 {"id":"郓","kind":"place","zh":"郓","en":"Yun"}
 {"id":"博州","kind":"place","zh":"聊","en":"Liao"}
@@ -2295,6 +2330,7 @@
 {"id":"宁都","kind":"place","zh":"宁都","en":"Ningdu"}
 {"id":"瑞金","kind":"place","zh":"瑞金","en":"Ruijin"}
 {"id":"莫州","kind":"place","zh":"莫州","en":"Mozhou"}
+{"id":"莫州","kind":"place","zh":"瀛州鄚县","en":"Mo County, Yingzhou"}
 {"id":"桓州","kind":"place","zh":"桓州","en":"Huanzhou"}
 {"id":"哲斯顿","kind":"place","zh":"哲斯顿","en":"Jesselton"}
 {"id":"居庸关","kind":"place","zh":"居庸关","en":"Juyong Pass"}
@@ -2365,6 +2401,7 @@
 {"id":"涅尔琴斯克","kind":"place","zh":"涅尔琴斯克","en":"Nerchinsk"}
 {"id":"南丰","kind":"place","zh":"南丰","en":"Nanfeng"}
 {"id":"景州","kind":"place","zh":"景州","en":"Jingzhou"}
+{"id":"景州","kind":"place","zh":"沧州东光县","en":"Dongguang County, Cangzhou"}
 {"id":"博尔贾","kind":"place","zh":"博尔贾","en":"Borzya"}
 {"id":"蒙城","kind":"place","zh":"蒙城","en":"Mengcheng"}
 {"id":"皖","kind":"place","zh":"皖","en":"Wan"}
@@ -2380,6 +2417,7 @@
 {"id":"淤口关","kind":"place","zh":"淤口关","en":"Yukou Pass"}
 {"id":"宁化","kind":"place","zh":"宁化","en":"Ninghua"}
 {"id":"顺州","kind":"place","zh":"顺州","en":"Shunzhou"}
+{"id":"顺州","kind":"place","zh":"归顺州","en":"Guishun Zhou"}
 {"id":"丰宁","kind":"place","zh":"丰宁","en":"Fengning"}
 {"id":"通州（北京通州）","kind":"place","zh":"通州","en":"Tongzhou"}
 {"id":"济北国","kind":"place","zh":"济北国","en":"Jibei Kingdom"}
@@ -2416,6 +2454,7 @@
 {"id":"沧州（旧州）","kind":"place","zh":"南皮（渤海）","en":"Nanpi (Bohai)"}
 {"id":"宿县","kind":"place","zh":"宿县","en":"Suxian"}
 {"id":"宿州","kind":"place","zh":"宿州","en":"Suzhou"}
+{"id":"宿州","kind":"place","zh":"徐州符离县","en":"Fuli County, Xuzhou"}
 {"id":"曲阜","kind":"place","zh":"曲阜","en":"Qufu"}
 {"id":"曲阜","kind":"place","zh":"鲁","en":"Lu"}
 {"id":"邹","kind":"place","zh":"邹","en":"Zou"}
@@ -2473,6 +2512,7 @@
 {"id":"阴陵","kind":"place","zh":"阴陵","en":"Yinling"}
 {"id":"无棣","kind":"place","zh":"无棣","en":"Wudi"}
 {"id":"漳州","kind":"place","zh":"漳州","en":"Zhangzhou"}
+{"id":"漳州","kind":"place","zh":"漳浦","en":"Zhangpu"}
 {"id":"定远","kind":"place","zh":"定远","en":"Dingyuan"}
 {"id":"莱芜","kind":"place","zh":"莱芜","en":"Laiwu"}
 {"id":"斯列坚斯克","kind":"place","zh":"斯列坚斯克","en":"Sretensk"}
@@ -2558,9 +2598,11 @@
 {"id":"闽北","kind":"place","zh":"闽北","en":"Northern Min"}
 {"id":"盱眙","kind":"place","zh":"盱眙","en":"Xuyi"}
 {"id":"泗州（江苏盱眙对岸（已没于洪泽湖））","kind":"place","zh":"泗州","en":"Sizhou"}
+{"id":"泗州（江苏盱眙对岸（已没于洪泽湖））","kind":"place","zh":"泗州徐城县","en":"Xucheng County, Sizhou"}
 {"id":"酅","kind":"place","zh":"酅","en":"Xi"}
 {"id":"仙霞关","kind":"place","zh":"仙霞关","en":"Xianxia Pass"}
 {"id":"泉州","kind":"place","zh":"泉州","en":"Quanzhou"}
+{"id":"泉州","kind":"place","zh":"晋江","en":"Jinjiang"}
 {"id":"沂水","kind":"place","zh":"沂水","en":"Yishui"}
 {"id":"凌","kind":"place","zh":"凌","en":"Ling"}
 {"id":"滦县","kind":"place","zh":"滦县","en":"Luanxian"}
@@ -2711,10 +2753,10 @@
 {"id":"御儿","kind":"place","zh":"御儿","en":"Yu'er"}
 {"id":"嘉义","kind":"place","zh":"嘉义","en":"Chiayi"}
 {"id":"梅里","kind":"place","zh":"梅里","en":"Meili"}
-{"id":"龙城","kind":"place","zh":"柳城","en":"Liucheng"}
-{"id":"龙城","kind":"place","zh":"龙城","en":"Longcheng"}
-{"id":"龙城","kind":"place","zh":"朝阳","en":"Chaoyang"}
-{"id":"龙城","kind":"place","zh":"营州","en":"Yingzhou"}
+{"id":"柳城","kind":"place","zh":"柳城","en":"Liucheng"}
+{"id":"柳城","kind":"place","zh":"龙城","en":"Longcheng"}
+{"id":"柳城","kind":"place","zh":"朝阳","en":"Chaoyang"}
+{"id":"柳城","kind":"place","zh":"营州","en":"Yingzhou"}
 {"id":"海安","kind":"place","zh":"海安","en":"Hai'an"}
 {"id":"即墨（山东平度东南）","kind":"place","zh":"即墨","en":"Jimo"}
 {"id":"马利韦莱斯","kind":"place","zh":"马利韦莱斯","en":"Mariveles"}
@@ -2743,7 +2785,9 @@
 {"id":"莱阳","kind":"place","zh":"莱阳","en":"Laiyang"}
 {"id":"秀州","kind":"place","zh":"嘉兴","en":"Jiaxing"}
 {"id":"秀州","kind":"place","zh":"秀州","en":"Xiuzhou"}
+{"id":"秀州","kind":"place","zh":"苏州嘉兴县","en":"Jiaxing County, Suzhou"}
 {"id":"登州","kind":"place","zh":"登州","en":"Dengzhou"}
+{"id":"登州","kind":"place","zh":"蓬莱镇","en":"Penglai Garrison"}
 {"id":"大棘城","kind":"place","zh":"大棘城","en":"Daji City"}
 {"id":"葫芦岛","kind":"place","zh":"葫芦岛","en":"Huludao"}
 {"id":"南通","kind":"place","zh":"南通","en":"Nantong"}
@@ -2762,8 +2806,9 @@
 {"id":"台州","kind":"place","zh":"台州","en":"Taizhou"}
 {"id":"阳乐","kind":"place","zh":"阳乐","en":"Yangle"}
 {"id":"松江","kind":"place","zh":"松江","en":"Songjiang"}
-{"id":"宜州（辽宁义县一带）","kind":"place","zh":"宜州","en":"Yizhou"}
-{"id":"宜州（辽宁义县一带）","kind":"place","zh":"安东都护府","en":"Andong Protectorate"}
+{"id":"安东都护府","kind":"place","zh":"宜州","en":"Yizhou"}
+{"id":"安东都护府","kind":"place","zh":"辽西故郡城","en":"Old seat of Liaoxi Commandery"}
+{"id":"安东都护府","kind":"place","zh":"安东都护府","en":"Andong Protectorate"}
 {"id":"旅顺","kind":"place","zh":"旅顺","en":"Lüshun"}
 {"id":"腄","kind":"place","zh":"腄","en":"Chui"}
 {"id":"开鲁","kind":"place","zh":"开鲁","en":"Kailu"}
@@ -2790,7 +2835,7 @@
 {"id":"基隆","kind":"place","zh":"基隆","en":"Keelung"}
 {"id":"宜兰","kind":"place","zh":"宜兰","en":"Yilan"}
 {"id":"显州","kind":"place","zh":"显州","en":"Xianzhou"}
-{"id":"柳城","kind":"place","zh":"柳城（怀远镇）","en":"Liucheng (Huaiyuan Garrison)"}
+{"id":"柳城（辽宁北镇一带）","kind":"place","zh":"柳城（怀远镇）","en":"Liucheng (Huaiyuan Garrison)"}
 {"id":"辽东属国","kind":"place","zh":"辽东属国","en":"Liaodong Dependent State"}
 {"id":"卑沙城","kind":"place","zh":"卑沙城","en":"Bisa Fortress"}
 {"id":"王爷庙","kind":"place","zh":"王爷庙","en":"Wangyemiao"}
@@ -2863,6 +2908,7 @@
 {"id":"塔克洛班","kind":"place","zh":"塔克洛班","en":"Tacloban"}
 {"id":"扶余府","kind":"place","zh":"农安","en":"Nong'an"}
 {"id":"扶余府","kind":"place","zh":"扶余府","en":"Fuyu Fu"}
+{"id":"扶余府","kind":"place","zh":"扶余故地","en":"former Buyeo lands"}
 {"id":"嫩江","kind":"place","zh":"嫩江","en":"Nenjiang"}
 {"id":"宫古","kind":"place","zh":"宫古","en":"Miyako"}
 {"id":"新京","kind":"place","zh":"新京","en":"Xinjing"}
@@ -2897,16 +2943,18 @@
 {"id":"木浦","kind":"place","zh":"木浦","en":"Mokpo"}
 {"id":"真番","kind":"place","zh":"真番","en":"Zhenfan"}
 {"id":"浿江镇","kind":"place","zh":"浿江镇","en":"Paegang Garrison"}
+{"id":"浿江镇","kind":"place","zh":"大谷郡","en":"Daegok-gun"}
 {"id":"包考","kind":"place","zh":"包考","en":"Baucau"}
 {"id":"江华","kind":"place","zh":"江华","en":"Ganghwa"}
 {"id":"江华","kind":"place","zh":"江都（江华岛）","en":"Gangdo (Ganghwa Island)"}
 {"id":"北安","kind":"place","zh":"北安","en":"Bei'an"}
 {"id":"济州（韩国济州）","kind":"place","zh":"济州","en":"Jeju"}
 {"id":"济州岛","kind":"place","zh":"济州岛","en":"Jeju"}
-{"id":"开京","kind":"place","zh":"开城","en":"Kaesong"}
-{"id":"开京","kind":"place","zh":"开京","en":"Gaegyeong"}
-{"id":"开京","kind":"place","zh":"松岳","en":"Songak"}
-{"id":"开京","kind":"place","zh":"开京（松岳）","en":"Gaegyeong (Songak)"}
+{"id":"松岳","kind":"place","zh":"开城","en":"Kaesong"}
+{"id":"松岳","kind":"place","zh":"开京","en":"Gaegyeong"}
+{"id":"松岳","kind":"place","zh":"松岳","en":"Songak"}
+{"id":"松岳","kind":"place","zh":"扶苏岬","en":"Busogap"}
+{"id":"松岳","kind":"place","zh":"开京（松岳）","en":"Gaegyeong (Songak)"}
 {"id":"夫余（126.55,43.85）","kind":"place","zh":"夫余","en":"Fuyu"}
 {"id":"粟末","kind":"place","zh":"夫余王城","en":"Buyeo royal city"}
 {"id":"粟末","kind":"place","zh":"吉林","en":"Jilin"}
@@ -2921,12 +2969,14 @@
 {"id":"桦甸","kind":"place","zh":"桦甸","en":"Huadian"}
 {"id":"汶山","kind":"place","zh":"汶山","en":"Munsan"}
 {"id":"马韩南","kind":"place","zh":"马韩南","en":"Mahan (south)"}
-{"id":"武珍","kind":"place","zh":"光州","en":"Gwangju"}
-{"id":"武珍","kind":"place","zh":"武珍州","en":"Mujinju"}
+{"id":"武珍州","kind":"place","zh":"光州","en":"Gwangju"}
+{"id":"武珍州","kind":"place","zh":"武珍州","en":"Mujinju"}
+{"id":"武珍州","kind":"place","zh":"武珍","en":"Mujin"}
 {"id":"马韩","kind":"place","zh":"马韩","en":"Mahan"}
 {"id":"泗沘","kind":"place","zh":"泗沘","en":"Sabi"}
 {"id":"鸭渌","kind":"place","zh":"临江","en":"Linjiang"}
 {"id":"鸭渌","kind":"place","zh":"西京鸭渌府","en":"Yalu Fu (Western Capital)"}
+{"id":"鸭渌","kind":"place","zh":"鸭渌","en":"Yalu"}
 {"id":"上京会宁府","kind":"place","zh":"会宁","en":"Huining"}
 {"id":"上京会宁府","kind":"place","zh":"上京会宁府","en":"Huining Fu (Supreme Capital)"}
 {"id":"上京会宁府","kind":"place","zh":"会宁府","en":"Huining Fu"}
@@ -2942,10 +2992,12 @@
 {"id":"涟川","kind":"place","zh":"涟川","en":"Yeoncheon"}
 {"id":"平泽","kind":"place","zh":"平泽","en":"Pyeongtaek"}
 {"id":"熊州","kind":"place","zh":"熊州","en":"Ungju"}
+{"id":"熊州","kind":"place","zh":"熊津城（熊津都督府）","en":"Ungjin Fortress (Ungjin Area Command)"}
 {"id":"熊津","kind":"place","zh":"熊津","en":"Ungjin"}
 {"id":"慰礼城","kind":"place","zh":"汉城（慰礼城）","en":"Hanseong (Wiryeseong)"}
 {"id":"完山州","kind":"place","zh":"全州","en":"Jeonju"}
 {"id":"完山州","kind":"place","zh":"完山州","en":"Wansanju"}
+{"id":"完山州","kind":"place","zh":"完山","en":"Wansan"}
 {"id":"汉山","kind":"place","zh":"汉山","en":"Hansan"}
 {"id":"汉山","kind":"place","zh":"汉州","en":"Hanju"}
 {"id":"汉山","kind":"place","zh":"汉城（慰礼城）","en":"Hanseong (Wiryeseong)"}
@@ -2974,16 +3026,20 @@
 {"id":"丽水","kind":"place","zh":"丽水","en":"Yeosu"}
 {"id":"那霸","kind":"place","zh":"那霸","en":"Naha"}
 {"id":"华川","kind":"place","zh":"华川","en":"Hwacheon"}
-{"id":"牛首","kind":"place","zh":"春川","en":"Chuncheon"}
-{"id":"牛首","kind":"place","zh":"牛首州","en":"Usuju"}
+{"id":"牛首州","kind":"place","zh":"春川","en":"Chuncheon"}
+{"id":"牛首州","kind":"place","zh":"牛首州","en":"Usuju"}
+{"id":"牛首州","kind":"place","zh":"牛首","en":"Usu"}
 {"id":"琉球","kind":"place","zh":"琉球","en":"Ryukyu"}
 {"id":"洪川","kind":"place","zh":"洪川","en":"Hongcheon"}
 {"id":"原州（韩国原州）","kind":"place","zh":"原州","en":"Wonju"}
 {"id":"杨口","kind":"place","zh":"杨口","en":"Yanggu"}
 {"id":"康州","kind":"place","zh":"晋州","en":"Jinju"}
 {"id":"康州","kind":"place","zh":"康州","en":"Gangju"}
+{"id":"康州","kind":"place","zh":"菁州","en":"Cheongju"}
 {"id":"金泉","kind":"place","zh":"金泉","en":"Gimcheon"}
 {"id":"斯沃博德内","kind":"place","zh":"斯沃博德内","en":"Svobodny"}
+{"id":"东牟山","kind":"place","zh":"旧国（东牟山）","en":"Old Capital (Mount Dongmou)"}
+{"id":"东牟山","kind":"place","zh":"东牟山","en":"Mount Dongmou"}
 {"id":"尚州","kind":"place","zh":"尚州","en":"Sangju"}
 {"id":"麟蹄","kind":"place","zh":"麟蹄","en":"Inje"}
 {"id":"安汶","kind":"place","zh":"安汶","en":"Ambon"}
@@ -2994,6 +3050,7 @@
 {"id":"高城","kind":"place","zh":"高城","en":"Kosong"}
 {"id":"弁韩","kind":"place","zh":"弁韩","en":"Byeonhan"}
 {"id":"北青","kind":"place","zh":"南京南海府","en":"Nanhai Fu (Southern Capital)"}
+{"id":"北青","kind":"place","zh":"北青","en":"Pukchong"}
 {"id":"摩罗泰","kind":"place","zh":"摩罗泰","en":"Morotai"}
 {"id":"宁越","kind":"place","zh":"宁越","en":"Yeongwol"}
 {"id":"杆城","kind":"place","zh":"杆城","en":"Ganseong"}
@@ -3007,6 +3064,8 @@
 {"id":"临屯","kind":"place","zh":"临屯","en":"Lintun"}
 {"id":"溟州","kind":"place","zh":"江陵","en":"Gangneung"}
 {"id":"溟州","kind":"place","zh":"溟州","en":"Myeongju"}
+{"id":"中京显德府","kind":"place","zh":"显州（中京）","en":"Xianzhou (Central Capital)"}
+{"id":"中京显德府","kind":"place","zh":"显州","en":"Xianzhou"}
 {"id":"中京显德府","kind":"place","zh":"中京显德府","en":"Xiande Fu (Central Capital)"}
 {"id":"釜山","kind":"place","zh":"釜山（临时首都）","en":"Busan (provisional capital)"}
 {"id":"釜山","kind":"place","zh":"釜山","en":"Busan"}
@@ -3017,6 +3076,7 @@
 {"id":"金城","kind":"place","zh":"金城（斯卢）","en":"Geumseong (Saro)"}
 {"id":"金城","kind":"place","zh":"庆州","en":"Gyeongju"}
 {"id":"上京龙泉府","kind":"place","zh":"上京龙泉府","en":"Longquan Fu (Supreme Capital)"}
+{"id":"上京龙泉府","kind":"place","zh":"上京（忽汗城）","en":"Supreme Capital (Huhan City)"}
 {"id":"上京龙泉府","kind":"place","zh":"忽汗城（天福城）","en":"Huhan City (Tianfu City)"}
 {"id":"对马","kind":"place","zh":"对马","en":"Tsushima"}
 {"id":"蔚山","kind":"place","zh":"蔚山","en":"Ulsan"}
@@ -3033,12 +3093,13 @@
 {"id":"吐噶喇","kind":"place","zh":"吐噶喇","en":"Tokara"}
 {"id":"长崎","kind":"place","zh":"长崎","en":"Nagasaki"}
 {"id":"罗津","kind":"place","zh":"罗津","en":"Rajin"}
-{"id":"东京龙原府","kind":"place","zh":"东京龙原府","en":"Longyuan Fu (Eastern Capital)"}
+{"id":"栅城","kind":"place","zh":"栅城","en":"Zhacheng"}
+{"id":"栅城","kind":"place","zh":"东京龙原府","en":"Longyuan Fu (Eastern Capital)"}
 {"id":"佳木斯","kind":"place","zh":"佳木斯","en":"Jiamusi"}
 {"id":"珲春","kind":"place","zh":"珲春","en":"Hunchun"}
 {"id":"福冈","kind":"place","zh":"福冈","en":"Fukuoka"}
-{"id":"筑紫","kind":"place","zh":"筑紫","en":"Tsukushi"}
-{"id":"筑紫","kind":"place","zh":"太宰府","en":"Dazaifu"}
+{"id":"太宰府","kind":"place","zh":"筑紫","en":"Tsukushi"}
+{"id":"太宰府","kind":"place","zh":"太宰府","en":"Dazaifu"}
 {"id":"鹿儿岛","kind":"place","zh":"鹿儿岛","en":"Kagoshima"}
 {"id":"九州","kind":"place","zh":"九州","en":"Kyushu"}
 {"id":"波西耶特","kind":"place","zh":"波西耶特","en":"Posyet"}
@@ -3049,6 +3110,7 @@
 {"id":"海参崴","kind":"place","zh":"海参崴","en":"Vladivostok"}
 {"id":"率宾府","kind":"place","zh":"双城子","en":"Nikolsk-Ussuriysky"}
 {"id":"率宾府","kind":"place","zh":"率宾府","en":"Shuaibin Fu"}
+{"id":"率宾府","kind":"place","zh":"率宾故地","en":"former Shuaibin lands"}
 {"id":"富锦","kind":"place","zh":"富锦","en":"Fujin"}
 {"id":"法克法克","kind":"place","zh":"法克法克","en":"Fakfak"}
 {"id":"广岛","kind":"place","zh":"广岛","en":"Hiroshima"}
@@ -3071,8 +3133,11 @@
 {"id":"大阪","kind":"place","zh":"大阪","en":"Osaka"}
 {"id":"平安京","kind":"place","zh":"京都","en":"Kyoto"}
 {"id":"平安京","kind":"place","zh":"平安京","en":"Heian-kyō"}
+{"id":"平城京","kind":"place","zh":"平城京","en":"Heijō-kyō"}
+{"id":"藤原京","kind":"place","zh":"藤原京","en":"Fujiwara-kyō"}
 {"id":"飞鸟","kind":"place","zh":"大和","en":"Yamato"}
 {"id":"飞鸟","kind":"place","zh":"飞鸟","en":"Asuka"}
+{"id":"近江大津宫","kind":"place","zh":"近江大津宫","en":"Ōmi-Ōtsu Palace"}
 {"id":"比亚克","kind":"place","zh":"比亚克","en":"Biak"}
 {"id":"本州中","kind":"place","zh":"本州中","en":"Honshu (central)"}
 {"id":"金泽","kind":"place","zh":"金泽","en":"Kanazawa"}
@@ -3692,12 +3757,19 @@
 {"id":"齐（南齐）","kind":"polity","zh":"齐（南齐）","en":"Qi (Southern Qi)"}
 {"id":"齐（葛荣）","kind":"polity","zh":"齐（葛荣）","en":"Qi (Ge Rong)"}
 {"id":"龟兹","kind":"polity","zh":"龟兹","en":"Kucha"}
+{"id":"京畿","kind":"polity","zh":"京畿","en":"Capital District"}
+{"id":"关内道","kind":"polity","zh":"关内道","en":"Guannei Circuit"}
 {"id":"冯盎（岭南）","kind":"polity","zh":"冯盎（岭南）","en":"Feng Ang (Lingnan)"}
 {"id":"凉（李轨）","kind":"polity","zh":"凉（李轨）","en":"Liang (Li Gui)"}
+{"id":"剑南","kind":"polity","zh":"剑南","en":"Jiannan"}
+{"id":"北庭","kind":"polity","zh":"北庭","en":"Beiting","by_era":{"Beiting":["唐宋"],"Beiting Protectorate":["隋唐"]}}
 {"id":"单于都护府","kind":"polity","zh":"单于都护府","en":"Chanyu Protectorate"}
+{"id":"南诏","kind":"polity","zh":"南诏","en":"Nanzhao"}
+{"id":"后突厥","kind":"polity","zh":"后突厥","en":"Second Turkic Qaghanate"}
 {"id":"吴（李子通）","kind":"polity","zh":"吴（李子通）","en":"Wu (Li Zitong)"}
 {"id":"吴（汪华）","kind":"polity","zh":"吴（汪华）","en":"Wu (Wang Hua)"}
 {"id":"唐","kind":"polity","zh":"唐","en":"Tang"}
+{"id":"回鹘","kind":"polity","zh":"回鹘","en":"Uyghur Khaganate"}
 {"id":"夏（窦建德）","kind":"polity","zh":"夏（窦建德）","en":"Xia (Dou Jiande)"}
 {"id":"大食","kind":"polity","zh":"大食","en":"Arab Caliphate"}
 {"id":"安东都护府","kind":"polity","zh":"安东都护府","en":"Andong Protectorate"}
@@ -3707,44 +3779,66 @@
 {"id":"宋义（孟海公）","kind":"polity","zh":"宋义（孟海公）","en":"Songyi (Meng Haigong)"}
 {"id":"宋（辅公祏）","kind":"polity","zh":"宋（辅公祏）","en":"Song (Fu Gongshi)"}
 {"id":"定杨（刘武周）","kind":"polity","zh":"定杨（刘武周）","en":"Dingyang (Liu Wuzhou)"}
+{"id":"小勃律","kind":"polity","zh":"小勃律","en":"Little Balur"}
+{"id":"山南东道","kind":"polity","zh":"山南东道","en":"Shannan East Circuit"}
+{"id":"山南西道","kind":"polity","zh":"山南西道","en":"Shannan West Circuit"}
+{"id":"岭南","kind":"polity","zh":"岭南","en":"Lingnan"}
+{"id":"平卢","kind":"polity","zh":"平卢","en":"Pinglu"}
+{"id":"日本","kind":"polity","zh":"日本","en":"Japan"}
 {"id":"昆陵都护府","kind":"polity","zh":"昆陵都护府","en":"Kunling Protectorate"}
+{"id":"朔方","kind":"polity","zh":"朔方","en":"Shuofang"}
 {"id":"杜伏威（江淮）","kind":"polity","zh":"杜伏威（江淮）","en":"Du Fuwei (Jianghuai)"}
 {"id":"梁（梁师都）","kind":"polity","zh":"梁（梁师都）","en":"Liang (Liang Shidu)"}
 {"id":"梁（沈法兴）","kind":"polity","zh":"梁（沈法兴）","en":"Liang (Shen Faxing)"}
 {"id":"梁（萧铣）","kind":"polity","zh":"梁（萧铣）","en":"Liang (Xiao Xian)"}
 {"id":"楚（林士弘）","kind":"polity","zh":"楚（林士弘）","en":"Chu (Lin Shihong)"}
+{"id":"水真腊","kind":"polity","zh":"水真腊","en":"Water Chenla"}
 {"id":"永乐（郭子和）","kind":"polity","zh":"永乐（郭子和）","en":"Yongle (Guo Zihe)"}
 {"id":"汉东（刘黑闼）","kind":"polity","zh":"汉东（刘黑闼）","en":"Handong (Liu Heita)"}
+{"id":"江南东道","kind":"polity","zh":"江南东道","en":"Jiangnan East Circuit"}
+{"id":"江南西道","kind":"polity","zh":"江南西道","en":"Jiangnan West Circuit"}
+{"id":"河东","kind":"polity","zh":"河东","en":"Hedong"}
+{"id":"河东道","kind":"polity","zh":"河东道","en":"Hedong Circuit"}
+{"id":"河北道","kind":"polity","zh":"河北道","en":"Hebei Circuit"}
+{"id":"河南道","kind":"polity","zh":"河南道","en":"Henan Circuit"}
+{"id":"河西","kind":"polity","zh":"河西","en":"Hexi"}
+{"id":"淮南","kind":"polity","zh":"淮南","en":"Huainan"}
+{"id":"渤海","kind":"polity","zh":"渤海","en":"Balhae"}
 {"id":"濛池都护府","kind":"polity","zh":"濛池都护府","en":"Mengchi Protectorate"}
 {"id":"熊津都督府","kind":"polity","zh":"熊津都督府","en":"Ungjin Area Command"}
 {"id":"燕（高开道）","kind":"polity","zh":"燕（高开道）","en":"Yan (Gao Kaidao)"}
 {"id":"秦（薛举）","kind":"polity","zh":"秦（薛举）","en":"Qin (Xue Ju)"}
+{"id":"突厥叛部（泥熟匐）","kind":"polity","zh":"突厥叛部（泥熟匐）","en":"Turkic rebels (Nishufu)"}
+{"id":"突骑施","kind":"polity","zh":"突骑施","en":"Türgesh"}
 {"id":"罗艺（幽州）","kind":"polity","zh":"罗艺（幽州）","en":"Luo Yi (Youzhou)"}
+{"id":"范阳","kind":"polity","zh":"范阳","en":"Fanyang"}
+{"id":"葛逻禄","kind":"polity","zh":"葛逻禄","en":"Karluks"}
 {"id":"薛延陀","kind":"polity","zh":"薛延陀","en":"Xueyantuo"}
 {"id":"西突厥","kind":"polity","zh":"西突厥","en":"Western Turkic Qaghanate"}
 {"id":"许（宇文化及）","kind":"polity","zh":"许（宇文化及）","en":"Xu (Yuwen Huaji)"}
 {"id":"郑（王世充）","kind":"polity","zh":"郑（王世充）","en":"Zheng (Wang Shichong)"}
+{"id":"都畿","kind":"polity","zh":"都畿","en":"Eastern Capital District"}
+{"id":"陇右","kind":"polity","zh":"陇右","en":"Longyou"}
 {"id":"隋旧郡县","kind":"polity","zh":"隋旧郡县","en":"Former Sui commanderies and counties"}
 {"id":"魏（李密）","kind":"polity","zh":"魏（李密）","en":"Wei (Li Mi)"}
 {"id":"鲁（徐圆朗）","kind":"polity","zh":"鲁（徐圆朗）","en":"Lu (Xu Yuanlang)"}
+{"id":"黑水靺鞨","kind":"polity","zh":"黑水靺鞨","en":"Heishui Mohe"}
+{"id":"黔中","kind":"polity","zh":"黔中","en":"Qianzhong"}
+{"id":"黠戛斯","kind":"polity","zh":"黠戛斯","en":"Yenisei Kyrgyz"}
+{"id":"黠戛斯","kind":"polity","zh":"黠戛斯（吉利吉思）","en":"Yenisei Kyrgyz"}
 {"id":"东丹","kind":"polity","zh":"东丹","en":"Dongdan"}
 {"id":"东川","kind":"polity","zh":"东川","en":"Dongchuan"}
 {"id":"东川（董璋）","kind":"polity","zh":"东川（董璋）","en":"Dongchuan (Dong Zhang)"}
 {"id":"东都畿","kind":"polity","zh":"东都畿","en":"Eastern Capital District"}
 {"id":"义成","kind":"polity","zh":"义成","en":"Yicheng"}
 {"id":"义武","kind":"polity","zh":"义武","en":"Yiwu"}
-{"id":"京畿","kind":"polity","zh":"京畿","en":"Capital District"}
-{"id":"关内道","kind":"polity","zh":"关内道","en":"Guannei Circuit"}
 {"id":"凉州六谷部","kind":"polity","zh":"凉州蕃部","en":"Liangzhou Tibetan tribes"}
 {"id":"凉州六谷部","kind":"polity","zh":"凉州六谷部","en":"Six Valleys tribes of Liangzhou"}
 {"id":"凤翔","kind":"polity","zh":"凤翔","en":"Fengxiang"}
 {"id":"前蜀","kind":"polity","zh":"前蜀","en":"Former Shu"}
-{"id":"剑南","kind":"polity","zh":"剑南","en":"Jiannan"}
-{"id":"北庭","kind":"polity","zh":"北庭","en":"Beiting"}
 {"id":"北汉","kind":"polity","zh":"北汉","en":"Northern Han"}
 {"id":"南唐","kind":"polity","zh":"南唐","en":"Southern Tang"}
 {"id":"南汉","kind":"polity","zh":"南汉","en":"Southern Han"}
-{"id":"南诏","kind":"polity","zh":"南诏","en":"Nanzhao"}
 {"id":"卢龙","kind":"polity","zh":"卢龙","en":"Lulong"}
 {"id":"后周","kind":"polity","zh":"后周","en":"Later Zhou"}
 {"id":"后唐","kind":"polity","zh":"后唐","en":"Later Tang"}
@@ -3759,7 +3853,6 @@
 {"id":"吴越","kind":"polity","zh":"吴越","en":"Wuyue"}
 {"id":"喀喇汗王朝","kind":"polity","zh":"喀喇汗","en":"Kara-Khanid Khanate"}
 {"id":"喀喇汗王朝","kind":"polity","zh":"喀喇汗王朝","en":"Kara-Khanid Khanate"}
-{"id":"回鹘","kind":"polity","zh":"回鹘","en":"Uyghur Khaganate"}
 {"id":"夏绥","kind":"polity","zh":"夏绥","en":"Xiasui"}
 {"id":"大同","kind":"polity","zh":"大同","en":"Datong"}
 {"id":"大楚（李希烈）","kind":"polity","zh":"大楚（李希烈）","en":"Great Chu (Li Xilie)"}
@@ -3778,11 +3871,7 @@
 {"id":"宣歙","kind":"polity","zh":"宣歙","en":"Xuanshe"}
 {"id":"宣武","kind":"polity","zh":"宣武","en":"Xuanwu"}
 {"id":"容管","kind":"polity","zh":"容管","en":"Rong Command"}
-{"id":"山南东道","kind":"polity","zh":"山南东道","en":"Shannan East Circuit"}
-{"id":"山南西道","kind":"polity","zh":"山南西道","en":"Shannan West Circuit"}
 {"id":"岐","kind":"polity","zh":"岐","en":"Qi"}
-{"id":"岭南","kind":"polity","zh":"岭南","en":"Lingnan"}
-{"id":"平卢","kind":"polity","zh":"平卢","en":"Pinglu"}
 {"id":"平卢（青州）","kind":"polity","zh":"平卢（青州）","en":"Pinglu (Qingzhou)"}
 {"id":"庞勋","kind":"polity","zh":"庞勋","en":"Pang Xun"}
 {"id":"归义军","kind":"polity","zh":"归义军","en":"Guiyi Jun"}
@@ -3790,10 +3879,8 @@
 {"id":"成德","kind":"polity","zh":"成德","en":"Chengde"}
 {"id":"抚信（危全讽）","kind":"polity","zh":"抚信（危全讽）","en":"Fuxin (Wei Quanfeng)"}
 {"id":"振武","kind":"polity","zh":"振武","en":"Zhenwu"}
-{"id":"日本","kind":"polity","zh":"日本","en":"Japan"}
 {"id":"昭义","kind":"polity","zh":"昭义","en":"Zhaoyi"}
 {"id":"晋（河东）","kind":"polity","zh":"晋（河东）","en":"Jin (Hedong)"}
-{"id":"朔方","kind":"polity","zh":"朔方","en":"Shuofang"}
 {"id":"朱泚（秦·汉）","kind":"polity","zh":"朱泚（秦·汉）","en":"Zhu Ci (Qin · Han)"}
 {"id":"李怀光","kind":"polity","zh":"李怀光","en":"Li Huaiguang"}
 {"id":"桂管","kind":"polity","zh":"桂管","en":"Gui Command"}
@@ -3802,17 +3889,9 @@
 {"id":"武宁","kind":"polity","zh":"武宁","en":"Wuning"}
 {"id":"武平","kind":"polity","zh":"武平","en":"Wuping"}
 {"id":"武贞（雷氏）","kind":"polity","zh":"武贞（雷氏）","en":"Wuzhen (Lei family)"}
-{"id":"水真腊","kind":"polity","zh":"水真腊","en":"Water Chenla"}
-{"id":"江南东道","kind":"polity","zh":"江南东道","en":"Jiangnan East Circuit"}
-{"id":"江南西道","kind":"polity","zh":"江南西道","en":"Jiangnan West Circuit"}
 {"id":"江西（唐）","kind":"polity","zh":"江西","en":"Jiangxi"}
 {"id":"汴宋","kind":"polity","zh":"汴宋","en":"Biansong"}
-{"id":"河东","kind":"polity","zh":"河东","en":"Hedong"}
-{"id":"河东道","kind":"polity","zh":"河东道","en":"Hedong Circuit"}
 {"id":"河中","kind":"polity","zh":"河中","en":"Hezhong"}
-{"id":"河北道","kind":"polity","zh":"河北道","en":"Hebei Circuit"}
-{"id":"河南道","kind":"polity","zh":"河南道","en":"Henan Circuit"}
-{"id":"河西","kind":"polity","zh":"河西","en":"Hexi"}
 {"id":"河阳","kind":"polity","zh":"河阳","en":"Heyang"}
 {"id":"泰宁（兖海）","kind":"polity","zh":"泰宁（兖海）","en":"Taining (Yanhai)"}
 {"id":"泰封","kind":"polity","zh":"泰封","en":"Taebong"}
@@ -3821,11 +3900,9 @@
 {"id":"浙东","kind":"polity","zh":"浙东","en":"Zhedong"}
 {"id":"浙西","kind":"polity","zh":"浙西","en":"Zhexi"}
 {"id":"淄青","kind":"polity","zh":"淄青","en":"Ziqing"}
-{"id":"淮南","kind":"polity","zh":"淮南","en":"Huainan"}
 {"id":"淮西","kind":"polity","zh":"淮西","en":"Huaixi"}
 {"id":"深赵","kind":"polity","zh":"深赵","en":"Shenzhao"}
 {"id":"清源·平海","kind":"polity","zh":"清源·平海","en":"Qingyuan · Pinghai"}
-{"id":"渤海","kind":"polity","zh":"渤海","en":"Balhae"}
 {"id":"湖南","kind":"polity","zh":"湖南","en":"Hunan"}
 {"id":"滑亳","kind":"polity","zh":"滑亳","en":"Huabo"}
 {"id":"燕（刘氏）","kind":"polity","zh":"燕（刘氏）","en":"Yan (Liu family)"}
@@ -3834,11 +3911,8 @@
 {"id":"相卫（昭义）","kind":"polity","zh":"相卫（昭义）","en":"Xiangwei (Zhaoyi)"}
 {"id":"福建","kind":"polity","zh":"福建","en":"Fujian"}
 {"id":"秦成（天雄军）","kind":"polity","zh":"秦成（天雄军）","en":"Qincheng (Tianxiong Jun)"}
-{"id":"突骑施","kind":"polity","zh":"突骑施","en":"Türgesh"}
-{"id":"范阳","kind":"polity","zh":"范阳","en":"Fanyang"}
 {"id":"荆南","kind":"polity","zh":"荆南","en":"Jingnan"}
 {"id":"荆南（南平）","kind":"polity","zh":"荆南（南平）","en":"Jingnan (Nanping)"}
-{"id":"葛逻禄","kind":"polity","zh":"葛逻禄","en":"Karluks"}
 {"id":"蒲甘","kind":"polity","zh":"蒲甘","en":"Pagan Kingdom"}
 {"id":"虔州（卢光稠）","kind":"polity","zh":"虔州（卢光稠）","en":"Qianzhou (Lu Guangchou)"}
 {"id":"西夏","kind":"polity","zh":"定难军","en":"Dingnan Jun"}
@@ -3848,23 +3922,17 @@
 {"id":"西州回鹘","kind":"polity","zh":"西州回鹘","en":"Xizhou Uyghurs"}
 {"id":"邕管","kind":"polity","zh":"邕管","en":"Yong Command"}
 {"id":"邠宁","kind":"polity","zh":"邠宁","en":"Binning"}
-{"id":"都畿","kind":"polity","zh":"都畿","en":"Eastern Capital District"}
 {"id":"鄂岳","kind":"polity","zh":"鄂岳","en":"Eyue"}
 {"id":"鄜坊","kind":"polity","zh":"鄜坊","en":"Fufang"}
 {"id":"镇国（华州）","kind":"polity","zh":"镇国（华州）","en":"Zhenguo (Huazhou)"}
 {"id":"镇海（钱镠）","kind":"polity","zh":"镇海（钱镠）","en":"Zhenhai (Qian Liu)"}
 {"id":"闽","kind":"polity","zh":"闽","en":"Min"}
 {"id":"阻卜（鞑靼）","kind":"polity","zh":"阻卜（鞑靼）","en":"Zubu (Tatars)"}
-{"id":"陇右","kind":"polity","zh":"陇右","en":"Longyou"}
 {"id":"陕虢","kind":"polity","zh":"陕虢","en":"Shanguo"}
 {"id":"高丽","kind":"polity","zh":"高丽","en":"Goryeo"}
 {"id":"高昌回鹘（畏兀儿）","kind":"polity","zh":"高昌回鹘","en":"Kingdom of Qocho (Uyghurs)"}
 {"id":"高昌回鹘（畏兀儿）","kind":"polity","zh":"高昌回鹘（畏兀儿）","en":"Kingdom of Qocho (Uyghurs)"}
 {"id":"魏博","kind":"polity","zh":"魏博","en":"Weibo"}
-{"id":"黑水靺鞨","kind":"polity","zh":"黑水靺鞨","en":"Heishui Mohe"}
-{"id":"黔中","kind":"polity","zh":"黔中","en":"Qianzhong"}
-{"id":"黠戛斯","kind":"polity","zh":"黠戛斯","en":"Yenisei Kyrgyz"}
-{"id":"黠戛斯","kind":"polity","zh":"黠戛斯（吉利吉思）","en":"Yenisei Kyrgyz"}
 {"id":"上京路","kind":"polity","zh":"上京路","en":"Shangjing Circuit"}
 {"id":"上京道","kind":"polity","zh":"上京道","en":"Supreme Capital Circuit"}
 {"id":"东京路","kind":"polity","zh":"东京路","en":"Dongjing Circuit"}

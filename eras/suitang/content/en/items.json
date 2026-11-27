@@ -2117,5 +2117,874 @@
   "old": "Hephthalite remnants",
   "mod": "northern Afghanistan",
   "note": "The Hephthalites (White Huns) were destroyed in the 560s by a pincer attack from the Turks and Persia; their remnants scattered across the lands of Tokharistan."
+ },
+ "capital:近江大津宫": {
+  "old": "Ōmi-Ōtsu Palace",
+  "mod": "Ōtsu, Shiga, Japan"
+ },
+ "capital:黑沙城（后突厥牙帐）": {
+  "old": "Heisha City (Second Turkic royal camp)",
+  "mod": "north of Hohhot, Inner Mongolia"
+ },
+ "capital:于都斤山（后突厥牙帐）": {
+  "old": "Ötüken (Second Turkic royal camp)",
+  "mod": "eastern Khangai Mountains, Mongolia"
+ },
+ "capital:碎叶（突骑施牙帐）": {
+  "old": "Suyab (Türgesh royal camp)",
+  "mod": "Tokmok, Kyrgyzstan"
+ },
+ "capital:旧国（东牟山）": {
+  "old": "Old Capital (Mount Dongmou)",
+  "mod": "Chengshanzi Mountain Fortress, Dunhua, Jilin"
+ },
+ "capital:显州（中京）": {
+  "old": "Xianzhou (Central Capital)",
+  "mod": "Xigucheng, Helong, Jilin"
+ },
+ "capital:太和城": {
+  "old": "Taihe City",
+  "mod": "Taihe Village, Dali, Yunnan"
+ },
+ "capital:斡耳朵八里（回纥牙帐）": {
+  "old": "Ordu-Baliq (Uyghur khagan's camp)",
+  "mod": "Kharbalgas, Mongolia"
+ },
+ "capital:藤原京@倭": {
+  "old": "Fujiwara-kyō",
+  "mod": "Kashihara, Nara, Japan"
+ },
+ "capital:藤原京@日本": {
+  "old": "Fujiwara-kyō",
+  "mod": "Kashihara, Nara, Japan"
+ },
+ "capital:平城京": {
+  "old": "Heijō-kyō",
+  "mod": "Nara, Japan"
+ },
+ "battle:新城之战@辽宁抚顺高尔山": {
+  "old": "Battle of Sinseong",
+  "mod": "Gao'er Mountain, Fushun, Liaoning",
+  "yt": "9th month, 667",
+  "sides": "Tang defeated Goguryeo",
+  "cmd": "Li Ji vs. Goguryeo"
+ },
+ "battle:大非川之战": {
+  "old": "Battle of Dafeichuan",
+  "mod": "around the Qieji Grassland, Gonghe, Qinghai",
+  "yt": "8th month, 670 (7th month in the two Tang histories)",
+  "sides": "Tibet defeated Tang",
+  "cmd": "Gar Trinring vs. Xue Rengui and Guo Daifeng"
+ },
+ "battle:买肖城之战": {
+  "old": "Battle of Maeso Fortress",
+  "mod": "around Yeoncheon, Gyeonggi, South Korea",
+  "yt": "9th month, 675",
+  "sides": "Silla defeated Tang (per the Samguk sagi; the New Book of Tang has Tang victorious)",
+  "cmd": "Li Jinxing vs. the Silla army"
+ },
+ "battle:伎伐浦之战": {
+  "old": "Battle of Gibeolpo",
+  "mod": "mouth of the Geum River, South Korea",
+  "yt": "11th month, 676",
+  "sides": "Silla defeated Tang",
+  "cmd": "Sideuk vs. Xue Rengui"
+ },
+ "battle:青海之战": {
+  "old": "Battle of Qinghai Lake",
+  "mod": "southeast of Qinghai Lake",
+  "yt": "9th month, 678",
+  "sides": "Tibet defeated Tang",
+  "cmd": "Gar Trinring vs. Li Jingxuan and Liu Shenli"
+ },
+ "battle:黑山之战": {
+  "old": "Battle of Heishan",
+  "mod": "area north of Hohhot, Inner Mongolia",
+  "yt": "3rd month, 680",
+  "sides": "Tang defeated the Turkic rebels",
+  "cmd": "Pei Xingjian vs. Ashina Nishufu and Fengzhi"
+ },
+ "battle:热海之战": {
+  "old": "Battle of Issyk-Kul",
+  "mod": "Lake Issyk-Kul, Kyrgyzstan",
+  "yt": "4th month, 682",
+  "sides": "Tang defeated the Western Turkic remnants",
+  "cmd": "Wang Fangyi vs. Chebo and Yanmian"
+ },
+ "battle:下阿溪之战": {
+  "old": "Battle of Xia'axi",
+  "mod": "Gaoyou, Jiangsu",
+  "yt": "11th month, 684",
+  "sides": "Tang defeated Xu Jingye",
+  "cmd": "Li Xiaoyi and Wei Yuanzhong vs. Xu Jingye"
+ },
+ "battle:黄花堆之战": {
+  "old": "Battle of Huanghuadui",
+  "mod": "northeast of Shanyin, Shanxi",
+  "yt": "7th month, 687 (8th month in the \"Turks\" chapter of the Old Book of Tang)",
+  "sides": "Tang defeated the Second Turks",
+  "cmd": "Heichi Changzhi vs. Qutlugh and Yuanzhen"
+ },
+ "battle:寅识迦河之战": {
+  "old": "Battle of the Yinshijia River",
+  "mod": "around Ili, Xinjiang (location uncertain)",
+  "yt": "5th month, 689 (7th month in the Zizhi tongjian)",
+  "sides": "Tibet defeated Tang",
+  "cmd": "Tibet vs. Wei Daijia and Yan Wengu"
+ },
+ "battle:收复四镇之战": {
+  "old": "Recovery of the Four Garrisons",
+  "mod": "Kuqa, Xinjiang",
+  "yt": "10th month, 692",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Wang Xiaojie and Ashina Zhongjie vs. Tibet"
+ },
+ "battle:冷泉·大岭之战": {
+  "old": "Battle of Lengquan and Daling",
+  "mod": "around Yanqi, Xinjiang (location uncertain)",
+  "yt": "2nd month, 694",
+  "sides": "Tang defeated Tibet and the Western Turks",
+  "cmd": "Wang Xiaojie vs. Bolun Zanren and Ashina Tuizi"
+ },
+ "battle:素罗汗山之战": {
+  "old": "Battle of Mount Suluohan",
+  "mod": "around Lintan, Gansu",
+  "yt": "3rd month, 696",
+  "sides": "Tibet defeated Tang",
+  "cmd": "Gar Trinring and Gar Tsenba vs. Wang Xiaojie and Lou Shide"
+ },
+ "battle:黄獐谷之战": {
+  "old": "Battle of Huangzhang Valley",
+  "mod": "northwest of Lulong, Hebei",
+  "yt": "8th month, 696",
+  "sides": "Khitan defeated Tang",
+  "cmd": "Li Jinzhong and Sun Wanrong vs. Cao Renshi, Zhang Xuanyu and Ma Renjie"
+ },
+ "battle:东硖石谷之战": {
+  "old": "Battle of Dongxiashi Valley",
+  "mod": "northeast of Qian'an, Hebei",
+  "yt": "3rd month, 697",
+  "sides": "Khitan defeated Tang",
+  "cmd": "Sun Wanrong vs. Wang Xiaojie and Su Honghui"
+ },
+ "battle:天门岭之战": {
+  "old": "Battle of Tianmenling",
+  "mod": "around the northern foot of the Changbai Mountains, Jilin (location uncertain)",
+  "yt": "698",
+  "sides": "Jin defeated Tang",
+  "cmd": "Dae Joyeong vs. Li Kaigu"
+ },
+ "battle:洪源谷之战": {
+  "old": "Battle of Hongyuan Valley",
+  "mod": "around Gulang, Gansu",
+  "yt": "intercalary 7th month, 700",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Tang Xiujing vs. Qu Mangbuzhi"
+ },
+ "battle:鸣沙之战": {
+  "old": "Battle of Mingsha",
+  "mod": "Zhongning, Ningxia",
+  "yt": "12th month, 706",
+  "sides": "The Second Turks defeated Tang",
+  "cmd": "Qapaghan vs. Shazha Zhongyi"
+ },
+ "battle:火烧城之战": {
+  "old": "Battle of Huoshao City",
+  "mod": "around Baicheng, Xinjiang (location uncertain)",
+  "yt": "11th month, 708",
+  "sides": "The Türgesh defeated Tang",
+  "cmd": "Saqal vs. Niu Shijiang"
+ },
+ "battle:冷陉之战": {
+  "old": "Battle of Lengxing",
+  "mod": "area north of Chengde, Hebei",
+  "yt": "6th month, 712",
+  "sides": "Xi defeated Tang",
+  "cmd": "Li Dapu vs. Sun Quan"
+ },
+ "battle:北庭之战": {
+  "old": "Battle of Beiting",
+  "mod": "Beiting ruins, Jimsar, Xinjiang",
+  "yt": "2nd month, 714",
+  "sides": "Tang defeated the Second Turks",
+  "cmd": "Guo Qianguan vs. Tong'e Tegin"
+ },
+ "battle:武街之战": {
+  "old": "Battle of Wujie",
+  "mod": "around Weiyuan, Gansu",
+  "yt": "10th month, 714",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Xue Ne and Wang Jun vs. Bendayan and Qilixu"
+ },
+ "battle:拔汗那之战": {
+  "old": "Battle of Ferghana",
+  "mod": "Ferghana Valley, Uzbekistan",
+  "yt": "715",
+  "sides": "Tang defeated Aliaoda",
+  "cmd": "Zhang Xiaosong vs. Aliaoda"
+ },
+ "battle:钵换城之战": {
+  "old": "Battle of Bohuan City",
+  "mod": "Aksu, Xinjiang",
+  "yt": "7th month, 717",
+  "sides": "Tang sent troops (outcome unrecorded)",
+  "cmd": "Tang Jiahui and Ashina Xian vs. Suluk"
+ },
+ "battle:删丹之战": {
+  "old": "Battle of Shandan",
+  "mod": "Shandan, Gansu",
+  "yt": "11th month, 720",
+  "sides": "The Second Turks defeated Tang",
+  "cmd": "Tonyukuk vs. Yang Jingshu"
+ },
+ "battle:六胡州之乱": {
+  "old": "Six Hu Prefectures revolt",
+  "mod": "around Otog Front Banner, Inner Mongolia",
+  "yt": "4th month, 721 – 722",
+  "sides": "Tang defeated Kang Daibin",
+  "cmd": "Wang Jun and Zhang Yue vs. Kang Daibin and Kang Yuanzi"
+ },
+ "battle:小勃律之战": {
+  "old": "Battle of Little Balur",
+  "mod": "Gilgit, Pakistan",
+  "yt": "722",
+  "sides": "Tang and Little Balur defeated Tibet",
+  "cmd": "Zhang Sili and Mojinmang vs. Tibet"
+ },
+ "battle:瓜州之战": {
+  "old": "Battle of Guazhou",
+  "mod": "Suoyang City, Guazhou, Gansu",
+  "yt": "9th month, 727",
+  "sides": "Tibet defeated Tang",
+  "cmd": "Xinuoluo vs. Tian Yuanxian and Wang Shou"
+ },
+ "battle:安西之战": {
+  "old": "Battle of Anxi",
+  "mod": "Kuqa, Xinjiang",
+  "yt": "intercalary 9th month, 727",
+  "sides": "Tang held the city against the Türgesh and Tibet",
+  "cmd": "Zhao Yizhen vs. Suluk and Tibet"
+ },
+ "battle:祁连城之战": {
+  "old": "Battle of Qilian City",
+  "mod": "around Minle, Gansu",
+  "yt": "8th month, 728",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Xiao Song and Du Binke vs. Tibet"
+ },
+ "battle:石堡城之战（729）": {
+  "old": "Battle of Shibao Fortress (729)",
+  "mod": "southwest of Huangyuan, Qinghai",
+  "yt": "3rd month, 729",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Li Yi vs. the Tibetan garrison"
+ },
+ "battle:登州之战": {
+  "old": "Battle of Dengzhou",
+  "mod": "Penglai, Shandong",
+  "yt": "9th month, 732",
+  "sides": "Balhae defeated Tang",
+  "cmd": "Jang Munhyu vs. Wei Jun"
+ },
+ "battle:都山之战": {
+  "old": "Battle of Mount Du",
+  "mod": "around Kuancheng and Qinglong, Hebei",
+  "yt": "intercalary 3rd month, 733",
+  "sides": "Khitan and the Turks defeated Tang",
+  "cmd": "Ketuyu vs. Guo Yingjie"
+ },
+ "battle:马都山之战": {
+  "old": "Battle of Mount Madu",
+  "mod": "northeastern Hebei (location uncertain)",
+  "yt": "733 (conventional date)",
+  "sides": "Tang defeated Balhae",
+  "cmd": "Wu Chengci vs. Dae Muye"
+ },
+ "battle:青海西之战": {
+  "old": "Battle west of Qinghai Lake",
+  "mod": "west of Qinghai Lake",
+  "yt": "3rd month, 737",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Cui Xiyi vs. Qilixu"
+ },
+ "battle:新城之战@青海门源一带": {
+  "old": "Battle of Xincheng",
+  "mod": "around Menyuan, Qinghai",
+  "yt": "3rd month, 738",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Du Xiwang vs. Tibet"
+ },
+ "battle:碎叶之战": {
+  "old": "Battle of Suyab",
+  "mod": "Tokmok, Kyrgyzstan",
+  "yt": "8th month, 739",
+  "sides": "Tang defeated the Türgesh",
+  "cmd": "Gai Jiayun and Fumeng Lingcha vs. Tuhuoxian and the Black Clan Qaghan"
+ },
+ "battle:安戎城之战": {
+  "old": "Battle of Anrong City",
+  "mod": "west of Li County, Sichuan",
+  "yt": "3rd month, 740",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Zhangchou Jianqiong vs. the Tibetan garrison"
+ },
+ "battle:洪济城之战": {
+  "old": "Battle of Hongji City",
+  "mod": "around Guide, Qinghai (location uncertain)",
+  "yt": "4th month, 743",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Huangfu Weiming vs. Tibet"
+ },
+ "battle:萨河内山之战": {
+  "old": "Battle of Mount Sahenei",
+  "mod": "central Inner Mongolia (location uncertain)",
+  "yt": "8th month, 744",
+  "sides": "Tang defeated the Second Turks",
+  "cmd": "Wang Zhongsi vs. Apa Tarqan"
+ },
+ "battle:连云堡之战": {
+  "old": "Battle of Lianyun Fort",
+  "mod": "Sarhad, Wakhan, Afghanistan",
+  "yt": "7th month, 747",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Gao Xianzhi and Li Siye vs. the Tibetan garrison"
+ },
+ "battle:石堡城之战（749）": {
+  "old": "Battle of Shibao Fortress (749)",
+  "mod": "southwest of Huangyuan, Qinghai",
+  "yt": "6th month, 749",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Geshu Han vs. Xinuoluo"
+ },
+ "battle:西洱河之战（751）": {
+  "old": "Battle of the Xi'er River (751)",
+  "mod": "Erhai Lake, Dali, Yunnan",
+  "yt": "4th month, 751",
+  "sides": "Nanzhao defeated Tang",
+  "cmd": "Geluofeng vs. Xianyu Zhongtong"
+ },
+ "battle:怛罗斯之战": {
+  "old": "Battle of Talas",
+  "mod": "Taraz, Kazakhstan",
+  "yt": "7th month, 751 (per Arabic sources; the Zizhi tongjian places it under the 4th month)",
+  "sides": "The Caliphate defeated Tang",
+  "cmd": "Ziyad ibn Salih vs. Gao Xianzhi"
+ },
+ "battle:土护真水之战": {
+  "old": "Battle of the Tuhuzhen River",
+  "mod": "Laoha River, Inner Mongolia",
+  "yt": "8th month, 751",
+  "sides": "Khitan defeated Tang",
+  "cmd": "Khitan vs. An Lushan"
+ },
+ "battle:九曲之战": {
+  "old": "Battle of Jiuqu",
+  "mod": "around Gonghe and Guinan, Qinghai",
+  "yt": "summer 753 (3rd month, 754 in the New Book of Tang annals)",
+  "sides": "Tang defeated Tibet",
+  "cmd": "Geshu Han vs. Tibet"
+ },
+ "battle:大勃律之战": {
+  "old": "Battle of Great Balur",
+  "mod": "around Skardu, Pakistan",
+  "yt": "753",
+  "sides": "Tang defeated Great Balur",
+  "cmd": "Feng Changqing vs. Great Balur"
+ },
+ "battle:太和城之战": {
+  "old": "Battle of Taihe City",
+  "mod": "Taihe Village, Dali, Yunnan",
+  "yt": "6th month, 754",
+  "sides": "Nanzhao defeated Tang",
+  "cmd": "Geluofeng vs. Li Mi"
+ },
+ "pass:石堡城": {
+  "old": "Shibao Fortress",
+  "mod": "southwest of Huangyuan, Qinghai"
+ },
+ "pass:西受降城": {
+  "old": "Western Shouxiang City",
+  "mod": "south-west of Wujiahe, Urad Middle Banner, Inner Mongolia (another view: Gaoyoufang site, Linhe)"
+ },
+ "pass:中受降城": {
+  "old": "Central Shouxiang City",
+  "mod": "south of Baotou, Inner Mongolia (another view: Ergouwan site, Dalad Banner)"
+ },
+ "pass:东受降城": {
+  "old": "Eastern Shouxiang City",
+  "mod": "Dahuangcheng, Togtoh, Inner Mongolia"
+ },
+ "event:泰山封禅@山东泰安泰山": {
+  "old": "Feng and shan sacrifices at Mount Tai",
+  "mod": "Mount Tai, Tai'an, Shandong",
+  "yt": "1st month, 666"
+ },
+ "event:吐蕃陷西域十八州": {
+  "old": "Tibet takes eighteen prefectures of the Western Regions",
+  "mod": "Hotan, Xinjiang",
+  "yt": "4th month, 670"
+ },
+ "event:剑牟岑立安舜": {
+  "old": "Geom Mojam enthrones An Seung",
+  "mod": "South Hwanghae, North Korea",
+  "yt": "4th month, 670"
+ },
+ "event:高宗称天皇": {
+  "old": "Gaozong takes the title Heavenly Emperor",
+  "mod": "Luoyang, Henan",
+  "yt": "8th month, 674"
+ },
+ "event:置石城、播仙二镇": {
+  "old": "Shicheng and Boxian Garrisons founded",
+  "mod": "Ruoqiang (Charkhlik), Xinjiang",
+  "yt": "675"
+ },
+ "event:安东都护府内徙": {
+  "old": "Andong Protectorate moved inland",
+  "mod": "Liaoyang, Liaoning",
+  "yt": "2nd month, 676"
+ },
+ "event:裴行俭擒都支": {
+  "old": "Pei Xingjian captures Ashina Duzhi",
+  "mod": "east of Tokmok, Kyrgyzstan",
+  "yt": "7th month, 679 (9th month in the annals of both Tang histories)"
+ },
+ "event:泥熟匐之叛": {
+  "old": "Nishufu rebellion",
+  "mod": "Horinger, Inner Mongolia",
+  "yt": "10th month, 679"
+ },
+ "event:吐蕃陷安戎城": {
+  "old": "Tibet takes Anrong City",
+  "mod": "west of Li County, Sichuan",
+  "yt": "680"
+ },
+ "event:骨咄禄复国": {
+  "old": "Qutlugh restores the Turkic state",
+  "mod": "north of Hohhot, Inner Mongolia",
+  "yt": "682"
+ },
+ "event:改东都为神都": {
+  "old": "Eastern Capital renamed the Divine Capital",
+  "mod": "Luoyang, Henan",
+  "yt": "9th month, 684"
+ },
+ "event:安北都护府侨置同城": {
+  "old": "Anbei Protectorate temporarily seated at Tongcheng",
+  "mod": "Ejin Banner, Inner Mongolia",
+  "yt": "6th month, 685"
+ },
+ "event:唐弃四镇": {
+  "old": "Tang abandons the Four Garrisons",
+  "mod": "Kuqa, Xinjiang",
+  "yt": "c. 686"
+ },
+ "event:武周建立": {
+  "old": "Founding of Wu Zhou",
+  "mod": "Luoyang, Henan",
+  "yt": "9th month, 690"
+ },
+ "event:默啜立": {
+  "old": "Accession of Qapaghan",
+  "mod": "eastern Khangai Mountains, Mongolia",
+  "yt": "691 (693 in the Zizhi tongjian)"
+ },
+ "event:营州之乱": {
+  "old": "Yingzhou revolt",
+  "mod": "Chaoyang, Liaoning",
+  "yt": "5th month, 696"
+ },
+ "event:默啜寇河北": {
+  "old": "Qapaghan raids Hebei",
+  "mod": "Dingzhou, Hebei",
+  "yt": "8th–9th month, 698"
+ },
+ "event:震国建立": {
+  "old": "Founding of Jin",
+  "mod": "Dunhua, Jilin",
+  "yt": "698"
+ },
+ "event:论钦陵之死": {
+  "old": "Death of Gar Trinring",
+  "mod": "east of Qinghai Lake",
+  "yt": "699"
+ },
+ "event:置北庭都护府": {
+  "old": "Beiting Protectorate founded",
+  "mod": "Beiting ruins, Jimsar, Xinjiang",
+  "yt": "12th month, 702"
+ },
+ "event:突骑施据碎叶": {
+  "old": "The Türgesh occupy Suyab",
+  "mod": "Tokmok, Kyrgyzstan",
+  "yt": "703"
+ },
+ "event:神龙政变": {
+  "old": "Shenlong coup",
+  "mod": "Luoyang, Henan",
+  "yt": "1st month, 705"
+ },
+ "event:筑三受降城": {
+  "old": "Building of the Three Shouxiang Cities",
+  "mod": "south of Baotou, Inner Mongolia",
+  "yt": "3rd month, 708"
+ },
+ "event:唐隆政变": {
+  "old": "Tanglong coup",
+  "mod": "Xi'an, Shaanxi",
+  "yt": "6th month, 710"
+ },
+ "event:置河西节度使": {
+  "old": "Military governor of Hexi instituted",
+  "mod": "Wuwei, Gansu",
+  "yt": "710 (or 4th month, 711)"
+ },
+ "event:先天政变": {
+  "old": "Xiantian coup",
+  "mod": "Xi'an, Shaanxi",
+  "yt": "7th month, 713"
+ },
+ "event:渤海受封": {
+  "old": "Investiture of Balhae",
+  "mod": "Dunhua, Jilin",
+  "yt": "713"
+ },
+ "event:复置营州": {
+  "old": "Yingzhou re-established",
+  "mod": "Chaoyang, Liaoning",
+  "yt": "717"
+ },
+ "event:泰山封禅@山东泰安泰山#2": {
+  "old": "Feng and shan sacrifices at Mount Tai",
+  "mod": "Mount Tai, Tai'an, Shandong",
+  "yt": "11th month, 725"
+ },
+ "event:置黑水都督府": {
+  "old": "Heishui Area Command founded",
+  "mod": "around Yilan, Heilongjiang",
+  "yt": "726"
+ },
+ "event:分十五道": {
+  "old": "The realm divided into fifteen circuits",
+  "mod": "Xi'an, Shaanxi",
+  "yt": "733"
+ },
+ "event:赤岭立碑": {
+  "old": "Stele erected at Chiling",
+  "mod": "Riyue Mountain, Huangyuan, Qinghai",
+  "yt": "6th month, 734 (9th month, 733 in the Tang huiyao)"
+ },
+ "event:斩可突于": {
+  "old": "Ketuyu beheaded",
+  "mod": "around Chifeng, Inner Mongolia",
+  "yt": "12th month, 734"
+ },
+ "event:赐新罗浿江以南": {
+  "old": "Lands south of the Paegang granted to Silla",
+  "mod": "Taedong River, North Korea",
+  "yt": "735"
+ },
+ "event:南诏统一": {
+  "old": "Unification under Nanzhao",
+  "mod": "Taihe Village, Dali, Yunnan",
+  "yt": "738"
+ },
+ "event:置十节度经略使": {
+  "old": "Ten military commands established",
+  "mod": "Xi'an, Shaanxi",
+  "yt": "742"
+ },
+ "event:回纥汗国建立": {
+  "old": "Founding of the Uyghur Khaganate",
+  "mod": "Kharbalgas, Mongolia",
+  "yt": "744"
+ },
+ "event:后突厥亡": {
+  "old": "Fall of the Second Turkic Qaghanate",
+  "mod": "eastern Khangai Mountains, Mongolia",
+  "yt": "745"
+ },
+ "event:契丹、奚叛唐": {
+  "old": "Khitan and Xi revolt against Tang",
+  "mod": "around Chifeng, Inner Mongolia",
+  "yt": "9th month, 745"
+ },
+ "event:筑应龙城": {
+  "old": "Building of Yinglong City",
+  "mod": "Haixin Island, Qinghai Lake",
+  "yt": "748"
+ },
+ "event:王正见破碎叶": {
+  "old": "Wang Zhengjian takes Suyab",
+  "mod": "Tokmok, Kyrgyzstan",
+  "yt": "748"
+ },
+ "event:高仙芝破石国": {
+  "old": "Gao Xianzhi defeats Chach",
+  "mod": "Tashkent, Uzbekistan",
+  "yt": "750"
+ },
+ "event:黑衣大食": {
+  "old": "Abbasid Caliphate",
+  "mod": "Mary, Turkmenistan (Merv)",
+  "yt": "750"
+ },
+ "event:南诏陷姚州": {
+  "old": "Nanzhao takes Yaozhou",
+  "mod": "Yao'an, Yunnan",
+  "yt": "750"
+ },
+ "event:南诏臣吐蕃": {
+  "old": "Nanzhao becomes a Tibetan vassal",
+  "mod": "Taihe Village, Dali, Yunnan",
+  "yt": "1st month, 752"
+ },
+ "event:置洮阳、浇河二郡": {
+  "old": "Taoyang and Jiaohe Commanderies founded",
+  "mod": "around Gonghe and Tongde, Qinghai (exact site uncertain)",
+  "yt": "7th month, 754"
+ },
+ "route:常骏出使赤土": {
+  "old": "Chang Jun's mission to Chitu",
+  "mod": "607–610",
+  "p": {
+   "南海郡": "Nanhai Commandery",
+   "焦石山": "Mount Jiaoshi",
+   "陵伽钵拔多洲": "Lingaparvata",
+   "师子石": "Shizi Rock",
+   "狼牙须": "Langkasuka",
+   "赤土": "Chitu",
+   "林邑东南": "southeast of Linyi",
+   "交趾": "Jiaozhi",
+   "弘农": "Hongnong"
+  }
+ },
+ "route:炀帝西巡": {
+  "old": "Emperor Yang tours the west",
+  "mod": "609",
+  "p": {
+   "长安": "Chang'an",
+   "扶风": "Fufeng",
+   "陇西": "Longxi",
+   "狄道": "Didao",
+   "临津关": "Linjin Pass",
+   "西平": "Xiping",
+   "长宁谷": "Changning Valley",
+   "覆袁川": "Fuyuan Valley",
+   "大斗拔谷": "Dadouba Valley",
+   "张掖": "Zhangye",
+   "燕支山": "Mount Yanzhi"
+  }
+ },
+ "route:玄奘西行求法": {
+  "old": "Xuanzang's journey west in search of the Dharma",
+  "mod": "629–645",
+  "p": {
+   "长安": "Chang'an",
+   "秦州": "Qinzhou",
+   "兰州": "Lanzhou",
+   "凉州": "Liangzhou",
+   "瓜州": "Guazhou",
+   "伊吾": "Yiwu",
+   "高昌": "Gaochang",
+   "阿耆尼（焉耆）": "Agni (Karasahr)",
+   "屈支（龟兹）": "Kuci (Kucha)",
+   "跋禄迦": "Baluka",
+   "凌山": "Ling Mountains",
+   "热海": "Issyk-Kul",
+   "素叶城": "Suyab",
+   "千泉": "Mingbulak",
+   "呾逻私": "Talas",
+   "赭时": "Chach",
+   "飒秣建": "Samarkand",
+   "铁门": "Iron Gate",
+   "活国": "Warwaliz",
+   "缚喝": "Balkh",
+   "梵衍那": "Bamiyan",
+   "迦毕试": "Kapisa",
+   "健驮逻": "Gandhara",
+   "迦湿弥罗": "Kashmir",
+   "秣菟罗": "Mathura",
+   "曲女城": "Kanyakubja",
+   "那烂陀": "Nalanda",
+   "耽摩栗底": "Tamralipti",
+   "建志补罗": "Kanchipuram",
+   "伐腊毗": "Valabhi",
+   "钵罗耶伽": "Prayaga",
+   "呾叉始罗": "Taxila",
+   "朅盘陀": "Kabandha",
+   "佉沙": "Kashgar",
+   "瞿萨旦那（于阗）": "Gostana (Khotan)",
+   "折摩驮那": "Calmadana",
+   "沙州": "Shazhou",
+   "洛阳": "Luoyang"
+  }
+ },
+ "route:李靖袭灭东突厥": {
+  "old": "Li Jing destroys the Eastern Turks in a surprise attack",
+  "mod": "630",
+  "p": {
+   "马邑": "Mayi",
+   "恶阳岭": "Eyang Pass",
+   "定襄": "Dingxiang",
+   "白道": "Baidao",
+   "阴山": "Yin Mountains"
+  }
+ },
+ "route:侯君集平高昌": {
+  "old": "Hou Junji conquers Gaochang",
+  "mod": "640",
+  "p": {
+   "长安": "Chang'an",
+   "凉州": "Liangzhou",
+   "伊吾": "Yiwu",
+   "田地城": "Tiandi City",
+   "高昌": "Gaochang",
+   "交河": "Jiaohe"
+  }
+ },
+ "route:文成公主入藏": {
+  "old": "Princess Wencheng goes to Tibet",
+  "mod": "641",
+  "p": {
+   "长安": "Chang'an",
+   "鄯州": "Shanzhou",
+   "赤岭": "Chiling",
+   "大非川": "Dafeichuan",
+   "柏海": "Baihai",
+   "通天河": "Tongtian River",
+   "那曲": "Nagqu",
+   "逻些": "Rasa"
+  }
+ },
+ "route:王玄策二使天竺": {
+  "old": "Wang Xuance's second mission to India",
+  "mod": "647–648",
+  "p": {
+   "长安": "Chang'an",
+   "鄯州": "Shanzhou",
+   "逻些": "Rasa",
+   "泥婆罗": "Nepal",
+   "中天竺": "Central India",
+   "茶镈和罗城": "Tirabhukti"
+  }
+ },
+ "route:苏定方灭西突厥": {
+  "old": "Su Dingfang destroys the Western Turks",
+  "mod": "657–658",
+  "p": {
+   "长安": "Chang'an",
+   "曳咥河": "Irtysh",
+   "双河": "Shuanghe",
+   "碎叶水": "Suyab River",
+   "回纥": "Uyghurs",
+   "金山北": "north of the Altai"
+  }
+ },
+ "route:苏定方平百济": {
+  "old": "Su Dingfang conquers Baekje",
+  "mod": "660",
+  "p": {
+   "莱州": "Laizhou",
+   "成山": "Chengshan",
+   "德物岛": "Deongmul Island",
+   "伎伐浦": "Gibeolpo",
+   "泗沘": "Sabi",
+   "熊津": "Ungjin",
+   "东都": "Eastern Capital"
+  }
+ },
+ "route:李勣平高句丽": {
+  "old": "Li Ji conquers Goguryeo",
+  "mod": "667–668",
+  "p": {
+   "东都": "Eastern Capital",
+   "营州": "Yingzhou",
+   "辽水": "Liao River",
+   "新城": "Sinseong",
+   "扶余城": "Buyeo Fortress",
+   "鸭绿栅": "Yalu Stockade",
+   "平壤": "Pyongyang",
+   "长安": "Chang'an"
+  }
+ },
+ "route:裴行俭擒都支": {
+  "old": "Pei Xingjian captures Ashina Duzhi",
+  "mod": "679",
+  "p": {
+   "西州": "Xizhou",
+   "都支牙帐": "Ashina Duzhi's royal camp",
+   "碎叶": "Suyab",
+   "东都": "Eastern Capital"
+  }
+ },
+ "route:义净海路求法": {
+  "old": "Yijing's sea journey in search of the Dharma",
+  "mod": "671–695",
+  "p": {
+   "广州": "Guangzhou",
+   "室利佛逝": "Srivijaya",
+   "末罗瑜": "Malayu",
+   "羯荼": "Kedah",
+   "裸人国": "Land of the Naked People",
+   "耽摩立底": "Tamralipti",
+   "那烂陀": "Nalanda",
+   "神都": "Divine Capital"
+  }
+ },
+ "route:高仙芝远征小勃律": {
+  "old": "Gao Xianzhi's expedition to Little Balur",
+  "mod": "747",
+  "p": {
+   "安西": "Anxi",
+   "拨换城": "Bohuan City",
+   "握瑟德": "Wosede",
+   "疏勒": "Kashgar",
+   "葱岭守捉": "Congling Garrison",
+   "播密川": "Pamir Valley",
+   "特勒满川": "Teleman Valley",
+   "连云堡": "Lianyun Fort",
+   "坦驹岭": "Darkot Pass",
+   "阿弩越城": "Anuyue City",
+   "孽多城": "Gilgit"
+  }
+ },
+ "route:高仙芝远征怛罗斯": {
+  "old": "Gao Xianzhi's expedition to Talas",
+  "mod": "751",
+  "p": {
+   "安西": "Anxi",
+   "拨换城": "Bohuan City",
+   "拔达岭": "Bedel Pass",
+   "热海": "Issyk-Kul",
+   "碎叶": "Suyab",
+   "怛罗斯": "Talas"
+  }
+ },
+ "route:鉴真东渡": {
+  "old": "Jianzhen's eastward voyage",
+  "mod": "753–754",
+  "p": {
+   "扬州": "Yangzhou",
+   "黄泗浦": "Huangsipu",
+   "阿儿奈波岛": "Okinawa Island",
+   "益救岛": "Yakushima",
+   "秋妻屋浦": "Akimeya-ura",
+   "大宰府": "Dazaifu",
+   "难波": "Naniwa",
+   "平城京": "Heijō-kyō"
+  }
+ },
+ "people:吐谷浑余部@甘肃武威以南": {
+  "old": "Tuyuhun remnants",
+  "mod": "south of Wuwei, Gansu"
+ },
+ "people:吐谷浑余部@宁夏中部": {
+  "old": "Tuyuhun remnants",
+  "mod": "central Ningxia"
+ },
+ "people:六胡州": {
+  "old": "Six Hu Prefectures",
+  "mod": "around Otog Front Banner, Inner Mongolia"
  }
 }

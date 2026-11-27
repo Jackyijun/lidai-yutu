@@ -9,56 +9,68 @@
  "华州": {
   "mod": "Huazhou District, Weinan, Shaanxi",
   "n": {
-   "华州": "Huazhou"
+   "华州": "Huazhou",
+   "华阴郡": "Huayin Commandery"
   }
  },
  "同州": {
   "mod": "Dali County, Shaanxi",
   "n": {
-   "同州": "Tongzhou"
+   "同州": "Tongzhou",
+   "冯翊郡": "Pingyi Commandery"
   }
  },
  "凤翔府": {
   "mod": "Fengxiang District, Baoji, Shaanxi",
   "n": {
    "凤翔府": "Fengxiang Fu",
-   "岐州": "Qizhou"
+   "岐州": "Qizhou",
+   "扶风郡": "Fufeng Commandery",
+   "凤翔郡": "Fengxiang Commandery"
   }
  },
  "陇州": {
   "mod": "Long County, Shaanxi",
   "n": {
-   "陇州": "Longzhou"
+   "陇州": "Longzhou",
+   "汧阳郡": "Qianyang Commandery"
   }
  },
  "邠州": {
   "mod": "Binzhou, Shaanxi",
   "n": {
-   "邠州": "Binzhou"
+   "邠州": "Binzhou",
+   "新平郡": "Xinping Commandery"
   }
  },
  "宁州": {
   "mod": "Ning County, Gansu",
   "n": {
-   "宁州": "Ningzhou"
+   "宁州": "Ningzhou",
+   "彭原郡": "Pengyuan Commandery"
   }
  },
  "庆州": {
   "mod": "Qingcheng, Gansu",
   "n": {
-   "庆州": "Qingzhou"
+   "庆州": "Qingzhou",
+   "安化郡": "Anhua Commandery",
+   "顺化郡": "Shunhua Commandery"
   }
  },
  "泾州": {
   "mod": "Jingchuan, Gansu",
   "n": {
-   "泾州": "Jingzhou"
+   "泾州": "Jingzhou",
+   "安定郡": "Anding Commandery",
+   "保定郡": "Baoding Commandery"
   }
  },
  "原州": {
   "mod": "Guyuan, Ningxia",
   "n": {
-   "原州": "Yuanzhou"
+   "原州": "Yuanzhou",
+   "平凉郡": "Pingliang Commandery"
   }
  },
  "平凉": {
@@ -70,13 +82,15 @@
  "渭州": {
   "mod": "Longxi, Gansu",
   "n": {
-   "渭州": "Weizhou"
+   "渭州": "Weizhou",
+   "陇西郡": "Longxi Commandery"
   }
  },
  "会州": {
   "mod": "Jingyuan, Gansu",
   "n": {
-   "会州": "Huizhou"
+   "会州": "Huizhou",
+   "会宁郡": "Huining Commandery"
   }
  },
  "威州": {
@@ -89,67 +103,78 @@
  "鄜州": {
   "mod": "Fu County, Shaanxi",
   "n": {
-   "鄜州": "Fuzhou"
+   "鄜州": "Fuzhou",
+   "洛交郡": "Luojiao Commandery"
   }
  },
  "坊州": {
   "mod": "Huangling, Shaanxi",
   "n": {
-   "坊州": "Fangzhou"
+   "坊州": "Fangzhou",
+   "中部郡": "Zhongbu Commandery"
   }
  },
  "丹州": {
   "mod": "Yichuan, Shaanxi",
   "n": {
-   "丹州": "Danzhou"
+   "丹州": "Danzhou",
+   "咸宁郡": "Xianning Commandery"
   }
  },
  "延州": {
   "mod": "Yan'an, Shaanxi",
   "n": {
-   "延州": "Yanzhou"
+   "延州": "Yanzhou",
+   "延安郡": "Yan'an Commandery"
   }
  },
  "绥州": {
   "mod": "Suide, Shaanxi",
   "n": {
-   "绥州": "Suizhou"
+   "绥州": "Suizhou",
+   "上郡": "Shang Commandery"
   }
  },
  "银州": {
   "mod": "east of Hengshan, Shaanxi",
   "n": {
-   "银州": "Yinzhou"
+   "银州": "Yinzhou",
+   "银川郡": "Yinchuan Commandery"
   }
  },
  "夏州": {
   "mod": "Baichengzi, Jingbian, Shaanxi (Tongwan City)",
   "n": {
-   "夏州": "Xiazhou"
+   "夏州": "Xiazhou",
+   "朔方郡": "Shuofang Commandery"
   }
  },
  "宥州": {
   "mod": "Chengchuan, Otog Front Banner, Inner Mongolia",
   "n": {
-   "宥州": "Youzhou"
+   "宥州": "Youzhou",
+   "朔方郡长泽县": "Changze County, Shuofang Commandery"
   }
  },
  "盐州": {
   "mod": "Dingbian, Shaanxi",
   "n": {
-   "盐州": "Yanzhou"
+   "盐州": "Yanzhou",
+   "五原郡": "Wuyuan Commandery"
   }
  },
  "灵州": {
   "mod": "Wuzhong, Ningxia",
   "n": {
-   "灵州": "Lingzhou"
+   "灵州": "Lingzhou",
+   "灵武郡": "Lingwu Commandery"
   }
  },
  "丰州": {
   "mod": "south of Wuyuan, Inner Mongolia",
   "n": {
-   "丰州": "Fengzhou"
+   "丰州": "Fengzhou",
+   "九原郡": "Jiuyuan Commandery"
   }
  },
  "天德军": {
@@ -173,304 +198,358 @@
  "胜州": {
   "mod": "Shi'erliancheng, Jungar Banner, Inner Mongolia",
   "n": {
-   "胜州": "Shengzhou"
+   "胜州": "Shengzhou",
+   "榆林郡": "Yulin Commandery"
   }
  },
  "麟州": {
   "mod": "Yangjiacheng, Shenmu, Shaanxi",
   "n": {
-   "麟州": "Linzhou"
+   "麟州": "Linzhou",
+   "新秦郡": "Xinqin Commandery"
   }
  },
  "商州": {
   "mod": "Shangzhou, Shaanxi",
   "n": {
-   "商州": "Shangzhou"
+   "商州": "Shangzhou",
+   "上洛郡": "Shangluo Commandery"
   }
  },
  "金州": {
   "mod": "Ankang, Shaanxi",
   "n": {
-   "金州": "Jinzhou"
+   "金州": "Jinzhou",
+   "安康郡": "Ankang Commandery",
+   "汉南郡": "Hannan Commandery"
   }
  },
  "洋州": {
   "mod": "Yang County, Shaanxi",
   "n": {
-   "洋州": "Yangzhou"
+   "洋州": "Yangzhou",
+   "洋川郡兴道县": "Xingdao County, Yangchuan Commandery",
+   "洋川郡": "Yangchuan Commandery"
   }
  },
  "兴元府": {
   "mod": "Hanzhong, Shaanxi",
   "n": {
    "兴元府": "Xingyuan Fu",
-   "梁州": "Liangzhou"
+   "梁州": "Liangzhou",
+   "汉中郡": "Hanzhong Commandery"
   }
  },
  "凤州": {
   "mod": "Fengzhou, Feng County, Shaanxi",
   "n": {
-   "凤州": "Fengzhou"
+   "凤州": "Fengzhou",
+   "河池郡": "Hechi Commandery"
   }
  },
  "兴州": {
   "mod": "Lüeyang, Shaanxi",
   "n": {
-   "兴州": "Xingzhou"
+   "兴州": "Xingzhou",
+   "顺政郡": "Shunzheng Commandery"
   }
  },
  "成州": {
   "mod": "Cheng County, Gansu",
   "n": {
-   "成州": "Chengzhou"
+   "成州": "Chengzhou",
+   "同谷郡": "Tonggu Commandery"
   }
  },
  "阶州": {
   "mod": "Wudu, Longnan, Gansu",
   "n": {
    "阶州": "Jiezhou",
-   "武州": "Wuzhou"
+   "武州": "Wuzhou",
+   "武都郡": "Wudu Commandery"
   }
  },
  "文州": {
   "mod": "Wen County, Gansu",
   "n": {
-   "文州": "Wenzhou"
+   "文州": "Wenzhou",
+   "阴平郡": "Yinping Commandery"
   }
  },
  "秦州": {
   "mod": "Tianshui, Gansu",
   "n": {
-   "秦州": "Qinzhou"
+   "秦州": "Qinzhou",
+   "天水郡": "Tianshui Commandery"
   }
  },
  "利州": {
   "mod": "Guangyuan, Sichuan",
   "n": {
-   "利州": "Lizhou"
+   "利州": "Lizhou",
+   "益昌郡": "Yichang Commandery"
   }
  },
  "集州": {
   "mod": "Nanjiang, Sichuan",
   "n": {
-   "集州": "Jizhou"
+   "集州": "Jizhou",
+   "符阳郡": "Fuyang Commandery"
   }
  },
  "壁州": {
   "mod": "Tongjiang, Sichuan",
   "n": {
-   "壁州": "Bizhou"
+   "壁州": "Bizhou",
+   "始宁郡": "Shining Commandery"
   }
  },
  "巴州": {
   "mod": "Bazhong, Sichuan",
   "n": {
-   "巴州": "Bazhou"
+   "巴州": "Bazhou",
+   "清化郡": "Qinghua Commandery"
   }
  },
  "蓬州": {
   "mod": "north of Yingshan, Sichuan",
   "n": {
-   "蓬州": "Pengzhou"
+   "蓬州": "Pengzhou",
+   "咸安郡": "Xian'an Commandery",
+   "蓬山郡": "Pengshan Commandery"
   }
  },
  "通州": {
   "mod": "Dazhou, Sichuan",
   "n": {
-   "通州": "Tongzhou"
+   "通州": "Tongzhou",
+   "通川郡": "Tongchuan Commandery"
   }
  },
  "开州": {
   "mod": "Kaizhou, Chongqing",
   "n": {
-   "开州": "Kaizhou"
+   "开州": "Kaizhou",
+   "盛山郡": "Shengshan Commandery"
   }
  },
  "渠州": {
   "mod": "Qu County, Sichuan",
   "n": {
-   "渠州": "Quzhou"
+   "渠州": "Quzhou",
+   "潾山郡": "Linshan Commandery"
   }
  },
  "阆州": {
   "mod": "Langzhong, Sichuan",
   "n": {
-   "阆州": "Langzhou"
+   "阆州": "Langzhou",
+   "阆中郡": "Langzhong Commandery"
   }
  },
  "果州": {
   "mod": "Nanchong, Sichuan",
   "n": {
-   "果州": "Guozhou"
+   "果州": "Guozhou",
+   "南充郡": "Nanchong Commandery"
   }
  },
  "剑州": {
   "mod": "Jiange, Sichuan",
   "n": {
-   "剑州": "Jianzhou"
+   "剑州": "Jianzhou",
+   "普安郡": "Pu'an Commandery"
   }
  },
  "龙州": {
   "mod": "Pingwu, Sichuan",
   "n": {
-   "龙州": "Longzhou"
+   "龙州": "Longzhou",
+   "江油郡": "Jiangyou Commandery",
+   "应灵郡": "Yingling Commandery"
   }
  },
  "绵州": {
   "mod": "Mianyang, Sichuan",
   "n": {
-   "绵州": "Mianzhou"
+   "绵州": "Mianzhou",
+   "巴西郡": "Baxi Commandery"
   }
  },
  "梓州": {
   "mod": "Santai, Sichuan",
   "n": {
-   "梓州": "Zizhou"
+   "梓州": "Zizhou",
+   "梓潼郡": "Zitong Commandery"
   }
  },
  "遂州": {
   "mod": "Suining, Sichuan",
   "n": {
-   "遂州": "Suizhou"
+   "遂州": "Suizhou",
+   "遂宁郡": "Suining Commandery"
   }
  },
  "普州": {
   "mod": "Anyue, Sichuan",
   "n": {
-   "普州": "Puzhou"
+   "普州": "Puzhou",
+   "安岳郡": "Anyue Commandery"
   }
  },
  "陵州": {
   "mod": "Renshou, Sichuan",
   "n": {
-   "陵州": "Lingzhou"
+   "陵州": "Lingzhou",
+   "仁寿郡": "Renshou Commandery"
   }
  },
  "荣州": {
   "mod": "Rong County, Sichuan",
   "n": {
-   "荣州": "Rongzhou"
+   "荣州": "Rongzhou",
+   "和义郡": "Heyi Commandery"
   }
  },
  "资州": {
   "mod": "Zizhong, Sichuan",
   "n": {
-   "资州": "Zizhou"
+   "资州": "Zizhou",
+   "资阳郡": "Ziyang Commandery"
   }
  },
  "简州": {
   "mod": "Jianyang, Sichuan",
   "n": {
-   "简州": "Jianzhou"
+   "简州": "Jianzhou",
+   "阳安郡": "Yang'an Commandery"
   }
  },
  "合州": {
   "mod": "Hechuan, Chongqing",
   "n": {
-   "合州": "Hezhou"
+   "合州": "Hezhou",
+   "巴川郡": "Bachuan Commandery"
   }
  },
  "渝州": {
   "mod": "Yuzhong, Chongqing",
   "n": {
-   "渝州": "Yuzhou"
+   "渝州": "Yuzhou",
+   "南平郡": "Nanping Commandery"
   }
  },
  "泸州": {
   "mod": "Luzhou, Sichuan",
   "n": {
-   "泸州": "Luzhou"
+   "泸州": "Luzhou",
+   "泸川郡": "Luchuan Commandery"
   }
  },
  "昌州": {
   "mod": "Dazu, Chongqing",
   "n": {
-   "昌州": "Changzhou"
+   "昌州": "Changzhou",
+   "巴川郡地": "part of Bachuan Commandery"
   }
  },
  "戎州": {
   "mod": "Yibin, Sichuan",
   "n": {
-   "戎州": "Rongzhou"
+   "戎州": "Rongzhou",
+   "南溪郡": "Nanxi Commandery"
   }
  },
  "成都府": {
   "mod": "Chengdu, Sichuan",
   "n": {
    "成都府": "Chengdu Fu",
-   "益州": "Yizhou"
+   "益州": "Yizhou",
+   "蜀郡": "Shu Commandery"
   }
  },
  "汉州": {
   "mod": "Guanghan, Sichuan",
   "n": {
-   "汉州": "Hanzhou"
+   "汉州": "Hanzhou",
+   "德阳郡": "Deyang Commandery"
   }
  },
  "彭州": {
   "mod": "Pengzhou, Sichuan",
   "n": {
-   "彭州": "Pengzhou"
+   "彭州": "Pengzhou",
+   "濛阳郡": "Mengyang Commandery"
   }
  },
  "蜀州": {
   "mod": "Chongzhou, Sichuan",
   "n": {
-   "蜀州": "Shuzhou"
+   "蜀州": "Shuzhou",
+   "唐安郡": "Tang'an Commandery"
   }
  },
  "眉州": {
   "mod": "Meishan, Sichuan",
   "n": {
-   "眉州": "Meizhou"
+   "眉州": "Meizhou",
+   "通义郡": "Tongyi Commandery"
   }
  },
  "嘉州": {
   "mod": "Leshan, Sichuan",
   "n": {
-   "嘉州": "Jiazhou"
+   "嘉州": "Jiazhou",
+   "犍为郡": "Qianwei Commandery"
   }
  },
  "邛州": {
   "mod": "Qionglai, Sichuan",
   "n": {
-   "邛州": "Qiongzhou"
+   "邛州": "Qiongzhou",
+   "临邛郡": "Linqiong Commandery"
   }
  },
  "雅州": {
   "mod": "Ya'an, Sichuan",
   "n": {
-   "雅州": "Yazhou"
+   "雅州": "Yazhou",
+   "卢山郡": "Lushan Commandery"
   }
  },
  "黎州": {
   "mod": "Hanyuan, Sichuan",
   "n": {
-   "黎州": "Lizhou"
+   "黎州": "Lizhou",
+   "洪源郡": "Hongyuan Commandery"
   }
  },
  "茂州": {
   "mod": "Mao County, Sichuan",
   "n": {
-   "茂州": "Maozhou"
+   "茂州": "Maozhou",
+   "通化郡": "Tonghua Commandery"
   }
  },
  "维州": {
   "mod": "Xuecheng, Li County, Sichuan",
   "n": {
-   "维州": "Weizhou"
+   "维州": "Weizhou",
+   "维川郡": "Weichuan Commandery"
   }
  },
  "松州": {
   "mod": "Songpan, Sichuan",
   "n": {
-   "松州": "Songzhou"
+   "松州": "Songzhou",
+   "交川郡": "Jiaochuan Commandery"
   }
  },
  "嶲州": {
   "mod": "Xichang, Sichuan",
   "n": {
-   "嶲州": "Xizhou"
+   "嶲州": "Xizhou",
+   "越嶲郡": "Yuexi Commandery"
   }
  },
  "会川": {
@@ -482,219 +561,255 @@
  "黔州": {
   "mod": "Pengshui, Chongqing",
   "n": {
-   "黔州": "Qianzhou"
+   "黔州": "Qianzhou",
+   "黔中郡": "Qianzhong Commandery"
   }
  },
  "涪州": {
   "mod": "Fuling, Chongqing",
   "n": {
-   "涪州": "Fuzhou"
+   "涪州": "Fuzhou",
+   "涪陵郡": "Fuling Commandery"
   }
  },
  "忠州": {
   "mod": "Zhong County, Chongqing",
   "n": {
-   "忠州": "Zhongzhou"
+   "忠州": "Zhongzhou",
+   "南宾郡": "Nanbin Commandery"
   }
  },
  "万州": {
   "mod": "Wanzhou, Chongqing",
   "n": {
-   "万州": "Wanzhou"
+   "万州": "Wanzhou",
+   "南浦郡": "Nanpu Commandery"
   }
  },
  "夔州": {
   "mod": "Fengjie, Chongqing",
   "n": {
-   "夔州": "Kuizhou"
+   "夔州": "Kuizhou",
+   "云安郡": "Yun'an Commandery"
   }
  },
  "施州": {
   "mod": "Enshi, Hubei",
   "n": {
-   "施州": "Shizhou"
+   "施州": "Shizhou",
+   "清化郡": "Qinghua Commandery"
   }
  },
  "思州": {
   "mod": "Wuchuan, Guizhou",
   "n": {
-   "思州": "Sizhou"
+   "思州": "Sizhou",
+   "宁夷郡": "Ningyi Commandery"
   }
  },
  "费州": {
   "mod": "Sinan, Guizhou",
   "n": {
-   "费州": "Feizhou"
+   "费州": "Feizhou",
+   "涪川郡": "Fuchuan Commandery"
   }
  },
  "播州": {
   "mod": "Zunyi, Guizhou",
   "n": {
-   "播州": "Bozhou"
+   "播州": "Bozhou",
+   "播川郡": "Bochuan Commandery"
   }
  },
  "夷州": {
   "mod": "Fenggang, Guizhou",
   "n": {
-   "夷州": "Yizhou"
+   "夷州": "Yizhou",
+   "义泉郡": "Yiquan Commandery"
   }
  },
  "南州": {
   "mod": "Qijiang, Chongqing",
   "n": {
-   "南州": "Nanzhou"
+   "南州": "Nanzhou",
+   "南川郡": "Nanchuan Commandery"
   }
  },
  "叙州": {
   "mod": "Qiancheng, Hongjiang, Hunan",
   "n": {
    "叙州": "Xuzhou",
-   "巫州": "Wuzhou"
+   "巫州": "Wuzhou",
+   "潭阳郡": "Tanyang Commandery"
   }
  },
  "辰州": {
   "mod": "Yuanling, Hunan",
   "n": {
-   "辰州": "Chenzhou"
+   "辰州": "Chenzhou",
+   "卢溪郡": "Luxi Commandery"
   }
  },
  "锦州": {
   "mod": "Mayang, Hunan",
   "n": {
-   "锦州": "Jinzhou"
+   "锦州": "Jinzhou",
+   "卢阳郡": "Luyang Commandery"
   }
  },
  "溪州": {
   "mod": "southeast of Yongshun, Hunan",
   "n": {
-   "溪州": "Xizhou"
+   "溪州": "Xizhou",
+   "灵溪郡": "Lingxi Commandery"
   }
  },
  "奖州": {
   "mod": "Cengong, Guizhou",
   "n": {
-   "奖州": "Jiangzhou"
+   "奖州": "Jiangzhou",
+   "龙溪郡": "Longxi Commandery"
   }
  },
  "襄州": {
   "mod": "Xiangyang, Hubei",
   "n": {
-   "襄州": "Xiangzhou"
+   "襄州": "Xiangzhou",
+   "襄阳郡": "Xiangyang Commandery"
   }
  },
  "邓州": {
   "mod": "Dengzhou, Henan",
   "n": {
-   "邓州": "Dengzhou"
+   "邓州": "Dengzhou",
+   "南阳郡": "Nanyang Commandery"
   }
  },
  "唐州": {
   "mod": "Biyang, Henan",
   "n": {
-   "唐州": "Tangzhou"
+   "唐州": "Tangzhou",
+   "淮安郡": "Huai'an Commandery"
   }
  },
  "随州": {
   "mod": "Suizhou, Hubei",
   "n": {
-   "随州": "Suizhou"
+   "随州": "Suizhou",
+   "汉东郡": "Handong Commandery"
   }
  },
  "郢州": {
   "mod": "Zhongxiang, Hubei",
   "n": {
-   "郢州": "Yingzhou"
+   "郢州": "Yingzhou",
+   "富水郡长寿县": "Changshou County, Fushui Commandery"
   }
  },
  "复州": {
   "mod": "Tianmen, Hubei",
   "n": {
-   "复州": "Fuzhou"
+   "复州": "Fuzhou",
+   "竟陵郡竟陵县": "Jingling County, Jingling Commandery"
   }
  },
  "均州": {
   "mod": "Danjiangkou (old Jun County), Hubei",
   "n": {
-   "均州": "Junzhou"
+   "均州": "Junzhou",
+   "武当郡": "Wudang Commandery"
   }
  },
  "房州": {
   "mod": "Fang County, Hubei",
   "n": {
-   "房州": "Fangzhou"
+   "房州": "Fangzhou",
+   "房陵郡": "Fangling Commandery"
   }
  },
  "江陵府": {
   "mod": "Jingzhou, Hubei",
   "n": {
    "江陵府": "Jiangling Fu",
-   "荆州": "Jingzhou"
+   "荆州": "Jingzhou",
+   "江陵郡": "Jiangling Commandery"
   }
  },
  "峡州": {
   "mod": "Yichang, Hubei",
   "n": {
-   "峡州": "Xiazhou"
+   "峡州": "Xiazhou",
+   "夷陵郡": "Yiling Commandery"
   }
  },
  "归州": {
   "mod": "Zigui, Hubei",
   "n": {
-   "归州": "Guizhou"
+   "归州": "Guizhou",
+   "巴东郡": "Badong Commandery"
   }
  },
  "澧州": {
   "mod": "Li County, Hunan",
   "n": {
-   "澧州": "Lizhou"
+   "澧州": "Lizhou",
+   "澧阳郡": "Liyang Commandery"
   }
  },
  "朗州": {
   "mod": "Changde, Hunan",
   "n": {
-   "朗州": "Langzhou"
+   "朗州": "Langzhou",
+   "武陵郡": "Wuling Commandery"
   }
  },
  "鄂州": {
   "mod": "Wuchang, Wuhan, Hubei",
   "n": {
-   "鄂州": "Ezhou"
+   "鄂州": "Ezhou",
+   "江夏郡": "Jiangxia Commandery"
   }
  },
  "岳州": {
   "mod": "Yueyang, Hunan",
   "n": {
-   "岳州": "Yuezhou"
+   "岳州": "Yuezhou",
+   "巴陵郡": "Baling Commandery"
   }
  },
  "安州": {
   "mod": "Anlu, Hubei",
   "n": {
-   "安州": "Anzhou"
+   "安州": "Anzhou",
+   "安陆郡": "Anlu Commandery"
   }
  },
  "黄州": {
   "mod": "Huanggang, Hubei",
   "n": {
-   "黄州": "Huangzhou"
+   "黄州": "Huangzhou",
+   "齐安郡": "Qi'an Commandery"
   }
  },
  "蕲州": {
   "mod": "Qichun, Hubei",
   "n": {
-   "蕲州": "Qizhou"
+   "蕲州": "Qizhou",
+   "蕲春郡": "Qichun Commandery"
   }
  },
  "申州": {
   "mod": "Xinyang, Henan",
   "n": {
-   "申州": "Shenzhou"
+   "申州": "Shenzhou",
+   "义阳郡": "Yiyang Commandery"
   }
  },
  "光州": {
   "mod": "Huangchuan, Henan",
   "n": {
-   "光州": "Guangzhou"
+   "光州": "Guangzhou",
+   "弋阳郡": "Yiyang Commandery"
   }
  },
  "河南府": {
@@ -706,201 +821,234 @@
  "汝州": {
   "mod": "Ruzhou, Henan",
   "n": {
-   "汝州": "Ruzhou"
+   "汝州": "Ruzhou",
+   "临汝郡": "Linru Commandery"
   }
  },
  "陕州": {
   "mod": "Sanmenxia, Henan",
   "n": {
-   "陕州": "Shanzhou"
+   "陕州": "Shanzhou",
+   "陕郡": "Shan Commandery"
   }
  },
  "虢州": {
   "mod": "Lingbao, Henan",
   "n": {
-   "虢州": "Guozhou"
+   "虢州": "Guozhou",
+   "弘农郡": "Hongnong Commandery"
   }
  },
  "郑州": {
   "mod": "Zhengzhou, Henan",
   "n": {
-   "郑州": "Zhengzhou"
+   "郑州": "Zhengzhou",
+   "荥阳郡": "Xingyang Commandery"
   }
  },
  "孟州": {
   "mod": "south of Mengzhou, Henan",
   "n": {
    "孟州": "Mengzhou",
-   "河阳三城": "Three Cities of Heyang"
+   "河阳三城": "Three Cities of Heyang",
+   "河南府河阳县": "Heyang County, Henan Fu"
   }
  },
  "怀州": {
   "mod": "Qinyang, Henan",
   "n": {
-   "怀州": "Huaizhou"
+   "怀州": "Huaizhou",
+   "河内郡": "Henei Commandery"
   }
  },
  "汴州": {
   "mod": "Kaifeng, Henan",
   "n": {
    "汴州": "Bianzhou",
-   "开封府": "Kaifeng Fu"
+   "开封府": "Kaifeng Fu",
+   "陈留郡": "Chenliu Commandery"
   }
  },
  "宋州": {
   "mod": "Shangqiu, Henan",
   "n": {
-   "宋州": "Songzhou"
+   "宋州": "Songzhou",
+   "睢阳郡": "Suiyang Commandery"
   }
  },
  "亳州": {
   "mod": "Bozhou, Anhui",
   "n": {
-   "亳州": "Bozhou"
+   "亳州": "Bozhou",
+   "谯郡": "Qiao Commandery"
   }
  },
  "颍州": {
   "mod": "Fuyang, Anhui",
   "n": {
-   "颍州": "Yingzhou"
+   "颍州": "Yingzhou",
+   "汝阴郡": "Ruyin Commandery"
   }
  },
  "许州": {
   "mod": "Xuchang, Henan",
   "n": {
-   "许州": "Xuzhou"
+   "许州": "Xuzhou",
+   "颍川郡": "Yingchuan Commandery"
   }
  },
  "陈州": {
   "mod": "Huaiyang, Henan",
   "n": {
-   "陈州": "Chenzhou"
+   "陈州": "Chenzhou",
+   "淮阳郡": "Huaiyang Commandery"
   }
  },
  "蔡州": {
   "mod": "Runan, Henan",
   "n": {
-   "蔡州": "Caizhou"
+   "蔡州": "Caizhou",
+   "汝南郡": "Runan Commandery"
   }
  },
  "滑州": {
   "mod": "east of Hua County, Henan",
   "n": {
-   "滑州": "Huazhou"
+   "滑州": "Huazhou",
+   "灵昌郡": "Lingchang Commandery"
   }
  },
  "卫州": {
   "mod": "Weihui, Henan",
   "n": {
-   "卫州": "Weizhou"
+   "卫州": "Weizhou",
+   "汲郡": "Ji Commandery"
   }
  },
  "澶州": {
   "mod": "southwest of Qingfeng, Henan",
   "n": {
-   "澶州": "Chanzhou"
+   "澶州": "Chanzhou",
+   "魏郡顿丘县": "Dunqiu County, Wei Commandery"
   }
  },
  "郓州": {
   "mod": "northwest of Dongping, Shandong",
   "n": {
-   "郓州": "Yunzhou"
+   "郓州": "Yunzhou",
+   "东平郡": "Dongping Commandery"
   }
  },
  "曹州": {
   "mod": "southwest of Dingtao, Shandong",
   "n": {
-   "曹州": "Caozhou"
+   "曹州": "Caozhou",
+   "济阴郡": "Jiyin Commandery"
   }
  },
  "濮州": {
   "mod": "north of Juancheng, Shandong",
   "n": {
-   "濮州": "Puzhou"
+   "濮州": "Puzhou",
+   "濮阳郡": "Puyang Commandery"
   }
  },
  "兖州": {
   "mod": "Yanzhou, Shandong",
   "n": {
-   "兖州": "Yanzhou"
+   "兖州": "Yanzhou",
+   "鲁郡": "Lu Commandery"
   }
  },
  "齐州": {
   "mod": "Jinan, Shandong",
   "n": {
-   "齐州": "Qizhou"
+   "齐州": "Qizhou",
+   "济南郡": "Jinan Commandery"
   }
  },
  "淄州": {
   "mod": "Zichuan, Zibo, Shandong",
   "n": {
-   "淄州": "Zizhou"
+   "淄州": "Zizhou",
+   "淄川郡": "Zichuan Commandery"
   }
  },
  "青州": {
   "mod": "Qingzhou, Shandong",
   "n": {
-   "青州": "Qingzhou"
+   "青州": "Qingzhou",
+   "北海郡": "Beihai Commandery"
   }
  },
  "登州": {
   "mod": "Penglai, Shandong",
   "n": {
-   "登州": "Dengzhou"
+   "登州": "Dengzhou",
+   "东牟郡": "Dongmou Commandery"
   }
  },
  "莱州": {
   "mod": "Laizhou, Shandong",
   "n": {
-   "莱州": "Laizhou"
+   "莱州": "Laizhou",
+   "东莱郡": "Donglai Commandery"
   }
  },
  "密州": {
   "mod": "Zhucheng, Shandong",
   "n": {
-   "密州": "Mizhou"
+   "密州": "Mizhou",
+   "高密郡": "Gaomi Commandery"
   }
  },
  "沂州": {
   "mod": "Linyi, Shandong",
   "n": {
-   "沂州": "Yizhou"
+   "沂州": "Yizhou",
+   "琅邪郡": "Langya Commandery"
   }
  },
  "海州": {
   "mod": "Haizhou, Lianyungang, Jiangsu",
   "n": {
-   "海州": "Haizhou"
+   "海州": "Haizhou",
+   "东海郡": "Donghai Commandery"
   }
  },
  "徐州": {
   "mod": "Xuzhou, Jiangsu",
   "n": {
-   "徐州": "Xuzhou"
+   "徐州": "Xuzhou",
+   "彭城郡": "Pengcheng Commandery"
   }
  },
  "泗州": {
   "mod": "opposite Xuyi, Jiangsu (now under Hongze Lake)",
   "n": {
-   "泗州": "Sizhou"
+   "泗州": "Sizhou",
+   "临淮郡": "Linhuai Commandery"
   }
  },
  "濠州": {
   "mod": "Linhuai, Fengyang, Anhui",
   "n": {
-   "濠州": "Haozhou"
+   "濠州": "Haozhou",
+   "钟离郡": "Zhongli Commandery"
   }
  },
  "宿州": {
   "mod": "Suzhou, Anhui",
   "n": {
-   "宿州": "Suzhou"
+   "宿州": "Suzhou",
+   "彭城郡符离县": "Fuli County, Pengcheng Commandery"
   }
  },
  "棣州": {
   "mod": "southeast of Huimin, Shandong",
   "n": {
-   "棣州": "Dizhou"
+   "棣州": "Dizhou",
+   "乐安郡": "Le'an Commandery"
   }
  },
  "魏州": {
@@ -909,68 +1057,80 @@
    "魏州": "Weizhou",
    "兴唐府": "Xingtang Fu",
    "广晋府": "Guangjin Fu",
-   "大名府": "Daming Fu"
+   "大名府": "Daming Fu",
+   "魏郡": "Wei Commandery"
   }
  },
  "博州": {
   "mod": "Liaocheng, Shandong",
   "n": {
-   "博州": "Bozhou"
+   "博州": "Bozhou",
+   "博平郡": "Boping Commandery"
   }
  },
  "贝州": {
   "mod": "northwest of Qinghe, Hebei",
   "n": {
-   "贝州": "Beizhou"
+   "贝州": "Beizhou",
+   "清河郡": "Qinghe Commandery"
   }
  },
  "相州": {
   "mod": "Anyang, Henan",
   "n": {
-   "相州": "Xiangzhou"
+   "相州": "Xiangzhou",
+   "邺郡": "Ye Commandery"
   }
  },
  "洺州": {
   "mod": "Guangfu, Yongnian, Hebei",
   "n": {
-   "洺州": "Mingzhou"
+   "洺州": "Mingzhou",
+   "广平郡": "Guangping Commandery"
   }
  },
  "邢州": {
   "mod": "Xingtai, Hebei",
   "n": {
-   "邢州": "Xingzhou"
+   "邢州": "Xingzhou",
+   "钜鹿郡": "Julu Commandery"
   }
  },
  "磁州": {
   "mod": "Ci County, Hebei",
   "n": {
-   "磁州": "Cizhou"
+   "磁州": "Cizhou",
+   "邺郡滏阳县": "Fuyang County, Ye Commandery"
   }
  },
  "赵州": {
   "mod": "Zhao County, Hebei",
   "n": {
-   "赵州": "Zhaozhou"
+   "赵州": "Zhaozhou",
+   "赵郡": "Zhao Commandery"
   }
  },
  "镇州": {
   "mod": "Zhengding, Hebei",
   "n": {
    "镇州": "Zhenzhou",
-   "恒州": "Hengzhou"
+   "恒州": "Hengzhou",
+   "常山郡": "Changshan Commandery",
+   "平山郡": "Pingshan Commandery"
   }
  },
  "定州": {
   "mod": "Dingzhou, Hebei",
   "n": {
-   "定州": "Dingzhou"
+   "定州": "Dingzhou",
+   "博陵郡": "Boling Commandery"
   }
  },
  "易州": {
   "mod": "Yi County, Hebei",
   "n": {
-   "易州": "Yizhou"
+   "易州": "Yizhou",
+   "上谷郡": "Shanggu Commandery"
   }
  },
  "祁州": {
@@ -983,80 +1143,93 @@
  "深州": {
   "mod": "Shenzhou, Hebei",
   "n": {
-   "深州": "Shenzhou"
+   "深州": "Shenzhou",
+   "饶阳郡": "Raoyang Commandery"
   }
  },
  "冀州": {
   "mod": "Jizhou, Hengshui, Hebei",
   "n": {
-   "冀州": "Jizhou"
+   "冀州": "Jizhou",
+   "信都郡": "Xindu Commandery"
   }
  },
  "德州": {
   "mod": "Lingcheng, Dezhou, Shandong",
   "n": {
-   "德州": "Dezhou"
+   "德州": "Dezhou",
+   "平原郡": "Pingyuan Commandery"
   }
  },
  "沧州": {
   "mod": "Jiuzhou, Cang County, Hebei",
   "n": {
-   "沧州": "Cangzhou"
+   "沧州": "Cangzhou",
+   "景城郡": "Jingcheng Commandery"
   }
  },
  "景州": {
   "mod": "Dongguang, Hebei",
   "n": {
-   "景州": "Jingzhou"
+   "景州": "Jingzhou",
+   "景城郡东光县": "Dongguang County, Jingcheng Commandery"
   }
  },
  "瀛州": {
   "mod": "Hejian, Hebei",
   "n": {
-   "瀛州": "Yingzhou"
+   "瀛州": "Yingzhou",
+   "河间郡": "Hejian Commandery"
   }
  },
  "莫州": {
   "mod": "Maozhou Town, Renqiu, Hebei",
   "n": {
-   "莫州": "Mozhou"
+   "莫州": "Mozhou",
+   "文安郡": "Wen'an Commandery"
   }
  },
  "幽州": {
   "mod": "Beijing",
   "n": {
    "幽州": "Youzhou",
-   "南京幽都府": "Youdu Fu (Southern Capital)"
+   "南京幽都府": "Youdu Fu (Southern Capital)",
+   "范阳郡": "Fanyang Commandery"
   }
  },
  "涿州": {
   "mod": "Zhuozhou, Hebei",
   "n": {
-   "涿州": "Zhuozhou"
+   "涿州": "Zhuozhou",
+   "范阳郡范阳县": "Fanyang County, Fanyang Commandery"
   }
  },
  "蓟州": {
   "mod": "Jizhou, Tianjin",
   "n": {
-   "蓟州": "Jizhou"
+   "蓟州": "Jizhou",
+   "渔阳郡": "Yuyang Commandery"
   }
  },
  "檀州": {
   "mod": "Miyun, Beijing",
   "n": {
-   "檀州": "Tanzhou"
+   "檀州": "Tanzhou",
+   "密云郡": "Miyun Commandery"
   }
  },
  "顺州": {
   "mod": "Shunyi, Beijing",
   "n": {
-   "顺州": "Shunzhou"
+   "顺州": "Shunzhou",
+   "归化郡": "Guihua Commandery"
   }
  },
  "妫州": {
   "mod": "old town of Huailai, Hebei",
   "n": {
-   "妫州": "Guizhou"
+   "妫州": "Guizhou",
+   "妫川郡": "Guichuan Commandery"
   }
  },
  "儒州": {
@@ -1080,13 +1253,15 @@
  "平州": {
   "mod": "Lulong, Hebei",
   "n": {
-   "平州": "Pingzhou"
+   "平州": "Pingzhou",
+   "北平郡": "Beiping Commandery"
   }
  },
  "营州": {
   "mod": "Chaoyang, Liaoning",
   "n": {
-   "营州": "Yingzhou"
+   "营州": "Yingzhou",
+   "柳城郡": "Liucheng Commandery"
   }
  },
  "太原府": {
@@ -1099,55 +1274,64 @@
  "汾州": {
   "mod": "Fenyang, Shanxi",
   "n": {
-   "汾州": "Fenzhou"
+   "汾州": "Fenzhou",
+   "西河郡": "Xihe Commandery"
   }
  },
  "沁州": {
   "mod": "Qinyuan, Shanxi",
   "n": {
-   "沁州": "Qinzhou"
+   "沁州": "Qinzhou",
+   "阳城郡": "Yangcheng Commandery"
   }
  },
  "辽州": {
   "mod": "Zuoquan, Shanxi",
   "n": {
-   "辽州": "Liaozhou"
+   "辽州": "Liaozhou",
+   "乐平郡": "Leping Commandery"
   }
  },
  "岚州": {
   "mod": "Lan County, Shanxi",
   "n": {
-   "岚州": "Lanzhou"
+   "岚州": "Lanzhou",
+   "楼烦郡": "Loufan Commandery"
   }
  },
  "石州": {
   "mod": "Lishi, Lüliang, Shanxi",
   "n": {
-   "石州": "Shizhou"
+   "石州": "Shizhou",
+   "昌化郡": "Changhua Commandery"
   }
  },
  "忻州": {
   "mod": "Xinzhou, Shanxi",
   "n": {
-   "忻州": "Xinzhou"
+   "忻州": "Xinzhou",
+   "定襄郡": "Dingxiang Commandery"
   }
  },
  "宪州": {
   "mod": "Jingle, Shanxi",
   "n": {
-   "宪州": "Xianzhou"
+   "宪州": "Xianzhou",
+   "楼烦郡静乐县": "Jingle County, Loufan Commandery"
   }
  },
  "代州": {
   "mod": "Dai County, Shanxi",
   "n": {
-   "代州": "Daizhou"
+   "代州": "Daizhou",
+   "雁门郡": "Yanmen Commandery"
   }
  },
  "朔州": {
   "mod": "Shuozhou, Shanxi",
   "n": {
-   "朔州": "Shuozhou"
+   "朔州": "Shuozhou",
+   "马邑郡": "Mayi Commandery"
   }
  },
  "寰州": {
@@ -1160,7 +1344,8 @@
  "云州": {
   "mod": "Datong, Shanxi",
   "n": {
-   "云州": "Yunzhou"
+   "云州": "Yunzhou",
+   "云中郡": "Yunzhong Commandery"
   }
  },
  "应州": {
@@ -1172,147 +1357,172 @@
  "蔚州": {
   "mod": "Yu County, Hebei",
   "n": {
-   "蔚州": "Yuzhou"
+   "蔚州": "Yuzhou",
+   "安边郡": "Anbian Commandery",
+   "兴唐郡": "Xingtang Commandery"
   }
  },
  "潞州": {
   "mod": "Changzhi, Shanxi",
   "n": {
-   "潞州": "Luzhou"
+   "潞州": "Luzhou",
+   "上党郡": "Shangdang Commandery"
   }
  },
  "泽州": {
   "mod": "Jincheng, Shanxi",
   "n": {
-   "泽州": "Zezhou"
+   "泽州": "Zezhou",
+   "高平郡": "Gaoping Commandery"
   }
  },
  "晋州": {
   "mod": "Linfen, Shanxi",
   "n": {
-   "晋州": "Jinzhou"
+   "晋州": "Jinzhou",
+   "平阳郡": "Pingyang Commandery"
   }
  },
  "绛州": {
   "mod": "Xinjiang County, Shanxi",
   "n": {
-   "绛州": "Jiangzhou"
+   "绛州": "Jiangzhou",
+   "绛郡": "Jiang Commandery"
   }
  },
  "慈州": {
   "mod": "Ji County, Shanxi",
   "n": {
-   "慈州": "Cizhou"
+   "慈州": "Cizhou",
+   "文城郡": "Wencheng Commandery"
   }
  },
  "隰州": {
   "mod": "Xi County, Shanxi",
   "n": {
-   "隰州": "Xizhou"
+   "隰州": "Xizhou",
+   "大宁郡": "Daning Commandery"
   }
  },
  "河中府": {
   "mod": "Puzhou, Yongji, Shanxi",
   "n": {
    "河中府": "Hezhong Fu",
-   "蒲州": "Puzhou"
+   "蒲州": "Puzhou",
+   "河东郡": "Hedong Commandery"
   }
  },
  "兰州": {
   "mod": "Lanzhou, Gansu",
   "n": {
-   "兰州": "Lanzhou"
+   "兰州": "Lanzhou",
+   "金城郡": "Jincheng Commandery"
   }
  },
  "河州": {
   "mod": "Linxia, Gansu",
   "n": {
-   "河州": "Hezhou"
+   "河州": "Hezhou",
+   "安乡郡": "Anxiang Commandery"
   }
  },
  "临州": {
   "mod": "Lintao, Gansu",
   "n": {
-   "临州": "Linzhou"
+   "临州": "Linzhou",
+   "狄道郡": "Didao Commandery"
   }
  },
  "鄯州": {
   "mod": "Ledu, Haidong, Qinghai",
   "n": {
-   "鄯州": "Shanzhou"
+   "鄯州": "Shanzhou",
+   "西平郡": "Xiping Commandery"
   }
  },
  "廓州": {
   "mod": "around Guide, Qinghai",
   "n": {
-   "廓州": "Kuozhou"
+   "廓州": "Kuozhou",
+   "宁塞郡": "Ningsai Commandery"
   }
  },
  "洮州": {
   "mod": "Lintan, Gansu",
   "n": {
-   "洮州": "Taozhou"
+   "洮州": "Taozhou",
+   "临洮郡": "Lintao Commandery"
   }
  },
  "岷州": {
   "mod": "Min County, Gansu",
   "n": {
-   "岷州": "Minzhou"
+   "岷州": "Minzhou",
+   "和政郡": "Hezheng Commandery"
   }
  },
  "叠州": {
   "mod": "Têwo (Diebu), Gansu",
   "n": {
-   "叠州": "Diezhou"
+   "叠州": "Diezhou",
+   "合川郡": "Hechuan Commandery"
   }
  },
  "宕州": {
   "mod": "Dangchang, Gansu",
   "n": {
-   "宕州": "Dangzhou"
+   "宕州": "Dangzhou",
+   "怀道郡": "Huaidao Commandery"
   }
  },
  "凉州": {
   "mod": "Wuwei, Gansu",
   "n": {
-   "凉州": "Liangzhou"
+   "凉州": "Liangzhou",
+   "武威郡": "Wuwei Commandery"
   }
  },
  "甘州": {
   "mod": "Zhangye, Gansu",
   "n": {
-   "甘州": "Ganzhou"
+   "甘州": "Ganzhou",
+   "张掖郡": "Zhangye Commandery"
   }
  },
  "肃州": {
   "mod": "Jiuquan, Gansu",
   "n": {
-   "肃州": "Suzhou"
+   "肃州": "Suzhou",
+   "酒泉郡": "Jiuquan Commandery"
   }
  },
  "瓜州": {
   "mod": "Suoyang City, Guazhou, Gansu",
   "n": {
-   "瓜州": "Guazhou"
+   "瓜州": "Guazhou",
+   "晋昌郡": "Jinchang Commandery"
   }
  },
  "沙州": {
   "mod": "Dunhuang, Gansu",
   "n": {
-   "沙州": "Shazhou"
+   "沙州": "Shazhou",
+   "敦煌郡": "Dunhuang Commandery"
   }
  },
  "伊州": {
   "mod": "Hami, Xinjiang",
   "n": {
-   "伊州": "Yizhou"
+   "伊州": "Yizhou",
+   "伊吾郡": "Yiwu Commandery"
   }
  },
  "西州": {
   "mod": "Gaochang ruins, Turpan, Xinjiang",
   "n": {
    "西州": "Xizhou",
-   "高昌": "Qocho"
+   "高昌": "Qocho",
+   "交河郡": "Jiaohe Commandery"
   }
  },
  "庭州": {
@@ -1460,7 +1670,8 @@
  "拓东城": {
   "mod": "Kunming, Yunnan",
   "n": {
-   "拓东城": "Tuodong City"
+   "拓东城": "Tuodong City",
+   "滇池": "Lake Dian"
   }
  },
  "永昌": {
@@ -1508,7 +1719,8 @@
  "石城郡": {
   "mod": "Qujing, Yunnan",
   "n": {
-   "石城郡": "Shicheng Commandery"
+   "石城郡": "Shicheng Commandery",
+   "味县（南宁州）": "Wei County (Nanning Zhou)"
   }
  },
  "骠国": {
@@ -1539,261 +1751,307 @@
   "mod": "Guangzhou, Guangdong",
   "n": {
    "广州": "Guangzhou",
-   "兴王府": "Xingwang Fu"
+   "兴王府": "Xingwang Fu",
+   "南海郡": "Nanhai Commandery"
   }
  },
  "韶州": {
   "mod": "Shaoguan, Guangdong",
   "n": {
-   "韶州": "Shaozhou"
+   "韶州": "Shaozhou",
+   "始兴郡": "Shixing Commandery"
   }
  },
  "循州": {
   "mod": "Huizhou, Guangdong",
   "n": {
-   "循州": "Xunzhou"
+   "循州": "Xunzhou",
+   "海丰郡": "Haifeng Commandery"
   }
  },
  "潮州": {
   "mod": "Chaozhou, Guangdong",
   "n": {
-   "潮州": "Chaozhou"
+   "潮州": "Chaozhou",
+   "潮阳郡": "Chaoyang Commandery"
   }
  },
  "端州": {
   "mod": "Zhaoqing, Guangdong",
   "n": {
-   "端州": "Duanzhou"
+   "端州": "Duanzhou",
+   "高要郡": "Gaoyao Commandery"
   }
  },
  "康州": {
   "mod": "Deqing, Guangdong",
   "n": {
-   "康州": "Kangzhou"
+   "康州": "Kangzhou",
+   "晋康郡": "Jinkang Commandery"
   }
  },
  "封州": {
   "mod": "Fengkai, Guangdong",
   "n": {
-   "封州": "Fengzhou"
+   "封州": "Fengzhou",
+   "临封郡": "Linfeng Commandery"
   }
  },
  "新州·岭南": {
   "mod": "Xinxing, Guangdong",
   "n": {
-   "新州": "Xinzhou"
+   "新州": "Xinzhou",
+   "新昌郡": "Xinchang Commandery"
   }
  },
  "恩州": {
   "mod": "Enping, Guangdong",
   "n": {
-   "恩州": "Enzhou"
+   "恩州": "Enzhou",
+   "恩平郡": "Enping Commandery"
   }
  },
  "春州": {
   "mod": "Yangchun, Guangdong",
   "n": {
-   "春州": "Chunzhou"
+   "春州": "Chunzhou",
+   "南陵郡": "Nanling Commandery"
   }
  },
  "高州": {
   "mod": "Gaozhou, Guangdong",
   "n": {
-   "高州": "Gaozhou"
+   "高州": "Gaozhou",
+   "高凉郡": "Gaoliang Commandery"
   }
  },
  "雷州": {
   "mod": "Leizhou, Guangdong",
   "n": {
-   "雷州": "Leizhou"
+   "雷州": "Leizhou",
+   "海康郡": "Haikang Commandery"
   }
  },
  "罗州": {
   "mod": "Lianjiang, Guangdong",
   "n": {
-   "罗州": "Luozhou"
+   "罗州": "Luozhou",
+   "招义郡": "Zhaoyi Commandery"
   }
  },
  "泷州": {
   "mod": "Luoding, Guangdong",
   "n": {
-   "泷州": "Shuangzhou"
+   "泷州": "Shuangzhou",
+   "开阳郡": "Kaiyang Commandery"
   }
  },
  "辩州": {
   "mod": "Huazhou, Guangdong",
   "n": {
-   "辩州": "Bianzhou"
+   "辩州": "Bianzhou",
+   "陵水郡": "Lingshui Commandery"
   }
  },
  "崖州": {
   "mod": "Longtang, Qiongshan, Haikou, Hainan (Zhuyaling city site)",
   "n": {
    "崖州": "Yazhou",
-   "舍城县（属琼州）": "Shecheng County (under Qiongzhou)"
+   "舍城县（属琼州）": "Shecheng County (under Qiongzhou)",
+   "珠崖郡": "Zhuya Commandery"
   }
  },
  "琼州": {
   "mod": "Jiuzhou Town, Qiongshan, Haikou, Hainan",
   "n": {
-   "琼州": "Qiongzhou"
+   "琼州": "Qiongzhou",
+   "琼山郡": "Qiongshan Commandery"
   }
  },
  "儋州": {
   "mod": "Zhonghe, Danzhou, Hainan",
   "n": {
-   "儋州": "Danzhou"
+   "儋州": "Danzhou",
+   "昌化郡": "Changhua Commandery"
   }
  },
  "振州": {
   "mod": "Yacheng, Sanya, Hainan",
   "n": {
    "振州": "Zhenzhou",
-   "崖州": "Yazhou"
+   "崖州": "Yazhou",
+   "临振郡": "Linzhen Commandery"
   }
  },
  "万安州": {
   "mod": "Lingshui–Wanning, Hainan",
   "n": {
-   "万安州": "Wan'an Zhou"
+   "万安州": "Wan'an Zhou",
+   "万安郡": "Wan'an Commandery",
+   "万全郡": "Wanquan Commandery"
   }
  },
  "桂州": {
   "mod": "Guilin, Guangxi",
   "n": {
-   "桂州": "Guizhou"
+   "桂州": "Guizhou",
+   "始安郡": "Shi'an Commandery",
+   "建陵郡": "Jianling Commandery"
   }
  },
  "梧州": {
   "mod": "Wuzhou, Guangxi",
   "n": {
-   "梧州": "Wuzhou"
+   "梧州": "Wuzhou",
+   "苍梧郡": "Cangwu Commandery"
   }
  },
  "贺州": {
   "mod": "Hejie, Hezhou, Guangxi",
   "n": {
-   "贺州": "Hezhou"
+   "贺州": "Hezhou",
+   "临贺郡": "Linhe Commandery"
   }
  },
  "昭州": {
   "mod": "Pingle, Guangxi",
   "n": {
-   "昭州": "Zhaozhou"
+   "昭州": "Zhaozhou",
+   "平乐郡": "Pingle Commandery"
   }
  },
  "蒙州": {
   "mod": "Mengshan, Guangxi",
   "n": {
-   "蒙州": "Mengzhou"
+   "蒙州": "Mengzhou",
+   "蒙山郡": "Mengshan Commandery"
   }
  },
  "富州": {
   "mod": "Zhaoping, Guangxi",
   "n": {
-   "富州": "Fuzhou"
+   "富州": "Fuzhou",
+   "开江郡": "Kaijiang Commandery"
   }
  },
  "柳州": {
   "mod": "Liuzhou, Guangxi",
   "n": {
-   "柳州": "Liuzhou"
+   "柳州": "Liuzhou",
+   "龙城郡": "Longcheng Commandery"
   }
  },
  "象州": {
   "mod": "Xiangzhou, Guangxi",
   "n": {
-   "象州": "Xiangzhou"
+   "象州": "Xiangzhou",
+   "象郡阳寿县": "Yangshou County, Xiang Commandery"
   }
  },
  "融州": {
   "mod": "Rongshui, Guangxi",
   "n": {
-   "融州": "Rongzhou"
+   "融州": "Rongzhou",
+   "融水郡": "Rongshui Commandery"
   }
  },
  "宜州": {
   "mod": "Yizhou, Guangxi",
   "n": {
-   "宜州": "Yizhou"
+   "宜州": "Yizhou",
+   "龙水郡": "Longshui Commandery"
   }
  },
  "龚州": {
   "mod": "Pingnan, Guangxi",
   "n": {
-   "龚州": "Gongzhou"
+   "龚州": "Gongzhou",
+   "临江郡": "Linjiang Commandery"
   }
  },
  "浔州": {
   "mod": "Guiping, Guangxi",
   "n": {
-   "浔州": "Xunzhou"
+   "浔州": "Xunzhou",
+   "浔江郡": "Xunjiang Commandery"
   }
  },
  "藤州": {
   "mod": "Teng County, Guangxi",
   "n": {
-   "藤州": "Tengzhou"
+   "藤州": "Tengzhou",
+   "感义郡": "Ganyi Commandery"
   }
  },
  "容州": {
   "mod": "Rong County, Guangxi",
   "n": {
-   "容州": "Rongzhou"
+   "容州": "Rongzhou",
+   "普宁郡普宁县": "Puning County, Puning Commandery"
   }
  },
  "白州": {
   "mod": "Bobai, Guangxi",
   "n": {
-   "白州": "Baizhou"
+   "白州": "Baizhou",
+   "南昌郡": "Nanchang Commandery"
   }
  },
  "廉州": {
   "mod": "Hepu, Guangxi",
   "n": {
-   "廉州": "Lianzhou"
+   "廉州": "Lianzhou",
+   "合浦郡": "Hepu Commandery"
   }
  },
  "钦州": {
   "mod": "northeast of Qinzhou, Guangxi",
   "n": {
-   "钦州": "Qinzhou"
+   "钦州": "Qinzhou",
+   "宁越郡": "Ningyue Commandery"
   }
  },
  "邕州": {
   "mod": "Nanning, Guangxi",
   "n": {
-   "邕州": "Yongzhou"
+   "邕州": "Yongzhou",
+   "朗宁郡": "Langning Commandery"
   }
  },
  "贵州": {
   "mod": "Guigang, Guangxi",
   "n": {
-   "贵州": "Guizhou"
+   "贵州": "Guizhou",
+   "怀泽郡": "Huaize Commandery"
   }
  },
  "横州": {
   "mod": "Hengzhou, Guangxi",
   "n": {
-   "横州": "Hengzhou"
+   "横州": "Hengzhou",
+   "宁浦郡": "Ningpu Commandery"
   }
  },
  "宾州": {
   "mod": "Binyang, Guangxi",
   "n": {
-   "宾州": "Binzhou"
+   "宾州": "Binzhou",
+   "安城郡": "Ancheng Commandery",
+   "岭方郡": "Lingfang Commandery"
   }
  },
  "澄州": {
   "mod": "Shanglin, Guangxi",
   "n": {
-   "澄州": "Chengzhou"
+   "澄州": "Chengzhou",
+   "贺水郡": "Heshui Commandery"
   }
  },
  "田州": {
   "mod": "around Baise, Guangxi (loose-rein prefecture)",
   "n": {
-   "田州": "Tianzhou"
+   "田州": "Tianzhou",
+   "横山郡": "Hengshan Commandery"
   }
  },
  "全州": {
@@ -1806,7 +2064,8 @@
  "连州": {
   "mod": "Lianzhou, Guangdong",
   "n": {
-   "连州": "Lianzhou"
+   "连州": "Lianzhou",
+   "连山郡": "Lianshan Commandery"
   }
  },
  "交州": {
@@ -1819,86 +2078,101 @@
  "峰州": {
   "mod": "Phú Thọ (formerly Vĩnh Phúc province), Vietnam",
   "n": {
-   "峰州": "Phong Châu"
+   "峰州": "Phong Châu",
+   "承化郡": "Chenghua Commandery"
   }
  },
  "陆州": {
   "mod": "Quảng Ninh, Vietnam",
   "n": {
-   "陆州": "Lục Châu"
+   "陆州": "Lục Châu",
+   "玉山郡": "Yushan Commandery"
   }
  },
  "长州": {
   "mod": "Ninh Bình (around Hoa Lư), Vietnam",
   "n": {
-   "长州": "Trường Châu"
+   "长州": "Trường Châu",
+   "文阳郡": "Wenyang Commandery"
   }
  },
  "爱州": {
   "mod": "Thanh Hóa, Vietnam",
   "n": {
-   "爱州": "Ái Châu"
+   "爱州": "Ái Châu",
+   "九真郡": "Jiuzhen Commandery"
   }
  },
  "演州": {
   "mod": "Diễn Châu, Nghệ An, Vietnam",
   "n": {
-   "演州": "Diễn Châu"
+   "演州": "Diễn Châu",
+   "日南郡怀驩县": "Huaihuan County, Rinan Commandery"
   }
  },
  "驩州": {
   "mod": "Vinh, Nghệ An, Vietnam",
   "n": {
-   "驩州": "Hoan Châu"
+   "驩州": "Hoan Châu",
+   "日南郡": "Rinan Commandery"
   }
  },
  "广源州": {
   "mod": "Cao Bằng, Vietnam (loose-rein prefecture)",
   "n": {
-   "广源州": "Quảng Nguyên Châu"
+   "广源州": "Quảng Nguyên Châu",
+   "蛮洞": "tribal settlements"
   }
  },
  "扬州": {
   "mod": "Yangzhou, Jiangsu",
   "n": {
    "扬州": "Yangzhou",
-   "江都府": "Jiangdu Fu"
+   "江都府": "Jiangdu Fu",
+   "广陵郡": "Guangling Commandery"
   }
  },
  "楚州": {
   "mod": "Huai'an, Jiangsu",
   "n": {
-   "楚州": "Chuzhou"
+   "楚州": "Chuzhou",
+   "淮阴郡": "Huaiyin Commandery"
   }
  },
  "滁州": {
   "mod": "Chuzhou, Anhui",
   "n": {
-   "滁州": "Chuzhou"
+   "滁州": "Chuzhou",
+   "永阳郡": "Yongyang Commandery"
   }
  },
  "和州": {
   "mod": "He County, Anhui",
   "n": {
-   "和州": "Hezhou"
+   "和州": "Hezhou",
+   "历阳郡": "Liyang Commandery"
   }
  },
  "庐州": {
   "mod": "Hefei, Anhui",
   "n": {
-   "庐州": "Luzhou"
+   "庐州": "Luzhou",
+   "庐江郡": "Lujiang Commandery"
   }
  },
  "寿州": {
   "mod": "Shou County, Anhui",
   "n": {
-   "寿州": "Shouzhou"
+   "寿州": "Shouzhou",
+   "寿春郡": "Shouchun Commandery"
   }
  },
  "舒州": {
   "mod": "Qianshan, Anhui",
   "n": {
-   "舒州": "Shuzhou"
+   "舒州": "Shuzhou",
+   "同安郡": "Tong'an Commandery",
+   "盛唐郡": "Shengtang Commandery"
   }
  },
  "泰州": {
@@ -1911,7 +2185,8 @@
  "润州": {
   "mod": "Zhenjiang, Jiangsu",
   "n": {
-   "润州": "Runzhou"
+   "润州": "Runzhou",
+   "丹阳郡": "Danyang Commandery"
   }
  },
  "升州": {
@@ -1919,233 +2194,272 @@
   "n": {
    "升州": "Shengzhou",
    "上元县（属润州）": "Shangyuan County (under Runzhou)",
-   "江宁府": "Jiangning Fu"
+   "江宁府": "Jiangning Fu",
+   "丹阳郡江宁县": "Jiangning County, Danyang Commandery",
+   "江宁郡": "Jiangning Commandery"
   }
  },
  "常州": {
   "mod": "Changzhou, Jiangsu",
   "n": {
-   "常州": "Changzhou"
+   "常州": "Changzhou",
+   "晋陵郡": "Jinling Commandery"
   }
  },
  "苏州": {
   "mod": "Suzhou, Jiangsu",
   "n": {
-   "苏州": "Suzhou"
+   "苏州": "Suzhou",
+   "吴郡": "Wu Commandery"
   }
  },
  "秀州": {
   "mod": "Jiaxing, Zhejiang",
   "n": {
    "秀州": "Xiuzhou",
-   "嘉兴县（属苏州）": "Jiaxing County (under Suzhou)"
+   "嘉兴县（属苏州）": "Jiaxing County (under Suzhou)",
+   "吴郡嘉兴县": "Jiaxing County, Wu Commandery"
   }
  },
  "杭州": {
   "mod": "Hangzhou, Zhejiang",
   "n": {
-   "杭州": "Hangzhou"
+   "杭州": "Hangzhou",
+   "余杭郡": "Yuhang Commandery"
   }
  },
  "湖州": {
   "mod": "Huzhou, Zhejiang",
   "n": {
-   "湖州": "Huzhou"
+   "湖州": "Huzhou",
+   "吴兴郡": "Wuxing Commandery"
   }
  },
  "睦州": {
   "mod": "Meicheng, Jiande, Zhejiang",
   "n": {
-   "睦州": "Muzhou"
+   "睦州": "Muzhou",
+   "新定郡": "Xinding Commandery"
   }
  },
  "越州": {
   "mod": "Shaoxing, Zhejiang",
   "n": {
-   "越州": "Yuezhou"
+   "越州": "Yuezhou",
+   "会稽郡": "Kuaiji Commandery"
   }
  },
  "明州": {
   "mod": "Ningbo, Zhejiang",
   "n": {
-   "明州": "Mingzhou"
+   "明州": "Mingzhou",
+   "余姚郡": "Yuyao Commandery"
   }
  },
  "台州": {
   "mod": "Linhai, Zhejiang",
   "n": {
-   "台州": "Taizhou"
+   "台州": "Taizhou",
+   "临海郡": "Linhai Commandery"
   }
  },
  "婺州": {
   "mod": "Jinhua, Zhejiang",
   "n": {
-   "婺州": "Wuzhou"
+   "婺州": "Wuzhou",
+   "东阳郡": "Dongyang Commandery"
   }
  },
  "衢州": {
   "mod": "Quzhou, Zhejiang",
   "n": {
-   "衢州": "Quzhou"
+   "衢州": "Quzhou",
+   "信安郡": "Xin'an Commandery"
   }
  },
  "处州": {
   "mod": "Lishui, Zhejiang",
   "n": {
-   "处州": "Chuzhou"
+   "处州": "Chuzhou",
+   "缙云郡": "Jinyun Commandery"
   }
  },
  "温州": {
   "mod": "Wenzhou, Zhejiang",
   "n": {
-   "温州": "Wenzhou"
+   "温州": "Wenzhou",
+   "永嘉郡": "Yongjia Commandery"
   }
  },
  "福州": {
   "mod": "Fuzhou, Fujian",
   "n": {
    "福州": "Fuzhou",
-   "长乐府": "Changle Fu"
+   "长乐府": "Changle Fu",
+   "长乐郡": "Changle Commandery"
   }
  },
  "建州": {
   "mod": "Jian'ou, Fujian",
   "n": {
-   "建州": "Jianzhou"
+   "建州": "Jianzhou",
+   "建安郡": "Jian'an Commandery"
   }
  },
  "泉州": {
   "mod": "Quanzhou, Fujian",
   "n": {
-   "泉州": "Quanzhou"
+   "泉州": "Quanzhou",
+   "清源郡": "Qingyuan Commandery"
   }
  },
  "漳州": {
   "mod": "Zhangzhou, Fujian",
   "n": {
-   "漳州": "Zhangzhou"
+   "漳州": "Zhangzhou",
+   "漳浦郡龙溪县": "Longxi County, Zhangpu Commandery"
   }
  },
  "汀州": {
   "mod": "Changting, Fujian",
   "n": {
-   "汀州": "Tingzhou"
+   "汀州": "Tingzhou",
+   "临汀郡": "Linting Commandery"
   }
  },
  "宣州": {
   "mod": "Xuancheng, Anhui",
   "n": {
-   "宣州": "Xuanzhou"
+   "宣州": "Xuanzhou",
+   "宣城郡": "Xuancheng Commandery"
   }
  },
  "歙州": {
   "mod": "She County, Anhui",
   "n": {
-   "歙州": "Shezhou"
+   "歙州": "Shezhou",
+   "新安郡": "Xin'an Commandery"
   }
  },
  "池州": {
   "mod": "Chizhou, Anhui",
   "n": {
-   "池州": "Chizhou"
+   "池州": "Chizhou",
+   "宣城郡秋浦县": "Qiupu County, Xuancheng Commandery"
   }
  },
  "洪州": {
   "mod": "Nanchang, Jiangxi",
   "n": {
    "洪州": "Hongzhou",
-   "南昌府": "Nanchang Fu"
+   "南昌府": "Nanchang Fu",
+   "豫章郡": "Yuzhang Commandery"
   }
  },
  "江州": {
   "mod": "Jiujiang, Jiangxi",
   "n": {
-   "江州": "Jiangzhou"
+   "江州": "Jiangzhou",
+   "浔阳郡": "Xunyang Commandery"
   }
  },
  "饶州": {
   "mod": "Poyang, Jiangxi",
   "n": {
-   "饶州": "Raozhou"
+   "饶州": "Raozhou",
+   "鄱阳郡": "Poyang Commandery"
   }
  },
  "信州": {
   "mod": "Shangrao, Jiangxi",
   "n": {
-   "信州": "Xinzhou"
+   "信州": "Xinzhou",
+   "鄱阳郡弋阳县地": "part of Yiyang County, Poyang Commandery"
   }
  },
  "抚州": {
   "mod": "Fuzhou, Jiangxi",
   "n": {
-   "抚州": "Fuzhou"
+   "抚州": "Fuzhou",
+   "临川郡": "Linchuan Commandery"
   }
  },
  "袁州": {
   "mod": "Yichun, Jiangxi",
   "n": {
-   "袁州": "Yuanzhou"
+   "袁州": "Yuanzhou",
+   "宜春郡": "Yichun Commandery"
   }
  },
  "吉州": {
   "mod": "Ji'an, Jiangxi",
   "n": {
-   "吉州": "Jizhou"
+   "吉州": "Jizhou",
+   "庐陵郡": "Luling Commandery"
   }
  },
  "虔州": {
   "mod": "Ganzhou, Jiangxi",
   "n": {
-   "虔州": "Qianzhou"
+   "虔州": "Qianzhou",
+   "南康郡": "Nankang Commandery"
   }
  },
  "筠州": {
   "mod": "Gao'an, Jiangxi",
   "n": {
    "筠州": "Yunzhou",
-   "高安县（属洪州）": "Gao'an County (under Hongzhou)"
+   "高安县（属洪州）": "Gao'an County (under Hongzhou)",
+   "豫章郡高安县": "Gao'an County, Yuzhang Commandery"
   }
  },
  "潭州": {
   "mod": "Changsha, Hunan",
   "n": {
-   "潭州": "Tanzhou"
+   "潭州": "Tanzhou",
+   "长沙郡": "Changsha Commandery"
   }
  },
  "衡州": {
   "mod": "Hengyang, Hunan",
   "n": {
-   "衡州": "Hengzhou"
+   "衡州": "Hengzhou",
+   "衡阳郡": "Hengyang Commandery"
   }
  },
  "永州": {
   "mod": "Lingling, Yongzhou, Hunan",
   "n": {
-   "永州": "Yongzhou"
+   "永州": "Yongzhou",
+   "零陵郡": "Lingling Commandery"
   }
  },
  "道州": {
   "mod": "Dao County, Hunan",
   "n": {
-   "道州": "Daozhou"
+   "道州": "Daozhou",
+   "江华郡": "Jianghua Commandery"
   }
  },
  "郴州": {
   "mod": "Chenzhou, Hunan",
   "n": {
-   "郴州": "Chenzhou"
+   "郴州": "Chenzhou",
+   "桂阳郡": "Guiyang Commandery"
   }
  },
  "邵州": {
   "mod": "Shaoyang, Hunan",
   "n": {
-   "邵州": "Shaozhou"
+   "邵州": "Shaozhou",
+   "邵阳郡": "Shaoyang Commandery"
   }
  },
  "回鹘牙帐": {
   "mod": "Kharbalgas, Mongolia (Ordu-Baliq)",
   "n": {
-   "回鹘牙帐": "Uyghur khagan's camp"
+   "回鹘牙帐": "Uyghur khagan's camp",
+   "回纥牙帐": "Uyghur khagan's camp"
   }
  },
  "富贵城": {
@@ -2157,7 +2471,8 @@
  "黠戛斯牙帐": {
   "mod": "around Minusinsk, Russia",
   "n": {
-   "黠戛斯牙帐": "Kyrgyz khagan's camp"
+   "黠戛斯牙帐": "Kyrgyz khagan's camp",
+   "坚昆": "Jiankun (Kyrgyz)"
   }
  },
  "上京临潢府": {
@@ -2205,38 +2520,44 @@
  "中京显德府": {
   "mod": "Xigucheng, Helong, Jilin",
   "n": {
-   "中京显德府": "Xiande Fu (Central Capital)"
+   "中京显德府": "Xiande Fu (Central Capital)",
+   "显州": "Xianzhou"
   }
  },
  "东京龙原府": {
   "mod": "Baliancheng, Hunchun, Jilin",
   "n": {
-   "东京龙原府": "Longyuan Fu (Eastern Capital)"
+   "东京龙原府": "Longyuan Fu (Eastern Capital)",
+   "栅城": "Zhacheng"
   }
  },
  "南京南海府": {
   "mod": "Pukchong, North Korea",
   "n": {
-   "南京南海府": "Nanhai Fu (Southern Capital)"
+   "南京南海府": "Nanhai Fu (Southern Capital)",
+   "北青": "Pukchong"
   }
  },
  "西京鸭渌府": {
   "mod": "Linjiang, Jilin",
   "n": {
-   "西京鸭渌府": "Yalu Fu (Western Capital)"
+   "西京鸭渌府": "Yalu Fu (Western Capital)",
+   "鸭渌": "Yalu"
   }
  },
  "扶余府": {
   "mod": "Nong'an, Jilin",
   "n": {
    "扶余府": "Fuyu Fu",
-   "黄龙府": "Huanglong Fu"
+   "黄龙府": "Huanglong Fu",
+   "扶余故地": "former Buyeo lands"
   }
  },
  "率宾府": {
   "mod": "Ussuriysk, Russia",
   "n": {
-   "率宾府": "Shuaibin Fu"
+   "率宾府": "Shuaibin Fu",
+   "率宾故地": "former Shuaibin lands"
   }
  },
  "平壤": {
@@ -2249,7 +2570,9 @@
  "浿江镇": {
   "mod": "Pyongsan, North Hwanghae, North Korea",
   "n": {
-   "浿江镇": "Paegang Garrison"
+   "浿江镇": "Paegang Garrison",
+   "大谷城": "Daegok Fortress",
+   "永丰郡": "Yeongpung-gun"
   }
  },
  "松岳": {
@@ -2268,26 +2591,30 @@
  "汉州·新罗": {
   "mod": "Gwangju, Gyeonggi, South Korea",
   "n": {
-   "汉州": "Hanju"
+   "汉州": "Hanju",
+   "汉山州": "Hansanju"
   }
  },
  "牛首州": {
   "mod": "Chuncheon, South Korea",
   "n": {
    "牛首州": "Usuju",
-   "朔州（春川）": "Sakju (Chuncheon)"
+   "朔州（春川）": "Sakju (Chuncheon)",
+   "首若州": "Suyakju"
   }
  },
  "溟州": {
   "mod": "Gangneung, South Korea",
   "n": {
-   "溟州": "Myeongju"
+   "溟州": "Myeongju",
+   "何瑟罗州": "Haseullaju"
   }
  },
  "熊州": {
   "mod": "Gongju, South Korea",
   "n": {
-   "熊州": "Ungju"
+   "熊州": "Ungju",
+   "熊川州": "Ungcheonju"
   }
  },
  "完山州": {
@@ -2307,19 +2634,22 @@
  "尚州": {
   "mod": "Sangju, South Korea",
   "n": {
-   "尚州": "Sangju"
+   "尚州": "Sangju",
+   "沙伐州": "Sabeolju"
   }
  },
  "康州·新罗": {
   "mod": "Jinju, South Korea",
   "n": {
-   "康州": "Gangju"
+   "康州": "Gangju",
+   "菁州": "Cheongju"
   }
  },
  "良州": {
   "mod": "Yangsan, South Korea",
   "n": {
-   "良州": "Yangju"
+   "良州": "Yangju",
+   "歃良州": "Samnyangju"
   }
  },
  "金城": {
@@ -2343,7 +2673,8 @@
  "瓦普": {
   "mod": "Wat Phu, Champasak, Laos (Lingaparvata)",
   "n": {
-   "瓦普": "Wat Phu"
+   "瓦普": "Wat Phu",
+   "陵伽钵婆山": "Lingaparvata"
   }
  },
  "伊奢那城": {
@@ -2361,7 +2692,8 @@
  "毗罗补罗": {
   "mod": "south of Phan Rang, Khánh Hòa (formerly Ninh Thuận province), Vietnam (Panduranga; exact site uncertain)",
   "n": {
-   "毗罗补罗": "Virapura"
+   "毗罗补罗": "Virapura",
+   "奔陀浪": "Panduranga"
   }
  }
 }

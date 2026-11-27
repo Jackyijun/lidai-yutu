@@ -528,57 +528,85 @@
 {"id":"齐（南齐）","n":"齐（南齐）","kind":"state","eras":["liangjin-nanbeichao"],"refs":["liangjin-nanbeichao:齐"],"colors":{"liangjin-nanbeichao":["#A3B583","#B6CB91"]},"en":"Qi (Southern Qi)"}
 {"id":"齐（葛荣）","n":"齐（葛荣）","kind":"state","eras":["liangjin-nanbeichao"],"refs":["liangjin-nanbeichao:葛荣"],"colors":{"liangjin-nanbeichao":["#B5CE9E","#C7E1AF"]},"en":"Qi (Ge Rong)"}
 {"id":"龟兹","n":"龟兹","kind":"state","eras":["liangjin-nanbeichao","suitang"],"refs":["liangjin-nanbeichao:龟兹","suitang:龟兹"],"colors":{"liangjin-nanbeichao":["#84AB7B","#91C086"],"suitang":["#84AB7B","#91C086"]},"en":"Kucha"}
+{"id":"京畿","n":"京畿","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:京畿","tangsong:京畿"],"colors":{"suitang":["#B091BF","#C7A0D9"],"tangsong":["#B091BF","#C7A0D9"]},"en":"Capital District"}
+{"id":"关内道","n":"关内道","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:关内","tangsong:关内"],"colors":{"suitang":["#4F9A9D","#50B0B3"],"tangsong":["#4F9A9D","#50B0B3"]},"en":"Guannei Circuit"}
 {"id":"冯盎（岭南）","n":"冯盎（岭南）","kind":"state","eras":["suitang"],"refs":["suitang:冯盎"],"colors":{"suitang":["#72BFB0","#76D5C3"]},"en":"Feng Ang (Lingnan)"}
 {"id":"凉（李轨）","n":"凉（李轨）","kind":"state","eras":["suitang"],"refs":["suitang:凉"],"colors":{"suitang":["#A2C4D0","#A9DAEB"]},"en":"Liang (Li Gui)"}
+{"id":"剑南","n":"剑南","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:剑南","tangsong:剑南"],"colors":{"suitang":["#9C8B56","#B29D5A"],"tangsong":["#9C8B56","#B29D5A"]},"en":"Jiannan"}
+{"id":"北庭","n":"北庭","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:北庭","tangsong:北庭"],"colors":{"suitang":["#A58757","#BD985C"],"tangsong":["#A58757","#BD985C"]},"en":"Beiting Protectorate"}
 {"id":"单于都护府","n":"单于都护府","kind":"zhen","eras":["suitang"],"refs":["suitang:单于"],"colors":{"suitang":["#8B9CD1","#9AAEEE"]},"en":"Chanyu Protectorate"}
+{"id":"南诏","n":"南诏","kind":"state","eras":["suitang","tangsong"],"refs":["suitang:南诏","tangsong:南诏"],"colors":{"suitang":["#70B3AA","#74C9BE"],"tangsong":["#70B3AA","#74C9BE"]},"en":"Nanzhao"}
+{"id":"后突厥","n":"后突厥","kind":"state","eras":["suitang"],"refs":["suitang:后突厥"],"colors":{"suitang":["#A3A587","#B8BB95"]},"en":"Second Turkic Qaghanate"}
 {"id":"吴（李子通）","n":"吴（李子通）","kind":"state","eras":["suitang"],"refs":["suitang:吴李"],"colors":{"suitang":["#A28D54","#B89F58"]},"en":"Wu (Li Zitong)"}
 {"id":"吴（汪华）","n":"吴（汪华）","kind":"state","eras":["suitang"],"refs":["suitang:汪华"],"colors":{"suitang":["#81A0D1","#8DB3EE"]},"en":"Wu (Wang Hua)"}
 {"id":"唐","n":"唐","kind":"state","eras":["suitang","tangsong"],"refs":["suitang:唐","tangsong:唐"],"colors":{"suitang":["#C5A579","#DEB67F"],"tangsong":["#C5A579","#DEB67F"]},"en":"Tang"}
+{"id":"回鹘","n":"回鹘","kind":"state","eras":["suitang","tangsong"],"refs":["suitang:回鹘","tangsong:回鹘"],"colors":{"suitang":["#94B68C","#A1CC98"],"tangsong":["#94B68C","#A1CC98"]},"en":"Uyghur Khaganate"}
 {"id":"夏（窦建德）","n":"夏（窦建德）","kind":"state","eras":["suitang"],"refs":["suitang:夏"],"colors":{"suitang":["#8CB4D1","#95C8ED"]},"en":"Xia (Dou Jiande)"}
 {"id":"大食","n":"大食","kind":"state","eras":["suitang"],"refs":["suitang:大食"],"colors":{"suitang":["#89975E","#9AAB65"]},"en":"Arab Caliphate"}
 {"id":"安东都护府","n":"安东都护府","kind":"zhen","eras":["suitang"],"refs":["suitang:安东"],"colors":{"suitang":["#A28D54","#B89F58"]},"en":"Andong Protectorate"}
 {"id":"安北都护府","n":"安北都护府","kind":"zhen","eras":["suitang"],"refs":["suitang:安北"],"colors":{"suitang":["#98A66D","#A9BA74"]},"en":"Anbei Protectorate"}
-{"id":"安西","n":"安西","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:安西","tangsong:安西"],"colors":{"suitang":["#8CC5B3","#93DCC5"],"tangsong":["#8CC5B3","#93DCC5"]},"en":"Anxi Protectorate","names":["安西","安西都护府"]}
+{"id":"安西","n":"安西都护府","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:安西","tangsong:安西"],"colors":{"suitang":["#8CC5B3","#93DCC5"],"tangsong":["#8CC5B3","#93DCC5"]},"en":"Anxi Protectorate","names":["安西","安西都护府"]}
 {"id":"宋义（孟海公）","n":"宋义（孟海公）","kind":"state","eras":["suitang"],"refs":["suitang:宋义"],"colors":{"suitang":["#DEB39C","#FAC3A6"]},"en":"Songyi (Meng Haigong)"}
 {"id":"宋（辅公祏）","n":"宋（辅公祏）","kind":"state","eras":["suitang"],"refs":["suitang:辅宋"],"colors":{"suitang":["#C5A7A0","#D8B8B0"]},"en":"Song (Fu Gongshi)"}
 {"id":"定杨（刘武周）","n":"定杨（刘武周）","kind":"state","eras":["suitang"],"refs":["suitang:定杨"],"colors":{"suitang":["#A6A3C4","#B7B3D7"]},"en":"Dingyang (Liu Wuzhou)"}
+{"id":"小勃律","n":"小勃律","kind":"state","eras":["suitang"],"refs":["suitang:小勃律"],"colors":{"suitang":["#6481B0","#7093CC"]},"en":"Little Balur"}
+{"id":"山南东道","n":"山南东道","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:山南东道","tangsong:山南东道"],"colors":{"suitang":["#539B90","#55B1A4"],"tangsong":["#539B90","#55B1A4"]},"en":"Shannan East Circuit"}
+{"id":"山南西道","n":"山南西道","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:山南西道","tangsong:山南西道"],"colors":{"suitang":["#ACC093","#BCD59C"],"tangsong":["#ACC093","#BCD59C"]},"en":"Shannan West Circuit"}
+{"id":"岭南","n":"岭南","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:岭南","tangsong:岭南"],"colors":{"suitang":["#A87BA0","#C089B7"],"tangsong":["#A87BA0","#C089B7"]},"en":"Lingnan"}
+{"id":"平卢","n":"平卢","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:平卢","tangsong:平卢"],"colors":{"suitang":["#909059","#A4A35F"],"tangsong":["#909059","#A4A35F"]},"en":"Pinglu"}
+{"id":"日本","n":"日本","kind":"zhen","eras":["suitang","tangsong","songyuan","minguo-xinzhongguo","minguo-xinzhongguo"],"refs":["suitang:日本","tangsong:日本","songyuan:日本","minguo-xinzhongguo:日本","minguo-xinzhongguo:日本本土"],"colors":{"suitang":["#6D5886","#81679F"],"tangsong":["#6D5886","#81679F"],"songyuan":["#6D5886","#81679F"],"minguo-xinzhongguo":["#6D5886","#81679F"]},"en":"Japan","kinds":{"suitang":"state","tangsong":"state","songyuan":"state","minguo-xinzhongguo":"zhen"}}
 {"id":"昆陵都护府","n":"昆陵都护府","kind":"zhen","eras":["suitang"],"refs":["suitang:昆陵"],"colors":{"suitang":["#DB9D88","#F7AC93"]},"en":"Kunling Protectorate"}
+{"id":"朔方","n":"朔方","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:朔方","tangsong:朔方"],"colors":{"suitang":["#9F7849","#B7884E"],"tangsong":["#9F7849","#B7884E"]},"en":"Shuofang"}
 {"id":"杜伏威（江淮）","n":"杜伏威（江淮）","kind":"state","eras":["suitang"],"refs":["suitang:杜伏威"],"colors":{"suitang":["#8FB2AC","#9EC7C0"]},"en":"Du Fuwei (Jianghuai)"}
 {"id":"梁（梁师都）","n":"梁（梁师都）","kind":"state","eras":["suitang"],"refs":["suitang:梁师都"],"colors":{"suitang":["#ACC5B0","#B8DBBE"]},"en":"Liang (Liang Shidu)"}
 {"id":"梁（沈法兴）","n":"梁（沈法兴）","kind":"state","eras":["suitang"],"refs":["suitang:沈梁"],"colors":{"suitang":["#B1C69E","#C1DBA8"]},"en":"Liang (Shen Faxing)"}
 {"id":"梁（萧铣）","n":"梁（萧铣）","kind":"state","eras":["suitang"],"refs":["suitang:萧梁"],"colors":{"suitang":["#A7B67C","#B9CB84"]},"en":"Liang (Xiao Xian)"}
 {"id":"楚（林士弘）","n":"楚（林士弘）","kind":"state","eras":["suitang"],"refs":["suitang:楚"],"colors":{"suitang":["#BAA4CB","#D0B4E6"]},"en":"Chu (Lin Shihong)"}
+{"id":"水真腊","n":"水真腊","kind":"state","eras":["suitang","tangsong"],"refs":["suitang:水真腊","tangsong:水真腊"],"colors":{"suitang":["#5B84AE","#6497CA"],"tangsong":["#5B84AE","#6497CA"]},"en":"Water Chenla"}
 {"id":"永乐（郭子和）","n":"永乐（郭子和）","kind":"state","eras":["suitang"],"refs":["suitang:郭子和"],"colors":{"suitang":["#DEB39C","#FAC3A6"]},"en":"Yongle (Guo Zihe)"}
 {"id":"汉东（刘黑闼）","n":"汉东（刘黑闼）","kind":"state","eras":["suitang"],"refs":["suitang:汉东"],"colors":{"suitang":["#A2B6CF","#B3C8E1"]},"en":"Handong (Liu Heita)"}
+{"id":"江南东道","n":"江南东道","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:江南东道","tangsong:江南东道"],"colors":{"suitang":["#76976B","#83AC75"],"tangsong":["#76976B","#83AC75"]},"en":"Jiangnan East Circuit"}
+{"id":"江南西道","n":"江南西道","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:江南西道","tangsong:江南西道"],"colors":{"suitang":["#A1C6C8","#A7DCDF"],"tangsong":["#A1C6C8","#A7DCDF"]},"en":"Jiangnan West Circuit"}
+{"id":"河东","n":"河东","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:河东","tangsong:河东"],"colors":{"suitang":["#9F7EAA","#B68DC3"],"tangsong":["#9F7EAA","#B68DC3"]},"en":"Hedong"}
+{"id":"河东道","n":"河东道","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:河东道","tangsong:河东道"],"colors":{"suitang":["#DEB39C","#FAC3A6"],"tangsong":["#DEB39C","#FAC3A6"]},"en":"Hedong Circuit"}
+{"id":"河北道","n":"河北道","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:河北道","tangsong:河北道"],"colors":{"suitang":["#76976B","#83AC75"],"tangsong":["#76976B","#83AC75"]},"en":"Hebei Circuit"}
+{"id":"河南道","n":"河南道","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:河南道","tangsong:河南道"],"colors":{"suitang":["#C6BF93","#DCD39A"],"tangsong":["#C6BF93","#DCD39A"]},"en":"Henan Circuit"}
+{"id":"河西","n":"河西","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:河西","tangsong:河西"],"colors":{"suitang":["#5198A7","#53ADC0"],"tangsong":["#5198A7","#53ADC0"]},"en":"Hexi"}
+{"id":"淮南","n":"淮南","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:淮南","tangsong:淮南"],"colors":{"suitang":["#C68B9C","#E199AF"],"tangsong":["#C68B9C","#E199AF"]},"en":"Huainan"}
+{"id":"渤海","n":"渤海","kind":"state","eras":["suitang","tangsong"],"refs":["suitang:渤海","tangsong:渤海"],"colors":{"suitang":["#90AFE1","#9DC2FF"],"tangsong":["#90AFE1","#9DC2FF"]},"en":"Balhae"}
 {"id":"濛池都护府","n":"濛池都护府","kind":"zhen","eras":["suitang"],"refs":["suitang:濛池"],"colors":{"suitang":["#9D8E65","#B3A06B"]},"en":"Mengchi Protectorate"}
 {"id":"熊津都督府","n":"熊津都督府","kind":"zhen","eras":["suitang"],"refs":["suitang:熊津"],"colors":{"suitang":["#9C8D74","#B49E7B"]},"en":"Ungjin Area Command"}
 {"id":"燕（高开道）","n":"燕（高开道）","kind":"state","eras":["suitang"],"refs":["suitang:燕"],"colors":{"suitang":["#BEA0D4","#D4B0EF"]},"en":"Yan (Gao Kaidao)"}
 {"id":"秦（薛举）","n":"秦（薛举）","kind":"state","eras":["suitang"],"refs":["suitang:秦"],"colors":{"suitang":["#C0A5B6","#DAB4CC"]},"en":"Qin (Xue Ju)"}
+{"id":"突厥叛部（泥熟匐）","n":"突厥叛部（泥熟匐）","kind":"misc","eras":["suitang"],"refs":["suitang:突厥叛部"],"colors":{"suitang":["#C7B8CA","#DFC8E3"]},"en":"Turkic rebels (Nishufu)"}
+{"id":"突骑施","n":"突骑施","kind":"state","eras":["suitang","tangsong"],"refs":["suitang:突骑施","tangsong:突骑施"],"colors":{"suitang":["#B091BF","#C7A0D9"],"tangsong":["#B091BF","#C7A0D9"]},"en":"Türgesh"}
 {"id":"罗艺（幽州）","n":"罗艺（幽州）","kind":"state","eras":["suitang"],"refs":["suitang:罗艺"],"colors":{"suitang":["#5CAEB2","#5DC4C9"]},"en":"Luo Yi (Youzhou)"}
+{"id":"范阳","n":"范阳","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:范阳","tangsong:范阳"],"colors":{"suitang":["#BCB8E2","#CFCAFC"],"tangsong":["#BCB8E2","#CFCAFC"]},"en":"Fanyang"}
+{"id":"葛逻禄","n":"葛逻禄","kind":"state","eras":["suitang","tangsong","songyuan"],"refs":["suitang:葛逻禄","tangsong:葛逻禄","songyuan:葛逻禄"],"colors":{"suitang":["#4C9EA2","#4CB3B8"],"tangsong":["#4C9EA2","#4CB3B8"],"songyuan":["#4C9EA2","#4CB3B8"]},"en":"Karluks"}
 {"id":"薛延陀","n":"薛延陀","kind":"state","eras":["suitang"],"refs":["suitang:薛延陀"],"colors":{"suitang":["#3B8F93","#39A4A9"]},"en":"Xueyantuo"}
 {"id":"西突厥","n":"西突厥","kind":"state","eras":["suitang"],"refs":["suitang:西突厥"],"colors":{"suitang":["#E6A9C5","#FFB9D9"]},"en":"Western Turkic Qaghanate"}
 {"id":"许（宇文化及）","n":"许（宇文化及）","kind":"state","eras":["suitang"],"refs":["suitang:许"],"colors":{"suitang":["#C58AA5","#DF98B9"]},"en":"Xu (Yuwen Huaji)"}
 {"id":"郑（王世充）","n":"郑（王世充）","kind":"state","eras":["suitang"],"refs":["suitang:郑"],"colors":{"suitang":["#DB99A2","#F7A7B3"]},"en":"Zheng (Wang Shichong)"}
+{"id":"都畿","n":"都畿","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:都畿","tangsong:都畿"],"colors":{"suitang":["#81CAE1","#86E0FC"],"tangsong":["#81CAE1","#86E0FC"]},"en":"Eastern Capital District"}
+{"id":"陇右","n":"陇右","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:陇右","tangsong:陇右"],"colors":{"suitang":["#96BCDF","#A0D0FC"],"tangsong":["#96BCDF","#A0D0FC"]},"en":"Longyou"}
 {"id":"隋旧郡县","n":"隋旧郡县","kind":"misc","eras":["suitang"],"refs":["suitang:隋余"],"colors":{"suitang":["#AAA3A0","#C6B3AB"]},"en":"Former Sui commanderies and counties"}
 {"id":"魏（李密）","n":"魏（李密）","kind":"state","eras":["suitang"],"refs":["suitang:魏"],"colors":{"suitang":["#429082","#43A594"]},"en":"Wei (Li Mi)"}
 {"id":"鲁（徐圆朗）","n":"鲁（徐圆朗）","kind":"state","eras":["suitang"],"refs":["suitang:鲁"],"colors":{"suitang":["#B7C68B","#C9DB93"]},"en":"Lu (Xu Yuanlang)"}
+{"id":"黑水靺鞨","n":"黑水靺鞨","kind":"tribe","eras":["suitang","tangsong"],"refs":["suitang:黑水靺鞨","tangsong:黑水靺鞨"],"colors":{"suitang":["#AD825C","#C69262"],"tangsong":["#AD825C","#C69262"]},"en":"Heishui Mohe"}
+{"id":"黔中","n":"黔中","kind":"zhen","eras":["suitang","tangsong"],"refs":["suitang:黔中","tangsong:黔中"],"colors":{"suitang":["#DFAEBC","#FBBDCF"],"tangsong":["#DFAEBC","#FBBDCF"]},"en":"Qianzhong"}
+{"id":"黠戛斯","n":"黠戛斯","kind":"state","eras":["suitang","tangsong","songyuan"],"refs":["suitang:黠戛斯","tangsong:黠戛斯","songyuan:黠戛斯"],"colors":{"suitang":["#B78163","#D2906B"],"tangsong":["#B78163","#D2906B"],"songyuan":["#B78163","#D2906B"]},"en":"Yenisei Kyrgyz","names":["黠戛斯","黠戛斯（吉利吉思）"]}
 {"id":"东丹","n":"东丹","kind":"state","eras":["tangsong"],"refs":["tangsong:东丹"],"colors":{"tangsong":["#95C4A7","#9FDBB6"]},"en":"Dongdan"}
 {"id":"东川","n":"东川","kind":"zhen","eras":["tangsong"],"refs":["tangsong:东川"],"colors":{"tangsong":["#9C8B56","#B29D5A"]},"en":"Dongchuan"}
 {"id":"东川（董璋）","n":"东川（董璋）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:东川·董"],"colors":{"tangsong":["#5C9B83","#62B194"]},"en":"Dongchuan (Dong Zhang)"}
 {"id":"东都畿","n":"东都畿","kind":"zhen","eras":["tangsong"],"refs":["tangsong:东都畿"],"colors":{"tangsong":["#DCABD6","#F5BAEE"]},"en":"Eastern Capital District"}
 {"id":"义成","n":"义成","kind":"zhen","eras":["tangsong"],"refs":["tangsong:义成"],"colors":{"tangsong":["#9C8B56","#B29D5A"]},"en":"Yicheng"}
 {"id":"义武","n":"义武","kind":"zhen","eras":["tangsong"],"refs":["tangsong:义武"],"colors":{"tangsong":["#95C4A7","#9FDBB6"]},"en":"Yiwu"}
-{"id":"京畿","n":"京畿","kind":"zhen","eras":["tangsong"],"refs":["tangsong:京畿"],"colors":{"tangsong":["#B091BF","#C7A0D9"]},"en":"Capital District"}
-{"id":"关内道","n":"关内道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:关内"],"colors":{"tangsong":["#4F9A9D","#50B0B3"]},"en":"Guannei Circuit"}
 {"id":"凉州六谷部","n":"凉州蕃部","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:凉州蕃部","songyuan:六谷部"],"colors":{"tangsong":["#83854A","#96984F"],"songyuan":["#83854A","#96984F"]},"en":"Liangzhou Tibetan tribes","names":["凉州六谷部","凉州蕃部"]}
 {"id":"凤翔","n":"凤翔","kind":"zhen","eras":["tangsong"],"refs":["tangsong:凤翔"],"colors":{"tangsong":["#87C2D3","#8CD8ED"]},"en":"Fengxiang"}
 {"id":"前蜀","n":"前蜀","kind":"state","eras":["tangsong"],"refs":["tangsong:前蜀"],"colors":{"tangsong":["#BA7B84","#D58994"]},"en":"Former Shu"}
-{"id":"剑南","n":"剑南","kind":"zhen","eras":["tangsong"],"refs":["tangsong:剑南"],"colors":{"tangsong":["#9C8B56","#B29D5A"]},"en":"Jiannan"}
-{"id":"北庭","n":"北庭","kind":"zhen","eras":["tangsong"],"refs":["tangsong:北庭"],"colors":{"tangsong":["#A58757","#BD985C"]},"en":"Beiting"}
 {"id":"北汉","n":"北汉","kind":"state","eras":["tangsong"],"refs":["tangsong:北汉"],"colors":{"tangsong":["#AF7A94","#C887A8"]},"en":"Northern Han"}
 {"id":"南唐","n":"南唐","kind":"state","eras":["tangsong"],"refs":["tangsong:南唐"],"colors":{"tangsong":["#B17C9F","#CA8AB5"]},"en":"Southern Tang"}
 {"id":"南汉","n":"南汉","kind":"state","eras":["tangsong"],"refs":["tangsong:南汉"],"colors":{"tangsong":["#5C9B83","#62B194"]},"en":"Southern Han"}
-{"id":"南诏","n":"南诏","kind":"state","eras":["tangsong"],"refs":["tangsong:南诏"],"colors":{"tangsong":["#70B3AA","#74C9BE"]},"en":"Nanzhao"}
 {"id":"卢龙","n":"卢龙","kind":"zhen","eras":["tangsong"],"refs":["tangsong:卢龙"],"colors":{"tangsong":["#C1B8D4","#D6C9F0"]},"en":"Lulong"}
 {"id":"后周","n":"后周","kind":"state","eras":["tangsong"],"refs":["tangsong:后周"],"colors":{"tangsong":["#B8BC8C","#CBD094"]},"en":"Later Zhou"}
 {"id":"后唐","n":"后唐","kind":"state","eras":["tangsong"],"refs":["tangsong:后唐"],"colors":{"tangsong":["#A87BA0","#C089B7"]},"en":"Later Tang"}
@@ -592,7 +620,6 @@
 {"id":"吴朝","n":"吴朝","kind":"state","eras":["tangsong"],"refs":["tangsong:吴朝"],"colors":{"tangsong":["#A5A16A","#B9B570"]},"en":"Ngô dynasty"}
 {"id":"吴越","n":"吴越","kind":"state","eras":["tangsong"],"refs":["tangsong:吴越"],"colors":{"tangsong":["#5C9B83","#62B194"]},"en":"Wuyue"}
 {"id":"喀喇汗王朝","n":"喀喇汗王朝","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:喀喇汗","songyuan:喀喇汗"],"colors":{"tangsong":["#BCB6EE","#CFCAFF"],"songyuan":["#BCB6EE","#CFCAFF"]},"en":"Kara-Khanid Khanate","names":["喀喇汗","喀喇汗王朝"]}
-{"id":"回鹘","n":"回鹘","kind":"state","eras":["tangsong"],"refs":["tangsong:回鹘"],"colors":{"tangsong":["#94B68C","#A1CC98"]},"en":"Uyghur Khaganate"}
 {"id":"夏绥","n":"夏绥","kind":"zhen","eras":["tangsong"],"refs":["tangsong:夏绥"],"colors":{"tangsong":["#A1B8E2","#AECBFF"]},"en":"Xiasui"}
 {"id":"大同","n":"大同","kind":"zhen","eras":["tangsong"],"refs":["tangsong:大同"],"colors":{"tangsong":["#A28D54","#B89F58"]},"en":"Datong"}
 {"id":"大楚（李希烈）","n":"大楚（李希烈）","kind":"state","eras":["tangsong"],"refs":["tangsong:大楚"],"colors":{"tangsong":["#8985B8","#9B96D4"]},"en":"Great Chu (Li Xilie)"}
@@ -610,11 +637,7 @@
 {"id":"宣歙","n":"宣歙","kind":"zhen","eras":["tangsong"],"refs":["tangsong:宣歙"],"colors":{"tangsong":["#B8C499","#CAD9A2"]},"en":"Xuanshe"}
 {"id":"宣武","n":"宣武","kind":"zhen","eras":["tangsong"],"refs":["tangsong:宣武"],"colors":{"tangsong":["#AEBDE5","#C0D0FC"]},"en":"Xuanwu"}
 {"id":"容管","n":"容管","kind":"zhen","eras":["tangsong"],"refs":["tangsong:容管"],"colors":{"tangsong":["#909059","#A4A35F"]},"en":"Rong Command"}
-{"id":"山南东道","n":"山南东道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:山南东道"],"colors":{"tangsong":["#539B90","#55B1A4"]},"en":"Shannan East Circuit"}
-{"id":"山南西道","n":"山南西道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:山南西道"],"colors":{"tangsong":["#ACC093","#BCD59C"]},"en":"Shannan West Circuit"}
 {"id":"岐","n":"岐","kind":"state","eras":["tangsong"],"refs":["tangsong:岐"],"colors":{"tangsong":["#B8BC8C","#CBD094"]},"en":"Qi"}
-{"id":"岭南","n":"岭南","kind":"zhen","eras":["tangsong"],"refs":["tangsong:岭南"],"colors":{"tangsong":["#A87BA0","#C089B7"]},"en":"Lingnan"}
-{"id":"平卢","n":"平卢","kind":"zhen","eras":["tangsong"],"refs":["tangsong:平卢"],"colors":{"tangsong":["#909059","#A4A35F"]},"en":"Pinglu"}
 {"id":"平卢（青州）","n":"平卢（青州）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:平卢·青"],"colors":{"tangsong":["#D9A7BC","#F4B6D0"]},"en":"Pinglu (Qingzhou)"}
 {"id":"庞勋","n":"庞勋","kind":"state","eras":["tangsong"],"refs":["tangsong:庞勋"],"colors":{"tangsong":["#6392B6","#6BA5D2"]},"en":"Pang Xun"}
 {"id":"归义军","n":"归义军","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:归义军","songyuan:归义军"],"colors":{"tangsong":["#5895B0","#5DAACB"],"songyuan":["#5895B0","#5DAACB"]},"en":"Guiyi Jun"}
@@ -622,10 +645,8 @@
 {"id":"成德","n":"成德","kind":"zhen","eras":["tangsong"],"refs":["tangsong:成德"],"colors":{"tangsong":["#83854A","#96984F"]},"en":"Chengde"}
 {"id":"抚信（危全讽）","n":"抚信（危全讽）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:危全讽"],"colors":{"tangsong":["#7D89BA","#8C9BD7"]},"en":"Fuxin (Wei Quanfeng)"}
 {"id":"振武","n":"振武","kind":"zhen","eras":["tangsong"],"refs":["tangsong:振武"],"colors":{"tangsong":["#4F9A9D","#50B0B3"]},"en":"Zhenwu"}
-{"id":"日本","n":"日本","kind":"zhen","eras":["tangsong","songyuan","minguo-xinzhongguo","minguo-xinzhongguo"],"refs":["tangsong:日本","songyuan:日本","minguo-xinzhongguo:日本","minguo-xinzhongguo:日本本土"],"colors":{"tangsong":["#6D5886","#81679F"],"songyuan":["#6D5886","#81679F"],"minguo-xinzhongguo":["#6D5886","#81679F"]},"en":"Japan","kinds":{"tangsong":"state","songyuan":"state","minguo-xinzhongguo":"zhen"}}
 {"id":"昭义","n":"昭义","kind":"zhen","eras":["tangsong"],"refs":["tangsong:昭义"],"colors":{"tangsong":["#C69078","#E29F81"]},"en":"Zhaoyi"}
 {"id":"晋（河东）","n":"晋（河东）","kind":"state","eras":["tangsong"],"refs":["tangsong:晋"],"colors":{"tangsong":["#A6877D","#C19688"]},"en":"Jin (Hedong)"}
-{"id":"朔方","n":"朔方","kind":"zhen","eras":["tangsong"],"refs":["tangsong:朔方"],"colors":{"tangsong":["#9F7849","#B7884E"]},"en":"Shuofang"}
 {"id":"朱泚（秦·汉）","n":"朱泚（秦·汉）","kind":"state","eras":["tangsong"],"refs":["tangsong:朱泚"],"colors":{"tangsong":["#76976B","#83AC75"]},"en":"Zhu Ci (Qin · Han)"}
 {"id":"李怀光","n":"李怀光","kind":"state","eras":["tangsong"],"refs":["tangsong:李怀光"],"colors":{"tangsong":["#8DBFDA","#95D4F6"]},"en":"Li Huaiguang"}
 {"id":"桂管","n":"桂管","kind":"zhen","eras":["tangsong"],"refs":["tangsong:桂管"],"colors":{"tangsong":["#8CC5B3","#93DCC5"]},"en":"Gui Command"}
@@ -634,17 +655,9 @@
 {"id":"武宁","n":"武宁","kind":"zhen","eras":["tangsong"],"refs":["tangsong:武宁"],"colors":{"tangsong":["#DEB39C","#FAC3A6"]},"en":"Wuning"}
 {"id":"武平","n":"武平","kind":"state","eras":["tangsong"],"refs":["tangsong:武平"],"colors":{"tangsong":["#CDB5CA","#E6C5E2"]},"en":"Wuping"}
 {"id":"武贞（雷氏）","n":"武贞（雷氏）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:武贞"],"colors":{"tangsong":["#8DBFDA","#95D4F6"]},"en":"Wuzhen (Lei family)"}
-{"id":"水真腊","n":"水真腊","kind":"state","eras":["tangsong"],"refs":["tangsong:水真腊"],"colors":{"tangsong":["#5B84AE","#6497CA"]},"en":"Water Chenla"}
-{"id":"江南东道","n":"江南东道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:江南东道"],"colors":{"tangsong":["#76976B","#83AC75"]},"en":"Jiangnan East Circuit"}
-{"id":"江南西道","n":"江南西道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:江南西道"],"colors":{"tangsong":["#A1C6C8","#A7DCDF"]},"en":"Jiangnan West Circuit"}
 {"id":"江西（唐）","n":"江西","kind":"zhen","eras":["tangsong"],"refs":["tangsong:江西"],"colors":{"tangsong":["#689A77","#71AF84"]},"en":"Jiangxi"}
 {"id":"汴宋","n":"汴宋","kind":"zhen","eras":["tangsong"],"refs":["tangsong:汴宋"],"colors":{"tangsong":["#7F78AD","#9188C9"]},"en":"Biansong"}
-{"id":"河东","n":"河东","kind":"zhen","eras":["tangsong"],"refs":["tangsong:河东"],"colors":{"tangsong":["#9F7EAA","#B68DC3"]},"en":"Hedong"}
-{"id":"河东道","n":"河东道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:河东道"],"colors":{"tangsong":["#DEB39C","#FAC3A6"]},"en":"Hedong Circuit"}
 {"id":"河中","n":"河中","kind":"zhen","eras":["tangsong"],"refs":["tangsong:河中"],"colors":{"tangsong":["#67AEA0","#6BC4B3"]},"en":"Hezhong"}
-{"id":"河北道","n":"河北道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:河北道"],"colors":{"tangsong":["#76976B","#83AC75"]},"en":"Hebei Circuit"}
-{"id":"河南道","n":"河南道","kind":"zhen","eras":["tangsong"],"refs":["tangsong:河南道"],"colors":{"tangsong":["#C6BF93","#DCD39A"]},"en":"Henan Circuit"}
-{"id":"河西","n":"河西","kind":"zhen","eras":["tangsong"],"refs":["tangsong:河西"],"colors":{"tangsong":["#5198A7","#53ADC0"]},"en":"Hexi"}
 {"id":"河阳","n":"河阳","kind":"zhen","eras":["tangsong"],"refs":["tangsong:河阳"],"colors":{"tangsong":["#7D89BA","#8C9BD7"]},"en":"Heyang"}
 {"id":"泰宁（兖海）","n":"泰宁（兖海）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:泰宁"],"colors":{"tangsong":["#8AA97A","#98BE84"]},"en":"Taining (Yanhai)"}
 {"id":"泰封","n":"泰封","kind":"state","eras":["tangsong"],"refs":["tangsong:泰封"],"colors":{"tangsong":["#839460","#94A868"]},"en":"Taebong"}
@@ -653,11 +666,9 @@
 {"id":"浙东","n":"浙东","kind":"zhen","eras":["tangsong"],"refs":["tangsong:浙东"],"colors":{"tangsong":["#9998CC","#ABA9E8"]},"en":"Zhedong"}
 {"id":"浙西","n":"浙西","kind":"zhen","eras":["tangsong"],"refs":["tangsong:浙西"],"colors":{"tangsong":["#538F70","#5AA47E"]},"en":"Zhexi"}
 {"id":"淄青","n":"淄青","kind":"zhen","eras":["tangsong"],"refs":["tangsong:淄青"],"colors":{"tangsong":["#63ABB8","#65C1D1"]},"en":"Ziqing"}
-{"id":"淮南","n":"淮南","kind":"zhen","eras":["tangsong"],"refs":["tangsong:淮南"],"colors":{"tangsong":["#C68B9C","#E199AF"]},"en":"Huainan"}
 {"id":"淮西","n":"淮西","kind":"zhen","eras":["tangsong"],"refs":["tangsong:淮西"],"colors":{"tangsong":["#9F7849","#B7884E"]},"en":"Huaixi"}
 {"id":"深赵","n":"深赵","kind":"zhen","eras":["tangsong"],"refs":["tangsong:深赵"],"colors":{"tangsong":["#69A9C2","#6DBDDC"]},"en":"Shenzhao"}
 {"id":"清源·平海","n":"清源·平海","kind":"state","eras":["tangsong"],"refs":["tangsong:清源"],"colors":{"tangsong":["#A1B8E2","#AECBFF"]},"en":"Qingyuan · Pinghai"}
-{"id":"渤海","n":"渤海","kind":"state","eras":["tangsong"],"refs":["tangsong:渤海"],"colors":{"tangsong":["#90AFE1","#9DC2FF"]},"en":"Balhae"}
 {"id":"湖南","n":"湖南","kind":"zhen","eras":["tangsong"],"refs":["tangsong:湖南"],"colors":{"tangsong":["#AD825C","#C69262"]},"en":"Hunan"}
 {"id":"滑亳","n":"滑亳","kind":"zhen","eras":["tangsong"],"refs":["tangsong:滑亳"],"colors":{"tangsong":["#C6B7D1","#DDC7EC"]},"en":"Huabo"}
 {"id":"燕（刘氏）","n":"燕（刘氏）","kind":"state","eras":["tangsong"],"refs":["tangsong:燕·刘"],"colors":{"tangsong":["#CEB0E5","#E3C1FE"]},"en":"Yan (Liu family)"}
@@ -666,11 +677,8 @@
 {"id":"相卫（昭义）","n":"相卫（昭义）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:相卫"],"colors":{"tangsong":["#69A9C2","#6DBDDC"]},"en":"Xiangwei (Zhaoyi)"}
 {"id":"福建","n":"福建","kind":"zhen","eras":["tangsong"],"refs":["tangsong:福建"],"colors":{"tangsong":["#DEB39C","#FAC3A6"]},"en":"Fujian"}
 {"id":"秦成（天雄军）","n":"秦成（天雄军）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:秦成"],"colors":{"tangsong":["#4989A7","#4D9DC1"]},"en":"Qincheng (Tianxiong Jun)"}
-{"id":"突骑施","n":"突骑施","kind":"state","eras":["tangsong"],"refs":["tangsong:突骑施"],"colors":{"tangsong":["#B091BF","#C7A0D9"]},"en":"Türgesh"}
-{"id":"范阳","n":"范阳","kind":"zhen","eras":["tangsong"],"refs":["tangsong:范阳"],"colors":{"tangsong":["#BCB8E2","#CFCAFC"]},"en":"Fanyang"}
 {"id":"荆南","n":"荆南","kind":"zhen","eras":["tangsong"],"refs":["tangsong:荆南"],"colors":{"tangsong":["#9581B2","#AA91CD"]},"en":"Jingnan"}
 {"id":"荆南（南平）","n":"荆南（南平）","kind":"state","eras":["tangsong"],"refs":["tangsong:南平"],"colors":{"tangsong":["#8B8147","#9F934B"]},"en":"Jingnan (Nanping)"}
-{"id":"葛逻禄","n":"葛逻禄","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:葛逻禄","songyuan:葛逻禄"],"colors":{"tangsong":["#4C9EA2","#4CB3B8"],"songyuan":["#4C9EA2","#4CB3B8"]},"en":"Karluks"}
 {"id":"蒲甘","n":"蒲甘","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:蒲甘","songyuan:蒲甘"],"colors":{"tangsong":["#BCB8E2","#CFCAFC"],"songyuan":["#BCB8E2","#CFCAFC"]},"en":"Pagan Kingdom"}
 {"id":"虔州（卢光稠）","n":"虔州（卢光稠）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:虔州"],"colors":{"tangsong":["#6993BE","#73A6DA"]},"en":"Qianzhou (Lu Guangchou)"}
 {"id":"西夏","n":"西夏","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:定难","songyuan:西夏"],"colors":{"tangsong":["#CEB0E5","#E3C1FE"],"songyuan":["#CEB0E5","#E3C1FE"]},"en":"Dingnan Jun","names":["定难军","西夏"]}
@@ -679,21 +687,16 @@
 {"id":"西州回鹘","n":"西州回鹘","kind":"state","eras":["tangsong"],"refs":["tangsong:西州回鹘"],"colors":{"tangsong":["#A1A368","#B4B76E"]},"en":"Xizhou Uyghurs"}
 {"id":"邕管","n":"邕管","kind":"zhen","eras":["tangsong"],"refs":["tangsong:邕管"],"colors":{"tangsong":["#708EBA","#7BA0D6"]},"en":"Yong Command"}
 {"id":"邠宁","n":"邠宁","kind":"zhen","eras":["tangsong"],"refs":["tangsong:邠宁"],"colors":{"tangsong":["#6392B6","#6BA5D2"]},"en":"Binning"}
-{"id":"都畿","n":"都畿","kind":"zhen","eras":["tangsong"],"refs":["tangsong:都畿"],"colors":{"tangsong":["#81CAE1","#86E0FC"]},"en":"Eastern Capital District"}
 {"id":"鄂岳","n":"鄂岳","kind":"zhen","eras":["tangsong"],"refs":["tangsong:鄂岳"],"colors":{"tangsong":["#C6BF93","#DCD39A"]},"en":"Eyue"}
 {"id":"鄜坊","n":"鄜坊","kind":"zhen","eras":["tangsong"],"refs":["tangsong:鄜坊"],"colors":{"tangsong":["#C9BF83","#DFD289"]},"en":"Fufang"}
 {"id":"镇国（华州）","n":"镇国（华州）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:镇国"],"colors":{"tangsong":["#96BCDF","#A0D0FC"]},"en":"Zhenguo (Huazhou)"}
 {"id":"镇海（钱镠）","n":"镇海（钱镠）","kind":"zhen","eras":["tangsong"],"refs":["tangsong:镇海"],"colors":{"tangsong":["#85C4C9","#89DBE1"]},"en":"Zhenhai (Qian Liu)"}
 {"id":"闽","n":"闽","kind":"state","eras":["tangsong"],"refs":["tangsong:闽"],"colors":{"tangsong":["#DEA8A5","#FBB6B3"]},"en":"Min"}
 {"id":"阻卜（鞑靼）","n":"阻卜（鞑靼）","kind":"tribe","eras":["tangsong","songyuan"],"refs":["tangsong:阻卜","songyuan:阻卜"],"colors":{"tangsong":["#CCAAD0","#E4BAEA"],"songyuan":["#CCAAD0","#E4BAEA"]},"en":"Zubu (Tatars)"}
-{"id":"陇右","n":"陇右","kind":"zhen","eras":["tangsong"],"refs":["tangsong:陇右"],"colors":{"tangsong":["#96BCDF","#A0D0FC"]},"en":"Longyou"}
 {"id":"陕虢","n":"陕虢","kind":"zhen","eras":["tangsong"],"refs":["tangsong:陕虢"],"colors":{"tangsong":["#B4845C","#CE9463"]},"en":"Shanguo"}
 {"id":"高丽","n":"高丽","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:高丽","songyuan:高丽"],"colors":{"tangsong":["#9F7849","#B7884E"],"songyuan":["#9F7849","#B7884E"]},"en":"Goryeo"}
 {"id":"高昌回鹘（畏兀儿）","n":"高昌回鹘（畏兀儿）","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:高昌回鹘","songyuan:高昌回鹘"],"colors":{"tangsong":["#A28D54","#B89F58"],"songyuan":["#A28D54","#B89F58"]},"en":"Kingdom of Qocho (Uyghurs)","names":["高昌回鹘","高昌回鹘（畏兀儿）"]}
 {"id":"魏博","n":"魏博","kind":"zhen","eras":["tangsong"],"refs":["tangsong:魏博"],"colors":{"tangsong":["#A0C29C","#ADD8A8"]},"en":"Weibo"}
-{"id":"黑水靺鞨","n":"黑水靺鞨","kind":"tribe","eras":["tangsong"],"refs":["tangsong:黑水靺鞨"],"colors":{"tangsong":["#AD825C","#C69262"]},"en":"Heishui Mohe"}
-{"id":"黔中","n":"黔中","kind":"zhen","eras":["tangsong"],"refs":["tangsong:黔中"],"colors":{"tangsong":["#DFAEBC","#FBBDCF"]},"en":"Qianzhong"}
-{"id":"黠戛斯","n":"黠戛斯","kind":"state","eras":["tangsong","songyuan"],"refs":["tangsong:黠戛斯","songyuan:黠戛斯"],"colors":{"tangsong":["#B78163","#D2906B"],"songyuan":["#B78163","#D2906B"]},"en":"Yenisei Kyrgyz","names":["黠戛斯","黠戛斯（吉利吉思）"]}
 {"id":"上京路","n":"上京路","kind":"zhen","eras":["songyuan"],"refs":["songyuan:上京路"],"colors":{"songyuan":["#7DAC86","#87C293"]},"en":"Shangjing Circuit"}
 {"id":"上京道","n":"上京道","kind":"zhen","eras":["songyuan"],"refs":["songyuan:上京道"],"colors":{"songyuan":["#4F9A9D","#50B0B3"]},"en":"Supreme Capital Circuit"}
 {"id":"东京路","n":"东京路","kind":"zhen","eras":["songyuan"],"refs":["songyuan:东京路"],"colors":{"songyuan":["#A594C7","#BAA4E2"]},"en":"Dongjing Circuit"}
