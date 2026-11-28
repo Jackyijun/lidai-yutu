@@ -54,6 +54,23 @@
 | 东都 | Eastern Capital | |
 | 行在 | temporary capital | 江都（行在）Jiangdu (temporary capital) |
 
+### 670—755 年（第 8 步补，2026-11-27）
+
+| 中文 | 英文 | 说明 |
+|---|---|---|
+| 节度使 / 某节度 | military governor / X military governorship | 河西节度 Hexi military governorship；地图注记只写名（Hexi、Longyou、Fanyang），同唐宋卷；十节度经略使 ten military governors and commissioners |
+| 采访使、采访使道 | surveillance commissioner；X Circuit | 关内道 Guannei Circuit、山南东道 Shannan East Circuit；京畿 Capital District、都畿 Eastern Capital District（同唐宋卷） |
+| 天宝郡（742—757） | X Commandery | 武威郡 Wuwei Commandery；郡下县 Y County, X Commandery |
+| 军（军镇、守捉的名号） | X Jun | 归仁军 Guiren Jun、大同军 Datong Jun、赤水军 Chishui Jun（同唐宋卷） |
+| 都护·节度（着色方式） | Protectorates & commands | 按钮与索引组同此；计数「N protectorates and commands」，单数 protectorate or command |
+| 行军·行程（图层、索引组） | Campaigns & journeys | 同两晋卷 |
+| 盟 | Covenant | 渭水之盟 Covenant on the Wei、赤岭之盟 Covenant of Chiling、神龙盟誓 Covenant of Shenlong（唐宋卷作 Treaty of X，按卷各用各的） |
+| 岭（山名、关口） | Pass | 承风岭 Chengfeng Pass、大非岭 Dafei Pass、甘松岭 Gansong Pass、拔达岭 Bedel Pass、坦驹岭 Darkot Pass；赤岭照专名作 Chiling |
+| 赞普 | tsenpo（泛称小写） | 赞普钟 Tsenpo Zhong ("younger brother of the tsenpo")；人名 Tridu Songtsen（器弩悉弄）、Tride Tsuktsen（赤德祖赞）、Gar Trinring（论钦陵）、Gar Tsenba（赞婆） |
+| 大食 | Arab Caliphate（短名 Caliphate） | 黑衣大食 Caliphate (Abbasid)；句中解释汉称时作 the Black-Robed Arabs / the White-Robed Arabs |
+| 武周 | Zhou (Wu Zhou) | 唐的当年别名；神都 Divine Capital；武后 Empress Wu |
+| 都护（官名） | protector-general | 副都护 deputy protector-general |
+
 ## 四、人名、政权
 
 - 汉人名：姓在前、拼音（Li Shimin、Dou Jiande、Wang Shichong）；复姓连写（Yuwen Huaji、Zhangsun Wuji、Yuchi Jingde、Qutu Tong、Heruo Bi）；帝王用 “Emperor + 庙号/谥号 + of + 朝”（Emperor Yang of Sui、Emperor Taizong of Tang）。
@@ -63,6 +80,7 @@
 - 高句丽的城用新罗马字加 Fortress（辽东城 Yodong Fortress、建安城 Geonan Fortress、安市城 Ansi Fortress），隋唐所设州郡仍用拼音。
 - 吐蕃：Songtsen Gampo、Gar Tongtsen（禄东赞）、Pugyal（悉补野）、Yarlung、Rasa（逻些）；象雄 Zhangzhung、苏毗 Sumpa。
 - 西域与葱岭以西：焉耆 Karasahr、龟兹 Kucha、于阗 Khotan、疏勒 Kashgar、康国 Samarkand、安国 Bukhara、石国 Chach、史国 Kesh、拔汗那 Ferghana、吐火罗 Tokharistan、缚喝 Balkh、帆延 Bamiyan、迦毕试 Kapisa、木鹿 Merv、疾陵城 Zaranj。
+- 670—755 年的政权与人名：后突厥 Second Turkic Qaghanate（短名 Second Turks），阿史那骨咄禄 Ashina Qutlugh、默啜 Qapaghan、毗伽可汗 Bilge Qaghan、阙特勤 Kül Tegin、暾欲谷 Tonyukuk；突骑施 Türgesh，乌质勒 Üch Elig、娑葛 Saqal、苏禄 Suluk；葛逻禄 Karluks；拔悉密 Basmyl；黠戛斯 Kyrgyz（坚昆 Jiankun）；回纥、回鹘 Uyghurs（670—743 年正文作 Huihe (Uyghurs)；670 年以前作铁勒一部时作 Huihe），汗国 Uyghur Qaghanate，骨力裴罗 Guli Peiluo、骨咄禄毗伽阙可汗 Qutlugh Bilge Kül Qaghan、怀仁可汗 Huairen Qaghan；于都斤山、乌德鞬山 Ötüken。渤海 Balhae（震国 Jin），人名用新罗马字（大祚荣 Dae Joyeong、大武艺 Dae Muye、大钦茂 Dae Heummu），府州用拼音（显州 Xianzhou）；渤海郡王 Commandery Prince of Bohai。南诏 Nanzhao，六诏的诏作 zhao（蒙舍诏 Mengshe zhao），皮罗阁 Piluoge、阁罗凤 Geluofeng；两爨 the two Cuan。日本 Japan（705 年起），人名、地名用平文式：Fujiwara-kyō、Heijō-kyō、Awata no Mahito、Abe no Nakamaro、Kibi no Makibi。大食 Arab Caliphate，屈底波 Qutayba ibn Muslim，信度 Sindh。小勃律 Little Balur，大勃律 Great Balur，归仁军 Guiren Jun。
 - 政权名见 `units.json`：地图上用短名（s），说明里用全称（n）。隋末群雄写作 “国号 (人名)”：Xia (Dou Jiande)、Zheng (Wang Shichong)。
 
 ## 五、年代

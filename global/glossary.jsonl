@@ -624,7 +624,7 @@
 {"id":"羌8","kind":"place","zh":"羌8","en":"Qiang8"}
 {"id":"科布多","kind":"place","zh":"科布多","en":"Kobdo"}
 {"id":"坚昆","kind":"place","zh":"米努辛斯克","en":"Minusinsk"}
-{"id":"坚昆","kind":"place","zh":"黠戛斯牙帐","en":"Kyrgyz khan's camp","by_era":{"Kyrgyz khagan's camp":["唐宋"],"Kyrgyz khan's camp":["宋元"]}}
+{"id":"坚昆","kind":"place","zh":"黠戛斯牙帐","en":"Kyrgyz royal camp"}
 {"id":"坚昆","kind":"place","zh":"坚昆","en":"Jiankun (Kyrgyz)"}
 {"id":"雅隆","kind":"place","zh":"雅隆（琼结）","en":"Yarlung (Chongye)"}
 {"id":"雅隆","kind":"place","zh":"雅隆（悉补野）","en":"Yarlung (Pugyal)"}
@@ -805,6 +805,7 @@
 {"id":"张掖属国","kind":"place","zh":"张掖属国","en":"Zhangye Dependent State"}
 {"id":"居延属国","kind":"place","zh":"居延属国","en":"Juyan Dependent State"}
 {"id":"居延","kind":"place","zh":"黑水城","en":"Heishui City"}
+{"id":"居延","kind":"place","zh":"居延","en":"Juyan"}
 {"id":"道孚","kind":"place","zh":"道孚","en":"Dawu"}
 {"id":"宜力","kind":"place","zh":"宜力","en":"Grik"}
 {"id":"滇西","kind":"place","zh":"滇西","en":"Western Dian"}
@@ -890,10 +891,10 @@
 {"id":"黎州","kind":"place","zh":"汉源","en":"Hanyuan"}
 {"id":"黎州","kind":"place","zh":"黎州","en":"Lizhou"}
 {"id":"黎州","kind":"place","zh":"雅州汉源县","en":"Hanyuan County, Yazhou"}
-{"id":"回纥牙帐","kind":"place","zh":"斡耳朵八里（回纥牙帐）","en":"Ordu-Baliq (Uyghur khagan's camp)"}
-{"id":"回纥牙帐","kind":"place","zh":"回纥牙帐","en":"Uyghur khagan's camp"}
+{"id":"回纥牙帐","kind":"place","zh":"斡耳朵八里（回纥牙帐）","en":"Ordu-Baliq (Uyghur royal camp)"}
+{"id":"回纥牙帐","kind":"place","zh":"回纥牙帐","en":"Uyghur royal camp"}
 {"id":"回纥牙帐","kind":"place","zh":"斡耳朵八里","en":"Ordu-Baliq"}
-{"id":"回纥牙帐","kind":"place","zh":"回鹘牙帐","en":"Uyghur khagan's camp"}
+{"id":"回纥牙帐","kind":"place","zh":"回鹘牙帐","en":"Uyghur royal camp"}
 {"id":"滇池","kind":"place","zh":"昆明","en":"Kunming"}
 {"id":"滇池","kind":"place","zh":"拓东城","en":"Tuodong City"}
 {"id":"滇池","kind":"place","zh":"滇池","en":"Lake Dian"}
@@ -3769,7 +3770,7 @@
 {"id":"吴（李子通）","kind":"polity","zh":"吴（李子通）","en":"Wu (Li Zitong)"}
 {"id":"吴（汪华）","kind":"polity","zh":"吴（汪华）","en":"Wu (Wang Hua)"}
 {"id":"唐","kind":"polity","zh":"唐","en":"Tang"}
-{"id":"回鹘","kind":"polity","zh":"回鹘","en":"Uyghur Khaganate"}
+{"id":"回鹘","kind":"polity","zh":"回鹘","en":"Uyghur Qaghanate"}
 {"id":"夏（窦建德）","kind":"polity","zh":"夏（窦建德）","en":"Xia (Dou Jiande)"}
 {"id":"大食","kind":"polity","zh":"大食","en":"Arab Caliphate"}
 {"id":"安东都护府","kind":"polity","zh":"安东都护府","en":"Andong Protectorate"}

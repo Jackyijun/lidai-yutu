@@ -60,6 +60,7 @@
 - 汉人名：姓在前、拼音（Yue Fei、Han Shizhong）；帝王用“Emperor + 庙号 + of + 朝”（Emperor Taizong of Song）或通行称呼（Emperor Tianzuo）。
 - 契丹、女真、党项人名按汉文史籍拼音（Yelü Dashi、Wanyan Aguda、Li Yuanhao）；兀术写作 Wuzhu（Wanyan Zongbi）。
 - 蒙古人名用通行英文写法：Genghis Khan、Temüjin、Kublai、Hulagu、Möngke、Ögedei、Batu、Subutai、Jebe、Tolui、Ariq Böke、Kaidu。
+- 突厥、回鹘、黠戛斯的可汗作 qaghan，汗国作 Qaghanate，牙帐作 royal camp（甘州回鹘 the Ganzhou qaghan；2026-11-27 起全图统一，同两晋、隋唐、唐宋卷）；蒙古的汗、大汗照上一条作 Khan。
 - 朝鲜用新罗马字（Goryeo、Gaegyeong、Gang Gam-chan）；日本用平文式（Heian-kyō、Minamoto no Yoshitsune）；越南保留声调符号（Đại Việt、Lý Thường Kiệt、Thăng Long）。
 - 罗斯与乌克兰地名用今乌克兰拼法（Kyiv、Chernihiv、Halych、Volodymyr），国家称 Kievan Rus'。罗斯人名用英文通行写法并全图统一：Volodymyr the Great、Yaroslav the Wise、Mstislav（父名 Mstislavich）、Yuri；“大公”译 Grand Prince。
 - 伊斯兰世界人名去掉长音符号的通行写法（Alp Arslan、Jalal al-Din、Nur ad-Din、Saladin、Baybars）；喀喇汗统一作 Kara-Khanid(s)。

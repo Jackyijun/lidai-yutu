@@ -171,6 +171,8 @@ geodata/ (底图) ─────┘                                            
 
 ## 六、常见修改
 
+**改 755 年节点的归属**：755 年节点与《隋至盛唐形势图》末节点共用，以本卷为准（`global/junctions.toml`）。改了以后，同步改 `eras/suitang/content/snaps_tables.py` 的 `TS755`（隋唐卷各点在 755 年的归属照本卷），两卷一起重算（`python run.py suitang tangsong`）；755—757 年的州郡名称与隋唐卷 `content/seeds_late.py` 的 `NM_LATE` 一致。
+
 **改某州某年的归属**：在 `snaps.txt` 对应年份块里加一行。例如 805 年把宿州划给武宁：
 
 ```

@@ -540,7 +540,7 @@
 {"id":"吴（李子通）","n":"吴（李子通）","kind":"state","eras":["suitang"],"refs":["suitang:吴李"],"colors":{"suitang":["#A28D54","#B89F58"]},"en":"Wu (Li Zitong)"}
 {"id":"吴（汪华）","n":"吴（汪华）","kind":"state","eras":["suitang"],"refs":["suitang:汪华"],"colors":{"suitang":["#81A0D1","#8DB3EE"]},"en":"Wu (Wang Hua)"}
 {"id":"唐","n":"唐","kind":"state","eras":["suitang","tangsong"],"refs":["suitang:唐","tangsong:唐"],"colors":{"suitang":["#C5A579","#DEB67F"],"tangsong":["#C5A579","#DEB67F"]},"en":"Tang"}
-{"id":"回鹘","n":"回鹘","kind":"state","eras":["suitang","tangsong"],"refs":["suitang:回鹘","tangsong:回鹘"],"colors":{"suitang":["#94B68C","#A1CC98"],"tangsong":["#94B68C","#A1CC98"]},"en":"Uyghur Khaganate"}
+{"id":"回鹘","n":"回鹘","kind":"state","eras":["suitang","tangsong"],"refs":["suitang:回鹘","tangsong:回鹘"],"colors":{"suitang":["#94B68C","#A1CC98"],"tangsong":["#94B68C","#A1CC98"]},"en":"Uyghur Qaghanate"}
 {"id":"夏（窦建德）","n":"夏（窦建德）","kind":"state","eras":["suitang"],"refs":["suitang:夏"],"colors":{"suitang":["#8CB4D1","#95C8ED"]},"en":"Xia (Dou Jiande)"}
 {"id":"大食","n":"大食","kind":"state","eras":["suitang"],"refs":["suitang:大食"],"colors":{"suitang":["#89975E","#9AAB65"]},"en":"Arab Caliphate"}
 {"id":"安东都护府","n":"安东都护府","kind":"zhen","eras":["suitang"],"refs":["suitang:安东"],"colors":{"suitang":["#A28D54","#B89F58"]},"en":"Andong Protectorate"}

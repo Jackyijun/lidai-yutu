@@ -1,8 +1,8 @@
-# Sui and Early Tang, 581–669
+# Sui to the High Tang, 581–755
 
 [![中文](https://img.shields.io/badge/lang-%E4%B8%AD%E6%96%87-red.svg)](README.md) [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.en.md)
 
-581–669, from Emperor Wen of Sui taking the throne from Northern Zhou to the height of Tang territory in Zongzhang 2 under Emperor Gaozong: 26 time points, with the late-Sui rebels and the Tang reunification broken down month by month. It includes the campaign route of Li Shimin, Prince of Qin, historical and modern place names side by side, a timeline and a gazetteer. Bilingual (Chinese and English), a single web page with no external dependencies.
+581–755, from Emperor Wen of Sui taking the throne from Northern Zhou to Tianbao 14 under Emperor Xuanzong, on the eve of the An Lushan Rebellion: 42 time points. The late-Sui rebels and the Tang reunification are broken down month by month; the 16 time points from 670 follow the rise and fall of Tibet, the Second Turks, the Türgesh, the Caliphate, Balhae and Nanzhao, and the ten military commands of the Tianbao era. It includes campaign and journey routes (16, among them the Prince of Qin's campaigns, Xuanzang's pilgrimage, Wang Xuance's mission to India and Gao Xianzhi's expeditions), historical and modern place names side by side, a timeline and a gazetteer. The 755 time point is shared with the first time point of the *Tang–Song transition* map and has the same territories. Bilingual (Chinese and English), a single web page with no external dependencies.
 
 ## 1. Just look
 
@@ -49,10 +49,13 @@ eras/suitang/
 ├── README.md           readme (Chinese)
 ├── README.en.md        readme (English)
 ├── content/            historical content (hand-written)
-│   ├── seeds.py        465 allegiance points: prefectures, commanderies and towns (shown) and helper points used only for partitioning, with modern locations and name changes
+│   ├── seeds.py        577 allegiance points: prefectures, commanderies and towns (shown) and helper points used only for partitioning, with modern locations and name changes (points added from 670 are read in from seeds_late.py)
+│   ├── seeds_late.py   allegiance points from 670: points added from the Tang–Song map (IMPORT), points that stop partitioning (RETIRE), name changes 669–758 (NM_LATE, each line citing its sources), region points shown from 670 (SHOW)
 │   ├── units.py        states, protectorates, loose-rein prefectures, peoples: names, notes
-│   ├── snaps.py        26 time points: titles, summaries, the prefectures each unit holds, seats, alternative names
-│   ├── items.py        capitals, battles, passes, events, notes on mountains and rivers, peoples, the Prince of Qin's campaign route
+│   ├── snaps.py        42 time points: titles, summaries, the prefectures each unit holds, seats, alternative names
+│   ├── snaps_tables.py allegiances at the 755 time point (TS755, following the Tang–Song map's 755 time point); points added in 670 continue the 669 allegiances (INHERIT670)
+│   ├── items.py        capitals, battles, passes, events, notes on mountains and rivers, peoples, campaign and journey routes (16)
+│   ├── falls.tsv       falls of states: year, the fallen state (its name on the map), what happened, and English; the same format in all nine volumes (see "Falls of states" in core/web/README.md)
 │   ├── frontier.py     the outer edge of the map (the northern frontier hand-drawn after the usual maps of Tang at its height; the unified engine takes its computation extent from it)
 │   └── en/             English version: translations matching the files above (JSON), zh.lock.json Chinese fingerprints, GLOSSARY.md naming conventions
 ├── src/
@@ -75,6 +78,13 @@ eras/suitang/
 
 **Stage 1**: `build.py` checks the base data → `basemap.py` builds the base map → `compile_data.py` works out the allegiances at each time point from `content/snaps.py` and assembles the items → `assemble.py` merges in the English and writes `source.json`.
 
+**Allegiance points from 670 and the 755 junction** (step 8, 27 November 2026): the 755 time point is shared with the first time point of the *Tang–Song transition* map (section 18 of the style guide, "shared allegiance points"). Inside the Tang–Song map's computation extent (72°–136°E, 10°–55°N), the time points from 670 on use the same set of points as that map: the 111 points only it had join the partition from 670 (`IMPORT` in `seeds_late.py`; coordinates, modern places and types are read from the Tang–Song map's `content/seeds.txt`, so they are stored once), plus, from 698, the old Balhae capital at Mount Dongmou; the 69 points only this volume had stop taking part in the partition after 669 (`RETIRE`; they are still shown). Outside that extent (the Aral Sea, west of the Pamirs, India, north of Lake Baikal) this volume's own points are used.
+
+- `pins = "active"` under `[engine]` in `era.toml`: each time point protects only the points that take part in its own partition, so the territories of the 26 time points up to 669 are byte-identical to what they were before the points were added.
+- `align_retired = true` under `[engine]`: when the v1 data is generated (`core/v1/engine_geom.py`), retired points take the allegiance of the territory drawn around them at each time point, and units left with only such points and no territory on the map are dropped from that time point (the Fuguo & Qiang unit from 670; the Chanyu, Andong and Anbei protectorates from 745; the Mohe in 755). The original allegiances and polity table are kept in `own_src` and `pol_src`; the engine reads those, so its input and fingerprint are not affected by the alignment.
+- The Tang–Song map is authoritative for the 755 time point (`global/junctions.toml`): inside its computation extent the territories are copied from it, and each point's allegiance follows its 755 time point (`TS755` in `snaps_tables.py`). If the Tang–Song map's 755 time point changes, change this too; at build time `core/v1` checks the shared time point of the two volumes.
+- 33 places that were region points in this volume but prefectures or towns in the Tang–Song map (Mingzhou, Wenzhou, Quanzhou, Rongzhou, and Silla's Wansanju, Sangju, Myeongju and others) are shown as in that map from 670, or from the year the prefecture was set up (`SHOW`).
+
 > What follows describes how this volume's old build computed territories, chose colors and rendered the page; those parts were removed from this directory in the third batch of the architecture cleanup (November 2026), when stage 1 was reduced to writing `source.json`, and the description is kept to explain how the old page was made.
 
 **The old build's territory algorithm** (formerly `src/territory.py`, with its parameters then in `src/config.py`):
@@ -93,6 +103,7 @@ eras/suitang/
 
 - **Change allegiances at a time point**: edit that time point's `own` in `content/snaps.py` (unit → list of prefectures; things like `#HB` are region shorthands), then run `python run.py suitang` at the monorepo root (the territories must be recomputed).
 - **Add a prefecture or helper point**: add a line to `content/seeds.py` (`name|modern place|longitude|latitude|type|region|name history`; type z prefecture, c town, r partitioning only), assign it in `snaps.py`, then run `python run.py suitang` at the monorepo root (the territories must be recomputed). Add the English for a new prefecture name and modern place to `content/en/seeds.json`.
+- **Change names after 670**: edit `NM_LATE` in `content/seeds_late.py` (`year:name` pairs separated by commas; the build reads them up to 755) and cite the sources in the line's comment; they must agree with the names at the Tang–Song map's three time points 755–757 (`N=` in `eras/tangsong/content/seeds.txt`).
 - **Change notes, battles, events**: edit `content/items.py` or `units.py`, make the same change to the English in the matching JSON in `content/en/`, run `python tools/i18n.py lock`, then `python run.py --html` here and `python run.py --web` at the monorepo root.
 - **Change the northern frontier**: edit the `NORTH` polyline (longitude, latitude) in `content/frontier.py`, then run `python run.py suitang` at the monorepo root (the unified engine takes its computation extent from it).
 - **Change style or interaction**: the page template is in the monorepo's `core/web/` (shared by the volumes; text and switches that differ between volumes are under `[web]` in `era.toml`); afterwards run `python run.py --web` at the monorepo root.
@@ -130,7 +141,7 @@ All that is left in this volume's `src/config.py` is paths and the base-map exte
 
 ## 9. Sources and reliability
 
-Territories are inferred in outline from the *Book of Sui*, the two *Books of Tang*, the *Zizhi Tongjian* and volume 5 of Tan Qixiang's *Historical Atlas of China*, by prefecture and along mountains and rivers; they are only indicative. Loose-rein protectorates and area commands were mostly nominal, and the steppe peoples had no precise borders; the northern frontier is hand-drawn after the usual maps of Tang at its height. Modern locations are the site or the city it lies in.
+Territories are inferred in outline from the *Book of Sui*, the two *Books of Tang*, the *Zizhi tongjian*, the *Tang huiyao* and volume 5 of Tan Qixiang's *Historical Atlas of China*, by prefecture and along mountains and rivers; they are only indicative. The 755 time point follows the *Tang–Song transition* map. Prefecture names after 670 were checked point by point (the geography treatises of the two *Books of Tang*, the *Yuanhe junxian tuzhi* and others), with the sources cited in the comments of `content/seeds_late.py`. Loose-rein protectorates and area commands were mostly nominal, and the steppe peoples had no precise borders; the northern frontier is hand-drawn after the usual maps of Tang at its height. Modern locations are the site or the city it lies in.
 
 English names follow `content/en/GLOSSARY.md`: places in the Chinese-character world in pinyin, places beyond it under the usual English form of their local name at the time; dates keep the lunar month and are not converted to the Western calendar.
 

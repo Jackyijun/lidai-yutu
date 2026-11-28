@@ -27,9 +27,7 @@
   "mod": "Fengxiang, Shaanxi",
   "n": {
    "岐州": "Qizhou",
-   "扶风郡": "Fufeng Commandery",
-   "凤翔郡": "Fengxiang Commandery",
-   "凤翔府": "Fengxiang Fu"
+   "扶风郡": "Fufeng Commandery"
   }
  },
  "陇州": {
@@ -61,8 +59,7 @@
   "mod": "Jingchuan, Gansu",
   "n": {
    "泾州": "Jingzhou",
-   "安定郡": "Anding Commandery",
-   "保定郡": "Baoding Commandery"
+   "安定郡": "Anding Commandery"
   }
  },
  "折墌城": {
@@ -120,8 +117,7 @@
    "弘化郡": "Honghua Commandery",
    "周武防": "Zhouwu Post",
    "合川镇": "Hechuan Garrison",
-   "安化郡": "Anhua Commandery",
-   "顺化郡": "Shunhua Commandery"
+   "安化郡": "Anhua Commandery"
   }
  },
  "原州": {
@@ -459,8 +455,7 @@
   "n": {
    "恒州": "Hengzhou",
    "恒山郡": "Hengshan Commandery",
-   "常山郡": "Changshan Commandery",
-   "平山郡": "Pingshan Commandery"
+   "常山郡": "Changshan Commandery"
   }
  },
  "赵州": {
@@ -778,8 +773,7 @@
    "济州": "Jizhou",
    "济北郡": "Jibei Commandery",
    "济阳郡": "Jiyang Commandery",
-   "东平郡卢县": "Lu County, Dongping Commandery",
-   "郓州卢县": "Lu County, Yunzhou"
+   "东平郡卢县": "Lu County, Dongping Commandery"
   }
  },
  "兖州": {
@@ -982,8 +976,7 @@
   "n": {
    "舒州": "Shuzhou",
    "熙州": "Xizhou",
-   "同安郡": "Tong'an Commandery",
-   "盛唐郡": "Shengtang Commandery"
+   "同安郡": "Tong'an Commandery"
   }
  },
  "蕲州": {
@@ -1108,13 +1101,11 @@
   "mod": "Yang County, Shaanxi",
   "n": {
    "洋州": "Yangzhou",
-   "汉川郡西乡县": "Xixiang County, Hanchuan Commandery",
    "兴势县": "Xingshi County",
    "汉川郡兴势县": "Xingshi County, Hanchuan Commandery",
    "洋州兴势县": "Xingshi County, Yangzhou",
    "洋州兴道县": "Xingdao County, Yangzhou",
-   "洋川郡兴道县": "Xingdao County, Yangchuan Commandery",
-   "洋川郡": "Yangchuan Commandery"
+   "洋川郡兴道县": "Xingdao County, Yangchuan Commandery"
   }
  },
  "金州": {
@@ -1122,8 +1113,7 @@
   "n": {
    "金州": "Jinzhou",
    "西城郡": "Xicheng Commandery",
-   "安康郡": "Ankang Commandery",
-   "汉南郡": "Hannan Commandery"
+   "安康郡": "Ankang Commandery"
   }
  },
  "凤州": {
@@ -1202,8 +1192,7 @@
   "mod": "Chengdu, Sichuan",
   "n": {
    "益州": "Yizhou",
-   "蜀郡": "Shu Commandery",
-   "成都府": "Chengdu Fu"
+   "蜀郡": "Shu Commandery"
   }
  },
  "彭州": {
@@ -1346,8 +1335,7 @@
    "平武郡": "Pingwu Commandery",
    "龙门郡": "Longmen Commandery",
    "龙门州": "Longmen Zhou",
-   "江油郡": "Jiangyou Commandery",
-   "应灵郡": "Yingling Commandery"
+   "江油郡": "Jiangyou Commandery"
   }
  },
  "剑州": {
@@ -1488,12 +1476,9 @@
    "蒋州": "Jiangzhou",
    "丹阳郡": "Danyang Commandery",
    "扬州": "Yangzhou",
-   "江宁县": "Jiangning County",
    "白下县": "Baixia County",
    "润州江宁县": "Jiangning County, Runzhou",
-   "丹阳郡江宁县": "Jiangning County, Danyang Commandery",
-   "江宁郡": "Jiangning Commandery",
-   "升州": "Shengzhou"
+   "丹阳郡江宁县": "Jiangning County, Danyang Commandery"
   }
  },
  "润州": {
@@ -1588,9 +1573,6 @@
   "mod": "Meicheng, Jiande, Zhejiang",
   "n": {
    "睦州": "Muzhou",
-   "遂安郡": "Sui'an Commandery",
-   "新安郡": "Xin'an Commandery",
-   "新安县": "Xin'an County",
    "桐庐县地": "part of Tonglu County",
    "睦州建德县": "Jiande County, Muzhou",
    "新定郡": "Xinding Commandery"
@@ -1868,8 +1850,7 @@
   "mod": "Guilin, Guangxi",
   "n": {
    "桂州": "Guizhou",
-   "始安郡": "Shi'an Commandery",
-   "建陵郡": "Jianling Commandery"
+   "始安郡": "Shi'an Commandery"
   }
  },
  "梧州": {
@@ -2011,8 +1992,7 @@
   "n": {
    "交州": "Jiaozhou",
    "交趾郡": "Jiaozhi Commandery",
-   "安南都护府": "Annan Protectorate",
-   "镇南都护府": "Zhennan Protectorate"
+   "安南都护府": "Annan Protectorate"
   }
  },
  "峰州": {
@@ -2250,8 +2230,7 @@
   "n": {
    "龟兹": "Kucha",
    "龟兹国都（伊逻卢城）": "Kucha (Yiluolu City)",
-   "龟兹镇（安西都护府）": "Kucha Garrison (Anxi Protectorate)",
-   "龟兹镇（镇西都护府）": "Kucha Garrison (Zhenxi Protectorate)"
+   "龟兹镇（安西都护府）": "Kucha Garrison (Anxi Protectorate)"
   }
  },
  "拨换": {
@@ -2438,8 +2417,7 @@
  "汉城": {
   "mod": "Jaeryeong, South Hwanghae, North Korea",
   "n": {
-   "汉城": "Hanseong",
-   "重盘郡": "Jungban-gun"
+   "汉城": "Hanseong"
   }
  },
  "通定镇": {
@@ -2457,8 +2435,7 @@
    "泗沘城（百济都）": "Sabi (Baekje capital)",
    "泗沘（熊津都督府）": "Sabi (Ungjin Area Command)",
    "所夫里州": "Soburiju",
-   "所夫里郡": "Soburi-gun",
-   "扶余郡": "Buyeo-gun"
+   "所夫里郡": "Soburi-gun"
   }
  },
  "熊津": {
@@ -2468,8 +2445,7 @@
    "熊津城": "Ungjin Fortress",
    "熊津城（熊津都督府）": "Ungjin Fortress (Ungjin Area Command)",
    "熊川郡": "Ungcheon-gun",
-   "熊川州": "Ungcheonju",
-   "熊州": "Ungju"
+   "熊川州": "Ungcheonju"
   }
  },
  "周留城": {
@@ -2490,8 +2466,7 @@
   "n": {
    "汉山": "Hansan",
    "北汉山州": "Bukhansanju",
-   "汉山州": "Hansanju",
-   "汉州": "Hanju"
+   "汉山州": "Hansanju"
   }
  },
  "筑紫": {
@@ -2516,7 +2491,7 @@
   "n": {
    "契丹牙帐": "Khitan royal camp",
    "松漠都督府": "Songmo Area Command",
-   "契丹牙帐（潢水）": "Khitan khagan's camp (Huang River)"
+   "契丹牙帐（潢水）": "Khitan royal camp (Huang River)"
   }
  },
  "奚王牙帐": {
@@ -2769,8 +2744,7 @@
   "n": {
    "蓬州大寅县": "Dayin County, Pengzhou",
    "蓬州": "Pengzhou",
-   "咸安郡": "Xian'an Commandery",
-   "蓬山郡": "Pengshan Commandery"
+   "咸安郡": "Xian'an Commandery"
   },
   "mod": "north of Yingshan, Sichuan"
  },
@@ -2784,8 +2758,7 @@
  "昌州": {
   "n": {
    "合州地": "part of Hezhou",
-   "巴川郡地": "part of Bachuan Commandery",
-   "昌州大足县": "Dazu County, Changzhou"
+   "巴川郡地": "part of Bachuan Commandery"
   },
   "mod": "Dazu, Chongqing"
  },
@@ -2988,9 +2961,7 @@
   "n": {
    "横野军": "Hengye Jun",
    "蔚州安边县": "Anbian County, Yuzhou",
-   "安边郡": "Anbian Commandery",
-   "兴唐郡": "Xingtang Commandery",
-   "蔚州": "Yuzhou"
+   "安边郡": "Anbian Commandery"
   },
   "mod": "Yu County, Hebei"
  },
@@ -2998,8 +2969,7 @@
   "n": {
    "兰州狄道县": "Didao County, Lanzhou",
    "金城郡狄道县": "Didao County, Jincheng Commandery",
-   "狄道郡": "Didao Commandery",
-   "临州": "Linzhou"
+   "狄道郡": "Didao Commandery"
   },
   "mod": "Lintao, Gansu"
  },
@@ -3097,8 +3067,7 @@
  },
  "毗罗补罗": {
   "n": {
-   "奔陀浪": "Panduranga",
-   "毗罗补罗": "Virapura"
+   "奔陀浪": "Panduranga"
   },
   "mod": "south of Phan Rang, Khánh Hòa (formerly Ninh Thuận province), Vietnam (Panduranga; exact site uncertain)"
  },
@@ -3161,8 +3130,7 @@
  "宾州": {
   "n": {
    "宾州": "Binzhou",
-   "安城郡": "Ancheng Commandery",
-   "岭方郡": "Lingfang Commandery"
+   "安城郡": "Ancheng Commandery"
   },
   "mod": "Binyang, Guangxi"
  },
@@ -3202,7 +3170,7 @@
  },
  "回鹘牙帐": {
   "n": {
-   "回纥牙帐": "Uyghur khagan's camp"
+   "回纥牙帐": "Uyghur royal camp"
   },
   "mod": "Kharbalgas, Mongolia (Ordu-Baliq)"
  },
@@ -3252,8 +3220,7 @@
  "浿江镇": {
   "n": {
    "大谷郡": "Daegok-gun",
-   "大谷城": "Daegok Fortress",
-   "永丰郡": "Yeongpung-gun"
+   "大谷城": "Daegok Fortress"
   },
   "mod": "Pyongsan, North Hwanghae, North Korea"
  },
@@ -3266,8 +3233,7 @@
  },
  "铁圆": {
   "n": {
-   "铁圆": "Cheorwon",
-   "铁城郡": "Cheolseong-gun"
+   "铁圆": "Cheorwon"
   },
   "mod": "Cheorwon, South Korea"
  },
@@ -3275,8 +3241,7 @@
   "n": {
    "熊津城（熊津都督府）": "Ungjin Fortress (Ungjin Area Command)",
    "熊川郡": "Ungcheon-gun",
-   "熊川州": "Ungcheonju",
-   "熊州": "Ungju"
+   "熊川州": "Ungcheonju"
   },
   "mod": "Gongju, South Korea"
  },
@@ -3551,5 +3516,11 @@
    "文单": "Wendan"
   },
   "mod": "around Vientiane, Laos"
+ },
+ "居延": {
+  "mod": "Ejin Banner, Inner Mongolia",
+  "n": {
+   "居延": "Juyan"
+  }
  }
 }

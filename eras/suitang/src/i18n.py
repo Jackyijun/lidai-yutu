@@ -62,6 +62,11 @@ def snap_key(s):
     return f"{s['y']}-{s['m']:02d}" if s.get('m') else str(s['y'])
 
 
+def seat_seeds(geo):
+    """当作治所的点（序号）。只参与分区的 r 类点本不显示、不要英文，但当了治所就会画出来（安北都护府 685 年起侨治居延）。"""
+    return {v for s in geo['snaps'] for v in s.get('seat', {}).values()}
+
+
 def required(geo, data):
     """列出全部需要英文的 (文件, 路径, 中文)。路径是键名组成的元组。"""
     req = []
@@ -70,8 +75,9 @@ def required(geo, data):
         if u.get('note'): req.append(('units', (u['k'], 'note'), u['note']))
     labs = sorted({v for s in geo['snaps'] for v in s['lab'].values()})
     for v in labs: req.append(('labels', (v,), v))
-    for s in data['seeds']:
-        if s['t'] == 'r': continue
+    seats = seat_seeds(geo)
+    for i, s in enumerate(data['seeds']):
+        if s['t'] == 'r' and i not in seats: continue
         if s.get('mod'): req.append(('seeds', (s['id'], 'mod'), s['mod']))
         names = [s['n']] + [n for _, n in (s.get('nm') or [])]
         for n in dict.fromkeys(names): req.append(('seeds', (s['id'], 'n', n), n))
@@ -123,8 +129,9 @@ def attach(geo, data, en=None):
         s = g('units', u['k'], 's')
         if s: u['se'] = s
         u['notee'] = g('units', u['k'], 'note') or u.get('note', '')
-    for s in data['seeds']:
-        if s['t'] == 'r': continue
+    seats = seat_seeds(geo)
+    for i, s in enumerate(data['seeds']):
+        if s['t'] == 'r' and i not in seats: continue
         s['ne'] = g('seeds', s['id'], 'n', s['n']) or s['n']
         if s.get('nm'): s['nme'] = [g('seeds', s['id'], 'n', n) or n for _, n in s['nm']]
         s['mode'] = g('seeds', s['id'], 'mod') or s.get('mod', '')

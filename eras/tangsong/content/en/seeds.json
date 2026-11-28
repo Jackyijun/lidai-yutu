@@ -2458,8 +2458,8 @@
  "回鹘牙帐": {
   "mod": "Kharbalgas, Mongolia (Ordu-Baliq)",
   "n": {
-   "回鹘牙帐": "Uyghur khagan's camp",
-   "回纥牙帐": "Uyghur khagan's camp"
+   "回鹘牙帐": "Uyghur royal camp",
+   "回纥牙帐": "Uyghur royal camp"
   }
  },
  "富贵城": {
@@ -2471,7 +2471,7 @@
  "黠戛斯牙帐": {
   "mod": "around Minusinsk, Russia",
   "n": {
-   "黠戛斯牙帐": "Kyrgyz khagan's camp",
+   "黠戛斯牙帐": "Kyrgyz royal camp",
    "坚昆": "Jiankun (Kyrgyz)"
   }
  },
@@ -2479,7 +2479,7 @@
   "mod": "Bairin Left Banner, Inner Mongolia",
   "n": {
    "上京临潢府": "Linhuang Fu (Supreme Capital)",
-   "契丹牙帐（潢水）": "Khitan khagan's camp (Huang River)",
+   "契丹牙帐（潢水）": "Khitan royal camp (Huang River)",
    "皇都": "Huangdu"
   }
  },

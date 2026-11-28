@@ -22,7 +22,7 @@
  "capital:东都": {
   "old": "Eastern Capital",
   "mod": "Luoyang, Henan",
-  "note": "After Wang Shichong was crushed in 621, Li Shimin ordered the Qianyang Hall burned and the Duan Gate tower pulled down, along with other \"extravagant\" palace buildings. In 657 Emperor Gaozong made the Luoyang Palace the Eastern Capital and thereafter often resided at Luoyang; under Wu Zetian it was renamed the Divine Capital (Shendu)."
+  "note": "After Wang Shichong was crushed in 621, Li Shimin ordered the Qianyang Hall burned and the Duan Gate tower pulled down, along with other \"extravagant\" palace buildings. In 657 Emperor Gaozong made the Luoyang Palace the Eastern Capital and thereafter often resided at Luoyang. In the 9th month of 684 it was renamed the Divine Capital; in 690–705 it was the capital of Wu Zhou, and in 705 it was renamed the Eastern Capital again."
  },
  "capital:江都（行在）": {
   "old": "Jiangdu (temporary capital)",
@@ -232,7 +232,7 @@
  "capital:飞鸟": {
   "old": "Asuka",
   "mod": "Asuka, Nara, Japan",
-  "note": "The political center of Wa from the reign of Empress Suiko on. After the Taika Reform of 645 the court moved for a time to Naniwa, and in 667 to Ōmi-Ōtsu."
+  "note": "The political center of Wa from the reign of Empress Suiko on. After the Taika Reform of 645 the court moved for a time to Naniwa, and in the 3rd month of 667 Emperor Tenji moved the capital to the Ōmi-Ōtsu Palace. After the Jinshin War of 672 Emperor Tenmu moved the capital back to the Asuka Kiyomihara Palace, and in the 12th month of 694 Empress Jitō moved to Fujiwara-kyō."
  },
  "capital:典冲（林邑都）": {
   "old": "Simhapura (Linyi capital)",
@@ -672,14 +672,6 @@
   "sides": "Tang defeated Wa and Baekje",
   "cmd": "Liu Rengui, Du Shuang and Buyeo Yung vs. the Wa relief force and Buyeo Pung",
   "note": "The Tang fleet of 170 ships drew up at the mouth of the Baek River. The Wa relief force rushed to attack, and the Tang struck them from both flanks: \"four engagements, four victories; 400 of their boats burned; smoke and flames filled the sky, and the sea ran red\". Buyeo Pung fled to Goguryeo, and Juryu Fortress fell in the 9th month. This was the first large-scale naval battle between China and Japan."
- },
- "battle:新城之战": {
-  "old": "Battle of Sinseong",
-  "mod": "Gao'er Mountain, Fushun, Liaoning",
-  "yt": "9th month, 667",
-  "sides": "Tang defeated Goguryeo",
-  "cmd": "Li Ji vs. Goguryeo",
-  "note": "Seeing Sinseong as the key point on Goguryeo's western border, Li Ji attacked it hard and took it, and all 16 towns around it surrendered. Xue Rengui and Pang Tongshan then drove off Yeon Namgeon's relief army."
  },
  "battle:扶余城之战": {
   "old": "Battle of Buyeo Fortress",
@@ -1153,12 +1145,6 @@
   "mod": "Yao'an, Yunnan",
   "yt": "664",
   "note": "The Yaozhou Area Command was set up at Nongdongchuan to govern the loose-rein prefectures and counties around Erhai Lake and to contest Nanzhong with Tibet."
- },
- "event:泰山封禅": {
-  "old": "Feng and shan sacrifices at Mount Tai",
-  "mod": "Mount Tai, Tai'an, Shandong",
-  "yt": "1st month, 666",
-  "note": "Gaozong, with the officials and envoys from the Turks, Khotan, Persia, India, Wa, Silla, Baekje, Goguryeo and other states, performed the feng and shan sacrifices at Mount Tai. Empress Wu took part in the shan rite on Mount Sheshou as second offerant, setting a precedent for women taking part in the feng and shan."
  },
  "event:泉男生降唐": {
   "old": "Yeon Namsaeng submits to Tang",
@@ -2078,11 +2064,6 @@
   "mod": "around Zoigê, Sichuan",
   "note": "The Tangut tribes, including the Tuoba; after 635 most of them submitted to the empire as Tang loose-rein prefectures, while the western ones were absorbed by Tibet."
  },
- "people:吐谷浑余部": {
-  "old": "Tuyuhun remnants",
-  "mod": "south of Wuwei, Gansu",
-  "note": "After the state fell in 663, Nuohebo fled to Liangzhou with a remnant of several thousand tents; Tang set up Anle Zhou at Lingzhou to resettle them."
- },
  "people:獠": {
   "old": "Lao",
   "mod": "southern Sichuan to northern Guizhou",
@@ -2120,629 +2101,738 @@
  },
  "capital:近江大津宫": {
   "old": "Ōmi-Ōtsu Palace",
-  "mod": "Ōtsu, Shiga, Japan"
+  "mod": "Ōtsu, Shiga, Japan",
+  "note": "In the 3rd month of 667 Emperor Tenji moved the capital from Asuka to the Ōmi-Ōtsu Palace, and in 668 he formally took the throne. In the Jinshin War of 672 Prince Ōtomo was defeated and died, and Prince Ōama (Emperor Tenmu) moved the capital back to Asuka."
  },
  "capital:黑沙城（后突厥牙帐）": {
   "old": "Heisha City (Second Turkic royal camp)",
-  "mod": "north of Hohhot, Inner Mongolia"
+  "mod": "north of Hohhot, Inner Mongolia",
+  "note": "In 682 Ashina Qutlugh gathered followers, seized Heisha City and restored the Turkic state, making it his early royal camp; from here he raided south against the Chanyu Protectorate, Bingzhou and Daizhou. The camp later moved north to Ötüken. The location is disputed; one view places it north of today's Hohhot, north of the Yin Mountains."
  },
  "capital:于都斤山（后突厥牙帐）": {
   "old": "Ötüken (Second Turkic royal camp)",
-  "mod": "eastern Khangai Mountains, Mongolia"
+  "mod": "eastern Khangai Mountains, Mongolia",
+  "note": "After the Second Turkic Qaghanate took over the lands north of the Gobi it again made Ötüken its royal camp; the steles of Kül Tegin and Bilge Qaghan were set up east of it, beside the Orkhon River (732, 735). In 745 the Uyghurs killed Baimei Qaghan, and the Second Turkic Qaghanate fell."
  },
  "capital:碎叶（突骑施牙帐）": {
   "old": "Suyab (Türgesh royal camp)",
-  "mod": "Tokmok, Kyrgyzstan"
+  "mod": "Tokmok, Kyrgyzstan",
+  "note": "In 703 Üch Elig took Suyab and made it his main royal camp, with Gongyue City as his lesser camp. In 711 Qapaghan of the Second Turkic Qaghanate attacked and killed Saqal; in the 3rd month of 714 Ashina Xian, the Tang military governor of Qixi, took Suyab, and in 719 Tang gave Suyab to Suluk. In the 8th month of 739 Gai Jiayun defeated Tuhuoxian Qaghan beneath its walls; after that Suyab was held by the Türgesh remnants, and in 748 Wang Zhengjian took the city."
  },
  "capital:旧国（东牟山）": {
   "old": "Old Capital (Mount Dongmou)",
-  "mod": "Chengshanzi Mountain Fortress, Dunhua, Jilin"
+  "mod": "Chengshanzi Mountain Fortress, Dunhua, Jilin",
+  "note": "In 698 Dae Joyeong led his people east; he \"held Mount Dongmou and built a walled town to live in\", founding the state of Jin. The people of Balhae called this place the Old Capital. Around 742 Dae Heummu moved the capital to Xianzhou (Central Capital)."
  },
  "capital:显州（中京）": {
   "old": "Xianzhou (Central Capital)",
-  "mod": "Xigucheng, Helong, Jilin"
+  "mod": "Xigucheng, Helong, Jilin",
+  "note": "Around 742 Dae Heummu moved the capital from the Old Capital to Xianzhou, which was later called Xiande Fu (Central Capital); at the end of the Tianbao era (c. 756) the capital moved again, to the Supreme Capital."
  },
  "capital:太和城": {
   "old": "Taihe City",
-  "mod": "Taihe Village, Dali, Yunnan"
+  "mod": "Taihe Village, Dali, Yunnan",
+  "note": "In 739 Piluoge moved his capital from the Mengshe Valley (Weishan) to Taihe City, which was set against the Cang Mountains and overlooked Erhai Lake. In 766 Geluofeng set up the Nanzhao Dehua Stele in the city; in 779 the capital moved to Yangjumie City."
  },
  "capital:斡耳朵八里（回纥牙帐）": {
-  "old": "Ordu-Baliq (Uyghur khagan's camp)",
-  "mod": "Kharbalgas, Mongolia"
+  "old": "Ordu-Baliq (Uyghur royal camp)",
+  "mod": "Kharbalgas, Mongolia",
+  "note": "In 744 Guli Peiluo founded the Uyghur Qaghanate, with his royal camp between Ötüken and the Orkhon River; a city was later built there: Ordu-Baliq (today's Kharbalgas ruins)."
  },
  "capital:藤原京@倭": {
   "old": "Fujiwara-kyō",
-  "mod": "Kashihara, Nara, Japan"
+  "mod": "Kashihara, Nara, Japan",
+  "note": "Japan's first capital laid out on the model of Chinese capital cities; Empress Jitō moved into it in 694, and it remained the capital until 710."
  },
  "capital:藤原京@日本": {
   "old": "Fujiwara-kyō",
-  "mod": "Kashihara, Nara, Japan"
+  "mod": "Kashihara, Nara, Japan",
+  "note": "Japan's first capital laid out on the model of Chinese capital cities; Empress Jitō moved into it in 694. In the 3rd month of 710 Empress Genmei moved to Heijō-kyō."
  },
  "capital:平城京": {
   "old": "Heijō-kyō",
-  "mod": "Nara, Japan"
+  "mod": "Nara, Japan",
+  "note": "In 710 Empress Genmei moved the capital to Heijō-kyō, which was laid out on the model of Chang'an and was the site of Tōdai-ji and Tōshōdai-ji; it was the capital until 784, and the Nara period takes its name from it. After his eastward voyage in 753, Jianzhen conferred the precepts here."
  },
  "battle:新城之战@辽宁抚顺高尔山": {
   "old": "Battle of Sinseong",
   "mod": "Gao'er Mountain, Fushun, Liaoning",
   "yt": "9th month, 667",
   "sides": "Tang defeated Goguryeo",
-  "cmd": "Li Ji vs. Goguryeo"
+  "cmd": "Li Ji vs. Goguryeo",
+  "note": "Seeing Sinseong as the key point on Goguryeo's western border, Li Ji attacked it, and its people bound their commander and opened the gates in surrender; pressing on, he took all 16 towns around it. Xue Rengui and Pang Tongshan then drove off Yeon Namgeon's relief army."
  },
  "battle:大非川之战": {
   "old": "Battle of Dafeichuan",
   "mod": "around the Qieji Grassland, Gonghe, Qinghai",
   "yt": "8th month, 670 (7th month in the two Tang histories)",
   "sides": "Tibet defeated Tang",
-  "cmd": "Gar Trinring vs. Xue Rengui and Guo Daifeng"
+  "cmd": "Gar Trinring vs. Xue Rengui and Guo Daifeng",
+  "note": "Over 100,000 Tang troops (50,000 in the \"Annals of Gaozong\" in the Old Book of Tang) were escorting the Tuyuhun to restore their state. Xue Rengui ordered Guo Daifeng to stay on Dafei Pass with 20,000 men and build two stockades to guard the baggage train, while he himself led lightly equipped picked troops ahead to Wuhai. Guo Daifeng disobeyed and moved slowly forward with the baggage; he was intercepted by the Tibetans and lost all of it. Gar Trinring then closed in with over 400,000 men, the Tang army was crushed, and Xue Rengui made peace with Tibet and withdrew."
  },
  "battle:买肖城之战": {
   "old": "Battle of Maeso Fortress",
   "mod": "around Yeoncheon, Gyeonggi, South Korea",
   "yt": "9th month, 675",
   "sides": "Silla defeated Tang (per the Samguk sagi; the New Book of Tang has Tang victorious)",
-  "cmd": "Li Jinxing vs. the Silla army"
+  "cmd": "Li Jinxing vs. the Silla army",
+  "note": "In 675 Li Jinxing camped at Maeso Fortress with Mohe and other troops. The Samguk sagi records that Silla drove him off and captured over 30,000 warhorses; the New Book of Tang, however, says that Li Jinxing won all three of his battles. After this the Tang army gradually lost the upper hand on the peninsula."
  },
  "battle:伎伐浦之战": {
   "old": "Battle of Gibeolpo",
   "mod": "mouth of the Geum River, South Korea",
   "yt": "11th month, 676",
   "sides": "Silla defeated Tang",
-  "cmd": "Sideuk vs. Xue Rengui"
+  "cmd": "Sideuk vs. Xue Rengui",
+  "note": "Sideuk, a Silla official of sachan rank, led a fleet against Xue Rengui at Gibeolpo in Soburiju. The first engagement went against him, but in 22 battles large and small after that he took over 4,000 heads (per the Samguk sagi). The Tang army withdrew from the peninsula, and the Silla–Tang War came to an end."
  },
  "battle:青海之战": {
   "old": "Battle of Qinghai Lake",
   "mod": "southeast of Qinghai Lake",
   "yt": "9th month, 678",
   "sides": "Tibet defeated Tang",
-  "cmd": "Gar Trinring vs. Li Jingxuan and Liu Shenli"
+  "cmd": "Gar Trinring vs. Li Jingxuan and Liu Shenli",
+  "note": "Li Jingxuan led 180,000 men against Tibet. Liu Shenli's vanguard pushed deep and ran into Gar Trinring's main army at Qinghai Lake; Liu Shenli was captured (or killed in battle), while Li Jingxuan held his troops back and did not go to his rescue, falling back to camp at Chengfeng Pass. Only when Heichi Changzhi raided the Tibetan camp by night with 500 men sworn to die was the Tang army able to withdraw."
  },
  "battle:黑山之战": {
   "old": "Battle of Heishan",
   "mod": "area north of Hohhot, Inner Mongolia",
   "yt": "3rd month, 680",
   "sides": "Tang defeated the Turkic rebels",
-  "cmd": "Pei Xingjian vs. Ashina Nishufu and Fengzhi"
+  "cmd": "Pei Xingjian vs. Ashina Nishufu and Fengzhi",
+  "note": "Pei Xingjian led over 300,000 men against the Turkic rebels. Hiding soldiers in grain wagons, he defeated their raiders, and in the 3rd month he crushed them at Heishan; Fengzhi was captured, and Nishufu was killed by his own followers."
  },
  "battle:热海之战": {
   "old": "Battle of Issyk-Kul",
   "mod": "Lake Issyk-Kul, Kyrgyzstan",
   "yt": "4th month, 682",
   "sides": "Tang defeated the Western Turkic remnants",
-  "cmd": "Wang Fangyi vs. Chebo and Yanmian"
+  "cmd": "Wang Fangyi vs. Chebo and Yanmian",
+  "note": "Chebo and Yanmian of the Western Turks besieged Gongyue City. Wang Fangyi, protector-general of Anxi, led troops to its relief and fought them at Issyk-Kul; with a stray arrow through his arm he fought on hard, crushed them and captured 300 of their chiefs."
  },
  "battle:下阿溪之战": {
   "old": "Battle of Xia'axi",
   "mod": "Gaoyou, Jiangsu",
   "yt": "11th month, 684",
   "sides": "Tang defeated Xu Jingye",
-  "cmd": "Li Xiaoyi and Wei Yuanzhong vs. Xu Jingye"
+  "cmd": "Li Xiaoyi and Wei Yuanzhong vs. Xu Jingye",
+  "note": "In the 9th month of 684 Xu Jingye rose in arms at Yangzhou in the name of restoring the Prince of Luling, and Luo Binwang wrote the proclamation against Wu Zhao. In the 11th month Li Xiaoyi, following Wei Yuanzhong's plan, set fires with the wind behind him and crushed Xu Jingye at Xia'axi; Xu Jingye fled to Hailing, where he was killed by his own men."
  },
  "battle:黄花堆之战": {
   "old": "Battle of Huanghuadui",
   "mod": "northeast of Shanyin, Shanxi",
   "yt": "7th month, 687 (8th month in the \"Turks\" chapter of the Old Book of Tang)",
   "sides": "Tang defeated the Second Turks",
-  "cmd": "Heichi Changzhi vs. Qutlugh and Yuanzhen"
+  "cmd": "Heichi Changzhi vs. Qutlugh and Yuanzhen",
+  "note": "The Second Turks raided Shuozhou. Heichi Changzhi, commander-in-chief of the Yanran Route, pursued them to Huanghuadui and crushed them, and the Turks scattered north of the Gobi."
  },
  "battle:寅识迦河之战": {
   "old": "Battle of the Yinshijia River",
   "mod": "around Ili, Xinjiang (location uncertain)",
   "yt": "5th month, 689 (7th month in the Zizhi tongjian)",
   "sides": "Tibet defeated Tang",
-  "cmd": "Tibet vs. Wei Daijia and Yan Wengu"
+  "cmd": "Tibet vs. Wei Daijia and Yan Wengu",
+  "note": "Wei Daijia, as commander-in-chief of the Anxi Route, campaigned against Tibet. At the Yinshijia River he met heavy snow and his grain supplies could not keep up; he was defeated, and many of his soldiers died of cold and hunger. Wei Daijia was banished to Xiuzhou."
  },
  "battle:收复四镇之战": {
   "old": "Recovery of the Four Garrisons",
   "mod": "Kuqa, Xinjiang",
   "yt": "10th month, 692",
   "sides": "Tang defeated Tibet",
-  "cmd": "Wang Xiaojie and Ashina Zhongjie vs. Tibet"
+  "cmd": "Wang Xiaojie and Ashina Zhongjie vs. Tibet",
+  "note": "Wang Xiaojie, commander of the Wuwei Route, and Ashina Zhongjie crushed the Tibetans and retook the Four Garrisons of Kucha, Khotan, Kashgar and Suyab, and 30,000 Han troops were sent to garrison them. Afterwards many memorialists urged that they be abandoned, but Wu Zetian refused (Cui Rong submitted his \"Discussion on Abandoning the Four Garrisons\", arguing strongly that they be held). From then on the Four Garrisons remained secure for a long time."
  },
  "battle:冷泉·大岭之战": {
   "old": "Battle of Lengquan and Daling",
   "mod": "around Yanqi, Xinjiang (location uncertain)",
   "yt": "2nd month, 694",
   "sides": "Tang defeated Tibet and the Western Turks",
-  "cmd": "Wang Xiaojie vs. Bolun Zanren and Ashina Tuizi"
+  "cmd": "Wang Xiaojie vs. Bolun Zanren and Ashina Tuizi",
+  "note": "Wang Xiaojie defeated the Tibetan Bolun Zanren, the Turkic qaghan Ashina Tuizi and others, each with over 30,000 men, at Lengquan and at Daling; Han Sizhong, garrison commissioner of Suyab, also defeated Nishu Irkin and others, with over 10,000 men."
  },
  "battle:素罗汗山之战": {
   "old": "Battle of Mount Suluohan",
   "mod": "around Lintan, Gansu",
   "yt": "3rd month, 696",
   "sides": "Tibet defeated Tang",
-  "cmd": "Gar Trinring and Gar Tsenba vs. Wang Xiaojie and Lou Shide"
+  "cmd": "Gar Trinring and Gar Tsenba vs. Wang Xiaojie and Lou Shide",
+  "note": "Wang Xiaojie and Lou Shide campaigned against Tibet and fought Gar Trinring and his brother at Mount Suluohan in Taozhou; the Tang army was crushed, Wang Xiaojie was dismissed and made a commoner for it, and Lou Shide was demoted to a supernumerary post at Yuanzhou."
  },
  "battle:黄獐谷之战": {
   "old": "Battle of Huangzhang Valley",
   "mod": "northwest of Lulong, Hebei",
   "yt": "8th month, 696",
   "sides": "Khitan defeated Tang",
-  "cmd": "Li Jinzhong and Sun Wanrong vs. Cao Renshi, Zhang Xuanyu and Ma Renjie"
+  "cmd": "Li Jinzhong and Sun Wanrong vs. Cao Renshi, Zhang Xuanyu and Ma Renjie",
+  "note": "The Khitan sent their old and weak to feign surrender, luring the Tang army into a reckless advance, and laid an ambush in Huangzhang Valley. The Tang army was crushed, and Zhang Xuanyu and Ma Renjie were captured."
  },
  "battle:东硖石谷之战": {
   "old": "Battle of Dongxiashi Valley",
   "mod": "northeast of Qian'an, Hebei",
   "yt": "3rd month, 697",
   "sides": "Khitan defeated Tang",
-  "cmd": "Sun Wanrong vs. Wang Xiaojie and Su Honghui"
+  "cmd": "Sun Wanrong vs. Wang Xiaojie and Su Honghui",
+  "note": "Wang Xiaojie led 170,000 men against the Khitan. At Dongxiashi Valley his vanguard met the enemy; Su Honghui, afraid of the enemy, fled first, Wang Xiaojie fell into a ravine and died, and the Tang army was almost entirely wiped out. Soon afterwards Qapaghan struck the Khitan from the rear, and Sun Wanrong was defeated and killed."
  },
  "battle:天门岭之战": {
   "old": "Battle of Tianmenling",
   "mod": "around the northern foot of the Changbai Mountains, Jilin (location uncertain)",
   "yt": "698",
   "sides": "Jin defeated Tang",
-  "cmd": "Dae Joyeong vs. Li Kaigu"
+  "cmd": "Dae Joyeong vs. Li Kaigu",
+  "note": "Li Kaigu, a Khitan general who had surrendered, pursued the Mohe and Goguryeo remnants who were moving east, and Geolsa Biu was defeated and killed. Dae Joyeong led his people to hold Tianmenling against the attack and crushed the Tang army; he then went on east, held Mount Dongmou and founded his state."
  },
  "battle:洪源谷之战": {
   "old": "Battle of Hongyuan Valley",
   "mod": "around Gulang, Gansu",
   "yt": "intercalary 7th month, 700",
   "sides": "Tang defeated Tibet",
-  "cmd": "Tang Xiujing vs. Qu Mangbuzhi"
+  "cmd": "Tang Xiujing vs. Qu Mangbuzhi",
+  "note": "The Tibetan Qu Mangbuzhi raided Liangzhou. Tang Xiujing, grand commissioner of the armies and prefectures of Longyou, fought him at Hongyuan Valley and won six battles out of six, beheading two of his deputy generals and taking 2,500 heads."
  },
  "battle:鸣沙之战": {
   "old": "Battle of Mingsha",
   "mod": "Zhongning, Ningxia",
   "yt": "12th month, 706",
   "sides": "The Second Turks defeated Tang",
-  "cmd": "Qapaghan vs. Shazha Zhongyi"
+  "cmd": "Qapaghan vs. Shazha Zhongyi",
+  "note": "Qapaghan raided Mingsha in Lingzhou. Shazha Zhongyi, commander-in-chief of the Lingwu Jun, met him in battle and was defeated, with over 6,000 dead (30,000 in the \"Annals of Zhongzong\" in the Old Book of Tang). The Turks went on to raid Yuanzhou, Huizhou and other prefectures, and left with over 10,000 horses from the pastures of Longyou."
  },
  "battle:火烧城之战": {
   "old": "Battle of Huoshao City",
   "mod": "around Baicheng, Xinjiang (location uncertain)",
   "yt": "11th month, 708",
   "sides": "The Türgesh defeated Tang",
-  "cmd": "Saqal vs. Niu Shijiang"
+  "cmd": "Saqal vs. Niu Shijiang",
+  "note": "Saqal of the Türgesh, because the Tang court had discussed setting up Ashina Xian and Zong Chuke had taken bribes to have him attacked, proclaimed himself qaghan and invaded along five routes. Niu Shijiang, deputy protector-general of Anxi, fought him at Huoshao City and was defeated and killed, and Saqal then took Anxi."
  },
  "battle:冷陉之战": {
   "old": "Battle of Lengxing",
   "mod": "area north of Chengde, Hebei",
   "yt": "6th month, 712",
   "sides": "Xi defeated Tang",
-  "cmd": "Li Dapu vs. Sun Quan"
+  "cmd": "Li Dapu vs. Sun Quan",
+  "note": "Sun Quan, area commander of Youzhou, set out against the Xi with 20,000 troops and 8,000 cavalry. At Lengxing he met 8,000 horsemen under the Xi chief Li Dapu; the Tang army was crushed, and Sun Quan was captured, handed over to Qapaghan and killed."
  },
  "battle:北庭之战": {
   "old": "Battle of Beiting",
   "mod": "Beiting ruins, Jimsar, Xinjiang",
   "yt": "2nd month, 714",
   "sides": "Tang defeated the Second Turks",
-  "cmd": "Guo Qianguan vs. Tong'e Tegin"
+  "cmd": "Guo Qianguan vs. Tong'e Tegin",
+  "note": "Qapaghan sent his son Tong'e Tegin to besiege Beiting. The protector-general Guo Qianguan came out to fight and beheaded Tong'e beneath the walls; the Turks offered their army's supplies to ransom him, and on learning that he was already dead they withdrew."
  },
  "battle:武街之战": {
   "old": "Battle of Wujie",
   "mod": "around Weiyuan, Gansu",
   "yt": "10th month, 714",
   "sides": "Tang defeated Tibet",
-  "cmd": "Xue Ne and Wang Jun vs. Bendayan and Qilixu"
+  "cmd": "Xue Ne and Wang Jun vs. Bendayan and Qilixu",
+  "note": "A Tibetan army of 100,000 raided Lintao and attacked Lanzhou and Weizhou. Wang Jun raided the Tibetan camp by night, Xue Ne followed up, and they crushed the Tibetans at Wujie (written with a different character in the New Book of Tang annals) and Changcheng Fort, killing or capturing tens of thousands, so that the Tao River stopped flowing."
  },
  "battle:拔汗那之战": {
   "old": "Battle of Ferghana",
   "mod": "Ferghana Valley, Uzbekistan",
   "yt": "715",
   "sides": "Tang defeated Aliaoda",
-  "cmd": "Zhang Xiaosong vs. Aliaoda"
+  "cmd": "Zhang Xiaosong vs. Aliaoda",
+  "note": "The Arab Caliphate and Tibet together set up Aliaoda as king of Ferghana and sent troops against the country, and the king of Ferghana fled to Anxi for help. The investigating censor Zhang Xiaosong led over 10,000 tribal troops several thousand li out from Kucha and took several hundred towns one after another; Aliaoda fled into the mountain valleys, and Zhang Xiaosong's might awed the Western Regions."
  },
  "battle:钵换城之战": {
   "old": "Battle of Bohuan City",
   "mod": "Aksu, Xinjiang",
   "yt": "7th month, 717",
   "sides": "Tang sent troops (outcome unrecorded)",
-  "cmd": "Tang Jiahui and Ashina Xian vs. Suluk"
+  "cmd": "Tang Jiahui and Ashina Xian vs. Suluk",
+  "note": "Suluk of the Türgesh brought in the Arab Caliphate and Tibet in a plan to seize the Four Garrisons, and besieged Bohuan and Dashi City. Tang Jiahui, protector-general of Anxi, reported that he had sent troops of the three tribes of the Karluks to attack them together with Ashina Xian; Chinese sources do not record the outcome."
  },
  "battle:删丹之战": {
   "old": "Battle of Shandan",
   "mod": "Shandan, Gansu",
   "yt": "11th month, 720",
   "sides": "The Second Turks defeated Tang",
-  "cmd": "Tonyukuk vs. Yang Jingshu"
+  "cmd": "Tonyukuk vs. Yang Jingshu",
+  "note": "Tang arranged with the Basmyl, the Xi and the Khitan to attack the Second Turks from both sides. Tonyukuk first fell on the Basmyl at Beiting and captured all of them; on his way back he passed through Chiting and plundered the sheep and horses of Liangzhou. Yang Jingshu, military governor of Hexi, sent troops in pursuit, and they were crushed at Shandan."
  },
  "battle:六胡州之乱": {
   "old": "Six Hu Prefectures revolt",
   "mod": "around Otog Front Banner, Inner Mongolia",
   "yt": "4th month, 721 – 722",
   "sides": "Tang defeated Kang Daibin",
-  "cmd": "Wang Jun and Zhang Yue vs. Kang Daibin and Kang Yuanzi"
+  "cmd": "Wang Jun and Zhang Yue vs. Kang Daibin and Kang Yuanzi",
+  "note": "Kang Daibin, of the surrendered Sogdian households settled in the Six Hu Prefectures in the Yellow River bend, rose in revolt with 70,000 followers and advanced on Xiazhou; Wang Jun, Guo Zhiyun and others put the rising down. In 722 Kang Yuanzi rose again and was put down by Zhang Yue, and over 50,000 of the remaining Hu of the six prefectures of the river bend were moved to the Central Plains."
  },
  "battle:小勃律之战": {
   "old": "Battle of Little Balur",
   "mod": "Gilgit, Pakistan",
   "yt": "722",
   "sides": "Tang and Little Balur defeated Tibet",
-  "cmd": "Zhang Sili and Mojinmang vs. Tibet"
+  "cmd": "Zhang Sili and Mojinmang vs. Tibet",
+  "note": "Tibet attacked Little Balur and seized nine of its towns, and Mojinmang, King of Little Balur, asked the Beiting Protectorate for help. The military governor Zhang Xiaosong sent Zhang Sili, deputy commissioner of Kashgar, with 4,000 tribal and Han infantry and cavalry, who hurried to the rescue day and night at double speed. Together with Mojinmang they attacked from both sides, crushed the Tibetans and recovered the nine towns."
  },
  "battle:瓜州之战": {
   "old": "Battle of Guazhou",
   "mod": "Suoyang City, Guazhou, Gansu",
   "yt": "9th month, 727",
   "sides": "Tibet defeated Tang",
-  "cmd": "Xinuoluo vs. Tian Yuanxian and Wang Shou"
+  "cmd": "Xinuoluo vs. Tian Yuanxian and Wang Shou",
+  "note": "The Tibetan general Xinuoluo took Guazhou, seized the prefect Tian Yuanxian and Wang Shou, father of Wang Junchuo, military governor of Hexi, and left after destroying the city walls. Soon afterwards Wang Junchuo was killed by the Huihe (Uyghurs), and Zhang Shougui rebuilt Guazhou."
  },
  "battle:安西之战": {
   "old": "Battle of Anxi",
   "mod": "Kuqa, Xinjiang",
   "yt": "intercalary 9th month, 727",
   "sides": "Tang held the city against the Türgesh and Tibet",
-  "cmd": "Zhao Yizhen vs. Suluk and Tibet"
+  "cmd": "Zhao Yizhen vs. Suluk and Tibet",
+  "note": "Suluk of the Türgesh and the Tibetan tsenpo besieged the city of Anxi; Zhao Yizhen, deputy grand protector-general of Anxi, drove them off."
  },
  "battle:祁连城之战": {
   "old": "Battle of Qilian City",
   "mod": "around Minle, Gansu",
   "yt": "8th month, 728",
   "sides": "Tang defeated Tibet",
-  "cmd": "Xiao Song and Du Binke vs. Tibet"
+  "cmd": "Xiao Song and Du Binke vs. Tibet",
+  "note": "In the 7th month of 728 the Tibetan general Ximolang raided Guazhou and was driven off by the prefect Zhang Shougui. In the 8th month Tibet raided again; Xiao Song, military governor of Hexi, sent his deputy general Du Binke with 4,000 strong crossbowmen, who defeated the Tibetans beneath the walls of Qilian City and took 5,000 heads."
  },
  "battle:石堡城之战（729）": {
   "old": "Battle of Shibao Fortress (729)",
   "mod": "southwest of Huangyuan, Qinghai",
   "yt": "3rd month, 729",
   "sides": "Tang defeated Tibet",
-  "cmd": "Li Yi vs. the Tibetan garrison"
+  "cmd": "Li Yi vs. the Tibetan garrison",
+  "note": "Shibao Fortress, strongly sited at a key point, was Tibet's base for raids on Hexi and Longyou. Li Yi, Prince of Xin'an, military governor of Shuofang, led his army deep into Tibetan territory and took the fortress by storm. Tang renamed it Zhenwu Jun, and the patrols of the armies of Hexi and Longyou pushed the frontier out by over 1,000 li."
  },
  "battle:登州之战": {
   "old": "Battle of Dengzhou",
   "mod": "Penglai, Shandong",
   "yt": "9th month, 732",
   "sides": "Balhae defeated Tang",
-  "cmd": "Jang Munhyu vs. Wei Jun"
+  "cmd": "Jang Munhyu vs. Wei Jun",
+  "note": "Resenting Tang over the flight of his younger brother Dae Munye to Tang, the founding of the Heishui Area Command and other matters, Dae Muye, King of Balhae, sent his general Jang Munhyu with pirates across the sea to attack Dengzhou, and they killed the prefect Wei Jun."
  },
  "battle:都山之战": {
   "old": "Battle of Mount Du",
   "mod": "around Kuancheng and Qinglong, Hebei",
   "yt": "intercalary 3rd month, 733",
   "sides": "Khitan and the Turks defeated Tang",
-  "cmd": "Ketuyu vs. Guo Yingjie"
+  "cmd": "Ketuyu vs. Guo Yingjie",
+  "note": "Guo Yingjie, deputy commander of Youzhou, fought Ketuyu of the Khitan at Mount Du. Ketuyu brought in Turkic troops to his aid, and the Xi serving with the Tang army wavered between the two sides; Guo Yingjie was killed in battle, and all of his more than 6,000 men were lost."
  },
  "battle:马都山之战": {
   "old": "Battle of Mount Madu",
   "mod": "northeastern Hebei (location uncertain)",
   "yt": "733 (conventional date)",
   "sides": "Tang defeated Balhae",
-  "cmd": "Wu Chengci vs. Dae Muye"
+  "cmd": "Wu Chengci vs. Dae Muye",
+  "note": "Dae Muye, King of Balhae, led his army to Mount Madu, taking towns and massacring their people. Wu Chengci, commander of the Pinglu vanguard, blocked the key routes, barricading them with great stones along a line of 400 li; the Balhae troops could not advance, and the refugees were able to return home."
  },
  "battle:青海西之战": {
   "old": "Battle west of Qinghai Lake",
   "mod": "west of Qinghai Lake",
   "yt": "3rd month, 737",
   "sides": "Tang defeated Tibet",
-  "cmd": "Cui Xiyi vs. Qilixu"
+  "cmd": "Cui Xiyi vs. Qilixu",
+  "note": "Ordered to make a surprise attack on Tibet, Cui Xiyi, military governor of Hexi, drove over 2,000 li deep and defeated the Tibetans west of Qinghai Lake, and with that the Covenant of Chiling was broken. Ashamed at having broken the agreement, Cui Xiyi died of grief the next year."
  },
  "battle:新城之战@青海门源一带": {
   "old": "Battle of Xincheng",
   "mod": "around Menyuan, Qinghai",
   "yt": "3rd month, 738",
   "sides": "Tang defeated Tibet",
-  "cmd": "Du Xiwang vs. Tibet"
+  "cmd": "Du Xiwang vs. Tibet",
+  "note": "Du Xiwang, area commander of Shanzhou, stormed the Tibetan town of Xincheng, made it Weirong Jun and stationed 1,000 troops there to hold it."
  },
  "battle:碎叶之战": {
   "old": "Battle of Suyab",
   "mod": "Tokmok, Kyrgyzstan",
   "yt": "8th month, 739",
   "sides": "Tang defeated the Türgesh",
-  "cmd": "Gai Jiayun and Fumeng Lingcha vs. Tuhuoxian and the Black Clan Qaghan"
+  "cmd": "Gai Jiayun and Fumeng Lingcha vs. Tuhuoxian and the Black Clan Qaghan",
+  "note": "Gai Jiayun, military governor of Qixi, with troops from Chach, Kesh and other states, defeated Tuhuoxian Qaghan of the Türgesh beneath the walls of Suyab, pursued him and captured him. Fumeng Lingcha, garrison commissioner of Kashgar, and the king of Ferghana made a surprise attack on Talas and captured (the New Book of Tang says beheaded) Erwei, the Black Clan Qaghan. From then on the Türgesh declined."
  },
  "battle:安戎城之战": {
   "old": "Battle of Anrong City",
   "mod": "west of Li County, Sichuan",
   "yt": "3rd month, 740",
   "sides": "Tang defeated Tibet",
-  "cmd": "Zhangchou Jianqiong vs. the Tibetan garrison"
+  "cmd": "Zhangchou Jianqiong vs. the Tibetan garrison",
+  "note": "Anrong City had fallen to Tibet in 680, and from this strong position the Tibetans threatened western Shu. Zhangchou Jianqiong, military governor of Jiannan, secretly won over Zhai Duju and others in the city to work for him from inside; they opened the gates to the Tang army, and all the Tibetan officers and men were killed. Tang renamed it Pingrong City."
  },
  "battle:洪济城之战": {
   "old": "Battle of Hongji City",
   "mod": "around Guide, Qinghai (location uncertain)",
   "yt": "4th month, 743",
   "sides": "Tang defeated Tibet",
-  "cmd": "Huangfu Weiming vs. Tibet"
+  "cmd": "Huangfu Weiming vs. Tibet",
+  "note": "Huangfu Weiming, military governor of Longyou, drove deep into Tibetan territory and took Hongji City."
  },
  "battle:萨河内山之战": {
   "old": "Battle of Mount Sahenei",
   "mod": "central Inner Mongolia (location uncertain)",
   "yt": "8th month, 744",
   "sides": "Tang defeated the Second Turks",
-  "cmd": "Wang Zhongsi vs. Apa Tarqan"
+  "cmd": "Wang Zhongsi vs. Apa Tarqan",
+  "note": "Taking advantage of civil strife among the Second Turks, Wang Zhongsi, military governor of Shuofang, crushed eleven tribes of their Left Wing, including Apa Tarqan's, at Mount Sahenei."
  },
  "battle:连云堡之战": {
   "old": "Battle of Lianyun Fort",
   "mod": "Sarhad, Wakhan, Afghanistan",
   "yt": "7th month, 747",
   "sides": "Tang defeated Tibet",
-  "cmd": "Gao Xianzhi and Li Siye vs. the Tibetan garrison"
+  "cmd": "Gao Xianzhi and Li Siye vs. the Tibetan garrison",
+  "note": "Gao Xianzhi divided his army into three columns, which converged beneath Lianyun Fort, held by Tibet. The commandant Li Siye, holding a banner, led the modao swordsmen up the mountainside and was first onto the walls; the Tibetans were crushed and 5,000 heads taken. Gao Xianzhi then crossed the Darkot Pass, entered Anuyue City, captured the king of Little Balur and cut the rattan bridge to block Tibetan reinforcements."
  },
  "battle:石堡城之战（749）": {
   "old": "Battle of Shibao Fortress (749)",
   "mod": "southwest of Huangyuan, Qinghai",
   "yt": "6th month, 749",
   "sides": "Tang defeated Tibet",
-  "cmd": "Geshu Han vs. Xinuoluo"
+  "cmd": "Geshu Han vs. Xinuoluo",
+  "note": "Shibao Fortress had fallen to Tibet again in 741. Geshu Han, military governor of Longyou, attacked it with 63,000 troops from Longyou, Hexi, Shuofang and Hedong and the Turk Abusi's men, and took it after several days, capturing 400 Tibetans, including Xinuoluo of Tieren. Tens of thousands of Tang soldiers died, bearing out Wang Zhongsi's earlier warning against \"fighting over one city with tens of thousands of men\"."
  },
  "battle:西洱河之战（751）": {
   "old": "Battle of the Xi'er River (751)",
   "mod": "Erhai Lake, Dali, Yunnan",
   "yt": "4th month, 751",
   "sides": "Nanzhao defeated Tang",
-  "cmd": "Geluofeng vs. Xianyu Zhongtong"
+  "cmd": "Geluofeng vs. Xianyu Zhongtong",
+  "note": "Xianyu Zhongtong, military governor of Jiannan, led 80,000 troops along separate routes against Nanzhao. Geluofeng sent envoys to apologize and ask for peace, but was refused. The Tang army advanced to the Xi'er River and was crushed, with 60,000 soldiers dead; Xianyu Zhongtong barely escaped with his life. From then on Nanzhao turned north and became a vassal of Tibet."
  },
  "battle:怛罗斯之战": {
   "old": "Battle of Talas",
   "mod": "Taraz, Kazakhstan",
   "yt": "7th month, 751 (per Arabic sources; the Zizhi tongjian places it under the 4th month)",
   "sides": "The Caliphate defeated Tang",
-  "cmd": "Ziyad ibn Salih vs. Gao Xianzhi"
+  "cmd": "Ziyad ibn Salih vs. Gao Xianzhi",
+  "note": "The prince of Chach brought in troops of the Arab Caliphate, intending to attack the Four Garrisons. Gao Xianzhi pushed over 700 li deep with 30,000 tribal and Han troops; at the city of Talas he faced the Caliphate army for five days, until the Karluks turned against him and attacked from both sides together with the Caliphate forces. The Tang army was crushed, and only a few thousand men came back alive. Du Huan, who was taken prisoner, later wrote the Jingxing ji."
  },
  "battle:土护真水之战": {
   "old": "Battle of the Tuhuzhen River",
   "mod": "Laoha River, Inner Mongolia",
   "yt": "8th month, 751",
   "sides": "Khitan defeated Tang",
-  "cmd": "Khitan vs. An Lushan"
+  "cmd": "Khitan vs. An Lushan",
+  "note": "An Lushan led 60,000 troops from Youzhou, Yunzhong, Pinglu and Hedong against the Khitan, with the Xi as guides. At the Tuhuzhen River they met rain, and then marched day and night for over 300 li to the Khitan royal camp; the sinews and glue of their bows and crossbows had all slackened, and the Xi turned against them again. The Tang army was crushed, and An Lushan escaped with only 20 horsemen."
  },
  "battle:九曲之战": {
   "old": "Battle of Jiuqu",
   "mod": "around Gonghe and Guinan, Qinghai",
   "yt": "summer 753 (3rd month, 754 in the New Book of Tang annals)",
   "sides": "Tang defeated Tibet",
-  "cmd": "Geshu Han vs. Tibet"
+  "cmd": "Geshu Han vs. Tibet",
+  "note": "Geshu Han, military governor of Longyou, attacked Tibet, took Hongji, Damomen and other towns, and brought all the tribes of Jiuqu under his control. The next year Taoyang and Jiaohe Commanderies and the Shence Jun and Wanxiu Jun were set up on these lands."
  },
  "battle:大勃律之战": {
   "old": "Battle of Great Balur",
   "mod": "around Skardu, Pakistan",
   "yt": "753",
   "sides": "Tang defeated Great Balur",
-  "cmd": "Feng Changqing vs. Great Balur"
+  "cmd": "Feng Changqing vs. Great Balur",
+  "note": "Feng Changqing, military governor of Anxi, led troops against Great Balur. At Hesalao City he won in a single battle, and Great Balur asked to surrender."
  },
  "battle:太和城之战": {
   "old": "Battle of Taihe City",
   "mod": "Taihe Village, Dali, Yunnan",
   "yt": "6th month, 754",
   "sides": "Nanzhao defeated Tang",
-  "cmd": "Geluofeng vs. Li Mi"
+  "cmd": "Geluofeng vs. Li Mi",
+  "note": "Li Mi, attendant censor and acting military governor of Jiannan, led 70,000 troops in a second campaign against Nanzhao. At Taihe City Nanzhao kept behind its walls and refused battle; the Tang army ran out of food, and seven or eight in ten of its soldiers died of miasmal disease and hunger. As the army withdrew it was attacked by Nanzhao; Li Mi was captured (the New Book of Tang annals says he was killed), and the whole army was wiped out."
  },
  "pass:石堡城": {
   "old": "Shibao Fortress",
-  "mod": "southwest of Huangyuan, Qinghai"
+  "mod": "southwest of Huangyuan, Qinghai",
+  "note": "The Tibetans called it Tieren City. It stood on a mountaintop 20 li east of Chiling, on the upper Huangshui, with sheer cliffs on three sides, commanding the road from Hexi and Longyou into Qinghai. In 729 Li Yi led his troops deep into enemy country and took the fortress by a swift assault, and it was renamed Zhenwu Jun; in 741 it fell to Tibet again; in 749 Geshu Han attacked it with over 60,000 men and took it only after tens of thousands had died, and it was renamed Shenwu Jun."
  },
  "pass:西受降城": {
   "old": "Western Shouxiang City",
-  "mod": "south-west of Wujiahe, Urad Middle Banner, Inner Mongolia (another view: Gaoyoufang site, Linhe)"
+  "mod": "south-west of Wujiahe, Urad Middle Banner, Inner Mongolia (another view: Gaoyoufang site, Linhe)",
+  "note": "In 708, while Qapaghan was attacking the Türgesh in the west, Zhang Renyuan built the Three Shouxiang Cities north of the Yellow River. The western city lay northwest of Fengzhou, 380 li from the central city; from then on the Turks no longer dared to cross the mountains to hunt and graze."
  },
  "pass:中受降城": {
   "old": "Central Shouxiang City",
-  "mod": "south of Baotou, Inner Mongolia (another view: Ergouwan site, Dalad Banner)"
+  "mod": "south of Baotou, Inner Mongolia (another view: Ergouwan site, Dalad Banner)",
+  "note": "The central one of the Three Shouxiang Cities, built on the site of the Fuyun shrine (Fuyun Mound, where the Turks made sacrifices before raiding the south); the Anbei Protectorate was later also temporarily seated here."
  },
  "pass:东受降城": {
   "old": "Eastern Shouxiang City",
-  "mod": "Dahuangcheng, Togtoh, Inner Mongolia"
+  "mod": "Dahuangcheng, Togtoh, Inner Mongolia",
+  "note": "The eastern one of the Three Shouxiang Cities, on the north bank of the Yellow River northeast of Shengzhou. North of Mount Niutouchaona 1,800 beacon posts were set up."
  },
  "event:泰山封禅@山东泰安泰山": {
   "old": "Feng and shan sacrifices at Mount Tai",
   "mod": "Mount Tai, Tai'an, Shandong",
-  "yt": "1st month, 666"
+  "yt": "1st month, 666",
+  "note": "Gaozong, with the officials and envoys from the Turks, Khotan, Persia, India, Wa, Silla, Baekje, Goguryeo and other states, performed the feng and shan sacrifices at Mount Tai. Empress Wu took part in the shan rite on Mount Sheshou as second offerant, setting a precedent for women taking part in the feng and shan."
  },
  "event:吐蕃陷西域十八州": {
   "old": "Tibet takes eighteen prefectures of the Western Regions",
   "mod": "Hotan, Xinjiang",
-  "yt": "4th month, 670"
+  "yt": "4th month, 670",
+  "note": "Tibet took eighteen prefectures of the Western Regions and, together with Khotan, attacked Bohuan City in Kucha; Tang abolished the Four Garrisons of Kucha, Khotan, Karasahr and Kashgar."
  },
  "event:剑牟岑立安舜": {
   "old": "Geom Mojam enthrones An Seung",
   "mod": "South Hwanghae, North Korea",
-  "yt": "4th month, 670"
+  "yt": "4th month, 670",
+  "note": "Geom Mojam, of the Goguryeo remnant population, rose in arms and made An Seung, the son of King Bojang's daughter, king; An Seung later went over to Silla. Tang sent Gao Kan against them, and the rising was put down by 673."
  },
  "event:高宗称天皇": {
   "old": "Gaozong takes the title Heavenly Emperor",
   "mod": "Luoyang, Henan",
-  "yt": "8th month, 674"
+  "yt": "8th month, 674",
+  "note": "Gaozong took the title Heavenly Emperor and Empress Wu the title Heavenly Empress, and the era name was changed to Shangyuan. Empress Wu put forward twelve proposals, and the Two Sages held court together."
  },
  "event:置石城、播仙二镇": {
   "old": "Shicheng and Boxian Garrisons founded",
   "mod": "Ruoqiang (Charkhlik), Xinjiang",
-  "yt": "675"
+  "yt": "675",
+  "note": "Dianhe City, the old city of Shanshan, was made Shicheng Garrison and Qiemo City was made Boxian Garrison; both were placed under Shazhou and controlled the southern route of the Western Regions."
  },
  "event:安东都护府内徙": {
   "old": "Andong Protectorate moved inland",
   "mod": "Liaoyang, Liaoning",
-  "yt": "2nd month, 676"
+  "yt": "2nd month, 676",
+  "note": "The Andong Protectorate moved from Pyongyang to the old Yodong Fortress, and the next year moved again to Sinseong; the Ungjin Area Command moved to the old Geonan Fortress. With this Tang withdrew from the southern part of the Korean Peninsula."
  },
  "event:裴行俭擒都支": {
   "old": "Pei Xingjian captures Ashina Duzhi",
   "mod": "east of Tokmok, Kyrgyzstan",
-  "yt": "7th month, 679 (9th month in the annals of both Tang histories)"
+  "yt": "7th month, 679 (9th month in the annals of both Tang histories)",
+  "note": "On the pretext of investing the Persian prince Narseh and escorting him home, Pei Xingjian went to Xizhou, where he summoned the young men of the peoples of the Four Garrisons to join him on a hunt. Then, marching west at double speed, he burst upon Ashina Duzhi's royal camp and captured him, and Li Zhefu also surrendered. Wang Fangyi stayed behind to build Suyab, with twelve gates on its four sides."
  },
  "event:泥熟匐之叛": {
   "old": "Nishufu rebellion",
   "mod": "Horinger, Inner Mongolia",
-  "yt": "10th month, 679"
+  "yt": "10th month, 679",
+  "note": "Two Turkic tribes under the Chanyu Protectorate, those of Ashide Wenfu and Fengzhi, rebelled and set up Ashina Nishufu as qaghan, and the chiefs of 24 prefectures all rebelled in support."
  },
  "event:吐蕃陷安戎城": {
   "old": "Tibet takes Anrong City",
   "mod": "west of Li County, Sichuan",
-  "yt": "680"
+  "yt": "680",
+  "note": "With the unsubjugated Qiang as its guides, Tibet took Anrong City and held it to threaten Xichuan. The Xi'er tribes all submitted to Tibet, whose territory now covered \"over 10,000 li square\"."
  },
  "event:骨咄禄复国": {
   "old": "Qutlugh restores the Turkic state",
   "mod": "north of Hohhot, Inner Mongolia",
-  "yt": "682"
+  "yt": "682",
+  "note": "Ashina Qutlugh, a kinsman of Illig, gathered the scattered Turks and held Heisha City. With Tonyukuk as his chief strategist he proclaimed himself qaghan, and the Turkic state was revived as the Second Turkic Qaghanate."
  },
  "event:改东都为神都": {
   "old": "Eastern Capital renamed the Divine Capital",
   "mod": "Luoyang, Henan",
-  "yt": "9th month, 684"
+  "yt": "9th month, 684",
+  "note": "Gaozong died at Luoyang in the 12th month of 683. In 684 Empress Wu deposed Zhongzong, set up Ruizong and ruled from the court in her own name; in the 9th month the Eastern Capital was renamed the Divine Capital, and the banners were changed to gold."
  },
  "event:安北都护府侨置同城": {
   "old": "Anbei Protectorate temporarily seated at Tongcheng",
   "mod": "Ejin Banner, Inner Mongolia",
-  "yt": "6th month, 685"
+  "yt": "6th month, 685",
+  "note": "With the Second Turks holding the lands north of the Gobi, Tang set up the Anbei Protectorate temporarily at Tongcheng. In the Chuigong era four tribes—the Huihe (Uyghurs), Qibi, Sijie and Hun—moved south to the area between Ganzhou and Liangzhou."
  },
  "event:唐弃四镇": {
   "old": "Tang abandons the Four Garrisons",
   "mod": "Kuqa, Xinjiang",
-  "yt": "c. 686"
+  "yt": "c. 686",
+  "note": "Tang withdrew from and abandoned the Four Garrisons of Anxi, and Tibet moved into the vacuum; Chen Zi'ang sent up a memorial on the harm of \"abandoning Kucha and letting Kashgar go\". The sources do not record the year."
  },
  "event:武周建立": {
   "old": "Founding of Wu Zhou",
   "mod": "Luoyang, Henan",
-  "yt": "9th month, 690"
+  "yt": "9th month, 690",
+  "note": "Wu Zetian took the title Sage and Divine Emperor, changed the name of the dynasty to Zhou and the era name to Tianshou, made the Divine Capital her capital and set up seven ancestral temples for the Wu family; in 691 red was adopted for the banners. Tang was restored in 705."
  },
  "event:默啜立": {
   "old": "Accession of Qapaghan",
   "mod": "eastern Khangai Mountains, Mongolia",
-  "yt": "691 (693 in the Zizhi tongjian)"
+  "yt": "691 (693 in the Zizhi tongjian)",
+  "note": "Qutlugh died, and his younger brother Qapaghan made himself qaghan; the power of the Second Turkic Qaghanate reached its height."
  },
  "event:营州之乱": {
   "old": "Yingzhou revolt",
   "mod": "Chaoyang, Liaoning",
-  "yt": "5th month, 696"
+  "yt": "5th month, 696",
+  "note": "Provoked by the abuses and insults of Zhao Wenhui, area commander of Yingzhou, Li Jinzhong, the Khitan area commander of Songmo, and Sun Wanrong, prefect of Guicheng Zhou, killed Zhao Wenhui and rose in revolt, holding Yingzhou; Li Jinzhong styled himself Wushang Qaghan."
  },
  "event:默啜寇河北": {
   "old": "Qapaghan raids Hebei",
   "mod": "Dingzhou, Hebei",
-  "yt": "8th–9th month, 698"
+  "yt": "8th–9th month, 698",
+  "note": "Wu Zetian sent Wu Yanxiu to marry Qapaghan's daughter. Using the words \"My daughter was meant to marry a Li; what use is a son of the Wu clan?\" as his pretext, Qapaghan sent his army south; in the 8th month he took Dingzhou and in the 9th month besieged Zhaozhou. As he withdrew he killed all the more than 10,000 men and women he had seized in Zhaozhou, Dingzhou and other prefectures, and left by the Wuhui Road (the \"Turks\" chapter of the Old Book of Tang says he carried off 80,000 or 90,000 people)."
  },
  "event:震国建立": {
   "old": "Founding of Jin",
   "mod": "Dunhua, Jilin",
-  "yt": "698"
+  "yt": "698",
+  "note": "Dae Joyeong led the Sumo Mohe and the Goguryeo remnant population east; he held Mount Dongmou, built a walled town there to live in, and styled himself King of Jin."
  },
  "event:论钦陵之死": {
   "old": "Death of Gar Trinring",
   "mod": "east of Qinghai Lake",
-  "yt": "699"
+  "yt": "699",
+  "note": "The tsenpo Tridu Songtsen plotted to destroy the Gar clan. Gar Trinring was defeated and killed himself, and his younger brother Gar Tsenba and his son Lun Gongren went over to Tang with their followers."
  },
  "event:置北庭都护府": {
   "old": "Beiting Protectorate founded",
   "mod": "Beiting ruins, Jimsar, Xinjiang",
-  "yt": "12th month, 702"
+  "yt": "12th month, 702",
+  "note": "The lands of the Anxi Protectorate north of the Tian Shan were split off, and the Beiting Protectorate was set up at Tingzhou to govern the loose-rein area commands and prefectures in the former lands of the Western Turks."
  },
  "event:突骑施据碎叶": {
   "old": "The Türgesh occupy Suyab",
   "mod": "Tokmok, Kyrgyzstan",
-  "yt": "703"
+  "yt": "703",
+  "note": "Üch Elig of the Türgesh took Suyab and moved his royal camp there, and most of the Ten Tribes of the Western Turks went over to him."
  },
  "event:神龙政变": {
   "old": "Shenlong coup",
   "mod": "Luoyang, Henan",
-  "yt": "1st month, 705"
+  "yt": "1st month, 705",
+  "note": "Zhang Jianzhi, Cui Xuanwei, Huan Yanfan and others led the Yulin Guards to kill Zhang Yizhi and Zhang Changzong and forced Wu Zetian to pass the throne to the crown prince Li Xian (Zhongzong); in the 2nd month the dynasty's name was changed back to Tang."
  },
  "event:筑三受降城": {
   "old": "Building of the Three Shouxiang Cities",
   "mod": "south of Baotou, Inner Mongolia",
-  "yt": "3rd month, 708"
+  "yt": "3rd month, 708",
+  "note": "Taking advantage of Qapaghan's campaign west against the Türgesh, Zhang Renyuan, commander-in-chief of the Shuofang Route, built the Eastern, Central and Western Shouxiang Cities north of the Yellow River, each over 400 li from the next, and set up 1,800 beacon posts. From then on the Turks did not dare to cross the mountains to hunt and graze."
  },
  "event:唐隆政变": {
   "old": "Tanglong coup",
   "mod": "Xi'an, Shaanxi",
-  "yt": "6th month, 710"
+  "yt": "6th month, 710",
+  "note": "Zhongzong died suddenly, and Empress Wei took control of the court. Li Longji, Prince of Linzi, and Princess Taiping raised troops and killed Empress Wei and Princess Anle, and Ruizong was restored to the throne."
  },
  "event:置河西节度使": {
   "old": "Military governor of Hexi instituted",
   "mod": "Wuwei, Gansu",
-  "yt": "710 (or 4th month, 711)"
+  "yt": "710 (or 4th month, 711)",
+  "note": "Heba Yansi was made area commander of Liangzhou and military governor of Hexi, in charge of seven prefectures: Liangzhou, Ganzhou, Suzhou, Yizhou, Guazhou, Shazhou and Xizhou (the New Book of Tang's table of military governors dates it to Jingyun 1; the Tang huiyao and the Tongdian give the 4th month of Jingyun 2, and both say that the title of military governor began here; the Zizhi tongjian, however, says that the title began with Xue Ne at Youzhou in the 10th month of 710)."
  },
  "event:先天政变": {
   "old": "Xiantian coup",
   "mod": "Xi'an, Shaanxi",
-  "yt": "7th month, 713"
+  "yt": "7th month, 713",
+  "note": "In the 8th month of 712 Ruizong abdicated and Xuanzong took the throne. In the 7th month of 713 Xuanzong destroyed Princess Taiping's faction, and in the 12th month the era name was changed to Kaiyuan."
  },
  "event:渤海受封": {
   "old": "Investiture of Balhae",
   "mod": "Dunhua, Jilin",
-  "yt": "713"
+  "yt": "713",
+  "note": "Tang sent Cui Xin to invest Dae Joyeong as Grand General of the Left Valiant Guard and Commandery Prince of Bohai, made his land Huhan Zhou and gave him the further title of area commander of Huhan Zhou. From then on the state dropped the name Mohe and called itself simply Balhae."
  },
  "event:复置营州": {
   "old": "Yingzhou re-established",
   "mod": "Chaoyang, Liaoning",
-  "yt": "717"
+  "yt": "717",
+  "note": "In 716 Li Shihuo of the Khitan and Li Dapu of the Xi brought their peoples over to Tang, and the Songmo and Raole Area Commands were re-established; in 717 the Yingzhou Area Command was set up again at Liucheng."
  },
  "event:泰山封禅@山东泰安泰山#2": {
   "old": "Feng and shan sacrifices at Mount Tai",
   "mod": "Mount Tai, Tai'an, Shandong",
-  "yt": "11th month, 725"
+  "yt": "11th month, 725",
+  "note": "Xuanzong went east to perform the feng sacrifice at Mount Tai, attended by envoys from the Turks, the Arab Caliphate, Japan, Silla and other states."
  },
  "event:置黑水都督府": {
   "old": "Heishui Area Command founded",
   "mod": "around Yilan, Heilongjiang",
-  "yt": "726"
+  "yt": "726",
+  "note": "The Heishui Area Command was set up on the lands of the Heishui Mohe, with an aide appointed to supervise it. Dae Muye, King of Balhae, believing he would be attacked from front and rear, sent troops against the Heishui; his younger brother Dae Munye remonstrated and then fled to Tang."
  },
  "event:分十五道": {
   "old": "The realm divided into fifteen circuits",
   "mod": "Xi'an, Shaanxi",
-  "yt": "733"
+  "yt": "733",
+  "note": "The realm was divided into fifteen circuits—the Capital District, Guannei, the Eastern Capital District, Henan, Hedong, Hebei, Longyou, Shannan East, Shannan West, Jiannan, Huainan, Jiangnan East, Jiangnan West, Qianzhong and Lingnan—each with a surveillance commissioner."
  },
  "event:赤岭立碑": {
   "old": "Stele erected at Chiling",
   "mod": "Riyue Mountain, Huangyuan, Qinghai",
-  "yt": "6th month, 734 (9th month, 733 in the Tang huiyao)"
+  "yt": "6th month, 734 (9th month, 733 in the Tang huiyao)",
+  "note": "Tang and Tibet fixed their boundary at Chiling (today's Riyue Mountain) and erected a stele there. Earlier Tibet had asked to open border markets at Gansong Pass; Tang refused because Gansong was too rugged, and the markets were held at Chiling instead. In the 6th month of 738 the Tang court ordered the stele destroyed."
  },
  "event:斩可突于": {
   "old": "Ketuyu beheaded",
   "mod": "around Chifeng, Inner Mongolia",
-  "yt": "12th month, 734"
+  "yt": "12th month, 734",
+  "note": "Zhang Shougui, military governor of Youzhou, induced the Khitan officer Li Guozhe to behead Ketuyu and the king Qulie, and the heads were sent to the Eastern Capital. The Khitan and the Xi returned to Tang allegiance."
  },
  "event:赐新罗浿江以南": {
   "old": "Lands south of the Paegang granted to Silla",
   "mod": "Taedong River, North Korea",
-  "yt": "735"
+  "yt": "735",
+  "note": "Tang formally granted Silla the land south of the Paegang (the Taedong River), recognizing Silla's possession of the Korean Peninsula south of the Taedong River."
  },
  "event:南诏统一": {
   "old": "Unification under Nanzhao",
   "mod": "Taihe Village, Dali, Yunnan",
-  "yt": "738"
+  "yt": "738",
+  "note": "With Tang support Piluoge of the Mengshe zhao annexed the other five zhao—Mengxi, Yuexi, Langqiong, Dengtan and Shilang. Tang invested him as Prince of Yunnan and gave him the name Meng Guiyi, and the next year he moved his capital to Taihe City."
  },
  "event:置十节度经略使": {
   "old": "Ten military commands established",
   "mod": "Xi'an, Shaanxi",
-  "yt": "742"
+  "yt": "742",
+  "note": "The era name was changed to Tianbao. On the frontiers nine military governors were set up—for Anxi, Beiting, Hexi, Shuofang, Hedong, Fanyang, Pinglu, Longyou and Jiannan—together with the pacification commissioner of the Five Commands of Lingnan, commanding 490,000 troops in all. The same year prefectures were renamed commanderies and prefects became governors."
  },
  "event:回纥汗国建立": {
-  "old": "Founding of the Uyghur Khaganate",
+  "old": "Founding of the Uyghur Qaghanate",
   "mod": "Kharbalgas, Mongolia",
-  "yt": "744"
+  "yt": "744",
+  "note": "Guli Peiluo of the Uyghurs, together with the Karluks, attacked and killed Xiedie Yishi Qaghan of the Basmyl and proclaimed himself Qutlugh Bilge Kül Qaghan; Tang invested him as Huairen Qaghan. He moved south to live in the former lands of the Turks and set up his royal camp at Ötüken."
  },
  "event:后突厥亡": {
   "old": "Fall of the Second Turkic Qaghanate",
   "mod": "eastern Khangai Mountains, Mongolia",
-  "yt": "745"
+  "yt": "745",
+  "note": "Huairen Qaghan of the Uyghurs attacked and killed Baimei Qaghan of the Second Turks and sent his head to the capital. The Second Turkic Qaghanate fell, and all the lands north of the Gobi passed to the Uyghurs."
  },
  "event:契丹、奚叛唐": {
   "old": "Khitan and Xi revolt against Tang",
   "mod": "around Chifeng, Inner Mongolia",
-  "yt": "9th month, 745"
+  "yt": "9th month, 745",
+  "note": "Seeking imperial favor through frontier exploits, An Lushan repeatedly attacked the Khitan and the Xi. The two peoples each killed the princess given to them in a marriage alliance—Princess Jingle and Princess Yifang—and rebelled against Tang; An Lushan attacked and defeated them."
  },
  "event:筑应龙城": {
   "old": "Building of Yinglong City",
   "mod": "Haixin Island, Qinghai Lake",
-  "yt": "748"
+  "yt": "748",
+  "note": "Geshu Han built Yinglong City on Longju Island in Qinghai Lake and also built the Shenwei Jun by the lake, and Tibet did not dare come near Qinghai Lake."
  },
  "event:王正见破碎叶": {
   "old": "Wang Zhengjian takes Suyab",
   "mod": "Tokmok, Kyrgyzstan",
-  "yt": "748"
+  "yt": "748",
+  "note": "Wang Zhengjian, military governor of Beiting, attacked Suyab; its walls were destroyed and its dwellings left in ruins (per Du Huan's Jingxing ji)."
  },
  "event:高仙芝破石国": {
   "old": "Gao Xianzhi defeats Chach",
   "mod": "Tashkent, Uzbekistan",
-  "yt": "750"
+  "yt": "750",
+  "note": "On the grounds that Chach \"lacked the courtesy of a vassal\", Gao Xianzhi pretended to make peace with it, then attacked it by surprise, captured its king and people and presented them at Chang'an. The king of Chach was beheaded before the palace gates; his son fled to the other Hu states and brought in troops of the Arab Caliphate to attack."
  },
  "event:黑衣大食": {
   "old": "Abbasid Caliphate",
   "mod": "Mary, Turkmenistan (Merv)",
-  "yt": "750"
+  "yt": "750",
+  "note": "Abu Muslim rose in arms in Khorasan in 747, and in 750 the Abbasid dynasty replaced the Umayyad dynasty. Tang called the Abbasids the \"Black-Robed Arabs\" (and the Umayyads the \"White-Robed Arabs\")."
  },
  "event:南诏陷姚州": {
   "old": "Nanzhao takes Yaozhou",
   "mod": "Yao'an, Yunnan",
-  "yt": "750"
+  "yt": "750",
+  "note": "Zhang Qiantuo, governor of Yunnan Commandery, insulted Geluofeng, King of Nanzhao. In anger Geluofeng sent troops, took Yaozhou (Yunnan Commandery), killed Zhang Qiantuo and seized 32 tribal prefectures."
  },
  "event:南诏臣吐蕃": {
   "old": "Nanzhao becomes a Tibetan vassal",
   "mod": "Taihe Village, Dali, Yunnan",
-  "yt": "1st month, 752"
+  "yt": "1st month, 752",
+  "note": "Tibet invested Geluofeng as \"Tsenpo Zhong, Great Zhao of the Southern Kingdom\" (\"younger brother of the tsenpo\"); Nanzhao changed its era name to Tsenpo Zhong and turned north to become a vassal of Tibet (per the Nanzhao Dehua Stele)."
  },
  "event:置洮阳、浇河二郡": {
   "old": "Taoyang and Jiaohe Commanderies founded",
   "mod": "around Gonghe and Tongde, Qinghai (exact site uncertain)",
-  "yt": "7th month, 754"
+  "yt": "7th month, 754",
+  "note": "Taoyang and Jiaohe Commanderies and the Shence Jun and Wanxiu Jun were set up in the Jiuqu lands taken by Geshu Han, and the western frontier of Tang Longyou was pushed out to the Jiuqu bend of the Yellow River."
  },
  "route:常骏出使赤土": {
   "old": "Chang Jun's mission to Chitu",
@@ -2757,7 +2847,8 @@
    "林邑东南": "southeast of Linyi",
    "交趾": "Jiaozhi",
    "弘农": "Hongnong"
-  }
+  },
+  "note": "In the 10th month of 607 Chang Jun, secretary of the Bureau of Military Colonies, and Wang Junzheng, secretary of the Bureau of Forestry, sailed south from Nanhai Commandery on the orders of Emperor Yang. After twenty days and nights they reached Mount Jiaoshi; they passed Lingaparvata, which faces Linyi (Champa) to the west, and Shizi Rock, sighted the mountains of the state of Langkasuka, and reached the borders of Chitu in the south. The King of Chitu sent Prince Nayejia back with Chang Jun to bring tribute, and in spring 610 they were received by Emperor Yang at Hongnong. The location of Chitu is disputed; the map follows the view that it lay on the east coast of the Malay Peninsula. The timing of the return journey is schematic."
  },
  "route:炀帝西巡": {
   "old": "Emperor Yang tours the west",
@@ -2774,7 +2865,8 @@
    "大斗拔谷": "Dadouba Valley",
    "张掖": "Zhangye",
    "燕支山": "Mount Yanzhi"
-  }
+  },
+  "note": "In the 3rd month of 609 Emperor Yang set out from Chang'an on a tour of the west, passing through Fufeng, Longxi and Didao; in the 4th month he went out through the Linjin Pass and crossed the Yellow River to Xiping; in the 5th month he surrounded Fuyun of the Tuyuhun in the Fuyuan Valley; and in the 6th month he went through the Dadouba Valley (today's Biandukou) to Zhangye. The mountain road was narrow and dangerous, and more than half of the soldiers froze to death. At the Guanfeng Hall at Mount Yanzhi he held a great banquet for Qu Boya, King of Gaochang, the Tudun Shad of Yiwu and other envoys, from 27 states in all; in the 9th month he returned to Chang'an."
  },
  "route:玄奘西行求法": {
   "old": "Xuanzang's journey west in search of the Dharma",
@@ -2818,7 +2910,8 @@
    "折摩驮那": "Calmadana",
    "沙州": "Shazhou",
    "洛阳": "Luoyang"
-  }
+  },
+  "note": "In the 8th month of 629 (or 627) Xuanzang left Chang'an without permission. At Guazhou he slipped secretly past Yumen Pass, and went by way of Yiwu to Gaochang, where Qu Wentai gave him rich gifts and saw him on his way. He crossed the Ling Mountains, passed Issyk-Kul and met Tong Yabghu Qaghan of the Western Turks at Suyab; by way of Chach, Samarkand and the Iron Gate he entered Tokharistan, and crossed the Great Snow Mountains to Kapisa and Gandhara. Around 633 he entered Nalanda Monastery, where he studied under Silabhadra for five years, and he also traveled throughout the Five Indias. In 642 he was the chief debater at Harsha's great assembly at Kanyakubja. In 643 he set out for home, crossing the Pamirs and passing through Kashgar and Khotan; he returned to Chang'an in the 1st month of 645, and in the 2nd month he was received by Taizong at Luoyang. The dates of his travels in India vary among the sources; the map follows the commonly accepted account, and the intermediate points are schematic."
  },
  "route:李靖袭灭东突厥": {
   "old": "Li Jing destroys the Eastern Turks in a surprise attack",
@@ -2829,7 +2922,8 @@
    "定襄": "Dingxiang",
    "白道": "Baidao",
    "阴山": "Yin Mountains"
-  }
+  },
+  "note": "In the 1st month of 630 Li Jing led 3,000 picked horsemen out from Mayi through the Eyang Pass and made a night attack on Dingxiang; Illig Qaghan fled in alarm to Qikou. Li Ji came out from Yunzhong and defeated the Turks at Baidao. Illig fell back to hold Tieshan and sent envoys asking to surrender. In the 2nd month Li Jing and Li Ji joined forces at Baidao and, while a Tang envoy was there to reassure Illig, made a surprise attack with 10,000 horsemen and crushed his royal camp in the Yin Mountains; in the 3rd month Illig was captured, and the Eastern Turkic Qaghanate fell."
  },
  "route:侯君集平高昌": {
   "old": "Hou Junji conquers Gaochang",
@@ -2841,7 +2935,8 @@
    "田地城": "Tiandi City",
    "高昌": "Gaochang",
    "交河": "Jiaohe"
-  }
+  },
+  "note": "In the 12th month of 639 Hou Junji was made commander-in-chief of the Jiaohe Route expedition and led tens of thousands of infantry and cavalry against Gaochang. In the 8th month of 640 the Tang army came out at the edge of the desert and reached Liugu; Qu Wentai fell ill from fear and died. The Tang army first took Tiandi City and then besieged Gaochang, and Qu Zhisheng came out and surrendered. Tang made the territory into Xizhou, and in the 9th month set up the Anxi Protectorate at Jiaohe City."
  },
  "route:文成公主入藏": {
   "old": "Princess Wencheng goes to Tibet",
@@ -2855,7 +2950,8 @@
    "通天河": "Tongtian River",
    "那曲": "Nagqu",
    "逻些": "Rasa"
-  }
+  },
+  "note": "In the 1st month of 641 Princess Wencheng left Chang'an, escorted by Li Daozong, Prince of Jiangxia, and followed the old Tang–Tibet road by way of Shanzhou, Chiling and Dafeichuan. Songtsen Gampo led troops to Baihai (the source of the Yellow River) to meet her in person and performed the rites of a son-in-law, and they returned together to Rasa. The intermediate points and the arrival date are schematic."
  },
  "route:王玄策二使天竺": {
   "old": "Wang Xuance's second mission to India",
@@ -2867,7 +2963,8 @@
    "泥婆罗": "Nepal",
    "中天竺": "Central India",
    "茶镈和罗城": "Tirabhukti"
-  }
+  },
+  "note": "In 647 Wang Xuance and Jiang Shiren went as envoys to India just as Harsha died and Arunasva usurped the throne; Arunasva sent troops to plunder the mission. Wang Xuance escaped to the western border of Tibet and called up 1,200 Tibetan troops and over 7,000 Nepalese cavalry; in the 5th month of 648 he crushed Arunasva at Tirabhukti, captured him and presented him at Chang'an. The route there and back is drawn along the Tibet–Nepal road, and the dates are schematic."
  },
  "route:苏定方灭西突厥": {
   "old": "Su Dingfang destroys the Western Turks",
@@ -2879,7 +2976,8 @@
    "碎叶水": "Suyab River",
    "回纥": "Uyghurs",
    "金山北": "north of the Altai"
-  }
+  },
+  "note": "In the intercalary 1st month of 657 Su Dingfang was made commander-in-chief of the Ili Route expedition and, with troops raised from the Huihe (Uyghurs) and others, marched by the northern route against Ashina Helu (Ashina Mishe and Buzhen gathered their former followers by the southern route). In the 12th month he reached the area north of the Altai and first defeated the Chumukun tribe, then crushed Helu's 100,000 men on the Irtysh, pursued him to Shuanghe and advanced on to the Suyab River, taking over all his people. Helu fled to Chach, where the people of Chach seized him and handed him over to Xiao Siye. The intermediate points and arrival dates are schematic."
  },
  "route:苏定方平百济": {
   "old": "Su Dingfang conquers Baekje",
@@ -2892,7 +2990,8 @@
    "泗沘": "Sabi",
    "熊津": "Ungjin",
    "东都": "Eastern Capital"
-  }
+  },
+  "note": "In the 3rd month of 660 Su Dingfang was made commander-in-chief of the Shenqiu Route and led 130,000 land and naval troops across the sea from Chengshan. On the 21st day of the 6th month he reached Deongmul Island, where Kim Beop-min, Crown Prince of Silla, came to meet him with 100 warships. In the 7th month Kim Yu-sin defeated Gyebaek at Hwangsanbeol, while the Tang army sailed up the Baek River from Gibeolpo, joined the Silla army beneath the walls of Sabi and took the city; King Uija came out of Ungjin and surrendered, and Baekje fell. In the 11th month Su Dingfang presented his captives at the Zetian Gate of the Eastern Capital."
  },
  "route:李勣平高句丽": {
   "old": "Li Ji conquers Goguryeo",
@@ -2906,7 +3005,8 @@
    "鸭绿栅": "Yalu Stockade",
    "平壤": "Pyongyang",
    "长安": "Chang'an"
-  }
+  },
+  "note": "In the 12th month of 666 Li Ji was made commander-in-chief of the Liaodong Route expedition. In the 2nd month of 667 he crossed the Liao River, and in the 9th month he took Sinseong. In the 2nd month of 668 Xue Rengui stormed Buyeo Fortress, and Li Ji joined forces with the other armies and pressed on to the Yalu Stockade; in the 9th month, together with the Silla army, he surrounded Pyongyang. An officer of Yeon Namgeon opened the gates from within, King Bojang was captured, and Goguryeo fell. In the 12th month Li Ji presented his captives at the Hanyuan Hall."
  },
  "route:裴行俭擒都支": {
   "old": "Pei Xingjian captures Ashina Duzhi",
@@ -2916,7 +3016,8 @@
    "都支牙帐": "Ashina Duzhi's royal camp",
    "碎叶": "Suyab",
    "东都": "Eastern Capital"
-  }
+  },
+  "note": "In 679 Pei Xingjian traveled west on the pretext of escorting the Persian prince Narseh home to be installed as king. At Xizhou he summoned over 1,000 sons and younger brothers of the chieftains of the peoples of the Four Garrisons to go with him; giving out that he was going hunting, he pressed on at double speed and suddenly arrived at the royal camp of Ashina Duzhi of the Western Turks. He captured Duzhi, and then Li Zhefu as well. He left Wang Fangyi to build the city of Suyab and himself escorted the two prisoners back to court."
  },
  "route:义净海路求法": {
   "old": "Yijing's sea journey in search of the Dharma",
@@ -2930,7 +3031,8 @@
    "耽摩立底": "Tamralipti",
    "那烂陀": "Nalanda",
    "神都": "Divine Capital"
-  }
+  },
+  "note": "In the 11th month of 671 Yijing sailed south from Guangzhou on a Persian merchant ship. After 20 days he reached Srivijaya, where he stayed six months to study Sanskrit grammar; then, by way of Malayu, Kedah and the Land of the Naked People, he reached Tamralipti in eastern India in the 2nd month of 673. From 675 he studied at Nalanda Monastery for about ten years. In 685 he set out back east and translated scriptures and wrote at Srivijaya; in 689 he went back to Guangzhou for a time to recruit assistants. In the 5th month of 695 he arrived at Luoyang with some 400 Sanskrit texts of sutras, vinaya and treatises, and Wu Zetian came in person to welcome him outside the Shangdong Gate. He wrote the Da Tang xiyu qiufa gaoseng zhuan and the Nanhai jigui neifa zhuan."
  },
  "route:高仙芝远征小勃律": {
   "old": "Gao Xianzhi's expedition to Little Balur",
@@ -2947,7 +3049,8 @@
    "坦驹岭": "Darkot Pass",
    "阿弩越城": "Anuyue City",
    "孽多城": "Gilgit"
-  }
+  },
+  "note": "In 747 Gao Xianzhi, as military governor of the field army, set out from Anxi with 10,000 infantry and cavalry. By way of Bohuan City, Wosede, Kashgar, Congling Garrison and the Pamir Valley he reached the Teleman Valley (the Five Shighnan), where he divided his forces into three columns; on the 13th day of the 7th month they converged on the Tibetan stronghold of Lianyun Fort. He crossed the Darkot Pass, entered Anuyue City and advanced to Gilgit, the capital of Little Balur, capturing its king and the Tibetan princess. He cut the rattan bridge over the Suoyi River to keep out Tibetan relief forces, and in the 9th month he was back at Lianyun Fort and led his army home."
  },
  "route:高仙芝远征怛罗斯": {
   "old": "Gao Xianzhi's expedition to Talas",
@@ -2959,7 +3062,8 @@
    "热海": "Issyk-Kul",
    "碎叶": "Suyab",
    "怛罗斯": "Talas"
-  }
+  },
+  "note": "In 751 the prince of Chach brought in troops of the Arab Caliphate, intending to attack the Four Garrisons. Gao Xianzhi struck first with 30,000 tribal and Han troops, crossing the Bedel Pass and pushing over 700 li deep to the city of Talas, where he faced the Caliphate army for five days. The Karluks changed sides, and the Tang army was heavily defeated; Gao Xianzhi gathered the survivors and slipped away by night, returning to Anxi. The intermediate points and arrival dates are schematic."
  },
  "route:鉴真东渡": {
   "old": "Jianzhen's eastward voyage",
@@ -2973,18 +3077,22 @@
    "大宰府": "Dazaifu",
    "难波": "Naniwa",
    "平城京": "Heijō-kyō"
-  }
+  },
+  "note": "At the invitation of the Japanese monks Yōei and Fushō, Jianzhen made five attempts to cross east, all without success, and lost the sight of both eyes. He left Yangzhou on the 19th day of the 10th month of 753, and on the 16th day of the 11th month put out to sea from Huangsipu with the fleet of the envoys to Tang, Fujiwara no Kiyokawa and Kibi no Makibi. On the 21st he reached Okinawa Island, on the 7th day of the 12th month Yakushima, and on the 20th he landed at Akimeya-ura in Satsuma. By way of Dazaifu he entered Heijō-kyō on the 4th day of the 2nd month of 754, set up an ordination platform at Tōdai-ji to confer the precepts, and later built Tōshōdai-ji."
  },
  "people:吐谷浑余部@甘肃武威以南": {
   "old": "Tuyuhun remnants",
-  "mod": "south of Wuwei, Gansu"
+  "mod": "south of Wuwei, Gansu",
+  "note": "After the state fell in 663, Nuohebo fled to Liangzhou with a remnant of several thousand tents; Tang set up Anle Zhou at Lingzhou to resettle them."
  },
  "people:吐谷浑余部@宁夏中部": {
   "old": "Tuyuhun remnants",
-  "mod": "central Ningxia"
+  "mod": "central Ningxia",
+  "note": "In the 2nd month of 672 Nuohebo led his people from Liangzhou, first to the south of the Haomen River in Shanzhou and soon after to Lingzhou; Tang set up Anle Zhou on the land of Mingsha County and made Nuohebo its prefect. After the Zhide era Anle Zhou fell to Tibet, and the remnants moved east and scattered over Shuofang and Hedong."
  },
  "people:六胡州": {
   "old": "Six Hu Prefectures",
-  "mod": "around Otog Front Banner, Inner Mongolia"
+  "mod": "around Otog Front Banner, Inner Mongolia",
+  "note": "In 679 Tang set up six prefectures on the southern borders of Lingzhou and Xiazhou for the Sogdians among the surrendered Turks: Luzhou, Lizhou, Hanzhou, Saizhou, Yizhou and Qizhou, called the Six Hu Prefectures. In 721–722 Kang Daibin and Kang Yuanzi rose one after the other; after they were put down, over 50,000 of their people were moved to the Central Plains, and in 738 Tang set up Youzhou to resettle those who returned."
  }
 }

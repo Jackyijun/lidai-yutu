@@ -19,13 +19,13 @@
  },
  "回鹘": {
   "s": "Uyghurs",
-  "n": "Uyghur Khaganate",
-  "note": "In 744 Guli Peiluo destroyed the Second Turkic Khaganate and founded the Uyghur Khaganate, with its royal camp at Ordu-Baliq on the Orkhon River (today's Kharbalgas, Mongolia). In 757 it sent troops to help Tang recover the two capitals, and for a long time afterwards it made marriage alliances with Tang and traded horses for silk. In 788 its Chinese name was changed to Huihu. In the 790s it fought Tibet for Beiting and Xizhou.\nIn 840 the Yenisei Kyrgyz sacked its royal camp and the khaganate collapsed; its people moved west in three branches: one into Hexi (the Ganzhou Uyghurs), one into the eastern Tian Shan (the Xizhou or Qocho Uyghurs), and one to the Karluks."
+  "n": "Uyghur Qaghanate",
+  "note": "In 744 Guli Peiluo destroyed the Second Turkic Qaghanate and founded the Uyghur Qaghanate, with its royal camp at Ordu-Baliq on the Orkhon River (today's Kharbalgas, Mongolia). In 757 it sent troops to help Tang recover the two capitals, and for a long time afterwards it made marriage alliances with Tang and traded horses for silk. In 788 its Chinese name was changed to Huihu. In the 790s it fought Tibet for Beiting and Xizhou.\nIn 840 the Yenisei Kyrgyz sacked its royal camp and the qaghanate collapsed; its people moved west in three branches: one into Hexi (the Ganzhou Uyghurs), one into the eastern Tian Shan (the Xizhou or Qocho Uyghurs), and one to the Karluks."
  },
  "黠戛斯": {
   "s": "Kyrgyz",
   "n": "Yenisei Kyrgyz",
-  "note": "A Turkic-speaking people on the Kem River (the upper Yenisei), the Jiankun of Han times and the ancestors of the Kyrgyz of the Ming and Qing. In 840 they destroyed the Uyghur Khaganate and for a time held the lands north of the Gobi, sending envoys to Tang to seek investiture (843). In the early 10th century their power fell back to the Yenisei basin, and the lands north of the Gobi passed to the Zubu (Tatar) tribes."
+  "note": "A Turkic-speaking people on the Kem River (the upper Yenisei), the Jiankun of Han times and the ancestors of the Kyrgyz of the Ming and Qing. In 840 they destroyed the Uyghur Qaghanate and for a time held the lands north of the Gobi, sending envoys to Tang to seek investiture (843). In the early 10th century their power fell back to the Yenisei basin, and the lands north of the Gobi passed to the Zubu (Tatar) tribes."
  },
  "葛逻禄": {
   "n": "Karluks",
@@ -33,7 +33,7 @@
  },
  "突骑施": {
   "n": "Türgesh",
-  "note": "A branch of the Western Turks that dominated Semirechye (Suyab, Talas) in the early 8th century. After the death of Suluk Khagan in 738 it fell into civil war and its people dispersed; in the 750s–760s it was replaced by the Karluks."
+  "note": "A branch of the Western Turks that dominated Semirechye (Suyab, Talas) in the early 8th century. After the death of Suluk Qaghan in 738 it fell into civil war and its people dispersed; in the 750s–760s it was replaced by the Karluks."
  },
  "南诏": {
   "n": "Nanzhao",
@@ -58,7 +58,7 @@
  },
  "契丹": {
   "n": "Khitan",
-  "note": "Nomads of the Huang River (Xar Moron) and Tu River (Laoha River) basins; in the early Tang (648) they were held on a loose rein through the Songmo Area Command. In the period of the eight-tribe confederation under the Yaonian clan they repeatedly fought Tang, the Xi and the Uyghurs. In 907 Yelü Abaoji of the Yila tribe became khagan; he proclaimed himself emperor in 916, built Huangdu (the Supreme Capital, Linhuang Fu) in 918, campaigned west across the lands north of the Gobi in 924, and destroyed Balhae in 926.\nIn 936 the Khitan helped Shi Jingtang destroy the Later Tang, and in 938 they acquired the Sixteen Prefectures of Yan and Yun. In 947 Yelü Deguang entered Kaifeng, destroyed the Later Jin and renamed the state Great Liao. In 979 they routed the Song army at the Battle of the Gaoliang River."
+  "note": "Nomads of the Huang River (Xar Moron) and Tu River (Laoha River) basins; in the early Tang (648) they were held on a loose rein through the Songmo Area Command. In the period of the eight-tribe confederation under the Yaonian clan they repeatedly fought Tang, the Xi and the Uyghurs. In 907 Yelü Abaoji of the Yila tribe became qaghan; he proclaimed himself emperor in 916, built Huangdu (the Supreme Capital, Linhuang Fu) in 918, campaigned west across the lands north of the Gobi in 924, and destroyed Balhae in 926.\nIn 936 the Khitan helped Shi Jingtang destroy the Later Tang, and in 938 they acquired the Sixteen Prefectures of Yan and Yun. In 947 Yelü Deguang entered Kaifeng, destroyed the Later Jin and renamed the state Great Liao. In 979 they routed the Song army at the Battle of the Gaoliang River."
  },
  "奚": {
   "n": "Xi",
@@ -129,7 +129,7 @@
  },
  "西州回鹘": {
   "n": "Xizhou Uyghurs",
-  "note": "After the Uyghur Khaganate collapsed in 840, Pang Tegin led his followers west to the area of Karasahr and Kucha in the eastern Tian Shan. In 866 Pugu Jun of the Beiting Uyghurs took Xizhou, Beiting and Luntai and made Qocho his capital: this was the Kingdom of Qocho (also called the Xizhou Uyghurs or the Tian Shan Uyghurs), with Beiting (Beshbaliq) as its summer capital."
+  "note": "After the Uyghur Qaghanate collapsed in 840, Pang Tegin led his followers west to the area of Karasahr and Kucha in the eastern Tian Shan. In 866 Pugu Jun of the Beiting Uyghurs took Xizhou, Beiting and Luntai and made Qocho his capital: this was the Kingdom of Qocho (also called the Xizhou Uyghurs or the Tian Shan Uyghurs), with Beiting (Beshbaliq) as its summer capital."
  },
  "高昌回鹘": {
   "s": "Qocho",
@@ -518,7 +518,7 @@
  },
  "振武": {
   "n": "Zhenwu",
-  "note": "The Zhenwu Jun, with its seat at the Chanyu Protectorate (today's Horinger), defending against the Uyghurs, the Shatuo and the Tatars. In 843 Liu Mian and Shi Xiong marched out from here and crushed the Uyghur Wujie Khagan at Mount Shahu."
+  "note": "The Zhenwu Jun, with its seat at the Chanyu Protectorate (today's Horinger), defending against the Uyghurs, the Shatuo and the Tatars. In 843 Liu Mian and Shi Xiong marched out from here and crushed the Uyghur Wujie Qaghan at Mount Shahu."
  },
  "天德": {
   "n": "Tiande",

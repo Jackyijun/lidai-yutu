@@ -28,7 +28,7 @@
 | 都护府 | Protectorate | 单于都护府 Chanyu Protectorate、安东都护府 Andong Protectorate |
 | 京（陪都） | 府名在前，京名意译加括注 | 上京龙泉府 Longquan Fu (Supreme Capital)、中京显德府 Xiande Fu (Central Capital) |
 | 都城的括注 | 意译 | 洛阳（东都）Luoyang (Eastern Capital)、杭州（西府）Hangzhou (Western Seat)、太原（晋王府）Taiyuan (seat of the Prince of Jin) |
-| 牙帐 | camp | 回鹘牙帐 Uyghur khagan's camp、奚王牙帐 Xi king's camp |
+| 牙帐 | royal camp（可汗的牙帐）；camp（王的牙帐） | 回鹘牙帐 Uyghur royal camp、契丹牙帐 Khitan royal camp、黠戛斯牙帐 Kyrgyz royal camp、奚王牙帐 Xi king's camp（可汗、牙帐的写法 2026-11-27 起全图统一，同两晋、隋唐卷） |
 | 关 / 口 | Pass；已成专名者照拼 | 潼关 Tong Pass、飞狐口 Feihu Pass、古北口 Gubeikou |
 | 水 / 河 / 江 | X River；与他河撞名或英文惯用 -shui 的连写 | 汾水 Fen River、湟水 Huangshui、弱水 Ruoshui |
 | 湖 / 海 / 泽 / 泊 | Lake X 或 X Lake，从英文习惯；泽 Marsh | 太湖 Lake Tai、蒲昌海 Puchang Lake、大野泽 Daye Marsh |
@@ -46,7 +46,7 @@
 | 京畿 / 都畿、东都畿 | Capital District / Eastern Capital District | 同宋元“府界 Capital District” |
 | 割据（斜线） | autonomous | 图例“割据藩镇”作 Autonomous fanzhen，悬停标签作 Autonomous |
 | 节度使 | military governor | 九节度使 nine military governors |
-| 回纥 / 回鹘 | Uyghurs | 两种汉字写法英文不分；汗国全称 Uyghur Khaganate |
+| 回纥 / 回鹘 | Uyghurs | 两种汉字写法英文不分；汗国全称 Uyghur Qaghanate |
 | 吐蕃 | Tibetan Empire（短名 Tibet） | 842 年后的吐蕃诸部作 Tibetan tribes |
 | 契丹 | Khitan | 作政权名用于胜负、标题（Khitan defeated Balhae）；947 年后的当年别名作 Liao |
 | 渤海 | Balhae | 渤海的府州用拼音（同宋元）；渤海人名用新罗马字（大諲譔 Dae Inseon） |
@@ -59,7 +59,7 @@
 
 - 汉人名：姓在前、拼音（Guo Ziyi、Li Keyong）；复姓连写（Geshu Han、Pugu Huai'en、Zhuye Chixin、Yelü Abaoji）；帝王用“Emperor + 庙号 + of + 朝”（Emperor Taizong of Song）。
 - 姓氏读音：查 Zha（查文徽）、单 Shan、尉迟 Yuchi。
-- 吐蕃、回鹘人名按汉文史籍拼音（Shang Jiezan、Lun Mangre、Jiegan Jiasi）；可汗作 Khagan（Wujie Khagan），叶护作 yabghu。
+- 吐蕃、回鹘人名按汉文史籍拼音（Shang Jiezan、Lun Mangre、Jiegan Jiasi）；可汗作 Qaghan（Wujie Qaghan；泛称小写 qaghan），汗国作 Qaghanate，叶护作 yabghu；默啜照隋唐卷作 Qapaghan。
 - 朝鲜用新罗马字（Gung Ye、Gyeon Hwon、Wang Geon）；日本用平文式（Heian-kyō、Ennin）；越南保留声调符号（Ngô Quyền、Đinh Bộ Lĩnh）。
 - 五代十国：后梁 Later Liang、后唐 Later Tang、后晋 Later Jin、后汉 Later Han、后周 Later Zhou；前蜀 Former Shu、后蜀 Later Shu、南唐 Southern Tang、南汉 Southern Han、北汉 Northern Han、荆南（南平）Jingnan (Nanping)。
 - 和议、盟约一律作 Treaty of X（Treaty of Jingyang、Treaty of Diancang）。

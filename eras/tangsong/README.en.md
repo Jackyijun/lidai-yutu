@@ -171,6 +171,8 @@ The template has four placeholders: `__GEO__`, `__DATA__`, `__UCSS_LIGHT__` and 
 
 ## 6. Common changes
 
+**Change allegiances at the 755 time point**: the 755 time point is shared with the last time point of the *Sui to the High Tang* map, and this volume is authoritative (`global/junctions.toml`). After changing it, update `TS755` in `eras/suitang/content/snaps_tables.py` (the Sui–Tang volume's allegiances in 755 follow this volume) and recompute both volumes (`python run.py suitang tangsong`); prefecture names at 755–757 must agree with `NM_LATE` in the Sui–Tang volume's `content/seeds_late.py`.
+
 **Change which fanzhen a prefecture belongs to in a given year**: add a line to that year's block in `snaps.txt`. For example, to give Suzhou (宿州) to Wuning in 805:
 
 ```
